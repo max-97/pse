@@ -24,7 +24,7 @@ hs_err_pid*
 
 # LaTeX Files
 *.aux
-*.div
+*.dvi
 *.out
 *.pdf
 *.gz

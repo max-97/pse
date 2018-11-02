@@ -1,0 +1,59 @@
+\documentclass[parskip=full]{scrartcl}
+
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc} % avoid garbled Unicode text in pdf
+\usepackage[german]{babel} % german hyphenation, quotes, etc
+\usepackage{hyperref} % detailed hyperlink/pdf configuration
+\usepackage{mathptmx} %Schriftart Times
+\usepackage[scaled]{helvet} %
+\usepackage{graphicx}
+\hypersetup{ % ‘texdoc hyperref‘ for options
+pdftitle={Pflichtenheft},
+bookmarks=true,
+}
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+\usepackage{csquotes} % provides \enquote{} macro for "quotes"
+%TitlePage
+
+{
+\title{\fontsize{40}{48} \selectfont \textsc{Pflichtenheft}\\
+{\fontsize{18}{18} \selectfont Simulator für wiederholte Spiele}}
+}
+
+\author {Michel Bodé, Max Braun, Sophie Bräuniger, Simon Hügel, Zezhong Tong}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+
+\include{01_Einleitung}
+
+\include{02_Zielbestimmung}
+
+\include{03_Produkteinsatz}
+
+\include{04_Produktumgebung}
+
+\include{05_FunktionaleAnforderungen}
+
+\include{06_Produktdaten}
+
+\include{07_NichtfunkAnforderungen}
+
+\include{08_Benutzungsoberflaeche}
+
+\include{09_Qualitaetsbestimmungen}
+
+\include{10_Systemmodelle}
+
+\include{11_TestfaelleSzenarien}
+
+\include{12_Glossar}
+
+\end{document}
