@@ -2,4 +2,34 @@
 
 \subsection{Testfälle}
 
+\begin{itemize}
+
+\item Wenn die Simulation nicht gestartet wurde, ist der Knopf 'Abbrechen' grau hinterlegt.
+
+\item Wird ein Stufenspiel ausgewählt, erscheint eine Beschreibung des Spiels in dem Feld darunter.
+
+\item Ist die Anzahl der Agenten auf null oder eine ungerade Zahl gesetzt, so wird nach dem drücken auf 'Start' das Feld rot hinterlegt und es erscheint die Fehlermeldung 'Die Anzahl der Agenten muss gerade und größer als null sein!'
+
+\item Beim setzen eines Hakens bei einer Strategie, erscheint ein weiteres Feld, wo der Anteil der Strategie im Spiel angegeben werden soll.
+
+\item Beim entfernen eines Hakens bei einer Strategie, verschwindet das Feld, wo der Anteil der Strategie im Spiel angegeben werden sollte.
+
+\item Ist bei dem Stufenspiel, beim Adaptionsmechanismus oder beim Feld 'Paare bilden' keine Option ausgewählt, so wird nach dem drücken auf 'Start' das entsprechende Dropdown-Listenfeld rot hinterlegt.
+
+\item Ist bei weniger als zwei Strategien ein Haken gesetzt, so erscheint nach dem drücken auf 'Start' die Fehlermeldung 'Es müssen mindestens zwei Strategien ausgewählt werden!'
+
+\item Ergibt die Summe der Anteile, aller ausgewählten Strategien nicht hundert, so wird nach dem drücken auf 'Start' die Felder, für die Anteile rot hinterlegt und es erscheint die Fehlermeldung 'Die Summe der Anteile muss 100 sein!'
+
+\item Nach dem drücken auf den Knopf 'Start', wird diese grau hinterlegt und der Knopf 'Abbrechen' wird aktiv, bis die Simulation beendet wird.
+
+
+\end{itemize}
+
 \subsection{Szenarien}
+
+\begin{itemize}
+
+\item Der Benutzer startet die Anwendung. Es öffnet sich ein Fenster, in dem eine Reihe von Benutzer eingaben getätigt werden können. In dem zugehörigen Dropdown-Listenfeld wählt er das Stufenspiel 'Gefangenendilemma'. In einem Feld darunter erscheint eine kurze Beschreibung des Spiels.
+Die Anzahl der Agenten setzt der Benutzer auf 200, den Adaptionsmechanismus auf 'Replicator Dynamic (default)' und die Option 'Paare bilden' setzt er auf zufällig. In der Liste der möglichen Strategien setzt er einen Haken bei 'Tit for Tat' und bei 'Grim'. Es erscheint jeweils ein neues Feld zur Eingabe des Anteils, der jeweiligen Strategie. Der Nutzer setzt für 'Tit for Tat' 50 Prozent und für 'Grim' 40 Prozent. Der Nutzer möchte die Simulation starten und drückt auf den Knopf 'Start'. Die beiden Felder für den Anteil der jeweiligen Strategien, werden rot hinterlegt und es erscheint eine Fehlermeldung 'Die Summe der Anteile muss 100 sein!'.
+
+\end{itemize}
