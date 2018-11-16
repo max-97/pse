@@ -10,7 +10,10 @@ Es können Simulationen erstellt werden.
 \textbf{/F0010/} 
 Die Simulation kann gestartet werden.
 
-\textbf{/F0020/} 
+\textbf{/F0020/}
+Alle Simulationen können gleichzeitig gestartet werden.
+
+\textbf{/F0030/} 
 Die Ergebnisse der Simulation können angezeigt werden.
 
 \subsubsection{Simulation erstellen}
@@ -19,7 +22,7 @@ Die Ergebnisse der Simulation können angezeigt werden.
 Die Anzahl der Agenten kann festgelegt werden. Es werden nur gerade Zahlen zugelassen.
 
 \textbf{/F0110/} 
-Die initiale Strategie der Agenten kann festgelegt werden. Dabei wird der prozentuale Anteil der der Strategie im Startzustand angegeben.  
+Die initiale Strategie der Agenten kann festgelegt werden. Dabei wird der prozentuale Anteil der Strategie im Startzustand angegeben.  
 
 \textbf{/F0120/} 
 Das zu simulierende Spiel kann festgelegt werden.
@@ -34,7 +37,7 @@ Die Anzahl der Zyklen kann festgelegt werden.
 Die Anzahl der Wiederholungen der Simulation kann festgelegt werden.
 
 \textbf{/F0160/} 
-Die Art der Strategieanpassung kann festgelegt werden. 
+Der Algorithmus zur Anpassung der Strategie kann festgelegt werden.
 
 \textbf{/F0170/} 
 Die Wahrscheinlichkeit für eine Strategieanpassung am Ende eines Zyklus kann festgelegt werden. Es sind Werte zwischen 0.01 und 1 zugelassen.
@@ -173,8 +176,24 @@ Bedingung: Wähle die erste Strategie, wenn der andere Agent ärmer ist.
 \textbf{/F0510/}
 Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich reich ist, d.h. wenn er $\pm$ 50 Punkte hat. 
 
-\subsubsection{Anpassung der Strategie}
+\subsubsection{Anpassungsalgorithmus}
 
+\textbf{/F0600/}
+Am Ende jedes Zyklus werden die Agenten gemäß ihrer Punktzahl und der Bewertungsart in einer Rangliste platziert.
+
+\textbf{/F0610/}
+Jeder Agent wir mit der Wahrscheinlichkeit aus /F0170/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0160/ angewandt.
+
+\textbf{/F0620/}
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante so dass $\delta \cdot \beta \leq 1$ ist.
+
+\textbf{/F0630/}
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
+
+\subsubsection{Auswertung}
+
+\textbf{/F0700/}
+Für alle beendeten Simulationen kann man die Ergebnisse anzeigen. Für jede Simulation lassen sich die Ergebnisse aller Wiederholungen anzeigen.
 
 \subsection{Wunschkriterien}
 
