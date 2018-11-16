@@ -16,6 +16,12 @@ Alle Simulationen können gleichzeitig gestartet werden.
 \textbf{/F0030/} 
 Die Ergebnisse der Simulation können angezeigt werden.
 
+\textbf{/F0040/}
+Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird.
+
+\textbf{/F0050/}
+Wird nach der maximalen Zyklenanzahl kein Gleichgewichtszustand erkannt endet die Simulation.
+
 \subsubsection{Simulation erstellen}
 
 \textbf{/F0100/} 
@@ -31,7 +37,7 @@ Das zu simulierende Spiel kann festgelegt werden.
 Die Anzahl der Runden kann festgelegt werden.
 
 \textbf{/F0140/} 
-Die Anzahl der Zyklen kann festgelegt werden.
+Die maximale Anzahl der Zyklen kann festgelegt werden.
 
 \textbf{/F0150/} 
 Die Anzahl der Wiederholungen der Simulation kann festgelegt werden.
@@ -190,10 +196,22 @@ Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Ag
 \textbf{/F0630/}
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
 
+\textbf{/F0640/}
+Anpassungsalgorithmus: Wie /F0620/ aber $delta$ ist die Differenz der Gesamtpunktzahl.
+
 \subsubsection{Auswertung}
 
 \textbf{/F0700/}
 Für alle beendeten Simulationen kann man die Ergebnisse anzeigen. Für jede Simulation lassen sich die Ergebnisse aller Wiederholungen anzeigen.
+
+\textbf{/F0710/}
+Eine Rangliste mit allen Agenten kann angezeigt werden. Bei allen Agenten wird der Rang, die Gesamtpunktzahl und die aktuelle Strategie angezeigt.
+
+\textbf{/F0730/}
+Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
+
+\textbf{/F0740/}
+Ein Balkendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
 
 \subsection{Wunschkriterien}
 
