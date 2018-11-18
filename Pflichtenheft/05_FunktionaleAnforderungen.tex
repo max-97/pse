@@ -153,7 +153,7 @@ Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /
 Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte mal mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
 
 \textbf{/F0420/} 
-Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit im Kooperiert hat. Beim ersten mal kooperiert der Agent.
+Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm Kooperiert hat. Beim ersten mal kooperiert der Agent.
 
 \textbf{/F0430/} 
 Strategie: der Agent kooperiert immer.
@@ -236,10 +236,22 @@ Das gespeicherte Ergebnis einer Simulation kann bei Bedarf geladen werden.
 \textbf{/W0200/}
 Das Startkapital für Agenten kann für jede Runde festgelegt werden.
 
-\subsubsection{weitere Strategien}
+\subsubsection{Strategien für die Paarung von Agenten}
 
 \textbf{/W0300/}
-Die Strategien für die Paarung von Agenten können festgelegt werden.
+Strategie: Der Agent paart nur mit dem Agent, welcher mit ihm paaren will.
+
+\textbf{/W0310/}
+Strategie: Der Agent paart nur mit dem Agent, welcher nur mit ihm paaren will.
+
+\textbf{/W0320/} 
+Strategie: Der Agent paart immer mit jedem anderen Agent.
+
+\textbf{/F0330/}
+Strategie: Der Agent paart nie mit anderer Agent.
+
+\textbf{/F0340/}
+Strategie: Die Paarung von Agenten ist zufällig.
 
 \subsubsection{Zustände der Agenten}
 
@@ -249,4 +261,3 @@ Zustände der Agenten während der Simulatoon können bei der Auswertung angezei
 \subsubsection{Algorithmen für Strategieanpassung}
 
 \textbf{/W0500/}
-Die Algorithmen für Strategieanpassung der Agenten können festgelegt werden.
