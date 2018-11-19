@@ -110,8 +110,8 @@ Falke-Taube
 \begin{tabular}{cc|c|c|}
   & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
   & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
-  \multirow{2}*{Spieler $1$} & $K$ & $2,2$ & $1,4$ \\\cline{3-4} 
-  & $D$ & $4,1$ & $0,0$ \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $3,3$ & $0,10$ \\\cline{3-4} 
+  & $D$ & $10,0$ & $-5,-5$ \\\cline{3-4}
 \end{tabular}
 \end{table}
 
@@ -196,9 +196,6 @@ Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Ag
 \textbf{/F0630/}
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
 
-\textbf{/F0640/}
-Anpassungsalgorithmus: Wie /F0620/ aber $delta$ ist die Differenz der Gesamtpunktzahl.
-
 \subsubsection{Auswertung}
 
 \textbf{/F0700/}
@@ -221,10 +218,13 @@ Ein Balkendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen.
 Die Konfiguration einer Simulation kann gespeichert werden.
 
 \textbf{/W0010/}
-Eine Konfiguration kann für eine Simulation geladen werden.
+Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
 
 \textbf{/W0020/}
 Das Startkapital für Agenten kann festgelegt werden.
+
+\textbf{/W0030/}
+Agenten können gemischte Strategien zugewiesen bekommen. Die Wahrscheinlichkeit für eine Strategie wird mit angegeben.
 
 \subsubsection{Auswertung}
 
@@ -235,7 +235,23 @@ Das Ergebnis einer Simulation kann gespeichert werden.
 Ein Ergebnis einer Simulation kann geladen werden.
 
 \textbf{/W0120/}
-Zustände der Agenten während der Simulation können bei der Auswertung angezeigt werden.
+Ein Graph zeigt die Punkte der Agenten während der Simulation an. Die Information erhält man aus /W0400/. Es gibt die Optionen:
+\begin{itemize}
+\item Punkte der besten $10\%$
+\item Punkte der schlechtesten $10\%$
+\item durchschnittliche Punkte aller Agenten
+\item Median der Punkte aller Agenten
+\item Punkte ausgewählter Agenten
+\end{itemize}
+
+\textbf{/W0130/}
+Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Informationen erhält man aus /W0400/. Es gibt die Optionen:
+\begin{itemize}
+\item Anteil der Strategien der besten $10\%$
+\item Anteil der Strategien der schlechtesten $10\%$
+\item Anteil der Strategien aller Agenten
+\item Anteil der Strategien ausgewählter Agenten
+\end{itemize}
 
 \subsubsection{Strategien für die Paarung von Agenten}
 
@@ -254,6 +270,30 @@ Strategie: Der Agent paart mit ungefähr gleich reichem Agenten.
 \textbf{/W0240/}
 Strategie: Die Paarung von Agenten ist zufällig.
 
+\subsubsection{Anpassungsalgorithmus}
 
-\subsubsection{Algorithmen für Strategieanpassung}
+\textbf{/W0300/}
+Anpassungsalgorithmus: Ein Agent übernimmt nur Strategien von reicheren Agenten aus der gleichen Gruppe gemäß /F0620/.
 
+\textbf{/W0310/}
+Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm immer kooperiert hat.
+
+\textbf{/W0320/}
+Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfters nicht kooperiert als kooperiert hat.
+
+\textbf{/W0330/}
+Anpassungsalgorithmus: Wie /F0620/ aber $delta$ ist die Differenz der Gesamtpunktzahl.
+
+\textbf{/W0340/}
+Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, sodass die Summe 1 ergibt.
+
+\textbf{/W0350/}
+Mit einer Wahrscheinlichkeit von $1\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
+
+\subsubsection{Sonstiges}
+
+\textbf{/W0400/}
+Alle 250 Zyklen wird der Zustand aller Agenten gespeichert.
+
+\textbf{/W0410/}
+Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien und wählen eine zufällig aus. Die Wahrscheinlichkeit mit der eine Strategie ausgewählt wird kann sich verändern.
