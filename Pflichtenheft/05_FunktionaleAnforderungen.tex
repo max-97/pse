@@ -17,10 +17,8 @@ Alle Simulationen können gleichzeitig gestartet werden.
 Die Ergebnisse der Simulation können angezeigt werden.
 
 \textbf{/F0040/}
-Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird.
-
-\textbf{/F0050/}
-Wird nach der maximalen Zyklenanzahl kein Gleichgewichtszustand erkannt endet die Simulation.
+Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird oder
+die maximale Zyklenanzahl erreicht wird.
 
 \subsubsection{Simulation erstellen}
 
@@ -297,3 +295,6 @@ Alle 250 Zyklen wird der Zustand aller Agenten gespeichert.
 
 \textbf{/W0410/}
 Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien und wählen eine zufällig aus. Die Wahrscheinlichkeit mit der eine Strategie ausgewählt wird kann sich verändern.
+
+\textbf{/W0420/}
+Die Simulation kann abgebrochen und wieder neu gestartet werden. Beim Neustart beginnt sie wieder in ihrem Anfangszustand. Beim Abbrechen werden keine Informationen gespeichert.
