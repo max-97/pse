@@ -1,35 +1,84 @@
+
 \section{Globale Testfälle und Szenarien}
+
+  
+% usage: \testfall{szenario}{ablauf}{ergebnis} oder
+\newcommand{\testfall}[4][]{
+  \begin{description}
+    \item[Stand] #2
+    \item[Aktion] #3
+    \item[Reaktion] #4
+  \end{description}
+}
 
 \subsection{Testfälle}
 
-\begin{itemize}
-
-\item Wenn die Simulation nicht gestartet wurde, ist der Knopf 'Abbrechen' grau hinterlegt.
-
-\item Wird ein Stufenspiel ausgewählt, erscheint eine Beschreibung des Spiels in dem Feld darunter.
-
-\item Ist die Anzahl der Agenten auf null oder eine ungerade Zahl gesetzt, so wird nach dem drücken auf 'Start' das Feld rot hinterlegt und es erscheint die Fehlermeldung 'Die Anzahl der Agenten muss gerade und größer als null sein!'
-
-\item Beim setzen eines Hakens bei einer Strategie, erscheint ein weiteres Feld, wo der Anteil der Strategie im Spiel angegeben werden soll.
-
-\item Beim entfernen eines Hakens bei einer Strategie, verschwindet das Feld, wo der Anteil der Strategie im Spiel angegeben werden sollte.
-
-\item Ist bei dem Stufenspiel, beim Adaptionsmechanismus oder beim Feld 'Paare bilden' keine Option ausgewählt, so wird nach dem drücken auf 'Start' das entsprechende Dropdown-Listenfeld rot hinterlegt.
-
-\item Ist bei weniger als zwei Strategien ein Haken gesetzt, so erscheint nach dem drücken auf 'Start' die Fehlermeldung 'Es müssen mindestens zwei Strategien ausgewählt werden!'
-
-\item Ergibt die Summe der Anteile, aller ausgewählten Strategien nicht hundert, so wird nach dem drücken auf 'Start' die Felder, für die Anteile rot hinterlegt und es erscheint die Fehlermeldung 'Die Summe der Anteile muss 100 sein!'
-
-\item Nach dem drücken auf den Knopf 'Start', wird diese grau hinterlegt und der Knopf 'Abbrechen' wird aktiv, bis die Simulation beendet wird.
 
 
-\end{itemize}
+\textbf{/T001/} Konfiguration erstellen
+\begin{enumerate}
+\item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt.}
+{Der Benutzer drückt auf den Knopf 'Konfiguration erstellen'.}
+{Es öffnet sich die erste Seite des Assistenten.}
+
+\item \testfall{Die erste oder zweiten Seite des Assistenten ist geöffnet.}
+{Der Benutzer tätigt alle Eingaben auf dieser Seiter und bestätigt diese mit klicken auf 'weiter'.}
+{Es kommt eine Fehlermeldung zu einer fehlerhaften Eingabe.}
+
+\item \testfall{Die erste oder zweiten Seite des Assistenten ist geöffnet.}
+{Der Benutzer tätigt alle Eingaben auf dieser Seiter und bestätigt diese mit klicken auf 'weiter'.}
+{Es wird die nächste Seite des Assistenten geöffnet.}
+
+\item \testfall{Eine Seite des Assistenten ist geöffnet.}
+{Der Benutzer tätigt alle Eingaben auf allen Seiten und bestätigt diese mit klicken auf 'fertig stellen'.}
+{Es kommt eine Fehlermeldung zu einer fehlerhaften Eingabe.}
+
+\item \testfall{Eine Seite des Assistenten ist geöffnet.}
+{Der Benutzer tätigt alle Eingaben auf allen Seiten und bestätigt diese mit klicken auf 'fertig stellen'.}
+{Das Fenster schließt sich und die erstellten Konfigurationen werden auf die Startseite geladen.}
+
+\item \testfall{Eine Seite des Assistenten ist geöffnet. Es wurden noch nicht alle Eingaben getätigt.}
+{Der Benutzer klickt auf 'fertig stellen'.}
+{Es kommt eine Fehlermeldung zu fehlenden Eingaben.}
+\end{enumerate}
+
+\textbf{/T002/} Konfigurationen speichern und laden
+\begin{enumerate}
+\item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt}
+		{Der Benutzer klickt auf den Knopf 'Konfiguration laden' und wählt eine in der Liste genannten Konfigurationen. Er bestätigt mit 'OK'}
+		{Es öffnet sich der Assistent. Alle unter dem gewählten Namen gespeicherten Parameter sind bereits eingegeben.}
+
+\item \testfall{Eine Seite des Assistenten zum erstellen einer Konfiguration ist geöffnet.}
+		{Der Benutzer klickt auf den Knopf 'Konfiguration speichern'. In dem sich geöffneten Pop-Up-Fenster gibt er einen Namen für die Konfiguration ein und bestätigt mit 'OK'}
+		{Das Fenster sowie der Assistent schließen sich.}
+\end{enumerate}
+
+\textbf{/T003/} Simulationen starten
+\begin{enumerate}
+\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
+		{Der Benutzer klickt auf den Knopf 'start' neben einer Simulation.}
+		{Der Knopf 'start' wird deaktiviert. Nach einigen Sekunden wird der Knopf 'start' und 'Ergebnisse anzeigen' aktiviert.}
+		
+\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
+		{Der Benutzer klickt auf den Knopf 'Alle Simulationen starten'}
+		{Alle 'start' Knöpfe und der Knopf 'Alle Simulationen starten' werden deaktiviert. Nach einigen Sekunden werden alle 'start' Knöpfe, alle 'Ergebnisse anzeigen' und der Knopf 'Alle Simulationen starten' aktiviert.}
+\end{enumerate}
+
+\textbf{/T004/} Ergebnisse anzeigen
+\begin{enumerate}
+\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die bereits durchgeführt wurde.}
+		{Der Benutzer klickt auf 'Ergebnisse anzeigen'.}
+		{Es öffnet sich das Ergebnisfenster der Simulation.}
+\end{enumerate}
+
+\textbf{/T005/} Ergebnisse speichern und laden
+\begin{enumerate}
+\item \testfall{Das Ergebnisfenster einer Simulation ist geöffnet.}
+		{Der Benutzer scrollt bei den Ergebnissen ganz nach unten und drückt auf Ergebnisse speichern. Im geöffneten Pop-Up-Fenster gibt er einen Namen ein und bestätigt auf 'OK'.}
+		{Das Pop-Up-Fenster schließt sich.}
+\end{enumerate}
+
 
 \subsection{Szenarien}
 
-\begin{itemize}
 
-\item Der Benutzer startet die Anwendung. Es öffnet sich ein Fenster, in dem eine Reihe von Benutzer eingaben getätigt werden können. In dem zugehörigen Dropdown-Listenfeld wählt er das Stufenspiel 'Gefangenendilemma'. In einem Feld darunter erscheint eine kurze Beschreibung des Spiels.
-Die Anzahl der Agenten setzt der Benutzer auf 200, den Adaptionsmechanismus auf 'Replicator Dynamic (default)' und die Option 'Paare bilden' setzt er auf zufällig. In der Liste der möglichen Strategien setzt er einen Haken bei 'Tit for Tat' und bei 'Grim'. Es erscheint jeweils ein neues Feld zur Eingabe des Anteils, der jeweiligen Strategie. Der Nutzer setzt für 'Tit for Tat' 50 Prozent und für 'Grim' 40 Prozent. Der Nutzer möchte die Simulation starten und drückt auf den Knopf 'Start'. Die beiden Felder für den Anteil der jeweiligen Strategien, werden rot hinterlegt und es erscheint eine Fehlermeldung 'Die Summe der Anteile muss 100 sein!'.
-
-\end{itemize}
