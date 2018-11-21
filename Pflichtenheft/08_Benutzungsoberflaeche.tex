@@ -3,7 +3,7 @@
 
 \subsection{Sartfenster}
 
-\begin{figure}[htbp] 
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=1.2\textwidth]{GUI_Entwurf/StartfensterBeispiel.png}
   \caption{Entwurf}
@@ -34,7 +34,7 @@
 
 \subsection{Konfigurationen erstellen}
 
-\begin{figure}[htbp] 
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=1.0\textwidth]{GUI_Entwurf/WizardFenster1.png}
   \caption{Entwurf}
@@ -65,7 +65,9 @@
 
 \end{description}
 
-\begin{figure}[htbp] 
+\pagebreak
+
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=1.2\textwidth]{GUI_Entwurf/WizardFenster2.png}
   \caption{Entwurf}
@@ -84,21 +86,21 @@
 
 \item[5. Entfernen] Es kann zwischen den Adaptionsmechanismen gewählt werden.
 
-\item[6. Gruppe hinzufügen] Hier kann eine Wahrscheinlichkeit größer als null und kleiner gleich 100 in Prozent angegeben werden, dass Agenten nach einem Zyklus ihre Startegie gegebenen falls anpassen.
+\item[6. Gruppe hinzufügen] Fügt eine neue Zeile mit den Feldern 3 bis 5 an.
 
-\item[7. Name] Es kann ein Stufenspiel gewählt werden
+\item[7. Name] Name der erstellten Strategie.
 
-\item[8. Anteil] Wenn ein Stufenspiel gewählt ist, steht hier eine kurze Beschreibung unteranderem mit den unterschiedlichen Auszahlungen
+\item[8. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels in Prozent. Es werden Eingaben größer als null und kleiner gleich 100 akzeptiert. Alle Anteil-Felder müssen zusammen 100 ergeben.
 
-\item[9. Strategie] Es werden nur gerade Zahlen akzeptiert
+\item[9. Strategie] Wähle zwischen vier 'Basis-Strategien': Tit-for-Tat, Grim, keine Kooperation, immer Kooperation
 
-\item[10. Bedingung] Es kann zwischen den Auswertungsmechanismen gewählt werden.
+\item[10. Bedingung] Wähle die Bedingung mit der die Strategie eintritt. 
 
-\item[11. x] Es kann zwischen den Adaptionsmechanismen gewählt werden.
+\item[11. x] Falls die Bedingung 'mit Wahrscheinlichkeit x' gewählt ist kann hier die Wahrscheinlichkeit in Prozent eingegeben werden. Die Eingabe muss dann größer als null und kleiner gleich 100 sein. Falls die Bedingung 'mit Gruppe x' gewählt ist kann hier der Name der Gruppe eingegeben werden. Sonst ist das Feld deaktiviert.
 
-\item[12. sonst] Hier kann eine Wahrscheinlichkeit größer als null und kleiner gliech 100 in Prozent angegeben werden, dass Agenten nach einem Zyklus ihre Startegie gegebenen falls anpassen.
+\item[12. sonst] Hier kann die alternative 'Basis-Strategien' gewählt werden, die eintritt, wenn die erste Strategie nicht eintritt.
 
-\item[13. entfernen] Es kann ein Stufenspiel gewählt werden
+\item[13. entfernen] Alle Felder in dieser Zeile werden gelöscht.
 
 \item[14. Strategie hinzufügen] Fügt eine neue Zeile an, mit den Feldern 7 bis 13.
 
@@ -112,46 +114,115 @@
 
 \end{description}
 
-\begin{figure}[htbp] 
+\pagebreak
+
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=0.7\textwidth]{GUI_Entwurf/WizardFenster3.png}
   \caption{Entwurf}
   \label{fig:Bild1}
 \end{figure}
 
+\begin{description}
+
+\item[1. Anzahl der Runden] Die Anzahl der Runden in einer Simulation. Eine Runde besteht aus den Schritte Agenten miteinander paaren und Agenten spielen gegeneinander. Es werden ganzzahlige Eingaben akzeptiert.
+
+\item[2. erweiterte Eintellungen] Nur wenn der Haken gesetzt ist, sind die unteren zwei Felder 3 und  aktiviert.
+
+\item[3. Maximale Anzahl der Zyklen] Maximale Anzahl der Zyklen, nachdenen die Simulation abgebrochen wird, auch wenn kein Gleichgewichtszustand erreicht wurde. Ein Zyklus Besteht aus der angegebenen Anzahl von Runden und die darauffolgende Bewertung, der Agenten und die Anpassung ihrer Strategien. Es werden ganzzahlige Eingaben akzeptiert.
+
+\item[4. Wiederholungen der Simulation] Anzahl der Wiederholungen der ganzen Simulation. Es werden ganzzahlige Eingaben akzeptiert.
+
+\item[5. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellt Konfiguration zu bestimmen.
+
+\item[6. zurück] Führt zur zweiten Seite.
+
+\item[7. weiter] Ist auf dieser Seite deaktiviert.
+
+\item[8. fertig stellen] Ist aktiviert wenn alle nötigen Eingaben auf dieser und den anderen zwei Seiten getätigt wurden. Wenn alle Eingaben korrekt sind, wird das Fenster geschlossen und die Simulationen werden auf die Startseite geladen. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
+
+\end{description}
+
 
 \subsection{Konfigurationen speichern und laden}
 
-\begin{figure}[htbp] 
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=0.5\textwidth]{GUI_Entwurf/KonfigSpeichern.png}
   \caption{Entwurf}
   \label{fig:Bild1}
 \end{figure}
 
-\begin{figure}[htbp] 
+\begin{description}
+
+\item[1. Name] Name für die zu speichernde Konfiguartion
+\item[2. OK] Wurde ein Name eingegeben, so wird das Fenster geschlossen und alle durch den Assistenten eingegeben Parameter, der Startkonfiguration unter diesem Namen gespeichert.
+\item[3. Abbrechen] Der Vorgang wird abgebrochen und das Fenster schließt sich.
+
+\end{description}
+
+\pagebreak
+
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=0.5\textwidth]{GUI_Entwurf/KonfigLaden.png}
   \caption{Entwurf}
   \label{fig:Bild1}
 \end{figure}
 
+\begin{description}
 
+\item[1. Konfiguration] Es kann zwischen den bereits gespeicherten Konfigurationen gewählt werden.
+\item[2. OK] Wurde eine Konfiguration gewählt, so wird das Fenster geschlossen und der Assistent wird geöffnet. Alle gespeicherten Parameter der gewählten Konfiguration sind im Assistenten bereits eingegeben.
+\item[3. Abbrechen] Der Vorgang wird abgebrochen und das Fenster schließt sich.
+
+\end{description}
+
+\pagebreak
 
 \subsection{Ergebnisse anzeigen}
 
-\begin{figure}[htbp] 
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=1.2\textwidth]{GUI_Entwurf/Ergebnisfenster1.png}
   \caption{Entwurf}
   \label{fig:Bild1}
 \end{figure}
 
+\begin{description}
 
-\begin{figure}[htbp] 
+\item[1. Startkonfiguartion] Die wichtigsten Parameter der Startkonfiguration werden angezeigt.
+
+\item[2. Details] In einem Pop-Up-Fenster werden alle Parameter der Startkonfiguration angezeigt.
+
+\item[3. Ergebnisse] Das Feld zum anzeigen der Ergebnisse lässt sich scrollen.
+
+\item[4. Wiederholung] Es kann zwischen den einzelnen Wiederholungen der Simulation gewählt werden. D
+
+\item[5. Anteil der Strategien] Anteil der Strategien aller Agenten am Ende der Simulation. 
+
+\item[6. zurück] Zeigt den Anteil der Strategien aller Agenten am Ende der Simulation in einem Kuchendiagramm. 
+
+\end{description}
+
+\pagebreak
+
+\begin{figure}[hp] 
   \centering
      \includegraphics[width=1.2\textwidth]{GUI_Entwurf/Ergebnisfenster2.png}
   \caption{Entwurf}
   \label{fig:Bild1}
 \end{figure}
+
+\begin{description}
+
+\item[1. Punkteverteilung der Agenten] Zeigt die Verteilung der Summe aller Auszahlungen der Agenten am Ende der Simulation in einem Balkendiagramm an.
+
+\item[2. Rangliste] Zeigt eine Rangliste aller Agenten am Ende der Simulation mit ihrem Rang ihre letzten Strategie und die Summe aller ihrer Auszahlungen.
+
+\item[3. Ergebnisse speichern] Öffnet ein Dialogfenster in den ein Name für die Ergebnisse gewählt werden kann.
+
+
+\end{description}
+
 
