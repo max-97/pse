@@ -59,7 +59,7 @@ Es werden Standartwerte für die Konfiguration aus einer Config-Datei geladen.
 Für die Anteile der initialen Strategien kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Daraus entsteht eine Menge von Konfigurationen. Jede Konfiguration erhält eine eigene Simulation. Die prozentuale Anteile der aller Strategien in einer Konfiguration muss zusammen immer 100 ergeben. 
 
 \subsubsection{Spiele}
-Es werden alle implementierten Spiele mit ihren Payoffs angegeben. $K$ steht für die Aktion \emph{Kooperation} und $D$ für \emph{Defektion}.
+Alle implementierten Spiele sind mit ihren Payoffs angegeben. $K$ steht für die Aktion \emph{Kooperation} und $D$ für \emph{Defektion}.
 
 \textbf{/F0300/} 
 Gefangenendilemma
@@ -140,12 +140,12 @@ Vertrauensspiel
 \end{table}
 
 \textbf{/F0360/} 
-Erstellen eines Spiels durch Angabe der Payoffs.
+Erstellen eines Spiels durch Eingabe der Payoffs.
 
 \subsubsection{Strategien}
 
 \textbf{/F0400/}
-Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /F0510/ und einer weiteren Strategie kombiniert werden. Daraus entsteht eine gemischte Strategie. Ist die Bedingung erfüllt wird die erste Strategie ausgeführt, ansonsten die zweite Strategie.  
+Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /F0510/ und einer weiteren Strategie kombiniert werden. Daraus entsteht eine kombinierte Strategie. Ist die Bedingung erfüllt wird die erste Strategie ausgeführt, ansonsten die zweite Strategie.  
 
 \textbf{/F0410/} 
 Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte mal mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
@@ -163,10 +163,10 @@ Strategie: der Agent kooperiert nie.
 Strategie: die Aktion des Agenten ist zufällig.
 
 \textbf{/F0460/}
-Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim erstellen der Simulation angegeben.
+Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim Erstellen der Simulation angegeben.
 
 \textbf{/F0470/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim erstellen der Simulation angegeben.
+Bedingung: Wähle die erste Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim Erstellen der Simulation angegeben.
 
 \textbf{/F0480/}
 Bedingung: Wähle die erste Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe, wählt er die erste Strategie, wenn der anderer Agent ebenfalls in keiner Gruppe ist.
@@ -178,7 +178,7 @@ Bedingung: Wähle die erste Strategie, wenn der andere Agent reicher ist.
 Bedingung: Wähle die erste Strategie, wenn der andere Agent ärmer ist.
 
 \textbf{/F0510/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich reich ist, d.h. wenn er $\pm$ 50 Punkte hat. 
+Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich reich ist.
 
 \subsubsection{Anpassungsalgorithmus}
 
@@ -189,7 +189,7 @@ Am Ende jedes Zyklus werden die Agenten gemäß ihrer Punktzahl und der Bewertun
 Jeder Agent wir mit der Wahrscheinlichkeit aus /F0170/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0160/ angewandt.
 
 \textbf{/F0620/}
-Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante so dass $\delta \cdot \beta \leq 1$ ist.
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante, so dass $\delta \cdot \beta \leq 1$ ist.
 
 \textbf{/F0630/}
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
@@ -219,7 +219,7 @@ Die Konfiguration einer Simulation kann gespeichert werden.
 Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
 
 \textbf{/W0020/}
-Das Startkapital für Agenten kann festgelegt werden.
+Eine Startpunktzahl für Agenten kann festgelegt werden.
 
 \textbf{/W0030/}
 Agenten können gemischte Strategien zugewiesen bekommen. Die Wahrscheinlichkeit für eine Strategie wird mit angegeben.
@@ -257,13 +257,13 @@ Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Inf
 Strategie: Der Agent paart mit dem Agent, welcher mit ihm gepaart werden will.
 
 \textbf{/W0210/} 
-Strategie: Der Agent paart mit reicherem Agenten.
+Strategie: Der Agent paart mit reicheren Agenten.
 
 \textbf{/W0220/}
-Strategie: Der Agent paart mit ärmerem Agenten.
+Strategie: Der Agent paart mit ärmeren Agenten.
 
 \textbf{/W0230/}
-Strategie: Der Agent paart mit ungefähr gleich reichem Agenten.
+Strategie: Der Agent paart mit ungefähr gleich reichen Agenten.
 
 \textbf{/W0240/}
 Strategie: Die Paarung von Agenten ist zufällig.
@@ -280,10 +280,10 @@ Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agente
 Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfters nicht kooperiert als kooperiert hat.
 
 \textbf{/W0330/}
-Anpassungsalgorithmus: Wie /F0620/ aber $delta$ ist die Differenz der Gesamtpunktzahl.
+Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl.
 
 \textbf{/W0340/}
-Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, sodass die Summe 1 ergibt.
+Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, so dass die Summe 1 ergibt.
 
 \textbf{/W0350/}
 Mit einer Wahrscheinlichkeit von $1\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
