@@ -1,20 +1,28 @@
 \section{Glossar}
 
 \textbf{Spiel}
-Ein spieltheoretisches Stufenspiel, welches sich als 2x2 Matrix darstellen lässt, wobei sich an jeder der 4 Stellen Payoffs für beide Spieler befinden.
+Ein spieltheoretisches Stufenspiel, welches sich als 2x2 Matrix darstellen lässt, wobei sich an jeder der 4 Einträge Payoffs für beide Spieler befinden.
 
 \textbf{Strategie}
-Eine Strategie eines Agenten A bestimmt die Aktion von A im Verlauf eines Spiels mit einem Agenten B. Die Strategie kann von den vergangenen Aktionen des Agenten B, den Rängen von A und B, sowie deren Gruppenzugehörigkeit abhängen.
+Eine Strategie eines Agenten A bestimmt die Aktion von A im Verlauf eines Spiels mit einem Agenten B. Die Strategie kann von den vergangenen Aktionen des Agenten B, den Rängen von A und B, sowie deren Gruppenzugehörigkeit abhängen. Die Strategie eines Agenten kann sich während der Simulation ändern.
 
 \textbf{Runde}
 Eine Runde umfasst die Paarung aller Agenten und das einmalige Spielen des ausgewählten Stufenspiels.
 
 \textbf{Zyklus}
-Ein Zyklus umfasst alle Runden bis die Strategien angepasst werden können, sowie die Anpassung selbst.
+Ein Zyklus umfasst $k$ Runden sowie das Auswerten und Anpassen der Strategien.
 
 \textbf{Gruppe}
-Eine Gruppe beschreibt alle Agenten, die dieselbe Gruppeneigenschaft besitzen. Gruppeneigenschaften, sowie die Verteilung dieser können vom Benutzer festgelegt werden.
+Eine Gruppe ist eine Menge von Agenten, die vom Benutzer festgelegt werden kann.
 
 \textbf{Gleichgewicht}
-Ein Gleichgewicht bezeichnet den Zustand, in dem keine Agenten ihre Strategie mehr anpassen.
+Ein Gleichgewicht bezeichnet den Zustand, in dem die Agenten in den letzten 500 Zyklen ihre Strategie nicht mehr angepasst haben.
 
+\textbf{reicher und ärmer}
+Ein Agent A ist reicher bzw. ärmer als ein Agent B, wenn er mehr bzw. weniger Punkte hat.
+
+\textbf{ungefähr gleich reich}
+Zwei Agenten sind ungefähr gleich reich, wenn die Differenz ihrer Punkte $\pm 50$ Punkte beträgt.
+
+\textbf{Konfiguration}
+Eine Menge von Parametern, die eine Simulation oder eine Menge von Simulationen\footnote{vgl. /F0210/} beschreibt.
