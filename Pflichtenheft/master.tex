@@ -29,6 +29,15 @@ bookmarks=true,
 
 \author {Michel Bodé, Max Braun, Sophie Bräuniger, Simon Hügel, Zezhong Tong}
 
+% usage: \testfall{szenario}{ablauf}{ergebnis} oder
+\newcommand{\testfall}[4][]{
+  \begin{description}
+    \item[Stand] #2
+    \item[Aktion] #3
+    \item[Reaktion] #4
+  \end{description}
+}
+
 \begin{document}
 \maketitle
 \thispagestyle{empty}
