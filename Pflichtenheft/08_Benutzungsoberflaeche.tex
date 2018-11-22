@@ -13,7 +13,7 @@
 \begin{description}
 
 
-\item[1. Optionen] Menü enthält Zwei Untermenüs, Ergebnisse und Konfigurationen über die gespeicherte Ergebnisse und Startkonfigurationen angezeigt werden können
+\item[1. Optionen] Menü enthält zwei Untermenüs: Ergebnisse und Konfigurationen, über die gespeicherte Ergebnisse und Startkonfigurationen angezeigt werden können
 
 \item[2. Simulationen] Liste der geladenen Simulationen. Die wichtigsten Startkonfigurationen wie das Stufenspiel und die gewählten Strategien werden angezeigt.
 
@@ -21,7 +21,7 @@
 
 \item[4. starten] Die jeweilige Simulation kann über diesen Knopf ausgeführt werden. Wird die Simulation bereits ausgeführt oder ist sie in der Warteschlange, so ist der Knopf deaktiviert.
 
-\item[5. Alle Simulationen starten] Durch diesen Knopf werden alle Simulationen, die nicht gerade ausgeführt oder bereits in der Warteschlange sind, nach einander ausgeführt. 
+\item[5. Alle Simulationen starten] Durch diesen Knopf werden alle Simulationen, die nicht gerade ausgeführt oder bereits in der Warteschlange sind, ausgeführt. 
 
 \item[6. Ergebnisse anzeigen] Bei Betätigung werden die Ergebnisse der jeweiligen Simulation der letzen Ausführung angezeigt. Wurde die Simulation noch nicht ausgeführt, ist der Knopf deaktiviert.
 
@@ -53,7 +53,7 @@
 
 \item[5. Adaptionsmechanismus] Es kann zwischen den Adaptionsmechanismen gewählt werden.
 
-\item[6. Wahrscheinlichkeit] Hier kann eine Wahrscheinlichkeit größer als null und kleiner gleich 100 in Prozent angegeben werden, dass Agenten nach einem Zyklus ihre Startegie gegebenen falls anpassen.
+\item[6. Wahrscheinlichkeit] Hier soll die Wahrscheinlichkeit, dass Agenten nach einem Zyklus ihre Startegie gegebenen falls anpassen, eingegeben werden.
 
 \item[7. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellt Konfiguration zu bestimmen.
 
@@ -76,13 +76,13 @@
 
 \begin{description}
 
-\item[1. Gruppen zulassen] Aktiviert die Felder 2 bis 6 und aktiviert Bedingung die sich auf Gruppen beziehen.
+\item[1. Gruppen zulassen] Aktiviert die Felder 2 bis 6 und aktiviert Bedingungen die sich auf Gruppen beziehen.
 
 \item[2. Agenten können in mehreren Gruppen sein] Lässt Überlappungen von Gruppen zu.
 
 \item[3. Name] Name der Gruppe.
 
-\item[4. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels in Prozent. Es werden Eingaben größer als null und kleiner gleich 100 akzeptiert.
+\item[4. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels.
 
 \item[5. Entfernen] Es kann zwischen den Adaptionsmechanismen gewählt werden.
 
@@ -90,13 +90,13 @@
 
 \item[7. Name] Name der erstellten Strategie.
 
-\item[8. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels in Prozent. Es werden Eingaben größer als null und kleiner gleich 100 akzeptiert. Alle Anteil-Felder müssen zusammen 100 ergeben.
+\item[8. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels. Alle Anteil-Felder müssen zusammen 100 ergeben.
 
 \item[9. Strategie] Wähle zwischen vier 'Basis-Strategien': Tit-for-Tat, Grim, keine Kooperation, immer Kooperation
 
 \item[10. Bedingung] Wähle die Bedingung mit der die Strategie eintritt. 
 
-\item[11. x] Falls die Bedingung 'mit Wahrscheinlichkeit x' gewählt ist kann hier die Wahrscheinlichkeit in Prozent eingegeben werden. Die Eingabe muss dann größer als null und kleiner gleich 100 sein. Falls die Bedingung 'mit Gruppe x' gewählt ist kann hier der Name der Gruppe eingegeben werden. Sonst ist das Feld deaktiviert.
+\item[11. x] Falls die Bedingung 'mit Wahrscheinlichkeit x' gewählt ist kann hier die Wahrscheinlichkeit eingegeben werden. Falls die Bedingung 'mit Gruppe x' gewählt ist kann hier der Name der Gruppe eingegeben werden. Sonst ist das Feld deaktiviert.
 
 \item[12. sonst] Hier kann die alternative 'Basis-Strategien' gewählt werden, die eintritt, wenn die erste Strategie nicht eintritt.
 
@@ -125,13 +125,13 @@
 
 \begin{description}
 
-\item[1. Anzahl der Runden] Die Anzahl der Runden in einer Simulation. Es werden ganzzahlige Eingaben akzeptiert.
+\item[1. Anzahl der Runden] Die Anzahl der Runden in einer Simulation. 
 
-\item[2. erweiterte Eintellungen] Nur wenn der Haken gesetzt ist, sind die unteren zwei Felder 3 und  aktiviert.
+\item[2. erweiterte Eintellungen] Nur wenn der Haken gesetzt ist, sind die unteren zwei Felder 3 und 4 aktiviert.
 
-\item[3. Maximale Anzahl der Zyklen] Maximale Anzahl der Zyklen, nachdenen die Simulation abgebrochen wird, auch wenn kein Gleichgewichtszustand erreicht wurde. Es werden ganzzahlige Eingaben akzeptiert.
+\item[3. Maximale Anzahl der Zyklen] Maximale Anzahl der Zyklen, nachdenen die Simulation abgebrochen wird, auch wenn kein Gleichgewichtszustand erreicht wurde.
 
-\item[4. Wiederholungen der Simulation] Anzahl der Wiederholungen der ganzen Simulation. Es werden ganzzahlige Eingaben akzeptiert.
+\item[4. Wiederholungen der Simulation] Anzahl der Wiederholungen der ganzen Simulation.
 
 \item[5. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellt Konfiguration zu bestimmen.
 
@@ -199,11 +199,11 @@ Die Dialogfenster zum speichern und laden von Ergebnissen werden sehr ähnlich a
 
 \item[3. Ergebnisse] Das Feld zum anzeigen der Ergebnisse lässt sich scrollen.
 
-\item[4. Wiederholung] Es kann zwischen den einzelnen Wiederholungen der Simulation gewählt werden. D
+\item[4. Wiederholung] Es kann zwischen den einzelnen Wiederholungen der Simulation gewählt werden. Die Ergebnisse der Wiederholung werden dann angezeigt.
 
 \item[5. Anteil der Strategien] Anteil der Strategien aller Agenten am Ende der Simulation. 
 
-\item[6. zurück] Zeigt den Anteil der Strategien aller Agenten am Ende der Simulation in einem Kuchendiagramm. 
+\item[6. zurück] Zeigt den Anteil der Strategien aller Agenten am Ende der Simulation in einem Kreisdiagramm. 
 
 \end{description}
 
