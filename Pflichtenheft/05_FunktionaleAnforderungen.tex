@@ -151,16 +151,16 @@ Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /
 Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte mal mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
 
 \textbf{/F0420/} 
-Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm Kooperiert hat. Beim ersten mal kooperiert der Agent.
+Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
 
 \textbf{/F0430/} 
-Strategie: der Agent kooperiert immer.
+Strategie: Der Agent kooperiert immer.
 
 \textbf{/F0440/}
-Strategie: der Agent kooperiert nie.
+Strategie: Der Agent kooperiert nie.
 
 \textbf{/F0450/}
-Strategie: die Aktion des Agenten ist zufällig.
+Strategie: Die Aktion des Agenten ist zufällig.
 
 \textbf{/F0460/}
 Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim Erstellen der Simulation angegeben.
@@ -169,7 +169,7 @@ Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ 
 Bedingung: Wähle die erste Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim Erstellen der Simulation angegeben.
 
 \textbf{/F0480/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe, wählt er die erste Strategie, wenn der anderer Agent ebenfalls in keiner Gruppe ist.
+Bedingung: Wähle die erste Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe, wählt er die erste Strategie, wenn der andere Agent ebenfalls in keiner Gruppe ist.
 
 \textbf{/F0490/}
 Bedingung: Wähle die erste Strategie, wenn der andere Agent reicher ist.
@@ -192,7 +192,7 @@ Jeder Agent wir mit der Wahrscheinlichkeit aus /F0170/ mit einem zufällig gewä
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante, so dass $\delta \cdot \beta \leq 1$ ist.
 
 \textbf{/F0630/}
-Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört und einen höheren Rang hat.
 
 \subsubsection{Auswertung}
 
@@ -207,6 +207,11 @@ Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
 
 \textbf{/F0740/}
 Ein Balkendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
+
+\subsubsection{Paarungsalgorithmus}
+
+\textbf{/F0800/}
+Ein Matching-Algorithmus paart die Agenten. Zwei Agenten werden gepaart, wenn sie nach ihrer Strategie miteinander kooperieren. Die Anzahl dieser Paare soll maximiert werden. Die restlichen Agenten werden zufällig gepaart.
 
 \subsection{Wunschkriterien}
 
@@ -230,7 +235,7 @@ Agenten können gemischte Strategien zugewiesen bekommen. Die Wahrscheinlichkeit
 Das Ergebnis einer Simulation kann gespeichert werden.
 
 \textbf{/W0110/}
-Ein Ergebnis einer Simulation kann geladen werden.
+Das Ergebnis einer Simulation kann geladen werden.
 
 \textbf{/W0120/}
 Ein Graph zeigt die Punkte der Agenten während der Simulation an. Die Information erhält man aus /W0400/. Es gibt die Optionen:
@@ -254,7 +259,7 @@ Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Inf
 \subsubsection{Strategien für die Paarung von Agenten}
 
 \textbf{/W0200/}
-Strategie: Der Agent paart mit dem Agent, welcher mit ihm gepaart werden will.
+Agenten können für die Paarung eine eigene Strategie haben.
 
 \textbf{/W0210/} 
 Strategie: Der Agent paart mit reicheren Agenten.
@@ -277,7 +282,7 @@ Anpassungsalgorithmus: Ein Agent übernimmt nur Strategien von reicheren Agenten
 Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm immer kooperiert hat.
 
 \textbf{/W0320/}
-Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfters nicht kooperiert als kooperiert hat.
+Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfter nicht kooperiert als kooperiert hat.
 
 \textbf{/W0330/}
 Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl.
