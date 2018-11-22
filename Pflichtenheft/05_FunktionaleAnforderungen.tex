@@ -1,5 +1,300 @@
 \section{Funktionale Anforderungen}
 
-\subsection{Musskriterien}
+\subsection{Pflichtkriterien}
+
+\subsubsection{Allgemein}
+
+\textbf{/F0000/}
+Es können Simulationen erstellt werden.
+
+\textbf{/F0010/} 
+Die Simulation kann gestartet werden.
+
+\textbf{/F0020/}
+Alle Simulationen können gleichzeitig gestartet werden.
+
+\textbf{/F0030/} 
+Die Ergebnisse der Simulation können angezeigt werden.
+
+\textbf{/F0040/}
+Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird oder
+die maximale Zyklenanzahl erreicht wird.
+
+\subsubsection{Simulation erstellen}
+
+\textbf{/F0100/} 
+Die Anzahl der Agenten kann festgelegt werden. Es werden nur gerade Zahlen zugelassen.
+
+\textbf{/F0110/} 
+Die initiale Strategie der Agenten kann festgelegt werden. Dabei wird der prozentuale Anteil der Strategie im Startzustand angegeben.  
+
+\textbf{/F0120/} 
+Das zu simulierende Spiel kann festgelegt werden.
+
+\textbf{/F0130/} 
+Die Anzahl der Runden kann festgelegt werden.
+
+\textbf{/F0140/} 
+Die maximale Anzahl der Zyklen kann festgelegt werden.
+
+\textbf{/F0150/} 
+Die Anzahl der Wiederholungen der Simulation kann festgelegt werden.
+
+\textbf{/F0160/} 
+Der Algorithmus zur Anpassung der Strategie kann festgelegt werden.
+
+\textbf{/F0170/} 
+Die Wahrscheinlichkeit für eine Strategieanpassung am Ende eines Zyklus kann festgelegt werden. Es sind Werte zwischen 0.01 und 1 zugelassen.
+
+\textbf{/F0180/} 
+Die Bewertungsart mit der die Agenten verglichen werden kann festgelegt werden.
+
+\textbf{/F0190/} 
+Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disjunkt sein.
+
+\textbf{/F0200/} 
+Es werden Standartwerte für die Konfiguration aus einer Config-Datei geladen.
+
+\textbf{/F0210/} 
+Für die Anteile der initialen Strategien kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Daraus entsteht eine Menge von Konfigurationen. Jede Konfiguration erhält eine eigene Simulation. Die prozentuale Anteile der aller Strategien in einer Konfiguration muss zusammen immer 100 ergeben. 
+
+\subsubsection{Spiele}
+Alle implementierten Spiele sind mit ihren Payoffs angegeben. $K$ steht für die Aktion \emph{Kooperation} und $D$ für \emph{Defektion}.
+
+\textbf{/F0300/} 
+Gefangenendilemma
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $-1,-1$ & $-3,0$ \\\cline{3-4} 
+  & $D$ & $0,-3$ & $-2,-2$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0310/} 
+Feiglingsspiel
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $4,4$ & $2,6$ \\\cline{3-4} 
+  & $D$ & $6,2$ & $0,0$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0320/} 
+Hirschjagd
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $4,4$ & $0,3$ \\\cline{3-4} 
+  & $D$ & $3,0$ & $3,3$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0330/} 
+Falke-Taube
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $3,3$ & $0,10$ \\\cline{3-4} 
+  & $D$ & $10,0$ & $-5,-5$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0340/} 
+Kampf der Geschlechter
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $0,0$ & $1,3$ \\\cline{3-4} 
+  & $D$ & $3,1$ & $0,0$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0350/} 
+Vertrauensspiel
+\begin{table}[H]
+\centering
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{cc|c|c|}
+  & \multicolumn{1}{c}{} & \multicolumn{2}{c}{Spieler $2$} \\
+  & \multicolumn{1}{c}{} & \multicolumn{1}{c}{$K$} & \multicolumn{1}{c}{$D$} \\\cline{3-4}
+  \multirow{2}*{Spieler $1$} & $K$ & $1,1$ & $-1,2$ \\\cline{3-4} 
+  & $D$ & $0,0$ & $0,0$ \\\cline{3-4}
+\end{tabular}
+\end{table}
+
+\textbf{/F0360/} 
+Erstellen eines Spiels durch Eingabe der Payoffs.
+
+\subsubsection{Strategien}
+
+\textbf{/F0400/}
+Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /F0510/ und einer weiteren Strategie kombiniert werden. Daraus entsteht eine kombinierte Strategie. Ist die Bedingung erfüllt wird die erste Strategie ausgeführt, ansonsten die zweite Strategie.  
+
+\textbf{/F0410/} 
+Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte mal mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
+
+\textbf{/F0420/} 
+Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm Kooperiert hat. Beim ersten mal kooperiert der Agent.
+
+\textbf{/F0430/} 
+Strategie: der Agent kooperiert immer.
+
+\textbf{/F0440/}
+Strategie: der Agent kooperiert nie.
+
+\textbf{/F0450/}
+Strategie: die Aktion des Agenten ist zufällig.
+
+\textbf{/F0460/}
+Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim Erstellen der Simulation angegeben.
+
+\textbf{/F0470/}
+Bedingung: Wähle die erste Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim Erstellen der Simulation angegeben.
+
+\textbf{/F0480/}
+Bedingung: Wähle die erste Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe, wählt er die erste Strategie, wenn der anderer Agent ebenfalls in keiner Gruppe ist.
+
+\textbf{/F0490/}
+Bedingung: Wähle die erste Strategie, wenn der andere Agent reicher ist.
+
+\textbf{/F0500/}
+Bedingung: Wähle die erste Strategie, wenn der andere Agent ärmer ist.
+
+\textbf{/F0510/}
+Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich reich ist.
+
+\subsubsection{Anpassungsalgorithmus}
+
+\textbf{/F0600/}
+Am Ende jedes Zyklus werden die Agenten gemäß ihrer Punktzahl und der Bewertungsart in einer Rangliste platziert.
+
+\textbf{/F0610/}
+Jeder Agent wir mit der Wahrscheinlichkeit aus /F0170/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0160/ angewandt.
+
+\textbf{/F0620/}
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante, so dass $\delta \cdot \beta \leq 1$ ist.
+
+\textbf{/F0630/}
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört.
+
+\subsubsection{Auswertung}
+
+\textbf{/F0700/}
+Für alle beendeten Simulationen kann man die Ergebnisse anzeigen. Für jede Simulation lassen sich die Ergebnisse aller Wiederholungen anzeigen.
+
+\textbf{/F0710/}
+Eine Rangliste mit allen Agenten kann angezeigt werden. Bei allen Agenten wird der Rang, die Gesamtpunktzahl und die aktuelle Strategie angezeigt.
+
+\textbf{/F0730/}
+Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
+
+\textbf{/F0740/}
+Ein Balkendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
 
 \subsection{Wunschkriterien}
+
+\subsubsection{Simulation erstellen}
+
+\textbf{/W0000/}
+Die Konfiguration einer Simulation kann gespeichert werden.
+
+\textbf{/W0010/}
+Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
+
+\textbf{/W0020/}
+Eine Startpunktzahl für Agenten kann festgelegt werden.
+
+\textbf{/W0030/}
+Agenten können gemischte Strategien zugewiesen bekommen. Die Wahrscheinlichkeit für eine Strategie wird mit angegeben.
+
+\subsubsection{Auswertung}
+
+\textbf{/W0100/}
+Das Ergebnis einer Simulation kann gespeichert werden.
+
+\textbf{/W0110/}
+Ein Ergebnis einer Simulation kann geladen werden.
+
+\textbf{/W0120/}
+Ein Graph zeigt die Punkte der Agenten während der Simulation an. Die Information erhält man aus /W0400/. Es gibt die Optionen:
+\begin{itemize}
+\item Punkte der besten $10\%$
+\item Punkte der schlechtesten $10\%$
+\item durchschnittliche Punkte aller Agenten
+\item Median der Punkte aller Agenten
+\item Punkte ausgewählter Agenten
+\end{itemize}
+
+\textbf{/W0130/}
+Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Informationen erhält man aus /W0400/. Es gibt die Optionen:
+\begin{itemize}
+\item Anteil der Strategien der besten $10\%$
+\item Anteil der Strategien der schlechtesten $10\%$
+\item Anteil der Strategien aller Agenten
+\item Anteil der Strategien ausgewählter Agenten
+\end{itemize}
+
+\subsubsection{Strategien für die Paarung von Agenten}
+
+\textbf{/W0200/}
+Strategie: Der Agent paart mit dem Agent, welcher mit ihm gepaart werden will.
+
+\textbf{/W0210/} 
+Strategie: Der Agent paart mit reicheren Agenten.
+
+\textbf{/W0220/}
+Strategie: Der Agent paart mit ärmeren Agenten.
+
+\textbf{/W0230/}
+Strategie: Der Agent paart mit ungefähr gleich reichen Agenten.
+
+\textbf{/W0240/}
+Strategie: Die Paarung von Agenten ist zufällig.
+
+\subsubsection{Anpassungsalgorithmus}
+
+\textbf{/W0300/}
+Anpassungsalgorithmus: Ein Agent übernimmt nur Strategien von reicheren Agenten aus der gleichen Gruppe gemäß /F0620/.
+
+\textbf{/W0310/}
+Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm immer kooperiert hat.
+
+\textbf{/W0320/}
+Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfters nicht kooperiert als kooperiert hat.
+
+\textbf{/W0330/}
+Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl.
+
+\textbf{/W0340/}
+Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, so dass die Summe 1 ergibt.
+
+\textbf{/W0350/}
+Mit einer Wahrscheinlichkeit von $1\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
+
+\subsubsection{Sonstiges}
+
+\textbf{/W0400/}
+Alle 250 Zyklen wird der Zustand aller Agenten gespeichert.
+
+\textbf{/W0410/}
+Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien und wählen eine zufällig aus. Die Wahrscheinlichkeit mit der eine Strategie ausgewählt wird kann sich verändern.
+
+\textbf{/W0420/}
+Die Simulation kann abgebrochen und wieder neu gestartet werden. Beim Neustart beginnt sie wieder in ihrem Anfangszustand. Beim Abbrechen werden keine Informationen gespeichert.
