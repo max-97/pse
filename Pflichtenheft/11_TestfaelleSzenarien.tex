@@ -1,7 +1,6 @@
 
 \section{Globale Testfälle und Szenarien}
 
-
 \subsection{Testfälle}
 
 
@@ -9,20 +8,20 @@
 \textbf{/T001/} Konfiguration erstellen
 \begin{enumerate}
 \item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt.}
-{Der Benutzer drückt auf den Knopf 'Konfiguration erstellen'.}
+{Der Benutzer drückt auf den Button 'Konfiguration erstellen'.}
 {Es öffnet sich die erste Seite des Konfigurations-Assistenten.}
 
-\item \testfall{Die erste oder zweiten Seite des Konfigurations-Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf dieser Seite und bestätigt diese mit klicken auf 'weiter'.}
+\item \testfall{Die erste oder zweite Seite des Konfigurations-Assistenten ist geöffnet.}
+{Der Benutzer tätigt alle Eingaben auf dieser Seite und mindestens eine der Eingaben ist nicht korrekt. Er bestätigt mit klicken auf 'weiter'.}
 {Es kommt eine Fehlermeldung zu einer fehlerhaften Eingabe.}
 
-\item \testfall{Die erste oder zweiten Seite des Konfigurations-Assistenten ist geöffnet.}
+\item \testfall{Die erste oder zweite Seite des Konfigurations-Assistenten ist geöffnet.}
 {Der Benutzer tätigt alle Eingaben auf dieser Seite korrekt und bestätigt diese mit klicken auf 'weiter'.}
 {Es wird die nächste Seite des Konfigurations-Assistenten geöffnet.}
 
 \item \testfall{Eine Seite des Konfigurations-Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf allen Seiten. Der Knopf 'fertig stellen' wird aktiviert und der Benutzer bestätigt mit klicken auf 'fertig stellen'.}
-{Es kommt eine Fehlermeldung zu einer fehlerhaften Eingabe.}
+{Der Benutzer tätigt alle Eingaben auf allen Seiten und mindestens eine der Eingaben ist nicht korrekt. Der Button 'fertig stellen' wird aktiviert und der Benutzer bestätigt mit klicken auf 'fertig stellen'.}
+{Es kommt eine Fehlermeldung.}
 
 \item \testfall{Eine Seite des Assistenten ist geöffnet.}
 {Der Benutzer tätigt alle Eingaben auf allen Seiten korrekt und bestätigt diese mit klicken auf 'fertig stellen'.}
@@ -34,7 +33,7 @@
 \textbf{/T002/} Konfigurationen speichern und laden
 \begin{enumerate}
 \item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt}
-		{Der Benutzer klickt auf den Knopf 'Konfiguration laden' und wählt eine in der Liste genannten Konfigurationen. Er bestätigt mit 'OK'}
+		{Der Benutzer klickt auf den Button 'Konfiguration laden' und wählt eine in der Liste genannten Konfigurationen. Er bestätigt mit 'OK'}
 		{Es öffnet sich der Konfigurations-Assistent. Alle unter dem gewählten Namen gespeicherten Parameter sind bereits eingegeben.}
 		
 \item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt}
@@ -42,19 +41,19 @@
 		{Es öffnet sich der Konfigurations-Assistent. Alle unter dem gewählten Namen gespeicherten Parameter sind bereits eingegeben.}
 
 \item \testfall{Eine Seite des Konfigurations-Assistenten zum erstellen einer Konfiguration ist geöffnet.}
-		{Der Benutzer klickt auf den Knopf 'Konfiguration speichern'. In dem sich geöffneten Pop-Up-Fenster gibt er einen Namen für die Konfiguration ein und bestätigt mit 'OK'}
+		{Der Benutzer klickt auf den Button 'Konfiguration speichern'. In dem sich geöffneten Pop-Up-Fenster gibt er einen Namen für die Konfiguration ein und bestätigt mit 'OK'}
 		{Das Fenster sowie der Assistent schließen sich.}
 \end{enumerate}
 
 \textbf{/T003/} Simulationen starten
 \begin{enumerate}
 \item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
-		{Der Benutzer klickt auf den Knopf 'start' neben einer Simulation.}
-		{Der Knopf 'start' wird deaktiviert. Nach einigen Sekunden wird der Knopf 'start' und 'Ergebnisse anzeigen' aktiviert.}
+		{Der Benutzer klickt auf den Button 'start' neben einer Simulation.}
+		{Der Button 'start' wird deaktiviert. Nachdem die Simulation beendet ist, wird der Button 'start' und 'Ergebnisse anzeigen' aktiviert.}
 		
 \item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
-		{Der Benutzer klickt auf den Knopf 'Alle Simulationen starten'}
-		{Alle 'start' Knöpfe und der Knopf 'Alle Simulationen starten' werden deaktiviert. Nach einigen Sekunden werden alle 'start' Knöpfe, alle 'Ergebnisse anzeigen' und der Knopf 'Alle Simulationen starten' aktiviert.}
+		{Der Benutzer klickt auf den Button 'Alle Simulationen starten'}
+		{Alle 'start' Knöpfe und der Button 'Alle Simulationen starten' werden deaktiviert. Nachdem die Simulationen beendet wurden, werden alle 'start' Knöpfe, alle 'Ergebnisse anzeigen' und der Button 'Alle Simulationen starten' aktiviert.}
 \end{enumerate}
 
 \textbf{/T004/} Ergebnisse anzeigen
