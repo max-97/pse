@@ -1,20 +1,50 @@
 \section{Produktdaten}
 
-\subsection{Wunschkriterien}
+\subsection{Pflichtkriterien}
 
-\textbf{/D001/ Konfiguration speichern}
+\textbf{/D001/ Initialisierung speichern}
 
 Abgespeichert wird:
 \begin{itemize}
-\item Konfigurationsparameter aus /F0100/-/F0190/, sowie /F0210/
+\item Name
+\item Parameter der Initialisierung aus /F0120/-/F0180/
 \end{itemize}
 
-\textbf{/D002/ Ergebnisse speichern}	
+\textbf{/D002/ Strategie speichern}
 
 Abgespeichert wird:
+\begin{itemize}
+\item Name
+\item Strategie bestehend aus den k Strategie-Bedingungspaaren aus /F0400/ 
+\item Beschreibung
+\end{itemize}
+
+\textbf{/D003/ Spiel speichern}
+
+Abgespeichert wird:
+\begin{itemize}
+\item Name 
+\item Bimatrix die das erstellte Spiel beschreibt
+\item Beschreibung
+\end{itemize}
+
+\subsection{Wunschkriterien}
+
+\textbf{/D004/ Konfiguration speichern}
+
+Abgespeichert wird:
+\begin{itemize}
+\item Name
+\item Konfigurationsparameter aus /F0100/
+\end{itemize}
+
+\textbf{/D005/ Ergebnisse speichern}	
+
+Abgespeichert wird für jede Wiederholung:
 \begin{itemize}
 \item Anzahl der Runden
 \item Anzahl der Agenten
+\item Gruppenzugehörigkeit der Agenten
 \item Strategie zur Auswertung der Ränge
 \item Rangliste der Agenten
 \item Strategien der Agenten in der letzten Runde
