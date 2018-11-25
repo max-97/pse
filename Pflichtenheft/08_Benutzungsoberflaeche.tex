@@ -15,25 +15,27 @@
 
 \item[1. Menü Stufenspiele] Enthält den Menüpunkt 'Stufenspiele verwalten'. Dieser führt zur Stufenspiel Verwaltung.
 
-\item[2. Menü Strategien] Menü enthält den Menüpunkt 'Kombinierte Strategien verwalten'. Dieser führt zu dem Kombinierte Strategien Verwaltung.
+\item[2. Menü Strategien] Enthält den Menüpunkt 'Kombinierte Strategien verwalten'. Dieser führt zu dem Kombinierte Strategien Verwaltung.
 
-\item[3. Menü Initialisierungen] 
+\item[3. Menü Initialisierungen] Enthält Menüpunkt 'Initialisierungen bearbeiten' und 'Neue Initialisierung'. 'Initialisierungen bearbeiten' öffnet ein OpenFileDialog in dem Initialisierungen gelöscht, umbenannt und in das Initialisierungsfenster geöffnet und bearbeitet werden können. 'Neue Initialisierung' öffnet das Initialisierungs-Fenster.
 
-\item[4. Menü Konfigurationen] 
+\item[4. Menü Konfigurationen] Enthält Menüpunkt 'Neue Konfiguration'. Dieser öffnet das Konfigurations-Fenster.
 
-\item[5. Menü Ergebnisse] 
+\item[5. Menü Ergebnisse] Enthält Menüpunkt 'Ergebnisse vergleichen'. Dieser öffnet das Vergleichfenster.
 
-\item[6. Liste der Konfigurationen] 
+\item[6. Liste der Konfigurationen] Diese zeigt die Liste der erstellten Konfigurationen an. Werden neue Konfigurationen erstellt, werden dievorigen Konfigurationen durch die Neuen in der Liste ersetzt.
 
-\item[7. Details]
+\item[7. Details] Ist eine Konfiguration in der Liste ausgewählt, werden hier die Parameter der Konfiguration angezeigt.
 
-\item[8. Simulation starten] 
+\item[8. Simulation starten] Ist eine Konfiguration in der Liste ausgewählt, ist dieser Button aktiviert. Nach dem betätigen wird in einem Pop-Up-Fenster die Anzahl der Wiederholungen abgefragt. Danach wird die Simulation gestartet.
 
-\item[9. Ergebnisse anzeigen]
+\item[9. Ergebnisse anzeigen] Wurde eine Simulation mit der in der Liste ausgewählten Konfiguration durchgeführt, ist dieser Button aktiviert. Er öffnet das Ergebnisfenster mit den Ergebnissen, der letzten Durchführung.
 
-\item[10. Alle Simulationen starten]
+\item[10. Alle Simulationen starten] Nach dem betätigen wird in einem Pop-Up-Fenster die Anzahl der Wiederholungen abgefragt. Danach werrden die Simulationen für alle Konfigurationen in der Liste gestartet.
 
 \end{description}
+
+\pagebreak
 
 \subsection{Stufenspiele Verwaltung}
 
@@ -46,21 +48,21 @@
 
 \begin{description}
 
-\item[1. Liste] 
+\item[1. Liste] Zeigt alle zuvor gespeicherten die voreingestellten Stufenspiele. Wird ein Spiel ausgewählt erscheinen alle Parameter in den Feldern zwei bis vier rechts neben der Liste.
 
-\item[2. Name] 
+\item[2. Name] Der Name des Stufenspiels lässt sich bearbeiten.
 
-\item[3. Auszahlungen] 
+\item[3. Auszahlungen] Alle acht Felder für die Auszahlung, lassen sich bearbeiten.
 
-\item[4. Beschreibung] 
+\item[4. Beschreibung] Es lässt sich eine Beschreibung für das Spiel angeben.
 
-\item[5. neues Spiel] 
+\item[5. neues Spiel] Fügt ein neues Stufenspiel in die Liste an. 
 
-\item[6. Spiel löschen] 
+\item[6. Spiel löschen] Das in der Liste ausgewählte Spiel wird gelöscht.
 
-\item[7. Abbrechen] 
+\item[7. Abbrechen] Alle zuvor vorgenommen Änderungen inklusive das Erstellen neuer Spiele werden verworfen und die Spiele Verwaltung schließt sich.
 
-\item[8. Änderungen speichern und schließen] 
+\item[8. Änderungen speichern und schließen] Alle zuvor vorgenommen Änderungen werden gespeichert und die Spiele Verwaltung schließt sich.
 
 \end{description}
 
@@ -68,30 +70,31 @@
 
 \subsection{Kombinierte Strategien Verwaltung}
 
-\begin{figure}[hp] 
+
+\begin{figure}[hp]
   \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/StrategienMenue.png}
+     \includegraphics[width=1.15\textwidth]{GUI_Entwurf/StrategienMenue.png}
   \caption{Kombinierte Strategien Verwaltung}
   \label{fig:Bild1}
 \end{figure}
 
 \begin{description}
 
-\item[1. Liste] 
+\item[1. Liste] Zeigt alle zuvor gespeicherten  kombinierten Strategien. Wird ein kombinierte Strategie ausgewählt, erscheinen alle Parameter in den Feldern zwei bis elf rechts neben der Liste.
 
-\item[2. Name] 
+\item[2. Name] Der Name der kombinierten Strategie kann geändert werden.
 
-\item[3. Nummerierung] 
+\item[3. Nummerierung] Gibt die Reihenfolge an nach denen Bedingungen geprüft werden.
 
-\item[4. Bedingung] 
+\item[4. Bedingung] Bedingung mit der die rechten Strategie gewählt wird.
 
-\item[5. Gruppen ID] 
+\item[5. Gruppen ID] Ist aktiviert wenn Bedingung 'mit Gruppe \textit{Gruppen ID}' ausgewählt ist. Hier kann die entsprechende ID der Gruppe eingegeben werden.
 
-\item[6. alpha] 
+\item[6. alpha] Ist aktiviert wenn Bedingung 'mit Wahrscheinlichkeit \textit{Gruppen alpha}' ausgewählt ist. Hier kann die entsprechende Wahrscheinlichkeit eingegeben werden.
 
-\item[7. Strategie] 
+\item[7. Strategie] Die Strategie, die eintreten soll wenn die Bedingung links daneben erfüllt ist.
 
-\item[8. entfernen] 
+\item[8. entfernen] Entfernt diese Zeile mit den entsprechenden Feldern drei bis sieben. Die Nummerierung wird entsprechend angepasst.
 
 \item[9. hinzufügen] 
 
@@ -168,32 +171,40 @@
 
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.0\textwidth]{GUI_Entwurf/.png}
+     \includegraphics[width=1.0\textwidth]{GUI_Entwurf/NeueKonfiguration1.png}
+  \caption{Konfiguration}
+  \label{fig:Bild2}
+\end{figure}
+
+\begin{figure}[hp] 
+  \centering
+     \includegraphics[width=1.0\textwidth]{GUI_Entwurf/NeueKonfiguration2.png}
   \caption{Konfiguration}
   \label{fig:Bild2}
 \end{figure}
 
 \begin{description}
 
-\item[1. ] 
+\item[1. Stufenspiel] 
 
-\item[2. ] 
+\item[2. Initialisierung] 
 
-\item[3. ] 
+\item[3. Algorithmus zum Bilden von Paaren] 
 
-\item[4. ] 
+\item[4. Bewertungsalgorithmus] 
 
-\item[5. ] 
+\item[5. Anpassungsalgorithmus] 
 
-\item[6. ] 
+\item[6. Wahrscheinlichkeit für Strategieanpassung] 
 
-\item[7. ] 
+\item[7. Anzahl der Runden] 
 
-\item[8. ] 
+\item[8. Maximale Anzahl der Zyklen] 
 
-\item[9. ] 
+\item[9. fertig] 
 
-\item[10. ] 
+\item[10. Abbrechen]
+
 
 \end{description}
 
@@ -211,25 +222,17 @@
 
 \begin{description}
 
-\item[1. ] 
+\item[1. Konfiguration] 
 
-\item[2. ] 
+\item[2. Wiederholung] 
 
-\item[3. ] 
+\item[3. Liste Ergebnis Ansichten] 
 
-\item[4. ] 
+\item[4. Ansicht] 
 
-\item[5. ] 
+\item[5. Ansicht Optionen] 
 
-\item[6. ] 
-
-\item[7. ] 
-
-\item[8. ] 
-
-\item[9. ] 
-
-\item[10. ] 
+\item[6. Vergleichen mit...] 
 
 \end{description}
 
@@ -240,32 +243,22 @@
 
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/.png}
+     \includegraphics[width=1.15\textwidth]{GUI_Entwurf/Vergleichfenster.png}
   \caption{Vergleichenfenster}
   \label{fig:Bild1}
 \end{figure}
 
 \begin{description}
 
-\item[1. ] 
+\item[1. Konfiguration] 
 
-\item[2. ] 
+\item[2. Wiederholung] 
 
-\item[3. ] 
+\item[3. Liste Ergebnis Ansichten] 
 
-\item[4. ] 
+\item[4. Ansicht] 
 
-\item[5. ] 
-
-\item[6. ] 
-
-\item[7. ] 
-
-\item[8. ] 
-
-\item[9. ] 
-
-\item[10. ] 
+\item[5. Ansicht Optionen] 
 
 \end{description}
 
