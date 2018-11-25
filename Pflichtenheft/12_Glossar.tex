@@ -4,7 +4,13 @@
 Ein spieltheoretisches Stufenspiel, welches sich als 2x2 Matrix darstellen lässt, wobei sich an jeder der 4 Einträge die Payoffs für beide Spieler befinden.
 
 \textbf{Strategie}
-Eine Strategie eines Agenten A bestimmt die Aktion von A im Verlauf eines Spiels mit einem Agenten B. Die Strategie kann von den vergangenen Aktionen des Agenten B, den Rängen von A und B, sowie deren Gruppenzugehörigkeit abhängen. Die Strategie eines Agenten kann sich während der Simulation ändern.
+Eine Strategie eines Agenten A bestimmt die Aktion von A im Verlauf eines Spiels mit einem Agenten B. Die Strategie kann von den vergangenen Aktionen des Agenten B, den Rängen und Gesamtpunktzahlen von A und B, sowie deren Gruppenzugehörigkeit abhängen. Die Strategie eines Agenten kann sich während der Simulation ändern.
+
+\textbf{kombinierte Strategie}
+Ein kombinierte Strategie besteht aus $k$ Paaren von Strategie und Bedingung\footnote{siehe /F0400/}. 
+
+\textbf{gemischte Strategie}
+Eine gemischte Strategie besteht aus $k$ Paaren von kombinierter Strategie und deren Wahrscheinlichkeit. Zusammen müssen alle Wahrscheinlichkeiten einer gemischten Strategie 1 ergeben.
 
 \textbf{Runde}
 Eine Runde umfasst die Paarung aller Agenten und das einmalige Spielen des ausgewählten Stufenspiels.
@@ -22,7 +28,13 @@ Ein Gleichgewicht bezeichnet den Zustand, in dem die Agenten in den letzten 500 
 Ein Agent A ist reicher bzw. ärmer als ein Agent B, wenn er mehr bzw. weniger Punkte hat.
 
 \textbf{ungefähr gleich reich}
-Zwei Agenten sind ungefähr gleich reich, wenn die Differenz ihrer Punkte $\pm 50$ Punkte beträgt.
+Zwei Agenten sind ungefähr gleich reich, wenn die Differenz ihrer Punkte $\pm x$ Punkte beträgt. $x$ wird vom Benutzer festgelegt. 
 
 \textbf{Konfiguration}
-Eine Menge von Parametern, die eine Simulation oder eine Menge von Simulationen\footnote{vgl. /F0210/} beschreibt.
+Eine Menge von Parametern, die eine Simulation oder eine Menge von Simulationen\footnote{vgl. /F0100/} beschreibt.
+
+\textbf{Simulation}
+Eine Simulation beschreibt die Wiederholung von Stufenspielen mit dem vorgegebenen Ablauf. Beginnend mit Startzustand und endend mit einem Gleichgewichtszustand oder Abbruch nach der maximalen Anzahl an Zyklen.
+
+\textbf{Initialisierung}
+Eine Initialisierung bestimmt den Startzustand der Agenten\footnote{siehe /F0110/}.
