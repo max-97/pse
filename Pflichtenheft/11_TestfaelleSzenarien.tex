@@ -1,77 +1,147 @@
 
-\section{Globale Testfälle und Szenarien}
+\section{Globale Testfälle}
 
 \subsection{Testfälle}
 
-
-
-\textbf{/T001/} Konfiguration erstellen
+\textbf{/T001/} Stufenspiele verwalten
 \begin{enumerate}
-\item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt.}
-{Der Benutzer drückt auf den Button 'Konfiguration erstellen'.}
-{Es öffnet sich die erste Seite des Konfigurations-Assistenten.}
 
-\item \testfall{Die erste oder zweite Seite des Konfigurations-Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf dieser Seite und mindestens eine der Eingaben ist nicht korrekt. Er bestätigt mit klicken auf 'weiter'.}
-{Es kommt eine Fehlermeldung zu einer fehlerhaften Eingabe.}
+\item \testfall{Das Hauptfenster ist geöffnet.}
+{Der benutzer klickt in dem Menü 'Stufenspiele' auf 'Stufenspiele verwalten'}
+{Es öffnet sich das Fenster Stufenspiele Verwaltung und alle gespeicherten Stufenspiele werden in der Liste angezeigt.}
 
-\item \testfall{Die erste oder zweite Seite des Konfigurations-Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf dieser Seite korrekt und bestätigt diese mit klicken auf 'weiter'.}
-{Es wird die nächste Seite des Konfigurations-Assistenten geöffnet.}
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer wählt ein Stufenspiel in der Liste aus und klickt auf 'Spiel löschen'.}
+{Das Stufenspiel verschwindet aus der Liste. Die Parameter des gelöschten Spiels werden nicht mehr im Fenster angezeigt.}
 
-\item \testfall{Eine Seite des Konfigurations-Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf allen Seiten und mindestens eine der Eingaben ist nicht korrekt. Der Button 'fertig stellen' wird aktiviert und der Benutzer bestätigt mit klicken auf 'fertig stellen'.}
-{Es kommt eine Fehlermeldung.}
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Stufenspiel in der Liste. Dann verändert er den Namenun und drückt anschließend die Enter-Taste oder wählt ein anderes Feld im Fenster aus.}
+{Die Namensänderung wird in der Liste aktualisiert. }
 
-\item \testfall{Eine Seite des Assistenten ist geöffnet.}
-{Der Benutzer tätigt alle Eingaben auf allen Seiten korrekt und bestätigt diese mit klicken auf 'fertig stellen'.}
-{Das Fenster schließt sich und die erstellten Konfigurationen werden auf die Startseite geladen.}
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Stufenspiel in der Liste. Er ändert die Beschreibung und Auszahlungen. Er wählt ein anderes Spiel aus und klickt dann wieder auf das davor geänderte Spiel.}
+{Alle Änderungen am Stufenspiel wurden beibehalten. Die Parameter des ausgewählten Spiels sind, wie nach der letzten Änderung.}
+
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf 'neues Spiel'.}
+{In der Liste erscheint ein neues Stufenspiel mit dem Namen 'unbenanntes Spiel'. Das Spiel ist ausgewählt und alle Auszahlungen sind auf 0 gestezt. Die Beschreibung ist leer. Alle Felder lassen sich bearbeiten.}
+
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Stufenspiel in der Liste. Er ändert die Beschreibung und Auszahlungen. Anschließend klickt er auf 'Abbrechen'. In dem sich öffnenden Pop-Up-Fenster bestätigt er, dass Änderungen verworfen werden mit 'ok'.}
+{Die Stufenspiel Verwaltung schließt sich.}
+
+\item \testfall{Die Stufenspiel Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Stufenspiel in der Liste. Er ändert die Beschreibung und Auszahlungen. Anschließend klickt er auf 'Änderungen speichern und schließen'.}
+{Die Stufenspiel Verwaltung schließt sich.}
 
 
 \end{enumerate}
 
-\textbf{/T002/} Konfigurationen speichern und laden
+\textbf{/T002/} Kombinierte Strategien verwalten
 \begin{enumerate}
-\item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt}
-		{Der Benutzer klickt auf den Button 'Konfiguration laden' und wählt eine in der Liste genannten Konfigurationen. Er bestätigt mit 'OK'}
-		{Es öffnet sich der Konfigurations-Assistent. Alle unter dem gewählten Namen gespeicherten Parameter sind bereits eingegeben.}
-		
-\item \testfall{Das Startfenster ist geöffnet und es wird gerade keine Simulation durchgeführt}
-		{Der Benutzer wählt in dem Menü 'Optionen' das Untermenü 'Konfigurationen' und wählt eine der aufgelisteten Konfigurationen.}
-		{Es öffnet sich der Konfigurations-Assistent. Alle unter dem gewählten Namen gespeicherten Parameter sind bereits eingegeben.}
+\item \testfall{Das Hauptfenster ist geöffnet.}
+{Der benutzer klickt in dem Menü 'Kombinierte Strategien' auf 'Kombinierte Strategien verwalten'}
+{Es öffnet sich das Fenster Kombinierte Strategien Verwaltung und alle gespeicherten kombinierten Strategien werden in der Liste angezeigt.}
 
-\item \testfall{Eine Seite des Konfigurations-Assistenten zum erstellen einer Konfiguration ist geöffnet.}
-		{Der Benutzer klickt auf den Button 'Konfiguration speichern'. In dem sich geöffneten Pop-Up-Fenster gibt er einen Namen für die Konfiguration ein und bestätigt mit 'OK'}
-		{Das Fenster sowie der Assistent schließen sich.}
+\item \testfall{Die Kombinierte Strategien Verwaltung ist geöffnet.}
+{Der Nutzer wählt ein kombinierte Strategie in der Liste aus und klickt auf 'Kombinierte Strategie löschen'.}
+{Die Kombinierte Strategie verschwindet aus der Liste. Die Parameter der gelöschten kombinierten Strategie werden nicht mehr im Fenster angezeigt.}
+
+\item \testfall{Die Kombinierte Strategien Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf eine kombinierte Strategie in der Liste. Dann verändert er den Namenun und drückt anschließend die Enter-Taste oder wählt ein anderes Feld im Fenster aus.}
+{Die Namensänderung wird in der Liste aktualisiert. }
+
+\item \testfall{Die Kombinierte Strategie Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Kombinierte Strategie in der Liste. Er ändert eine Bedingung und verändert die Beschreibung. Er wählt eine andere kombinierte Strategie aus und klickt dann wieder auf die davor geänderte kombinierte Strategie.}
+{Alle Änderungen an der kombinierte Strategie wurden beibehalten. Die Parameter der ausgewählten kombinierten Strategie sind, wie nach der letzten Änderung.}
+
+\item \testfall{Die Kombinierte Strategie Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf 'neues kombinierte Strategie'.}
+{In der Liste erscheint ein neue kombinierte Strategie mit dem Namen 'Unbenannt'. Die kombinierte Strategie ist ausgewählt und sie hat noch keine Bedingungen. Die Strategie ohne Bedingung ist auf keine Koorperation gesetzt. Die Beschreibung ist leer. Alle Felder lassen sich bearbeiten.}
+
+\item \testfall{Die Kombinierte Strategie Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf eine kombinierte Strategie in der Liste. Er ändert die Beschreibung und eine Bedingung. Anschließend klickt er auf 'Abbrechen'. In dem sich öffnenden Pop-Up-Fenster bestätigt er, dass Änderungen verworfen werden mit 'ok'.}
+{Die Kombinierte Strategien Verwaltung schließt sich.}
+
+\item \testfall{Die Kombinierte Strategie Verwaltung ist geöffnet.}
+{Der Nutzer klickt auf ein Kombinierte Strategie in der Liste. Er ändert die Beschreibung und eine Bedingung. Anschließend klickt er auf 'Änderungen speichern und schließen'.}
+{Die Kombinierte Strategie Verwaltung schließt sich.}
+
+
 \end{enumerate}
 
-\textbf{/T003/} Simulationen starten
+\textbf{/T003/} Initialisierung
 \begin{enumerate}
-\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
-		{Der Benutzer klickt auf den Button 'start' neben einer Simulation.}
-		{Der Button 'start' wird deaktiviert. Nachdem die Simulation beendet ist, wird der Button 'start' und 'Ergebnisse anzeigen' aktiviert.}
-		
-\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die aktuell nicht durchgeführt wird.}
-		{Der Benutzer klickt auf den Button 'Alle Simulationen starten'}
-		{Alle 'start' Knöpfe und der Button 'Alle Simulationen starten' werden deaktiviert. Nachdem die Simulationen beendet wurden, werden alle 'start' Knöpfe, alle 'Ergebnisse anzeigen' und der Button 'Alle Simulationen starten' aktiviert.}
+\item \testfall{Das Hauptfenster ist geöffnet.}
+{Der Nutzer klickt im Menü 'Initialisierung' auf 'Initialisierung bearbeiten'. Es öffnet sich ein OpenFileDialog in dem die gespeicherten Initialisierungen angezeigt werden. Der Nutzer wählt eine Initialisierung aus und klickt auf 'öffnen'.}
+{Das Initialisierungsfenster mit der ausgewählten Initialisierung öffnet sich. Alle Parameter sind so ausgefüllt, wie nach der letzten Änderung.}
+
+
+\item \testfall{Das Hauptfenster ist geöffnet.}
+{Der Nutzer klickt im Menü 'Initialisierung' auf 'Neue Initialisierung'.}
+{Das Initialisierungsfenster öffnet sich.}
+
+\item \testfall{Das Initialisierungsfenster ist geöffnet.}
+{Der Nutzer ändert einen Gruppennamen. Dann klickt er auf 'Abbrechen' und bestätigt im auftauchenden PopUpFenster, dass alle Änderungen verworfen werden mit 'OK'.}
+{Das Initialisierungsfenster schließt sich.}
+
+\item \testfall{Das Initialisierungsfenster ist geöffnet.}
+{Der Nutzer klickt auf 'Änderungen speichern und schließen'.}
+{Das Initialisierungsfenster schließt sich.}
+
+
 \end{enumerate}
 
-\textbf{/T004/} Ergebnisse anzeigen
+\textbf{/T004/} Konfiguration
 \begin{enumerate}
-\item \testfall{Das Startfenster ist geöffnet und es wird mindestens eine Simulation in der Liste 'Simulationen' angezeigt, die bereits durchgeführt wurde.}
-		{Der Benutzer klickt auf 'Ergebnisse anzeigen'.}
-		{Es öffnet sich das Ergebnisfenster der Simulation.}
+
+\item \testfall{Das Hauptfenster ist geöffnet.}
+{Der Nutzer klickt im Menü 'Konfiguration' auf 'Neue Konfiguration'.}
+{Das Konfigurationsfenster öffnet sich.}
+
+\item \testfall{Das Konfigurationsfenster ist geöffnet.}
+{Der Nutzer füllt alle Felder aus. Dann klickt er auf 'Abbrechen' und bestätigt im auftauchenden PopUpFenster mit 'OK'.}
+{Das Konfigurationsfenster schließt sich.}
+
+\item \testfall{Das Konfigurationsfenster ist geöffnet.}
+{Der Nutzer füllt alle Felder aus. Dann klickt er auf 'Änderungen speichern und schließen'.}
+{Das Konfigurationsfenster schließt sich und die erstellten Konfigurationen werden in die Liste auf die Startseite geladen.}
+
 \end{enumerate}
 
-\textbf{/T005/} Ergebnisse speichern und laden
-\begin{enumerate}
-\item \testfall{Das Ergebnisfenster einer Simulation ist geöffnet.}
-		{Der Benutzer scrollt bei den Ergebnissen ganz nach unten und drückt auf Ergebnisse speichern. Im geöffneten Pop-Up-Fenster gibt er einen Namen ein und bestätigt auf 'OK'.}
-		{Das Pop-Up-Fenster schließt sich.}
 
-\item \testfall{Das Startfenster ist geöffnet.}
-		{Der Benutzer wählt in dem Menü 'Optionen' das Untermenü 'Konfigurationen' und wählt eine der aufgelisteten Ergebnisse.}
-		{Es öffnet sich das Ergebnisfenster des gespeicherten Ergebniszustands.}
+\textbf{/T005/} Simulation starten
+\begin{enumerate}
+\item \testfall{Das Hauptfenster ist geöffnet und in der Liste ist eine Konfiguration ausgewählt.}
+{Der Nutzer klickt auf den Knopf 'Simulation starten' und gibt im sich öffnenden PopUpFenster die Anzahl der Wiederholungen ein. Er bestätigt mit 'OK'.}
+{Nach dem die Simulationen beendet wurden, ist der Button 'Ergebnisse anzeigen' aktiviert.}
+
+\item \testfall{Das Hauptfenster ist geöffnet und in der Liste steht mindestens eine Konfiguration.}
+{Der Nutzer klickt auf den Knopf 'Alle Simulationen starten' und gibt im sich öffnenden PopUpFenster die Anzahl der Wiederholungen ein. Er bestätigt mit 'OK'.}
+{Nach dem die Simulationen beendet wurden, ist der Button 'Ergebnisse anzeigen' bei jeder Listenauswahl aktiviert.}
+
+
 \end{enumerate}
 
+\textbf{/T006/} Ergebnisse anzeigen
+\begin{enumerate}
+\item \testfall{Das Hauptfenster ist geöffnet und in der Liste ist eine Konfiguration ausgewählt. Der Button 'Ergebnisse anzeigen' ist aktiviert.}
+{Der Nutzer klickt auf 'Ergebnisse anzeigen'.}
+{Das Ergebnisfenster mit den Ergebnissen der Simulation, die mit der ausgewählten Konfiguration zuletzt ausgeführt, öffnet sich. Durch Wählen der Wiederholung und Auswählen der Ansichten in der Liste, lassen sich die unterschiedlichen Ergebnisdetails anzeigen.}
+
+
+\end{enumerate}
+
+\textbf{/T007/} Ergebnisse vergleichen
+\begin{enumerate}
+\item \testfall{Das Ergebnisfenster ist geöffnet.}
+{Der Nutzer klickt auf 'Ergebnisse vergleichen...'}
+{Es öffnet sich das Vergleichfenster. Die Konfiguration mit den zuvor betrachteten Ergebnissen ist bereits in der linken Spalte ausgewählt. In beiden Spalten lassen sich alle Konfigurationen auswählen, die auch in der Liste des Hauptmenüs sind und zu denen bereits mindestens eine Simulation ausgefüht wurde.}
+
+\item \testfall{Das Vergleichfenster ist geöffnet.}
+{Der Nutzer wählt eine Ansicht in der Liste der Ergebnisansichten.}
+{Die entsprechenden Graphiken und Daten, werden in der jeweiligen Spalte, der ausgewählten Konfiguration angezeigt. Unter den beiden Spalten, wird die Differenz zu den Daten der beiden Ergebnisse angezeigt.}
+
+
+\end{enumerate}
 
