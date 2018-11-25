@@ -20,43 +20,64 @@ Die Ergebnisse der Simulation können angezeigt werden.
 Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird oder
 die maximale Zyklenanzahl erreicht wird.
 
+\textbf{/F0050/}
+Menüpunkt zum Verwalten eigener Spiele. Ein Spiel kann erstellt und gespeichert werden. Jedes Spiel erhält einen Namen. Ein Spiel kann umbenannt werden. Ein bereits erstelltes Spiel kann gelöscht werden. Erstellte Spiele können bearbeitet werden.
+
+\textbf{/F0060}
+Menüpunkt zum Verwalten von Strategien. Eine Strategie kann erstellt und gespeichert werden. Jede Strategie erhält einen Namen. Eine Strategie kann umbenannt werden. Eine bereits erstellte Strategie kann gelöscht werden. Erstellte Strategien können bearbeitet werden.
+
+\textbf{/F0070/}
+Menüpunkt zum Verwalten von Initialisierungen.Eine Initialisierung kann erstellt und gespeichert werden. Jede Initialisierung  erhält einen Namen. Eine Initialisierung kann umbenannt werden. Eine bereits erstellte Initialisierung kann gelöscht werden. Erstelle Initialisierungen können bearbeitet werden.
+
 \subsubsection{Simulation erstellen}
 
-\textbf{/F0100/} 
-Die Anzahl der Agenten kann festgelegt werden. Es werden nur gerade Zahlen zugelassen.
+\textbf{/F0100/}
+Eine Simulation wird durch eine Konfiguration beschrieben. Eine Konfiguration enthält
+\begin{enumerate}
+\item das zu simulierende Spiel
+\item die Initialisierung der Simulation
+\item den Anpassungsalgorithmus 
+\item den Bewertungsalgorithmus
+\item die Anzahl der Runden
+\item die maximale Anzahl an Zyklen
+\item die Wahrscheinlichkeit für die Strategieanpassung
+\item den Algorithmus zum Bilden der Paare
+\end{enumerate}
 
-\textbf{/F0110/} 
-Die initiale Strategie der Agenten kann festgelegt werden. Dabei wird der prozentuale Anteil der Strategie im Startzustand angegeben.  
+\textbf{/F0110/}
+Eine Initialisierung kann unabhängig von einer Konfiguration erstellt und gespeichert werden. Die gespeicherten Initialisierungen können bei der Konfiguration ausgewählt werden. Eine Konfiguration enthält genau eine Initialisierung. In der Initialisierung werden die Parameter /F0130/ bis /F0150/ festgelegt. Sowie Gruppen erstellt.
 
-\textbf{/F0120/} 
-Das zu simulierende Spiel kann festgelegt werden.
+\textbf{/F0120/}
+Es könne Gruppen erstellt werden. Jede Gruppe erhält einen Namen und eine ID. 
 
 \textbf{/F0130/} 
-Die Anzahl der Runden kann festgelegt werden.
+Die Anzahl der Agenten kann festgelegt werden. Es werden nur gerade Zahlen zugelassen. Die Agenten werden automatisch nummeriert. Die Nummer erfüllt die Funktion einer ID.
 
 \textbf{/F0140/} 
-Die maximale Anzahl der Zyklen kann festgelegt werden.
+Der Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für die Verteilung der Strategien hat man die Optionen
+\begin{enumerate}
+\item Die Agenten mit der Strategie werden angegeben. Die Agenten werden dabei einzeln mit ihrer ID oder durch ein Intervall angegeben. Bei einem Intervall erhalten alle Agenten in dem Intervall die Strategie. Anfangs- und Endwerte des Intervalls sind inklusive. Intervalle und einzelne IDs können beliebig kombiniert werden, sie werden durch Kommas getrennt.
+\item Der Anteil einer Strategie in einer Gruppe wird prozentual angegeben. Welche Agenten in der Gruppe die Strategie erhalten ist zufällig. Gruppen werden über ihren Namen identifiziert. 
+\item Der Anteil der Strategien für die Agenten, die nicht in 1. und 2. enthalten sind, wird prozentual angegeben.
+\end{enumerate}
+Alle Optionen können miteinander kombiniert werden. Kein Agent darf zwei Strategien zugewiesen bekommen.
 
 \textbf{/F0150/} 
-Die Anzahl der Wiederholungen der Simulation kann festgelegt werden.
+Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disjunkt sein. Für die Verteilung der Agenten hat man die Optionen
+\begin{enumerate}
+\item Die Agenten in einer Gruppe werden angegeben. Die Agenten werden dabei einzeln mit ihrer ID oder durch ein Intervall angegeben. Bei einem Intervall werden alle Agenten in dem Intervall der Gruppe hinzugefügt. Anfangs- und Endwerte des Intervalls sind inklusive. Intervalle und einzelne IDs können beliebig kombiniert werden, sie werden durch Kommas getrennt.
+\item Der Anteil der Agenten in einer Gruppe kann angegeben werden. 
+\end{enumerate}
+Die Optionen können miteinander kombiniert werden. Dabei gilt, es werden in so viele Agenten in eine Gruppe hinzugefügt bis die aus 1. und in 2. zufällig ausgewählten Agenten zusammen dem Anteil aus 2. entsprechen. Der Anteil muss größer gleich dem in 1. entsprechenden Anteil hinzugefügter Agenten sein. 
 
 \textbf{/F0160/} 
-Der Algorithmus zur Anpassung der Strategie kann festgelegt werden.
+Es werden Standartwerte für die Initialisierung aus einer Config-Datei geladen.
 
 \textbf{/F0170/} 
-Die Wahrscheinlichkeit für eine Strategieanpassung am Ende eines Zyklus kann festgelegt werden. Es sind Werte zwischen 0.01 und 1 zugelassen.
+Für die Parameter in der Initialisierung und die Parameter 5. - 7. in /F0100/ kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Die Schrittweite kann negativ sein. Innerhalb der Verteilung von Strategien und Gruppen können mehrere Parameter variabel sein. Es können nicht /F0140/ und /F0150/ gleichzeitig variabel sein. Ansonsten kann immer nur ein Parameter variabel sein. Erstellt man eine Konfiguration mit variablen Parametern, wird für jeden möglichen Parameter eine eigene Simulation erstellt.
 
-\textbf{/F0180/} 
-Der Bewertungsalgorithmus mit der die Agenten verglichen werden kann festgelegt werden.
-
-\textbf{/F0190/} 
-Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disjunkt sein.
-
-\textbf{/F0200/} 
-Es werden Standartwerte für die Konfiguration aus einer Config-Datei geladen.
-
-\textbf{/F0210/} 
-Für die Anteile der initialen Strategien kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Daraus entsteht eine Menge von Konfigurationen. Jede Konfiguration erhält eine eigene Simulation. Die prozentuale Anteile der aller Strategien in einer Konfiguration muss zusammen immer 100 ergeben. 
+\textbf{/F0180/}
+Beim Starten der Simulation wird die Anzahl der Wiederholungen abgefragt.
 
 \subsubsection{Spiele}
 Alle implementierten Spiele sind mit ihren Payoffs angegeben. $K$ steht für die Aktion \emph{Kooperation} und $D$ für \emph{Defektion}.
@@ -145,10 +166,10 @@ Erstellen eines Spiels durch Eingabe der Payoffs.
 \subsubsection{Strategien}
 
 \textbf{/F0400/}
-Die Strategien /F0410/ bis /F0450/ können mit einer Bedingung aus /F0460/ bis /F0510/ und einer weiteren Strategie kombiniert werden. Daraus entsteht eine kombinierte Strategie. Ist die Bedingung erfüllt wird die erste Strategie ausgeführt, ansonsten die zweite Strategie.  
+Eine Strategien /F0410/ bis /F0450/ muss mit einer Bedingung aus /F0460/ bis /F0520/ kombiniert werden. Eine kombinierte Strategie besteht aus $k$ Paaren von Strategie und Bedingung. Ist die $i$-te Bedingung erfüllt, führt der Agent die $i$-te Strategie aus. Falls nicht wird die $i+1$-te Bedingung überprüft. Jede kombinierte Strategie erhält vom Benutzer eine ID.
 
 \textbf{/F0410/} 
-Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte mal mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
+Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0420/} 
 Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
@@ -163,22 +184,25 @@ Strategie: Der Agent kooperiert nie.
 Strategie: Die Aktion des Agenten ist zufällig.
 
 \textbf{/F0460/}
-Bedingung: Wähle die erste Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim Erstellen der Simulation angegeben.
+Bedingung: Wähle die Strategie mit Wahrscheinlichkeit $\alpha$. $\alpha$ wird beim Erstellen der Simulation angegeben.
 
 \textbf{/F0470/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim Erstellen der Simulation angegeben.
+Bedingung: Wähle die Strategie, wenn der andere Agent zur Gruppe $G$ gehört. $G$ wird beim Erstellen der kombinierten Strategie festgelegt. $G$ ist die ID der Gruppe.
 
 \textbf{/F0480/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe, wählt er die erste Strategie, wenn der andere Agent ebenfalls in keiner Gruppe ist.
+Bedingung: Wähle die Strategie, wenn der andere Agent zu meiner Gruppe gehört. Ist der Agent in keiner Gruppe wählt er die Strategie, wenn der andere Agent ebenfalls in keiner Gruppe ist.
 
 \textbf{/F0490/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent reicher ist.
+Bedingung: Wähle die Strategie, wenn der andere Agent reicher ist.
 
 \textbf{/F0500/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent ärmer ist.
+Bedingung: Wähle die Strategie, wenn der andere Agent ärmer ist.
 
 \textbf{/F0510/}
-Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich reich ist.
+Bedingung: Wähle die Strategie, wenn der andere Agent ungefähr gleich reich ist.
+
+\textbf{/F0520/}
+Bedingung: Wähle die Strategie immer.
 
 \subsubsection{Anpassungsalgorithmus}
 
@@ -186,13 +210,13 @@ Bedingung: Wähle die erste Strategie, wenn der andere Agent ungefähr gleich re
 Am Ende jedes Zyklus werden die Agenten gemäß ihrer Punktzahl und des Bewertungsalgorithmus in einer Rangliste platziert.
 
 \textbf{/F0610/}
-Jeder Agent wir mit der Wahrscheinlichkeit aus /F0170/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0160/ angewandt.
+Jeder Agent wird mit der Wahrscheinlichkeit aus /F0100/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0100/ angewandt.
 
 \textbf{/F0620/}
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante, so dass $\delta \cdot \beta \leq 1$ ist.
 
 \textbf{/F0630/}
-Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $10\%$ in der Rangliste gehört und einen höheren Rang hat.
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $x\%$ in der Rangliste gehört und einen höheren Rang hat. $x$ wird vom Benutzer bestimmt.
 
 
 \subsubsection{Paarungsalgorithmus}
@@ -214,29 +238,44 @@ Der Rang ist der Durchschnittsrang über die vergangenen Zyklen. Für jeden Zykl
 Für alle beendeten Simulationen kann man die Ergebnisse anzeigen. Für jede Simulation lassen sich die Ergebnisse aller Wiederholungen anzeigen.
 
 \textbf{/F0910/}
+Der Durchschnittswert der Ergebnisse aller Wiederholungen lassen sich anzeigen.
+
+\textbf{/F0920/}
 Eine Rangliste mit allen Agenten kann angezeigt werden. Bei allen Agenten wird der Rang, die Gesamtpunktzahl und die aktuelle Strategie angezeigt.
 
 \textbf{/F0930/}
 Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
 
 \textbf{/F0940/}
-Ein Balkendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
+Ein Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
+
+\textbf{/F0950/}
+In der Ergebnisansicht gibt es die Option \emph{Vergleichen mit...}. Damit kann eine Wiederholung bzw. Durchschnittswert einer Simulation mit einer Wiederholung bzw. Durchschnittswert einer anderen oder gleichen Simulation verglichen werden. Beim Vergleich werden die Diagramme nebeneinander angezeigt. Darunter werden die Differenzen der Ergebniswerte angezeigt.
 
 \subsection{Wunschkriterien}
 
 \subsubsection{Simulation erstellen}
 
 \textbf{/W0000/}
-Die Konfiguration einer Simulation kann gespeichert werden.
+Die Konfiguration einer Simulation kann gespeichert werden. Beim Speichern kann ein Name angegeben werden.
+
+\textbf{/W0001/}
+Menüpunkt zum Verwalten von Konfigurationen. Eine Konfiguration kann erstellt und gespeichert werden. Jede Konfiguration erhält einen Namen. Eine Konfiguration kann umbenannt werden. Eine bereits erstellte Konfiguration kann gelöscht werden. Erstellte Konfigurationen können bearbeitet werden.
 
 \textbf{/W0010/}
 Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
 
 \textbf{/W0020/}
-Eine Startpunktzahl für Agenten kann festgelegt werden.
+Eine Startpunktzahl für Agenten kann in der Initialisierung festgelegt werden. Die Verteilung der Startpunktzahl erfolgt analog zu der Verteilung der Strategien in /F0130/.
+
+\textbf{/W0021/}
+Die Startpunktzahl kann entweder zur Gesamtpunktzahl addiert oder nur für die Bestimmung der gewählten Strategie verwendet werden. 
 
 \textbf{/W0030/}
-Agenten können gemischte Strategien zugewiesen bekommen. Die Wahrscheinlichkeit für eine Strategie wird mit angegeben.
+Agenten können gemischte Strategien zugewiesen bekommen. Die Agenten können in /F0140/ mehrere Strategien zugewiesen bekommen. Zu jeder Strategie in einer gemischten Strategie wird angegeben mit welcher Wahrscheinlichkeit sie ausgewählt wird.
+
+\textbf{/W0040/}
+In der Konfiguration werden alle in der Simulation verfügbaren Strategien aufgelistet. Die in der Initialisierung verwendeten Strategien müssen enthalten sein.
 
 \subsubsection{Auswertung}
 
@@ -249,21 +288,27 @@ Das Ergebnis einer Simulation kann geladen werden.
 \textbf{/W0120/}
 Ein Graph zeigt die Punkte der Agenten während der Simulation an. Die Information erhält man aus /W0400/. Es gibt die Optionen:
 \begin{itemize}
-\item Punkte der besten $10\%$
-\item Punkte der schlechtesten $10\%$
+\item Punkte der besten $x\%$
+\item Punkte der schlechtesten $x\%$
 \item durchschnittliche Punkte aller Agenten
 \item Median der Punkte aller Agenten
 \item Punkte ausgewählter Agenten
 \end{itemize}
+$x$ wird vom Benutzer bestimmt. Agenten können durch einzelne IDs, Intervalle oder Gruppenzugehörigkeit ausgewählt werden. 
 
 \textbf{/W0130/}
 Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Informationen erhält man aus /W0400/. Es gibt die Optionen:
 \begin{itemize}
-\item Anteil der Strategien der besten $10\%$
-\item Anteil der Strategien der schlechtesten $10\%$
+\item Anteil der Strategien der besten $x\%$
+\item Anteil der Strategien der schlechtesten $x\%$
 \item Anteil der Strategien aller Agenten
 \item Anteil der Strategien ausgewählter Agenten
 \end{itemize}
+$x$ wird vom Benutzer bestimmt. Agenten können durch einzelne IDs, Intervalle  oder Gruppenzugehörigkeit ausgewählt werden. 
+
+\textbf{/W0140/}
+In /F0920/ bis /F0940/ können Agenten nach ihrer ID und Gruppenzugehörigkeit gefiltert werden. Die Ergebnisse werden nur für die ausgewählten Agenten angezeigt. IDs können einzeln und in Intervallen angegeben werden.
+
 
 \subsubsection{Strategien für die Paarung von Agenten}
 
@@ -280,7 +325,7 @@ Strategie: Der Agent paart mit ärmeren Agenten.
 Strategie: Der Agent paart mit ungefähr gleich reichen Agenten.
 
 \textbf{/W0240/}
-Strategie: Die Paarung von Agenten ist zufällig.
+Strategie: Alle Paarungen sind zufällig. Die Agenten haben keine Präferenzen mit welchem Agenten sie gepaart werden möchten.
 
 \subsubsection{Anpassungsalgorithmus}
 
@@ -300,7 +345,7 @@ Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpun
 Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, so dass die Summe 1 ergibt.
 
 \textbf{/W0350/}
-Mit einer Wahrscheinlichkeit von $1\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
+Mit einer Wahrscheinlichkeit von $\delta\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. $\delta$ wird vom Benutzer bestimmt. Es kann nur eine in der Konfiguration festgelegt Strategie gewählt werden. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
 
 \subsubsection{Bewertungsalgorithmus}
 
@@ -308,7 +353,7 @@ Mit einer Wahrscheinlichkeit von $1\%$ ändert der Agent seine Strategie zu eine
 Die Agenten werden gemäß ihrer Punkte aus dem aktuellen Zyklus in einer Rangliste platziert.
 
 \textbf{/F0410/}
-Die Agenten werden gemäß ihrer Gesamtpunktzahl aus den letzten $w$ Zyklen in einer Rangliste sortiert. $w$ wird vom Benutzer festgelegt.
+Die Agenten werden gemäß ihrer Gesamtpunktzahl aus den letzten $w$ Zyklen in einer Rangliste sortiert. $w$ wird vom Benutzer bestimmt.
 
 \subsubsection{Sonstiges}
 
@@ -320,3 +365,6 @@ Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien 
 
 \textbf{/W0520/}
 Die Simulation kann abgebrochen und wieder neu gestartet werden. Beim Neustart beginnt sie wieder in ihrem Anfangszustand. Beim Abbrechen werden keine Informationen gespeichert.
+
+\textbf{/W0530/}
+Die Begriffe \emph{reicher}, \emph{ärmer} und \emph{ungefähr so reich wie} werden durch die Ränge bestimmt\footnote{Nicht durch die Gesamtpunktzahl wie im Glossar definiert.}. Bei der Initialisierung kann ausgewählt werden welche Definition verwendet wird. \emph{Ungefähr so reich wie} heißt $\pm x$ Punkte bzw. Ränge, $x$ wird vom Benutzer bestimmt.
