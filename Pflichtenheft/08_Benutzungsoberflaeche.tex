@@ -1,11 +1,11 @@
 \section{Benutzungsoberfläche}
 
 
-\subsection{Sartfenster}
+\subsection{Startfenster}
 
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/StartfensterBeispiel.png}
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/Startfenster.png}
   \caption{Hauptfenster}
   \label{fig:Bild1}
 \end{figure}
@@ -13,217 +13,261 @@
 \begin{description}
 
 
-\item[1. Optionen] Menü enthält zwei Untermenüs: Ergebnisse und Konfigurationen, über die gespeicherte Ergebnisse und Startkonfigurationen angezeigt werden können
+\item[1. Menü Stufenspiele] Enthält den Menüpunkt 'Stufenspiele verwalten'. Dieser führt zur Stufenspiel Verwaltung.
 
-\item[2. Simulationen] Liste der geladenen Simulationen. Die wichtigsten Startkonfigurationen wie das Stufenspiel und die gewählten Strategien werden angezeigt.
+\item[2. Menü Strategien] Menü enthält den Menüpunkt 'Kombinierte Strategien verwalten'. Dieser führt zu dem Kombinierte Strategien Verwaltung.
 
-\item[3. Details] Über diesen Knopf kann in einem Pop-Up-Fenster alle Parameter der Startkonfiguration eingesehen werden.
+\item[3. Menü Initialisierungen] 
 
-\item[4. starten] Die jeweilige Simulation kann über diesen Knopf ausgeführt werden. Wird die Simulation bereits ausgeführt oder ist sie in der Warteschlange, so ist der Knopf deaktiviert.
+\item[4. Menü Konfigurationen] 
 
-\item[5. Alle Simulationen starten] Durch diesen Knopf werden alle Simulationen, die nicht gerade ausgeführt oder bereits in der Warteschlange sind, ausgeführt. 
+\item[5. Menü Ergebnisse] 
 
-\item[6. Ergebnisse anzeigen] Bei Betätigung werden die Ergebnisse der jeweiligen Simulation der letzen Ausführung angezeigt. Wurde die Simulation noch nicht ausgeführt, ist der Knopf deaktiviert.
+\item[6. Liste der Konfigurationen] 
 
-\item[7. neue Konfiguration erstellen] Führt zum Konfigurations-Assistenten, um alle Parameter für eine neue Startkonfiguration zu bestimmen.
+\item[7. Details]
 
-\item[8. Konfiguration laden] Öffnet ein Dialogfenster, in dem man eine zuvor gespeicherte Konfiguration auswählen kann.
+\item[8. Simulation starten] 
+
+\item[9. Ergebnisse anzeigen]
+
+\item[10. Alle Simulationen starten]
 
 \end{description}
 
+\subsection{Stufenspiele Verwaltung}
+
+\begin{figure}[hp] 
+  \centering
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/SpieleMenue.png}
+  \caption{Stufenspiel Verwaltung}
+  \label{fig:Bild1}
+\end{figure}
+
+\begin{description}
+
+\item[1. Liste] 
+
+\item[2. Name] 
+
+\item[3. Auszahlungen] 
+
+\item[4. Beschreibung] 
+
+\item[5. neues Spiel] 
+
+\item[6. Spiel löschen] 
+
+\item[7. Abbrechen] 
+
+\item[8. Änderungen speichern und schließen] 
+
+\end{description}
+
+\pagebreak
+
+\subsection{Kombinierte Strategien Verwaltung}
+
+\begin{figure}[hp] 
+  \centering
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/StrategienMenue.png}
+  \caption{Kombinierte Strategien Verwaltung}
+  \label{fig:Bild1}
+\end{figure}
+
+\begin{description}
+
+\item[1. Liste] 
+
+\item[2. Name] 
+
+\item[3. Nummerierung] 
+
+\item[4. Bedingung] 
+
+\item[5. Gruppen ID] 
+
+\item[6. alpha] 
+
+\item[7. Strategie] 
+
+\item[8. entfernen] 
+
+\item[9. hinzufügen] 
+
+\item[10. keine Bedingung] 
+
+\item[11. Beschreibung] 
+
+\item[12. neue kombinierte Strategie] 
+
+\item[13. kombinierte Strategie löschen] 
+
+\item[14. Abbrechen] 
+
+\item[15. Änderungen speichern und schließen] 
+
+\end{description}
+
+\pagebreak
+
+\subsection{Initialisierung erstellen}
+
+\begin{figure}[hp] 
+  \centering
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/NeueInitialisierung.png}
+  \caption{Initialisierung}
+  \label{fig:Bild1}
+\end{figure}
+
+
+\begin{description}
+
+\item[1. Name] 
+
+\item[2. Anzahl der Agenten] 
+
+\item[3. Gruppen - ID] 
+
+\item[4. Gruppen - Name] 
+
+\item[5. Gruppen - AgentenIDs] 
+
+\item[6. Gruppen - Anteil aller Agenten] 
+
+\item[7. Gruppen - entfernen] 
+
+\item[8. Gruppen - Gruppe hinzufügen] 
+
+\item[9. Initiale Strategien - Liste] 
+
+\item[10. Initiale Strategien - Agenten IDs] 
+
+\item[11. Initiale Strategien - Gruppen Name] 
+
+\item[12. Initiale Strategien - Anteil] 
+
+\item[13. Initiale Strategien - entfernen] 
+
+\item[14. Initiale Strategien - weitere Gruppe] 
+
+\item[15. Initiale Strategien - Anteil der Agenten] 
+
+\item[16. Initiale Strategien - kombinierte Strategie hinzufügen] 
+
+\item[17. Abbrechen] 
+
+\item[18. Speichern] 
+
+\end{description}
+
+
+\pagebreak
 
 \subsection{Konfigurationen erstellen}
 
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.0\textwidth]{GUI_Entwurf/WizardFenster1.png}
-  \caption{Konfigurations-Assistent-Seite1}
+     \includegraphics[width=1.0\textwidth]{GUI_Entwurf/.png}
+  \caption{Konfiguration}
   \label{fig:Bild2}
 \end{figure}
 
 \begin{description}
 
-\item[1. Stufenspiel] Es kann ein Stufenspiel gewählt werden
+\item[1. ] 
 
-\item[2. Beschreibung des Spiels] Wenn ein Stufenspiel gewählt ist, steht hier eine kurze Beschreibung unteranderem mit den unterschiedlichen Auszahlungen
+\item[2. ] 
 
-\item[3. Anzahl der Agenten] Es werden nur gerade Zahlen akzeptiert
+\item[3. ] 
 
-\item[4. Bewertungsalgorithmus] Es kann zwischen den Bewertungsalgorithmen gewählt werden.
+\item[4. ] 
 
-\item[5. Adaptionsalgorithmus] Es kann zwischen den Adaptionsalgorithmen gewählt werden.
+\item[5. ] 
 
-\item[6. Wahrscheinlichkeit] Hier soll die Wahrscheinlichkeit, dass Agenten nach einem Zyklus ihre Startegie gegebenen falls anpassen, eingegeben werden.
+\item[6. ] 
 
-\item[7. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellte Konfiguration zu bestimmen.
+\item[7. ] 
 
-\item[8. zurück] Ist auf dieser Seite deaktiviert.
+\item[8. ] 
 
-\item[9. weiter] Führt zur nächsten Seite, wenn alle Parameter korrekt eingegeben wurden. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
+\item[9. ] 
 
-\item[10. fertig stellen] Ist aktiviert wenn alle nötigen Eingaben auf dieser und den anderen zwei Seiten getätigt wurden. Wenn alle Eingaben korrekt sind, wird das Fenster geschlossen und die Simulationen werden auf die Startseite geladen. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
-
-\end{description}
-
-\pagebreak
-
-\begin{figure}[hp] 
-  \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/WizardFenster2.png}
-  \caption{Konfigurations-Assistent-Seite2}
-  \label{fig:Bild3}
-\end{figure}
-
-\begin{description}
-
-\item[1. Gruppen zulassen] Aktiviert die Felder zwei bis sechs und aktiviert Bedingungen die sich auf Gruppen beziehen.
-
-\item[2. Agenten können in mehreren Gruppen sein] Lässt Überlappungen von Gruppen zu.
-
-\item[3. Name] Name der Gruppe.
-
-\item[4. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels.
-
-\item[5. Entfernen] Alle Felder in dieser Zeile werden gelöscht.
-
-\item[6. Gruppe hinzufügen] Fügt eine neue Zeile mit den Feldern drei bis fünf an.
-
-\item[7. Name] Name der erstellten Strategie.
-
-\item[8. Anteil] Anteil der Agenten in dieser Gruppe zu Beginn des Spiels. Alle Anteil-Felder müssen zusammen 100 ergeben.
-
-\item[9. Strategie] Wähle zwischen vier 'Basis-Strategien': Tit-for-Tat, Grim, keine Kooperation, immer Kooperation
-
-\item[10. Bedingung] Wähle die Bedingung mit der die Strategie eintritt. 
-
-\item[11. x] Falls die Bedingung 'mit Wahrscheinlichkeit x' gewählt ist kann hier die Wahrscheinlichkeit eingegeben werden. Falls die Bedingung 'mit Gruppe x' gewählt ist kann hier der Name der Gruppe eingegeben werden. Sonst ist das Feld deaktiviert.
-
-\item[12. sonst] Hier kann die alternative 'Basis-Strategien' gewählt werden, die eintritt, wenn die erste Strategie nicht eintritt.
-
-\item[13. Entfernen] Alle Felder in dieser Zeile werden gelöscht.
-
-\item[14. Strategie hinzufügen] Fügt eine neue Zeile an, mit den Feldern sieben bis dreizehn.
-
-\item[15. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellt Konfiguration zu bestimmen.
-
-\item[16. zurück] Führt zu der ersten Seite.
-
-\item[17. weiter] Führt zur nächsten Seite, wenn alle Parameter korrekt eingegeben wurden. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
-
-\item[18. fertig stellen] Ist aktiviert wenn alle nötigen Eingaben auf dieser und den anderen zwei Seiten getätigt wurden. Wenn alle Eingaben korrekt sind, wird das Fenster geschlossen und die Simulationen werden auf die Startseite geladen. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
+\item[10. ] 
 
 \end{description}
 
 \pagebreak
 
-\begin{figure}[hp] 
-  \centering
-     \includegraphics[width=0.7\textwidth]{GUI_Entwurf/WizardFenster3.png}
-  \caption{Konfigurations-Assistent-Seite3}
-  \label{fig:Bild4}
-\end{figure}
-
-\begin{description}
-
-\item[1. Anzahl der Runden] Die Anzahl der Runden in einer Simulation. 
-
-\item[2. erweiterte Eintellungen] Nur wenn der Haken gesetzt ist, sind die unteren zwei Felder drei und vier aktiviert.
-
-\item[3. Maximale Anzahl der Zyklen] Maximale Anzahl der Zyklen, nachdenen die Simulation abgebrochen wird, auch wenn kein Gleichgewichtszustand erreicht wurde.
-
-\item[4. Wiederholungen der Simulation] Anzahl der Wiederholungen der ganzen Simulation.
-
-\item[5. Konfiguration speichern] Es öffnet sich ein Dialogfenster, um einen Namen für die erstellt Konfiguration zu bestimmen.
-
-\item[6. zurück] Führt zur zweiten Seite.
-
-\item[7. weiter] Ist auf dieser Seite deaktiviert.
-
-\item[8. fertig stellen] Ist aktiviert wenn alle nötigen Eingaben auf dieser und den anderen zwei Seiten getätigt wurden. Wenn alle Eingaben korrekt sind, wird das Fenster geschlossen und die Simulationen werden auf die Startseite geladen. Bei falschen oder fehlenden Eingaben gibt es eine Fehlermeldung.
-
-\end{description}
-
-
-\subsection{Konfigurationen speichern und laden}
-
-Die Dialogfenster zum Speichern und Laden von Ergebnissen werden sehr ähnlich aussehen.
-
-\begin{figure}[hp] 
-  \centering
-     \includegraphics[width=0.5\textwidth]{GUI_Entwurf/KonfigSpeichern.png}
-  \caption{Dialog: Konfiguration speichern}
-  \label{fig:Bild5}
-\end{figure}
-
-\begin{description}
-
-\item[1. Name] Name für die zu speichernde Konfiguration
-\item[2. OK] Wurde ein Name eingegeben, so wird das Fenster geschlossen und alle durch den Assistenten eingegeben Parameter der Startkonfiguration unter diesem Namen gespeichert.
-\item[3. Abbrechen] Der Vorgang wird abgebrochen und das Fenster schließt sich.
-
-\end{description}
-
-\pagebreak
-
-\begin{figure}[hp] 
-  \centering
-     \includegraphics[width=0.5\textwidth]{GUI_Entwurf/KonfigLaden.png}
-  \caption{Dialog: Konfiguration laden}
-  \label{fig:Bild6}
-\end{figure}
-
-\begin{description}
-
-\item[1. Konfiguration] Es kann zwischen den bereits gespeicherten Konfigurationen gewählt werden.
-\item[2. OK] Wurde eine Konfiguration gewählt, so wird das Fenster geschlossen und der Assistent wird geöffnet. Alle gespeicherten Parameter der gewählten Konfiguration sind im Assistenten bereits eingegeben.
-\item[3. Abbrechen] Der Vorgang wird abgebrochen und das Fenster schließt sich.
-
-\end{description}
-
-\pagebreak
 
 \subsection{Ergebnisse anzeigen}
 
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/Ergebnisfenster1.png}
-  \caption{Ergebnisfenster1}
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/Ergebnisfenster(1).png}
+  \caption{Ergebnisfenster}
   \label{fig:Bild7}
 \end{figure}
 
 \begin{description}
 
-\item[1. Startkonfiguartion] Die wichtigsten Parameter der Startkonfiguration werden angezeigt.
+\item[1. ] 
 
-\item[2. Details] In einem Pop-Up-Fenster werden alle Parameter der Startkonfiguration angezeigt.
+\item[2. ] 
 
-\item[3. Ergebnisse] Das Feld zum anzeigen der Ergebnisse lässt sich scrollen.
+\item[3. ] 
 
-\item[4. Wiederholung] Es kann zwischen den einzelnen Wiederholungen der Simulation gewählt werden. Die Ergebnisse der Wiederholung werden dann angezeigt.
+\item[4. ] 
 
-\item[5. Anteil der Strategien] Anteil der Strategien aller Agenten am Ende der Simulation. 
+\item[5. ] 
 
-\item[6. Kreisdiagramm] Zeigt den Anteil der Strategien aller Agenten am Ende der Simulation in einem Kreisdiagramm. 
+\item[6. ] 
+
+\item[7. ] 
+
+\item[8. ] 
+
+\item[9. ] 
+
+\item[10. ] 
 
 \end{description}
 
 \pagebreak
 
+
+\subsection{Ergebnisse vergleichen}
+
 \begin{figure}[hp] 
   \centering
-     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/Ergebnisfenster2.png}
-  \caption{Ergebnisfenster2}
-  \label{fig:Bild8}
+     \includegraphics[width=1.1\textwidth]{GUI_Entwurf/.png}
+  \caption{Vergleichenfenster}
+  \label{fig:Bild1}
 \end{figure}
 
 \begin{description}
 
-\item[1. Punkteverteilung der Agenten] Zeigt die Verteilung der Summe aller Auszahlungen der Agenten am Ende der Simulation in einem Balkendiagramm an.
+\item[1. ] 
 
-\item[2. Rangliste] Zeigt eine Rangliste aller Agenten am Ende der Simulation mit ihrem Rang ihre letzten Strategie und die Summe aller ihrer Auszahlungen.
+\item[2. ] 
 
-\item[3. Ergebnisse speichern] Öffnet ein Dialogfenster in den ein Name für die Ergebnisse gewählt werden kann.
+\item[3. ] 
 
+\item[4. ] 
+
+\item[5. ] 
+
+\item[6. ] 
+
+\item[7. ] 
+
+\item[8. ] 
+
+\item[9. ] 
+
+\item[10. ] 
 
 \end{description}
+
+
 
