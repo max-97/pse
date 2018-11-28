@@ -29,6 +29,15 @@ Menüpunkt zum Verwalten von Strategien. Eine Strategie kann erstellt und gespei
 \textbf{/F0070/}
 Menüpunkt zum Verwalten von Initialisierungen.Eine Initialisierung kann erstellt und gespeichert werden. Jede Initialisierung  erhält einen Namen. Eine Initialisierung kann umbenannt werden. Eine bereits erstellte Initialisierung kann gelöscht werden. Erstelle Initialisierungen können bearbeitet werden.
 
+\textbf{/F0080/}
+Die Konfiguration einer Simulation kann gespeichert werden. Beim Speichern kann ein Name angegeben werden.
+
+\textbf{/F0090/}
+Menüpunkt zum Verwalten von Konfigurationen. Eine Konfiguration kann erstellt und gespeichert werden. Jede Konfiguration erhält einen Namen. Eine Konfiguration kann umbenannt werden. Eine bereits erstellte Konfiguration kann gelöscht werden. Erstellte Konfigurationen können bearbeitet werden.
+
+\textbf{/F0091/}
+Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
+
 \subsubsection{Simulation erstellen}
 
 \textbf{/F0100/}
@@ -60,7 +69,7 @@ Der Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für
 \item Der Anteil einer Strategie in einer Gruppe wird prozentual angegeben. Welche Agenten in der Gruppe die Strategie erhalten ist zufällig. Gruppen werden über ihren Namen identifiziert. 
 \item Der Anteil der Strategien für die Agenten, die nicht in 1. und 2. enthalten sind, wird prozentual angegeben.
 \end{enumerate}
-Alle Optionen können miteinander kombiniert werden. Kein Agent darf zwei Strategien zugewiesen bekommen.
+Alle Optionen können miteinander kombiniert werden. Kein Agent darf mehr als eine Strategien zugewiesen bekommen.
 
 \textbf{/F0150/} 
 Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disjunkt sein. Für die Verteilung der Agenten hat man die Optionen
@@ -74,10 +83,16 @@ Die Optionen können miteinander kombiniert werden. Dabei gilt, es werden in so 
 Es werden Standartwerte für die Initialisierung aus einer Config-Datei geladen.
 
 \textbf{/F0170/} 
-Für die Parameter in der Initialisierung und die Parameter 5. - 7. in /F0100/ kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Die Schrittweite kann negativ sein. Innerhalb der Verteilung von Strategien und Gruppen können mehrere Parameter variabel sein. Es können nicht /F0140/ und /F0150/ gleichzeitig variabel sein. Ansonsten kann immer nur ein Parameter variabel sein. Erstellt man eine Konfiguration mit variablen Parametern, wird für jeden möglichen Parameter eine eigene Simulation erstellt.
+Für die Parameter in der Initialisierung und die Parameter 5. - 7. in /F0100/ kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Innerhalb der Verteilung von Strategien und Gruppen können mehrere Parameter variabel sein. Es können nicht /F0140/ und /F0150/ gleichzeitig variabel sein. Ansonsten kann immer nur ein Parameter variabel sein. Erstellt man eine Konfiguration mit variablen Parametern, wird für jeden möglichen Parameter eine eigene Simulation erstellt.
 
 \textbf{/F0180/}
 Beim Starten der Simulation wird die Anzahl der Wiederholungen abgefragt.
+
+\textbf{/F0190/}
+Eine Startpunktzahl für Agenten kann in der Initialisierung festgelegt werden. Die Verteilung der Startpunktzahl erfolgt analog zu der Verteilung der Strategien in /F0130/.
+
+\textbf{/F0200/}
+Die Startpunktzahl kann entweder zur Gesamtpunktzahl addiert oder nur für die Bestimmung der gewählten Strategie verwendet werden. 
 
 \subsubsection{Spiele}
 Alle implementierten Spiele sind mit ihren Payoffs angegeben. $K$ steht für die Aktion \emph{Kooperation} und $D$ für \emph{Defektion}.
@@ -169,7 +184,7 @@ Erstellen eines Spiels durch Eingabe der Payoffs.
 Eine Strategien /F0410/ bis /F0450/ muss mit einer Bedingung aus /F0460/ bis /F0520/ kombiniert werden. Eine kombinierte Strategie besteht aus $k$ Paaren von Strategie und Bedingung. Ist die $i$-te Bedingung erfüllt, führt der Agent die $i$-te Strategie aus. Falls nicht wird die $i+1$-te Bedingung überprüft. Jede kombinierte Strategie erhält vom Benutzer eine ID.
 
 \textbf{/F0410/} 
-Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der andere Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der gleiche Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0420/} 
 Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
@@ -247,7 +262,7 @@ Eine Rangliste mit allen Agenten kann angezeigt werden. Bei allen Agenten wird d
 Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
 
 \textbf{/F0940/}
-Ein Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen. 
+Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer Strategie in diesem Punktebereich.
 
 \textbf{/F0950/}
 In der Ergebnisansicht gibt es die Option \emph{Vergleichen mit...}. Damit kann eine Wiederholung bzw. Durchschnittswert einer Simulation mit einer Wiederholung bzw. Durchschnittswert einer anderen oder gleichen Simulation verglichen werden. Beim Vergleich werden die Diagramme nebeneinander angezeigt. Darunter werden die Differenzen der Ergebniswerte angezeigt.
@@ -255,21 +270,6 @@ In der Ergebnisansicht gibt es die Option \emph{Vergleichen mit...}. Damit kann 
 \subsection{Wunschkriterien}
 
 \subsubsection{Simulation erstellen}
-
-\textbf{/W0000/}
-Die Konfiguration einer Simulation kann gespeichert werden. Beim Speichern kann ein Name angegeben werden.
-
-\textbf{/W0001/}
-Menüpunkt zum Verwalten von Konfigurationen. Eine Konfiguration kann erstellt und gespeichert werden. Jede Konfiguration erhält einen Namen. Eine Konfiguration kann umbenannt werden. Eine bereits erstellte Konfiguration kann gelöscht werden. Erstellte Konfigurationen können bearbeitet werden.
-
-\textbf{/W0010/}
-Eine Konfiguration kann für eine Simulation geladen werden. Die geladene Konfiguration kann bearbeitet werden bevor die Simulation erstellt wird.
-
-\textbf{/W0020/}
-Eine Startpunktzahl für Agenten kann in der Initialisierung festgelegt werden. Die Verteilung der Startpunktzahl erfolgt analog zu der Verteilung der Strategien in /F0130/.
-
-\textbf{/W0021/}
-Die Startpunktzahl kann entweder zur Gesamtpunktzahl addiert oder nur für die Bestimmung der gewählten Strategie verwendet werden. 
 
 \textbf{/W0030/}
 Agenten können gemischte Strategien zugewiesen bekommen. Die Agenten können in /F0140/ mehrere Strategien zugewiesen bekommen. Zu jeder Strategie in einer gemischten Strategie wird angegeben mit welcher Wahrscheinlichkeit sie ausgewählt wird.
@@ -358,7 +358,7 @@ Die Agenten werden gemäß ihrer Gesamtpunktzahl aus den letzten $w$ Zyklen in e
 \subsubsection{Sonstiges}
 
 \textbf{/W0500/}
-Alle 250 Zyklen wird der Zustand aller Agenten gespeichert.
+Alle $x$ Zyklen wird der Zustand aller Agenten gespeichert. $x$ wird vom Benutzer beim Starten der Simulation angegeben.
 
 \textbf{/W0510/}
 Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien und wählen eine zufällig aus. Die Wahrscheinlichkeit mit der eine Strategie ausgewählt wird kann sich verändern.
