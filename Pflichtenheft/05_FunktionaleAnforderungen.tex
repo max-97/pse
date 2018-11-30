@@ -11,7 +11,8 @@ Es können Simulationen erstellt werden.
 Die Simulation kann gestartet werden.
 
 \textbf{/F0020/}
-Alle Simulationen können gleichzeitig gestartet werden.
+{\color{red} Mehrere Simulationen können parallel simuliert werden. Jede Simulation läuft auf einem eigenen Thread.
+}
 
 \textbf{/F0030/} 
 Die Ergebnisse der Simulation können angezeigt werden.
@@ -21,7 +22,7 @@ Eine Simulation endet wenn ein Gleichgewichtszustand erreicht wird oder
 die maximale Zyklenanzahl erreicht wird.
 
 \textbf{/F0050/}
-Menüpunkt zum Verwalten eigener Spiele. Ein Spiel kann erstellt und gespeichert werden. Jedes Spiel erhält einen Namen. Ein Spiel kann umbenannt werden. Ein bereits erstelltes Spiel kann gelöscht werden. Erstellte Spiele können bearbeitet werden.
+Menüpunkt zum Verwalten eigener Spiele. Ein Spiel kann erstellt und gespeichert werden. Jedes Spiel erhält einen Namen. Ein Spiel kann umbenannt werden. Ein bereits erstelltes Spiel kann gelöscht werden. Erstellte Spiele können bearbeitet und umbenannt werden.
 
 \textbf{/F0060}
 Menüpunkt zum Verwalten von Strategien. Eine Strategie kann erstellt und gespeichert werden. Jede Strategie erhält einen Namen. Eine Strategie kann umbenannt werden. Eine bereits erstellte Strategie kann gelöscht werden. Erstellte Strategien können bearbeitet werden.
@@ -67,9 +68,8 @@ Der Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für
 \begin{enumerate}
 \item Die Agenten mit der Strategie werden angegeben. Die Agenten werden dabei einzeln mit ihrer ID oder durch ein Intervall angegeben. Bei einem Intervall erhalten alle Agenten in dem Intervall die Strategie. Anfangs- und Endwerte des Intervalls sind inklusive. Intervalle und einzelne IDs können beliebig kombiniert werden, sie werden durch Kommas getrennt.
 \item Der Anteil einer Strategie in einer Gruppe wird prozentual angegeben. Welche Agenten in der Gruppe die Strategie erhalten ist zufällig. Gruppen werden über ihren Namen identifiziert. 
-\item Der Anteil der Strategien für die Agenten, die nicht in 1. und 2. enthalten sind, wird prozentual angegeben.
 \end{enumerate}
-Alle Optionen können miteinander kombiniert werden. Kein Agent darf mehr als eine Strategien zugewiesen bekommen.
+{\color{red}Die Optionen können nicht miteinander kombiniert werden.} Kein Agent darf mehr als eine Strategien zugewiesen bekommen.
 
 \textbf{/F0150/} 
 Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disjunkt sein. Für die Verteilung der Agenten hat man die Optionen
@@ -77,7 +77,7 @@ Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen nicht disj
 \item Die Agenten in einer Gruppe werden angegeben. Die Agenten werden dabei einzeln mit ihrer ID oder durch ein Intervall angegeben. Bei einem Intervall werden alle Agenten in dem Intervall der Gruppe hinzugefügt. Anfangs- und Endwerte des Intervalls sind inklusive. Intervalle und einzelne IDs können beliebig kombiniert werden, sie werden durch Kommas getrennt.
 \item Der Anteil der Agenten in einer Gruppe kann angegeben werden. 
 \end{enumerate}
-Die Optionen können miteinander kombiniert werden. Dabei gilt, es werden in so viele Agenten in eine Gruppe hinzugefügt bis die aus 1. und in 2. zufällig ausgewählten Agenten zusammen dem Anteil aus 2. entsprechen. Der Anteil muss größer gleich dem in 1. entsprechenden Anteil hinzugefügter Agenten sein. 
+{\color{red}Die Optionen können nicht miteinander kombiniert werden.}
 
 \textbf{/F0160/} 
 Es werden Standartwerte für die Initialisierung aus einer Config-Datei geladen.
@@ -89,7 +89,7 @@ Für die Parameter in der Initialisierung und die Parameter 5. - 7. in /F0100/ k
 Beim Starten der Simulation wird die Anzahl der Wiederholungen abgefragt.
 
 \textbf{/F0190/}
-Eine Startpunktzahl für Agenten kann in der Initialisierung festgelegt werden. Die Verteilung der Startpunktzahl erfolgt analog zu der Verteilung der Strategien in /F0130/.
+Eine Startpunktzahl für Agenten kann in der Initialisierung festgelegt werden. Die Verteilung der Startpunktzahl erfolgt analog zu der Verteilung der Strategien in /F0140/.
 
 \textbf{/F0200/}
 Die Startpunktzahl kann entweder zur Gesamtpunktzahl addiert oder nur für die Bestimmung der gewählten Strategie verwendet werden. 
@@ -184,10 +184,26 @@ Erstellen eines Spiels durch Eingabe der Payoffs.
 Eine Strategien /F0410/ bis /F0450/ muss mit einer Bedingung aus /F0460/ bis /F0520/ kombiniert werden. Eine kombinierte Strategie besteht aus $k$ Paaren von Strategie und Bedingung. Ist die $i$-te Bedingung erfüllt, führt der Agent die $i$-te Strategie aus. Falls nicht wird die $i+1$-te Bedingung überprüft. Jede kombinierte Strategie erhält vom Benutzer eine ID.
 
 \textbf{/F0410/} 
-Strategie: Tit-for-Tat. Der Agent kooperiert, wenn der gleiche Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Tit-for-Tat 1. Der Agent kooperiert, wenn der {\color{red}gleiche} Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+
+{\color{red}
+\textbf{/F0411/}
+Strategie: Tit-for-Tat 2. Der Agent kooperiert, wenn der Agent aus der letzten Runde mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+
+\textbf{/F0412/}
+Strategie: Gruppen Tit-for-Tat. Der Agent in einer Gruppe $G$ kooperiert, wenn der andere Agent kooperiert hat, als er das letzte Mal gegen einen Agenten aus $G$ gespielt hat. Beim ersten Mal kooperiert der Agent.
+}
 
 \textbf{/F0420/} 
-Strategie: Grim. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
+Strategie: Grim 1. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten mal kooperiert der Agent.
+
+{\color{red}
+\textbf{/F0421/}
+Strategie: Grim 2. Der Agent kooperiert, wenn der andere Agent immer kooperiert hat. Beim ersten Mal kooperiert der Agent.
+
+\textbf{/F0422/}
+Strategie: Gruppen Grim. Der Agent in einer Gruppe $G$ kooperiert, wenn der andere Agent immer mit Agenten aus $G$ kooperiert hat. Beim ersten Mal kooperiert der Agent.
+}
 
 \textbf{/F0430/} 
 Strategie: Der Agent kooperiert immer.
@@ -252,11 +268,13 @@ Der Rang ist der Durchschnittsrang über die vergangenen Zyklen. Für jeden Zykl
 \textbf{/F0900/}
 Für alle beendeten Simulationen kann man die Ergebnisse anzeigen. Für jede Simulation lassen sich die Ergebnisse aller Wiederholungen anzeigen.
 
+{\color{red}
+\textbf{/F0901/}
+Es wird angezeigt bei welchen und wie viel Prozent der Wiederholungen ein Gleichgewichtszustand erreicht wurde.
+}
+
 \textbf{/F0910/}
 Der Durchschnittswert der Ergebnisse aller Wiederholungen lassen sich anzeigen.
-
-\textbf{/F0920/}
-Eine Rangliste mit allen Agenten kann angezeigt werden. Bei allen Agenten wird der Rang, die Gesamtpunktzahl und die aktuelle Strategie angezeigt.
 
 \textbf{/F0930/}
 Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
@@ -264,15 +282,18 @@ Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
 \textbf{/F0940/}
 Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer Strategie in diesem Punktebereich.
 
+{\color{red}\textbf{/F0941/}
+Ein gestapeltes Säulendiagramm wie in /F0940/. Anstatt des Punktebereichs wird ein Intervall von Rängen verwendet.}
+
 \textbf{/F0950/}
-In der Ergebnisansicht gibt es die Option \emph{Vergleichen mit...}. Damit kann eine Wiederholung bzw. Durchschnittswert einer Simulation mit einer Wiederholung bzw. Durchschnittswert einer anderen oder gleichen Simulation verglichen werden. Beim Vergleich werden die Diagramme nebeneinander angezeigt. Darunter werden die Differenzen der Ergebniswerte angezeigt.
+In der Ergebnisansicht gibt es die Option \emph{Vergleichen mit...}. Damit kann eine Wiederholung bzw. Durchschnittswert einer Simulation mit einer Wiederholung bzw. Durchschnittswert einer anderen oder gleichen Simulation verglichen werden. {\color{red} Es können mehrere Simulationen miteinander verglichen werden. Zu jedem Diagramm wird der Mittelwert der verglichenen Simulationen und deren Abweichung vom Mittelwert angezeigt.}
 
 \subsection{Wunschkriterien}
 
 \subsubsection{Simulation erstellen}
 
 \textbf{/W0030/}
-Agenten können gemischte Strategien zugewiesen bekommen. Die Agenten können in /F0140/ mehrere Strategien zugewiesen bekommen. Zu jeder Strategie in einer gemischten Strategie wird angegeben mit welcher Wahrscheinlichkeit sie ausgewählt wird.
+Agenten können gemischte Strategien zugewiesen bekommen. {\color{red} Eine gemischte Strategie ist eine Tupel  aus kombinierten Strategien. Jede kombinierte Strategie besitzt eine Wahrscheinlichkeit mit der sie ausgewählt wird. Die Summe der Wahrscheinlichkeiten muss 1 sein. Kombinierte Strategien können nicht aus gemischten Strategien bestehen.}
 
 \textbf{/W0040/}
 In der Konfiguration werden alle in der Simulation verfügbaren Strategien aufgelistet. Die in der Initialisierung verwendeten Strategien müssen enthalten sein.
@@ -307,42 +328,23 @@ Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Inf
 $x$ wird vom Benutzer bestimmt. Agenten können durch einzelne IDs, Intervalle  oder Gruppenzugehörigkeit ausgewählt werden. 
 
 \textbf{/W0140/}
-In /F0920/ bis /F0940/ können Agenten nach ihrer ID und Gruppenzugehörigkeit gefiltert werden. Die Ergebnisse werden nur für die ausgewählten Agenten angezeigt. IDs können einzeln und in Intervallen angegeben werden.
-
-
-\subsubsection{Strategien für die Paarung von Agenten}
-
-\textbf{/W0200/}
-Agenten können für die Paarung eine eigene Strategie haben.
-
-\textbf{/W0210/} 
-Strategie: Der Agent paart mit reicheren Agenten.
-
-\textbf{/W0220/}
-Strategie: Der Agent paart mit ärmeren Agenten.
-
-\textbf{/W0230/}
-Strategie: Der Agent paart mit ungefähr gleich reichen Agenten.
-
-\textbf{/W0240/}
-Strategie: Alle Paarungen sind zufällig. Die Agenten haben keine Präferenzen mit welchem Agenten sie gepaart werden möchten.
+In /F0920/ bis /F0940/ können Agenten nach ihrer ID, Gruppenzugehörigkeit und Rang gefiltert werden. Die Ergebnisse werden nur für die ausgewählten Agenten angezeigt. IDs und Ränge können einzeln und in Intervallen angegeben werden.
 
 \subsubsection{Anpassungsalgorithmus}
 
 \textbf{/W0300/}
 Anpassungsalgorithmus: Ein Agent übernimmt nur Strategien von reicheren Agenten aus der gleichen Gruppe gemäß /F0620/.
 
-\textbf{/W0310/}
-Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm immer kooperiert hat.
-
-\textbf{/W0320/}
-Anpassungsalgorithmus: Ein Agent übernimmt die Strategie eines reicheren Agenten, wenn dieser mit ihm öfter nicht kooperiert als kooperiert hat.
-
 \textbf{/W0330/}
 Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl.
 
 \textbf{/W0340/}
 Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, so dass die Summe 1 ergibt.
+
+{\color{red}
+\textbf{/W0341/}
+Bei gemischten Strategien wird die Anpassung durch eine lineare Interpolation berechnet. Je größer der Unterschied der Gesamtpunktzahl, desto stärker ist die Anpassung.
+}
 
 \textbf{/W0350/}
 Mit einer Wahrscheinlichkeit von $\delta\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. $\delta$ wird vom Benutzer bestimmt. Es kann nur eine in der Konfiguration festgelegt Strategie gewählt werden. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
