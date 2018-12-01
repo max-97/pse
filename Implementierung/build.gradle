@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+}
+
+group 'de.swiss'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+sourceSets {
+    main.java.srcDir "src/main"
+    test.java.srcDir "src/test"
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    umlDoclet
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    umlDoclet "nl.talsmasoftware:umldoclet:2.0.0-rc.4"
+}
+
+javadoc {
+    source = sourceSets.main.allJava
+    options.docletpath = configurations.umlDoclet.files as List
+    options.doclet = "nl.talsmasoftware.umldoclet.UMLDoclet"
+}
+
+task texdoc(group: "documentation", description: "Generates Javadoc as TeX document", type: Exec, dependsOn: javadoc) {
+    executable 'javadoc'
+    args '-docletpath', 'TeXDoclet.jar',
+            '-doclet', 'org.stfm.texdoclet.TeXDoclet',
+            '-noindex',
+            '-tree',
+            '-hyperref',
+            '-output', 'tex/javadoc.tex',
+            '-title', 'My Title',
+            '-author', 'My Name',
+            '-sourcepath', 'src/main/java',
+            '-subpackages', 'de.swiss'
+}
