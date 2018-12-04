@@ -1,4 +1,4 @@
-package model.algorithms;
+package model.algorithms.pairing;
 
 import model.Pair;
 import model.Simulation;

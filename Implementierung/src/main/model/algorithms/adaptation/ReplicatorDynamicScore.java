@@ -1,13 +1,13 @@
-package model.algorithms;
+package model.algorithms.adaptation;
 
 import model.Simulation;
 
-public class ReplicatorDynamic implements AdaptationAlgorithm{
+public class ReplicatorDynamicScore implements AdaptationAlgorithm{
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
     public final double BETA;
 
-    public ReplicatorDynamic(double BETA) {
+    public ReplicatorDynamicScore(double BETA) {
         this.BETA = BETA;
     }
     @Override

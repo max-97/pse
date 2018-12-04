@@ -1,8 +1,8 @@
 package model;
 
-import model.algorithms.AdaptationAlgorithm;
-import model.algorithms.PairingAlgorithm;
-import model.algorithms.RankingAlgorithm;
+import model.algorithms.adaptation.AdaptationAlgorithm;
+import model.algorithms.pairing.PairingAlgorithm;
+import model.algorithms.ranking.RankingAlgorithm;
 
 public class Configuration {
     private Game game;
