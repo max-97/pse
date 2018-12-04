@@ -8,8 +8,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 11
 
 sourceSets {
-    main.java.srcDir "src/main"
-    test.java.srcDir "src/test"
+    main.java.srcDir "src/main/java"
+    test.java.srcDir "src/test/java"
 }
 
 repositories {
