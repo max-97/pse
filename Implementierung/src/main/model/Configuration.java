@@ -1,5 +1,9 @@
 package model;
 
+import model.algorithms.AdaptationAlgorithm;
+import model.algorithms.PairingAlgorithm;
+import model.algorithms.RankingAlgorithm;
+
 public class Configuration {
     private Game game;
     private Initialization init;
