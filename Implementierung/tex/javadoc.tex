@@ -1,0 +1,952 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{color}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\usepackage[headings]{fullpage}
+\usepackage{listings}
+\lstset{language=Java,breaklines=true}
+\ifpdf \usepackage[pdftex, pdfpagemode={UseOutlines},bookmarks,colorlinks,linkcolor={blue},plainpages=false,pdfpagelabels,citecolor={red},breaklinks=true]{hyperref}
+  \usepackage[pdftex]{graphicx}
+  \pdfcompresslevel=9
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\else
+  \usepackage[dvips]{graphicx}
+\fi
+
+\newcommand{\entityintro}[3]{%
+  \hbox to \hsize{%
+    \vbox{%
+      \hbox to .2in{}%
+    }%
+    {\bf  #1}%
+    \dotfill\pageref{#2}%
+  }
+  \makebox[\hsize]{%
+    \parbox{.4in}{}%
+    \parbox[l]{5in}{%
+      \vspace{1mm}%
+      #3%
+      \vspace{1mm}%
+    }%
+  }%
+}
+\newcommand{\refdefined}[1]{
+\expandafter\ifx\csname r@#1\endcsname\relax
+\relax\else
+{$($in \ref{#1}, page \pageref{#1}$)$}\fi}
+\date{\today}
+\title{My Title}
+\author{My Name}
+\chardef\textbackslash=`\\
+\begin{document}
+\maketitle
+\sloppy
+\addtocontents{toc}{\protect\markboth{Contents}{Contents}}
+\tableofcontents
+\chapter*{Class Hierarchy}{
+\thispagestyle{empty}
+\markboth{Class Hierarchy}{Class Hierarchy}
+\addcontentsline{toc}{chapter}{Class Hierarchy}
+\section*{Classes}
+{\raggedright
+\hspace{0.0cm} $\bullet$ java.lang.Object {\tiny \refdefined{java.lang.Object}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.SwingGuiFactory {\tiny \refdefined{de.swiss.controller.SwingGuiFactory}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.Cancel {\tiny \refdefined{de.swiss.controller.handlers.Cancel}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.CompareResult {\tiny \refdefined{de.swiss.controller.handlers.CompareResult}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.DeleteConfigurations {\tiny \refdefined{de.swiss.controller.handlers.DeleteConfigurations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.DeleteGame {\tiny \refdefined{de.swiss.controller.handlers.DeleteGame}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.DeleteInitialization {\tiny \refdefined{de.swiss.controller.handlers.DeleteInitialization}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.DeleteStrategy {\tiny \refdefined{de.swiss.controller.handlers.DeleteStrategy}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.EditConfigurations {\tiny \refdefined{de.swiss.controller.handlers.EditConfigurations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.EditGames {\tiny \refdefined{de.swiss.controller.handlers.EditGames}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.EditInitializations {\tiny \refdefined{de.swiss.controller.handlers.EditInitializations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.EditStrategies {\tiny \refdefined{de.swiss.controller.handlers.EditStrategies}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.Finish {\tiny \refdefined{de.swiss.controller.handlers.Finish}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.SaveConfigurations {\tiny \refdefined{de.swiss.controller.handlers.SaveConfigurations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.SaveGames {\tiny \refdefined{de.swiss.controller.handlers.SaveGames}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.SaveInitializations {\tiny \refdefined{de.swiss.controller.handlers.SaveInitializations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.SaveStrategies {\tiny \refdefined{de.swiss.controller.handlers.SaveStrategies}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.ShowResults {\tiny \refdefined{de.swiss.controller.handlers.ShowResults}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.StartAllSimulations {\tiny \refdefined{de.swiss.controller.handlers.StartAllSimulations}} \\
+\hspace{1.0cm} $\bullet$ de.swiss.controller.handlers.StartSimulation {\tiny \refdefined{de.swiss.controller.handlers.StartSimulation}} \\
+}
+\section*{Interfaces}
+\hspace{0.0cm} $\bullet$ de.swiss.controller.AbstractGuiFactory {\tiny \refdefined{de.swiss.controller.AbstractGuiFactory}} \\
+}
+\chapter{Package de.swiss.controller}{
+\label{de.swiss.controller}\hypertarget{de.swiss.controller}{}
+\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Interfaces}}
+\entityintro{AbstractGuiFactory}{de.swiss.controller.AbstractGuiFactory}{}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{SwingGuiFactory}{de.swiss.controller.SwingGuiFactory}{}
+\vskip .1in
+\vskip .1in
+\section{\label{de.swiss.controller.AbstractGuiFactory}Interface AbstractGuiFactory}{
+\hypertarget{de.swiss.controller.AbstractGuiFactory}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public interface AbstractGuiFactory
+\end{lstlisting}
+\subsection{All known subinterfaces}{SwingGuiFactory\small{\refdefined{de.swiss.controller.SwingGuiFactory}}}
+\subsection{All classes known to implement interface}{SwingGuiFactory\small{\refdefined{de.swiss.controller.SwingGuiFactory}}}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createEditConfigurationsView()}{{\bf createEditConfigurationsView()}} \\
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createEditGamesView()}{{\bf createEditGamesView()}} \\
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createEditInitializationsView()}{{\bf createEditInitializationsView()}} \\
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createEditStrategiesView()}{{\bf createEditStrategiesView()}} \\
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createMainView()}{{\bf createMainView()}} \\
+\hyperlink{de.swiss.controller.AbstractGuiFactory.createShowResultView()}{{\bf createShowResultView()}} \\
+\end{verse}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{createEditConfigurationsView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createEditConfigurationsView()}{{\bf  createEditConfigurationsView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditConfigurationsView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditGamesView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createEditGamesView()}{{\bf  createEditGamesView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditGamesView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditInitializationsView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createEditInitializationsView()}{{\bf  createEditInitializationsView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditInitializationsView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditStrategiesView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createEditStrategiesView()}{{\bf  createEditStrategiesView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditStrategiesView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createMainView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createMainView()}{{\bf  createMainView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createMainView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createShowResultView()}
+\hypertarget{de.swiss.controller.AbstractGuiFactory.createShowResultView()}{{\bf  createShowResultView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createShowResultView()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.SwingGuiFactory}Class SwingGuiFactory}{
+\hypertarget{de.swiss.controller.SwingGuiFactory}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class SwingGuiFactory
+ extends java.lang.Object implements AbstractGuiFactory\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.SwingGuiFactory()}{{\bf SwingGuiFactory()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.SwingGuiFactory.createEditConfigurationsView()}{{\bf createEditConfigurationsView()}} \\
+\hyperlink{de.swiss.controller.SwingGuiFactory.createEditGamesView()}{{\bf createEditGamesView()}} \\
+\hyperlink{de.swiss.controller.SwingGuiFactory.createEditInitializationsView()}{{\bf createEditInitializationsView()}} \\
+\hyperlink{de.swiss.controller.SwingGuiFactory.createEditStrategiesView()}{{\bf createEditStrategiesView()}} \\
+\hyperlink{de.swiss.controller.SwingGuiFactory.createMainView()}{{\bf createMainView()}} \\
+\hyperlink{de.swiss.controller.SwingGuiFactory.createShowResultView()}{{\bf createShowResultView()}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SwingGuiFactory()}
+\hypertarget{de.swiss.controller.SwingGuiFactory()}{{\bf  SwingGuiFactory}\\}
+\begin{lstlisting}[frame=none]
+public SwingGuiFactory()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{createEditConfigurationsView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createEditConfigurationsView()}{{\bf  createEditConfigurationsView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditConfigurationsView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditGamesView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createEditGamesView()}{{\bf  createEditGamesView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditGamesView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditInitializationsView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createEditInitializationsView()}{{\bf  createEditInitializationsView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditInitializationsView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createEditStrategiesView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createEditStrategiesView()}{{\bf  createEditStrategiesView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createEditStrategiesView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createMainView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createMainView()}{{\bf  createMainView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createMainView()\end{lstlisting} %end signature
+}%end item
+\item{ 
+\index{createShowResultView()}
+\hypertarget{de.swiss.controller.SwingGuiFactory.createShowResultView()}{{\bf  createShowResultView}\\}
+\begin{lstlisting}[frame=none]
+java.lang.Object createShowResultView()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\chapter{Package de.swiss.controller.handlers}{
+\label{de.swiss.controller.handlers}\hypertarget{de.swiss.controller.handlers}{}
+\hskip -.05in
+\hbox to \hsize{\textit{ Package Contents\hfil Page}}
+\vskip .13in
+\hbox{{\bf  Classes}}
+\entityintro{Cancel}{de.swiss.controller.handlers.Cancel}{}
+\entityintro{CompareResult}{de.swiss.controller.handlers.CompareResult}{}
+\entityintro{DeleteConfigurations}{de.swiss.controller.handlers.DeleteConfigurations}{}
+\entityintro{DeleteGame}{de.swiss.controller.handlers.DeleteGame}{}
+\entityintro{DeleteInitialization}{de.swiss.controller.handlers.DeleteInitialization}{}
+\entityintro{DeleteStrategy}{de.swiss.controller.handlers.DeleteStrategy}{}
+\entityintro{EditConfigurations}{de.swiss.controller.handlers.EditConfigurations}{}
+\entityintro{EditGames}{de.swiss.controller.handlers.EditGames}{}
+\entityintro{EditInitializations}{de.swiss.controller.handlers.EditInitializations}{}
+\entityintro{EditStrategies}{de.swiss.controller.handlers.EditStrategies}{}
+\entityintro{Finish}{de.swiss.controller.handlers.Finish}{}
+\entityintro{SaveConfigurations}{de.swiss.controller.handlers.SaveConfigurations}{}
+\entityintro{SaveGames}{de.swiss.controller.handlers.SaveGames}{}
+\entityintro{SaveInitializations}{de.swiss.controller.handlers.SaveInitializations}{}
+\entityintro{SaveStrategies}{de.swiss.controller.handlers.SaveStrategies}{}
+\entityintro{ShowResults}{de.swiss.controller.handlers.ShowResults}{}
+\entityintro{StartAllSimulations}{de.swiss.controller.handlers.StartAllSimulations}{}
+\entityintro{StartSimulation}{de.swiss.controller.handlers.StartSimulation}{}
+\vskip .1in
+\vskip .1in
+\section{\label{de.swiss.controller.handlers.Cancel}Class Cancel}{
+\hypertarget{de.swiss.controller.handlers.Cancel}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class Cancel
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.Cancel()}{{\bf Cancel()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.Cancel.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Cancel()}
+\hypertarget{de.swiss.controller.handlers.Cancel()}{{\bf  Cancel}\\}
+\begin{lstlisting}[frame=none]
+public Cancel()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.Cancel.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.CompareResult}Class CompareResult}{
+\hypertarget{de.swiss.controller.handlers.CompareResult}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class CompareResult
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.CompareResult()}{{\bf CompareResult()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.CompareResult.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{CompareResult()}
+\hypertarget{de.swiss.controller.handlers.CompareResult()}{{\bf  CompareResult}\\}
+\begin{lstlisting}[frame=none]
+public CompareResult()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.CompareResult.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.DeleteConfigurations}Class DeleteConfigurations}{
+\hypertarget{de.swiss.controller.handlers.DeleteConfigurations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class DeleteConfigurations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteConfigurations()}{{\bf DeleteConfigurations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{DeleteConfigurations()}
+\hypertarget{de.swiss.controller.handlers.DeleteConfigurations()}{{\bf  DeleteConfigurations}\\}
+\begin{lstlisting}[frame=none]
+public DeleteConfigurations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.DeleteConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.DeleteGame}Class DeleteGame}{
+\hypertarget{de.swiss.controller.handlers.DeleteGame}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class DeleteGame
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteGame()}{{\bf DeleteGame()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteGame.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{DeleteGame()}
+\hypertarget{de.swiss.controller.handlers.DeleteGame()}{{\bf  DeleteGame}\\}
+\begin{lstlisting}[frame=none]
+public DeleteGame()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.DeleteGame.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.DeleteInitialization}Class DeleteInitialization}{
+\hypertarget{de.swiss.controller.handlers.DeleteInitialization}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class DeleteInitialization
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteInitialization()}{{\bf DeleteInitialization()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteInitialization.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{DeleteInitialization()}
+\hypertarget{de.swiss.controller.handlers.DeleteInitialization()}{{\bf  DeleteInitialization}\\}
+\begin{lstlisting}[frame=none]
+public DeleteInitialization()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.DeleteInitialization.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.DeleteStrategy}Class DeleteStrategy}{
+\hypertarget{de.swiss.controller.handlers.DeleteStrategy}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class DeleteStrategy
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteStrategy()}{{\bf DeleteStrategy()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.DeleteStrategy.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{DeleteStrategy()}
+\hypertarget{de.swiss.controller.handlers.DeleteStrategy()}{{\bf  DeleteStrategy}\\}
+\begin{lstlisting}[frame=none]
+public DeleteStrategy()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.DeleteStrategy.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.EditConfigurations}Class EditConfigurations}{
+\hypertarget{de.swiss.controller.handlers.EditConfigurations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class EditConfigurations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditConfigurations()}{{\bf EditConfigurations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{EditConfigurations()}
+\hypertarget{de.swiss.controller.handlers.EditConfigurations()}{{\bf  EditConfigurations}\\}
+\begin{lstlisting}[frame=none]
+public EditConfigurations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.EditConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.EditGames}Class EditGames}{
+\hypertarget{de.swiss.controller.handlers.EditGames}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class EditGames
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditGames()}{{\bf EditGames()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditGames.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{EditGames()}
+\hypertarget{de.swiss.controller.handlers.EditGames()}{{\bf  EditGames}\\}
+\begin{lstlisting}[frame=none]
+public EditGames()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.EditGames.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.EditInitializations}Class EditInitializations}{
+\hypertarget{de.swiss.controller.handlers.EditInitializations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class EditInitializations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditInitializations()}{{\bf EditInitializations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditInitializations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{EditInitializations()}
+\hypertarget{de.swiss.controller.handlers.EditInitializations()}{{\bf  EditInitializations}\\}
+\begin{lstlisting}[frame=none]
+public EditInitializations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.EditInitializations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.EditStrategies}Class EditStrategies}{
+\hypertarget{de.swiss.controller.handlers.EditStrategies}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class EditStrategies
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditStrategies()}{{\bf EditStrategies()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.EditStrategies.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{EditStrategies()}
+\hypertarget{de.swiss.controller.handlers.EditStrategies()}{{\bf  EditStrategies}\\}
+\begin{lstlisting}[frame=none]
+public EditStrategies()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.EditStrategies.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.Finish}Class Finish}{
+\hypertarget{de.swiss.controller.handlers.Finish}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class Finish
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.Finish()}{{\bf Finish()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.Finish.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{Finish()}
+\hypertarget{de.swiss.controller.handlers.Finish()}{{\bf  Finish}\\}
+\begin{lstlisting}[frame=none]
+public Finish()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.Finish.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.SaveConfigurations}Class SaveConfigurations}{
+\hypertarget{de.swiss.controller.handlers.SaveConfigurations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class SaveConfigurations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveConfigurations()}{{\bf SaveConfigurations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SaveConfigurations()}
+\hypertarget{de.swiss.controller.handlers.SaveConfigurations()}{{\bf  SaveConfigurations}\\}
+\begin{lstlisting}[frame=none]
+public SaveConfigurations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.SaveConfigurations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.SaveGames}Class SaveGames}{
+\hypertarget{de.swiss.controller.handlers.SaveGames}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class SaveGames
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveGames()}{{\bf SaveGames()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveGames.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SaveGames()}
+\hypertarget{de.swiss.controller.handlers.SaveGames()}{{\bf  SaveGames}\\}
+\begin{lstlisting}[frame=none]
+public SaveGames()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.SaveGames.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.SaveInitializations}Class SaveInitializations}{
+\hypertarget{de.swiss.controller.handlers.SaveInitializations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class SaveInitializations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveInitializations()}{{\bf SaveInitializations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveInitializations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SaveInitializations()}
+\hypertarget{de.swiss.controller.handlers.SaveInitializations()}{{\bf  SaveInitializations}\\}
+\begin{lstlisting}[frame=none]
+public SaveInitializations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.SaveInitializations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.SaveStrategies}Class SaveStrategies}{
+\hypertarget{de.swiss.controller.handlers.SaveStrategies}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class SaveStrategies
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveStrategies()}{{\bf SaveStrategies()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.SaveStrategies.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{SaveStrategies()}
+\hypertarget{de.swiss.controller.handlers.SaveStrategies()}{{\bf  SaveStrategies}\\}
+\begin{lstlisting}[frame=none]
+public SaveStrategies()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.SaveStrategies.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.ShowResults}Class ShowResults}{
+\hypertarget{de.swiss.controller.handlers.ShowResults}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class ShowResults
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.ShowResults()}{{\bf ShowResults()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.ShowResults.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{ShowResults()}
+\hypertarget{de.swiss.controller.handlers.ShowResults()}{{\bf  ShowResults}\\}
+\begin{lstlisting}[frame=none]
+public ShowResults()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.ShowResults.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.StartAllSimulations}Class StartAllSimulations}{
+\hypertarget{de.swiss.controller.handlers.StartAllSimulations}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class StartAllSimulations
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.StartAllSimulations()}{{\bf StartAllSimulations()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.StartAllSimulations.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{StartAllSimulations()}
+\hypertarget{de.swiss.controller.handlers.StartAllSimulations()}{{\bf  StartAllSimulations}\\}
+\begin{lstlisting}[frame=none]
+public StartAllSimulations()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.StartAllSimulations.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+\section{\label{de.swiss.controller.handlers.StartSimulation}Class StartSimulation}{
+\hypertarget{de.swiss.controller.handlers.StartSimulation}{}\vskip .1in 
+\subsection{Declaration}{
+\begin{lstlisting}[frame=none]
+public class StartSimulation
+ extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
+\subsection{Constructor summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.StartSimulation()}{{\bf StartSimulation()}} \\
+\end{verse}
+}
+\subsection{Method summary}{
+\begin{verse}
+\hyperlink{de.swiss.controller.handlers.StartSimulation.actionPerformed(java.awt.event.ActionEvent)}{{\bf actionPerformed(ActionEvent)}} \\
+\end{verse}
+}
+\subsection{Constructors}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{StartSimulation()}
+\hypertarget{de.swiss.controller.handlers.StartSimulation()}{{\bf  StartSimulation}\\}
+\begin{lstlisting}[frame=none]
+public StartSimulation()\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+\subsection{Methods}{
+\vskip -2em
+\begin{itemize}
+\item{ 
+\index{actionPerformed(ActionEvent)}
+\hypertarget{de.swiss.controller.handlers.StartSimulation.actionPerformed(java.awt.event.ActionEvent)}{{\bf  actionPerformed}\\}
+\begin{lstlisting}[frame=none]
+void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signature
+}%end item
+\end{itemize}
+}
+}
+}
+\end{document}
