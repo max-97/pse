@@ -22,8 +22,8 @@ public class CombinedStrategy {
         return description;
     }
 
-    public boolean cooperate(Agent agent1, Agent agent2) {
-        return false;
+    public Action calculateAction(Agent agent1, Agent agent2) {
+        return null;
     }
 }
 

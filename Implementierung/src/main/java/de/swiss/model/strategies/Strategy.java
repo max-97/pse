@@ -1,7 +1,8 @@
 package de.swiss.model.strategies;
 
+import de.swiss.model.Action;
 import de.swiss.model.Agent;
 
 public abstract class Strategy {
-    public abstract boolean cooperate(Agent agent1, Agent agent2);
+    public abstract Action calculateAction(Agent agent1, Agent agent2);
 }

@@ -1,8 +1,9 @@
 package de.swiss.model;
 
 import java.util.HashMap;
+import java.util.Observable;
 
-public class Simulation {
+public class Simulation extends Observable {
     private Configuration config;
     private int round;
     private int cycle;

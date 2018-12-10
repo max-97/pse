@@ -12,8 +12,8 @@ public class Game {
 
     }
 
-    public Tuple getPayoffs(int row, int column) {
-        return payoffs[row][column];
+    public Tuple getPayoffs(Action a1, Action a2) {
+        return null;
     }
 
     public String getName() {
