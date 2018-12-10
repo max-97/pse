@@ -3,7 +3,7 @@ package de.swiss.model.strategies;
 import de.swiss.model.Action;
 import de.swiss.model.Agent;
 
-public class TitForTat1 extends Strategy {
+public class TitForTat1 extends BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
 

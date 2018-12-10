@@ -3,7 +3,7 @@ package de.swiss.model.strategies;
 import de.swiss.model.Action;
 import de.swiss.model.Agent;
 
-public class NeverCooperate extends Strategy{
+public class NeverCooperate extends BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
 

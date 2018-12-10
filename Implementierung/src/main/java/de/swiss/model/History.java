@@ -5,7 +5,7 @@ public class History {
     private int[] score;
     private boolean[] cooperated;
     private Agent[] opponent;
-    private CombinedStrategy[] strategies;
+    private Strategy[] strategies;
 
     public History() {
 
@@ -23,7 +23,7 @@ public class History {
         return opponent[round];
     }
 
-    public CombinedStrategy getStrategy(int round) {
+    public Strategy getStrategy(int round) {
         return strategies[round];
     }
 
@@ -39,7 +39,7 @@ public class History {
 
     }
 
-    public void setStrategy(CombinedStrategy strategy) {
+    public void setStrategy(Strategy strategy) {
 
     }
 }

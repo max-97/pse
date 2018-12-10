@@ -1,16 +1,16 @@
 package de.swiss.model;
 
-import de.swiss.model.strategies.Strategy;
+import de.swiss.model.strategies.BaseStrategy;
 import de.swiss.model.conditions.Condition;
 
-public class CombinedStrategy {
+public class CombinedStrategy implements Strategy{
 
     private String name;
-    private Strategy[] strategies;
+    private BaseStrategy[] strategies;
     private Condition[] conditions;
     private String description;
 
-    public CombinedStrategy(String name, Strategy[] strategies, Condition[] conditions) {
+    public CombinedStrategy(String name, String description, BaseStrategy[] strategies, Condition[] conditions) {
 
     }
 
