@@ -244,7 +244,7 @@ Am Ende jedes Zyklus werden die Agenten gemäß ihrer Punktzahl und des Bewertun
 Jeder Agent wird mit der Wahrscheinlichkeit aus /F0100/ mit einem zufällig gewählten anderen Agenten verglichen. Ist der Agent erfolgreicher wird der Anpassungsalgorithmus aus /F0100/ angewandt.
 
 \textbf{/F0620/}
-Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. $\beta$ ist eine Konstante, so dass $\delta \cdot \beta \leq 1$ ist.
+Anpassungsalgorithmus: Der Agent übernimmt die Strategie des erfolgreicheren Agenten mit der Wahrscheinlichkeit $\delta \cdot \beta$. $\delta$ ist die Differenz zwischen den Rängen der Agenten. {\color{red} Ist $\delta$ negativ, d.h. ein Agent wird mit einem weniger erfolgreichen Agenten verglichen, setzte man $\delta = 0$. Weiter gilt $\beta = 1/(R-1)$, $R$ ist dabei die Anzahl der Agenten und damit auch der niedrigste Rang. Somit gilt $0 \leq \delta \cdot \beta \leq 1$.} 
 
 \textbf{/F0630/}
 Anpassungsalgorithmus: Der Agent übernimmt die Strategie, wenn der gewählte Agent zu den obersten $x\%$ in der Rangliste gehört und einen höheren Rang hat. $x$ wird vom Benutzer bestimmt.
@@ -277,10 +277,10 @@ Es wird angezeigt bei welchen und wie viel Prozent der Wiederholungen ein Gleich
 Der Durchschnittswert der Ergebnisse aller Wiederholungen lassen sich anzeigen.
 
 \textbf{/F0930/}
-Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien an.
+Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien {\color{red}am Ende der Simulation an. Eine Legende beschreibt welche Farbe des Diagramms welcher Strategie entspricht. Im Kuchendiagramm werden die genauen Prozentwerte der jeweiligen Strategie angezeigt.} 
 
 \textbf{/F0940/}
-Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer Strategie in diesem Punktebereich.
+Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer kombinierten Strategie in diesem Punktebereich. {\color{red} Auf der x-Achse sind die Punktebereiche aufgetragen. Ein Punktebereich ist ein Intervall $[n \cdot 100, (n+1) \cdot 100)$ für $n \in \mathbb{Z}$. Auf der y-Achse ist die Anzahl der Agenten aufgetragen. Haben $x$ Prozent der Agenten in einem Punktebereich die kombinierte Strategie $A$, so wird $x$ Prozent der Säule in der Farbe von $A$ eingefärbt. Die Farben werden beim berechnen des Diagramms zufällig zugewiesen und können sich beim erneuten Anzeigen des Diagramms ändern. Eine Legen zeigt an welche Farbe welcher Strategie entspricht. Ein Tooltip zeigt die genauen prozentualen Werte einer kombinierten Strategie in einem Punktebereich an, wenn man den Mauszeiger über eine Säule bewegt.}
 
 {\color{red}\textbf{/F0941/}
 Ein gestapeltes Säulendiagramm wie in /F0940/. Anstatt des Punktebereichs wird ein Intervall von Rängen verwendet.}
@@ -336,7 +336,7 @@ In /F0920/ bis /F0940/ können Agenten nach ihrer ID, Gruppenzugehörigkeit und 
 Anpassungsalgorithmus: Ein Agent übernimmt nur Strategien von reicheren Agenten aus der gleichen Gruppe gemäß /F0620/.
 
 \textbf{/W0330/}
-Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl.
+Anpassungsalgorithmus: Wie /F0620/ aber $\delta$ ist die Differenz der Gesamtpunktzahl. {\color{red} $\beta$ wird jeden Zyklus neu berechnet mit $\beta = 1/(p_{max}-p_{min})$, dabei ist $p_{max}$ die höchste Gesamtpunktzahl aller Agenten in der Simulation. Analoges gilt für $p_{min}$. Dadurch gilt weiterhin $0 \leq \delta \cdot \beta \leq 1$.}
 
 \textbf{/W0340/}
 Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der Strategien addiert. Die Wahrscheinlichkeiten werden normiert, so dass die Summe 1 ergibt.
