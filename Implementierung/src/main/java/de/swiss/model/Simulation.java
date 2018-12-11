@@ -8,6 +8,7 @@ public class Simulation extends Observable {
     private int round;
     private int cycle;
     private HashMap<Agent, Integer> currentRanking;
+    private Pair[] currentPairs;
 
     public Simulation(Configuration config) {
 
@@ -21,5 +22,5 @@ public class Simulation extends Observable {
         return currentRanking;
     }
 
-
+    public Pair[] getCurrentPairs() { return currentPairs;}
 }

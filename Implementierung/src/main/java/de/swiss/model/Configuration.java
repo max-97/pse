@@ -1,6 +1,7 @@
 package de.swiss.model;
 
 import de.swiss.model.algorithms.adaptation.AdaptationAlgorithm;
+import de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm;
 import de.swiss.model.algorithms.pairing.PairingAlgorithm;
 import de.swiss.model.algorithms.ranking.RankingAlgorithm;
 
@@ -8,6 +9,7 @@ public class Configuration {
     private Game game;
     private Initialization init;
     private AdaptationAlgorithm adaptationAlg;
+    private MixedAdaptationAlgorithm mixedAdaptationAlg;
     private PairingAlgorithm pairingAlg;
     private RankingAlgorithm rankingAlg;
     private int rounds;
@@ -15,9 +17,16 @@ public class Configuration {
     private int cycleRoundCount;
     private int repetitions;
     private double adaptationProbability;
+    private boolean mixedStrategies;
 
     public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm rangking,
                          int rounds, int cycles, int cycleRoundCount, int repetitions, double adaptationProbability) {
+
+    }
+
+    public Configuration(Game game, AdaptationAlgorithm adaptation, MixedAdaptationAlgorithm mixedAdaptation,
+                         PairingAlgorithm pairing, RankingAlgorithm rangking, int rounds, int cycles,
+                         int cycleRoundCount, int repetitions, double adaptationProbability) {
 
     }
 
@@ -29,8 +38,13 @@ public class Configuration {
         return init;
     }
 
+
     public AdaptationAlgorithm getAdaptationAlg(){
         return adaptationAlg;
+    }
+
+    public MixedAdaptationAlgorithm getMixedAdaptationAlg(){
+        return mixedAdaptationAlg;
     }
 
     public PairingAlgorithm getPairingAlg() {
@@ -60,5 +74,7 @@ public class Configuration {
     public Simulation simulate() {
         return new Simulation(this);
     }
+
+    public boolean hasMixedStrategies() { return mixedStrategies;}
 
 }
