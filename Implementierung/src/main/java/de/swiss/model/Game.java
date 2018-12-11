@@ -33,4 +33,8 @@ public class Game {
         }
 
     }
+
+    public void saveGame() {
+
+    }
 }

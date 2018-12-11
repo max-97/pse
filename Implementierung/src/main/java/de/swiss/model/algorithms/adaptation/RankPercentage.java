@@ -5,10 +5,10 @@ import de.swiss.model.Simulation;
 public class RankPercentage implements AdaptationAlgorithm {
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    private int percentage;
+    private final int PERCENTAGE;
 
-    public RankPercentage(int percentage) {
-
+    public RankPercentage(int PERCENTAGE) {
+        this.PERCENTAGE = PERCENTAGE;
     }
 
     @Override

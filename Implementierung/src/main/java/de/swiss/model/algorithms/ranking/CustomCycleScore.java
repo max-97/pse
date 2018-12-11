@@ -5,12 +5,13 @@ import de.swiss.model.Simulation;
 
 import java.util.HashMap;
 
-public class AverageRank implements RankingAlgorithm {
+public class CustomCycleScore implements RankingAlgorithm {
+
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
     private final int WINDOW_SIZE;
 
-    public AverageRank(int WINDOW_SIZE) {
+    public CustomCycleScore(int WINDOW_SIZE) {
         this.WINDOW_SIZE = WINDOW_SIZE;
     }
 

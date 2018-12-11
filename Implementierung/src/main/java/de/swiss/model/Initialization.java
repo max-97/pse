@@ -24,4 +24,8 @@ public class Initialization {
 
     public boolean hasMixedStrategies() { return mixedStrategies;}
 
+    public void saveInitialization() {
+
+    }
+
 }

@@ -5,6 +5,8 @@ import de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm;
 import de.swiss.model.algorithms.pairing.PairingAlgorithm;
 import de.swiss.model.algorithms.ranking.RankingAlgorithm;
 
+import java.util.List;
+
 public class Configuration {
     private Game game;
     private Initialization init;
@@ -15,18 +17,18 @@ public class Configuration {
     private int rounds;
     private int cycles;
     private int cycleRoundCount;
-    private int repetitions;
     private double adaptationProbability;
     private boolean mixedStrategies;
+    private List<Strategy> strategies;
 
     public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm rangking,
-                         int rounds, int cycles, int cycleRoundCount, int repetitions, double adaptationProbability) {
+                         int rounds, int cycles, int cycleRoundCount, double adaptationProbability) {
 
     }
 
     public Configuration(Game game, AdaptationAlgorithm adaptation, MixedAdaptationAlgorithm mixedAdaptation,
                          PairingAlgorithm pairing, RankingAlgorithm rangking, int rounds, int cycles,
-                         int cycleRoundCount, int repetitions, double adaptationProbability) {
+                         int cycleRoundCount, double adaptationProbability) {
 
     }
 
@@ -63,18 +65,26 @@ public class Configuration {
         return cycleRoundCount;
     }
 
-    public int getRepetitions() {
-        return repetitions;
-    }
-
     public double getAdaptationProbability() {
         return adaptationProbability;
     }
 
-    public Simulation simulate() {
+    public Simulation simulate(int repetitions) {
         return new Simulation(this);
     }
 
     public boolean hasMixedStrategies() { return mixedStrategies;}
+
+    public void saveConfiguration() {
+
+    }
+
+    public List<Strategy> getAllStrategies() {
+        return strategies;
+    }
+
+    public void addStrategy(Strategy newStrategy) {
+
+    }
 
 }

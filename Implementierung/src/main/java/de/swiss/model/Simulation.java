@@ -23,4 +23,16 @@ public class Simulation extends Observable {
     }
 
     public Pair[] getCurrentPairs() { return currentPairs;}
+
+    public void saveResults() {
+
+    }
+
+    public void restart() {
+
+    }
+
+    public void abort() {
+
+    }
 }

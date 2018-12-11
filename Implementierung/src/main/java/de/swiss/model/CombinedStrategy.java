@@ -25,5 +25,9 @@ public class CombinedStrategy implements Strategy{
     public Action calculateAction(Agent agent1, Agent agent2) {
         return null;
     }
+
+    public void saveCombinedStrategy() {
+
+    }
 }
 
