@@ -1,0 +1,144 @@
+@startuml
+
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CombinedStrategy\n<size:10>de.swiss.model" as de.swiss.model.CombinedStrategy [[CombinedStrategy.html]] {
+        +CombinedStrategy(String, String, BaseStrategy[], Condition[])
+        +getName(): String
+        +getDescription(): String
+        +calculateAction(Agent, Agent): Action
+        +saveCombinedStrategy(): void
+    }
+
+    class "<size:14>AlwaysCooperate\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.AlwaysCooperate [[AlwaysCooperate.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>Grim1\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.Grim1 [[Grim1.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>Grim2\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.Grim2 [[Grim2.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>GroupGrim\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.GroupGrim [[GroupGrim.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>GroupTitForTat\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.GroupTitForTat [[GroupTitForTat.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>TitForTat1\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.TitForTat1 [[TitForTat1.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>TitForTat2\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.TitForTat2 [[TitForTat2.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>Random\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.Random [[Random.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    class "<size:14>NeverCooperate\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.NeverCooperate [[NeverCooperate.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +calculateAction(Agent, Agent): Action
+    }
+
+    abstract class "<size:14>BaseStrategy\n<size:10>de.swiss.model.strategies" as de.swiss.model.strategies.BaseStrategy [[BaseStrategy.html]] {
+        {abstract} +calculateAction(Agent, Agent): Action
+    }
+
+    abstract class "<size:14>Condition\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Condition [[Condition.html]] {
+        {abstract} +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>Always\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Always [[Always.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>Delta\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Delta [[Delta.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +Delta(double)
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>OwnGroup\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.OwnGroup [[OwnGroup.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>Poorer\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Poorer [[Poorer.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>Probability\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Probability [[Probability.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +Probability(double)
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>Richer\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.Richer [[Richer.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    class "<size:14>SpecificGroup\n<size:10>de.swiss.model.conditions" as de.swiss.model.conditions.SpecificGroup [[SpecificGroup.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +SpecificGroup(int)
+        +fulfillsCondition(Agent, Agent): boolean
+    }
+
+    de.swiss.model.CombinedStrategy -o "1..n" de.swiss.model.conditions.Condition
+    de.swiss.model.CombinedStrategy ---o "1..n" de.swiss.model.strategies.BaseStrategy
+
+    de.swiss.model.strategies.BaseStrategy <|- de.swiss.model.strategies.AlwaysCooperate
+    de.swiss.model.strategies.BaseStrategy <|- de.swiss.model.strategies.Grim1
+    de.swiss.model.strategies.BaseStrategy <|-- de.swiss.model.strategies.Grim2
+    de.swiss.model.strategies.BaseStrategy <|-- de.swiss.model.strategies.GroupGrim
+    de.swiss.model.strategies.BaseStrategy <|--- de.swiss.model.strategies.GroupTitForTat
+    de.swiss.model.strategies.BaseStrategy <|--- de.swiss.model.strategies.TitForTat1
+    de.swiss.model.strategies.BaseStrategy <|--- de.swiss.model.strategies.TitForTat2
+    de.swiss.model.strategies.BaseStrategy <|-- de.swiss.model.strategies.NeverCooperate
+    de.swiss.model.strategies.BaseStrategy <|-- de.swiss.model.strategies.Random
+
+    de.swiss.model.conditions.Condition <|-- de.swiss.model.conditions.Always
+    de.swiss.model.conditions.Condition <|--- de.swiss.model.conditions.Delta
+    de.swiss.model.conditions.Condition <|--- de.swiss.model.conditions.OwnGroup
+    de.swiss.model.conditions.Condition <|-- de.swiss.model.conditions.Poorer
+    de.swiss.model.conditions.Condition <|-- de.swiss.model.conditions.Probability
+    de.swiss.model.conditions.Condition <|- de.swiss.model.conditions.Richer
+    de.swiss.model.conditions.Condition <|- de.swiss.model.conditions.SpecificGroup
+
+
+@enduml

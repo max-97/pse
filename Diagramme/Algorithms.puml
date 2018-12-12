@@ -1,0 +1,104 @@
+@startuml
+
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>RankingAlgorithm\n<size:10>de.swiss.model.algorithms.ranking" as de.swiss.model.algorithms.ranking.RankingAlgorithm [[RankingAlgorithm.html]] {
+        {abstract} +getRankings(Simulation): HashMap<Agent, Integer>
+    }
+
+    interface "<size:14>AdaptationAlgorithm\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.AdaptationAlgorithm [[AdaptationAlgorithm.html]] {
+        {abstract} +adapt(Simulation): void
+    }
+
+    interface "<size:14>MixedAdaptationAlgorithm\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm [[MixedAdaptationAlgorithm.html]] {
+            {abstract} +adapt(Simulation): void
+    }
+
+    interface "<size:14>PairingAlgorithm\n<size:10>de.swiss.model.algorithms.pairing" as de.swiss.model.algorithms.pairing.PairingAlgorithm [[PairingAlgorithm.html]] {
+        {abstract} +getPairing(Simulation): Pair[]
+    }
+
+    class "<size:14>MixedLinearInterpolation\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.MixedLinearInterpolation [[MixedLinearInterpolation.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>MixedSum\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.MixedSum [[MixedSum.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>RandomAdaptation\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.RandomAdaptation [[RandomAdaptation.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +RandomAdaptation(int)
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>RankPercentage\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.RankPercentage [[RankPercentage.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +RankPercentage(int)
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>ReplicatorDynamicRank\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.ReplicatorDynamicRank [[ReplicatorDynamicRank.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +ReplicatorDynamicRank(double)
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>ReplicatorDynamicScore\n<size:10>de.swiss.model.algorithms.adaptation" as de.swiss.model.algorithms.adaptation.ReplicatorDynamicScore [[ReplicatorDynamicScore.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +ReplicatorDynamicScore(double)
+        +adapt(Simulation): void
+    }
+
+    class "<size:14>AverageRank\n<size:10>de.swiss.model.algorithms.ranking" as de.swiss.model.algorithms.ranking.AverageRank [[AverageRank.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +AverageRank(int)
+        +getRankings(Simulation): HashMap<Agent, Integer>
+    }
+
+    class "<size:14>CurrentCycleScore\n<size:10>de.swiss.model.algorithms.ranking" as de.swiss.model.algorithms.ranking.CurrentCycleScore [[CurrentCycleScore.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +getRankings(Simulation): HashMap<Agent, Integer>
+    }
+
+    class "<size:14>CustomCycleScore\n<size:10>de.swiss.model.algorithms.ranking" as de.swiss.model.algorithms.ranking.CustomCycleScore [[CustomCycleScore.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +CustomCycleScore(int)
+        +getRankings(Simulation): HashMap<Agent, Integer>
+    }
+
+    class "<size:14>Score\n<size:10>de.swiss.model.algorithms.ranking" as de.swiss.model.algorithms.ranking.Score [[Score.html]] {
+        {static} +NAME: String
+        {static} +DESCRIPTION: String
+        +getRankings(Simulation): HashMap<Agent, Integer>
+    }
+
+
+
+    de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.MixedLinearInterpolation
+    de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.MixedSum
+    de.swiss.model.algorithms.adaptation.AdaptationAlgorithm <|. de.swiss.model.algorithms.adaptation.RandomAdaptation
+    de.swiss.model.algorithms.adaptation.MixedAdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.RandomAdaptation
+    de.swiss.model.algorithms.adaptation.AdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.RankPercentage
+    de.swiss.model.algorithms.adaptation.AdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.ReplicatorDynamicRank
+    de.swiss.model.algorithms.adaptation.AdaptationAlgorithm <|.. de.swiss.model.algorithms.adaptation.ReplicatorDynamicScore
+    de.swiss.model.algorithms.ranking.RankingAlgorithm <|.. de.swiss.model.algorithms.ranking.AverageRank
+    de.swiss.model.algorithms.ranking.RankingAlgorithm <|.. de.swiss.model.algorithms.ranking.CurrentCycleScore
+    de.swiss.model.algorithms.ranking.RankingAlgorithm <|.. de.swiss.model.algorithms.ranking.CustomCycleScore
+    de.swiss.model.algorithms.ranking.RankingAlgorithm <|.. de.swiss.model.algorithms.ranking.Score
+
+
+@enduml
