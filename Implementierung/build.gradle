@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'idea'
 }
 
 group 'de.swiss'
@@ -14,6 +15,7 @@ sourceSets {
 
 repositories {
     mavenCentral()
+    flatDir dirs: "${rootDir}/libs"
 }
 
 configurations {
@@ -24,6 +26,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     umlDoclet "nl.talsmasoftware:umldoclet:2.0.0-rc.4"
     implementation 'com.google.code.gson:gson:2.8.5'
+    compile 'com.intellij:forms_rt:7.0.3'
 }
 
 javadoc {
@@ -43,5 +46,5 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-title', 'My Title',
             '-author', 'My Name',
             '-sourcepath', 'src/main/java',
-            '-subpackages', 'de.swiss'
+            '-subpackages', 'de.sswis'
 }

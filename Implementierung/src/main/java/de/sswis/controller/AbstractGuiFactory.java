@@ -2,7 +2,7 @@ package de.sswis.controller;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs. Der Nutzer dieser Schnittstelle kann sich alle Benutzeroberflächen erzeugen
- * lassen, die in Swiss verwendet werden können. Die Methoden liefern alle eine Schnittstelle zurück, welches das
+ * lassen, die in Sswis verwendet werden können. Die Methoden liefern alle eine Schnittstelle zurück, welches das
  * zu erzeugende Fenster beschreibt. In den Methoden werden die Instanzen der jeweiligen Klassen mit den
  * entsprechenden Schnittstellen erzeugt und die benötigten {@code ActionListener} gesetzt. Bestimmte
  * Implementierungen von Benutzeroberflächen können weitere oder andere Parameter benötigen.
