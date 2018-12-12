@@ -23,6 +23,7 @@ configurations {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     umlDoclet "nl.talsmasoftware:umldoclet:2.0.0-rc.4"
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
 
 javadoc {
