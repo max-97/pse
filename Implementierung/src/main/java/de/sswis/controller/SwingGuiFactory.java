@@ -1,4 +1,4 @@
-package de.swiss.controller;
+package de.sswis.controller;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs mit {@code Swing}. Diese Fabrik erzeugt Benutzeroberflächen, welche ausschließlich

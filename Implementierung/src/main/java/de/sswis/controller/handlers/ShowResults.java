@@ -1,10 +1,9 @@
-package de.swiss.controller.handlers;
+package de.sswis.controller.handlers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FinishConfiguration implements ActionListener {
-
+public class ShowResults implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 

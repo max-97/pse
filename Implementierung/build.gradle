@@ -38,7 +38,7 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-noindex',
             '-tree',
             '-hyperref',
-            '-output', 'tex/javadoc.tex',
+            '-output', '../Entwurf/javadoc.tex',
             '-title', 'My Title',
             '-author', 'My Name',
             '-sourcepath', 'src/main/java',

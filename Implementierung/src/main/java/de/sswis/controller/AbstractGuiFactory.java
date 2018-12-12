@@ -1,4 +1,4 @@
-package de.swiss.controller;
+package de.sswis.controller;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs. Der Nutzer dieser Schnittstelle kann sich alle Benutzeroberflächen erzeugen
