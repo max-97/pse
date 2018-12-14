@@ -2,7 +2,7 @@ package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Simulation;
 
-public class RandomAdaptation implements AdaptationAlgorithm, MixedAdaptationAlgorithm {
+public class RandomAdaptation implements AdaptationAlgorithm {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
@@ -11,6 +11,7 @@ public class RandomAdaptation implements AdaptationAlgorithm, MixedAdaptationAlg
     public RandomAdaptation(int PROBABILITY) {
         this.PROBABILITY = PROBABILITY;
     }
+
     @Override
     public void adapt(Simulation sim) {
 

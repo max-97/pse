@@ -6,5 +6,5 @@ import de.sswis.model.Simulation;
 import java.util.HashMap;
 
 public interface RankingAlgorithm {
-    public HashMap<Agent, Integer> getRankings(Simulation sim);
+    HashMap<Agent, Integer> getRankings(Simulation sim);
 }

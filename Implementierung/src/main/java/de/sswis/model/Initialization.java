@@ -4,7 +4,6 @@ public class Initialization {
     private Group[] groups;
     private int agentCount;
     private Agent[] agents;
-    private boolean mixedStrategies;
 
     public Initialization(Group[] groups, int agentCount, Agent[] agents) {
 
@@ -20,12 +19,6 @@ public class Initialization {
 
     public Agent[] getAgents() {
         return agents;
-    }
-
-    public boolean hasMixedStrategies() { return mixedStrategies;}
-
-    public void saveInitialization() {
-
     }
 
 }

@@ -4,5 +4,5 @@ import de.sswis.model.Pair;
 import de.sswis.model.Simulation;
 
 public interface PairingAlgorithm {
-    public Pair[] getPairing(Simulation sim);
+    Pair[] getPairing(Simulation sim);
 }

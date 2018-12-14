@@ -16,13 +16,17 @@ public class Game {
         return null;
     }
 
+    /*
     public String getName() {
         return name;
     }
+    */
 
+    /*
     public String getDescription() {
         return description;
     }
+    */
 
     public class Tuple {
         public int x;
@@ -34,7 +38,4 @@ public class Game {
 
     }
 
-    public void saveGame() {
-
-    }
 }

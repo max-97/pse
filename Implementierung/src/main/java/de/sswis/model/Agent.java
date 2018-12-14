@@ -8,28 +8,39 @@ public class Agent {
     private History history;
     private Group group;
     private Strategy strategy;
-    private boolean hasMixedStrategy;
 
-    public Agent(int id, int initialScore, Group group, CombinedStrategy initialStrategy) {
+    public Agent(int id, int initialScore, Group group, Strategy initialStrategy) {
     }
 
-    public Agent(int id, int initialScore, Group group, MixedStrategy initialMixedStrategy) {}
-
+    /*
     public int getId() {
         return id;
     }
+    */
 
+    /*
     public int getInitialScore() { return initialScore; }
+    */
 
+    /*
     public History getHistory() { return history; }
+    */
 
+    /*
+    public Group getGroup() {
+        return group;
+    }
+    */
+
+    /*
     public Strategy getStrategy() {
         return strategy;
     }
+    */
 
-    public boolean hasMixedStrategy() {return hasMixedStrategy;}
-
-    public void setCombinedStrategy(CombinedStrategy newStrategy) {
+    /*
+    public void setStrategy(Strategy newStrategy) {
 
     }
+    */
 }
