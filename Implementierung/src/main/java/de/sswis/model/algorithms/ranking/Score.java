@@ -5,6 +5,11 @@ import de.sswis.model.Simulation;
 
 import java.util.HashMap;
 
+/**
+ * Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer bisherigen Gesamtpunktzahl bewertet.
+ * Hat ein Agent eine höhere Punktzahl als ein anderer, so ist auch sein Rang höher.
+ * @author Michel Bodé
+ */
 public class Score implements  RankingAlgorithm {
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
