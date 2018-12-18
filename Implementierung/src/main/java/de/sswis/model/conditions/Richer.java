@@ -2,6 +2,11 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+/**
+ * Eine Bedingung die erfüllt ist wenn der Gegenspieler reicher ist.
+ * Ein Agent ist ärmer als ein anderer, wenn er mehr Punkte hat.
+ * @author Michel Bodé
+ */
 public class Richer extends Condition {
 
     public static final String NAME = "";

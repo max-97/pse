@@ -2,6 +2,10 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+/**
+ * Eine Bedingung die immer erfüllt ist.
+ * @author Michel Bodé
+ */
 public class Always extends Condition {
 
     public static final String NAME = "";
