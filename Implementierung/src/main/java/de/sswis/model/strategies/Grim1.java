@@ -3,6 +3,11 @@ package de.sswis.model.strategies;
 import de.sswis.model.Action;
 import de.sswis.model.Agent;
 
+/**
+ * Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler bei allen vorherigen
+ * gemeinsamen Spielen kooperiert hat. Handelt es sich um das erste gemeinsame Spiel, so kooperiert der Agent.
+ * @author Michel Bodé
+ */
 public class Grim1 extends BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
