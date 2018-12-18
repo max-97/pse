@@ -1,6 +1,12 @@
 package de.sswis.controller;
 
 import com.google.gson.Gson;
+import de.sswis.model.CombinedStrategy;
+import de.sswis.model.Configuration;
+import de.sswis.model.Game;
+import de.sswis.model.Initialization;
+
+import java.util.Collection;
 
 /**
  * @author Max Braun
@@ -13,19 +19,19 @@ public class FileManager {
         gson = new Gson();
     }
 
-    public void saveConfiguration(Object obj) {
+    public void saveConfigurations(Collection<Configuration> configurations) {
 
     }
 
-    public void saveGame(Object obj) {
+    public void saveGame(Game game) {
 
     }
 
-    public void saveInitalization(Object obj) {
+    public void saveInitalization(Initialization initialization) {
 
     }
 
-    public void saveCombinedStrategy(Object obj) {
+    public void saveCombinedStrategy(CombinedStrategy combinedStrategy) {
 
     }
 
@@ -33,19 +39,19 @@ public class FileManager {
 
     }
 
-    public Object loadConfiguration(String name) {
+    public Collection<Configuration> loadConfigurations(String name) {
         return null;
     }
 
-    public Object loadGame(String name) {
+    public Game loadGame(String name) {
         return null;
     }
 
-    public Object loadInitalization(String name) {
+    public Initialization loadInitalization(String name) {
         return null;
     }
 
-    public Object loadCombinedStrategy(String name) {
+    public CombinedStrategy loadCombinedStrategy(String name) {
         return null;
     }
 
@@ -53,19 +59,19 @@ public class FileManager {
         return null;
     }
 
-    public void deleteConfiguration(Object obj) {
+    public void deleteConfigurations(String name) {
 
     }
 
-    public void deleteGame(Object obj) {
+    public void deleteGame(String name) {
 
     }
 
-    public void deleteInitalization(Object obj) {
+    public void deleteInitalization(String name) {
 
     }
 
-    public void deleteCombinedStrategy(Object obj) {
+    public void deleteCombinedStrategy(String name) {
 
     }
 

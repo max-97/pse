@@ -2,8 +2,8 @@ package de.sswis.controller;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs mit {@code Swing}. Diese Fabrik erzeugt Benutzeroberflächen, welche ausschließlich
- * aus Swingelementen bestehen. Die Benutzeroberflächen erhalten {@code ActionListener} aus
- * {@code de.swiss.controller.handler}.
+ * aus Swing-Elementen bestehen. Die Benutzeroberflächen erhalten {@link java.awt.event.ActionListener}, die das
+ * Verhalten der GUI-Elemente beschreiben.
  *
  * @author Max Braun
  * @see AbstractGuiFactory
