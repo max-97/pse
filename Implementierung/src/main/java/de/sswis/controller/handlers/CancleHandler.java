@@ -1,13 +1,17 @@
 package de.sswis.controller.handlers;
 
-public class CancleHandler implements Handler {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    public CancleHandler() {
-        
-    }
+/**
+ * Ein {@code Hanlder} zum Schließen einer View.
+ *
+ * @author Max Braun
+ */
+public class CancleHandler implements ActionListener {
 
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

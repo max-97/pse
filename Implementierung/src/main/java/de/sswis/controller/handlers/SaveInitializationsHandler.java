@@ -2,16 +2,29 @@ package de.sswis.controller.handlers;
 
 import de.sswis.view.NeueInitialisierung;
 
-public class SaveInitializationsHandler implements Handler {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    private NeueInitialisierung newInitialization;
+/**
+ * Speichert die erstellte {@code Initialisierung}. Die View, die diesen {@code ActionListener} verwendet muss eine
+ * {@code Initialisierung} besitzen.
+ *
+ * @author Max Braun
+ */
+public class SaveInitializationsHandler implements ActionListener {
 
-    public SaveInitializationsHandler(NeueInitialisierung newInitialization) {
+    private NeueInitialisierung initializationView;
+
+    /**
+     *
+     * @param initializationView die View mit der zu speichernden Initialisierung
+     */
+    public SaveInitializationsHandler(NeueInitialisierung initializationView) {
 
     }
 
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

@@ -1,19 +1,33 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.controller.SwingGuiFactory;
+import de.sswis.controller.AbstractGuiFactory;
 import de.sswis.view.Startfenster;
 
-public class ShowResultsHandler implements Handler {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-    private SwingGuiFactory swingFactory;
+/**
+ * Öffnet die View mit der Ergebnissansicht der ausgewählten {@code Konfigurationen}. Die {@code Konfigurationen} werden
+ * im Hauptfenster ausgewählt.
+ *
+ * @author Max Braun
+ */
+public class ShowResultsHandler implements ActionListener {
+
+    private AbstractGuiFactory Factory;
     private Startfenster mainView;
 
-    public ShowResultsHandler(Startfenster mainView) {
+    /**
+     *
+     * @param mainView Hauptfenster mit den ausgewählten {@code Konfigurationen}
+     * @param factory Fabrik zum Erstellen der View
+     */
+    public ShowResultsHandler(Startfenster mainView, AbstractGuiFactory factory) {
 
     }
 
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

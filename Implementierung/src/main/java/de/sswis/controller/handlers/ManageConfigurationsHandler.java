@@ -1,8 +1,29 @@
 package de.sswis.controller.handlers;
 
-public class ManageConfigurationsHandler implements Handler {
+import de.sswis.controller.AbstractGuiFactory;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * Öffnet die View zum Verwalten der {@code Konfigurationen}.
+ *
+ * @author Max Braun
+ */
+public class ManageConfigurationsHandler implements ActionListener {
+
+    private AbstractGuiFactory factory;
+
+    /**
+     *
+     * @param factory Fabrik zum Erstellen der View
+     */
+    public ManageConfigurationsHandler(AbstractGuiFactory factory) {
+
+    }
+
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

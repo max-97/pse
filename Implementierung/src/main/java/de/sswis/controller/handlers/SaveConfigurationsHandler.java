@@ -5,16 +5,26 @@ import de.sswis.view.Konfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SaveConfigurationsHandler implements Handler {
+/**
+ * Speichert die erstellte {@code Konfiguration}. Die View, die diesen {@code ActionListener} verwendet muss eine
+ * {@code Konfiguration} besitzen.
+ *
+ * @author Max Braun
+ */
+public class SaveConfigurationsHandler implements ActionListener {
 
-    private Konfiguration config;
+    private Konfiguration configurationView;
 
-    public SaveConfigurationsHandler(Konfiguration config) {
+    /**
+     *
+     * @param configurationView die View mit der zu speichernden {@code Konfiguration}
+     */
+    public SaveConfigurationsHandler(Konfiguration configurationView) {
 
     }
 
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

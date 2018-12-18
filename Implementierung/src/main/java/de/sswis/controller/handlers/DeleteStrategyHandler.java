@@ -1,8 +1,17 @@
 package de.sswis.controller.handlers;
 
-public class DeleteStrategyHandler implements Handler {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ * Löscht die ausgewählte {@code Strategie}.
+ *
+ * @author Max Braun
+ */
+public class DeleteStrategyHandler implements ActionListener {
+
     @Override
-    public void execute() {
+    public void actionPerformed(ActionEvent e) {
 
     }
 }
