@@ -1,8 +1,8 @@
-\section*{Class Hierarchy}{
+\chapter*{Class Hierarchy}{
 \thispagestyle{empty}
 \markboth{Class Hierarchy}{Class Hierarchy}
-\addcontentsline{toc}{section}{Class Hierarchy}
-\subsection*{Classes}
+\addcontentsline{toc}{chapter}{Class Hierarchy}
+\section*{Classes}
 {\raggedright
 \hspace{0.0cm} $\bullet$ java.lang.Object {\tiny \refdefined{java.lang.Object}} \\
 \hspace{1.0cm} $\bullet$ de.sswis.controller.FileManager {\tiny \refdefined{de.sswis.controller.FileManager}} \\
@@ -98,7 +98,7 @@
 \hspace{1.0cm} $\bullet$ java.util.Observable {\tiny \refdefined{java.util.Observable}} \\
 \hspace{2.0cm} $\bullet$ de.sswis.model.Simulation {\tiny \refdefined{de.sswis.model.Simulation}} \\
 }
-\subsection*{Interfaces}
+\section*{Interfaces}
 \hspace{0.0cm} $\bullet$ de.sswis.controller.AbstractGuiFactory {\tiny \refdefined{de.sswis.controller.AbstractGuiFactory}} \\
 \hspace{0.0cm} $\bullet$ de.sswis.model.algorithms.adaptation.AdaptationAlgorithm {\tiny \refdefined{de.sswis.model.algorithms.adaptation.AdaptationAlgorithm}} \\
 \hspace{0.0cm} $\bullet$ de.sswis.model.algorithms.pairing.PairingAlgorithm {\tiny \refdefined{de.sswis.model.algorithms.pairing.PairingAlgorithm}} \\
@@ -119,7 +119,7 @@
 \hspace{0.0cm} $\bullet$ de.sswis.view.AbstractShowMultiResultView {\tiny \refdefined{de.sswis.view.AbstractShowMultiResultView}} \\
 \hspace{0.0cm} $\bullet$ de.sswis.view.AbstractShowResultView {\tiny \refdefined{de.sswis.view.AbstractShowResultView}} \\
 }
-\section{Package de.sswis.controller}{
+\chapter{Package de.sswis.controller}{
 \label{de.sswis.controller}\hypertarget{de.sswis.controller}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -133,16 +133,16 @@
 \entityintro{SwingGuiFactory}{de.sswis.controller.SwingGuiFactory}{Eine Fabrik zum Erzeugen von GUIs mit \texttt{\small Swing}.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.controller.AbstractGuiFactory}Interface AbstractGuiFactory}{
+\section{\label{de.sswis.controller.AbstractGuiFactory}Interface AbstractGuiFactory}{
 \hypertarget{de.sswis.controller.AbstractGuiFactory}{}\vskip .1in 
 Eine Fabrik zum Erzeugen von GUIs. Der Nutzer dieser Schnittstelle kann sich alle Benutzeroberflächen erzeugen lassen, die in Sswis verwendet werden können. Die Methoden liefern alle eine Schnittstelle zurück, welches das zu erzeugende Fenster beschreibt. In den Methoden werden die Instanzen der jeweiligen Klassen mit den entsprechenden Schnittstellen erzeugt und die benötigten \texttt{\small ActionListener} gesetzt. Bestimmte Implementierungen von Benutzeroberflächen können weitere oder andere Parameter benötigen.\mbox{}\newline Das \texttt{\small AbstractGuiFactory} Interface enthält eine Methode, um das Hauptfenster zu erzeugen.\mbox{}\newline Das \texttt{\small AbstractGuiFactory} Interface enthält eine Methode, um das Ergebnisansichtsfenster zu erzeugen.\mbox{}\newline Das \texttt{\small AbstractGuiFactory} Interface enthält fünf Methoden, um die Fenster zum Verwalten von Konfigurationen, Initialisierungen, Strategien, Spielen und Ergebnissen zu erzeugen.\mbox{}\newline Das \texttt{\small AbstractGuiFactory} Interface enthält vier Methoden, um die Fenster zum Erstellen von neuen Konfigurationen, Initialisierungen, Strategien und Spielen zu erzeugen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractGuiFactory
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{SwingGuiFactory\small{\refdefined{de.sswis.controller.SwingGuiFactory}}}
-\subsubsection{All classes known to implement interface}{SwingGuiFactory\small{\refdefined{de.sswis.controller.SwingGuiFactory}}}
-\subsubsection{Methods}{
+\subsection{All known subinterfaces}{SwingGuiFactory\small{\refdefined{de.sswis.controller.SwingGuiFactory}}}
+\subsection{All classes known to implement interface}{SwingGuiFactory\small{\refdefined{de.sswis.controller.SwingGuiFactory}}}
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -356,13 +356,13 @@ ein Ergebnisansichtsfenster
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.FileManager}Class FileManager}{
+\section{\label{de.sswis.controller.FileManager}Class FileManager}{
 \hypertarget{de.sswis.controller.FileManager}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class FileManager
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -373,7 +373,7 @@ public FileManager()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -469,13 +469,13 @@ public void saveResult(java.lang.Object obj)\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.ModelProvider}Class ModelProvider}{
+\section{\label{de.sswis.controller.ModelProvider}Class ModelProvider}{
 \hypertarget{de.sswis.controller.ModelProvider}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ModelProvider
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -607,22 +607,22 @@ public static ModelProvider getInstance()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.SwingGuiFactory}Class SwingGuiFactory}{
+\section{\label{de.sswis.controller.SwingGuiFactory}Class SwingGuiFactory}{
 \hypertarget{de.sswis.controller.SwingGuiFactory}{}\vskip .1in 
 Eine Fabrik zum Erzeugen von GUIs mit \texttt{\small Swing}. Diese Fabrik erzeugt Benutzeroberflächen, welche ausschließlich aus Swing-Elementen bestehen. Die Benutzeroberflächen erhalten \texttt{\small \hyperlink{java.awt.event.ActionListener}{ActionListener}}{\small 
 \refdefined{java.awt.event.ActionListener}}, die das Verhalten der GUI-Elemente beschreiben.\vskip .1in 
-\subsubsection{See also}{}
+\subsection{See also}{}
 
   \begin{list}{-- }{\setlength{\itemsep}{0cm}\setlength{\parsep}{0cm}}
 \item{ \texttt{\hyperlink{de.sswis.controller.AbstractGuiFactory}{AbstractGuiFactory}} {\small 
 \refdefined{de.sswis.controller.AbstractGuiFactory}}%end
 } 
   \end{list}
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SwingGuiFactory
  extends java.lang.Object implements AbstractGuiFactory\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -633,7 +633,7 @@ public SwingGuiFactory()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -848,7 +848,7 @@ ein Ergebnisansichtsfenster
 }
 }
 }
-\section{Package de.sswis.controller.handlers}{
+\chapter{Package de.sswis.controller.handlers}{
 \label{de.sswis.controller.handlers}\hypertarget{de.sswis.controller.handlers}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -888,14 +888,14 @@ ein Ergebnisansichtsfenster
 \entityintro{StartSimulationHandler}{de.sswis.controller.handlers.StartSimulationHandler}{Startet die ausgewählten \texttt{\small Simulationen}.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.controller.handlers.CancleHandler}Class CancleHandler}{
+\section{\label{de.sswis.controller.handlers.CancleHandler}Class CancleHandler}{
 \hypertarget{de.sswis.controller.handlers.CancleHandler}{}\vskip .1in 
 Ein \texttt{\small Hanlder} zum Schließen einer View.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CancleHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -906,7 +906,7 @@ public CancleHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -918,14 +918,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.CompareResultsHandler}Class CompareResultsHandler}{
+\section{\label{de.sswis.controller.handlers.CompareResultsHandler}Class CompareResultsHandler}{
 \hypertarget{de.sswis.controller.handlers.CompareResultsHandler}{}\vskip .1in 
 Öffnet die View zum Vergleichen von Ergebnissen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CompareResultsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -945,7 +945,7 @@ public CompareResultsHandler(de.sswis.controller.AbstractGuiFactory factory)\end
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -957,14 +957,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.DeleteConfigurationHandler}Class DeleteConfigurationHandler}{
+\section{\label{de.sswis.controller.handlers.DeleteConfigurationHandler}Class DeleteConfigurationHandler}{
 \hypertarget{de.sswis.controller.handlers.DeleteConfigurationHandler}{}\vskip .1in 
 Löscht die ausgewählte \texttt{\small Konfiguration}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class DeleteConfigurationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -975,7 +975,7 @@ public DeleteConfigurationHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -987,14 +987,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.DeleteGameHandler}Class DeleteGameHandler}{
+\section{\label{de.sswis.controller.handlers.DeleteGameHandler}Class DeleteGameHandler}{
 \hypertarget{de.sswis.controller.handlers.DeleteGameHandler}{}\vskip .1in 
 Löscht das ausgewählte \texttt{\small Spiel}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class DeleteGameHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1005,7 +1005,7 @@ public DeleteGameHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1017,14 +1017,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.DeleteInitializationHandler}Class DeleteInitializationHandler}{
+\section{\label{de.sswis.controller.handlers.DeleteInitializationHandler}Class DeleteInitializationHandler}{
 \hypertarget{de.sswis.controller.handlers.DeleteInitializationHandler}{}\vskip .1in 
 Löscht die ausgewählte \texttt{\small Initialisierung}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class DeleteInitializationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1035,7 +1035,7 @@ public DeleteInitializationHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1047,14 +1047,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.DeleteResultHandler}Class DeleteResultHandler}{
+\section{\label{de.sswis.controller.handlers.DeleteResultHandler}Class DeleteResultHandler}{
 \hypertarget{de.sswis.controller.handlers.DeleteResultHandler}{}\vskip .1in 
 Löscht das ausgewählte \texttt{\small Ergebnis}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class DeleteResultHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1065,7 +1065,7 @@ public DeleteResultHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1077,14 +1077,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.DeleteStrategyHandler}Class DeleteStrategyHandler}{
+\section{\label{de.sswis.controller.handlers.DeleteStrategyHandler}Class DeleteStrategyHandler}{
 \hypertarget{de.sswis.controller.handlers.DeleteStrategyHandler}{}\vskip .1in 
 Löscht die ausgewählte \texttt{\small Strategie}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class DeleteStrategyHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1095,7 +1095,7 @@ public DeleteStrategyHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1107,14 +1107,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.EditConfigurationHandler}Class EditConfigurationHandler}{
+\section{\label{de.sswis.controller.handlers.EditConfigurationHandler}Class EditConfigurationHandler}{
 \hypertarget{de.sswis.controller.handlers.EditConfigurationHandler}{}\vskip .1in 
 Öffnet die View zum Bearbeiten einer \texttt{\small Konfiguration}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class EditConfigurationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1134,7 +1134,7 @@ public EditConfigurationHandler(de.sswis.controller.AbstractGuiFactory factory)\
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1146,14 +1146,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.EditGameHandler}Class EditGameHandler}{
+\section{\label{de.sswis.controller.handlers.EditGameHandler}Class EditGameHandler}{
 \hypertarget{de.sswis.controller.handlers.EditGameHandler}{}\vskip .1in 
 Öffnet die View zum Bearbeiten eines \texttt{\small Spiels}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class EditGameHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1173,7 +1173,7 @@ public EditGameHandler(de.sswis.controller.AbstractGuiFactory factory)\end{lstli
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1185,14 +1185,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.EditInitializationHandler}Class EditInitializationHandler}{
+\section{\label{de.sswis.controller.handlers.EditInitializationHandler}Class EditInitializationHandler}{
 \hypertarget{de.sswis.controller.handlers.EditInitializationHandler}{}\vskip .1in 
 Öffnet die View zum Bearbeiten einer \texttt{\small Initialisierung}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class EditInitializationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1212,7 +1212,7 @@ public EditInitializationHandler(de.sswis.controller.AbstractGuiFactory factory)
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1224,14 +1224,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.EditStrategyHandler}Class EditStrategyHandler}{
+\section{\label{de.sswis.controller.handlers.EditStrategyHandler}Class EditStrategyHandler}{
 \hypertarget{de.sswis.controller.handlers.EditStrategyHandler}{}\vskip .1in 
 Öffnet die View zum Bearbeiten einer \texttt{\small Strategie}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class EditStrategyHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1251,7 +1251,7 @@ public EditStrategyHandler(de.sswis.controller.AbstractGuiFactory factory)\end{l
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1263,14 +1263,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ManageConfigurationsHandler}Class ManageConfigurationsHandler}{
+\section{\label{de.sswis.controller.handlers.ManageConfigurationsHandler}Class ManageConfigurationsHandler}{
 \hypertarget{de.sswis.controller.handlers.ManageConfigurationsHandler}{}\vskip .1in 
 Öffnet die View zum Verwalten der \texttt{\small Konfigurationen}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageConfigurationsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1290,7 +1290,7 @@ public ManageConfigurationsHandler(de.sswis.controller.AbstractGuiFactory factor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1302,14 +1302,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ManageGamesHandler}Class ManageGamesHandler}{
+\section{\label{de.sswis.controller.handlers.ManageGamesHandler}Class ManageGamesHandler}{
 \hypertarget{de.sswis.controller.handlers.ManageGamesHandler}{}\vskip .1in 
 Öffnet die View zum Verwalten der \texttt{\small Spiele}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageGamesHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1329,7 +1329,7 @@ public ManageGamesHandler(de.sswis.controller.AbstractGuiFactory factory)\end{ls
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1341,14 +1341,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ManageInitializationHandler}Class ManageInitializationHandler}{
+\section{\label{de.sswis.controller.handlers.ManageInitializationHandler}Class ManageInitializationHandler}{
 \hypertarget{de.sswis.controller.handlers.ManageInitializationHandler}{}\vskip .1in 
 Öffnet die View zum Verwalten der \texttt{\small Initialisierungen}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageInitializationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1368,7 +1368,7 @@ public ManageInitializationHandler(de.sswis.controller.AbstractGuiFactory factor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1380,14 +1380,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ManageResultsHandler}Class ManageResultsHandler}{
+\section{\label{de.sswis.controller.handlers.ManageResultsHandler}Class ManageResultsHandler}{
 \hypertarget{de.sswis.controller.handlers.ManageResultsHandler}{}\vskip .1in 
 Öffnet die View zum Verwalten der \texttt{\small Ergebnisse}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageResultsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1407,7 +1407,7 @@ public ManageResultsHandler(de.sswis.controller.AbstractGuiFactory factory)\end{
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1419,14 +1419,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ManageStrategiesHandler}Class ManageStrategiesHandler}{
+\section{\label{de.sswis.controller.handlers.ManageStrategiesHandler}Class ManageStrategiesHandler}{
 \hypertarget{de.sswis.controller.handlers.ManageStrategiesHandler}{}\vskip .1in 
 Öffnet die View zum Verwalten der \texttt{\small Strategien}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageStrategiesHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1446,7 +1446,7 @@ public ManageStrategiesHandler(de.sswis.controller.AbstractGuiFactory factory)\e
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1458,14 +1458,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewConfigurationHandler}Class NewConfigurationHandler}{
+\section{\label{de.sswis.controller.handlers.NewConfigurationHandler}Class NewConfigurationHandler}{
 \hypertarget{de.sswis.controller.handlers.NewConfigurationHandler}{}\vskip .1in 
 Erstellt eine neuen Konfiguration. In der View zum Verwalten der \texttt{\small Konfigurationen} wird eine neue \texttt{\small Konfiguration} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen \texttt{\small Konfiguration}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewConfigurationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1485,7 +1485,7 @@ public NewConfigurationHandler(de.sswis.controller.AbstractGuiFactory factory)\e
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1497,14 +1497,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewConfigurationViewHandler}Class NewConfigurationViewHandler}{
+\section{\label{de.sswis.controller.handlers.NewConfigurationViewHandler}Class NewConfigurationViewHandler}{
 \hypertarget{de.sswis.controller.handlers.NewConfigurationViewHandler}{}\vskip .1in 
 Öffnet eine View zum Erstellen einer \texttt{\small Konfiguration}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewConfigurationViewHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1524,7 +1524,7 @@ public NewConfigurationViewHandler(de.sswis.controller.AbstractGuiFactory factor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1536,14 +1536,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewGameHandler}Class NewGameHandler}{
+\section{\label{de.sswis.controller.handlers.NewGameHandler}Class NewGameHandler}{
 \hypertarget{de.sswis.controller.handlers.NewGameHandler}{}\vskip .1in 
 Erstellt ein neues Spiel. In der View zum Verwalten der \texttt{\small Spiele} wird ein neues \texttt{\small Spiel} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen \texttt{\small Spiele}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewGameHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1563,7 +1563,7 @@ public NewGameHandler(de.sswis.controller.AbstractGuiFactory factory)\end{lstlis
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1575,14 +1575,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewGameViewHandler}Class NewGameViewHandler}{
+\section{\label{de.sswis.controller.handlers.NewGameViewHandler}Class NewGameViewHandler}{
 \hypertarget{de.sswis.controller.handlers.NewGameViewHandler}{}\vskip .1in 
 Öffnet eine View zum Erstellen eines \texttt{\small Spiels}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewGameViewHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1593,7 +1593,7 @@ public NewGameViewHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1605,14 +1605,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewInitializationHandler}Class NewInitializationHandler}{
+\section{\label{de.sswis.controller.handlers.NewInitializationHandler}Class NewInitializationHandler}{
 \hypertarget{de.sswis.controller.handlers.NewInitializationHandler}{}\vskip .1in 
 Erstellt eine neue Initialisierung. In der View zum Verwalten der \texttt{\small Initialisierungen} wird eine neue \texttt{\small Initialisierung} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen \texttt{\small Initialisierung}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewInitializationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1632,7 +1632,7 @@ public NewInitializationHandler(de.sswis.controller.AbstractGuiFactory factory)\
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1644,14 +1644,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewInitializationViewHandler}Class NewInitializationViewHandler}{
+\section{\label{de.sswis.controller.handlers.NewInitializationViewHandler}Class NewInitializationViewHandler}{
 \hypertarget{de.sswis.controller.handlers.NewInitializationViewHandler}{}\vskip .1in 
 Öffnet eine View zum Erstellen einer \texttt{\small Initialisierung}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewInitializationViewHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1671,7 +1671,7 @@ public NewInitializationViewHandler(de.sswis.controller.AbstractGuiFactory facto
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1683,14 +1683,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewStrategyHandler}Class NewStrategyHandler}{
+\section{\label{de.sswis.controller.handlers.NewStrategyHandler}Class NewStrategyHandler}{
 \hypertarget{de.sswis.controller.handlers.NewStrategyHandler}{}\vskip .1in 
 Erstellt eine neue kombinierte Strategie. In der View zum Verwalten der \texttt{\small kombinierten Strategien} wird eine neue \texttt{\small kombinierte Strategie} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen \texttt{\small kombinierten Strategie}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewStrategyHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1710,7 +1710,7 @@ public NewStrategyHandler(de.sswis.controller.AbstractGuiFactory factory)\end{ls
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1722,14 +1722,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.NewStrategyViewHandler}Class NewStrategyViewHandler}{
+\section{\label{de.sswis.controller.handlers.NewStrategyViewHandler}Class NewStrategyViewHandler}{
 \hypertarget{de.sswis.controller.handlers.NewStrategyViewHandler}{}\vskip .1in 
 Öffnet eine View zum Erstellen einer \texttt{\small kombinierten Strategie}.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewStrategyViewHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1749,7 +1749,7 @@ public NewStrategyViewHandler(de.sswis.controller.AbstractGuiFactory factory)\en
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1761,14 +1761,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveAndQuitHandler}Class SaveAndQuitHandler}{
+\section{\label{de.sswis.controller.handlers.SaveAndQuitHandler}Class SaveAndQuitHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveAndQuitHandler}{}\vskip .1in 
 Speichert die Objekte in der View und schließt die View.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveAndQuitHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1779,7 +1779,7 @@ public SaveAndQuitHandler()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1791,14 +1791,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveConfigurationsHandler}Class SaveConfigurationsHandler}{
+\section{\label{de.sswis.controller.handlers.SaveConfigurationsHandler}Class SaveConfigurationsHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveConfigurationsHandler}{}\vskip .1in 
 Speichert die erstellte \texttt{\small Konfiguration}. Die View, die diesen \texttt{\small ActionListener} verwendet muss eine \texttt{\small Konfiguration} besitzen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveConfigurationsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1818,7 +1818,7 @@ public SaveConfigurationsHandler(de.sswis.view.AbstractNewConfigurationView conf
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1830,14 +1830,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveGamesHandler}Class SaveGamesHandler}{
+\section{\label{de.sswis.controller.handlers.SaveGamesHandler}Class SaveGamesHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveGamesHandler}{}\vskip .1in 
 Speichert das erstellte \texttt{\small Spiel}. Die View, die diesen \texttt{\small ActionListener} verwendet muss ein \texttt{\small Spiel} besitzen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveGamesHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1857,7 +1857,7 @@ public SaveGamesHandler(de.sswis.view.AbstractNewGameView gameView)\end{lstlisti
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1869,14 +1869,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveInitializationsHandler}Class SaveInitializationsHandler}{
+\section{\label{de.sswis.controller.handlers.SaveInitializationsHandler}Class SaveInitializationsHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveInitializationsHandler}{}\vskip .1in 
 Speichert die erstellte \texttt{\small Initialisierung}. Die View, die diesen \texttt{\small ActionListener} verwendet muss eine \texttt{\small Initialisierung} besitzen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveInitializationsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1896,7 +1896,7 @@ public SaveInitializationsHandler(de.sswis.view.AbstractNewInitializationView in
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1908,14 +1908,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveResultsHandler}Class SaveResultsHandler}{
+\section{\label{de.sswis.controller.handlers.SaveResultsHandler}Class SaveResultsHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveResultsHandler}{}\vskip .1in 
 Speichert die erstellten \texttt{\small Ergebnisse}. Die View, die diesen \texttt{\small ActionListener} verwendet muss \texttt{\small Ergebnisse} besitzen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveResultsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1935,7 +1935,7 @@ public SaveResultsHandler(de.sswis.view.AbstractMainView mainView)\end{lstlistin
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1947,14 +1947,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.SaveStrategiesHandler}Class SaveStrategiesHandler}{
+\section{\label{de.sswis.controller.handlers.SaveStrategiesHandler}Class SaveStrategiesHandler}{
 \hypertarget{de.sswis.controller.handlers.SaveStrategiesHandler}{}\vskip .1in 
 Speichert die erstellte \texttt{\small kombinierte Strategie}. Die View, die diesen \texttt{\small ActionListener} verwendet muss eine \texttt{\small kombinierte Strategie} besitzen.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SaveStrategiesHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1974,7 +1974,7 @@ public SaveStrategiesHandler(de.sswis.view.AbstractNewStrategyView strategyView)
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -1986,14 +1986,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.ShowResultsHandler}Class ShowResultsHandler}{
+\section{\label{de.sswis.controller.handlers.ShowResultsHandler}Class ShowResultsHandler}{
 \hypertarget{de.sswis.controller.handlers.ShowResultsHandler}{}\vskip .1in 
 Öffnet die View mit der Ergebnissansicht der ausgewählten \texttt{\small Konfigurationen}. Die \texttt{\small Konfigurationen} werden im Hauptfenster ausgewählt.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ShowResultsHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2015,7 +2015,7 @@ public ShowResultsHandler(de.sswis.view.AbstractMainView mainView,de.sswis.contr
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2027,14 +2027,14 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.controller.handlers.StartSimulationHandler}Class StartSimulationHandler}{
+\section{\label{de.sswis.controller.handlers.StartSimulationHandler}Class StartSimulationHandler}{
 \hypertarget{de.sswis.controller.handlers.StartSimulationHandler}{}\vskip .1in 
 Startet die ausgewählten \texttt{\small Simulationen}. Die \texttt{\small Simulationen} werden im Hauptfenster ausgewählt und sind durch ihre zugehörigen \texttt{\small Konfigurationen} identifiziert.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class StartSimulationHandler
  extends java.lang.Object implements java.awt.event.ActionListener\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2054,7 +2054,7 @@ public StartSimulationHandler(de.sswis.view.AbstractMainView mainView)\end{lstli
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2067,7 +2067,7 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 }
 }
 }
-\section{Package de.sswis.model}{
+\chapter{Package de.sswis.model}{
 \label{de.sswis.model}\hypertarget{de.sswis.model}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -2087,13 +2087,13 @@ void actionPerformed(java.awt.event.ActionEvent arg0)\end{lstlisting} %end signa
 \entityintro{Strategy}{de.sswis.model.Strategy}{}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.Action}Class Action}{
+\section{\label{de.sswis.model.Action}Class Action}{
 \hypertarget{de.sswis.model.Action}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public final class Action
  extends java.lang.Enum\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{COOPERATION}
@@ -2107,7 +2107,7 @@ public final class Action
 }
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2124,20 +2124,20 @@ public static Action[] values()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Enum }{
+\subsection{Members inherited from class Enum }{
 \texttt{java.lang.Enum} {\small 
 \refdefined{java.lang.Enum}}
 {\small 
 
 clone, compareTo, equals, finalize, getDeclaringClass, hashCode, name, ordinal, toString, valueOf}
 }
-\subsection{\label{de.sswis.model.Agent}Class Agent}{
+\section{\label{de.sswis.model.Agent}Class Agent}{
 \hypertarget{de.sswis.model.Agent}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Agent
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2149,13 +2149,13 @@ public Agent(int id,int initialScore,Group group,Strategy initialStrategy)\end{l
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.CombinedStrategy}Class CombinedStrategy}{
+\section{\label{de.sswis.model.CombinedStrategy}Class CombinedStrategy}{
 \hypertarget{de.sswis.model.CombinedStrategy}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CombinedStrategy
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2166,7 +2166,7 @@ public CombinedStrategy(java.lang.String name,java.lang.String description,strat
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2178,13 +2178,13 @@ public Action calculateAction(Agent agent1,Agent agent2)\end{lstlisting} %end si
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Configuration}Class Configuration}{
+\section{\label{de.sswis.model.Configuration}Class Configuration}{
 \hypertarget{de.sswis.model.Configuration}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Configuration
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2195,7 +2195,7 @@ public Configuration(Game game,algorithms.adaptation.AdaptationAlgorithm adaptat
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2267,13 +2267,13 @@ public Simulation simulate(int repetitions)\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Game}Class Game}{
+\section{\label{de.sswis.model.Game}Class Game}{
 \hypertarget{de.sswis.model.Game}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Game
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2284,7 +2284,7 @@ public Game(java.lang.String name,java.lang.String description,Game.Tuple[][] pa
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2296,13 +2296,13 @@ public Game.Tuple getPayoffs(Action a1,Action a2)\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Game.Tuple}Class Game.Tuple}{
+\section{\label{de.sswis.model.Game.Tuple}Class Game.Tuple}{
 \hypertarget{de.sswis.model.Game.Tuple}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Game.Tuple
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{x}
@@ -2316,7 +2316,7 @@ public class Game.Tuple
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2328,13 +2328,13 @@ public Tuple(int x,int y)\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Group}Class Group}{
+\section{\label{de.sswis.model.Group}Class Group}{
 \hypertarget{de.sswis.model.Group}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Group
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2345,7 +2345,7 @@ public Group(int id,java.lang.String name)\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2357,13 +2357,13 @@ public void addMember(Agent newMember)\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.History}Class History}{
+\section{\label{de.sswis.model.History}Class History}{
 \hypertarget{de.sswis.model.History}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class History
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2374,7 +2374,7 @@ public History(int rounds)\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2404,13 +2404,13 @@ public boolean groupCooperatedLastTime(Agent agent)\end{lstlisting} %end signatu
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Initialization}Class Initialization}{
+\section{\label{de.sswis.model.Initialization}Class Initialization}{
 \hypertarget{de.sswis.model.Initialization}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Initialization
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2421,7 +2421,7 @@ public Initialization(Group[] groups,int agentCount,Agent[] agents)\end{lstlisti
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2445,13 +2445,13 @@ public Group[] getGroups()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Pair}Class Pair}{
+\section{\label{de.sswis.model.Pair}Class Pair}{
 \hypertarget{de.sswis.model.Pair}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Pair
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2462,7 +2462,7 @@ public Pair(Agent agent1,Agent agent2)\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2474,13 +2474,13 @@ public void playGame()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.Simulation}Class Simulation}{
+\section{\label{de.sswis.model.Simulation}Class Simulation}{
 \hypertarget{de.sswis.model.Simulation}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Simulation
  extends java.util.Observable implements java.lang.Runnable\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2491,7 +2491,7 @@ public Simulation(Configuration config)\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2544,20 +2544,20 @@ public void simulate()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Observable }{
+\subsection{Members inherited from class Observable }{
 \texttt{java.util.Observable} {\small 
 \refdefined{java.util.Observable}}
 {\small 
 
 addObserver, clearChanged, countObservers, deleteObserver, deleteObservers, hasChanged, notifyObservers, notifyObservers, setChanged}
 }
-\subsection{\label{de.sswis.model.Strategy}Class Strategy}{
+\section{\label{de.sswis.model.Strategy}Class Strategy}{
 \hypertarget{de.sswis.model.Strategy}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Strategy
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2568,7 +2568,7 @@ public Strategy(java.lang.String name,java.lang.String description,CombinedStrat
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2581,7 +2581,7 @@ public Action calculateAction(Agent a1,Agent a2)\end{lstlisting} %end signature
 }
 }
 }
-\section{Package de.sswis.model.algorithms.adaptation}{
+\chapter{Package de.sswis.model.algorithms.adaptation}{
 \label{de.sswis.model.algorithms.adaptation}\hypertarget{de.sswis.model.algorithms.adaptation}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -2598,16 +2598,16 @@ public Action calculateAction(Agent a1,Agent a2)\end{lstlisting} %end signature
 \entityintro{ReplicatorDynamicScore}{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}{Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhängigkeit von der Differenz der Gesamtpunktzahlen zweier verglichener Agenten.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.algorithms.adaptation.AdaptationAlgorithm}Interface AdaptationAlgorithm}{
+\section{\label{de.sswis.model.algorithms.adaptation.AdaptationAlgorithm}Interface AdaptationAlgorithm}{
 \hypertarget{de.sswis.model.algorithms.adaptation.AdaptationAlgorithm}{}\vskip .1in 
 Ein Algorithmus zum Anpassen der Strategien von Agenten einer Simulation. Jeder Agent A wird mit einem zufälligen Agenten verglichen, ist letzterer erfolgreicher, so wird die Strategie von A durch den Algorithmus angepasst.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AdaptationAlgorithm
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ReplicatorDynamicScore\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}}, ReplicatorDynamicRank\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}}, RankPercentage\small{\refdefined{de.sswis.model.algorithms.adaptation.RankPercentage}}, RandomAdaptation\small{\refdefined{de.sswis.model.algorithms.adaptation.RandomAdaptation}}, MixedSum\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedSum}}, MixedLinearInterpolation\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}}}
-\subsubsection{All classes known to implement interface}{ReplicatorDynamicScore\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}}, ReplicatorDynamicRank\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}}, RankPercentage\small{\refdefined{de.sswis.model.algorithms.adaptation.RankPercentage}}, RandomAdaptation\small{\refdefined{de.sswis.model.algorithms.adaptation.RandomAdaptation}}, MixedSum\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedSum}}, MixedLinearInterpolation\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}}}
-\subsubsection{Methods}{
+\subsection{All known subinterfaces}{ReplicatorDynamicScore\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}}, ReplicatorDynamicRank\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}}, RankPercentage\small{\refdefined{de.sswis.model.algorithms.adaptation.RankPercentage}}, RandomAdaptation\small{\refdefined{de.sswis.model.algorithms.adaptation.RandomAdaptation}}, MixedSum\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedSum}}, MixedLinearInterpolation\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}}}
+\subsection{All classes known to implement interface}{ReplicatorDynamicScore\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}}, ReplicatorDynamicRank\small{\refdefined{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}}, RankPercentage\small{\refdefined{de.sswis.model.algorithms.adaptation.RankPercentage}}, RandomAdaptation\small{\refdefined{de.sswis.model.algorithms.adaptation.RandomAdaptation}}, MixedSum\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedSum}}, MixedLinearInterpolation\small{\refdefined{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}}}
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2633,14 +2633,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}Class MixedLinearInterpolation}{
+\section{\label{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}Class MixedLinearInterpolation}{
 \hypertarget{de.sswis.model.algorithms.adaptation.MixedLinearInterpolation}{}\vskip .1in 
 Ein Algorithmus der die Wahrscheinlichkeiten der gemischten Strategien der Agenten einer Simulation durch lineare Interpolation anpasst. Die Wahrscheinlichkeiten werden stärker angepasst desto größer die Differenz der Gesamtpunktzahlen der verglichenen Agenten ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class MixedLinearInterpolation
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2654,7 +2654,7 @@ public class MixedLinearInterpolation
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2665,7 +2665,7 @@ public MixedLinearInterpolation()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2691,14 +2691,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.MixedSum}Class MixedSum}{
+\section{\label{de.sswis.model.algorithms.adaptation.MixedSum}Class MixedSum}{
 \hypertarget{de.sswis.model.algorithms.adaptation.MixedSum}{}\vskip .1in 
 Ein Algorithmus der die Wahrscheinlichkeiten der gemischten Strategien der Agenten einer Simulation durch Summenbildung und anschließende Normierung anpasst. Die Wahrscheinlichkeiten der beiden gemischten Strategien werden addiert und anschließend normiert, so dass die Summe der neuen Wahrscheinlichkeiten wieder 1 ergibt.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class MixedSum
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2712,7 +2712,7 @@ public class MixedSum
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2723,7 +2723,7 @@ public MixedSum()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2749,14 +2749,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.RandomAdaptation}Class RandomAdaptation}{
+\section{\label{de.sswis.model.algorithms.adaptation.RandomAdaptation}Class RandomAdaptation}{
 \hypertarget{de.sswis.model.algorithms.adaptation.RandomAdaptation}{}\vskip .1in 
 Ein Algorithmus der die Strategien der Agenten einer Simulation mit einer gewissen Wahrscheinlichkeit zu einer zufälligen neuen Strategie anpasst. Die neue Strategie muss in der Konfiguration enthalten sein. Hat der Agent eine gemischte Strategie, so wird die Wahrscheinlichkeit der neuen zufälligen Strategie erhöht und anschließend alle Wahrscheinlichkeiten normiert, so dass ihre Summe wieder 1 ergibt.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class RandomAdaptation
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2770,7 +2770,7 @@ public class RandomAdaptation
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2795,7 +2795,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2821,14 +2821,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.RankPercentage}Class RankPercentage}{
+\section{\label{de.sswis.model.algorithms.adaptation.RankPercentage}Class RankPercentage}{
 \hypertarget{de.sswis.model.algorithms.adaptation.RankPercentage}{}\vskip .1in 
 Ein Algorithmus der die Strategie eines Agenten anpasst, wenn der Agent mit dem verglichen wird zu den obersten \texttt{\small PERCENTAGE} Prozent der Rangliste gehört. Der Agent übernimmt die Strategie des anderen, falls diese Kondition erfüllt ist. Der Rang eines Agenten wird nicht angepasst, wenn der Rang des Agenten mit dem verglichen wird tiefer ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class RankPercentage
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2842,7 +2842,7 @@ public class RankPercentage
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2867,7 +2867,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2893,14 +2893,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}Class ReplicatorDynamicRank}{
+\section{\label{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}Class ReplicatorDynamicRank}{
 \hypertarget{de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank}{}\vskip .1in 
-Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhängigkeit von der Differenz der Ränge zweier verglichener Agenten. Ein Agent übernimmt die Strategie eines anderen mit einer Wahrscheinlichkeit δ*β, wobei δ die nichtnegative Differenz der Ränge ist und β eine Konstante, so dass 0 ≤ δ*β ≤ 1 gilt.\vskip .1in 
-\subsubsection{Declaration}{
+Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhängigkeit von der Differenz der Ränge zweier verglichener Agenten. Ein Agent übernimmt die Strategie eines anderen mit einer Wahrscheinlichkeitlt.\vskip .1in 
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ReplicatorDynamicRank
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2914,7 +2914,7 @@ public class ReplicatorDynamicRank
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2932,14 +2932,14 @@ Konstruktor
 {\bf  Parameters}
   \begin{itemize}
    \item{
-\texttt{BETA} -- Konstante β, so dass 0 ≤ δ*β ≤ 1 gilt}
+\texttt{BETA} -- Konstante gilt}
   \end{itemize}
 }%end item
 \end{itemize}
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -2965,14 +2965,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}Class ReplicatorDynamicScore}{
+\section{\label{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}Class ReplicatorDynamicScore}{
 \hypertarget{de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore}{}\vskip .1in 
-Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhängigkeit von der Differenz der Gesamtpunktzahlen zweier verglichener Agenten. Ein Agent übernimmt die Strategie eines anderen mit einer Wahrscheinlichkeit δ*β, wobei δ die nichtnegative Differenz der Gesamtpunktzahlen ist und β eine Konstante, so dass 0 ≤ δ*β ≤ 1 gilt.\vskip .1in 
-\subsubsection{Declaration}{
+Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhängigkeit von der Differenz der Gesamtpunktzahlen zweier verglichener Agenten. Ein Agent übernimmt die Strategie eines anderen mit einer Wahrscheinlichkeit gilt.\vskip .1in 
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ReplicatorDynamicScore
  extends java.lang.Object implements AdaptationAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -2986,7 +2986,7 @@ public class ReplicatorDynamicScore
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3004,14 +3004,14 @@ Konstruktor
 {\bf  Parameters}
   \begin{itemize}
    \item{
-\texttt{BETA} -- Konstante β, so dass 0 ≤ δ*β ≤ 1 gilt}
+\texttt{BETA} -- Konstante  gilt}
   \end{itemize}
 }%end item
 \end{itemize}
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3038,7 +3038,7 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 }
 }
 }
-\section{Package de.sswis.model.algorithms.pairing}{
+\chapter{Package de.sswis.model.algorithms.pairing}{
 \label{de.sswis.model.algorithms.pairing}\hypertarget{de.sswis.model.algorithms.pairing}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -3047,14 +3047,14 @@ Passt die Strategien der Agenten entsprechend des Algorithmus an.
 \entityintro{PairingAlgorithm}{de.sswis.model.algorithms.pairing.PairingAlgorithm}{Ein Algorithmus zum Bilden von Paaren von Agenten einer Simulation.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.algorithms.pairing.PairingAlgorithm}Interface PairingAlgorithm}{
+\section{\label{de.sswis.model.algorithms.pairing.PairingAlgorithm}Interface PairingAlgorithm}{
 \hypertarget{de.sswis.model.algorithms.pairing.PairingAlgorithm}{}\vskip .1in 
 Ein Algorithmus zum Bilden von Paaren von Agenten einer Simulation.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface PairingAlgorithm
 \end{lstlisting}
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3084,7 +3084,7 @@ eine Menge von Agent-Paaren
 }
 }
 }
-\section{Package de.sswis.model.algorithms.ranking}{
+\chapter{Package de.sswis.model.algorithms.ranking}{
 \label{de.sswis.model.algorithms.ranking}\hypertarget{de.sswis.model.algorithms.ranking}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -3099,16 +3099,16 @@ eine Menge von Agent-Paaren
 \entityintro{Score}{de.sswis.model.algorithms.ranking.Score}{Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer bisherigen Gesamtpunktzahl bewertet.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.algorithms.ranking.RankingAlgorithm}Interface RankingAlgorithm}{
+\section{\label{de.sswis.model.algorithms.ranking.RankingAlgorithm}Interface RankingAlgorithm}{
 \hypertarget{de.sswis.model.algorithms.ranking.RankingAlgorithm}{}\vskip .1in 
 Ein Algorithmus zum Bewerten der Agenten einer Simulation.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface RankingAlgorithm
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{Score\small{\refdefined{de.sswis.model.algorithms.ranking.Score}}, CustomCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CustomCycleScore}}, CurrentCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CurrentCycleScore}}, AverageRank\small{\refdefined{de.sswis.model.algorithms.ranking.AverageRank}}}
-\subsubsection{All classes known to implement interface}{Score\small{\refdefined{de.sswis.model.algorithms.ranking.Score}}, CustomCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CustomCycleScore}}, CurrentCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CurrentCycleScore}}, AverageRank\small{\refdefined{de.sswis.model.algorithms.ranking.AverageRank}}}
-\subsubsection{Methods}{
+\subsection{All known subinterfaces}{Score\small{\refdefined{de.sswis.model.algorithms.ranking.Score}}, CustomCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CustomCycleScore}}, CurrentCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CurrentCycleScore}}, AverageRank\small{\refdefined{de.sswis.model.algorithms.ranking.AverageRank}}}
+\subsection{All classes known to implement interface}{Score\small{\refdefined{de.sswis.model.algorithms.ranking.Score}}, CustomCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CustomCycleScore}}, CurrentCycleScore\small{\refdefined{de.sswis.model.algorithms.ranking.CurrentCycleScore}}, AverageRank\small{\refdefined{de.sswis.model.algorithms.ranking.AverageRank}}}
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3137,14 +3137,14 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.ranking.AverageRank}Class AverageRank}{
+\section{\label{de.sswis.model.algorithms.ranking.AverageRank}Class AverageRank}{
 \hypertarget{de.sswis.model.algorithms.ranking.AverageRank}{}\vskip .1in 
 Ein Algorithmus der die Agenten einer Simulation entsprechend ihres Durchschnittsranges über die letzten Zyklen bewertet. Für jeden bisherigen Zyklus wird die Gesamtpunktzahl der vorherigen \texttt{\small WINDOW\_SIZE} Zyklen bestimmt und die Agenten erhalten entsprechend dieser Punktzahl einen Rang. Der Durchschnitt dieser Ränge über alle bisherigen Zyklen ist der finale Rang.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class AverageRank
  extends java.lang.Object implements RankingAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3158,7 +3158,7 @@ public class AverageRank
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3183,7 +3183,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3212,14 +3212,14 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.ranking.CurrentCycleScore}Class CurrentCycleScore}{
+\section{\label{de.sswis.model.algorithms.ranking.CurrentCycleScore}Class CurrentCycleScore}{
 \hypertarget{de.sswis.model.algorithms.ranking.CurrentCycleScore}{}\vskip .1in 
 Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer Punktzahl im aktuellen Zyklus bewertet. Hat ein Agent eine höhere Punktzahl als ein anderer, so ist auch sein Rang höher.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CurrentCycleScore
  extends java.lang.Object implements RankingAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3233,7 +3233,7 @@ public class CurrentCycleScore
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3244,7 +3244,7 @@ public CurrentCycleScore()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3273,14 +3273,14 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.ranking.CustomCycleScore}Class CustomCycleScore}{
+\section{\label{de.sswis.model.algorithms.ranking.CustomCycleScore}Class CustomCycleScore}{
 \hypertarget{de.sswis.model.algorithms.ranking.CustomCycleScore}{}\vskip .1in 
 Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer Punktzahl in den bisherigen \texttt{\small WINDOW\_SIZE} Zyklen bewertet. Hat ein Agent eine höhere Punktzahl als ein anderer, so ist auch sein Rang höher.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CustomCycleScore
  extends java.lang.Object implements RankingAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3294,7 +3294,7 @@ public class CustomCycleScore
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3319,7 +3319,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3348,14 +3348,14 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.algorithms.ranking.Score}Class Score}{
+\section{\label{de.sswis.model.algorithms.ranking.Score}Class Score}{
 \hypertarget{de.sswis.model.algorithms.ranking.Score}{}\vskip .1in 
 Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer bisherigen Gesamtpunktzahl bewertet. Hat ein Agent eine höhere Punktzahl als ein anderer, so ist auch sein Rang höher.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Score
  extends java.lang.Object implements RankingAlgorithm\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3369,7 +3369,7 @@ public class Score
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3380,7 +3380,7 @@ public Score()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3410,7 +3410,7 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 }
 }
 }
-\section{Package de.sswis.model.conditions}{
+\chapter{Package de.sswis.model.conditions}{
 \label{de.sswis.model.conditions}\hypertarget{de.sswis.model.conditions}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -3426,14 +3426,14 @@ eine \texttt{\small HashMap} die jedem Agenten seinen Rang zuordnet
 \entityintro{SpecificGroup}{de.sswis.model.conditions.SpecificGroup}{Eine Bedingung die erfüllt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.conditions.Always}Class Always}{
+\section{\label{de.sswis.model.conditions.Always}Class Always}{
 \hypertarget{de.sswis.model.conditions.Always}{}\vskip .1in 
 Eine Bedingung die immer erfüllt ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Always
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3447,7 +3447,7 @@ public class Always
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3458,7 +3458,7 @@ public Always()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3488,22 +3488,22 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.Condition}Class Condition}{
+\section{\label{de.sswis.model.conditions.Condition}Class Condition}{
 \hypertarget{de.sswis.model.conditions.Condition}{}\vskip .1in 
 Eine Bedingung zur Auswahl einer Basisstrategie innerhalb einer kombinierten Strategie. Die Bedingung kann sowohl vom Agenten abhängen dessen kombinierte Strategie sie beinhaltet, als auch von dessem Gegenspieler.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public abstract class Condition
  extends java.lang.Object\end{lstlisting}
-\subsubsection{All known subclasses}{SpecificGroup\small{\refdefined{de.sswis.model.conditions.SpecificGroup}}, Richer\small{\refdefined{de.sswis.model.conditions.Richer}}, Probability\small{\refdefined{de.sswis.model.conditions.Probability}}, Poorer\small{\refdefined{de.sswis.model.conditions.Poorer}}, OwnGroup\small{\refdefined{de.sswis.model.conditions.OwnGroup}}, Delta\small{\refdefined{de.sswis.model.conditions.Delta}}, Always\small{\refdefined{de.sswis.model.conditions.Always}}}
-\subsubsection{Constructors}{
+\subsection{All known subclasses}{SpecificGroup\small{\refdefined{de.sswis.model.conditions.SpecificGroup}}, Richer\small{\refdefined{de.sswis.model.conditions.Richer}}, Probability\small{\refdefined{de.sswis.model.conditions.Probability}}, Poorer\small{\refdefined{de.sswis.model.conditions.Poorer}}, OwnGroup\small{\refdefined{de.sswis.model.conditions.OwnGroup}}, Delta\small{\refdefined{de.sswis.model.conditions.Delta}}, Always\small{\refdefined{de.sswis.model.conditions.Always}}}
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3514,7 +3514,7 @@ public Condition()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3545,14 +3545,14 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.conditions.Delta}Class Delta}{
+\section{\label{de.sswis.model.conditions.Delta}Class Delta}{
 \hypertarget{de.sswis.model.conditions.Delta}{}\vskip .1in 
 Eine Bedingung die erfüllt ist, wenn beide Agenten ungefähr gleich reich sind. Zwei Agenten sind ungefähr gleich reich, wenn der Betrag der Differenz ihrer Gesamtpunktzahlen kleiner oder gleich \texttt{\small delta} ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Delta
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3566,7 +3566,7 @@ public class Delta
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3591,7 +3591,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3621,21 +3621,21 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.OwnGroup}Class OwnGroup}{
+\section{\label{de.sswis.model.conditions.OwnGroup}Class OwnGroup}{
 \hypertarget{de.sswis.model.conditions.OwnGroup}{}\vskip .1in 
 Eine Bedinung die erfüllt ist, wenn beide Agenten der gleichen Gruppe zugehörig sind.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class OwnGroup
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3649,7 +3649,7 @@ public class OwnGroup
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3660,7 +3660,7 @@ public OwnGroup()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3690,21 +3690,21 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.Poorer}Class Poorer}{
+\section{\label{de.sswis.model.conditions.Poorer}Class Poorer}{
 \hypertarget{de.sswis.model.conditions.Poorer}{}\vskip .1in 
 Eine Bedingung die erfüllt ist wenn der Gegenspieler ärmer ist. Ein Agent ist ärmer als ein anderer, wenn er weniger Punkte hat.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Poorer
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3718,7 +3718,7 @@ public class Poorer
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3729,7 +3729,7 @@ public Poorer()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3759,21 +3759,21 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.Probability}Class Probability}{
+\section{\label{de.sswis.model.conditions.Probability}Class Probability}{
 \hypertarget{de.sswis.model.conditions.Probability}{}\vskip .1in 
 Eine Bedingung die mit einer gewissen Wahrscheinlichkeit \texttt{\small alpha} erfüllt ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Probability
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3787,7 +3787,7 @@ public class Probability
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3812,7 +3812,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3842,21 +3842,21 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.Richer}Class Richer}{
+\section{\label{de.sswis.model.conditions.Richer}Class Richer}{
 \hypertarget{de.sswis.model.conditions.Richer}{}\vskip .1in 
 Eine Bedingung die erfüllt ist wenn der Gegenspieler reicher ist. Ein Agent ist ärmer als ein anderer, wenn er mehr Punkte hat.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Richer
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3870,7 +3870,7 @@ public class Richer
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3881,7 +3881,7 @@ public Richer()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3911,21 +3911,21 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
 
 fulfillsCondition}
 }
-\subsection{\label{de.sswis.model.conditions.SpecificGroup}Class SpecificGroup}{
+\section{\label{de.sswis.model.conditions.SpecificGroup}Class SpecificGroup}{
 \hypertarget{de.sswis.model.conditions.SpecificGroup}{}\vskip .1in 
 Eine Bedingung die erfüllt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class SpecificGroup
  extends de.sswis.model.conditions.Condition\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -3939,7 +3939,7 @@ public class SpecificGroup
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3964,7 +3964,7 @@ Konstruktor
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -3994,7 +3994,7 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class Condition }{
+\subsection{Members inherited from class Condition }{
 \texttt{de.sswis.model.conditions.Condition} {\small 
 \refdefined{de.sswis.model.conditions.Condition}}
 {\small 
@@ -4002,7 +4002,7 @@ public abstract boolean fulfillsCondition(de.sswis.model.Agent agent1,de.sswis.m
 fulfillsCondition}
 }
 }
-\section{Package de.sswis.model.strategies}{
+\chapter{Package de.sswis.model.strategies}{
 \label{de.sswis.model.strategies}\hypertarget{de.sswis.model.strategies}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -4020,14 +4020,14 @@ fulfillsCondition}
 \entityintro{TitForTat2}{de.sswis.model.strategies.TitForTat2}{Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler aus dem letzten Spiel kooperiert hat.}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.model.strategies.AlwaysCooperate}Class AlwaysCooperate}{
+\section{\label{de.sswis.model.strategies.AlwaysCooperate}Class AlwaysCooperate}{
 \hypertarget{de.sswis.model.strategies.AlwaysCooperate}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent immer kooperiert.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class AlwaysCooperate
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4041,7 +4041,7 @@ public class AlwaysCooperate
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4052,7 +4052,7 @@ public AlwaysCooperate()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4082,22 +4082,22 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.BaseStrategy}Class BaseStrategy}{
+\section{\label{de.sswis.model.strategies.BaseStrategy}Class BaseStrategy}{
 \hypertarget{de.sswis.model.strategies.BaseStrategy}{}\vskip .1in 
 Eine Basisstrategie die einem Agenten und seinem Gegenspieler eine Aktion zuordnet. Die Basisstrategie kann sowohl vom Agenten abhängen dessen kombinierte Strategie sie beinhaltet, als auch von dessem Gegenspieler.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public abstract class BaseStrategy
  extends java.lang.Object\end{lstlisting}
-\subsubsection{All known subclasses}{TitForTat2\small{\refdefined{de.sswis.model.strategies.TitForTat2}}, TitForTat1\small{\refdefined{de.sswis.model.strategies.TitForTat1}}, Random\small{\refdefined{de.sswis.model.strategies.Random}}, NeverCooperate\small{\refdefined{de.sswis.model.strategies.NeverCooperate}}, GroupTitForTat\small{\refdefined{de.sswis.model.strategies.GroupTitForTat}}, GroupGrim\small{\refdefined{de.sswis.model.strategies.GroupGrim}}, Grim2\small{\refdefined{de.sswis.model.strategies.Grim2}}, Grim1\small{\refdefined{de.sswis.model.strategies.Grim1}}, AlwaysCooperate\small{\refdefined{de.sswis.model.strategies.AlwaysCooperate}}}
-\subsubsection{Constructors}{
+\subsection{All known subclasses}{TitForTat2\small{\refdefined{de.sswis.model.strategies.TitForTat2}}, TitForTat1\small{\refdefined{de.sswis.model.strategies.TitForTat1}}, Random\small{\refdefined{de.sswis.model.strategies.Random}}, NeverCooperate\small{\refdefined{de.sswis.model.strategies.NeverCooperate}}, GroupTitForTat\small{\refdefined{de.sswis.model.strategies.GroupTitForTat}}, GroupGrim\small{\refdefined{de.sswis.model.strategies.GroupGrim}}, Grim2\small{\refdefined{de.sswis.model.strategies.Grim2}}, Grim1\small{\refdefined{de.sswis.model.strategies.Grim1}}, AlwaysCooperate\small{\refdefined{de.sswis.model.strategies.AlwaysCooperate}}}
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4108,7 +4108,7 @@ public BaseStrategy()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4139,14 +4139,14 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.model.strategies.Grim1}Class Grim1}{
+\section{\label{de.sswis.model.strategies.Grim1}Class Grim1}{
 \hypertarget{de.sswis.model.strategies.Grim1}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler bei allen vorherigen gemeinsamen Spielen kooperiert hat. Handelt es sich um das erste gemeinsame Spiel, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Grim1
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4160,7 +4160,7 @@ public class Grim1
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4171,7 +4171,7 @@ public Grim1()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4201,21 +4201,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.Grim2}Class Grim2}{
+\section{\label{de.sswis.model.strategies.Grim2}Class Grim2}{
 \hypertarget{de.sswis.model.strategies.Grim2}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler bei allen vorherigen Spielen kooperiert hat. Handelt es sich um das erste Spiel, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Grim2
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4229,7 +4229,7 @@ public class Grim2
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4240,7 +4240,7 @@ public Grim2()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4270,21 +4270,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.GroupGrim}Class GroupGrim}{
+\section{\label{de.sswis.model.strategies.GroupGrim}Class GroupGrim}{
 \hypertarget{de.sswis.model.strategies.GroupGrim}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent, aus Gruppe G, kooperiert, wenn der Gegenspieler bei allen vorherigen Spielen gegen einen Agenten aus Gruppe G kooperiert hat. Hat der Gegenspieler noch nicht gegen einen Agenten aus Gruppe G gespielt, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class GroupGrim
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4298,7 +4298,7 @@ public class GroupGrim
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4309,7 +4309,7 @@ public GroupGrim()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4339,21 +4339,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.GroupTitForTat}Class GroupTitForTat}{
+\section{\label{de.sswis.model.strategies.GroupTitForTat}Class GroupTitForTat}{
 \hypertarget{de.sswis.model.strategies.GroupTitForTat}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent, aus Gruppe G, kooperiert, wenn der Gegenspieler beim letzten Spiel gegen einen Agenten aus Gruppe G kooperiert hat. Hat der Gegenspieler noch nicht gegen einen Agenten aus Gruppe G gespielt, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class GroupTitForTat
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4367,7 +4367,7 @@ public class GroupTitForTat
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4378,7 +4378,7 @@ public GroupTitForTat()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4408,21 +4408,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.NeverCooperate}Class NeverCooperate}{
+\section{\label{de.sswis.model.strategies.NeverCooperate}Class NeverCooperate}{
 \hypertarget{de.sswis.model.strategies.NeverCooperate}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent nie kooperiert.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NeverCooperate
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4436,7 +4436,7 @@ public class NeverCooperate
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4447,7 +4447,7 @@ public NeverCooperate()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4477,21 +4477,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.Random}Class Random}{
+\section{\label{de.sswis.model.strategies.Random}Class Random}{
 \hypertarget{de.sswis.model.strategies.Random}{}\vskip .1in 
 Eine Basisstrategie, bei der die Aktion des Agenten zufällig ist.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Random
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4505,7 +4505,7 @@ public class Random
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4516,7 +4516,7 @@ public Random()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4546,21 +4546,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.TitForTat1}Class TitForTat1}{
+\section{\label{de.sswis.model.strategies.TitForTat1}Class TitForTat1}{
 \hypertarget{de.sswis.model.strategies.TitForTat1}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler beim letzten gemeinsamen Spiel kooperiert hat. Handelt es sich um das erste gemeinsame Spiel, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class TitForTat1
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4574,7 +4574,7 @@ public class TitForTat1
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4585,7 +4585,7 @@ public TitForTat1()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4615,21 +4615,21 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
 
 calculateAction}
 }
-\subsection{\label{de.sswis.model.strategies.TitForTat2}Class TitForTat2}{
+\section{\label{de.sswis.model.strategies.TitForTat2}Class TitForTat2}{
 \hypertarget{de.sswis.model.strategies.TitForTat2}{}\vskip .1in 
 Eine Basisstrategie, bei der der Agent kooperiert, wenn der Gegenspieler aus dem letzten Spiel kooperiert hat. Handelt es sich um das erste Spiel, so kooperiert der Agent.\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class TitForTat2
  extends de.sswis.model.strategies.BaseStrategy\end{lstlisting}
-\subsubsection{Fields}{
+\subsection{Fields}{
 \begin{itemize}
 \item{
 \index{NAME}
@@ -4643,7 +4643,7 @@ public class TitForTat2
 }
 \end{itemize}
 }
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4654,7 +4654,7 @@ public TitForTat2()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4684,7 +4684,7 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 }%end item
 \end{itemize}
 }
-\subsubsection{Members inherited from class BaseStrategy }{
+\subsection{Members inherited from class BaseStrategy }{
 \texttt{de.sswis.model.strategies.BaseStrategy} {\small 
 \refdefined{de.sswis.model.strategies.BaseStrategy}}
 {\small 
@@ -4692,7 +4692,7 @@ eine \texttt{\small Action} die entweder Kooperation oder Defektion ist
 calculateAction}
 }
 }
-\section{Package de.sswis.view}{
+\chapter{Package de.sswis.view}{
 \label{de.sswis.view}\hypertarget{de.sswis.view}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -4725,134 +4725,134 @@ calculateAction}
 \entityintro{ShowResultView}{de.sswis.view.ShowResultView}{}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.view.AbstractMainView}Interface AbstractMainView}{
+\section{\label{de.sswis.view.AbstractMainView}Interface AbstractMainView}{
 \hypertarget{de.sswis.view.AbstractMainView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractMainView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{MainView\small{\refdefined{de.sswis.view.MainView}}}
-\subsubsection{All classes known to implement interface}{MainView\small{\refdefined{de.sswis.view.MainView}}}
+\subsection{All known subinterfaces}{MainView\small{\refdefined{de.sswis.view.MainView}}}
+\subsection{All classes known to implement interface}{MainView\small{\refdefined{de.sswis.view.MainView}}}
 }
-\subsection{\label{de.sswis.view.AbstractManageCominedStartegiesView}Interface AbstractManageCominedStartegiesView}{
+\section{\label{de.sswis.view.AbstractManageCominedStartegiesView}Interface AbstractManageCominedStartegiesView}{
 \hypertarget{de.sswis.view.AbstractManageCominedStartegiesView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageCominedStartegiesView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractManageConfigurationsView}Interface AbstractManageConfigurationsView}{
+\section{\label{de.sswis.view.AbstractManageConfigurationsView}Interface AbstractManageConfigurationsView}{
 \hypertarget{de.sswis.view.AbstractManageConfigurationsView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageConfigurationsView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractManageGamesView}Interface AbstractManageGamesView}{
+\section{\label{de.sswis.view.AbstractManageGamesView}Interface AbstractManageGamesView}{
 \hypertarget{de.sswis.view.AbstractManageGamesView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageGamesView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ManageGamesView\small{\refdefined{de.sswis.view.ManageGamesView}}}
-\subsubsection{All classes known to implement interface}{ManageGamesView\small{\refdefined{de.sswis.view.ManageGamesView}}}
+\subsection{All known subinterfaces}{ManageGamesView\small{\refdefined{de.sswis.view.ManageGamesView}}}
+\subsection{All classes known to implement interface}{ManageGamesView\small{\refdefined{de.sswis.view.ManageGamesView}}}
 }
-\subsection{\label{de.sswis.view.AbstractManageInitializationsView}Interface AbstractManageInitializationsView}{
+\section{\label{de.sswis.view.AbstractManageInitializationsView}Interface AbstractManageInitializationsView}{
 \hypertarget{de.sswis.view.AbstractManageInitializationsView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageInitializationsView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractManageResultsView}Interface AbstractManageResultsView}{
+\section{\label{de.sswis.view.AbstractManageResultsView}Interface AbstractManageResultsView}{
 \hypertarget{de.sswis.view.AbstractManageResultsView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageResultsView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractManageStrategiesView}Interface AbstractManageStrategiesView}{
+\section{\label{de.sswis.view.AbstractManageStrategiesView}Interface AbstractManageStrategiesView}{
 \hypertarget{de.sswis.view.AbstractManageStrategiesView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractManageStrategiesView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ManageStrategiesView\small{\refdefined{de.sswis.view.ManageStrategiesView}}}
-\subsubsection{All classes known to implement interface}{ManageStrategiesView\small{\refdefined{de.sswis.view.ManageStrategiesView}}}
+\subsection{All known subinterfaces}{ManageStrategiesView\small{\refdefined{de.sswis.view.ManageStrategiesView}}}
+\subsection{All classes known to implement interface}{ManageStrategiesView\small{\refdefined{de.sswis.view.ManageStrategiesView}}}
 }
-\subsection{\label{de.sswis.view.AbstractNewCombinedStrategyView}Interface AbstractNewCombinedStrategyView}{
+\section{\label{de.sswis.view.AbstractNewCombinedStrategyView}Interface AbstractNewCombinedStrategyView}{
 \hypertarget{de.sswis.view.AbstractNewCombinedStrategyView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractNewCombinedStrategyView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractNewConfigurationView}Interface AbstractNewConfigurationView}{
+\section{\label{de.sswis.view.AbstractNewConfigurationView}Interface AbstractNewConfigurationView}{
 \hypertarget{de.sswis.view.AbstractNewConfigurationView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractNewConfigurationView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{NewConfigurationView\small{\refdefined{de.sswis.view.NewConfigurationView}}}
-\subsubsection{All classes known to implement interface}{NewConfigurationView\small{\refdefined{de.sswis.view.NewConfigurationView}}}
+\subsection{All known subinterfaces}{NewConfigurationView\small{\refdefined{de.sswis.view.NewConfigurationView}}}
+\subsection{All classes known to implement interface}{NewConfigurationView\small{\refdefined{de.sswis.view.NewConfigurationView}}}
 }
-\subsection{\label{de.sswis.view.AbstractNewGameView}Interface AbstractNewGameView}{
+\section{\label{de.sswis.view.AbstractNewGameView}Interface AbstractNewGameView}{
 \hypertarget{de.sswis.view.AbstractNewGameView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractNewGameView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractNewInitializationView}Interface AbstractNewInitializationView}{
+\section{\label{de.sswis.view.AbstractNewInitializationView}Interface AbstractNewInitializationView}{
 \hypertarget{de.sswis.view.AbstractNewInitializationView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractNewInitializationView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{NewInitializationView\small{\refdefined{de.sswis.view.NewInitializationView}}}
-\subsubsection{All classes known to implement interface}{NewInitializationView\small{\refdefined{de.sswis.view.NewInitializationView}}}
+\subsection{All known subinterfaces}{NewInitializationView\small{\refdefined{de.sswis.view.NewInitializationView}}}
+\subsection{All classes known to implement interface}{NewInitializationView\small{\refdefined{de.sswis.view.NewInitializationView}}}
 }
-\subsection{\label{de.sswis.view.AbstractNewStrategyView}Interface AbstractNewStrategyView}{
+\section{\label{de.sswis.view.AbstractNewStrategyView}Interface AbstractNewStrategyView}{
 \hypertarget{de.sswis.view.AbstractNewStrategyView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractNewStrategyView
 \end{lstlisting}
 }
-\subsection{\label{de.sswis.view.AbstractShowCompareView}Interface AbstractShowCompareView}{
+\section{\label{de.sswis.view.AbstractShowCompareView}Interface AbstractShowCompareView}{
 \hypertarget{de.sswis.view.AbstractShowCompareView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractShowCompareView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ShowCompareView\small{\refdefined{de.sswis.view.ShowCompareView}}}
-\subsubsection{All classes known to implement interface}{ShowCompareView\small{\refdefined{de.sswis.view.ShowCompareView}}}
+\subsection{All known subinterfaces}{ShowCompareView\small{\refdefined{de.sswis.view.ShowCompareView}}}
+\subsection{All classes known to implement interface}{ShowCompareView\small{\refdefined{de.sswis.view.ShowCompareView}}}
 }
-\subsection{\label{de.sswis.view.AbstractShowMultiResultView}Interface AbstractShowMultiResultView}{
+\section{\label{de.sswis.view.AbstractShowMultiResultView}Interface AbstractShowMultiResultView}{
 \hypertarget{de.sswis.view.AbstractShowMultiResultView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractShowMultiResultView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ShowMultiResultView\small{\refdefined{de.sswis.view.ShowMultiResultView}}}
-\subsubsection{All classes known to implement interface}{ShowMultiResultView\small{\refdefined{de.sswis.view.ShowMultiResultView}}}
+\subsection{All known subinterfaces}{ShowMultiResultView\small{\refdefined{de.sswis.view.ShowMultiResultView}}}
+\subsection{All classes known to implement interface}{ShowMultiResultView\small{\refdefined{de.sswis.view.ShowMultiResultView}}}
 }
-\subsection{\label{de.sswis.view.AbstractShowResultView}Interface AbstractShowResultView}{
+\section{\label{de.sswis.view.AbstractShowResultView}Interface AbstractShowResultView}{
 \hypertarget{de.sswis.view.AbstractShowResultView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public interface AbstractShowResultView
 \end{lstlisting}
-\subsubsection{All known subinterfaces}{ShowResultView\small{\refdefined{de.sswis.view.ShowResultView}}}
-\subsubsection{All classes known to implement interface}{ShowResultView\small{\refdefined{de.sswis.view.ShowResultView}}}
+\subsection{All known subinterfaces}{ShowResultView\small{\refdefined{de.sswis.view.ShowResultView}}}
+\subsection{All classes known to implement interface}{ShowResultView\small{\refdefined{de.sswis.view.ShowResultView}}}
 }
-\subsection{\label{de.sswis.view.MainView}Class MainView}{
+\section{\label{de.sswis.view.MainView}Class MainView}{
 \hypertarget{de.sswis.view.MainView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class MainView
  extends java.lang.Object implements AbstractMainView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4864,13 +4864,13 @@ public MainView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.ManageGamesView}Class ManageGamesView}{
+\section{\label{de.sswis.view.ManageGamesView}Class ManageGamesView}{
 \hypertarget{de.sswis.view.ManageGamesView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageGamesView
  extends java.lang.Object implements AbstractManageGamesView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4882,13 +4882,13 @@ public ManageGamesView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.ManageStrategiesView}Class ManageStrategiesView}{
+\section{\label{de.sswis.view.ManageStrategiesView}Class ManageStrategiesView}{
 \hypertarget{de.sswis.view.ManageStrategiesView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ManageStrategiesView
  extends java.lang.Object implements AbstractManageStrategiesView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4900,13 +4900,13 @@ public ManageStrategiesView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.NewConfigurationView}Class NewConfigurationView}{
+\section{\label{de.sswis.view.NewConfigurationView}Class NewConfigurationView}{
 \hypertarget{de.sswis.view.NewConfigurationView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewConfigurationView
  extends java.lang.Object implements AbstractNewConfigurationView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4918,13 +4918,13 @@ public NewConfigurationView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.NewInitializationView}Class NewInitializationView}{
+\section{\label{de.sswis.view.NewInitializationView}Class NewInitializationView}{
 \hypertarget{de.sswis.view.NewInitializationView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class NewInitializationView
  extends java.lang.Object implements AbstractNewInitializationView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4935,7 +4935,7 @@ public NewInitializationView()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4952,13 +4952,13 @@ die Komponente
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.ShowCompareView}Class ShowCompareView}{
+\section{\label{de.sswis.view.ShowCompareView}Class ShowCompareView}{
 \hypertarget{de.sswis.view.ShowCompareView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ShowCompareView
  extends java.lang.Object implements AbstractShowCompareView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4970,13 +4970,13 @@ public ShowCompareView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.ShowMultiResultView}Class ShowMultiResultView}{
+\section{\label{de.sswis.view.ShowMultiResultView}Class ShowMultiResultView}{
 \hypertarget{de.sswis.view.ShowMultiResultView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ShowMultiResultView
  extends java.lang.Object implements AbstractShowMultiResultView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -4988,13 +4988,13 @@ public ShowMultiResultView()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.ShowResultView}Class ShowResultView}{
+\section{\label{de.sswis.view.ShowResultView}Class ShowResultView}{
 \hypertarget{de.sswis.view.ShowResultView}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class ShowResultView
  extends java.lang.Object implements AbstractShowResultView\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5007,7 +5007,7 @@ public ShowResultView()\end{lstlisting} %end signature
 }
 }
 }
-\section{Package de.sswis.view.model}{
+\chapter{Package de.sswis.view.model}{
 \label{de.sswis.view.model}\hypertarget{de.sswis.view.model}{}
 \hskip -.05in
 \hbox to \hsize{\textit{ Package Contents\hfil Page}}
@@ -5022,13 +5022,13 @@ public ShowResultView()\end{lstlisting} %end signature
 \entityintro{Strategy}{de.sswis.view.model.Strategy}{}
 \vskip .1in
 \vskip .1in
-\subsection{\label{de.sswis.view.model.CombinedStrategy}Class CombinedStrategy}{
+\section{\label{de.sswis.view.model.CombinedStrategy}Class CombinedStrategy}{
 \hypertarget{de.sswis.view.model.CombinedStrategy}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class CombinedStrategy
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5039,7 +5039,7 @@ public CombinedStrategy()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5051,13 +5051,13 @@ public boolean isCorrect()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Configuration}Class Configuration}{
+\section{\label{de.sswis.view.model.Configuration}Class Configuration}{
 \hypertarget{de.sswis.view.model.Configuration}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Configuration
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5068,7 +5068,7 @@ public Configuration()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5080,13 +5080,13 @@ public boolean isCorrect()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Game}Class Game}{
+\section{\label{de.sswis.view.model.Game}Class Game}{
 \hypertarget{de.sswis.view.model.Game}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Game
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5098,13 +5098,13 @@ public Game()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Group}Class Group}{
+\section{\label{de.sswis.view.model.Group}Class Group}{
 \hypertarget{de.sswis.view.model.Group}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Group
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5116,13 +5116,13 @@ public Group()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Initialization}Class Initialization}{
+\section{\label{de.sswis.view.model.Initialization}Class Initialization}{
 \hypertarget{de.sswis.view.model.Initialization}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Initialization
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5134,13 +5134,13 @@ public Initialization()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Result}Class Result}{
+\section{\label{de.sswis.view.model.Result}Class Result}{
 \hypertarget{de.sswis.view.model.Result}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Result
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5152,13 +5152,13 @@ public Result()\end{lstlisting} %end signature
 \end{itemize}
 }
 }
-\subsection{\label{de.sswis.view.model.Strategy}Class Strategy}{
+\section{\label{de.sswis.view.model.Strategy}Class Strategy}{
 \hypertarget{de.sswis.view.model.Strategy}{}\vskip .1in 
-\subsubsection{Declaration}{
+\subsection{Declaration}{
 \begin{lstlisting}[frame=none]
 public class Strategy
  extends java.lang.Object\end{lstlisting}
-\subsubsection{Constructors}{
+\subsection{Constructors}{
 \vskip -2em
 \begin{itemize}
 \item{ 
@@ -5169,7 +5169,7 @@ public Strategy()\end{lstlisting} %end signature
 }%end item
 \end{itemize}
 }
-\subsubsection{Methods}{
+\subsection{Methods}{
 \vskip -2em
 \begin{itemize}
 \item{ 
