@@ -1,0 +1,82 @@
+\chapter{Algorithmen Pseudocode}
+
+\section{Bewertungsalgorithmen}
+
+\begin{lstlisting}
+// AverageRank.java
+public HashMap<Agent, Integer> getRankings(Simulation sim) 
+	
+	currentRound <- sim.getCurrentRound()
+	agents <- sim.getAgents()
+	ranks <- List of HashMap<Agent, Integer>	
+	rounds <- max(1, currentRound - WINDOW_SIZE)
+	
+	for i <- 0; i < rounds; i++ 
+		ranks[i] <- rankOfAgents(agents, i, WINDOW_SIZE)
+	
+	result <- HashMap<Agent, Integer>	
+	
+	for Agent a in agents
+		averageRank <- 0
+		for i <- 0; i < rounds; i++
+			averageRank <- averageRank + ranks[i].get(a)
+		averageRank <- roundDown(averageRank / rounds)
+		
+		result.put(a, averageRank)
+	
+	resolveConflicts(result)
+	return result
+\end{lstlisting}
+
+
+\begin{lstlisting}
+// CustomCycleScore.java
+public HashMap<Agent, Integer> getRankings(Simulation sim) 
+	
+	agents <- sim.getAgents()
+	currentRound <- sim.getCurrentRound()
+	ranks <- rankOfAgents(agents, max(1, currentRound - WINDOW_SIZE), currentRound)
+	
+	return ranks
+	
+\end{lstlisting}
+
+\section{Paarungsalgorithmen}
+
+\begin{lstlisting}
+// Brut force pair matching
+public void brutForceMatching(Agent[] agents, Simulation sim) 
+
+	shuffle(agents)
+	for each unmatched agent a in agents
+		best <- infinity
+		for each unmatched agent b after a in agents#
+			d <- distance(a, b)
+			if d < best
+				best <- d
+				bestPartner <- b
+				
+	sim.setPair(a, b)
+	mark a and b as paired		
+	
+\end{lstlisting}
+
+
+\begin{lstlisting}
+// Brut force pair matching heuristic
+public void brutForceMatchingheuristic(Agent[] agents, Simulation sim) 
+	shuffle(agents)
+	for each unmatched agent a in agents
+		best <- infinity
+		for each unmatched agent b after a in agents#
+			d <- distance(a, b)			
+			if d < best
+				best <- d
+				bestPartner <- b
+			if best <= epsilon
+				break			
+						
+	sim.setPair(a, bestPartner)
+	mark a and bestPartner as paired		
+	
+\end{lstlisting}

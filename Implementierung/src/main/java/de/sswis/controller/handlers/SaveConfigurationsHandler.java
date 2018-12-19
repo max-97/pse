@@ -1,6 +1,6 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.view.Konfiguration;
+import de.sswis.view.AbstractNewConfigurationView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
  */
 public class SaveConfigurationsHandler implements ActionListener {
 
-    private Konfiguration configurationView;
+    private AbstractNewConfigurationView configurationView;
 
     /**
      *
      * @param configurationView die View mit der zu speichernden {@code Konfiguration}
      */
-    public SaveConfigurationsHandler(Konfiguration configurationView) {
+    public SaveConfigurationsHandler(AbstractNewConfigurationView configurationView) {
 
     }
 

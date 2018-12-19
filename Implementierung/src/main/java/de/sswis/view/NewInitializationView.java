@@ -256,7 +256,7 @@ public class NewInitializationView implements AbstractNewInitializationView{
     }
 
     /**
-     * @noinspection ALL
+     * @return die Komponente
      */
     public JComponent $$$getRootComponent$$$() {
         return panel1;

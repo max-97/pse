@@ -86,7 +86,7 @@ public interface AbstractGuiFactory {
      * Erstellt ein Fenster zum Erstellen von Initialisierungen.
      * @return ein Fenster zum Erstellen von Initialisierungen
      */
-    Object createNewInitializationView();
+    AbstractNewInitializationView createNewInitializationView();
 
     /**
      * Erstellt ein Fenster zum Erstellen von Strategien.

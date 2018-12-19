@@ -8,8 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ShowCompareView implements AbstractShowCompareView{
-    private JTree wählenSieEineKonfigurationTree;
-    private JRadioButton wähleFürAlleKonfigurationenRadioButton;
+    private JTree waehlenSieEineKonfigurationTree;
+    private JRadioButton waehleFuerAlleKonfigurationenRadioButton;
     private JRadioButton zeigeDieKTeRadioButton;
     private JFormattedTextField formattedTextField1;
     private JTabbedPane tabbedPane1;
@@ -48,10 +48,10 @@ public class ShowCompareView implements AbstractShowCompareView{
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel5, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        wähleFürAlleKonfigurationenRadioButton = new JRadioButton();
-        wähleFürAlleKonfigurationenRadioButton.setSelected(true);
-        wähleFürAlleKonfigurationenRadioButton.setText("Wähle für alle Konfigurationen");
-        panel5.add(wähleFürAlleKonfigurationenRadioButton, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        waehleFuerAlleKonfigurationenRadioButton = new JRadioButton();
+        waehleFuerAlleKonfigurationenRadioButton.setSelected(true);
+        waehleFuerAlleKonfigurationenRadioButton.setText("Wähle für alle Konfigurationen");
+        panel5.add(waehleFuerAlleKonfigurationenRadioButton, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         zeigeDieKTeRadioButton = new JRadioButton();
         zeigeDieKTeRadioButton.setText("Zeige die k'te Wiederholung");
         panel5.add(zeigeDieKTeRadioButton, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -128,13 +128,13 @@ public class ShowCompareView implements AbstractShowCompareView{
         panel10.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         panel10.add(scrollPane2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        wählenSieEineKonfigurationTree = new JTree();
-        wählenSieEineKonfigurationTree.setEditable(true);
-        wählenSieEineKonfigurationTree.setLargeModel(true);
-        wählenSieEineKonfigurationTree.setRootVisible(true);
-        wählenSieEineKonfigurationTree.setShowsRootHandles(true);
-        wählenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
-        scrollPane2.setViewportView(wählenSieEineKonfigurationTree);
+        waehlenSieEineKonfigurationTree = new JTree();
+        waehlenSieEineKonfigurationTree.setEditable(true);
+        waehlenSieEineKonfigurationTree.setLargeModel(true);
+        waehlenSieEineKonfigurationTree.setRootVisible(true);
+        waehlenSieEineKonfigurationTree.setShowsRootHandles(true);
+        waehlenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
+        scrollPane2.setViewportView(waehlenSieEineKonfigurationTree);
     }
 
 }

@@ -1,7 +1,7 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.AbstractGuiFactory;
-import de.sswis.view.Startfenster;
+import de.sswis.view.AbstractMainView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,14 +15,14 @@ import java.awt.event.ActionListener;
 public class ShowResultsHandler implements ActionListener {
 
     private AbstractGuiFactory Factory;
-    private Startfenster mainView;
+    private AbstractMainView mainView;
 
     /**
      *
      * @param mainView Hauptfenster mit den ausgewählten {@code Konfigurationen}
      * @param factory Fabrik zum Erstellen der View
      */
-    public ShowResultsHandler(Startfenster mainView, AbstractGuiFactory factory) {
+    public ShowResultsHandler(AbstractMainView mainView, AbstractGuiFactory factory) {
 
     }
 

@@ -63,7 +63,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     }
 
     @Override
-    public Object createNewInitializationView() {
+    public AbstractNewInitializationView createNewInitializationView() {
         return null;
     }
 

@@ -1,6 +1,6 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.view.NeueInitialisierung;
+import de.sswis.view.AbstractNewInitializationView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
  */
 public class SaveInitializationsHandler implements ActionListener {
 
-    private NeueInitialisierung initializationView;
+    private AbstractNewInitializationView initializationView;
 
     /**
      *
      * @param initializationView die View mit der zu speichernden Initialisierung
      */
-    public SaveInitializationsHandler(NeueInitialisierung initializationView) {
+    public SaveInitializationsHandler(AbstractNewInitializationView initializationView) {
 
     }
 
