@@ -1,0 +1,32 @@
+@startuml
+skinparam sequenceParticipant underline
+hide footbox
+
+
+participant "sim:Simulation" as A
+participant ":PairingAlgorithm" as B
+participant ":AdaptationAlgorithm" as C
+
+ -> A: run()
+activate A
+
+loop <maxZyklen und kein Gleichgewicht
+  loop Runden
+  A -> B: currentPairs=getPairing(sim)
+  activate B
+  A <-- B
+  deactivate B
+  A -> A: simulate()
+  activate A
+  deactivate A
+  end
+  A -> C: adapt(sim)
+  activate C
+  A <-- C
+  deactivate C
+end
+
+deactivate A
+
+
+@enduml
