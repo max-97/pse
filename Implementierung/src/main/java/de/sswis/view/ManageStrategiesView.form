@@ -24,7 +24,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="b6259" class="javax.swing.JButton" binding="änderungenSpeichernUndSchließenButton" default-binding="true">
+              <component id="b6259" class="javax.swing.JButton" binding="aenderungenSpeichernUndSchließenButton">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -112,7 +112,7 @@
                         </constraints>
                         <properties/>
                       </component>
-                      <component id="b22c3" class="javax.swing.JButton" binding="kombinierteStrategieLöschenButton" default-binding="true">
+                      <component id="b22c3" class="javax.swing.JButton" binding="kombinierteStrategieLoeschenButton">
                         <constraints>
                           <grid row="10" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                         </constraints>

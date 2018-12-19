@@ -50,7 +50,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="5d14" class="javax.swing.JTree" binding="wählenSieEineKonfigurationTree" custom-create="true" default-binding="true">
+              <component id="5d14" class="javax.swing.JTree" binding="waehlenSieEineKonfigurationTree" custom-create="true">
                 <constraints/>
                 <properties>
                   <editable value="true"/>

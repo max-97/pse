@@ -9,10 +9,10 @@ import java.awt.*;
 
 public class ManageGamesView implements AbstractManageGamesView{
     private JTextPane textPane1;
-    private JButton spielLöschenButton;
+    private JButton spielLoeschenButton;
     private JButton neuesSpielButton;
     private JButton abbrechenButton;
-    private JButton änderungenSpeichernUndSchließenButton;
+    private JButton aenderungenSpeichernUndSchließenButton;
     private JButton spielBearbeitenButton;
 
     {
@@ -35,9 +35,9 @@ public class ManageGamesView implements AbstractManageGamesView{
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        änderungenSpeichernUndSchließenButton = new JButton();
-        änderungenSpeichernUndSchließenButton.setText("Änderungen speichern und schließen");
-        panel2.add(änderungenSpeichernUndSchließenButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        aenderungenSpeichernUndSchließenButton = new JButton();
+        aenderungenSpeichernUndSchließenButton.setText("Änderungen speichern und schließen");
+        panel2.add(aenderungenSpeichernUndSchließenButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         abbrechenButton = new JButton();
         abbrechenButton.setText("Abbrechen");
         panel2.add(abbrechenButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -94,9 +94,9 @@ public class ManageGamesView implements AbstractManageGamesView{
         panel4.add(label8, new GridConstraints(8, 0, 1, 6, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         textPane1 = new JTextPane();
         panel4.add(textPane1, new GridConstraints(9, 0, 1, 6, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        spielLöschenButton = new JButton();
-        spielLöschenButton.setText("Spiel löschen");
-        panel4.add(spielLöschenButton, new GridConstraints(10, 5, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spielLoeschenButton = new JButton();
+        spielLoeschenButton.setText("Spiel löschen");
+        panel4.add(spielLoeschenButton, new GridConstraints(10, 5, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
         label9.setText("Gefangenendilemma");
         panel4.add(label9, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

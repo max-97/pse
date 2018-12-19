@@ -8,10 +8,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ManageStrategiesView implements AbstractManageStrategiesView{
-    private JButton änderungenSpeichernUndSchließenButton;
+    private JButton aenderungenSpeichernUndSchließenButton;
     private JButton abbrechenButton;
     private JTextPane textPane1;
-    private JButton kombinierteStrategieLöschenButton;
+    private JButton kombinierteStrategieLoeschenButton;
     private JButton neueKombinierteStrategieButton;
     private JButton kombinierteStrategieBearbeitenButton;
 
@@ -38,9 +38,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3, new GridConstraints(5, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        änderungenSpeichernUndSchließenButton = new JButton();
-        änderungenSpeichernUndSchließenButton.setText("Änderungen speichern und schließen");
-        panel3.add(änderungenSpeichernUndSchließenButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        aenderungenSpeichernUndSchließenButton = new JButton();
+        aenderungenSpeichernUndSchließenButton.setText("Änderungen speichern und schließen");
+        panel3.add(aenderungenSpeichernUndSchließenButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         abbrechenButton = new JButton();
         abbrechenButton.setText("Abbrechen");
         panel3.add(abbrechenButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -66,9 +66,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
         panel5.add(label1, new GridConstraints(8, 0, 1, 9, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         textPane1 = new JTextPane();
         panel5.add(textPane1, new GridConstraints(9, 0, 1, 9, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        kombinierteStrategieLöschenButton = new JButton();
-        kombinierteStrategieLöschenButton.setText("kombinierte Strategie löschen");
-        panel5.add(kombinierteStrategieLöschenButton, new GridConstraints(10, 8, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        kombinierteStrategieLoeschenButton = new JButton();
+        kombinierteStrategieLoeschenButton.setText("kombinierte Strategie löschen");
+        panel5.add(kombinierteStrategieLoeschenButton, new GridConstraints(10, 8, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         Font label2Font = this.$$$getFont$$$(null, Font.BOLD, -1, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);

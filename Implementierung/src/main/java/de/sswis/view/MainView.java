@@ -21,7 +21,7 @@ public class MainView implements AbstractMainView {
 
     private JButton simulationenStartenButton;
     private JButton ergebnisseAnzeigenButton;
-    private JTree wählenSieEineKonfigurationTree;
+    private JTree waehlenSieEineKonfigurationTree;
     private JButton ergebisseSpeichernButton;
 
     //public MainView() {}
@@ -67,12 +67,12 @@ public class MainView implements AbstractMainView {
         scrollPane1.setHorizontalScrollBarPolicy(31);
         scrollPane1.setVerticalScrollBarPolicy(22);
         panel3.add(scrollPane1, new GridConstraints(1, 0, 6, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        wählenSieEineKonfigurationTree.setEditable(true);
-        wählenSieEineKonfigurationTree.setLargeModel(true);
-        wählenSieEineKonfigurationTree.setRootVisible(true);
-        wählenSieEineKonfigurationTree.setShowsRootHandles(true);
-        wählenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
-        scrollPane1.setViewportView(wählenSieEineKonfigurationTree);
+        waehlenSieEineKonfigurationTree.setEditable(true);
+        waehlenSieEineKonfigurationTree.setLargeModel(true);
+        waehlenSieEineKonfigurationTree.setRootVisible(true);
+        waehlenSieEineKonfigurationTree.setShowsRootHandles(true);
+        waehlenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
+        scrollPane1.setViewportView(waehlenSieEineKonfigurationTree);
         final JLabel label2 = new JLabel();
         label2.setText("Wählen Sie eine Konfiguration");
         panel3.add(label2, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
