@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class NeueInitialisierung {
+public class NewInitializationView implements AbstractNewInitializationView{
 
     private JPanel panel1;
     private JTabbedPane tabbedPane1;

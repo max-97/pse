@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class Vergleichfenster {
+public class ShowCompareView implements AbstractShowCompareView{
     private JTree wählenSieEineKonfigurationTree;
     private JRadioButton wähleFürAlleKonfigurationenRadioButton;
     private JRadioButton zeigeDieKTeRadioButton;

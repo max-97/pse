@@ -3,15 +3,28 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model;
+import de.sswis.view.model.Configuration;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Startfenster {
+import java.util.List;
+
+
+
+public class MainView implements AbstractMainView {
+
+
+    private List<Configuration> configurations;
+
+
     private JButton simulationenStartenButton;
     private JButton ergebnisseAnzeigenButton;
     private JTree wählenSieEineKonfigurationTree;
     private JButton ergebisseSpeichernButton;
+
+    //public MainView() {}
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class ErgebnisFenster {
+public class ShowResultView implements AbstractShowResultView {
     private JButton vergleichenMitButton;
     private JRadioButton zeigeDurchschnittAllerWiederholungenRadioButton;
     private JRadioButton zeigeDieKTeRadioButton;

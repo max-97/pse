@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class StrategienMenue {
+public class ManageStrategiesView implements AbstractManageStrategiesView{
     private JButton änderungenSpeichernUndSchließenButton;
     private JButton abbrechenButton;
     private JTextPane textPane1;
