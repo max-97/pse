@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ManageGamesView implements AbstractManageGamesView{
+
+
+
     private JTextPane textPane1;
     private JButton spielLoeschenButton;
     private JButton neuesSpielButton;

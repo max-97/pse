@@ -2,17 +2,19 @@ package de.sswis.view.model;
 
 import java.util.List;
 
-public class Strategy {
+public class VMInitialization {
 
     private String name;
-    private String description;
-
-
-    private List<String> combinedStrategies;
-    private List<String> probalities;
+    private List<VMGroup> groups;
+    private int agentCount;
 
     public boolean isCorrect () {
         //TODO: implement me
         return false;
     }
+
+
+
 }
+
+

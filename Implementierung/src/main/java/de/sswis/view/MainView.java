@@ -4,7 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.model;
-import de.sswis.view.model.Configuration;
+import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class MainView implements AbstractMainView {
 
 
-    private List<Configuration> configurations;
+    private List<VMConfiguration> configurations;
 
 
     private JButton simulationenStartenButton;

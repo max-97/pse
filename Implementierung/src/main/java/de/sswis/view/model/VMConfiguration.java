@@ -2,10 +2,10 @@ package de.sswis.view.model;
 
 import java.util.List;
 
-public class Configuration {
+public class VMConfiguration {
 
-    private Game game;
-    private Initialization init;
+    private VMGame game;
+    private VMInitialization init;
     private String adaptationAlg;
     private String pairingAlg;
     private String rankingAlg;
@@ -13,9 +13,9 @@ public class Configuration {
     private int cycles;
     private int cycleRoundCount;
     private double adaptationProbability;
-    private List<Strategy> strategies;
+    private List<VMStrategy> strategies;
 
-    private Result result;
+    private VMResult result;
 
     public boolean isCorrect () {
         //TODO: implement me
