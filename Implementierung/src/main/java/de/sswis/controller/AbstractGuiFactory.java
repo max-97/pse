@@ -1,5 +1,7 @@
 package de.sswis.controller;
 
+import de.sswis.view.*;
+
 /**
  * Eine Fabrik zum Erzeugen von GUIs. Der Nutzer dieser Schnittstelle kann sich alle Benutzeroberflächen erzeugen
  * lassen, die in Sswis verwendet werden können. Die Methoden liefern alle eine Schnittstelle zurück, welches das
@@ -24,49 +26,61 @@ public interface AbstractGuiFactory {
      * Erstellt ein Hauptfenster.
      * @return ein Hauptfenster
      */
-    Object createMainView();
+    AbstractMainView createMainView();
 
     /**
      * Erstellt ein Ergebnisansichtsfenster.
      * @return ein Ergebnisansichtsfenster
      */
-    Object createShowResultView();
+    AbstractShowResultView createShowResultView();
+
+    /**
+     * Erstellt eine Ergebnisansicht zum Verlgichen von Simulationen.
+     * @return eine Ergebnisansicht zum Verlgichen von Simulationen
+     */
+    AbstractShowCompareView createCompareResultsView();
+
+    /**
+     * Erstellt eine Ergebnisansicht mit allen Simulationen einer Multikonfiguration.
+     * @return eine Ergebnisansicht mit allen Simulationen einer Multikonfiguration
+     */
+    AbstractShowMultiResultView createMultiResultsView();
 
     /**
      * Erstellt ein Konfigurationsverwaltungsfenster.
      * @return ein Konfigurationsverwaltungsfenster
      */
-    Object createManageConfigurationsView();
+    AbstractManageConfigurationsView createManageConfigurationsView();
 
     /**
      * Erstellt ein Initialisierungsverwaltungsfenster.
      * @return ein Initialisierungsverwaltungsfenster
      */
-    Object createManageInitializationsView();
+    AbstractManageInitializationsView createManageInitializationsView();
 
     /**
      * Erstellt ein Strategieverwaltungsfenster.
      * @return ein Strategieverwaltungsfenster
      */
-    Object createManageStrategiesView();
+    AbstractManageStrategiesView createManageStrategiesView();
 
     /**
      * Erstellt ein Spieleverwaltungsfenster.
      * @return ein Spieleverwaltungsfenster
      */
-    Object createManageGamesView();
+    AbstractManageGamesView createManageGamesView();
 
     /**
      * Erstellt ein Ergebnisverwaltungsfenster.
      * @return ein Ergebnisverwaltungsfenster
      */
-    Object createManageResultsView();
+    AbstractManageResultsView createManageResultsView();
 
     /**
      * Erstellt ein Fenster zum Erstellen von Konfigurationen.
      * @return ein Fenster zum Erstellen von Konfigurationen
      */
-    Object createNewConfigurationView();
+    AbstractNewConfigurationView createNewConfigurationView();
 
     /**
      * Erstellt ein Fenster zum Erstellen von Initialisierungen.
@@ -78,12 +92,12 @@ public interface AbstractGuiFactory {
      * Erstellt ein Fenster zum Erstellen von Strategien.
      * @return ein Fenster zum Erstellen von Strategien
      */
-    Object createNewStrategyView();
+    AbstractNewStrategyView createNewStrategyView();
 
     /**
      * Erstellt ein Fenster zum Erstellen von Spielen.
      * @return ein Fenster zum Erstellen von Spielen
      */
-    Object createNewGameView();
+    AbstractNewGameView createNewGameView();
 
 }

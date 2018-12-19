@@ -1,5 +1,7 @@
 package de.sswis.controller;
 
+import de.sswis.view.*;
+
 /**
  * Eine Fabrik zum Erzeugen von GUIs mit {@code Swing}. Diese Fabrik erzeugt Benutzeroberflächen, welche ausschließlich
  * aus Swing-Elementen bestehen. Die Benutzeroberflächen erhalten {@link java.awt.event.ActionListener}, die das
@@ -11,42 +13,52 @@ package de.sswis.controller;
 public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
-    public Object createMainView() {
+    public AbstractMainView createMainView() {
         return null;
     }
 
     @Override
-    public Object createShowResultView() {
+    public AbstractShowResultView createShowResultView() {
         return null;
     }
 
     @Override
-    public Object createManageConfigurationsView() {
+    public AbstractShowCompareView createCompareResultsView() {
         return null;
     }
 
     @Override
-    public Object createManageInitializationsView() {
+    public AbstractShowMultiResultView createMultiResultsView() {
         return null;
     }
 
     @Override
-    public Object createManageStrategiesView() {
+    public AbstractManageConfigurationsView createManageConfigurationsView() {
         return null;
     }
 
     @Override
-    public Object createManageGamesView() {
+    public AbstractManageInitializationsView createManageInitializationsView() {
         return null;
     }
 
     @Override
-    public Object createManageResultsView() {
+    public AbstractManageStrategiesView createManageStrategiesView() {
         return null;
     }
 
     @Override
-    public Object createNewConfigurationView() {
+    public AbstractManageGamesView createManageGamesView() {
+        return null;
+    }
+
+    @Override
+    public AbstractManageResultsView createManageResultsView() {
+        return null;
+    }
+
+    @Override
+    public AbstractNewConfigurationView createNewConfigurationView() {
         return null;
     }
 
@@ -56,12 +68,12 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     }
 
     @Override
-    public Object createNewStrategyView() {
+    public AbstractNewStrategyView createNewStrategyView() {
         return null;
     }
 
     @Override
-    public Object createNewGameView() {
+    public AbstractNewGameView createNewGameView() {
         return null;
     }
 }
