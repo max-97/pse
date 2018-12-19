@@ -1,6 +1,6 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.view.SpieleMenue;
+import de.sswis.view.AbstractNewGameView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
  */
 public class SaveGamesHandler implements ActionListener {
 
-    private SpieleMenue gameView;
+    private AbstractNewGameView gameView;
 
     /**
      *
      * @param gameView die View mit dem zu speichernden {@code Spiel}
      */
-    public SaveGamesHandler(SpieleMenue gameView) {
+    public SaveGamesHandler(AbstractNewGameView gameView) {
 
     }
 

@@ -42,7 +42,6 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-noindex',
             '-tree',
             '-hyperref',
-            '-include',
             '-nosummaries',
             '-nofieldsummary',
             '-noconstructorsummary',

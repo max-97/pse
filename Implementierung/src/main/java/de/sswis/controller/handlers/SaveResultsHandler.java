@@ -1,6 +1,6 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.view.Startfenster;
+import de.sswis.view.AbstractMainView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
  */
 public class SaveResultsHandler implements ActionListener {
 
-    private Startfenster mainView;
+    private AbstractMainView mainView;
 
     /**
      *
      * @param mainView die View mit den zu speichernden {@code Ergebnissen}
      */
-    public SaveResultsHandler(Startfenster mainView) {
+    public SaveResultsHandler(AbstractMainView mainView) {
 
     }
 

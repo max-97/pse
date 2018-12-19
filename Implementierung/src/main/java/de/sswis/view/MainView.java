@@ -3,12 +3,10 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.view.model;
 import de.sswis.view.model.Configuration;
 
 import javax.swing.*;
 import java.awt.*;
-
 import java.util.List;
 
 
