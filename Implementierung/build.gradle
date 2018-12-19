@@ -46,6 +46,7 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-nofieldsummary',
             '-noconstructorsummary',
             '-shortinherited',
+            '-include',
             '-output', '../Entwurf/javadoc.tex',
             '-title', 'My Title',
             '-author', 'My Name',
