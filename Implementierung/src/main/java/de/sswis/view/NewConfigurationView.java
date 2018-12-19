@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class Konfiguration {
+public class NewConfigurationView implements AbstractNewConfigurationView{
     private JComboBox comboBox1;
     private JComboBox comboBox2;
     private JComboBox comboBox3;

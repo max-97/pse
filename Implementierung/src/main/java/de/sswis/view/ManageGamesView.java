@@ -7,7 +7,7 @@ import com.intellij.uiDesigner.core.Spacer;
 import javax.swing.*;
 import java.awt.*;
 
-public class SpieleMenue {
+public class ManageGamesView implements AbstractManageGamesView{
     private JTextPane textPane1;
     private JButton spielLöschenButton;
     private JButton neuesSpielButton;
