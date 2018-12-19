@@ -1,4 +1,5 @@
-import de.sswis.view.AbstractNewStrategyView;
+package de.sswis.view;
+
 
 public class NewStrategyView implements AbstractNewStrategyView {
 }

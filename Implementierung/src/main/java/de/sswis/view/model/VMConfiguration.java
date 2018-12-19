@@ -22,4 +22,9 @@ public class VMConfiguration {
         return false;
     }
 
+    public boolean hasResult () {
+        //TODO: implement me
+        return false;
+    }
+
 }

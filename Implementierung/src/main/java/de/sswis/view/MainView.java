@@ -25,6 +25,11 @@ public class MainView implements AbstractMainView {
 
     //public MainView() {}
 
+
+    public void addConfiguration(VMConfiguration configuration) {}
+
+    private void update() {}
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
 
