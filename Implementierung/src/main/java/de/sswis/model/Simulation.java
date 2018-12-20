@@ -3,6 +3,7 @@ package de.sswis.model;
 import de.sswis.controller.SimulationObserver;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Observable;
 
 public class Simulation implements Runnable{
@@ -12,6 +13,7 @@ public class Simulation implements Runnable{
     private HashMap<Agent, Integer> currentRanking;
     private Pair[] currentPairs;
     private boolean equilibrium;
+    private List<SimulationObserver> observers;
 
     public Simulation(Configuration config) {
 
