@@ -1,0 +1,108 @@
+@startuml
+
+    namespace de.sswis.view {
+
+    }
+
+    namespace de.sswis.controller {
+
+        namespace de.sswis.controller.handlers {
+
+        }
+
+        interface de.sswis.controller.AbstractGuiFactory [[AbstractGuiFactory.html]] {
+            {abstract} +createMainView(): AbstractMainView
+            {abstract} +createShowResultView(): AbstractShowResultView
+            {abstract} +createCompareResultsView(): AbstractShowCompareView
+            {abstract} +createMultiResultsView(): AbstractShowMultiResultView
+            {abstract} +createManageConfigurationsView(): AbstractManageConfigurationsView
+            {abstract} +createManageInitializationsView(): AbstractManageInitializationsView
+            {abstract} +createManageStrategiesView(): AbstractManageStrategiesView
+            {abstract} +createManageGamesView(): AbstractManageGamesView
+            {abstract} +createManageResultsView(): AbstractManageResultsView
+            {abstract} +createNewConfigurationView(): AbstractNewConfigurationView
+            {abstract} +createNewInitializationView(): AbstractNewInitializationView
+            {abstract} +createNewStrategyView(): AbstractNewStrategyView
+            {abstract} +createNewGameView(): AbstractNewGameView
+        }
+
+        class de.sswis.controller.FileManager [[FileManager.html]] {
+            +saveConfigurations(Collection<Configuration>): void
+            +saveGame(Game): void
+            +saveInitalization(Initialization): void
+            +saveCombinedStrategy(CombinedStrategy): void
+            +saveResult(Object): void
+            +loadConfigurations(String): Collection<Configuration>
+            +loadGame(String): Game
+            +loadInitalization(String): Initialization
+            +loadCombinedStrategy(String): CombinedStrategy
+            +loadResult(String): Object
+            +deleteConfigurations(String): void
+            +deleteGame(String): void
+            +deleteInitalization(String): void
+            +deleteCombinedStrategy(String): void
+            +deleteResult(Object): void
+        }
+
+        class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
+            +addConfigurations(Collection<Configuration>): void
+            +addAgent(Agent): void
+            +addGame(Game): void
+            +addCombinedStrategy(CombinedStrategy): void
+            +addInitialization(Initialization): void
+            +deleteConfigurations(String): void
+            +deleteAgents(int): void
+            +deleteGame(String): void
+            +deleteCombinedStrategy(String): void
+            +deleteInitialization(String): void
+            +getConfigurations(): Map<String, Collection<Configuration>>
+            +getConfiguration(String): Configuration
+            +getAgents(): Map<Integer, Agent>
+            +getAgent(int): Agent
+            +getGames(): Map<String, Game>
+            +getGame(String): Game
+            +getCombinedStrategies(): Map<String, CombinedStrategy>
+            +getCombinedStrategy(String): CombinedStrategy
+            +getInitializations(): Map<String, Initialization>
+            +getInitialization(String): Initialization
+        }
+
+        class de.sswis.controller.SwingGuiFactory [[SwingGuiFactory.html]] {
+            +createMainView(): AbstractMainView
+            +createShowResultView(): AbstractShowResultView
+            +createCompareResultsView(): AbstractShowCompareView
+            +createMultiResultsView(): AbstractShowMultiResultView
+            +createManageConfigurationsView(): AbstractManageConfigurationsView
+            +createManageInitializationsView(): AbstractManageInitializationsView
+            +createManageStrategiesView(): AbstractManageStrategiesView
+            +createManageGamesView(): AbstractManageGamesView
+            +createManageResultsView(): AbstractManageResultsView
+            +createNewConfigurationView(): AbstractNewConfigurationView
+            +createNewInitializationView(): AbstractNewInitializationView
+            +createNewStrategyView(): AbstractNewStrategyView
+            +createNewGameView(): AbstractNewGameView
+        }
+
+        de.sswis.controller.ModelProvider -> de.sswis.controller.ModelProvider: instance
+        de.sswis.controller.AbstractGuiFactory <|.. de.sswis.controller.SwingGuiFactory
+        de.sswis.controller.handlers -> de.sswis.view : view
+        de.sswis.view -> de.sswis.controller.handlers : actionHandler
+        de.sswis.controller.SwingGuiFactory -> de.sswis.view : swingView
+        de.sswis.controller.handlers -> de.sswis.controller.AbstractGuiFactory : factory
+        de.sswis.controller.SwingGuiFactory -> de.sswis.controller.handlers : actionHandler
+        de.sswis.controller.handlers -> de.sswis.controller.FileManager
+        de.sswis.controller.handlers -> de.sswis.controller.ModelProvider : modelProvider
+    }
+
+@enduml
+
+PlantUML version 1.2018.09(Fri Jul 27 18:58:18 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Windows 10
+OS Version: 10.0
+Default Encoding: Cp1252
+Language: de
+Country: DE
