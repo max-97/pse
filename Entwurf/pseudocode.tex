@@ -2,44 +2,53 @@
 
 \section{Bewertungsalgorithmen}
 
+Im Folgenden werden die Bewertungsalgorithmen /F0810/ (\emph{AverageRank}) und /W0410/ (\emph{CustomCycleScore}) in Pseudocode näher beschrieben. 
+
 \begin{lstlisting}
-// AverageRank.java
+AverageRank:
+
 public HashMap<Agent, Integer> getRankings(Simulation sim) 
 	
-	currentRound <- sim.getCurrentRound()
+	currentCycle <- sim.getCurrentCycle()
 	agents <- sim.getAgents()
 	ranks <- List of HashMap<Agent, Integer>	
-	rounds <- max(1, currentRound - WINDOW_SIZE)
+	cycles <- max(1, currentCycle - WINDOW_SIZE)
 	
-	for i <- 0; i < rounds; i++ 
-		ranks[i] <- rankOfAgents(agents, i, WINDOW_SIZE)
+	for i <- 0; i < cycles; i++ 
+		ranks[i] <- rankOfAgents(agents, i, i + WINDOW_SIZE)
 	
 	result <- HashMap<Agent, Integer>	
 	
 	for Agent a in agents
 		averageRank <- 0
-		for i <- 0; i < rounds; i++
+		for i <- 0; i < cycles; i++
 			averageRank <- averageRank + ranks[i].get(a)
-		averageRank <- roundDown(averageRank / rounds)
+		averageRank <- roundDown(averageRank / cycles)
 		
 		result.put(a, averageRank)
 	
-	resolveConflicts(result)
+	result <- resolveConflicts(result)
 	return result
 \end{lstlisting}
-
+\emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. In Zeile 8 wird sicher gestellt, dass die Schleife mindestens einmal durchlaufen wird, auch wenn \emph{WINDOW\_SIZE} größer als die bisherige Zyklenanzahl ist.
+Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} berechnet die Gesamtpunktzahl der Agenten von Zyklus \emph{start} bis Zyklus \emph{end} und platziert die Agenten gemäß dieser Gesamtpunktzahl in einer Rangliste. Sollte $i + WINDOW\_SIZE > currentCycle$ gelten, wird nur bis \emph{currentCycle} summiert. 
+In der Schleife ab Zeile 15 wird der Durchschnittsrang von allen Agenten gebildet.
+Es kann vorkommen, dass durch die Durchschnittsbildung und abrunden in Zeile 18 mehrere Agenten den gleichen Rang bekommen. Diese Konflikte werden durch \emph{resloveConflict(ranks)} gelöst. Dabei werden zuerst die Agenten nach ihrem Rang sortiert. Bei gleichem Rang hat der Agent mit der höheren Gesamtpunktzahl über alle Zyklen den höheren Rang, bei gleicher Gesamtpunktzahl ist die Platzierung zufällig. Der finale Rang der Agenten entspricht der Platzierung nach dieser Sortierung.
 
 \begin{lstlisting}
-// CustomCycleScore.java
+CustomCycleScore:
+
 public HashMap<Agent, Integer> getRankings(Simulation sim) 
 	
 	agents <- sim.getAgents()
-	currentRound <- sim.getCurrentRound()
-	ranks <- rankOfAgents(agents, max(1, currentRound - WINDOW_SIZE), currentRound)
+	currentCycle <- sim.getCurrentCycle()
+	ranks <- rankOfAgents(agents, currentCycle - WINDOW_SIZE, currentCycle)
 	
 	return ranks
 	
 \end{lstlisting}
+
+
 
 \section{Paarungsalgorithmen}
 
