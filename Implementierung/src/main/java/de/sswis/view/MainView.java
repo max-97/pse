@@ -5,6 +5,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
 import de.sswis.view.model.VMConfiguration;
+import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,12 +24,28 @@ public class MainView implements AbstractMainView {
     private JTree waehlenSieEineKonfigurationTree;
     private JButton ergebisseSpeichernButton;
 
-    //public MainView() {}
 
 
+    @Override
     public void addConfiguration(VMConfiguration configuration) {}
 
-    private void update() {}
+    @Override
+    public void removeConfiguration(String configurationName) {
+
+    }
+
+    @Override
+    public void  addResult(String NameConfiguration, VMResult result){}
+
+    @Override
+    public void setSimulationFinished (String NameConfiguration) {}
+
+    @Override
+    public void update() {}
+
+
+
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

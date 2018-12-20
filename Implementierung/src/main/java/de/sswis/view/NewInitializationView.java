@@ -3,11 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NewInitializationView implements AbstractNewInitializationView{
+
+    private VMInitialization vmInitialization;
 
     private JPanel panel1;
     private JTabbedPane tabbedPane1;
