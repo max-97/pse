@@ -2,7 +2,7 @@
 
 \section{Bewertungsalgorithmen}
 
-Im Folgenden werden die Bewertungsalgorithmen /F0810/ (\emph{AverageRank}) und /W0410/ (\emph{CustomCycleScore}) in Pseudocode näher beschrieben. 
+Im Folgenden werden die Bewertungsalgorithmen /F0810/ (\emph{AverageRank}) und /W0410/ (\emph{CustomCycleScore}) aus dem Pflichtenheft in Pseudocode näher beschrieben. 
 
 \begin{lstlisting}
 AverageRank:
@@ -47,37 +47,41 @@ public HashMap<Agent, Integer> getRankings(Simulation sim)
 	return ranks
 	
 \end{lstlisting}
-
+\emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} ist hierbei die gleiche wie in \emph{AverageRank}. Sollte $currentCycle - WINDOW\_SIZE < 0$ gelten, wird ab dem ersten Zyklus summiert. Somit werden nur die letzten \emph{WINDOW\_SIZE} Zyklen für die Platzierung berücksichtigt. 
 
 
 \section{Paarungsalgorithmen}
 
+Für den Paarungsalgorithmus verwenden wir einen Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}. 
+
 \begin{lstlisting}
-// Brut force pair matching
+Brut force pair matching:
+
 public void brutForceMatching(Agent[] agents, Simulation sim) 
 
 	shuffle(agents)
 	for each unmatched agent a in agents
 		best <- infinity
-		for each unmatched agent b after a in agents#
+		for each unmatched agent b after a in agents
 			d <- distance(a, b)
 			if d < best
 				best <- d
 				bestPartner <- b
 				
-	sim.setPair(a, b)
-	mark a and b as paired		
+	sim.setPair(a, bestPartner)
+	mark a and bestPartner as paired		
 	
 \end{lstlisting}
-
+Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P('b kooperiert mit a'))$. $P$ ist hierbei eine Wahrscheinlichkeitsfunktion. Wenn die kombinierte Strategien deterministisch sind gilt $distance(a, b) = 0$ genau dann, wenn $a$ und $b$ miteinander kooperieren und $distance(a, b) = 1$ genau dann, wenn $a$ mit $b$ oder $b$ mit $a$ nicht kooperiert. Sind sie nicht deterministisch können Werte zwischen 0 und 1 vorkommen.
 
 \begin{lstlisting}
-// Brut force pair matching heuristic
-public void brutForceMatchingheuristic(Agent[] agents, Simulation sim) 
+Brut force pair matching heuristic:
+
+public void brutForceMatchingHeuristic(Agent[] agents, Simulation sim) 
 	shuffle(agents)
 	for each unmatched agent a in agents
 		best <- infinity
-		for each unmatched agent b after a in agents#
+		for each unmatched agent b after a in agents
 			d <- distance(a, b)			
 			if d < best
 				best <- d
@@ -89,3 +93,4 @@ public void brutForceMatchingheuristic(Agent[] agents, Simulation sim)
 	mark a and bestPartner as paired		
 	
 \end{lstlisting}
+Eine weitere mögliche Anpassung ist zwei Agenten zu Paaren, wenn $distance(a, b) \leq \epsilon$ gilt für $\epsilon \geq 0$. Dadurch werden Agenten gepaart, die sehr wahrscheinlich miteinander kooperieren. Man beachte, dass für $\epsilon = 0$ der Algorithmus identisch zu dem Ersten ist. Allerdings hat er in vielen Fällen eine schneller Laufzeit, da sobald ein Agent gefunden wurde, sodass beide kooperieren, dieser mit ihm gepaart wird.
