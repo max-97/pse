@@ -3,11 +3,17 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class ShowCompareView implements AbstractShowCompareView{
+
+    private List<VMConfiguration> configurations;
+
+
     private JTree waehlenSieEineKonfigurationTree;
     private JRadioButton waehleFuerAlleKonfigurationenRadioButton;
     private JRadioButton zeigeDieKTeRadioButton;

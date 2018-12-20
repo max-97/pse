@@ -3,6 +3,7 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model.VMStrategy;
 
 import javax.swing.*;
 import java.awt.*;
@@ -160,4 +161,18 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
         return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
+    @Override
+    public void addResult(VMStrategy vmStrategy) {
+
+    }
+
+    @Override
+    public void removeResult(String strategyName) {
+
+    }
+
+    @Override
+    public void update() {
+
+    }
 }

@@ -3,12 +3,15 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class ManageGamesView implements AbstractManageGamesView{
 
+    private List<VMGame> vmGames;
 
 
     private JTextPane textPane1;
@@ -127,5 +130,20 @@ public class ManageGamesView implements AbstractManageGamesView{
         panel1.add(neuesSpielButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer7 = new Spacer();
         panel1.add(spacer7, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    }
+
+    @Override
+    public void addGame(VMGame game) {
+
+    }
+
+    @Override
+    public void removeGame(String gameName) {
+
+    }
+
+    @Override
+    public void update() {
+
     }
 }
