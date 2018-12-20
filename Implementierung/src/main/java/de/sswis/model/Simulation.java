@@ -4,9 +4,8 @@ import de.sswis.controller.SimulationObserver;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Observable;
 
-public class Simulation implements Runnable{
+public class Simulation implements Runnable, ObservableSimulation {
     private Configuration config;
     private int round;
     private int cycle;
@@ -50,14 +49,17 @@ public class Simulation implements Runnable{
 
     }
 
+    @Override
     public void addObserver(SimulationObserver o) {
 
     }
 
+    @Override
     public void notifyObservers() {
 
     }
 
+    @Override
     public void deleteObserver(SimulationObserver o) {
 
     }
