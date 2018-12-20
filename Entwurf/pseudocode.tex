@@ -57,9 +57,10 @@ Für den Paarungsalgorithmus verwenden wir einen Anpassung des \emph{Brute Forec
 \begin{lstlisting}
 Brut force pair matching:
 
-public void brutForceMatching(Agent[] agents, Simulation sim) 
+public Pair[] getPairing(Agent[] agents) 
 
 	shuffle(agents)
+	pairs <- Pair[]
 	for each unmatched agent a in agents
 		best <- infinity
 		for each unmatched agent b after a in agents
@@ -68,8 +69,9 @@ public void brutForceMatching(Agent[] agents, Simulation sim)
 				best <- d
 				bestPartner <- b
 				
-	sim.setPair(a, bestPartner)
-	mark a and bestPartner as paired		
+		pairs.addPair(a, bestPartner)
+		mark a and bestPartner as paired		
+	return pairs	
 	
 \end{lstlisting}
 Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P('b kooperiert mit a'))$. $P$ ist hierbei eine Wahrscheinlichkeitsfunktion. Wenn die kombinierte Strategien deterministisch sind gilt $distance(a, b) = 0$ genau dann, wenn $a$ und $b$ miteinander kooperieren und $distance(a, b) = 1$ genau dann, wenn $a$ mit $b$ oder $b$ mit $a$ nicht kooperiert. Sind sie nicht deterministisch können Werte zwischen 0 und 1 vorkommen.
@@ -77,8 +79,9 @@ Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P(
 \begin{lstlisting}
 Brut force pair matching heuristic:
 
-public void brutForceMatchingHeuristic(Agent[] agents, Simulation sim) 
+public Pair[] getPairing(Agent[] agents) 
 	shuffle(agents)
+	pairs <- Pair[]
 	for each unmatched agent a in agents
 		best <- infinity
 		for each unmatched agent b after a in agents
@@ -89,8 +92,9 @@ public void brutForceMatchingHeuristic(Agent[] agents, Simulation sim)
 			if best <= epsilon
 				break			
 						
-	sim.setPair(a, bestPartner)
-	mark a and bestPartner as paired		
+		pairs.addPair(a, bestPartner)
+		mark a and bestPartner as paired
+	return pairs		
 	
 \end{lstlisting}
 Eine weitere mögliche Anpassung ist zwei Agenten zu Paaren, wenn $distance(a, b) \leq \epsilon$ gilt für $\epsilon \geq 0$. Dadurch werden Agenten gepaart, die sehr wahrscheinlich miteinander kooperieren. Man beachte, dass für $\epsilon = 0$ der Algorithmus identisch zu dem Ersten ist. Allerdings hat er in vielen Fällen eine schneller Laufzeit, da sobald ein Agent gefunden wurde, sodass beide kooperieren, dieser mit ihm gepaart wird.
