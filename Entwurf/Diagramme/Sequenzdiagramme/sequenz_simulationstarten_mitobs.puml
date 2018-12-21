@@ -12,9 +12,9 @@ participant ":ViewNotifyer" as VN
 
 
 
-U -> MV: "Simulation starten"
+U ->> MV: "Simulation starten"
 activate MV
-AL <<- MV: actionPerformed(e:ActionEvent)
+AL <- MV: actionPerformed(e:ActionEvent)
 activate AL
 
 MV <- AL: getSelectedConfig()
@@ -27,7 +27,7 @@ activate MP
 AL <<-- MP: config
 deactivate MP
 
-AL -> S :run()
+AL ->> S :run()
 activate S
 MV <<-- AL
 deactivate AL
