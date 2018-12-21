@@ -6,92 +6,145 @@
 
     namespace de.sswis.controller {
 
-        namespace de.sswis.controller.handlers {
+
+        together {
+            namespace de.sswis.controller.handlers {
+            }
+
+            class de.sswis.controller.AlgorithmLoader [[AlgorithmLoader.html]] {
+                +getAdaptAlgorithms(): List<AdaptationAlgorithm>
+                +getPairAlgorithms(): List<PairingAlgorithm>
+                +getRankAlgorithms(): List<RankingAlgorithm>
+            }
+
+            class de.sswis.controller.Communicator [[Communicator.html]] {
+                +parseCombinedStrategyToVMCombinedStrategy(CombinedStrategy): VMCombinedStrategy
+                +parseSimulationToVMConfiguration(Simulation): VMConfiguration
+                +parseGameToVMGame(Game): VMGame
+                +parseGroupToVMGroup(Group): VMGroup
+                +parseInitializationToVMInitialization(Initialization): VMInitialization
+                +parseSimulationToVMResult(Simulation): VMResult
+                +parseStrategyToVMStrategy(Strategy): VMStrategy
+                +parseVMCombinedStrategyToCombinedStrategy(VMCombinedStrategy): CombinedStrategy
+                +parseVMConfigToConfig(VMConfiguration): Configuration
+                +parseVMGameToGame(VMGame): Game
+                +parseVMGroupToGroup(VMGroup): Group
+                +parseVMInitializationToInitialization(VMInitialization): Initialization
+                +parseVMStrategyToStrategy(VMStrategy): Strategy
+            }
+
+            class de.sswis.controller.FileManager [[FileManager.html]] {
+                +saveConfigurations(Collection<Configuration>): void
+                +saveGame(Game): void
+                +saveInitalization(Initialization): void
+                +saveCombinedStrategy(CombinedStrategy): void
+                +saveResult(Object): void
+                +loadConfigurations(String): Collection<Configuration>
+                +loadGame(String): Game
+                +loadInitalization(String): Initialization
+                +loadCombinedStrategy(String): CombinedStrategy
+                +loadResult(String): Object
+                +deleteConfigurations(String): void
+                +deleteGame(String): void
+                +deleteInitalization(String): void
+                +deleteCombinedStrategy(String): void
+                +deleteResult(Object): void
+            }
+
+            class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
+                +addConfigurations(Collection<Configuration>): void
+                +addAgent(Agent): void
+                +addGame(Game): void
+                +addCombinedStrategy(CombinedStrategy): void
+                +addInitialization(Initialization): void
+                +deleteConfigurations(String): void
+                +deleteAgents(int): void
+                +deleteGame(String): void
+                +deleteCombinedStrategy(String): void
+                +deleteInitialization(String): void
+                +getConfigurations(): Map<String, Collection<Configuration>>
+                +getConfiguration(String): Configuration
+                +getAgents(): Map<Integer, Agent>
+                +getAgent(int): Agent
+                +getGames(): Map<String, Game>
+                +getGame(String): Game
+                +getCombinedStrategies(): Map<String, CombinedStrategy>
+                +getCombinedStrategy(String): CombinedStrategy
+                +getInitializations(): Map<String, Initialization>
+                +getInitialization(String): Initialization
+            }
+        }
+
+        together {
+            interface de.sswis.controller.AbstractGuiFactory [[AbstractGuiFactory.html]] {
+                {abstract} +createMainView(): AbstractMainView
+                {abstract} +createShowResultView(): AbstractShowResultView
+                {abstract} +createCompareResultsView(): AbstractShowCompareView
+                {abstract} +createMultiResultsView(): AbstractShowMultiResultView
+                {abstract} +createManageConfigurationsView(): AbstractManageConfigurationsView
+                {abstract} +createManageInitializationsView(): AbstractManageInitializationsView
+                {abstract} +createManageStrategiesView(): AbstractManageStrategiesView
+                {abstract} +createManageGamesView(): AbstractManageGamesView
+                {abstract} +createManageResultsView(): AbstractManageResultsView
+                {abstract} +createNewConfigurationView(): AbstractNewConfigurationView
+                {abstract} +createNewInitializationView(): AbstractNewInitializationView
+                {abstract} +createNewStrategyView(): AbstractNewStrategyView
+                {abstract} +createNewGameView(): AbstractNewGameView
+            }
+
+            class de.sswis.controller.SwingGuiFactory [[SwingGuiFactory.html]] {
+                +createMainView(): AbstractMainView
+                +createShowResultView(): AbstractShowResultView
+                +createCompareResultsView(): AbstractShowCompareView
+                +createMultiResultsView(): AbstractShowMultiResultView
+                +createManageConfigurationsView(): AbstractManageConfigurationsView
+                +createManageInitializationsView(): AbstractManageInitializationsView
+                +createManageStrategiesView(): AbstractManageStrategiesView
+                +createManageGamesView(): AbstractManageGamesView
+                +createManageResultsView(): AbstractManageResultsView
+                +createNewConfigurationView(): AbstractNewConfigurationView
+                +createNewInitializationView(): AbstractNewInitializationView
+                +createNewStrategyView(): AbstractNewStrategyView
+                +createNewGameView(): AbstractNewGameView
+            }
 
         }
 
-        interface de.sswis.controller.AbstractGuiFactory [[AbstractGuiFactory.html]] {
-            {abstract} +createMainView(): AbstractMainView
-            {abstract} +createShowResultView(): AbstractShowResultView
-            {abstract} +createCompareResultsView(): AbstractShowCompareView
-            {abstract} +createMultiResultsView(): AbstractShowMultiResultView
-            {abstract} +createManageConfigurationsView(): AbstractManageConfigurationsView
-            {abstract} +createManageInitializationsView(): AbstractManageInitializationsView
-            {abstract} +createManageStrategiesView(): AbstractManageStrategiesView
-            {abstract} +createManageGamesView(): AbstractManageGamesView
-            {abstract} +createManageResultsView(): AbstractManageResultsView
-            {abstract} +createNewConfigurationView(): AbstractNewConfigurationView
-            {abstract} +createNewInitializationView(): AbstractNewInitializationView
-            {abstract} +createNewStrategyView(): AbstractNewStrategyView
-            {abstract} +createNewGameView(): AbstractNewGameView
+        together {
+
+            interface de.sswis.controller.SimulationObserver [[SimulationObserver.html]] {
+                        {abstract} +update(Simulation): void
+            }
+
+            class de.sswis.controller.ViewNotifyer [[ViewNotifyer.html]] {
+                        +ViewNotifyer(AbstractMainView)
+                        +update(Simulation): void
+            }
+
         }
 
-        class de.sswis.controller.FileManager [[FileManager.html]] {
-            +saveConfigurations(Collection<Configuration>): void
-            +saveGame(Game): void
-            +saveInitalization(Initialization): void
-            +saveCombinedStrategy(CombinedStrategy): void
-            +saveResult(Object): void
-            +loadConfigurations(String): Collection<Configuration>
-            +loadGame(String): Game
-            +loadInitalization(String): Initialization
-            +loadCombinedStrategy(String): CombinedStrategy
-            +loadResult(String): Object
-            +deleteConfigurations(String): void
-            +deleteGame(String): void
-            +deleteInitalization(String): void
-            +deleteCombinedStrategy(String): void
-            +deleteResult(Object): void
-        }
+        de.sswis.controller.ModelProvider -[hidden]> de.sswis.controller.Communicator
+        de.sswis.controller.Communicator -[hidden]> de.sswis.controller.FileManager
+        de.sswis.controller.FileManager -[hidden]> de.sswis.controller.AlgorithmLoader
+        de.sswis.controller.AlgorithmLoader -[hidden]> de.sswis.controller.handlers
+        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.AbstractGuiFactory
+        de.sswis.controller.AbstractGuiFactory -[hidden]> de.sswis.controller.SwingGuiFactory
+        de.sswis.controller.SimulationObserver -[hidden]> de.sswis.controller.ViewNotifyer
+        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.SimulationObserver
 
-        class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
-            +addConfigurations(Collection<Configuration>): void
-            +addAgent(Agent): void
-            +addGame(Game): void
-            +addCombinedStrategy(CombinedStrategy): void
-            +addInitialization(Initialization): void
-            +deleteConfigurations(String): void
-            +deleteAgents(int): void
-            +deleteGame(String): void
-            +deleteCombinedStrategy(String): void
-            +deleteInitialization(String): void
-            +getConfigurations(): Map<String, Collection<Configuration>>
-            +getConfiguration(String): Configuration
-            +getAgents(): Map<Integer, Agent>
-            +getAgent(int): Agent
-            +getGames(): Map<String, Game>
-            +getGame(String): Game
-            +getCombinedStrategies(): Map<String, CombinedStrategy>
-            +getCombinedStrategy(String): CombinedStrategy
-            +getInitializations(): Map<String, Initialization>
-            +getInitialization(String): Initialization
-        }
-
-        class de.sswis.controller.SwingGuiFactory [[SwingGuiFactory.html]] {
-            +createMainView(): AbstractMainView
-            +createShowResultView(): AbstractShowResultView
-            +createCompareResultsView(): AbstractShowCompareView
-            +createMultiResultsView(): AbstractShowMultiResultView
-            +createManageConfigurationsView(): AbstractManageConfigurationsView
-            +createManageInitializationsView(): AbstractManageInitializationsView
-            +createManageStrategiesView(): AbstractManageStrategiesView
-            +createManageGamesView(): AbstractManageGamesView
-            +createManageResultsView(): AbstractManageResultsView
-            +createNewConfigurationView(): AbstractNewConfigurationView
-            +createNewInitializationView(): AbstractNewInitializationView
-            +createNewStrategyView(): AbstractNewStrategyView
-            +createNewGameView(): AbstractNewGameView
-        }
-
-        de.sswis.controller.ModelProvider -> de.sswis.controller.ModelProvider: instance
-        de.sswis.controller.AbstractGuiFactory <|.. de.sswis.controller.SwingGuiFactory
-        de.sswis.controller.handlers -> de.sswis.view : view
         de.sswis.view -> de.sswis.controller.handlers : actionHandler
-        de.sswis.controller.SwingGuiFactory -> de.sswis.view : swingView
+        de.sswis.controller.handlers -> de.sswis.view : view
         de.sswis.controller.handlers -> de.sswis.controller.AbstractGuiFactory : factory
-        de.sswis.controller.SwingGuiFactory -> de.sswis.controller.handlers : actionHandler
-        de.sswis.controller.handlers -> de.sswis.controller.FileManager
+        de.sswis.controller.handlers -> de.sswis.controller.FileManager :fileManager
+        de.sswis.controller.handlers -> de.sswis.controller.AlgorithmLoader : loader
         de.sswis.controller.handlers -> de.sswis.controller.ModelProvider : modelProvider
+        de.sswis.controller.handlers -> de.sswis.controller.SimulationObserver : observer
+        de.sswis.controller.handlers -> de.sswis.controller.Communicator : communicator
+        de.sswis.controller.ModelProvider -> de.sswis.controller.ModelProvider: instance
+        de.sswis.controller.SwingGuiFactory -> de.sswis.view
+        de.sswis.controller.ViewNotifyer -> de.sswis.view : mainView
+        de.sswis.controller.AbstractGuiFactory <|.. de.sswis.controller.SwingGuiFactory
+        de.sswis.controller.SimulationObserver <|.. de.sswis.controller.ViewNotifyer
     }
 
 @enduml
