@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 /**
  * Eine Simulation basierend auf einer Konfiguration, welche gestartet werden kann und nach Beenden
- * Ergebnisse zurückliefern kann. Die Simulation stoppt wenn es zu einem Gleichgewicht kommt oder
+ * Ergebnisse zurueckliefern kann. Die Simulation stoppt wenn es zu einem Gleichgewicht kommt oder
  * die maximale Rundenzahl erreicht wird.
  * @author Michel Bodé
  */
@@ -35,7 +35,7 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     /**
-     * Gibt das aktuelle Ranking der Agenten zurück.
+     * Gibt das aktuelle Ranking der Agenten zurueck.
      * @return Ranking der Agenten
      */
     public HashMap<Agent, Integer> getCurrentRanking() {
@@ -43,13 +43,13 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     /**
-     * Gibt die aktuellen Paare zurück.
+     * Gibt die aktuellen Paare zurueck.
      * @return Menge an Agentpaaren
      */
     public Pair[] getCurrentPairs() { return currentPairs;}
 
     /**
-     * Gibt die Agenten nach Beendigung der Simulation zurück, welche alle Daten bezüglich den Ergebnissen
+     * Gibt die Agenten nach Beendigung der Simulation zurueck, welche alle Daten bezueglich den Ergebnissen
      * und dem Verlauf der Simulation enthalten.
      * @return Menge an Agenten
      */
@@ -58,7 +58,7 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     /**
-     * Gibt zurück ob ein Gleichgewicht erreicht wurde.
+     * Gibt zurueck ob ein Gleichgewicht erreicht wurde.
      * @return wahr, wenn ein Gleichgewicht erreicht wurde, falsch sonst
      */
     public boolean EquilibriumAchieved() {

@@ -3,7 +3,7 @@ package de.sswis.model.conditions;
 import de.sswis.model.Agent;
 
 /**
- * Eine Bedingung die mit einer gewissen Wahrscheinlichkeit {@code alpha} erfüllt ist.
+ * Eine Bedingung die mit einer gewissen Wahrscheinlichkeit {@code alpha} erfuellt ist.
  * @author Michel Bodé
  */
 public class Probability implements Condition {
@@ -14,7 +14,7 @@ public class Probability implements Condition {
 
     /**
      * Konstruktor
-     * @param alpha Wahrscheinlichkeit mit der die Bedingung erfüllt ist
+     * @param alpha Wahrscheinlichkeit mit der die Bedingung erfuellt ist
      */
     public Probability(double alpha) {
 

@@ -5,7 +5,7 @@ import de.sswis.model.Agent;
 
 /**
  * Eine Basisstrategie die einem Agenten und seinem Gegenspieler eine Aktion zuordnet.
- * Die Basisstrategie kann sowohl vom Agenten abhängen dessen kombinierte Strategie sie beinhaltet, als auch
+ * Die Basisstrategie kann sowohl vom Agenten abhaengen dessen kombinierte Strategie sie beinhaltet, als auch
  * von dessem Gegenspieler.
  * @author Michel Bodé
  */

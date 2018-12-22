@@ -7,8 +7,8 @@ import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 import java.util.List;
 
 /**
- * Eine Konfiguration welche alle Parameter enthält die zur Erzeugung einer {@code Simulation} nötig sind.
- * Sie besteht im Wesentlichen aus einer Initialisierung, einem Stufenspiel und den benötigten Algorithmen.
+ * Eine Konfiguration welche alle Parameter enthaelt die zur Erzeugung einer {@code Simulation} noetig sind.
+ * Sie besteht im Wesentlichen aus einer Initialisierung, einem Stufenspiel und den benoetigten Algorithmen.
  * @author Michel Bodé
  */
 public class Configuration {
@@ -31,8 +31,8 @@ public class Configuration {
      * @param ranking Bewertungsalgorithmus
      * @param rounds Rundenanzahl
      * @param cycles Zyklenanzahl
-     * @param adaptationProbability Wahrscheinlichkeit für die Anpassung der Strategien am Ende jedes Zyklus
-     * @param strategies Menge an möglichen Strategien
+     * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
+     * @param strategies Menge an moeglichen Strategien
      */
     public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
                          int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
@@ -72,7 +72,7 @@ public class Configuration {
     }
 
     /**
-     * Gibt eine {@code Simulation} entsprechend dieser Konfiguration zurück.
+     * Gibt eine {@code Simulation} entsprechend dieser Konfiguration zurueck.
      * @return erzeugte Simulation
      */
     public Simulation simulate() {
@@ -80,7 +80,7 @@ public class Configuration {
     }
 
     /**
-     * Gibt die möglichen Strategien dieser Konfiguration zurück.
+     * Gibt die moeglichen Strategien dieser Konfiguration zurueck.
      * @return Menge an Strategien
      */
     public List<Strategy> getPossibleStrategies() {
@@ -88,8 +88,8 @@ public class Configuration {
     }
 
     /**
-     * Fügt eine Strategie zu den möglichen Strategien hinzu.
-     * @param newStrategy hinzuzufügende Strategie
+     * Fuegt eine Strategie zu den moeglichen Strategien hinzu.
+     * @param newStrategy hinzuzufuegende Strategie
      */
     public void addStrategy(Strategy newStrategy) {
 

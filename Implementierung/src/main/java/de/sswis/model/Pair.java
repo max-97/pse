@@ -1,7 +1,7 @@
 package de.sswis.model;
 
 /**
- * Ein Paar von Agenten welche ein vorgegebenes Stufenspiel spielen können.
+ * Ein Paar von Agenten welche ein vorgegebenes Stufenspiel spielen koennen.
  * @author Michel Bodé
  */
 public class Pair {

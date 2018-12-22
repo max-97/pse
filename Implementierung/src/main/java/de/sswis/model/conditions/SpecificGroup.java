@@ -3,7 +3,7 @@ package de.sswis.model.conditions;
 import de.sswis.model.Agent;
 
 /**
- * Eine Bedingung die erfüllt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.
+ * Eine Bedingung die erfuellt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.
  * @author Michel Bodé
  */
 public class SpecificGroup implements Condition {
@@ -14,7 +14,7 @@ public class SpecificGroup implements Condition {
 
     /**
      * Konstruktor
-     * @param groupID Gruppen-ID der Gruppe deren Mitglieder die Bedingung erfüllen
+     * @param groupID Gruppen-ID der Gruppe deren Mitglieder die Bedingung erfuellen
      */
     public SpecificGroup(int groupID) {
 

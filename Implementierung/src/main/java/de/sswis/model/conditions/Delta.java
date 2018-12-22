@@ -3,8 +3,8 @@ package de.sswis.model.conditions;
 import de.sswis.model.Agent;
 
 /**
- * Eine Bedingung die erfüllt ist, wenn beide Agenten ungefähr gleich reich sind.
- * Zwei Agenten sind ungefähr gleich reich, wenn der Betrag der Differenz ihrer Gesamtpunktzahlen kleiner
+ * Eine Bedingung die erfuellt ist, wenn beide Agenten ungefaehr gleich reich sind.
+ * Zwei Agenten sind ungefaehr gleich reich, wenn der Betrag der Differenz ihrer Gesamtpunktzahlen kleiner
  * oder gleich {@code delta} ist.
  * @author Michel Bodé
  */
@@ -16,7 +16,7 @@ public class Delta implements Condition{
 
     /**
      * Konstruktor
-     * @param delta maximaler Betrag der Differenz der Gesamtpunktzahlen, der die Bedingung erfüllt
+     * @param delta maximaler Betrag der Differenz der Gesamtpunktzahlen, der die Bedingung erfuellt
      */
     public Delta(double delta) {
 
