@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * Ein Objekt zur Zustandsspeicherung von Agenten im Laufe einer Simulation.
- * Jede {@code History} gehört zu einem Agenten.
+ * Jede {@code History} gehoert zu einem Agenten.
  * @author Michel Bodé
  */
 public class History {
@@ -27,7 +27,7 @@ public class History {
     }
 
     /**
-     * Gibt die Punktzahl des Agenten in einer bestimmten Runde zurück.
+     * Gibt die Punktzahl des Agenten in einer bestimmten Runde zurueck.
      * @param round Runde der gesuchten Punktzahl
      * @return Punktzahl
      */
@@ -45,7 +45,7 @@ public class History {
     }
 
     /**
-     * Gibt den Gegenspieler des Agenten in einer bestimmten Runde zurück.
+     * Gibt den Gegenspieler des Agenten in einer bestimmten Runde zurueck.
      * @param round Runde des gesuchten Gegenspielers
      * @return Gegenspieler
      */
@@ -54,7 +54,7 @@ public class History {
     }
 
     /**
-     * Gibt den Namen der Strategie des Agenten in einer bestimmten Runde zurück.
+     * Gibt den Namen der Strategie des Agenten in einer bestimmten Runde zurueck.
      * @param round Runde der gesuchten Strategie
      * @return Name der Strategie
      */
@@ -63,7 +63,7 @@ public class History {
     }
 
     /**
-     * Speichert die Punktzahl für die aktuelle Runde.
+     * Speichert die Punktzahl fuer die aktuelle Runde.
      * @param score aktuelle Punktzahl
      */
     public void setScore(int score){
@@ -79,7 +79,7 @@ public class History {
     }
 
     /**
-     * Speichert den Gegenspieler für die aktuelle Runde.
+     * Speichert den Gegenspieler fuer die aktuelle Runde.
      * @param opponent Gegenspieler
      */
     public void setOpponent(Agent opponent) {
@@ -87,7 +87,7 @@ public class History {
     }
 
     /**
-     * Speichert den Namen der Strategie für die aktuelle Runde.
+     * Speichert den Namen der Strategie fuer die aktuelle Runde.
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
@@ -95,7 +95,7 @@ public class History {
     }
 
     /**
-     * Gibt zurück ob der Gegenspieler letztes Mal mit diesem Agenten kooperiert hat.
+     * Gibt zurueck ob der Gegenspieler letztes Mal mit diesem Agenten kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
@@ -104,7 +104,7 @@ public class History {
     }
 
     /**
-     * Gibt zurück ob der Gegenspieler jedes Mal mit diesem Agenten kooperiert hat.
+     * Gibt zurueck ob der Gegenspieler jedes Mal mit diesem Agenten kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
@@ -113,7 +113,7 @@ public class History {
     }
 
     /**
-     * Gibt zurück ob der Gegenspieler beim letzten Spiel gegen einen Agenten aus der Gruppe des Agent
+     * Gibt zurueck ob der Gegenspieler beim letzten Spiel gegen einen Agenten aus der Gruppe des Agent
      * um dessen {@code History} es sich handelt, kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst
@@ -123,7 +123,7 @@ public class History {
     }
 
     /**
-     * Gibt zurück ob der Gegenspieler beim jedem Spiel gegen einen Agenten aus der Gruppe des Agent
+     * Gibt zurueck ob der Gegenspieler beim jedem Spiel gegen einen Agenten aus der Gruppe des Agent
      * um dessen {@code History} es sich handelt, kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst

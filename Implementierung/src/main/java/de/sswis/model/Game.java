@@ -3,7 +3,7 @@ package de.sswis.model;
 
 /**
  * Ein Stufenspiel, welches durch seine Payoffs definiert ist.
- * Ein Spiel wird von zwei Agenten gespielt und, abhängig von deren Aktionen, erhalten diese Payoffs.
+ * Ein Spiel wird von zwei Agenten gespielt und, abhaengig von deren Aktionen, erhalten diese Payoffs.
  * @author Michel Bodé
  */
 public class Game {
@@ -24,7 +24,7 @@ public class Game {
     }
 
     /**
-     * Gibt die Payoffs zu bestimmten Aktionen zurück.
+     * Gibt die Payoffs zu bestimmten Aktionen zurueck.
      * @param a1 Aktion des ersten Agenten
      * @param a2 Aktion des zweiten Agenten
      * @return ein Paar von Payoffs

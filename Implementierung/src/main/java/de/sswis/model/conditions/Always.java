@@ -3,7 +3,7 @@ package de.sswis.model.conditions;
 import de.sswis.model.Agent;
 
 /**
- * Eine Bedingung die immer erfüllt ist.
+ * Eine Bedingung die immer erfuellt ist.
  * @author Michel Bodé
  */
 public class Always implements Condition {

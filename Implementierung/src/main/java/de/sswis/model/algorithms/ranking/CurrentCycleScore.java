@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer Punktzahl im aktuellen Zyklus bewertet.
- * Hat ein Agent eine höhere Punktzahl als ein anderer, so ist auch sein Rang höher.
+ * Hat ein Agent eine hoehere Punktzahl als ein anderer, so ist auch sein Rang hoeher.
  * @author Michel Bodé
  */
 public class CurrentCycleScore implements RankingAlgorithm {

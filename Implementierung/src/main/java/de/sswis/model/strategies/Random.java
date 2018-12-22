@@ -4,7 +4,7 @@ import de.sswis.model.Action;
 import de.sswis.model.Agent;
 
 /**
- * Eine Basisstrategie, bei der die Aktion des Agenten zufällig ist.
+ * Eine Basisstrategie, bei der die Aktion des Agenten zufaellig ist.
  * @author Michel Bodé
  */
 public class Random implements BaseStrategy {

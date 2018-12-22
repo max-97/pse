@@ -3,7 +3,7 @@ package de.sswis.model;
 import java.util.List;
 
 /**
- * Eine Gruppe welche eine Menge von Agenten enthält.
+ * Eine Gruppe welche eine Menge von Agenten enthaelt.
  * @author Michel Bodé
  */
 public class Group {
@@ -30,7 +30,7 @@ public class Group {
     }
 
     /**
-     * Fügt dieser Gruppe einen neuen Agenten hinzu.
+     * Fuegt dieser Gruppe einen neuen Agenten hinzu.
      * @param newMember neuer Agent
      */
     public void addMember(Agent newMember) {
