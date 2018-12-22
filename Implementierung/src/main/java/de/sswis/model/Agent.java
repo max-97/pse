@@ -2,7 +2,7 @@ package de.sswis.model;
 
 /**
  * Ein Agent, welcher entsprechend seiner Strategie Stufenspiele mit anderen Agenten spielen kann.
- * Der Agent besitzt eine {@History} die seine Zustände aus vergangenen Runden speichert.
+ * Der Agent besitzt eine {@code History} die seine Zustände aus vergangenen Runden speichert.
  * @author Michel Bodé
  */
 public class Agent {

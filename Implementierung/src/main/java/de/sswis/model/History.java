@@ -114,7 +114,7 @@ public class History {
 
     /**
      * Gibt zurück ob der Gegenspieler beim letzten Spiel gegen einen Agenten aus der Gruppe des Agent
-     * um dessen {@History} es sich handelt, kooperiert hat.
+     * um dessen {@code History} es sich handelt, kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
@@ -124,7 +124,7 @@ public class History {
 
     /**
      * Gibt zurück ob der Gegenspieler beim jedem Spiel gegen einen Agenten aus der Gruppe des Agent
-     * um dessen {@History} es sich handelt, kooperiert hat.
+     * um dessen {@code History} es sich handelt, kooperiert hat.
      * @param agent Gegenspieler
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
