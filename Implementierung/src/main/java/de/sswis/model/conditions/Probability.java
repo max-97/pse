@@ -6,7 +6,7 @@ import de.sswis.model.Agent;
  * Eine Bedingung die mit einer gewissen Wahrscheinlichkeit {@code alpha} erfüllt ist.
  * @author Michel Bodé
  */
-public class Probability extends Condition {
+public class Probability implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";

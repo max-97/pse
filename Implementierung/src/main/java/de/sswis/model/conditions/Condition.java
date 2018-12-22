@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  * von dessem Gegenspieler.
  * @author Michel Bodé
  */
-public abstract class Condition {
+public interface Condition {
     /**
      * Überprüft ob die zwei Agenten die Bedingung erfüllen.
      * @param agent1 Agent dessen kombinierte Strategie die Bedingung behinhaltet

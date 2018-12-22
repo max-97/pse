@@ -7,7 +7,7 @@ import de.sswis.model.Agent;
  * Ein Agent ist ärmer als ein anderer, wenn er mehr Punkte hat.
  * @author Michel Bodé
  */
-public class Richer extends Condition {
+public class Richer implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";

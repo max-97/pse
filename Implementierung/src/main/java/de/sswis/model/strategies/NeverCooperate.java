@@ -7,7 +7,7 @@ import de.sswis.model.Agent;
  * Eine Basisstrategie, bei der der Agent nie kooperiert.
  * @author Michel Bodé
  */
-public class NeverCooperate extends BaseStrategy {
+public class NeverCooperate implements BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
 

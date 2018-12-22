@@ -7,7 +7,7 @@ import de.sswis.model.Agent;
  * Eine Basisstrategie, bei der die Aktion des Agenten zufällig ist.
  * @author Michel Bodé
  */
-public class Random extends BaseStrategy {
+public class Random implements BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
 

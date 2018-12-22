@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  * oder gleich {@code delta} ist.
  * @author Michel Bodé
  */
-public class Delta extends Condition{
+public class Delta implements Condition{
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";

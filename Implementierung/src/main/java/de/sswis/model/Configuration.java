@@ -6,6 +6,11 @@ import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 
 import java.util.List;
 
+/**
+ * Eine Konfiguration welche alle Parameter enthält die zur Erzeugung einer {@code Simulation} nötig sind.
+ * Sie besteht im Wesentlichen aus einer Initialisierung, einem Stufenspiel und den benötigten Algorithmen.
+ * @author Michel Bodé
+ */
 public class Configuration {
     private Game game;
     private Initialization init;
@@ -18,8 +23,19 @@ public class Configuration {
     private double adaptationProbability;
     private List<Strategy> strategies;
 
-    public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm rangking, int rounds,
-                         int cycles, int cycleRoundCount, double adaptationProbability, List<Strategy> strategies) {
+    /**
+     * Erstellt eine Konfiguration.
+     * @param game Stufenspiel
+     * @param adaptation Anpassungsalgorithmus
+     * @param pairing Paarungsalgorithmus
+     * @param ranking Bewertungsalgorithmus
+     * @param rounds Rundenanzahl
+     * @param cycles Zyklenanzahl
+     * @param adaptationProbability Wahrscheinlichkeit für die Anpassung der Strategien am Ende jedes Zyklus
+     * @param strategies Menge an möglichen Strategien
+     */
+    public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
+                         int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
 
     }
 
@@ -30,7 +46,6 @@ public class Configuration {
     public Initialization getInit(){
         return init;
     }
-
 
     public AdaptationAlgorithm getAdaptationAlg(){
         return adaptationAlg;
@@ -56,14 +71,26 @@ public class Configuration {
         return adaptationProbability;
     }
 
-    public Simulation simulate(int repetitions) {
+    /**
+     * Gibt eine {@code Simulation} entsprechend dieser Konfiguration zurück.
+     * @return erzeugte Simulation
+     */
+    public Simulation simulate() {
         return new Simulation(this);
     }
 
+    /**
+     * Gibt die möglichen Strategien dieser Konfiguration zurück.
+     * @return Menge an Strategien
+     */
     public List<Strategy> getPossibleStrategies() {
         return strategies;
     }
 
+    /**
+     * Fügt eine Strategie zu den möglichen Strategien hinzu.
+     * @param newStrategy hinzuzufügende Strategie
+     */
     public void addStrategy(Strategy newStrategy) {
 
     }

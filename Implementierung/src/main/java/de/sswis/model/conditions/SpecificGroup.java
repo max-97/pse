@@ -6,7 +6,7 @@ import de.sswis.model.Agent;
  * Eine Bedingung die erfüllt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.
  * @author Michel Bodé
  */
-public class SpecificGroup extends Condition {
+public class SpecificGroup implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";

@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  * aus Gruppe G gespielt, so kooperiert der Agent.
  * @author Michel Bodé
  */
-public class GroupTitForTat extends BaseStrategy {
+public class GroupTitForTat implements BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
 

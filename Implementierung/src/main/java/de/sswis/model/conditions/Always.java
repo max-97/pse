@@ -6,7 +6,7 @@ import de.sswis.model.Agent;
  * Eine Bedingung die immer erfüllt ist.
  * @author Michel Bodé
  */
-public class Always extends Condition {
+public class Always implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";

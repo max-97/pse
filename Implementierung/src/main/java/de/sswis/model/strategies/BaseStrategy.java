@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  * von dessem Gegenspieler.
  * @author Michel Bodé
  */
-public abstract class BaseStrategy {
+public interface BaseStrategy {
     /**
      * Berechnet die Aktion des Agenten entsprechend der Basisstrategie.
      * @param agent1 Agent dessen kombinierte Strategie die Basisstrategie behinhaltet
