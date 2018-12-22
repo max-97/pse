@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 /**
- * Ein Dienstleister zur Bereitstellung von Listen mit allen Ausprägungen bestimmter Algorithmentypen sowie von Bedingungen und Basis-Strategien.
- * Algorithmentypen umfassen Adaptionsalgorithmen, Paarungsalgorithmen und Bewertungsalgorithmen.
+ * Ein Dienstleister zur Bereitstellung von Listen mit allen Ausprägungen eines bestimmten Algorithmentyps sowie von Bedingungen und Basis-Strategien.
+ * Die Algorithmentypen umfassen Adaptionsalgorithmen, Paarungsalgorithmen und Bewertungsalgorithmen.
  *
  * @author Simon Hügel
  */
@@ -29,6 +29,11 @@ public class ModelServiceLoader {
     private List<Condition> conditions = null;
     private List<BaseStrategy> baseStrategies = null;
 
+    /**
+     * Liefert eine Liste mit allen Algorithmen, die das {@code AdaptationAlgorithm}-Interface implementieren.
+     *
+     * @return eine Liste mit allen Adaptionsalgorithmen
+     */
     public List<AdaptationAlgorithm> getAdaptAlgorithmList() {
         /*if (adaptAlgorithms == null) {
             for (AdaptationAlgorithm aa : this.adaptAlgLoader) {
@@ -38,6 +43,11 @@ public class ModelServiceLoader {
         return adaptAlgorithms;
     }
 
+    /**
+     * Liefert eine Liste mit allen Algorithmen, die das {@code PairingAlgorithm}-Interface implementieren.
+     *
+     * @return eine Liste mit allen Paarungsalgorithmen
+     */
     public List<PairingAlgorithm> getPairAlgorithmList() {
         /*if (pairAlgorithms == null) {
             for (PairingAlgorithm pa : this.pairAlgLoader) {
@@ -47,6 +57,11 @@ public class ModelServiceLoader {
         return pairAlgorithms;
     }
 
+    /**
+     * Liefert eine Liste mit allen Algorithmen, die das {@code RankingAlgorithm}-Interface implementieren.
+     *
+     * @return eine Liste mit allen Bewertungsalgorithmen
+     */
     public List<RankingAlgorithm> getRankAlgorithmList() {
         /*if (rankAlgorithms == null) {
             for (RankingAlgorithm ra : this.rankAlgLoader) {
@@ -56,6 +71,11 @@ public class ModelServiceLoader {
         return rankAlgorithms;
     }
 
+    /**
+     * Liefert eine Liste mit allen Bedingungen, die das {@code Condition}-Interface implementieren.
+     *
+     * @return eine Liste mit allen Bedingungen
+     */
     public List<Condition> getConditionList() {
         /*if (conditions == null) {
             for (Condition c : this.conditionLoader) {
@@ -65,6 +85,11 @@ public class ModelServiceLoader {
         return conditions;
     }
 
+    /**
+     * Liefert eine Liste mit allen Strategien, die das {@code BaseStrategy}-Interface implementieren.
+     *
+     * @return eine Liste mit allen Basis-Strategien
+     */
     public List<BaseStrategy> getBaseStrategyList() {
         /*if (baseStrategies == null) {
             for (BaseStrategy bs : this.baseStrategyLoader) {
