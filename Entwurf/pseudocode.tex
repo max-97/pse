@@ -1,0 +1,100 @@
+\chapter{Algorithmen Pseudocode}
+
+\section{Bewertungsalgorithmen}
+
+Im Folgenden werden die Bewertungsalgorithmen /F0810/ (\emph{AverageRank}) und /W0410/ (\emph{CustomCycleScore}) aus dem Pflichtenheft in Pseudocode näher beschrieben. 
+
+\begin{lstlisting}
+AverageRank:
+
+public HashMap<Agent, Integer> getRankings(Simulation sim) 
+	
+	currentCycle <- sim.getCurrentCycle()
+	agents <- sim.getAgents()
+	ranks <- List of HashMap<Agent, Integer>	
+	cycles <- max(1, currentCycle - WINDOW_SIZE)
+	
+	for i <- 0; i < cycles; i++ 
+		ranks[i] <- rankOfAgents(agents, i, i + WINDOW_SIZE)
+	
+	result <- HashMap<Agent, Integer>	
+	
+	for Agent a in agents
+		averageRank <- 0
+		for i <- 0; i < cycles; i++
+			averageRank <- averageRank + ranks[i].get(a)
+		averageRank <- roundDown(averageRank / cycles)
+		
+		result.put(a, averageRank)
+	
+	result <- resolveConflicts(result)
+	return result
+\end{lstlisting}
+\emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. In Zeile 8 wird sicher gestellt, dass die Schleife mindestens einmal durchlaufen wird, auch wenn \emph{WINDOW\_SIZE} größer als die bisherige Zyklenanzahl ist.
+Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} berechnet die Gesamtpunktzahl der Agenten von Zyklus \emph{start} bis Zyklus \emph{end} und platziert die Agenten gemäß dieser Gesamtpunktzahl in einer Rangliste. Sollte $i + WINDOW\_SIZE > currentCycle$ gelten, wird nur bis \emph{currentCycle} summiert. 
+In der Schleife ab Zeile 15 wird der Durchschnittsrang von allen Agenten gebildet.
+Es kann vorkommen, dass durch die Durchschnittsbildung und abrunden in Zeile 18 mehrere Agenten den gleichen Rang bekommen. Diese Konflikte werden durch \emph{resloveConflict(ranks)} gelöst. Dabei werden zuerst die Agenten nach ihrem Rang sortiert. Bei gleichem Rang hat der Agent mit der höheren Gesamtpunktzahl über alle Zyklen den höheren Rang, bei gleicher Gesamtpunktzahl ist die Platzierung zufällig. Der finale Rang der Agenten entspricht der Platzierung nach dieser Sortierung.
+
+\begin{lstlisting}
+CustomCycleScore:
+
+public HashMap<Agent, Integer> getRankings(Simulation sim) 
+	
+	agents <- sim.getAgents()
+	currentCycle <- sim.getCurrentCycle()
+	ranks <- rankOfAgents(agents, currentCycle - WINDOW_SIZE, currentCycle)
+	
+	return ranks
+	
+\end{lstlisting}
+\emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} ist hierbei die gleiche wie in \emph{AverageRank}. Sollte $currentCycle - WINDOW\_SIZE < 0$ gelten, wird ab dem ersten Zyklus summiert. Somit werden nur die letzten \emph{WINDOW\_SIZE} Zyklen für die Platzierung berücksichtigt. 
+
+
+\section{Paarungsalgorithmen}
+
+Für den Paarungsalgorithmus verwenden wir einen Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}. 
+
+\begin{lstlisting}
+Brut force pair matching:
+
+public Pair[] getPairing(Agent[] agents) 
+
+	shuffle(agents)
+	pairs <- Pair[]
+	for each unmatched agent a in agents
+		best <- infinity
+		for each unmatched agent b after a in agents
+			d <- distance(a, b)
+			if d < best
+				best <- d
+				bestPartner <- b
+				
+		pairs.addPair(a, bestPartner)
+		mark a and bestPartner as paired		
+	return pairs	
+	
+\end{lstlisting}
+Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P('b kooperiert mit a'))$. $P$ ist hierbei eine Wahrscheinlichkeitsfunktion. Wenn die kombinierte Strategien deterministisch sind gilt $distance(a, b) = 0$ genau dann, wenn $a$ und $b$ miteinander kooperieren und $distance(a, b) = 1$ genau dann, wenn $a$ mit $b$ oder $b$ mit $a$ nicht kooperiert. Sind sie nicht deterministisch können Werte zwischen 0 und 1 vorkommen.
+
+\begin{lstlisting}
+Brut force pair matching heuristic:
+
+public Pair[] getPairing(Agent[] agents) 
+	shuffle(agents)
+	pairs <- Pair[]
+	for each unmatched agent a in agents
+		best <- infinity
+		for each unmatched agent b after a in agents
+			d <- distance(a, b)			
+			if d < best
+				best <- d
+				bestPartner <- b
+			if best <= epsilon
+				break			
+						
+		pairs.addPair(a, bestPartner)
+		mark a and bestPartner as paired
+	return pairs		
+	
+\end{lstlisting}
+Eine weitere mögliche Anpassung ist zwei Agenten zu Paaren, wenn $distance(a, b) \leq \epsilon$ gilt für $\epsilon \geq 0$. Dadurch werden Agenten gepaart, die sehr wahrscheinlich miteinander kooperieren. Man beachte, dass für $\epsilon = 0$ der Algorithmus identisch zu dem Ersten ist. Allerdings hat er in vielen Fällen eine schneller Laufzeit, da sobald ein Agent gefunden wurde, sodass beide kooperieren, dieser mit ihm gepaart wird.

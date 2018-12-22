@@ -1,0 +1,167 @@
+@startuml
+
+    namespace de.sswis.view {
+
+        together {
+        interface de.sswis.view.AbstractMainView [[AbstractMainView.html]] {
+            {abstract} +addConfiguration(VMConfiguration): void
+            {abstract} +removeConfiguration(String): void
+            {abstract} +addResult(String, VMResult): void
+            {abstract} +setSimulationFinished(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageCombinedStrategiesView [[AbstractManageCominedStrategiesView.html]] {
+            {abstract} +addStrategy(VMStrategy): void
+            {abstract} +removeStrategy(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageConfigurationsView [[AbstractManageConfigurationsView.html]] {
+            {abstract} +addConfiguration(VMConfiguration): void
+            {abstract} +removeConfiguration(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageGamesView [[AbstractManageGamesView.html]] {
+            {abstract} +addGame(VMGame): void
+            {abstract} +removeGame(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageInitializationsView [[AbstractManageInitializationsView.html]] {
+            {abstract} +addInit(VMInitialization): void
+            {abstract} +removeInit(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageResultsView [[AbstractManageResultsView.html]] {
+            {abstract} +addResult(VMResult): void
+            {abstract} +removeResult(String): void
+            {abstract} +update(): void
+        }
+
+        interface de.sswis.view.AbstractManageStrategiesView [[AbstractManageStrategiesView.html]] {
+            {abstract} +addResult(VMStrategy): void
+            {abstract} +removeResult(String): void
+            {abstract} +update(): void
+        }
+
+        class de.sswis.view.MainView [[MainView.html]] {
+                    +addConfiguration(VMConfiguration): void
+                    +removeConfiguration(String): void
+                    +addResult(String, VMResult): void
+                    +setSimulationFinished(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageCombinedStrategiesView [[ManageCominedStrategiesView.html]] {
+                    +addStrategy(VMStrategy): void
+                    +removeStrategy(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageConfigurationsView [[ManageConfigurationsView.html]] {
+                    +addConfiguration(VMConfiguration): void
+                    +removeConfiguration(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageGamesView [[ManageGamesView.html]] {
+                    +addGame(VMGame): void
+                    +removeGame(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageInitializationsView [[ManageInitializationsView.html]] {
+                    +addInit(VMInitialization): void
+                    +removeInit(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageResultsView [[ManageResultsView.html]] {
+                    +addResult(VMResult): void
+                    +removeResult(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.ManageStrategiesView [[ManageStrategiesView.html]] {
+                    +addResult(VMStrategy): void
+                    +removeResult(String): void
+                    +update(): void
+                }
+
+                class de.sswis.view.NewCombinedStrategyView [[NewCombinedStrategyView.html]] {
+                }
+        }
+
+
+        together {
+        interface de.sswis.view.AbstractNewCombinedStrategyView [[AbstractNewCombinedStrategyView.html]]
+
+        interface de.sswis.view.AbstractNewConfigurationView [[AbstractNewConfigurationView.html]]
+
+        interface de.sswis.view.AbstractNewGameView [[AbstractNewGameView.html]]
+
+        interface de.sswis.view.AbstractNewInitializationView [[AbstractNewInitializationView.html]]
+
+        interface de.sswis.view.AbstractNewStrategyView [[AbstractNewStrategyView.html]]
+
+        interface de.sswis.view.AbstractShowCompareView [[AbstractShowCompareView.html]]
+
+
+        interface de.sswis.view.AbstractShowMultiResultView [[AbstractShowMultiResultView.html]]
+
+        interface de.sswis.view.AbstractShowResultView [[AbstractShowResultView.html]]
+
+
+        class de.sswis.view.NewConfigurationView [[NewConfigurationView.html]] {
+        }
+
+        class de.sswis.view.NewGameView [[NewGameView.html]] {
+        }
+
+        class de.sswis.view.NewInitializationView [[NewInitializationView.html]] {
+
+        }
+
+        class de.sswis.view.NewStrategyView [[NewStrategyView.html]] {
+        }
+
+        class de.sswis.view.ShowCompareView [[ShowCompareView.html]] {
+        }
+
+        class de.sswis.view.ShowMultiResultView [[ShowMultiResultView.html]] {
+        }
+
+        class de.sswis.view.ShowResultView [[ShowResultView.html]] {
+        }
+
+        }
+
+        de.sswis.view.AbstractMainView -[hidden]--> de.sswis.view.AbstractNewCombinedStrategyView
+        de.sswis.view.AbstractManageCombinedStrategiesView -[hidden]--> de.sswis.view.AbstractNewConfigurationView
+        de.sswis.view.AbstractManageConfigurationsView -[hidden]--> de.sswis.view.AbstractNewGameView
+        de.sswis.view.AbstractManageGamesView -[hidden]--> de.sswis.view.AbstractNewInitializationView
+        de.sswis.view.AbstractManageInitializationsView -[hidden]--> de.sswis.view.AbstractNewStrategyView
+        de.sswis.view.AbstractManageResultsView -[hidden]--> de.sswis.view.AbstractShowCompareView
+        de.sswis.view.AbstractManageStrategiesView -[hidden]--> de.sswis.view.AbstractShowMultiResultView
+
+        de.sswis.view.AbstractMainView <|.. de.sswis.view.MainView
+        de.sswis.view.AbstractManageCombinedStrategiesView <|.. de.sswis.view.ManageCombinedStrategiesView
+        de.sswis.view.AbstractManageConfigurationsView <|.. de.sswis.view.ManageConfigurationsView
+        de.sswis.view.AbstractManageGamesView <|.. de.sswis.view.ManageGamesView
+        de.sswis.view.AbstractManageInitializationsView <|.. de.sswis.view.ManageInitializationsView
+        de.sswis.view.AbstractManageResultsView <|.. de.sswis.view.ManageResultsView
+        de.sswis.view.AbstractManageStrategiesView <|.. de.sswis.view.ManageStrategiesView
+        de.sswis.view.AbstractNewCombinedStrategyView <|.. de.sswis.view.NewCombinedStrategyView
+        de.sswis.view.AbstractNewConfigurationView <|.. de.sswis.view.NewConfigurationView
+        de.sswis.view.AbstractNewGameView <|.. de.sswis.view.NewGameView
+        de.sswis.view.AbstractNewInitializationView <|.. de.sswis.view.NewInitializationView
+        de.sswis.view.AbstractNewStrategyView <|.. de.sswis.view.NewStrategyView
+        de.sswis.view.AbstractShowCompareView <|.. de.sswis.view.ShowCompareView
+        de.sswis.view.AbstractShowMultiResultView <|.. de.sswis.view.ShowMultiResultView
+        de.sswis.view.AbstractShowResultView <|.. de.sswis.view.ShowResultView
+    }
+
+@enduml

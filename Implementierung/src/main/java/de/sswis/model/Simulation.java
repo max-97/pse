@@ -1,21 +1,23 @@
 package de.sswis.model;
 
-import java.util.HashMap;
-import java.util.Observable;
+import de.sswis.controller.SimulationObserver;
 
+import java.util.HashMap;
+import java.util.List;
 /**
  * Eine Simulation basierend auf einer Konfiguration, welche gestartet werden kann und nach Beenden
  * Ergebnisse zurückliefern kann. Die Simulation stoppt wenn es zu einem Gleichgewicht kommt oder
  * die maximale Rundenzahl erreicht wird.
  * @author Michel Bodé
  */
-public class Simulation extends Observable implements Runnable{
+public class Simulation implements Runnable, ObservableSimulation {
     private Configuration config;
     private int round;
     private int cycle;
     private HashMap<Agent, Integer> currentRanking;
     private Pair[] currentPairs;
     private boolean equilibrium;
+    private List<SimulationObserver> observers;
 
     /**
      * Erstellt eine Simulation.
@@ -79,6 +81,21 @@ public class Simulation extends Observable implements Runnable{
 
     @Override
     public void run() {
+
+    }
+
+    @Override
+    public void addObserver(SimulationObserver o) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
+    }
+
+    @Override
+    public void deleteObserver(SimulationObserver o) {
 
     }
 }

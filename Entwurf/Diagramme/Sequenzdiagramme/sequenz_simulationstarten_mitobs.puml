@@ -1,0 +1,58 @@
+@startuml
+title Simulation starten
+skinparam sequenceParticipant underline
+hide footbox
+
+actor Benutzer as U
+participant ":MainView" as MV
+participant ":StartSimulationHandler" as AL
+participant ":ModelProvider" as MP
+participant ":Simulation" as S
+participant ":ViewNotifyer" as VN
+
+
+
+U ->> MV: "Simulation starten"
+activate MV
+AL <- MV: actionPerformed(e:ActionEvent)
+activate AL
+
+MV <- AL: getSelectedConfig()
+activate MV
+MV -->> AL: configName
+deactivate MV
+
+AL -> MP: getConfiguration(configName)
+activate MP
+AL <<-- MP: config
+deactivate MP
+
+AL ->> S :run()
+activate S
+MV <<-- AL
+deactivate AL
+ref over S
+  Simulations-
+  ablauf
+end ref
+U <<-- MV
+deactivate MV
+
+S -> S: notifyObservers()
+activate S
+
+S -> VN: update(this)
+activate VN
+
+VN -> MV: setSimulationFinished(configName)
+activate MV
+VN <<-- MV
+deactivate MV
+
+S <<-- VN
+deactivate VN
+
+S <<-- S
+deactivate S
+
+@enduml

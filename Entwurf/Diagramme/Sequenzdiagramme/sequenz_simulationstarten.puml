@@ -1,0 +1,39 @@
+@startuml
+title Simulation starten
+skinparam sequenceParticipant underline
+hide footbox
+
+actor Benutzer as U
+participant ":MainView" as MV
+participant ":ActionListener" as AL
+participant ":ModelProvider" as MP
+participant "obs:Observer" as O
+
+activate AL
+AL ->> MV: addActionListener(self)
+activate MV
+
+U -> MV: "Simulation starten"
+AL <<- MV: actionPerformed(e:ActionEvent)
+
+MV <- AL: configName=getConfigName(e)
+MV -->> AL
+
+AL -> MP: config=getConfiguration(configName)
+activate MP
+AL <<-- MP
+deactivate MP
+
+create "sim:Simulation" as S
+AL -> S : << create >>
+AL -> S :run()
+activate S
+
+ref over S
+  Simulations-
+  ablauf
+end ref
+AL <<-- S: "done"
+deactivate S
+
+@enduml
