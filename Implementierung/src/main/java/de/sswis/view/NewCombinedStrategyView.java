@@ -12,4 +12,18 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     private VMCombinedStrategy vmCombinedStrategy;
 
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

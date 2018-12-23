@@ -2,12 +2,14 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMCombinedStrategy;
 
+import java.awt.event.ActionListener;
+
 /**
  *Ein Fenster zum Verwalten von kombinierten Strategien.
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageCombinedStrategiesView {
+public interface AbstractManageCombinedStrategiesView extends AbstractView {
 
 
     /**
@@ -23,7 +25,34 @@ public interface AbstractManageCombinedStrategiesView {
     void removeStrategy(String strategyName);
 
     /**
-     *Aktualisiert alle Komponenten.
+     * Fügt ein ActionListener zum Button neue kombinierte Strategie hinzu.
+     * @param listener ActionListener
      */
-    void update();
+    void addNewStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Strategie bearbeiten hinzu.
+     * @param listener ActionListener
+     */
+    void addEditStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Strategie löschen hinzu.
+     * @param listener ActionListener
+     */
+    void addDeleteStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Abbrechen hinzu.
+     * @param listener ActionListener
+     */
+    void addCancelButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
+     * @param listener ActionListener
+     */
+    void addSaveQuitButtonActionlistener(ActionListener listener);
+
+
 }

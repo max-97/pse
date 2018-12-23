@@ -3,6 +3,7 @@ package de.sswis.view;
 import de.sswis.view.AbstractManageInitializationsView;
 import de.sswis.view.model.VMInitialization;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -25,11 +26,44 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     }
 
     @Override
+    public void addNewInitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addEditInitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addDeleteInitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addSaveQuitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
     public void update() {
 
     }
 
+    @Override
+    public void show() {
 
+    }
+
+    @Override
+    public void close() {
+
+    }
 
 
 }

@@ -7,6 +7,7 @@ import de.sswis.view.model.VMStrategy;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  *Ein Fenster zum Verwalten von gemischten Strategien.
@@ -177,7 +178,42 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
     }
 
     @Override
+    public void addNewStrategyButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addEditStrategyButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addDeleteStrategyButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addSaveQuitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
     public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
 
     }
 }

@@ -3,6 +3,7 @@ package de.sswis.view;
 import de.sswis.view.AbstractManageConfigurationsView;
 import de.sswis.view.model.VMConfiguration;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -26,7 +27,42 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     }
 
     @Override
+    public void addNewConfigurationButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addEditConfigurationButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addDeleteConfigurationButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addSaveQuitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
     public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
 
     }
 }

@@ -3,6 +3,8 @@ package de.sswis.view;
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
+import java.awt.event.ActionListener;
+
 
 /**
  *Ein Hauptfenster der Benutzeroberfläche.
@@ -10,7 +12,7 @@ import de.sswis.view.model.VMResult;
  * @author Sophie Bräuniger
  *
  */
-public interface AbstractMainView {
+public interface AbstractMainView extends AbstractView {
 
     /**
      * Fügt eine vom Nutzer erstellte Konfiguration hinzu.
@@ -38,9 +40,100 @@ public interface AbstractMainView {
     void setSimulationFinished (String NameConfiguration);
 
     /**
-     *Aktualisiert alle Komponenten.
+     * Gibt eine {@Code VMConfiguration} zurück, die in der Liste ausgewählt ist.
+     *
+     * @return die in der Liste ausgewählt Konfiguration
      */
-    void update();
+    VMConfiguration getSelected();
+
+    /**
+     * Fügt ein ActionListener zum Button Simulation starten hinzu.
+     * @param listener ActionListener
+     */
+    void addStartButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Kontextmenüpunkt Simulation abbrechen hinzu.
+     * @param listener ActionListener
+     */
+    void addStopActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Ergebnisse anzeigen hinzu.
+     * @param listener ActionListener
+     */
+    void addShowButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein Actionlistener zum Button Ergebnisse speichern hinzu.
+     * @param listener ActionListener
+     */
+    void addSaveButtonActionlistener(ActionListener listener);
+
+
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt neues Stufenspiel hinzu.
+     * @param listener ActionListener
+     */
+    void addNewGameMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt neue kombinierte Strategie hinzu.
+     * @param listener ActionListener
+     */
+    void addNewCombiStrategyMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt neue gemischte Strategie hinzu.
+     * @param listener ActionListener
+     */
+    void addNewStrategyMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt neue Initialisierung hinzu.
+     * @param listener ActionListener
+     */
+    void addNewInitMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt neue Konfiguration hinzu.
+     * @param listener ActionListener
+     */
+    void addNewConfigMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt Stufenspiele verwalten hinzu.
+     * @param listener ActionListener
+     */
+    void addManageGameMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt kombinierte Strategien verwalten hinzu.
+     * @param listener ActionListener
+     */
+    void addManageCombiStrategyMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt gemischte Strategien verwalten hinzu.
+     * @param listener ActionListener
+     */
+    void addManageStrategyMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt Initialisierungen verwalten hinzu.
+     * @param listener ActionListener
+     */
+    void addManageInitMenuActionListener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Menüpunkt Konfigurationen verwalten hinzu.
+     * @param listener ActionListener
+     */
+    void addManageConfigMenuActionListener(ActionListener listener);
+
+
+
 
 
 
