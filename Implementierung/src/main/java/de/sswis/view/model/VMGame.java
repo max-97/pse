@@ -13,7 +13,10 @@ public class VMGame {
     private int[][] payoffs;
 
     /**
-     * @return
+     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
+     * Fehlerhafte Daten beinhalten: illegale Eingaben.
+     *
+     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
      */
     public boolean isCorrect () {
         //TODO: implement me
@@ -21,7 +24,8 @@ public class VMGame {
     }
 
     /**
-     * @return
+     * Gibt eine String der wichtige Informationen des Stufenspiels zusammenfasst.
+     * @return String enthält Kurzbeschreibung des Stufenspiels
      */
     public String getToolTipText() {    return ""; }
 

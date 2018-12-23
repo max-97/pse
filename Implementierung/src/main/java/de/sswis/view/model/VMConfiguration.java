@@ -26,7 +26,10 @@ public class VMConfiguration {
     private VMResult result;
 
     /**
-     * @return
+     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
+     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
+     *
+     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
      */
     public boolean isCorrect () {
         //TODO: implement me
@@ -34,11 +37,15 @@ public class VMConfiguration {
     }
 
     /**
-     * @return
+     * Zeigt ob die Konfiguration variable Parameter enthält.
+     * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */
     public boolean isMultiConfiguration() { return false; }
 
     /**
+     *
+     *
+     *
      * @return
      */
     public boolean hasResult () {
@@ -47,7 +54,8 @@ public class VMConfiguration {
     }
 
     /**
-     * @return
+     * Gibt eine String der wichtige Informationen zu dieser Konfiguration zusammenfasst.
+     * @return String enthält Kurzbeschreibung der Konfiguration
      */
     public String getToolTipText() {    return ""; }
 

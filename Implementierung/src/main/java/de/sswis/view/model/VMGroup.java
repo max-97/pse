@@ -3,7 +3,7 @@ package de.sswis.view.model;
 import java.util.List;
 
 /**
- * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer oder mehrerer {@code Group} Objekten enthält.
+ * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer {@code Group} enthält.
  * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
  *
  * @author Sophie Bräuniger
@@ -21,7 +21,10 @@ public class VMGroup {
     private List<AgentDistribution> startCapitalDistributions;
 
     /**
-     * @return
+     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
+     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
+     *
+     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
      */
     public boolean isCorrect () {
         //TODO: implement me
@@ -53,7 +56,8 @@ public class VMGroup {
     public void addStartCapital (int capital, int[] ids) {}
 
     /**
-     * @return
+     * Gibt eine String der wichtige Informationen zu dieser Gruppe zusammenfasst.
+     * @return String enthält Kurzbeschreibung der Gruppe
      */
     public String getToolTipText() {    return ""; }
 

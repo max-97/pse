@@ -18,7 +18,10 @@ public class VMStrategy {
     private List<String> probabilities;
 
     /**
-     * @return
+     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
+     * Fehlerhafte Daten beinhalten: illegale Eingaben, Inkonsistenzen innerhalb der Wahrscheinlichkeiten.
+     *
+     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
      */
     public boolean isCorrect () {
         //TODO: implement me
@@ -26,7 +29,8 @@ public class VMStrategy {
     }
 
     /**
-     * @return
+     * Gibt eine String der wichtige Informationen zu dieser gemischten Strategie zusammenfasst.
+     * @return String enthält Kurzbeschreibung der gemischten Strategie
      */
     public String getToolTipText() {    return ""; }
 

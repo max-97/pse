@@ -2,22 +2,23 @@ package de.sswis.view.model;
 
 /**
  *Ein Ergebnis zum Speichern von Daten von abgeschlossenen Simulationen.
- *
+ *Berechnet Daten zum Anzeigen von Diagrammen vor.
  *
  * @author Sophie Bräuniger
  */
 public class VMResult {
 
-    VMConfiguration vmConfig;
+    private String name;
+    private VMConfiguration vmConfig;
 
 
-    /**
-     * @return
-     */
+
+    /*
     public boolean isCorrect () {
         //TODO: implement me
         return false;
     }
+    */
 
 
 }

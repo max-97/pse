@@ -17,7 +17,10 @@ public class VMCombinedStrategy {
 
 
     /**
-     * @return
+     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
+     * Fehlerhafte Daten beinhalten: illegale Eingaben.
+     *
+     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
      */
     public boolean isCorrect () {
         //TODO: implement me
@@ -51,7 +54,8 @@ public class VMCombinedStrategy {
 
 
     /**
-     * @return
+     * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
+     * @return String enthält Kurzbeschreibung der kombinierten Strategie
      */
     public String getToolTipText() {    return ""; }
 
