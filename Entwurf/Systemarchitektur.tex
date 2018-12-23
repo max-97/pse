@@ -8,9 +8,12 @@
 \end{figure}
 
 Sswis baut auf einem MVC-Model auf, welches um ein ViewModel erweitert wurde, was ein vollständiges Abkoppeln von Model und View ermöglicht.
-Die Benutzerinteraktion erfolgt über die View. Im ViewModel werden die Benutzereingaben zwischengespeichert und auf Korrektheit überprüft. Des Weiteren schreibt der Controller diejenigen Informationen in das ViewModel, die auf der Benutzeroberfläche angezeigt werden sollen.\\
+
+Die Benutzerinteraktion erfolgt über die View. Im ViewModel werden die Benutzereingaben zwischengespeichert und auf Korrektheit überprüft. Des Weiteren schreibt der Controller diejenigen Informationen in das ViewModel, die auf der Benutzeroberfläche angezeigt werden sollen.
+
 Der Controller ist für die Programmflusssteuerung zuständig. Die ActionListener der Benutzeroberfläche sind im Controller implementiert. Hierdurch können etwa neue Benutzeroberflächen unter Wiederverwendung der ActionListener erstellt werden.
-Außerdem dient der Controller zur Kommunikation zwischen View und Model.\\
+Außerdem dient der Controller zur Kommunikation zwischen View und Model.
+
 Im Model sind die Objekte der Simulation abgebildet. Auch ist hier die gesamte Business Logic implementiert.
 
 \subsection{Controller}
@@ -18,16 +21,17 @@ Im Model sind die Objekte der Simulation abgebildet. Auch ist hier die gesamte B
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.36]{Controller_package}}
 
-Zur Erfüllung der oben angedeuteten Aufgaben steht dem Controller eine Reihe an weiteren Klassen neben den ActionListener-Klassen, die sich im Paket Handlers befinden, zur Verfügung.\\
-Zum einen müssen die GUI-Objekte, d.h. alle Fenster mit denen der Benutzer interagiert, erstellt werden. Dies wird durch das Fabrik-Entwurfsmuster realisiert. Das AbstractGuiFactory-Interface gibt alle nötigen Ansichten vor und bietet weiterhin die oben beschriebene Möglichkeit, das Programm zu einem späteren Zeitpunkt komfortabel um neue Benutzeroberflächen zu erweitern.\\
+Zur Erfüllung der oben angedeuteten Aufgaben steht dem Controller eine Reihe an weiteren Klassen neben den ActionListener-Klassen, die sich im Paket Handlers befinden, zur Verfügung.
+
+Zum einen müssen die GUI-Objekte, d.h. alle Fenster mit denen der Benutzer interagiert, erstellt werden. Dies wird durch das Fabrik-Entwurfsmuster realisiert. Das AbstractGuiFactory-Interface gibt alle nötigen Ansichten vor und bietet weiterhin die oben beschriebene Möglichkeit, das Programm zu einem späteren Zeitpunkt komfortabel um neue Benutzeroberflächen zu erweitern.
 Die SwingGuiFactory-Klasse erstellt die Objekte der von diesem Entwicklerteam angebotenen, Swing-basierten Benutzeroberfläche.
 
 Bei dem ModelProvider handelt es sich um ein Einzelstück, das als zentrale Anlaufstelle für alle Model-Objekte dient. Das Einzelstück-Entwurfsmuster wurde verwendet, um Inkonsistenzen vorzubeugen.
 
-Im FileManager werden Methoden zum Speichern, Laden und Löschen von Objekten bereitgestellt, die gesicherte Benutzereingaben und Ergebnisse darstellen. Das Bearbeiten dieser Objekte geschieht durch ein Laden und anschließendes Speichern des gegebenen Objekts.\\
+Im FileManager werden Methoden zum Speichern, Laden und Löschen von Objekten bereitgestellt, die gesicherte Benutzereingaben und Ergebnisse darstellen. Das Bearbeiten dieser Objekte geschieht durch ein Laden und anschließendes Speichern des gegebenen Objekts.
 Die Objekte werden in einem programminternen Verzeichnis gespeichert.
 
-Die vom Programm angebotenen "Dienstleistungen", darunter fallen die diversen Algorithmentypen\footnote{Adaptionsalgorithmen, Paarungsalgorithmen und Bewertungsalgorithmen} sowie die verfügbaren Bedingungen und Basis-Strategien, können durch den ModelServiceLoader zur Verfügung gestellt werden.\\
+Die vom Programm angebotenen "Dienstleistungen", darunter fallen die diversen Algorithmentypen\footnote{Adaptionsalgorithmen, Paarungsalgorithmen und Bewertungsalgorithmen} sowie die verfügbaren Bedingungen und Basis-Strategien, können durch den ModelServiceLoader zur Verfügung gestellt werden.
 Dies ist nötig, da sie auf Entwicklerebene um weitere Ausprägungen ergänzt werden können und diese ebenfalls an allen relevanten Stellen, z.B. im Auswahlfenster für den Benutzer, sichtbar sein sollen.
 
 Der ModelParser überträgt das ViewModel in das Model. Konkret werden die im ViewModel auf Korrektheit überprüften Benutzereingaben in Objekte umgewandelt, mit denen eine Simulation durchgeführt werden kann. Andersherum werden die Daten abgelaufener Simulationen in ein Format konvertiert, das die View darstellen kann.
@@ -42,9 +46,9 @@ Schließlich können durch das Interface Simulationen überwacht werden, wobei d
 
 Im Model liegen alle Konfigurationen welche eine Simulation beschreiben. Jede Konfiguration besitzt eine Initialisierung, in der die initialen Zustände der Agenten beschrieben werden. \\
 
-Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um ein Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht, sendet sie eine Nachricht an alle Observer.\\
+Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um ein Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht, sendet sie eine Nachricht an alle Observer.
 
-In der Simulation werden zwei Agenten durch einen PairingAlgorithm gepaart, diese Paare spielen das ausgewählte Stufenspiel gegeneinander.\\
+In der Simulation werden zwei Agenten durch einen PairingAlgorithm gepaart, diese Paare spielen das ausgewählte Stufenspiel gegeneinander.
 
 Es gibt drei Algorithmen Pakete im Model, welche die Simulation verwendet. Diese sind: 
 \begin{itemize}
@@ -52,9 +56,9 @@ Es gibt drei Algorithmen Pakete im Model, welche die Simulation verwendet. Diese
 \item $algorithms.ranking$
 \item $algorithms.adaptation$
 \end{itemize}
-$algorithms.pairing$ bietet die verschiedenen Algorithmen für die Paarung vom Agenten. In $algorithms.ranking$ liegen die Algorithmen für die Bewertung der Agenten am Ende eines Zyklus. $algorithms.adaptation$ enthält die Algorithmen, welche die Strategien der Agenten am Ende eines Zyklus basierend auf dem Ranking anpassen. Bei den drei Paketen verwendet wir das Entwurfsmuster Strategie, um die Algorithmen während der Laufzeit dynamisch zu binden.\\
+$algorithms.pairing$ bietet die verschiedenen Algorithmen für die Paarung vom Agenten. In $algorithms.ranking$ liegen die Algorithmen für die Bewertung der Agenten am Ende eines Zyklus. $algorithms.adaptation$ enthält die Algorithmen, welche die Strategien der Agenten am Ende eines Zyklus basierend auf dem Ranking anpassen. Bei den drei Paketen verwendet wir das Entwurfsmuster Strategie, um die Algorithmen während der Laufzeit dynamisch zu binden.
 
-In den Paketen $strategies$ und $condition$ stehen die Basisstrategien und Bedingungen zur Verfügung. Mit diesen lassen sich kombinierte Strategien definieren, hier wird ebenfalls ein Strategie Entwurfsmuster verwendet. Die Klasse Strategy wiederum beschreibt eine gemischte Strategie, welche sich aus mehreren kombinierten Strategien zusammensetzt.\\
+In den Paketen $strategies$ und $condition$ stehen die Basisstrategien und Bedingungen zur Verfügung. Mit diesen lassen sich kombinierte Strategien definieren, hier wird ebenfalls ein Strategie Entwurfsmuster verwendet. Die Klasse Strategy wiederum beschreibt eine gemischte Strategie, welche sich aus mehreren kombinierten Strategien zusammensetzt.
 
 Ein History Objekt merkt sich die in einem Zyklus erreichten Punkte eines Agenten, sowie welche Agenten welche Aktionen gegen ihn gespielt haben. History Objekte werden dazu verwendet, um die Aktion in der aktuellen Runde eines Agenten zu ermitteln und Informationen über den Simulationsverlauf auf der Benutzeroberfläche anzuzeigen.
 
@@ -64,16 +68,16 @@ Ein History Objekt merkt sich die in einem Zyklus erreichten Punkte eines Agente
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.4]{view_classDiagramm}}
 
-Für die Implementierung der Benutzeroberfläche wird die Java Swing Bibliothek und IntelliJ GUI Forms verwendet. In der View stehen alle Fenster, mit denen der Benutzer interagiert, als eigene Klasse zur Verfügung. Zur Übersicht sind nur drei dieser Klassen in dem Bild dargestellt, um das Zusammenspiel von View und View Model Objekten anschaulich zu machen.\\ 
+Für die Implementierung der Benutzeroberfläche wird die Java Swing Bibliothek und IntelliJ GUI Forms verwendet. In der View stehen alle Fenster, mit denen der Benutzer interagiert, als eigene Klasse zur Verfügung. Zur Übersicht sind nur drei dieser Klassen in dem Bild dargestellt, um das Zusammenspiel von View und View Model Objekten anschaulich zu machen.
 
-Die Fenster enthalten Buttons und Menuitems, mit denen der Nutzer interagieren kann. Für diese werden die Handler aus dem Controller als ActionListener gesetzt.\\ 
+Die Fenster enthalten Buttons und Menuitems, mit denen der Nutzer interagieren kann. Für diese werden die Handler aus dem Controller als ActionListener gesetzt.
 
-Das Interface AbstractView enthält die grundlegendsten Methoden für ein GUI Fenster, um dieses anzeigen und schließen zu lassen. Jedes Fenster der Benutzeroberfläche implementiert ein eigenes Interface, das von AbtractView erbt und öffentliche Methoden, wie zum Beispiel zum Setzen der Actionlistener, enthält.\\
+Das Interface AbstractView enthält die grundlegendsten Methoden für ein GUI Fenster, um dieses anzeigen und schließen zu lassen. Jedes Fenster der Benutzeroberfläche implementiert ein eigenes Interface, das von AbtractView erbt und öffentliche Methoden, wie zum Beispiel zum Setzen der Actionlistener, enthält.
 
 MainView ist das Hauptfenster des Programms. Es zeigt alle Konfigurationen an und über Buttons kann eine ausgewählte Konfiguration gestartet und die Ergebnisse angezeigt und gespeichert werden. Dafür besitzt das Fenster eine Liste aller gespeicherten VMConfiguration Objekte.
-Über das Menü kann der Nutzer sich alle Fenster zum Verwalten und Erstellen von Konfigurationen, Initialisierungen, Stufenspielen und gemischten und kombinierten Strategien öffnen lassen.\\
+Über das Menü kann der Nutzer sich alle Fenster zum Verwalten und Erstellen von Konfigurationen, Initialisierungen, Stufenspielen und gemischten und kombinierten Strategien öffnen lassen.
 
-ManageGamesView ist ein Fenster zum Verwalten von Stufenspielen. Über Buttons können Stufenspiele bearbeitet, gelöscht und erstellt werden. Damit Informationen zu allen Stufenspielen angezeigt werden können, besitzt das Fenster eine Liste aller gespeicherten VMGame Objekte. \\
+ManageGamesView ist ein Fenster zum Verwalten von Stufenspielen. Über Buttons können Stufenspiele bearbeitet, gelöscht und erstellt werden. Damit Informationen zu allen Stufenspielen angezeigt werden können, besitzt das Fenster eine Liste aller gespeicherten VMGame Objekte. 
 
-NewGameView ist ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels. Es besitzt ein VMGame Objekt, in das die Nutzereingaben übertragen werden. Das VMGame Objekt prüft dabei die Eingaben auf Korrektheit. \\
+NewGameView ist ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels. Es besitzt ein VMGame Objekt, in das die Nutzereingaben übertragen werden. Das VMGame Objekt prüft dabei die Eingaben auf Korrektheit. 
 
