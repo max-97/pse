@@ -8,6 +8,11 @@ import de.sswis.view.model.VMStrategy;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *Ein Fenster zum Verwalten von gemischten Strategien.
+ *
+ * @author Sophie Bräuniger
+ */
 public class ManageStrategiesView implements AbstractManageStrategiesView{
     private JButton aenderungenSpeichernUndSchließenButton;
     private JButton abbrechenButton;
