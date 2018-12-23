@@ -48,8 +48,15 @@ public class MainView implements AbstractMainView {
     @Override
     public void update() {}
 
+    @Override
+    public void show() {
 
+    }
 
+    @Override
+    public void close() {
+
+    }
 
 
     private void createUIComponents() {

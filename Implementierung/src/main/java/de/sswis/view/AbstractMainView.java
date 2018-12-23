@@ -10,7 +10,7 @@ import de.sswis.view.model.VMResult;
  * @author Sophie Bräuniger
  *
  */
-public interface AbstractMainView {
+public interface AbstractMainView extends AbstractView {
 
     /**
      * Fügt eine vom Nutzer erstellte Konfiguration hinzu.
@@ -37,10 +37,7 @@ public interface AbstractMainView {
      */
     void setSimulationFinished (String NameConfiguration);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
+
 
 
 

@@ -7,7 +7,7 @@ import de.sswis.view.model.VMGame;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageGamesView {
+public interface AbstractManageGamesView extends AbstractView {
 
     /**
      * Fügt ein Stufenspiel hinzu.
@@ -21,9 +21,5 @@ public interface AbstractManageGamesView {
      */
     void removeGame(String gameName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
 
 }

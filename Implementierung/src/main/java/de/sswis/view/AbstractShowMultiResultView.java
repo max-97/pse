@@ -5,5 +5,7 @@ package de.sswis.view;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractShowMultiResultView {
+public interface AbstractShowMultiResultView extends AbstractView {
+
+
 }

@@ -7,7 +7,7 @@ import de.sswis.view.model.VMResult;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageResultsView {
+public interface AbstractManageResultsView extends AbstractView {
 
     /**
      * Fügt ein Ergebnis hinzu.
@@ -21,9 +21,5 @@ public interface AbstractManageResultsView {
      */
     void removeResult(String resultName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
 
 }

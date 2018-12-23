@@ -5,7 +5,9 @@ package de.sswis.view;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractNewConfigurationView {
+public interface AbstractNewConfigurationView extends AbstractView {
+
+
 
 
 }

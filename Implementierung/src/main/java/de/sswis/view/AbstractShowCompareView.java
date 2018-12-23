@@ -5,7 +5,9 @@ package de.sswis.view;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractShowCompareView {
+public interface AbstractShowCompareView extends AbstractView {
+
+
 
 
 

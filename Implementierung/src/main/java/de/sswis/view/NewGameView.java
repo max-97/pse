@@ -13,4 +13,18 @@ public class NewGameView implements AbstractNewGameView {
     private VMGame vmGame;
 
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

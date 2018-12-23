@@ -148,4 +148,18 @@ public class ShowCompareView implements AbstractShowCompareView{
         scrollPane2.setViewportView(waehlenSieEineKonfigurationTree);
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

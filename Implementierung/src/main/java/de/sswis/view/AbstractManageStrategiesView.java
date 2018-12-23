@@ -7,7 +7,7 @@ import de.sswis.view.model.VMStrategy;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageStrategiesView {
+public interface AbstractManageStrategiesView extends AbstractView {
 
     /**
      * Fügt eine gemischte Strategie hinzu.
@@ -21,8 +21,5 @@ public interface AbstractManageStrategiesView {
      */
     void removeResult(String strategyName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
+
 }

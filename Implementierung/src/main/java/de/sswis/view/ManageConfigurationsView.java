@@ -29,4 +29,14 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     public void update() {
 
     }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

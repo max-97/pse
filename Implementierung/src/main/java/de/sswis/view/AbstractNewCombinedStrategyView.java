@@ -5,7 +5,8 @@ package de.sswis.view;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractNewCombinedStrategyView {
+public interface AbstractNewCombinedStrategyView extends AbstractView {
+
 
 
 

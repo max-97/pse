@@ -7,7 +7,7 @@ import de.sswis.view.model.VMInitialization;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageInitializationsView {
+public interface AbstractManageInitializationsView extends AbstractView {
 
     /**
      * Fügt eine Initialisierung hinzu.
@@ -21,8 +21,5 @@ public interface AbstractManageInitializationsView {
      */
     void removeInit(String initName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
+
 }

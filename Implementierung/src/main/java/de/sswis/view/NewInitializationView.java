@@ -269,4 +269,19 @@ public class NewInitializationView implements AbstractNewInitializationView{
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

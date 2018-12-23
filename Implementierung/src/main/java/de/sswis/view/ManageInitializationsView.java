@@ -29,7 +29,15 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     }
 
+    @Override
+    public void show() {
 
+    }
+
+    @Override
+    public void close() {
+
+    }
 
 
 }

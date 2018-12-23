@@ -151,4 +151,14 @@ public class ManageGamesView implements AbstractManageGamesView{
     public void update() {
 
     }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

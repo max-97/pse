@@ -7,7 +7,7 @@ import de.sswis.view.model.VMConfiguration;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageConfigurationsView {
+public interface AbstractManageConfigurationsView extends AbstractView {
 
     /**
      * Fügt eine Konfiguration hinzu.
@@ -21,8 +21,5 @@ public interface AbstractManageConfigurationsView {
      */
     void removeConfiguration(String configName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
+
 }

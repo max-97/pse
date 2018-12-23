@@ -132,4 +132,18 @@ public class ShowResultView implements AbstractShowResultView {
         return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }

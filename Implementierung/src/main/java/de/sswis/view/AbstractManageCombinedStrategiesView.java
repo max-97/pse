@@ -7,7 +7,7 @@ import de.sswis.view.model.VMCombinedStrategy;
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageCombinedStrategiesView {
+public interface AbstractManageCombinedStrategiesView extends AbstractView {
 
 
     /**
@@ -22,8 +22,5 @@ public interface AbstractManageCombinedStrategiesView {
      */
     void removeStrategy(String strategyName);
 
-    /**
-     *Aktualisiert alle Komponenten.
-     */
-    void update();
+
 }

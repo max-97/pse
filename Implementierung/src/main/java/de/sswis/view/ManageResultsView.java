@@ -23,4 +23,14 @@ public class ManageResultsView implements AbstractManageResultsView {
     public void update() {
 
     }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
 }
