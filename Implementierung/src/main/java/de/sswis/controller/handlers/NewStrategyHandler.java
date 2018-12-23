@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Erstellt eine neue kombinierte Strategie. In der View zum Verwalten der {@code kombinierten Strategien} wird eine
- * neue {@code kombinierte Strategie} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen
- * {@code kombinierten Strategie}.
+ * Erstellt eine neue kombinierte Strategie. In der View zum Verwalten der {@code gemischten Strategien} wird eine
+ * neue {@code gemischte Strategie} hinzugefügt und es öffnet sich die View zum Bearbeiten der neuen
+ * {@code gemischten Strategie}.
  *
  * @author Max Braun
  */

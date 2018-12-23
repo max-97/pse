@@ -50,8 +50,9 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-include',
             '-sectionlevel', 'section',
             '-output', '../Entwurf/javadoc.tex',
-            '-title', 'My Title',
-            '-author', 'My Name',
+            '-title', 'Entwurfsheft',
+            '-date', '23.12.2018',
+            '-author', 'Michel Bodé, Max Braun, Sophie Bräuniger, Simon Hügel, Zezhong Tong',
             '-sourcepath', 'src/main/java',
             '-subpackages', 'de.sswis'
 }

@@ -1,167 +1,138 @@
 @startuml
 
-    namespace de.sswis.view {
+namespace de.sswis.view {
 
-        together {
-        interface de.sswis.view.AbstractMainView [[AbstractMainView.html]] {
-            {abstract} +addConfiguration(VMConfiguration): void
-            {abstract} +removeConfiguration(String): void
-            {abstract} +addResult(String, VMResult): void
-            {abstract} +setSimulationFinished(String): void
-            {abstract} +update(): void
-        }
+    interface de.sswis.view.AbstractView [[AbstractView.html]] {
+                {abstract} +update(): void
+                {abstract} +show(): void
+                {abstract} +close(): void
+            }
 
-        interface de.sswis.view.AbstractManageCombinedStrategiesView [[AbstractManageCominedStrategiesView.html]] {
-            {abstract} +addStrategy(VMStrategy): void
-            {abstract} +removeStrategy(String): void
-            {abstract} +update(): void
-        }
+    together
+    {
+    interface de.sswis.view.AbstractMainView [[AbstractMainView.html]] {
+                {abstract} +addConfiguration(VMConfiguration): void
+                {abstract} +removeConfiguration(String): void
+                {abstract} +addResult(String, VMResult): void
+                {abstract} +setSimulationFinished(String): void
+                {abstract} +addStartButtonActionlistener(ActionListener): void
+                {abstract} +addStopActionListener(ActionListener): void
+                {abstract} +addShowButtonActionlistener(ActionListener): void
+                {abstract} +addSaveButtonActionlistener(ActionListener): void
+                {abstract} +addNewGameMenuActionListener(ActionListener): void
+                {abstract} +addNewCombiStrategyMenuActionListener(ActionListener): void
+                {abstract} +addNewStrategyMenuActionListener(ActionListener): void
+                {abstract} +addNewInitMenuActionListener(ActionListener): void
+                {abstract} +addNewConfigMenuActionListener(ActionListener): void
+                {abstract} +addManageGameMenuActionListener(ActionListener): void
+                {abstract} +addManageCombiStrategyMenuActionListener(ActionListener): void
+                {abstract} +addManageStrategyMenuActionListener(ActionListener): void
+                {abstract} +addManageInitMenuActionListener(ActionListener): void
+                {abstract} +addManageConfigMenuActionListener(ActionListener): void
+            }
 
-        interface de.sswis.view.AbstractManageConfigurationsView [[AbstractManageConfigurationsView.html]] {
-            {abstract} +addConfiguration(VMConfiguration): void
-            {abstract} +removeConfiguration(String): void
-            {abstract} +update(): void
-        }
+    interface de.sswis.view.AbstractManageGamesView [[AbstractManageGamesView.html]] {
+                {abstract} +addGame(VMGame): void
+                {abstract} +removeGame(String): void
+                {abstract} +addNewGameButtonActionlistener(ActionListener): void
+                {abstract} +addEditGameButtonActionlistener(ActionListener): void
+                {abstract} +addDeleteGameButtonActionlistener(ActionListener): void
+                {abstract} +addCancelButtonActionlistener(ActionListener): void
+                {abstract} +addSaveQuitButtonActionlistener(ActionListener): void
+            }
 
-        interface de.sswis.view.AbstractManageGamesView [[AbstractManageGamesView.html]] {
-            {abstract} +addGame(VMGame): void
-            {abstract} +removeGame(String): void
-            {abstract} +update(): void
-        }
-
-        interface de.sswis.view.AbstractManageInitializationsView [[AbstractManageInitializationsView.html]] {
-            {abstract} +addInit(VMInitialization): void
-            {abstract} +removeInit(String): void
-            {abstract} +update(): void
-        }
-
-        interface de.sswis.view.AbstractManageResultsView [[AbstractManageResultsView.html]] {
-            {abstract} +addResult(VMResult): void
-            {abstract} +removeResult(String): void
-            {abstract} +update(): void
-        }
-
-        interface de.sswis.view.AbstractManageStrategiesView [[AbstractManageStrategiesView.html]] {
-            {abstract} +addResult(VMStrategy): void
-            {abstract} +removeResult(String): void
-            {abstract} +update(): void
-        }
-
-        class de.sswis.view.MainView [[MainView.html]] {
-                    +addConfiguration(VMConfiguration): void
-                    +removeConfiguration(String): void
-                    +addResult(String, VMResult): void
-                    +setSimulationFinished(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageCombinedStrategiesView [[ManageCominedStrategiesView.html]] {
-                    +addStrategy(VMStrategy): void
-                    +removeStrategy(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageConfigurationsView [[ManageConfigurationsView.html]] {
-                    +addConfiguration(VMConfiguration): void
-                    +removeConfiguration(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageGamesView [[ManageGamesView.html]] {
-                    +addGame(VMGame): void
-                    +removeGame(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageInitializationsView [[ManageInitializationsView.html]] {
-                    +addInit(VMInitialization): void
-                    +removeInit(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageResultsView [[ManageResultsView.html]] {
-                    +addResult(VMResult): void
-                    +removeResult(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.ManageStrategiesView [[ManageStrategiesView.html]] {
-                    +addResult(VMStrategy): void
-                    +removeResult(String): void
-                    +update(): void
-                }
-
-                class de.sswis.view.NewCombinedStrategyView [[NewCombinedStrategyView.html]] {
-                }
-        }
-
-
-        together {
-        interface de.sswis.view.AbstractNewCombinedStrategyView [[AbstractNewCombinedStrategyView.html]]
-
-        interface de.sswis.view.AbstractNewConfigurationView [[AbstractNewConfigurationView.html]]
-
-        interface de.sswis.view.AbstractNewGameView [[AbstractNewGameView.html]]
-
-        interface de.sswis.view.AbstractNewInitializationView [[AbstractNewInitializationView.html]]
-
-        interface de.sswis.view.AbstractNewStrategyView [[AbstractNewStrategyView.html]]
-
-        interface de.sswis.view.AbstractShowCompareView [[AbstractShowCompareView.html]]
-
-
-        interface de.sswis.view.AbstractShowMultiResultView [[AbstractShowMultiResultView.html]]
-
-        interface de.sswis.view.AbstractShowResultView [[AbstractShowResultView.html]]
-
-
-        class de.sswis.view.NewConfigurationView [[NewConfigurationView.html]] {
-        }
-
-        class de.sswis.view.NewGameView [[NewGameView.html]] {
-        }
-
-        class de.sswis.view.NewInitializationView [[NewInitializationView.html]] {
-
-        }
-
-        class de.sswis.view.NewStrategyView [[NewStrategyView.html]] {
-        }
-
-        class de.sswis.view.ShowCompareView [[ShowCompareView.html]] {
-        }
-
-        class de.sswis.view.ShowMultiResultView [[ShowMultiResultView.html]] {
-        }
-
-        class de.sswis.view.ShowResultView [[ShowResultView.html]] {
-        }
-
-        }
-
-        de.sswis.view.AbstractMainView -[hidden]--> de.sswis.view.AbstractNewCombinedStrategyView
-        de.sswis.view.AbstractManageCombinedStrategiesView -[hidden]--> de.sswis.view.AbstractNewConfigurationView
-        de.sswis.view.AbstractManageConfigurationsView -[hidden]--> de.sswis.view.AbstractNewGameView
-        de.sswis.view.AbstractManageGamesView -[hidden]--> de.sswis.view.AbstractNewInitializationView
-        de.sswis.view.AbstractManageInitializationsView -[hidden]--> de.sswis.view.AbstractNewStrategyView
-        de.sswis.view.AbstractManageResultsView -[hidden]--> de.sswis.view.AbstractShowCompareView
-        de.sswis.view.AbstractManageStrategiesView -[hidden]--> de.sswis.view.AbstractShowMultiResultView
-
-        de.sswis.view.AbstractMainView <|.. de.sswis.view.MainView
-        de.sswis.view.AbstractManageCombinedStrategiesView <|.. de.sswis.view.ManageCombinedStrategiesView
-        de.sswis.view.AbstractManageConfigurationsView <|.. de.sswis.view.ManageConfigurationsView
-        de.sswis.view.AbstractManageGamesView <|.. de.sswis.view.ManageGamesView
-        de.sswis.view.AbstractManageInitializationsView <|.. de.sswis.view.ManageInitializationsView
-        de.sswis.view.AbstractManageResultsView <|.. de.sswis.view.ManageResultsView
-        de.sswis.view.AbstractManageStrategiesView <|.. de.sswis.view.ManageStrategiesView
-        de.sswis.view.AbstractNewCombinedStrategyView <|.. de.sswis.view.NewCombinedStrategyView
-        de.sswis.view.AbstractNewConfigurationView <|.. de.sswis.view.NewConfigurationView
-        de.sswis.view.AbstractNewGameView <|.. de.sswis.view.NewGameView
-        de.sswis.view.AbstractNewInitializationView <|.. de.sswis.view.NewInitializationView
-        de.sswis.view.AbstractNewStrategyView <|.. de.sswis.view.NewStrategyView
-        de.sswis.view.AbstractShowCompareView <|.. de.sswis.view.ShowCompareView
-        de.sswis.view.AbstractShowMultiResultView <|.. de.sswis.view.ShowMultiResultView
-        de.sswis.view.AbstractShowResultView <|.. de.sswis.view.ShowResultView
+    interface de.sswis.view.AbstractNewGameView [[AbstractNewGameView.html]] {
+                {abstract} +addCancelButtonActionlistener(ActionListener): void
+                {abstract} +addFinishButtonActionlistener(ActionListener): void
+            }
     }
+
+    together
+    {
+
+    class de.sswis.view.MainView [[MainView.html]] {
+                +addConfiguration(VMConfiguration): void
+                +removeConfiguration(String): void
+                +addResult(String, VMResult): void
+                +setSimulationFinished(String): void
+                +addStartButtonActionlistener(ActionListener): void
+                +addStopActionListener(ActionListener): void
+                +addShowButtonActionlistener(ActionListener): void
+                +addSaveButtonActionlistener(ActionListener): void
+                +addNewGameMenuActionListener(ActionListener): void
+                +addNewCombiStrategyMenuActionListener(ActionListener): void
+                +addNewStrategyMenuActionListener(ActionListener): void
+                +addNewInitMenuActionListener(ActionListener): void
+                +addNewConfigMenuActionListener(ActionListener): void
+                +addManageGameMenuActionListener(ActionListener): void
+                +addManageCombiStrategyMenuActionListener(ActionListener): void
+                +addManageStrategyMenuActionListener(ActionListener): void
+                +addManageInitMenuActionListener(ActionListener): void
+                +addManageConfigMenuActionListener(ActionListener): void
+                +update(): void
+                +show(): void
+                +close(): void
+            }
+
+    class de.sswis.view.ManageGamesView [[ManageGamesView.html]] {
+                +addGame(VMGame): void
+                +removeGame(String): void
+                +addNewGameButtonActionlistener(ActionListener): void
+                +addEditGameButtonActionlistener(ActionListener): void
+                +addDeleteGameButtonActionlistener(ActionListener): void
+                +addCancelButtonActionlistener(ActionListener): void
+                +addSaveQuitButtonActionlistener(ActionListener): void
+                +update(): void
+                +show(): void
+                +close(): void
+            }
+
+    class de.sswis.view.NewGameView [[NewGameView.html]] {
+                +update(): void
+                +show(): void
+                +close(): void
+                +addCancelButtonActionlistener(ActionListener): void
+                +addFinishButtonActionlistener(ActionListener): void
+            }
+    }
+
+
+    namespace model {
+
+        together
+        {
+        class de.sswis.view.model.VMConfiguration [[VMConfiguration.html]] {
+                    +isCorrect(): boolean
+                    +isMultiConfiguration(): boolean
+                    +hasResult(): boolean
+                    +getToolTipText(): String
+                }
+
+        class de.sswis.view.model.VMGame [[VMGame.html]] {
+                    +isCorrect(): boolean
+                    +getToolTipText(): String
+                }
+        }
+    }
+
+    AbstractView -[hidden]-> AbstractManageGamesView
+    AbstractMainView -[hidden]> AbstractManageGamesView
+    AbstractManageGamesView -[hidden]> AbstractNewGameView
+
+    de.sswis.view.model.VMConfiguration -[hidden]> de.sswis.view.model.VMGame
+    de.sswis.view.MainView -[hidden]--> de.sswis.view.model
+
+    AbstractView <|.. AbstractMainView
+    AbstractView <|.. AbstractManageGamesView
+    AbstractView <|.. AbstractNewGameView
+
+    AbstractMainView <|.. MainView
+    AbstractManageGamesView <|.. ManageGamesView
+    AbstractNewGameView <|.. NewGameView
+
+    MainView -> "*" de.sswis.view.model.VMConfiguration: configurations
+    ManageGamesView -> "*" de.sswis.view.model.VMGame: createdGames
+    NewGameView -> "1" de.sswis.view.model.VMGame: newGame
+}
 
 @enduml
