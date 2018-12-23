@@ -39,6 +39,7 @@ Schließlich können durch das Interface Simulationen überwacht werden, wobei d
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.4]{model_classDiagramm}}
 
+
 Im Model liegen alle Konfigurationen welche eine Simulation beschreiben. Jede Konfiguration besitzt eine Initialisierung, in der die initialen Zustände der Agenten beschrieben werden. \\
 
 Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um ein Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht, sendet sie eine Nachricht an alle Observer.\\
@@ -56,3 +57,23 @@ $algorithms.pairing$ bietet die verschiedenen Algorithmen für die Paarung vom A
 In den Paketen $strategies$ und $condition$ stehen die Basisstrategien und Bedingungen zur Verfügung. Mit diesen lassen sich kombinierte Strategien definieren, hier wird ebenfalls ein Strategie Entwurfsmuster verwendet. Die Klasse Strategy wiederum beschreibt eine gemischte Strategie, welche sich aus mehreren kombinierten Strategien zusammensetzt.\\
 
 Ein History Objekt merkt sich die in einem Zyklus erreichten Punkte eines Agenten, sowie welche Agenten welche Aktionen gegen ihn gespielt haben. History Objekte werden dazu verwendet, um die Aktion in der aktuellen Runde eines Agenten zu ermitteln und Informationen über den Simulationsverlauf auf der Benutzeroberfläche anzuzeigen.
+
+
+\subsection{View}
+
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.4]{view_classDiagramm}}
+
+Für die Implementierung der Benutzeroberfläche wird die Java Swing Bibliothek und IntelliJ GUI Forms verwendet. In der View stehen alle Fenster, mit denen der Benutzer interagiert, als eigene Klasse zur Verfügung. Zur Übersicht sind nur drei dieser Klassen in dem Bild dargestellt, um das Zusammenspiel von View und View Model Objekten anschaulich zu machen. 
+
+Die Fenster enthalten Buttons und Menuitems, mit denen der Nutzer interagieren kann. Für diese werden die Handler aus dem Controller als ActionListener gesetzt. 
+
+Das Interface AbstractView enthält die grundlegendsten Methoden für ein GUI Fenster, um dieses anzeigen und schließen zu lassen. Jedes Fenster der Benutzeroberfläche implementiert ein eigenes Interface, das von AbtractView erbt und öffentliche Methoden, wie zum Beispiel zum Setzen der Actionlistener, enthält. 
+
+MainView ist das Hauptfenster des Programms. Es zeigt alle Konfigurationen an und über Buttons kann eine ausgewählte Konfiguration gestartet und die Ergebnisse angezeigt und gespeichert werden. Dafür besitzt das Fenster eine Liste aller gespeicherten VMConfiguration Objekte.
+Über das Menü kann der Nutzer sich alle Fenster zum Verwalten und Erstellen von Konfigurationen, Initialisierungen, Stufenspielen und gemischten und kombinierten Strategien öffnen lassen.
+
+ManageGamesView ist ein Fenster zum Verwalten von Stufenspielen. Über Buttons können Stufenspiele bearbeitet, gelöscht und erstellt werden. Damit Informationen zu allen Stufenspielen angezeigt werden können, besitzt das Fenster eine Liste aller gespeicherten VMGame Objekte.
+
+NewGameView ist ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels. Es besitzt ein VMGame Objekt, in das die Nutzereingaben übertragen werden. Das VMGame Objekt prüft dabei die Eingaben auf Korrektheit.
+
