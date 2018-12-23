@@ -46,7 +46,7 @@ Schließlich können durch das Interface Simulationen überwacht werden, wobei d
 
 Im Model liegen alle Konfigurationen, welche eine Simulation beschreiben. Jede Konfiguration besitzt eine Initialisierung, in der die initialen Zustände der Agenten beschrieben werden. \\
 
-Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um einen Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht wurde, sendet sie eine Nachricht an alle Observer.
+Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um einen Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht hat, sendet sie eine Nachricht an alle Observer.
 
 In der Simulation werden zwei Agenten durch einen PairingAlgorithm gepaart, diese Paare spielen das ausgewählte Stufenspiel gegeneinander.
 
