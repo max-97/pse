@@ -30,10 +30,12 @@ public HashMap<Agent, Integer> getRankings(Simulation sim)
 	result <- resolveConflicts(result)
 	return result
 \end{lstlisting}
+
 \emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. In Zeile 8 wird sicher gestellt, dass die Schleife mindestens einmal durchlaufen wird, auch wenn \emph{WINDOW\_SIZE} größer als die bisherige Zyklenanzahl ist.
+
 Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} berechnet die Gesamtpunktzahl der Agenten von Zyklus \emph{start} bis Zyklus \emph{end} und platziert die Agenten gemäß dieser Gesamtpunktzahl in einer Rangliste. Sollte $i + WINDOW\_SIZE > currentCycle$ gelten, wird nur bis \emph{currentCycle} summiert. 
-In der Schleife ab Zeile 15 wird der Durchschnittsrang von allen Agenten gebildet.
-Es kann vorkommen, dass durch die Durchschnittsbildung und abrunden in Zeile 18 mehrere Agenten den gleichen Rang bekommen. Diese Konflikte werden durch \emph{resloveConflict(ranks)} gelöst. Dabei werden zuerst die Agenten nach ihrem Rang sortiert. Bei gleichem Rang hat der Agent mit der höheren Gesamtpunktzahl über alle Zyklen den höheren Rang, bei gleicher Gesamtpunktzahl ist die Platzierung zufällig. Der finale Rang der Agenten entspricht der Platzierung nach dieser Sortierung.
+
+In der Schleife ab Zeile 15 wird der Durchschnittsrang von allen Agenten gebildet. Es kann vorkommen, dass durch die Durchschnittsbildung und abrunden in Zeile 18 mehrere Agenten den gleichen Rang bekommen. Diese Konflikte werden durch \emph{resloveConflict(ranks)} gelöst. Dabei werden zuerst die Agenten nach ihrem Rang sortiert. Bei gleichem Rang hat der Agent mit der höheren Gesamtpunktzahl über alle Zyklen den höheren Rang, bei gleicher Gesamtpunktzahl ist die Platzierung zufällig. Der finale Rang der Agenten entspricht der Platzierung nach dieser Sortierung.
 
 \begin{lstlisting}
 CustomCycleScore:
@@ -52,16 +54,18 @@ public HashMap<Agent, Integer> getRankings(Simulation sim)
 
 \subsection{Paarungsalgorithmen}
 
-Wie bereits im Pflichtenheft spezifiziert, soll ein Paarungsalgorithmus angeboten werden, der ein Maximum an Kooperationsbereitschaft mit Hinblick auf die gesamte Population erzielt. Diese Aufgabe lässt sich auf ein klassisches Problem der Graphentheorie übertragen, und zwar das des "Maximum Weighted Perfect Matching in Simple Graphs". Dabei stellen die Agenten die Knoten des Graphen dar und die Kantengewichte die Kooperationswahrscheinlichkeiten.\\
-Für das beschriebene Problem existieren zahlreiche theoretische Lösungen, etwa der \emph{Blossom algorithm} von Jack Edmonds und seine Iterationen.\\
-JGraphT\footnote{\href{https://jgrapht.org/}{https://jgrapht.org/}} ist eine freie Java-Bibliothek, die u.a. Algorithmen für das Matching in Graphen zur Verfügung stellt, so etwa auch den genannten \emph{Blossom algorithm}.\\
+Wie bereits im Pflichtenheft spezifiziert, soll ein Paarungsalgorithmus angeboten werden, der ein Maximum an Kooperationsbereitschaft mit Hinblick auf die gesamte Population erzielt. Diese Aufgabe lässt sich auf ein klassisches Problem der Graphentheorie übertragen, und zwar das des "Maximum Weighted Perfect Matching in Simple Graphs". Dabei stellen die Agenten die Knoten des Graphen dar und die Kantengewichte die Kooperationswahrscheinlichkeiten.
+
+Für das beschriebene Problem existieren zahlreiche theoretische Lösungen, etwa der \emph{Blossom algorithm} von Jack Edmonds und seine Iterationen.
+
+JGraphT\footnote{\href{https://jgrapht.org/}{https://jgrapht.org/}} ist eine freie Java-Bibliothek, die u.a. Algorithmen für das Matching in Graphen zur Verfügung stellt, so etwa auch den genannten \emph{Blossom algorithm}.
+
 Swiss verwendet JGraphT um die anfangs erwähnte Funktionalität zu erzielen. Zudem werden weitere – voraussichtlich schnellere – Paarungsalgorithmen angeboten, die Näherungslösungen beschreiben. Diese dienen gleichzeitig als Rücksicherung, falls nicht absehbare Komplikationen mit JGraphT auftreten sollten.
-\\
 
 Als eine weitere Möglichkeit für den Paarungsalgorithmus verwenden wir eine Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}.
 
 \begin{lstlisting}
-Brute force pair matching:
+Brut force pair matching:
 
 public Pair[] getPairing(Agent[] agents) 
 
@@ -80,10 +84,11 @@ public Pair[] getPairing(Agent[] agents)
 	return pairs	
 	
 \end{lstlisting}
+
 Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P('b kooperiert mit a'))$. $P$ ist hierbei eine Wahrscheinlichkeitsfunktion. Wenn die kombinierte Strategien deterministisch sind gilt $distance(a, b) = 0$ genau dann, wenn $a$ und $b$ miteinander kooperieren und $distance(a, b) = 1$ genau dann, wenn $a$ mit $b$ oder $b$ mit $a$ nicht kooperiert. Sind sie nicht deterministisch können Werte zwischen 0 und 1 vorkommen.
 
 \begin{lstlisting}
-Brute force pair matching heuristic:
+Brut force pair matching heuristic:
 
 public Pair[] getPairing(Agent[] agents) 
 	shuffle(agents)
@@ -103,4 +108,5 @@ public Pair[] getPairing(Agent[] agents)
 	return pairs		
 	
 \end{lstlisting}
+
 Eine weitere mögliche Anpassung ist zwei Agenten zu Paaren, wenn $distance(a, b) \leq \epsilon$ gilt für $\epsilon \geq 0$. Dadurch werden Agenten gepaart, die sehr wahrscheinlich miteinander kooperieren. Man beachte, dass für $\epsilon = 0$ der Algorithmus identisch zu dem Ersten ist. Allerdings hat er in vielen Fällen eine schneller Laufzeit, da sobald ein Agent gefunden wurde, sodass beide kooperieren, dieser mit ihm gepaart wird.
