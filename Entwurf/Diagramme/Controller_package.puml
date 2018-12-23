@@ -31,21 +31,21 @@ skinparam defaultFontSize 15
                     }
 
             class de.sswis.controller.FileManager [[FileManager.html]] {
-                +saveConfigurations(Collection<Configuration>): void
-                +saveGame(Game): void
-                +saveInitalization(Initialization): void
-                +saveCombinedStrategy(CombinedStrategy): void
-                +saveResult(Object): void
-                +loadConfigurations(String): Collection<Configuration>
-                +loadGame(String): Game
-                +loadInitalization(String): Initialization
-                +loadCombinedStrategy(String): CombinedStrategy
-                +loadResult(String): Object
-                +deleteConfigurations(String): void
+                +saveConfiguration(VMConfiguration): void
+                +saveGame(VMGame): void
+                +saveInitalization(VMInitialization): void
+                +saveCombinedStrategy(VMCombinedStrategy): void
+                +saveResult(VMResult): void
+                +loadConfigurations(String): VMConfiguration
+                +loadGame(String): VMGame
+                +loadInitalization(String): VMInitialization
+                +loadCombinedStrategy(String): VMCombinedStrategy
+                +loadResult(String): VMResult
+                +deleteConfiguration(String): void
                 +deleteGame(String): void
                 +deleteInitalization(String): void
                 +deleteCombinedStrategy(String): void
-                +deleteResult(Object): void
+                +deleteResult(String): void
             }
 
             class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
@@ -114,8 +114,8 @@ skinparam defaultFontSize 15
                         {abstract} +update(Simulation): void
             }
 
-            class de.sswis.controller.ViewNotifyer [[ViewNotifyer.html]] {
-                        +ViewNotifyer(AbstractMainView)
+            class de.sswis.controller.ViewNotifier [[ViewNotifier.html]] {
+                        +ViewNotifier(AbstractMainView)
                         +update(Simulation): void
             }
 
@@ -150,9 +150,9 @@ skinparam defaultFontSize 15
         de.sswis.controller.handlers -> "1" de.sswis.controller.ModelParser : parser
         de.sswis.controller.ModelProvider -> "1" de.sswis.controller.ModelProvider: instance
         de.sswis.controller.SwingGuiFactory -> "*" de.sswis.view
-        de.sswis.controller.ViewNotifyer -> "1" de.sswis.view : mainView
+        de.sswis.controller.ViewNotifier -> "1" de.sswis.view : mainView
         de.sswis.controller.AbstractGuiFactory <|.. de.sswis.controller.SwingGuiFactory
-        de.sswis.controller.SimulationObserver <|.. de.sswis.controller.ViewNotifyer
+        de.sswis.controller.SimulationObserver <|.. de.sswis.controller.ViewNotifier
     }
 
 @enduml
