@@ -2,11 +2,6 @@
 
 \subsection{Grobentwurf}
 
-\begin{figure}[H] 
-  \centering
-     \includegraphics[width=1.1\textwidth]{UMLzuGrobentwurf}
-\end{figure}
-
 Sswis baut auf einem MVC-Model auf, welches um ein ViewModel erweitert wurde, was ein vollständiges Abkoppeln von Model und View ermöglicht.
 
 Die Benutzerinteraktion erfolgt über die View. Im ViewModel werden die Benutzereingaben zwischengespeichert und auf Korrektheit überprüft. Des Weiteren schreibt der Controller diejenigen Informationen in das ViewModel, die auf der Benutzeroberfläche angezeigt werden sollen.
@@ -15,6 +10,11 @@ Der Controller ist für die Programmflusssteuerung zuständig. Die ActionListene
 Außerdem dient der Controller zur Kommunikation zwischen View und Model.
 
 Im Model sind die Objekte der Simulation abgebildet. Auch ist hier die gesamte Business Logic implementiert.
+
+\begin{figure}[H] 
+  \centering
+     \includegraphics[width=1.1\textwidth]{UMLzuGrobentwurf}
+\end{figure}
 
 \subsection{Controller}
 
