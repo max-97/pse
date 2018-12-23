@@ -1,0 +1,158 @@
+@startuml
+skinparam defaultFontSize 15
+    namespace de.sswis.model {
+
+        together
+        {
+
+        namespace algorithms.adaptation {
+            interface AdaptationAlgorithm {
+                {abstract} +adapt(Simulation): void
+            }
+        }
+
+        namespace algorithms.pairing {
+            interface PairingAlgorithm {
+                {abstract} +getPairing(Simulation): Pair[]
+            }
+        }
+
+        namespace algorithms.ranking {
+            interface RankingAlgorithm {
+                {abstract} +getRankings(Simulation): HashMap<Agent, Integer>
+            }
+        }
+
+        }
+
+        together
+        {
+
+        namespace strategies {
+            interface BaseStrategy {
+                {abstract} +calculateAction(Agent, Agent): Action
+            }
+        }
+
+        namespace conditions {
+            interface Condition {
+                {abstract} +fulfillCondition(Agent, Agent): boolean
+            }
+        }
+
+        together
+        {
+            interface de.sswis.model.ObservableSimulation [[ObservableSimulation.html]] {
+                        {abstract} +addObserver(SimulationObserver): void
+                        {abstract} +notifyObservers(): void
+                        {abstract} +deleteObserver(SimulationObserver): void
+                    }
+
+            class de.sswis.model.Game [[Game.html]] {
+                        +Game(String, String, Tuple[])
+                        +getPayoffs(Action, Action): Tuple
+                    }
+        }
+
+        }
+        enum de.sswis.model.Action [[Action.html]] {
+            {static} +COOPERATION
+            {static} +DEFECTION
+        }
+
+        class de.sswis.model.Agent [[Agent.html]] {
+            +Agent(int, int, Group, Strategy)
+        }
+
+        class de.sswis.model.CombinedStrategy [[CombinedStrategy.html]] {
+            +CombinedStrategy(String, String, BaseStrategy[], Condition[])
+            +calculateAction(Agent, Agent): Action
+        }
+
+        class de.sswis.model.Configuration [[Configuration.html]] {
+            +Configuration(Game, AdaptationAlgorithm, PairingAlgorithm, RankingAlgorithm, int, int, int, double, List<Strategy>)
+            +getRounds(): int
+            +getCycles(): int
+            +getCycleRoundCount(): int
+            +getAdaptationProbability(): double
+            +simulate(int): Simulation
+            +addStrategy(Strategy): void
+        }
+
+        class de.sswis.model.Group [[Group.html]] {
+            +Group(int, String)
+            +addMember(Agent): void
+        }
+
+        class de.sswis.model.History [[History.html]] {
+            +History(int)
+            +cooperatedLastTime(Agent): boolean
+            +cooperatedEveryTime(Agent): boolean
+            +groupCooperatedLastTime(Agent): boolean
+            +groupCooperatedEveryTime(Agent): boolean
+        }
+
+        class de.sswis.model.Initialization [[Initialization.html]] {
+                    +Initialization(int)
+                    +setGroupDistribution(AgentDistribution, Group): void
+                    +setStrategyDistribution(AgentDistribution, CombinedStrategy, Group): void
+                    +setCapitalDistribution(AgentDistribution, int, Group): void
+                    +getAgentCount(): int
+                    +calculateInitialAgentState(): Agent[]
+                }
+
+        class de.sswis.model.Pair [[Pair.html]] {
+            +Pair(Agent, Agent)
+            +playGame(Game): void
+        }
+
+        class de.sswis.model.Simulation [[Simulation.html]] {
+            +Simulation(Configuration)
+            +simulate(): void
+            +getCurrentRanking(): HashMap<Agent, Integer>
+            +EquilibriumAchieved(): boolean
+            +restart(): void
+            +abort(): void
+            +run(): void
+            +addObserver(SimulationObserver): void
+            +notifyObservers(): void
+            +deleteObserver(SimulationObserver): void
+        }
+
+        class de.sswis.model.Strategy [[Strategy.html]] {
+            +Strategy(String, String, CombinedStrategy[], double[])
+            +calculateAction(Agent, Agent): Action
+        }
+
+        de.sswis.model.ObservableSimulation -[hidden]> de.sswis.model.Game
+        de.sswis.model.Pair -[hidden]> de.sswis.model.Simulation
+        de.sswis.model.Game -[hidden]-> de.sswis.model.Simulation
+
+        de.sswis.model.Agent -[hidden]-> de.sswis.model.History
+
+        de.sswis.model.Initialization -[hidden]--> de.sswis.model.Strategy
+
+        de.sswis.model.Initialization -[hidden]-> de.sswis.model.Configuration
+
+        de.sswis.model.Simulation --> "1" de.sswis.model.Game: game
+        de.sswis.model.Configuration o-- "1" de.sswis.model.Initialization: init
+        de.sswis.model.Simulation o-- "1" algorithms.adaptation.AdaptationAlgorithm: adaptationAlg
+        de.sswis.model.Simulation o-- "1" algorithms.pairing.PairingAlgorithm: pairingAlg
+        de.sswis.model.Simulation o-- "1" algorithms.ranking.RankingAlgorithm: rankingAlg
+        de.sswis.model.Configuration *- "1" de.sswis.model.Simulation: simulation
+        de.sswis.model.Configuration --> "*" de.sswis.model.Strategy: possibleStrategies
+        de.sswis.model.Agent "*" <--> "1" de.sswis.model.Group: group / members
+        de.sswis.model.ObservableSimulation <|.. de.sswis.model.Simulation
+        de.sswis.model.Simulation -> "*" de.sswis.model.Pair: currentPairs
+        de.sswis.model.Simulation o-- "*" de.sswis.model.Agent: agents
+        de.sswis.model.Agent --> "1" de.sswis.model.History: history
+        de.sswis.model.Agent o-- "1" de.sswis.model.Strategy: strategy
+        de.sswis.model.Strategy o-- "1..*" de.sswis.model.CombinedStrategy: combinedStrategies
+        de.sswis.model.CombinedStrategy o- "1..*" strategies.BaseStrategy: baseStrategies
+        de.sswis.model.CombinedStrategy o- "1..*" conditions.Condition: conditions
+        strategies.BaseStrategy --> de.sswis.model.Action
+
+    }
+
+
+@enduml

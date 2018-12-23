@@ -2,6 +2,9 @@
 
 \input{javadoc_preamble}
 
+\usepackage{graphicx}
+\graphicspath{{Diagramme/}{Diagramme/Sequenzdiagramme/}}
+
 %Pachages für Pseudocode
 %\usepackage{listings}
 %
@@ -32,6 +35,13 @@
 \sloppy
 \addtocontents{toc}{\protect\markboth{Contents}{Contents}}
 \tableofcontents
+
+% Your image goes here
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.36]{Controller_package}}%
+
+\vspace*{2cm}
+
 
 \input{pseudocode}
 \lstset{numbers=none}

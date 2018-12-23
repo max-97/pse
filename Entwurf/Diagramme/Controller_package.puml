@@ -1,4 +1,5 @@
 @startuml
+skinparam defaultFontSize 15
 
     namespace de.sswis.view {
 
@@ -7,31 +8,27 @@
     namespace de.sswis.controller {
 
 
+        namespace de.sswis.controller.handlers {
+        }
         together {
-            namespace de.sswis.controller.handlers {
-            }
 
-            class de.sswis.controller.AlgorithmLoader [[AlgorithmLoader.html]] {
-                +getAdaptAlgorithms(): List<AdaptationAlgorithm>
-                +getPairAlgorithms(): List<PairingAlgorithm>
-                +getRankAlgorithms(): List<RankingAlgorithm>
-            }
+            class de.sswis.controller.ModelServiceLoader [[ModelServiceLoader.html]] {
+                        +getAdaptAlgorithmList(): List<AdaptationAlgorithm>
+                        +getPairAlgorithmList(): List<PairingAlgorithm>
+                        +getRankAlgorithmList(): List<RankingAlgorithm>
+                        +getConditionList(): List<Condition>
+                        +getBaseStrategyList(): List<BaseStrategy>
+                    }
 
-            class de.sswis.controller.Communicator [[Communicator.html]] {
-                +parseCombinedStrategyToVMCombinedStrategy(CombinedStrategy): VMCombinedStrategy
-                +parseSimulationToVMConfiguration(Simulation): VMConfiguration
-                +parseGameToVMGame(Game): VMGame
-                +parseGroupToVMGroup(Group): VMGroup
-                +parseInitializationToVMInitialization(Initialization): VMInitialization
-                +parseSimulationToVMResult(Simulation): VMResult
-                +parseStrategyToVMStrategy(Strategy): VMStrategy
-                +parseVMCombinedStrategyToCombinedStrategy(VMCombinedStrategy): CombinedStrategy
-                +parseVMConfigToConfig(VMConfiguration): Configuration
-                +parseVMGameToGame(VMGame): Game
-                +parseVMGroupToGroup(VMGroup): Group
-                +parseVMInitializationToInitialization(VMInitialization): Initialization
-                +parseVMStrategyToStrategy(VMStrategy): Strategy
-            }
+            class de.sswis.controller.ModelParser [[ModelParser.html]] {
+                        +parseSimulationToVMResult(Simulation): VMResult
+                        +parseVMCombinedStrategyToCombinedStrategy(VMCombinedStrategy): CombinedStrategy
+                        +parseVMConfigurationToConfigurations(VMConfiguration): Collection<Configuration>
+                        +parseVMGameToGame(VMGame): Game
+                        +parseVMGroupToGroup(VMGroup): Group
+                        +parseVMInitializationToInitialization(VMInitialization): Collection<Initialization>
+                        +parseVMStrategyToStrategy(VMStrategy): Strategy
+                    }
 
             class de.sswis.controller.FileManager [[FileManager.html]] {
                 +saveConfigurations(Collection<Configuration>): void
@@ -52,6 +49,7 @@
             }
 
             class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
+                {static} +getInstance(): ModelProvider
                 +addConfigurations(Collection<Configuration>): void
                 +addAgent(Agent): void
                 +addGame(Game): void
@@ -123,26 +121,36 @@
 
         }
 
-        de.sswis.controller.ModelProvider -[hidden]> de.sswis.controller.Communicator
-        de.sswis.controller.Communicator -[hidden]> de.sswis.controller.FileManager
-        de.sswis.controller.FileManager -[hidden]> de.sswis.controller.AlgorithmLoader
-        de.sswis.controller.AlgorithmLoader -[hidden]> de.sswis.controller.handlers
-        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.AbstractGuiFactory
-        de.sswis.controller.AbstractGuiFactory -[hidden]> de.sswis.controller.SwingGuiFactory
-        de.sswis.controller.SimulationObserver -[hidden]> de.sswis.controller.ViewNotifyer
-        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.SimulationObserver
 
-        de.sswis.view -> de.sswis.controller.handlers : actionHandler
-        de.sswis.controller.handlers -> de.sswis.view : view
-        de.sswis.controller.handlers -> de.sswis.controller.AbstractGuiFactory : factory
-        de.sswis.controller.handlers -> de.sswis.controller.FileManager :fileManager
-        de.sswis.controller.handlers -> de.sswis.controller.AlgorithmLoader : loader
-        de.sswis.controller.handlers -> de.sswis.controller.ModelProvider : modelProvider
-        de.sswis.controller.handlers -> de.sswis.controller.SimulationObserver : observer
-        de.sswis.controller.handlers -> de.sswis.controller.Communicator : communicator
-        de.sswis.controller.ModelProvider -> de.sswis.controller.ModelProvider: instance
-        de.sswis.controller.SwingGuiFactory -> de.sswis.view
-        de.sswis.controller.ViewNotifyer -> de.sswis.view : mainView
+        de.sswis.controller.Test -[hidden]--> de.sswis.controller.handlers
+        hide de.sswis.controller.Test
+
+        de.sswis.controller.ModelProvider -[hidden]-> de.sswis.controller.FileManager
+        de.sswis.controller.ModelProvider -[hidden]> de.sswis.controller.handlers
+        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.handlers
+        de.sswis.controller.ModelProvider -[hidden]--> de.sswis.controller.ModelParser
+        de.sswis.controller.FileManager -[hidden]-> de.sswis.controller.ModelServiceLoader
+        de.sswis.controller.FileManager -[hidden]> de.sswis.controller.handlers
+        de.sswis.controller.ModelServiceLoader -[hidden]> de.sswis.controller.handlers
+        de.sswis.controller.ModelServiceLoader -[hidden]-> de.sswis.controller.ModelParser
+
+        de.sswis.controller.handlers -[hidden]> de.sswis.controller.AbstractGuiFactory
+        de.sswis.controller.handlers -[hidden]> de.sswis.controller.SimulationObserver
+        de.sswis.controller.ModelParser -[hidden]> de.sswis.controller.handlers
+
+        de.sswis.controller.SwingGuiFactory -[hidden]-> de.sswis.controller.SimulationObserver
+
+        de.sswis.view o-- "1" de.sswis.controller.handlers : actionHandler
+        de.sswis.controller.handlers --> "1" de.sswis.view : view
+        de.sswis.controller.handlers --> "1" de.sswis.controller.AbstractGuiFactory : factory
+        de.sswis.controller.handlers -> "1" de.sswis.controller.FileManager :fileManager
+        de.sswis.controller.handlers -> "1" de.sswis.controller.ModelServiceLoader : loader
+        de.sswis.controller.handlers --> "1" de.sswis.controller.ModelProvider : modelProvider
+        de.sswis.controller.handlers --> "1..*" de.sswis.controller.SimulationObserver : observer
+        de.sswis.controller.handlers -> "1" de.sswis.controller.ModelParser : parser
+        de.sswis.controller.ModelProvider -> "1" de.sswis.controller.ModelProvider: instance
+        de.sswis.controller.SwingGuiFactory -> "*" de.sswis.view
+        de.sswis.controller.ViewNotifyer -> "1" de.sswis.view : mainView
         de.sswis.controller.AbstractGuiFactory <|.. de.sswis.controller.SwingGuiFactory
         de.sswis.controller.SimulationObserver <|.. de.sswis.controller.ViewNotifyer
     }

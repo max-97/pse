@@ -1,11 +1,11 @@
-package de.sswis.view.model;
+package de.sswis.util;
 
 /**
  * Utility-Klasse um das Format einer Benutzereingabe zu überprüfen.
  *
  * @author Simon Hügel
  */
-public class VMUtil {
+public class InputValidator {
 
     /**
      * Prüft, ob der entgegengenommene String ein gültiger Name ist.

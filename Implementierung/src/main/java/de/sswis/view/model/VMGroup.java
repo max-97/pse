@@ -1,5 +1,7 @@
 package de.sswis.view.model;
 
+import de.sswis.util.AgentDistribution;
+
 import java.util.List;
 
 public class VMGroup {
@@ -24,19 +26,6 @@ public class VMGroup {
 
     public void addStartCapital (int capital, int percentage) {}
     public void addStartCapital (int capital, int[] ids) {}
-
-
-
-
-    public class AgentDistribution {
-
-        public AgentDistribution (int[] ids){}
-        public AgentDistribution (int percentage){}
-
-        private boolean ChooseIDs;
-        private int[] agentIDs;
-        private int percentage;
-    }
 
 
 }

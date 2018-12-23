@@ -5,5 +5,14 @@ package de.sswis.model;
  * @author  Michel Bodé
  */
 public enum Action {
-    COOPERATION, DEFECTION
+
+    /**
+     * Der Agent kooperiert mit seinem Gegenspieler.
+     */
+    COOPERATION,
+
+    /**
+     * Der Agent kooperiert nicht mit seinem Gegenspieler.
+     */
+    DEFECTION
 }

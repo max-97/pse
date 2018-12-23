@@ -11,7 +11,7 @@ import org.jgrapht.graph.DefaultEdge;
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation so paart, dass die Anzahl an kooperierenden Paaren
  * maximal ist. Der Algorithmus erstellt dabei einen vollstaendigen Graphen mit Agenten als Knoten und den
- * Kooperationswahrscheinlichkeiten der Agenten als Kantengewichten und berechnet darauf ein perfektes Matching
+ * Kooperationswahrscheinlichkeiten der Agenten als Kantengewichten und berechnet darauf ein Matching
  * mit maximalem Gewicht.
  * @author Michel Bodé
  */
