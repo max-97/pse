@@ -9,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ *Ein Fenster zum Verwalten von Stufenspielen.
+ *
+ * @author Sophie Bräuniger
+ */
 public class ManageGamesView implements AbstractManageGamesView{
 
     private List<VMGame> vmGames;

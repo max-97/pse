@@ -9,6 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ *Ein Fenster zum Vergleichen von Ergebnissen.
+ *
+ * @author Sophie Bräuniger
+ */
 public class ShowCompareView implements AbstractShowCompareView{
 
     private List<VMConfiguration> configurations;

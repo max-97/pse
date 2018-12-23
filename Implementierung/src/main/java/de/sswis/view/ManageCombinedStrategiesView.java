@@ -5,11 +5,16 @@ import de.sswis.view.model.VMStrategy;
 
 import java.util.List;
 
-public class ManageCominedStrategiesView implements AbstractManageCominedStrategiesView {
+/**
+ *Ein Fenster zum Verwalten von kombinierten Strategien.
+ *
+ * @author Sophie Bräuniger
+ */
+public class ManageCombinedStrategiesView implements AbstractManageCombinedStrategiesView {
     private List<VMCombinedStrategy> vmCombinedStrategies;
 
     @Override
-    public void addStrategy(VMStrategy vmStrategy) {
+    public void addStrategy(VMCombinedStrategy vmStrategy) {
 
     }
 
