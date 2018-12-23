@@ -35,8 +35,8 @@ public interface AbstractGuiFactory {
     AbstractShowResultView createShowResultView();
 
     /**
-     * Erstellt eine Ergebnisansicht zum Verlgeichen von Simulationen.
-     * @return eine Ergebnisansicht zum Verlgeichen von Simulationen
+     * Erstellt eine Ergebnisansicht zum Vergleichen von Simulationen.
+     * @return eine Ergebnisansicht zum Vergleichen von Simulationen
      */
     AbstractShowCompareView createCompareResultsView();
 
