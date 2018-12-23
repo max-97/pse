@@ -28,19 +28,19 @@ public interface AbstractManageStrategiesView extends AbstractView {
      * Fügt ein ActionListener zum Button neue Strategie hinzu.
      * @param listener ActionListener
      */
-    void addNewStrategyButtonActionlistener(ActionListener listener);
+    void addNewMixedStrategyButtonActionlistener(ActionListener listener);
 
     /**
      * Fügt ein ActionListener zum Button Strategie bearbeiten hinzu.
      * @param listener ActionListener
      */
-    void addEditStrategyButtonActionlistener(ActionListener listener);
+    void addEditMixedStrategyButtonActionlistener(ActionListener listener);
 
     /**
      * Fügt ein ActionListener zum Button Strategie löschen hinzu.
      * @param listener ActionListener
      */
-    void addDeleteStrategyButtonActionlistener(ActionListener listener);
+    void addDeleteMixedStrategyButtonActionlistener(ActionListener listener);
 
     /**
      * Fügt ein ActionListener zum Button Abbrechen hinzu.
