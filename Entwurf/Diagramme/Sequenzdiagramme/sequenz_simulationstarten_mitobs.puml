@@ -8,7 +8,7 @@ participant ":MainView" as MV
 participant ":StartSimulationHandler" as AL
 participant ":ModelProvider" as MP
 participant ":Simulation" as S
-participant ":ViewNotifyer" as VN
+participant ":ViewNotifier" as VN
 
 
 

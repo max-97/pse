@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 
 
 /**
- * Speichert die erstellte {@code kombinierte Strategie}. Die View, die diesen {@code ActionListener} verwendet muss
- * eine {@code kombinierte Strategie} besitzen.
+ * Speichert die erstellte {@code gemischte Strategie}. Die View, die diesen {@code ActionListener} verwendet muss
+ * eine {@code gemischte Strategie} besitzen.
  *
  * @author Max Braun
  */

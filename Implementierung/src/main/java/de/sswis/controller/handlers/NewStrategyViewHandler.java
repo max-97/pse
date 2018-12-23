@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Öffnet eine View zum Erstellen einer {@code kombinierten Strategie}.
+ * Öffnet eine View zum Erstellen einer {@code gemischten Strategie}.
  *
  * @author Max Braun
  */

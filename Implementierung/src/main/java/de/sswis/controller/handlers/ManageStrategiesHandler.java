@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Öffnet die View zum Verwalten der {@code Strategien}.
+ * Öffnet die View zum Verwalten der {@code gemischten Strategien}.
  *
  * @author Max Braun
  */

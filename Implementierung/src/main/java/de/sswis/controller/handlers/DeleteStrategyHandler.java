@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Löscht die ausgewählte {@code Strategie}.
+ * Löscht die ausgewählte {@code gemischte Strategie}.
  *
  * @author Max Braun
  */

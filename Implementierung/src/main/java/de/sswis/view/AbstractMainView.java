@@ -40,7 +40,7 @@ public interface AbstractMainView extends AbstractView {
     void setSimulationFinished (String NameConfiguration);
 
     /**
-     * Gibt eine {@Code VMConfiguration} zurück, die in der Liste ausgewählt ist.
+     * Gibt eine {@code VMConfiguration} zurück, die in der Liste ausgewählt ist.
      *
      * @return die in der Liste ausgewählt Konfiguration
      */
