@@ -3,7 +3,10 @@ package de.sswis.view.model;
 import java.util.List;
 
 /**
+ * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer oder mehrerer {@code Group} Objekten enthält.
+ * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
  *
+ * @author Sophie Bräuniger
  */
 public class VMGroup {
 

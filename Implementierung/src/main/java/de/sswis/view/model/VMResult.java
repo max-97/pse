@@ -1,8 +1,10 @@
 package de.sswis.view.model;
 
 /**
- *Ein Ergebnis zum Speichern von Daten von abgeschlossenen Simulationen
- * und berechnen von Diagrammen.
+ *Ein Ergebnis zum Speichern von Daten von abgeschlossenen Simulationen.
+ *
+ *
+ * @author Sophie Bräuniger
  */
 public class VMResult {
 

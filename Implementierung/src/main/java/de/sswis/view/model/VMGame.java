@@ -1,7 +1,10 @@
 package de.sswis.view.model;
 
 /**
+ * Stufenspiel Daten, die alle nötigen Parameter zum Erzeugen eines {@code Game} enthält.
+ * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
  *
+ * @author Sophie Bräuniger
  */
 public class VMGame {
 

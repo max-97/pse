@@ -3,7 +3,10 @@ package de.sswis.view.model;
 import java.util.List;
 
 /**
+ * Kombinierte Strategie Daten, die alle nötigen Parameter zum Erzeugen einer {@code CombinedStrategy} enthält.
+ * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
  *
+ * @author Sophie Bräuniger
  */
 public class VMCombinedStrategy {
     private String name;

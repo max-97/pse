@@ -3,7 +3,10 @@ package de.sswis.view.model;
 import java.util.List;
 
 /**
+ * Konfigurations Daten, die alle nötigen Parameter zum Erzeugen einer {@code Configuration} enthält.
+ * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
  *
+ * @author Sophie Bräuniger
  */
 public class VMConfiguration {
 
