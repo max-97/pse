@@ -7,6 +7,7 @@ import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -148,7 +149,42 @@ public class ManageGamesView implements AbstractManageGamesView{
     }
 
     @Override
+    public void addNewGameButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addEditGameButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addDeleteGameButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addSaveQuitButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
     public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
 
     }
 }

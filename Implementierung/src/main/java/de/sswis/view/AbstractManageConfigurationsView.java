@@ -2,12 +2,14 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMConfiguration;
 
+import java.awt.event.ActionListener;
+
 /**
  *Ein Fenster zum Verwalten von Konfigurationen.
  *
  * @author Sophie Bräuniger
  */
-public interface AbstractManageConfigurationsView {
+public interface AbstractManageConfigurationsView extends AbstractView {
 
     /**
      * Fügt eine Konfiguration hinzu.
@@ -21,8 +23,36 @@ public interface AbstractManageConfigurationsView {
      */
     void removeConfiguration(String configName);
 
+
     /**
-     *Aktualisiert alle Komponenten.
+     * Fügt ein ActionListener zum Button neue Konfiguration hinzu.
+     * @param listener ActionListener
      */
-    void update();
+    void addNewConfigurationButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Konfiguration bearbeiten hinzu.
+     * @param listener ActionListener
+     */
+    void addEditConfigurationButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Konfiguration löschen hinzu.
+     * @param listener ActionListener
+     */
+    void addDeleteConfigurationButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Abbrechen hinzu.
+     * @param listener ActionListener
+     */
+    void addCancelButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
+     * @param listener ActionListener
+     */
+    void addSaveQuitButtonActionlistener(ActionListener listener);
+
+
 }

@@ -7,6 +7,7 @@ import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -148,4 +149,23 @@ public class ShowCompareView implements AbstractShowCompareView{
         scrollPane2.setViewportView(waehlenSieEineKonfigurationTree);
     }
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
+
+    @Override
+    public void addCompareButtonActionlistener(ActionListener listener) {
+
+    }
 }

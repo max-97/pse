@@ -9,6 +9,7 @@ import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 
@@ -35,9 +36,7 @@ public class MainView implements AbstractMainView {
     public void addConfiguration(VMConfiguration configuration) {}
 
     @Override
-    public void removeConfiguration(String configurationName) {
-
-    }
+    public void removeConfiguration(String configurationName) {}
 
     @Override
     public void  addResult(String NameConfiguration, VMResult result){}
@@ -46,10 +45,90 @@ public class MainView implements AbstractMainView {
     public void setSimulationFinished (String NameConfiguration) {}
 
     @Override
+    public VMConfiguration getSelected() { return null; }
+
+    @Override
+    public void addStartButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addStopActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addShowButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addSaveButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addNewGameMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addNewCombiStrategyMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addNewStrategyMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addNewInitMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addNewConfigMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addManageGameMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addManageCombiStrategyMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addManageStrategyMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addManageInitMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addManageConfigMenuActionListener(ActionListener listener) {
+
+    }
+
+    @Override
     public void update() {}
 
+    @Override
+    public void show() {
 
+    }
 
+    @Override
+    public void close() {
+
+    }
 
 
     private void createUIComponents() {

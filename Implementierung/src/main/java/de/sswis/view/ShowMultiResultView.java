@@ -2,6 +2,7 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMConfiguration;
 
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -12,4 +13,23 @@ import java.util.List;
 public class ShowMultiResultView implements AbstractShowMultiResultView{
     private List<VMConfiguration> vmConfigurations;
 
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void show() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
+
+    @Override
+    public void addCompareButtonActionlistener(ActionListener listener) {
+
+    }
 }
