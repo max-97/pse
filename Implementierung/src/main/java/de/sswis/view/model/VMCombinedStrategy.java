@@ -28,27 +28,33 @@ public class VMCombinedStrategy {
     }
 
     /**
-     * @param strategyName
-     * @param condition
+     * Fügt ein Paar von Bedingung und Basisstrategie hinzu.
+     * @param strategyName Name der Strategie
+     * @param condition Bedingung
      */
     public void addStrategy(String strategyName, String condition) {}
 
     /**
-     * @param strategyName
-     * @param condition
-     * @param x
+     * Fügt ein Paar bestehend aus einer Bedingung, die eine weitere Eingabe x benötigt,
+     * und einer Basisstrategie  hinzu.
+     * @param strategyName Name der Strategie
+     * @param condition Bedingung
+     * @param x Parameter der Bedingung
      */
     public void addStrategy(String strategyName, String condition, double x) {}
 
     /**
-     * @param strategyName
-     * @param condition
-     * @param x
+     * Fügt ein Paar bestehend aus einer Bedingung, die eine weitere Eingabe x benötigt,
+     * und einer Basisstrategie  hinzu.
+     * @param strategyName Name der Strategie
+     * @param condition Bedingung
+     * @param x Parameter der Bedingung
      */
     public void addStrategy(String strategyName, String condition, int x) {}
 
     /**
-     * @param strategyName
+     * Setzt die Standard Strategie, die die niedrigster Priorität und keine Bedingung hat.
+     * @param strategyName Name der Strategie
      */
     public void setDefaultStrategy(String strategyName) {}
 

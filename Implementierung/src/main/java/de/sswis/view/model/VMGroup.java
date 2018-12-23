@@ -32,26 +32,34 @@ public class VMGroup {
     }
 
     /**
-     * @param name
-     * @param percentage
+     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung in Prozent, hinzu.
+     *
+     * @param name Name der Strategie
+     * @param percentage Prozentzahl der Agenten mit dieser Strategie
      */
     public void addStrategy (String name, int percentage) {}
 
     /**
-     * @param name
-     * @param ids
+     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung nach ihren IDs, hinzu.
+     *
+     * @param name Name der Strategie
+     * @param ids IDs der Agenten mit dieser Strategie
      */
     public void addStrategy (String name, int[] ids) {}
 
     /**
-     * @param capital
-     * @param percentage
+     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung in Prozent, hinzu.
+     *
+     * @param capital Höhe des Startkapitals
+     * @param percentage Prozentzahl der Agenten mit diesem Startkapital
      */
     public void addStartCapital (int capital, int percentage) {}
 
     /**
-     * @param capital
-     * @param ids
+     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung nach ihren IDs, hinzu.
+     *
+     * @param capital Höhe des Startkapitals
+     * @param ids IDs der Agenten mit diesem Startkapital
      */
     public void addStartCapital (int capital, int[] ids) {}
 
@@ -63,17 +71,21 @@ public class VMGroup {
 
 
     /**
-     *
+     * Agentenverteilung die eine Menge von Agenten nach ihren IDs oder nach prozentualem Anteil bestimmt.
      */
     public class AgentDistribution {
 
         /**
-         * @param ids
+         *Erstellt eine Agentenverteilung mit Agenten IDs.
+         *
+         * @param ids IDs der Agenten
          */
         public AgentDistribution (int[] ids){}
 
         /**
-         * @param percentage
+         * Erstellt eine Agentenverteilung mit prozentualem Anteil der Agenten.
+         *
+         * @param percentage prozentualer Anteil der Agenten
          */
         public AgentDistribution (int percentage){}
 

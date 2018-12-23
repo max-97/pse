@@ -29,6 +29,14 @@ public class VMStrategy {
     }
 
     /**
+     * Fügt ein Paar von kombinierte Strategie und Wahrscheinlichkeit hinzu.
+     *
+     * @param strategyName Name der Strategie
+     * @param probability Wahrscheinlichkeit
+     */
+    public void addStrategy (String strategyName, double probability) {}
+
+    /**
      * Gibt eine String der wichtige Informationen zu dieser gemischten Strategie zusammenfasst.
      * @return String enthält Kurzbeschreibung der gemischten Strategie
      */

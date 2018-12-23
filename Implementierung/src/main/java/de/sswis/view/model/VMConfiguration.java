@@ -43,10 +43,9 @@ public class VMConfiguration {
     public boolean isMultiConfiguration() { return false; }
 
     /**
+     *Zeigt ob Ergebnisse einer Simulation vorliegen, die mit dieser Konfiguration ausgeführt wurde.
      *
-     *
-     *
-     * @return
+     * @return true wenn es Ergebnisse von Simulationen mit dieser Konfiguration gibt, sonst false
      */
     public boolean hasResult () {
         //TODO: implement me
