@@ -5,6 +5,11 @@ import de.sswis.view.model.VMConfiguration;
 
 import java.util.List;
 
+/**
+ *Ein Fenster zum Verwalten von Konfigurationen.
+ *
+ * @author Sophie Bräuniger
+ */
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
     private List<VMConfiguration> vmConfigurations;

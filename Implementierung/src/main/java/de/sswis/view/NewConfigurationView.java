@@ -3,12 +3,17 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.view.model.VMConfiguration;
+import de.sswis.view.model.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ *Ein Fenster zum Erstellen oder Bearbeiten einer Konfiguration.
+ *
+ * @author Sophie Bräuniger
+ */
 public class NewConfigurationView implements AbstractNewConfigurationView{
 
     private VMConfiguration vmConfiguration;
@@ -16,10 +21,10 @@ public class NewConfigurationView implements AbstractNewConfigurationView{
     private List<String> adaptationAlgs;
     private List<String> pairingAlgs;
     private List<String> rankingAlgs;
-    private List<String> games;
-    private List<String> inits;
-    private List<String> strategies;
-
+    private List<VMGame> games;
+    private List<VMInitialization> inits;
+    private List<VMStrategy> strategies;
+    private List<VMCombinedStrategy> cStrategies;
 
 
 
