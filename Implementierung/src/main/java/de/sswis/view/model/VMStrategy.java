@@ -9,10 +9,19 @@ public class VMStrategy {
 
 
     private List<String> combinedStrategies;
-    private List<String> probalities;
+    private List<String> probabilities;
 
+    /**
+     * @return
+     */
     public boolean isCorrect () {
         //TODO: implement me
         return false;
     }
+
+    /**
+     * @return
+     */
+    public String getToolTipText() {    return ""; }
+
 }

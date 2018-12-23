@@ -12,7 +12,11 @@ import java.awt.*;
 import java.util.List;
 
 
-
+/**
+ *in Hauptfenster der Benutzeroberfläche.
+ *
+ * @author Sophie Bräuniger
+ */
 public class MainView implements AbstractMainView {
 
 
@@ -23,6 +27,7 @@ public class MainView implements AbstractMainView {
     private JButton ergebnisseAnzeigenButton;
     private JTree waehlenSieEineKonfigurationTree;
     private JButton ergebisseSpeichernButton;
+
 
 
 

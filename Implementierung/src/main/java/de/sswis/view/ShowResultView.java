@@ -8,6 +8,11 @@ import de.sswis.view.model.VMConfiguration;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *Ein Fenster zum Anzeigen von Ergebnissen einer Konfiguration.
+ *
+ * @author Sophie Bräuniger
+ */
 public class ShowResultView implements AbstractShowResultView {
 
     private VMConfiguration vmConfiguration;

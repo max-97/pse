@@ -8,6 +8,11 @@ import de.sswis.view.model.VMInitialization;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
+ *
+ * @author Sophie Bräuniger
+ */
 public class NewInitializationView implements AbstractNewInitializationView{
 
     private VMInitialization vmInitialization;
