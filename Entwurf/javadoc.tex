@@ -1,8 +1,6 @@
-\section*{Class Hierarchy}{
-\thispagestyle{empty}
-\markboth{Class Hierarchy}{Class Hierarchy}
-\addcontentsline{toc}{section}{Class Hierarchy}
-\subsection*{Classes}
+\section{Class Hierarchy}{
+
+\subsection{Classes}
 {\raggedright
 \hspace{0.0cm} $\bullet$ java.lang.Object {\tiny \refdefined{java.lang.Object}} \\
 \hspace{1.0cm} $\bullet$ de.sswis.controller.FileManager {\tiny \refdefined{de.sswis.controller.FileManager}} \\
@@ -118,7 +116,7 @@
 \hspace{1.0cm} $\bullet$ java.lang.Enum {\tiny \refdefined{java.lang.Enum}} \\
 \hspace{2.0cm} $\bullet$ de.sswis.model.Action {\tiny \refdefined{de.sswis.model.Action}} \\
 }
-\subsection*{Interfaces}
+\subsection{Interfaces}
 \hspace{0.0cm} $\bullet$ de.sswis.controller.AbstractGuiFactory {\tiny \refdefined{de.sswis.controller.AbstractGuiFactory}} \\
 \hspace{0.0cm} $\bullet$ de.sswis.controller.SimulationObserver {\tiny \refdefined{de.sswis.controller.SimulationObserver}} \\
 \hspace{0.0cm} $\bullet$ de.sswis.model.ObservableSimulation {\tiny \refdefined{de.sswis.model.ObservableSimulation}} \\
@@ -8428,6 +8426,26 @@ Fügt ein ActionListener zum Button neue Strategie hinzu.
 \end{itemize}
 }%end item
 \item{ 
+\index{addResult(VMStrategy)}
+\hypertarget{de.sswis.view.AbstractManageStrategiesView.addResult(de.sswis.view.model.VMStrategy)}{{\bf  addResult}\\}
+\begin{lstlisting}[frame=none]
+void addResult(model.VMStrategy vmStrategy)\end{lstlisting} %end signature
+\begin{itemize}
+\item{
+{\bf  Description}
+
+Fügt eine gemischte Strategie hinzu.
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{vmStrategy} -- die Benutzereingaben zur gemischten Strategie}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
 \index{addSaveQuitButtonActionlistener(ActionListener)}
 \hypertarget{de.sswis.view.AbstractManageStrategiesView.addSaveQuitButtonActionlistener(java.awt.event.ActionListener)}{{\bf  addSaveQuitButtonActionlistener}\\}
 \begin{lstlisting}[frame=none]
@@ -8448,30 +8466,10 @@ Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
 \end{itemize}
 }%end item
 \item{ 
-\index{addStrategy(VMStrategy)}
-\hypertarget{de.sswis.view.AbstractManageStrategiesView.addStrategy(de.sswis.view.model.VMStrategy)}{{\bf  addStrategy}\\}
+\index{removeResult(String)}
+\hypertarget{de.sswis.view.AbstractManageStrategiesView.removeResult(java.lang.String)}{{\bf  removeResult}\\}
 \begin{lstlisting}[frame=none]
-void addStrategy(model.VMStrategy vmStrategy)\end{lstlisting} %end signature
-\begin{itemize}
-\item{
-{\bf  Description}
-
-Fügt eine gemischte Strategie hinzu.
-}
-\item{
-{\bf  Parameters}
-  \begin{itemize}
-   \item{
-\texttt{vmStrategy} -- die Benutzereingaben zur gemischten Strategie}
-  \end{itemize}
-}%end item
-\end{itemize}
-}%end item
-\item{ 
-\index{removeStrategy(String)}
-\hypertarget{de.sswis.view.AbstractManageStrategiesView.removeStrategy(java.lang.String)}{{\bf  removeStrategy}\\}
-\begin{lstlisting}[frame=none]
-void removeStrategy(java.lang.String strategyName)\end{lstlisting} %end signature
+void removeResult(java.lang.String strategyName)\end{lstlisting} %end signature
 \begin{itemize}
 \item{
 {\bf  Description}
@@ -10344,6 +10342,26 @@ Fügt ein ActionListener zum Button neue Strategie hinzu.
 \end{itemize}
 }%end item
 \item{ 
+\index{addResult(VMStrategy)}
+\hypertarget{de.sswis.view.ManageStrategiesView.addResult(de.sswis.view.model.VMStrategy)}{{\bf  addResult}\\}
+\begin{lstlisting}[frame=none]
+void addResult(model.VMStrategy vmStrategy)\end{lstlisting} %end signature
+\begin{itemize}
+\item{
+{\bf  Description copied from \hyperlink{de.sswis.view.AbstractManageStrategiesView}{AbstractManageStrategiesView}{\small \refdefined{de.sswis.view.AbstractManageStrategiesView}} }
+
+Fügt eine gemischte Strategie hinzu.
+}
+\item{
+{\bf  Parameters}
+  \begin{itemize}
+   \item{
+\texttt{vmStrategy} -- die Benutzereingaben zur gemischten Strategie}
+  \end{itemize}
+}%end item
+\end{itemize}
+}%end item
+\item{ 
 \index{addSaveQuitButtonActionlistener(ActionListener)}
 \hypertarget{de.sswis.view.ManageStrategiesView.addSaveQuitButtonActionlistener(java.awt.event.ActionListener)}{{\bf  addSaveQuitButtonActionlistener}\\}
 \begin{lstlisting}[frame=none]
@@ -10364,36 +10382,16 @@ Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
 \end{itemize}
 }%end item
 \item{ 
-\index{addStrategy(VMStrategy)}
-\hypertarget{de.sswis.view.ManageStrategiesView.addStrategy(de.sswis.view.model.VMStrategy)}{{\bf  addStrategy}\\}
-\begin{lstlisting}[frame=none]
-void addStrategy(model.VMStrategy vmStrategy)\end{lstlisting} %end signature
-\begin{itemize}
-\item{
-{\bf  Description copied from \hyperlink{de.sswis.view.AbstractManageStrategiesView}{AbstractManageStrategiesView}{\small \refdefined{de.sswis.view.AbstractManageStrategiesView}} }
-
-Fügt eine gemischte Strategie hinzu.
-}
-\item{
-{\bf  Parameters}
-  \begin{itemize}
-   \item{
-\texttt{vmStrategy} -- die Benutzereingaben zur gemischten Strategie}
-  \end{itemize}
-}%end item
-\end{itemize}
-}%end item
-\item{ 
 \index{close()}
 \hypertarget{de.sswis.view.ManageStrategiesView.close()}{{\bf  close}\\}
 \begin{lstlisting}[frame=none]
 public void close()\end{lstlisting} %end signature
 }%end item
 \item{ 
-\index{removeStrategy(String)}
-\hypertarget{de.sswis.view.ManageStrategiesView.removeStrategy(java.lang.String)}{{\bf  removeStrategy}\\}
+\index{removeResult(String)}
+\hypertarget{de.sswis.view.ManageStrategiesView.removeResult(java.lang.String)}{{\bf  removeResult}\\}
 \begin{lstlisting}[frame=none]
-void removeStrategy(java.lang.String strategyName)\end{lstlisting} %end signature
+void removeResult(java.lang.String strategyName)\end{lstlisting} %end signature
 \begin{itemize}
 \item{
 {\bf  Description copied from \hyperlink{de.sswis.view.AbstractManageStrategiesView}{AbstractManageStrategiesView}{\small \refdefined{de.sswis.view.AbstractManageStrategiesView}} }

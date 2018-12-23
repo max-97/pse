@@ -50,61 +50,55 @@ skinparam defaultFontSize 15
 
             class de.sswis.controller.ModelProvider [[ModelProvider.html]] {
                 {static} +getInstance(): ModelProvider
-                +addConfigurations(Collection<Configuration>): void
-                +addAgent(Agent): void
-                +addGame(Game): void
-                +addCombinedStrategy(CombinedStrategy): void
-                +addInitialization(Initialization): void
-                +deleteConfigurations(String): void
-                +deleteAgents(int): void
-                +deleteGame(String): void
-                +deleteCombinedStrategy(String): void
-                +deleteInitialization(String): void
-                +getConfigurations(): Map<String, Collection<Configuration>>
-                +getConfiguration(String): Configuration
-                +getAgents(): Map<Integer, Agent>
-                +getAgent(int): Agent
-                +getGames(): Map<String, Game>
-                +getGame(String): Game
-                +getCombinedStrategies(): Map<String, CombinedStrategy>
-                +getCombinedStrategy(String): CombinedStrategy
-                +getInitializations(): Map<String, Initialization>
-                +getInitialization(String): Initialization
-            }
+                        +addConfigurations(Configuration): void
+                        +addGame(Game): void
+                        +addCombinedStrategy(CombinedStrategy): void
+                        +addInitialization(Initialization): void
+                        +addStrategy(Strategy): void
+                        +deleteConfiguration(String): void
+                        +deleteGame(String): void
+                        +deleteCombinedStrategy(String): void
+                        +deleteInitialization(String): void
+                        +deleteStrategy(String): void
+
         }
 
         together {
             interface de.sswis.controller.AbstractGuiFactory [[AbstractGuiFactory.html]] {
                 {abstract} +createMainView(): AbstractMainView
-                {abstract} +createShowResultView(): AbstractShowResultView
-                {abstract} +createCompareResultsView(): AbstractShowCompareView
-                {abstract} +createMultiResultsView(): AbstractShowMultiResultView
-                {abstract} +createManageConfigurationsView(): AbstractManageConfigurationsView
-                {abstract} +createManageInitializationsView(): AbstractManageInitializationsView
-                {abstract} +createManageStrategiesView(): AbstractManageStrategiesView
-                {abstract} +createManageGamesView(): AbstractManageGamesView
-                {abstract} +createManageResultsView(): AbstractManageResultsView
-                {abstract} +createNewConfigurationView(): AbstractNewConfigurationView
-                {abstract} +createNewInitializationView(): AbstractNewInitializationView
-                {abstract} +createNewStrategyView(): AbstractNewStrategyView
-                {abstract} +createNewGameView(): AbstractNewGameView
-            }
+                        {abstract} +createShowResultView(): AbstractShowResultView
+                        {abstract} +createCompareResultsView(): AbstractShowCompareView
+                        {abstract} +createMultiResultsView(): AbstractShowMultiResultView
+                        {abstract} +createManageConfigurationsView(): AbstractManageConfigurationsView
+                        {abstract} +createManageInitializationsView(): AbstractManageInitializationsView
+                        {abstract} +createManageStrategiesView(): AbstractManageStrategiesView
+                        {abstract} +createManageCombinedStrategiesView(): AbstractManageCombinedStrategiesView
+                        {abstract} +createManageGamesView(): AbstractManageGamesView
+                        {abstract} +createManageResultsView(): AbstractManageResultsView
+                        {abstract} +createNewConfigurationView(): AbstractNewConfigurationView
+                        {abstract} +createNewInitializationView(): AbstractNewInitializationView
+                        {abstract} +createNewStrategyView(): AbstractNewStrategyView
+                        {abstract} +createNewCombinedStrategyView(): AbstractNewCombinedStrategyView
+                        {abstract} +createNewGameView(): AbstractNewGameView
+                    }
 
             class de.sswis.controller.SwingGuiFactory [[SwingGuiFactory.html]] {
                 +createMainView(): AbstractMainView
-                +createShowResultView(): AbstractShowResultView
-                +createCompareResultsView(): AbstractShowCompareView
-                +createMultiResultsView(): AbstractShowMultiResultView
-                +createManageConfigurationsView(): AbstractManageConfigurationsView
-                +createManageInitializationsView(): AbstractManageInitializationsView
-                +createManageStrategiesView(): AbstractManageStrategiesView
-                +createManageGamesView(): AbstractManageGamesView
-                +createManageResultsView(): AbstractManageResultsView
-                +createNewConfigurationView(): AbstractNewConfigurationView
-                +createNewInitializationView(): AbstractNewInitializationView
-                +createNewStrategyView(): AbstractNewStrategyView
-                +createNewGameView(): AbstractNewGameView
-            }
+                        +createShowResultView(): AbstractShowResultView
+                        +createCompareResultsView(): AbstractShowCompareView
+                        +createMultiResultsView(): AbstractShowMultiResultView
+                        +createManageConfigurationsView(): AbstractManageConfigurationsView
+                        +createManageInitializationsView(): AbstractManageInitializationsView
+                        +createManageStrategiesView(): AbstractManageStrategiesView
+                        +createManageCombinedStrategiesView(): AbstractManageCombinedStrategiesView
+                        +createManageGamesView(): AbstractManageGamesView
+                        +createManageResultsView(): AbstractManageResultsView
+                        +createNewConfigurationView(): AbstractNewConfigurationView
+                        +createNewInitializationView(): AbstractNewInitializationView
+                        +createNewStrategyView(): AbstractNewStrategyView
+                        +createNewCombinedStrategyView(): AbstractNewCombinedStrategyView
+                        +createNewGameView(): AbstractNewGameView
+                    }
 
         }
 

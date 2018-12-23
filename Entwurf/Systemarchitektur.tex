@@ -2,7 +2,7 @@
 
 \subsection{Grobentwurf}
 
-\begin{figure} 
+\begin{figure}[H] 
   \centering
      \includegraphics[width=1.1\textwidth]{UMLzuGrobentwurf}
 \end{figure}
@@ -39,14 +39,20 @@ Schließlich können durch das Interface Simulationen überwacht werden, wobei d
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.4]{model_classDiagramm}}
 
-Im Model liegen alle Konfigurationen für Erstellen einer Simulation. Für eine Konfiguration gibt es noch eine Initialization, in der die Initiale Konfigurationselemente (zum Beispiel die Art des Spel, die Strategien für die Agenten usw ) zu setzen. \\
+Im Model liegen alle Konfigurationen welche eine Simulation beschreiben. Jede Konfiguration besitzt eine Initialisierung, in der die initialen Zustände der Agenten beschrieben werden. \\
 
-Eine Simulation implementiert von einer Schnittstelle OberservableSimulation, um ein Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn etwas in Simulation geändert wird, dann sendet der Beobachter der abhängigen Objecten Nachricht.\\
+Eine Simulation implementiert eine Schnittstelle OberservableSimulation, um ein Observer zur Simulation hinzuzufügen. Hier wird das Entwurfsmuster Beobachter verwendet. Wenn eine Simulation terminiert, d.h. einen Gleichgewichtszustand oder die maximale Zyklenanzahl erreicht, sendet sie eine Nachricht an alle Observer.\\
 
-Die Simulation hat die Agenten und in der Simulation werden zwei Agenten durch entsperchendes PairingAlgorithm gepaart, und spielen sie das ausgewälhte Spiel.
+In der Simulation werden zwei Agenten durch einen PairingAlgorithm gepaart, diese Paare spielen das ausgewählte Stufenspiel gegeneinander.\\
 
-Es gibt noch drei Algorithmen Package für die Simulation, das ParingAlgorithm, das RankingAlgorithm und die AdaptionAlgorithm. Das PairingAglorithm bietet die verschiedenen Aglorithmen für die Paarung vom Agenten. Im RankingAlgorithm liegen die Algorithmen für Bewertung. Das AdaptionAlgorithm erhält die Algorithmen, die die Strategien der Agenten in Simulation anpassen. Bei der drei Packages verwendet wir das Entwurfsmuster Strategie, um verschiedene Algorithmen zu bieten.\\
+Es gibt drei Algorithmen Pakete im Model, welche die Simulation verwendet. Diese sind: 
+\begin{itemize}
+\item $algorithms.pairing$
+\item $algorithms.ranking$
+\item $algorithms.adaptation$
+\end{itemize}
+$algorithms.pairing$ bietet die verschiedenen Algorithmen für die Paarung vom Agenten. In $algorithms.ranking$ liegen die Algorithmen für die Bewertung der Agenten am Ende eines Zyklus. $algorithms.adaptation$ enthält die Algorithmen, welche die Strategien der Agenten am Ende eines Zyklus basierend auf dem Ranking anpassen. Bei den drei Paketen verwendet wir das Entwurfsmuster Strategie, um die Algorithmen während der Laufzeit dynamisch zu binden.\\
 
-Die Agenten haben die Strategien, und unter den verschiedenen Bedingungen werden die verschiedenen Strategie von Agenten verwendet. Deshalb gibt es hier noch zwei Packages, Condition und BaseStrategy, um die kombinierte Strategien zu erzeugen. Auch wird das Entwurfsmuster Strategie hier bei Condition und BaseStrategy, um verschiedene Bedingungen und einzelstrategien zu bieten. Und hier für Strategie gibt es noch Action "COOPERATION" und "DEFECTION".
+In den Paketen $strategies$ und $condition$ stehen die Basisstrategien und Bedingungen zur Verfügung. Mit diesen lassen sich kombinierte Strategien definieren, hier wird ebenfalls ein Strategie Entwurfsmuster verwendet. Die Klasse Strategy wiederum beschreibt eine gemischte Strategie, welche sich aus mehreren kombinierten Strategien zusammensetzt.\\
 
-Für jeden Agent zeichen wir, dass der Agent zu welcher Gruppe gehört. Und ein History Class wird für Agent erstellt, um einstiges Kooperationsverhalten aufzuzeichen.
+Ein History Objekt merkt sich die in einem Zyklus erreichten Punkte eines Agenten, sowie welche Agenten welche Aktionen gegen ihn gespielt haben. History Objekte werden dazu verwendet, um die Aktion in der aktuellen Runde eines Agenten zu ermitteln und Informationen über den Simulationsverlauf auf der Benutzeroberfläche anzuzeigen.
