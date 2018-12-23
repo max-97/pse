@@ -1,9 +1,6 @@
 package de.sswis.controller;
 
-import de.sswis.model.CombinedStrategy;
-import de.sswis.model.Configuration;
-import de.sswis.model.Game;
-import de.sswis.model.Initialization;
+import de.sswis.model.*;
 
 import java.util.HashMap;
 
@@ -23,6 +20,7 @@ public class ModelProvider {
     private HashMap<String, Game> games;
     private HashMap<String, CombinedStrategy> combinedStrategies;
     private HashMap<String, Initialization> initialization;
+    private HashMap<String, Strategy> strategy;
 
     private ModelProvider() {
 
@@ -80,6 +78,15 @@ public class ModelProvider {
     }
 
     /**
+     * Fügt eine {@code Strategy} hinzu
+     *
+     * @param strategy die zu speichernde {@code Strategy}
+     */
+    public void addStrategy(Strategy strategy) {
+
+    }
+
+    /**
      * Löscht eine {@code Configuration}. Die {@code Configuration} wird über ihren Namen identifiziert.
      * Löschen kann nicht rückgängig gemacht werden.
      *
@@ -116,6 +123,16 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Initialization}
      */
     public void deleteInitialization(String name) {
+
+    }
+
+    /**
+     * Löscht eine {@code Strategy}. Die {@code Strategy} wird über ihren Namen identifiziert.
+     * Löschen kann nicht rückgängig gemacht werden.
+     *
+     * @param name Name der zu löschenden {@code Strategy}
+     */
+    public void deleteStrategy(String name) {
 
     }
 

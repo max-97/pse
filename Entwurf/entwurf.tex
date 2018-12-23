@@ -1,5 +1,9 @@
-\documentclass[11pt,a4paper]{report}
+\documentclass[11pt,a4paper]{article}
 
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc} % avoid garbled Unicode text in pdf
+\usepackage[german]{babel} % german hyphenation, quotes, etc
+\usepackage{float}
 \input{javadoc_preamble}
 
 \usepackage{graphicx}
@@ -30,18 +34,28 @@
 %}
 \lstset{numbers=none}
 
+
+{
+\title{\fontsize{40}{48} \selectfont \textsc{Entwurfsheft}\\
+{\fontsize{18}{18} \selectfont Simulator für wiederholte Spiele}}
+}
+
+\author {Michel Bodé, Max Braun, Sophie Bräuniger, Simon Hügel, Zezhong Tong}
+
+
 \begin{document}
 \maketitle
 \sloppy
 \addtocontents{toc}{\protect\markboth{Contents}{Contents}}
+\newpage
 \tableofcontents
-
+\input{Einleitung}
 \input{Systemarchitektur}
-
+\newpage
 \input{javadoc}
-
+\newpage
 \lstset{numbers=left}
-
 \input{Sequenzdiagramme}
-\input{pseudocode}
+\newpage
+\input{Ausgewaehlte_Algorithmen}
 \end{document}

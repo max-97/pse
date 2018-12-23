@@ -1,6 +1,6 @@
-\chapter{Algorithmen Pseudocode}
+\section{Ausgewählte Algorithmen}
 
-\section{Bewertungsalgorithmen}
+\subsection{Bewertungsalgorithmen}
 
 Im Folgenden werden die Bewertungsalgorithmen /F0810/ (\emph{AverageRank}) und /W0410/ (\emph{CustomCycleScore}) aus dem Pflichtenheft in Pseudocode näher beschrieben. 
 
@@ -50,9 +50,15 @@ public HashMap<Agent, Integer> getRankings(Simulation sim)
 \emph{WINDOW\_SIZE} ist die Größe des Sliding-Windows. Die Hilfsmethode \emph{rankOfAgents(agents, start, end)} ist hierbei die gleiche wie in \emph{AverageRank}. Sollte $currentCycle - WINDOW\_SIZE < 0$ gelten, wird ab dem ersten Zyklus summiert. Somit werden nur die letzten \emph{WINDOW\_SIZE} Zyklen für die Platzierung berücksichtigt. 
 
 
-\section{Paarungsalgorithmen}
+\subsection{Paarungsalgorithmen}
 
-Für den Paarungsalgorithmus verwenden wir einen Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}. 
+Wie bereits im Pflichtenheft spezifiziert, soll ein Paarungsalgorithmus angeboten werden, der ein Maximum an Kooperationsbereitschaft mit Hinblick auf die gesamte Population erzielt. Diese Aufgabe lässt sich auf ein klassisches Problem der Graphentheorie übertragen, und zwar das des "Maximum Weighted Perfect Matching in Simple Graphs". Dabei stellen die Agenten die Knoten des Graphen dar und die Kantengewichte die Kooperationswahrscheinlichkeiten.\\
+Für das beschriebene Problem existieren zahlreiche theoretische Lösungen, etwa der \emph{Blossom algorithm} von Jack Edmonds und seine Iterationen.\\
+JGraphT\footnote{\href{https://jgrapht.org/}{https://jgrapht.org/}} ist eine freie Java-Bibliothek, die u.a. Algorithmen für das Matching in Graphen zur Verfügung stellt, so etwa auch den genannten \emph{Blossom algorithm}.\\
+Swiss verwendet JGraphT um die anfangs erwähnte Funktionalität zu erzielen. Zudem werden weitere – voraussichtlich schnellere – Paarungsalgorithmen angeboten, die Näherungslösungen beschreiben. Diese dienen gleichzeitig als Rücksicherung, falls nicht absehbare Komplikationen mit JGraphT auftreten sollten.
+
+
+Als eine weitere Möglichkeit für den Paarungsalgorithmus verwenden wir eine Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}.
 
 \begin{lstlisting}
 Brut force pair matching:
