@@ -65,6 +65,14 @@ public interface AbstractMainView extends AbstractView {
     void addShowButtonActionlistener(ActionListener listener);
 
     /**
+     * Fügt ein Actionlistener zum Button Ergebnisse speichern hinzu.
+     * @param listener ActionListener
+     */
+    void addSaveButtonActionlistener(ActionListener listener);
+
+
+
+    /**
      * Fügt ein ActionListener zum Menüpunkt neues Stufenspiel hinzu.
      * @param listener ActionListener
      */

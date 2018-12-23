@@ -3,6 +3,8 @@ package de.sswis.view;
 import de.sswis.view.AbstractNewGameView;
 import de.sswis.view.model.VMGame;
 
+import java.awt.event.ActionListener;
+
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels.
  *
@@ -25,6 +27,16 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
 }

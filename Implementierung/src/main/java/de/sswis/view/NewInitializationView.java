@@ -7,6 +7,7 @@ import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
@@ -282,6 +283,16 @@ public class NewInitializationView implements AbstractNewInitializationView{
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
 }

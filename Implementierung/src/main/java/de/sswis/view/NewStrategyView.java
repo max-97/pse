@@ -3,6 +3,8 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMStrategy;
 
+import java.awt.event.ActionListener;
+
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer gemischten Strategie.
  *
@@ -23,6 +25,16 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
 }

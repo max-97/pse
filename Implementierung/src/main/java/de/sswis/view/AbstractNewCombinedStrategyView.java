@@ -8,6 +8,4 @@ package de.sswis.view;
 public interface AbstractNewCombinedStrategyView extends AbstractView {
 
 
-
-
 }

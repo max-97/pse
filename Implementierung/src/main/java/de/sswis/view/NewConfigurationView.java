@@ -7,6 +7,7 @@ import de.sswis.view.model.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 /**
@@ -146,6 +147,16 @@ public class NewConfigurationView implements AbstractNewConfigurationView{
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
 }

@@ -25,10 +25,34 @@ public interface AbstractManageCombinedStrategiesView extends AbstractView {
     void removeStrategy(String strategyName);
 
     /**
-     * Fügt ein ActionListener zum Button Simulation starten hinzu.
+     * Fügt ein ActionListener zum Button neue kombinierte Strategie hinzu.
      * @param listener ActionListener
      */
     void addNewStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Strategie bearbeiten hinzu.
+     * @param listener ActionListener
+     */
+    void addEditStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Strategie löschen hinzu.
+     * @param listener ActionListener
+     */
+    void addDeleteStrategyButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Abbrechen hinzu.
+     * @param listener ActionListener
+     */
+    void addCancelButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
+     * @param listener ActionListener
+     */
+    void addSaveQuitButtonActionlistener(ActionListener listener);
 
 
 }
