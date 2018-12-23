@@ -61,7 +61,7 @@ Swiss verwendet JGraphT um die anfangs erwähnte Funktionalität zu erzielen. Zu
 Als eine weitere Möglichkeit für den Paarungsalgorithmus verwenden wir eine Anpassung des \emph{Brute Forece Pair Matching} Algorithmus aus dem JASSS Journal\footnote{\href{http://jasss.soc.surrey.ac.uk/20/4/8.html}{Efficient and Effective Pair-Matching Algorithms for Agent-Based Models}}. 
 
 \begin{lstlisting}
-Brut force pair matching:
+Brute force pair matching:
 
 public Pair[] getPairing(Agent[] agents) 
 
@@ -83,7 +83,7 @@ public Pair[] getPairing(Agent[] agents)
 Für die Distanzfunktion gilt: $distance(a, b) = max(P('a kooperiert mit b'), P('b kooperiert mit a'))$. $P$ ist hierbei eine Wahrscheinlichkeitsfunktion. Wenn die kombinierte Strategien deterministisch sind gilt $distance(a, b) = 0$ genau dann, wenn $a$ und $b$ miteinander kooperieren und $distance(a, b) = 1$ genau dann, wenn $a$ mit $b$ oder $b$ mit $a$ nicht kooperiert. Sind sie nicht deterministisch können Werte zwischen 0 und 1 vorkommen.
 
 \begin{lstlisting}
-Brut force pair matching heuristic:
+Brute force pair matching heuristic:
 
 public Pair[] getPairing(Agent[] agents) 
 	shuffle(agents)
