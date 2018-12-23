@@ -168,27 +168,27 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
     }
 
     @Override
-    public void addResult(VMStrategy vmStrategy) {
+    public void addStrategy(VMStrategy vmStrategy) {
 
     }
 
     @Override
-    public void removeResult(String strategyName) {
+    public void removeStrategy(String strategyName) {
 
     }
 
     @Override
-    public void addNewStrategyButtonActionlistener(ActionListener listener) {
+    public void addNewMixedStrategyButtonActionlistener(ActionListener listener) {
 
     }
 
     @Override
-    public void addEditStrategyButtonActionlistener(ActionListener listener) {
+    public void addEditMixedStrategyButtonActionlistener(ActionListener listener) {
 
     }
 
     @Override
-    public void addDeleteStrategyButtonActionlistener(ActionListener listener) {
+    public void addDeleteMixedStrategyButtonActionlistener(ActionListener listener) {
 
     }
 

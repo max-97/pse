@@ -15,13 +15,13 @@ public interface AbstractManageStrategiesView extends AbstractView {
      * Fügt eine gemischte Strategie hinzu.
      * @param vmStrategy die Benutzereingaben zur gemischten Strategie
      */
-    void addResult(VMStrategy vmStrategy);
+    void addStrategy(VMStrategy vmStrategy);
 
     /**
      * Löscht eine gemischte Strategie.
      * @param strategyName der Name der gemischten Strategie
      */
-    void removeResult(String strategyName);
+    void removeStrategy(String strategyName);
 
 
     /**

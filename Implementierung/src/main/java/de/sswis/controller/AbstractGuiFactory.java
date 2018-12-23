@@ -59,10 +59,16 @@ public interface AbstractGuiFactory {
     AbstractManageInitializationsView createManageInitializationsView();
 
     /**
-     * Erstellt ein Strategieverwaltungsfenster.
-     * @return ein Strategieverwaltungsfenster
+     * Erstellt ein Strategieverwaltungsfenster für gemischte Strategien.
+     * @return ein Strategieverwaltungsfenster gür gemischte Strategien
      */
     AbstractManageStrategiesView createManageStrategiesView();
+
+    /**
+     * Erstellt ein Strategieverwaltungsfenster für kombinierte Strategien.
+     * @return ein Strategieverwaltungsfenster für kombinierte Strategien
+     */
+    AbstractManageCombinedStrategiesView createManageCombinedStrategiesView();
 
     /**
      * Erstellt ein Spieleverwaltungsfenster.
@@ -89,10 +95,16 @@ public interface AbstractGuiFactory {
     AbstractNewInitializationView createNewInitializationView();
 
     /**
-     * Erstellt ein Fenster zum Erstellen von Strategien.
-     * @return ein Fenster zum Erstellen von Strategien
+     * Erstellt ein Fenster zum Erstellen von gemischten Strategien.
+     * @return ein Fenster zum Erstellen von gemischten Strategien
      */
     AbstractNewStrategyView createNewStrategyView();
+
+    /**
+     * Erstellt ein Fenster zum Erstellen von kombinierten Strategien.
+     * @return ein Fenster zum Erstellen von kombinierten Strategien
+     */
+    AbstractNewCombinedStrategyView createNewCombinedStrategyView();
 
     /**
      * Erstellt ein Fenster zum Erstellen von Spielen.

@@ -3,6 +3,8 @@ package de.sswis.view;
 import de.sswis.view.AbstractNewCombinedStrategyView;
 import de.sswis.view.model.VMCombinedStrategy;
 
+import java.awt.event.ActionListener;
+
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer kombinierten Strategie.
  *
@@ -24,6 +26,16 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void addCancelButtonActionlistener(ActionListener listener) {
+
+    }
+
+    @Override
+    public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
 }

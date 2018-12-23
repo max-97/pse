@@ -48,6 +48,11 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     }
 
     @Override
+    public AbstractManageCombinedStrategiesView createManageCombinedStrategiesView() {
+        return null;
+    }
+
+    @Override
     public AbstractManageGamesView createManageGamesView() {
         return null;
     }
@@ -69,6 +74,11 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractNewStrategyView createNewStrategyView() {
+        return null;
+    }
+
+    @Override
+    public AbstractNewCombinedStrategyView createNewCombinedStrategyView() {
         return null;
     }
 
