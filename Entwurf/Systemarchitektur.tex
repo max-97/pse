@@ -18,9 +18,9 @@ Im Model sind die Objekte der Simulation abgebildet. Auch ist hier die gesamte B
 \noindent
 \makebox[\textwidth]{\includegraphics[scale=0.36]{Controller_package}}
 
-Zur Erfüllung der oben angedeuteten Aufgaben stehen dem Controller eine Reihe an weitere Klassen neben den ActionListener-Klassen, die sich im Paket Handlers befinden, zur Verfügung.\\
+Zur Erfüllung der oben angedeuteten Aufgaben steht dem Controller eine Reihe an weiteren Klassen neben den ActionListener-Klassen, die sich im Paket Handlers befinden, zur Verfügung.\\
 Zum einen müssen die GUI-Objekte, d.h. alle Fenster mit denen der Benutzer interagiert, erstellt werden. Dies wird durch das Fabrik-Entwurfsmuster realisiert. Das AbstractGuiFactory-Interface gibt alle nötigen Ansichten vor und bietet weiterhin die oben beschriebene Möglichkeit, das Programm zu einem späteren Zeitpunkt komfortabel um neue Benutzeroberflächen zu erweitern.\\
-Die SwingGuiFactory-Klasse erstellt die Objekte der von diesem Entwicklerteam angebotenen Swing-basierten Benutzeroberfläche.
+Die SwingGuiFactory-Klasse erstellt die Objekte der von diesem Entwicklerteam angebotenen, Swing-basierten Benutzeroberfläche.
 
 Bei dem ModelProvider handelt es sich um ein Einzelstück, das als zentrale Anlaufstelle für alle Model-Objekte dient. Das Einzelstück-Entwurfsmuster wurde verwendet, um Inkonsistenzen vorzubeugen.
 
@@ -30,7 +30,7 @@ Die Objekte werden in einem programminternen Verzeichnis gespeichert.
 Die vom Programm angebotenen "Dienstleistungen", darunter fallen die diversen Algorithmentypen\footnote{Adaptionsalgorithmen, Paarungsalgorithmen und Bewertungsalgorithmen} sowie die verfügbaren Bedingungen und Basis-Strategien, können durch den ModelServiceLoader zur Verfügung gestellt werden.\\
 Dies ist nötig, da sie auf Entwicklerebene um weitere Ausprägungen ergänzt werden können und diese ebenfalls an allen relevanten Stellen, z.B. im Auswahlfenster für den Benutzer, sichtbar sein sollen.
 
-Der ModelParser übernimmt die Kommunikation zwischen ViewModel und Model. Konkret werden die im ViewModel auf Korrektheit überprüften Benutzereingaben in Objekte umgewandelt, mit denen eine Simulation durchgeführt werden kann. Andersherum werden die Daten abgelaufener Simulationen in ein Format konvertiert, das die View darstellen kann.
+Der ModelParser überträgt das ViewModel in das Model. Konkret werden die im ViewModel auf Korrektheit überprüften Benutzereingaben in Objekte umgewandelt, mit denen eine Simulation durchgeführt werden kann. Andersherum werden die Daten abgelaufener Simulationen in ein Format konvertiert, das die View darstellen kann.
 
 Schließlich können durch das Interface Simulationen überwacht werden, wobei der ViewNotifier die Benutzeroberfläche benachrichtigt, sobald eine Simulation abgeschlossen ist. Es findet eine Parallelisierung statt, wodurch die Benutzeroberfläche auch während einer Simulation aktiv bleibt.
 

@@ -14,7 +14,7 @@ activate A
 
 loop <maxZyklen und kein Gleichgewicht
   loop Runden
-  A -> B: getPairing(sim)
+  A -> B: getPairing(this)
   activate B
   A <<-- B: currentPairs
   deactivate B
@@ -28,7 +28,7 @@ loop <maxZyklen und kein Gleichgewicht
   A <<-- RA: rankings
   deactivate RA
 
-  A -> C: adapt(sim)
+  A -> C: adapt(this)
   activate C
   A <<-- C
   deactivate C
