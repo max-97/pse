@@ -40,3 +40,22 @@ Schließlich können durch das Interface Simulationen überwacht werden, wobei d
 \makebox[\textwidth]{\includegraphics[scale=0.4]{model_classDiagramm}}
 
 %TODO Beschreibung
+
+\subsection{View}
+
+\noindent
+\makebox[\textwidth]{\includegraphics[scale=0.4]{view_classDiagramm}}
+
+Für die Implementierung der Benutzeroberfäche wird die Java Swing Bibliothek und IntelliJ GUI Forms verwendet. In der View stehen alle Fenster, mit denen der Benutzer interagiert, als eigene Klasse zur Verfügung. Zur Übersicht sind nur drei dieser Klassen in dem Bild dargestellt, um den Zusammenspiel von View und View Model Objekten anschaulich zu machen. 
+
+Die Fenster enthalten Buttons und Menuitems mit denen der Nutzer interagieren kann. Für diese werden die Handler aus dem Controller als ActionListener gesetzt. 
+
+Das Interface AbstractView enthält die grundlegendsten Methoden für ein GUI Fenster, um dieses anzeigen und schließen zu lassen. Jedes Fenster der Benutzeroberfläche implementiert ein eigenes Interface, das von AbtractView erbt und öffentliche Methoden, wie zum Beispiel zum setzen der Actionlistener, enthält. 
+
+MainView ist das Hauptfenster des Programms. Es zeigt alle Konfigurationen an und über Buttons kann eine ausgewählte Konfiguration gestartet und die Ergebnisse angezeigt und gespeichert werden. Dafür besitzt das Fenster eine Liste aller gespeicherten VMConfiguration Objekte.
+Über das Menü kann der Nutzer sich alle Fenster zum Verwalten und Erstellen von Konfigurationen, Initialisierungen, Stufenspielen und gemischten und kombinierten Strategien öffnen lassen.
+
+ManageGamesView ist ein Fenster zum Verwalten von Stufenspielen. Über Buttons können Stufenspiele bearbeitet, gelöscht und erstellt werden. Damit Informationen zu allen Stufenspielen angezeigt werden können, besitzt das Fenster eine Liste aller gespeicherten VMGame Objekte.
+
+NewGameView ist ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels. Es besitzt ein VMGame Objekt in den die Nutzereingaben übertragen werden. Das VMGame Objekt prüft dabei die Eingaben auf Korrektheit.
+
