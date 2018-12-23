@@ -28,7 +28,7 @@
 %  breakatwhitespace=true,
 %  tabsize=3
 %}
-\lstset{numbers=left}
+\lstset{numbers=none}
 
 \begin{document}
 \maketitle
@@ -36,15 +36,11 @@
 \addtocontents{toc}{\protect\markboth{Contents}{Contents}}
 \tableofcontents
 
-% Your image goes here
-\noindent
-\makebox[\textwidth]{\includegraphics[scale=0.36]{Controller_package}}%
+\input{Systemarchitektur}
 
-\vspace*{2cm}
-
-
-\input{pseudocode}
-\lstset{numbers=none}
 \input{javadoc}
 
+\lstset{numbers=left}
+
+\input{pseudocode}
 \end{document}
