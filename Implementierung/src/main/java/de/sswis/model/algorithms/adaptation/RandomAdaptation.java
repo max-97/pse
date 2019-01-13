@@ -1,6 +1,6 @@
 package de.sswis.model.algorithms.adaptation;
 
-import de.sswis.model.Simulation;
+import de.sswis.model.Agent;
 
 /**
  * Ein Algorithmus der die Strategien der Agenten einer Simulation mit einer gewissen Wahrscheinlichkeit zu
@@ -24,7 +24,7 @@ public class RandomAdaptation implements AdaptationAlgorithm {
     }
 
     @Override
-    public void adapt(Simulation sim) {
+    public void adapt(Agent[] agents, double adaptationProbability) {
 
     }
 }

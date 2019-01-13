@@ -2,8 +2,8 @@ package de.sswis.model.algorithms.pairing;
 
 
 import de.sswis.model.Agent;
+import de.sswis.model.Game;
 import de.sswis.model.Pair;
-import de.sswis.model.Simulation;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.MatchingAlgorithm;
 import org.jgrapht.graph.DefaultEdge;
@@ -18,7 +18,7 @@ import org.jgrapht.graph.DefaultEdge;
 public class MaximumWeightMatching implements PairingAlgorithm {
 
     @Override
-    public Pair[] getPairing(Simulation sim) {
+    public Pair[] getPairing(Agent[] agents, Game game) {
         return new Pair[0];
     }
 

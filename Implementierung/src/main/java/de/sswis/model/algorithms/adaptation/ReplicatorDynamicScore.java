@@ -1,6 +1,6 @@
 package de.sswis.model.algorithms.adaptation;
 
-import de.sswis.model.Simulation;
+import de.sswis.model.Agent;
 
 /**
  * Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhaengigkeit von der Differenz
@@ -23,7 +23,7 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm{
         this.BETA = BETA;
     }
     @Override
-    public void adapt(Simulation sim) {
+    public void adapt(Agent[] agents, double adaptationProbability) {
 
     }
 }
