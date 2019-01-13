@@ -33,6 +33,15 @@ public class Game {
         return null;
     }
 
+    /**
+     * Das Stufenspiel wird von den zwei Agenten gespielt, entsprechend ihrer Aktionen werden
+     * die Payoffs verteilt.
+     * @param pair Agentenpaar
+     */
+    public void playGame(Pair pair) {
+
+    }
+
     public String getName() {
         return name;
     }
