@@ -16,6 +16,10 @@ public class GrimEverybody implements BaseStrategy {
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
+        if(agent2.getHistory().getAlwaysCooperated()) {
+            return Action.COOPERATION;
+        }else {
+            return Action.DEFECTION;
+        }
     }
 }

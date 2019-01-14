@@ -15,6 +15,6 @@ public class AlwaysCooperate implements BaseStrategy {
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
+        return Action.COOPERATION;
     }
 }

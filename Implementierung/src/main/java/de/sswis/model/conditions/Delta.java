@@ -12,8 +12,8 @@ public class Delta implements Condition{
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    public static final int PARAMETER_COUNT = 1;
+    public static final String[] PARAMETER_NAMES = {"DELTA"};
     private final double DELTA;
 
     /**
@@ -26,6 +26,6 @@ public class Delta implements Condition{
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        return Math.abs(agent1.getHistory().getScore() - agent2.getHistory().getScore()) <= DELTA;
     }
 }

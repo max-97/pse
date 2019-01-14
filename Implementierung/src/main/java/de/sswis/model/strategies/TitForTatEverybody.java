@@ -16,6 +16,10 @@ public class TitForTatEverybody implements BaseStrategy {
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
+        if(agent1.getHistory().getCooperated()) {
+            return Action.COOPERATION;
+        }else {
+            return Action.DEFECTION;
+        }
     }
 }

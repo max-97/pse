@@ -16,6 +16,10 @@ public class GrimIndividual implements BaseStrategy {
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
+        if(agent1.getHistory().cooperatedEveryTime(agent2)) {
+            return Action.COOPERATION;
+        }else {
+            return Action.DEFECTION;
+        }
     }
 }

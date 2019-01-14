@@ -16,5 +16,5 @@ public interface BaseStrategy {
      * @param agent2 Gegenspieler
      * @return eine {@code Action} die entweder Kooperation oder Defektion ist
      */
-    public abstract Action calculateAction(Agent agent1, Agent agent2);
+    Action calculateAction(Agent agent1, Agent agent2);
 }

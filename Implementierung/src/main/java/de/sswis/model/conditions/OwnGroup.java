@@ -15,6 +15,6 @@ public class OwnGroup implements Condition {
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        return agent1.getGroup().getId() == agent2.getGroup().getId() ;
     }
 }

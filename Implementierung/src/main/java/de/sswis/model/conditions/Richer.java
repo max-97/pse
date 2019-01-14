@@ -16,6 +16,6 @@ public class Richer implements Condition {
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        return agent1.getHistory().getScore() < agent2.getHistory().getScore();
     }
 }

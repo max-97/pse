@@ -10,8 +10,8 @@ public class Probability implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    public static final int PARAMETER_COUNT = 1;
+    public static final String[] PARAMETER_NAMES = {"ALPHA"};
     private final double ALPHA;
 
     /**
@@ -24,6 +24,7 @@ public class Probability implements Condition {
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        double random = Math.random();
+        return random < ALPHA;
     }
 }

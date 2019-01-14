@@ -10,8 +10,8 @@ public class SpecificGroup implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    public static final int PARAMETER_COUNT = 1;
+    public static final String[] PARAMETER_NAMES = {"GROUP_ID"};
     private final int GROUP_ID;
 
     /**
@@ -24,6 +24,6 @@ public class SpecificGroup implements Condition {
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        return agent2.getGroup().getId() == GROUP_ID;
     }
 }
