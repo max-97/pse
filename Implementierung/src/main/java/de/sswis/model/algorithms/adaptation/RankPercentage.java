@@ -2,6 +2,8 @@ package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Ein Algorithmus der die Strategie eines Agenten anpasst, wenn der Agent mit dem verglichen wird
  * zu den obersten {@code PERCENTAGE} Prozent der Rangliste gehoert. Der Agent uebernimmt die Strategie des anderen,
@@ -12,6 +14,8 @@ import de.sswis.model.Agent;
 public class RankPercentage implements AdaptationAlgorithm {
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
     private final int PERCENTAGE;
 
     /**
@@ -23,7 +27,7 @@ public class RankPercentage implements AdaptationAlgorithm {
     }
 
     @Override
-    public void adapt(Agent[] agents, double adaptationProbability) {
+    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
 
     }
 }

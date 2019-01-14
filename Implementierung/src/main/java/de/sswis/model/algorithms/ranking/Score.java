@@ -12,6 +12,8 @@ import java.util.HashMap;
 public class Score implements  RankingAlgorithm {
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {

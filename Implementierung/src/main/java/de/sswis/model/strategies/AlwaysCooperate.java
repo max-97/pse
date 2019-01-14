@@ -10,6 +10,8 @@ import de.sswis.model.Agent;
 public class AlwaysCooperate implements BaseStrategy {
     public final static String NAME = "";
     public final static String DESCRIPTION = "";
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {

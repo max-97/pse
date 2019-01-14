@@ -2,6 +2,8 @@ package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Ein Algorithmus der die Strategien der Agenten einer Simulation mit einer gewissen Wahrscheinlichkeit zu
  * einer zufaelligen neuen Strategie anpasst. Die neue Strategie muss in der Konfiguration enthalten sein.
@@ -13,6 +15,8 @@ public class RandomAdaptation implements AdaptationAlgorithm {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
     private final int PROBABILITY;
 
     /**
@@ -24,7 +28,7 @@ public class RandomAdaptation implements AdaptationAlgorithm {
     }
 
     @Override
-    public void adapt(Agent[] agents, double adaptationProbability) {
+    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
 
     }
 }

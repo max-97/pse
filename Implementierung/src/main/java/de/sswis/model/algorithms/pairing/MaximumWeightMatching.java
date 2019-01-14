@@ -16,6 +16,8 @@ import org.jgrapht.graph.DefaultEdge;
  * @author Michel Bodé
  */
 public class MaximumWeightMatching implements PairingAlgorithm {
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
 
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {

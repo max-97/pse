@@ -10,14 +10,16 @@ public class Probability implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    private double alpha;
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
+    private final double ALPHA;
 
     /**
      * Konstruktor
-     * @param alpha Wahrscheinlichkeit mit der die Bedingung erfuellt ist
+     * @param ALPHA Wahrscheinlichkeit mit der die Bedingung erfuellt ist
      */
-    public Probability(double alpha) {
-
+    public Probability(double ALPHA) {
+        this.ALPHA = ALPHA;
     }
 
     @Override
