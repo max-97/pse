@@ -102,7 +102,16 @@ public class ModelProvider {
      * @param strategy die zu speichernde {@code Strategy}
      */
     public void addStrategy(Strategy strategy) {
-
+        if(this.strategy.containsKey(strategy.getName())) {
+            if(this.strategy.get(strategy.getName()).equals(strategy)) {
+                // strategy already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Strategy object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.strategy.put(strategy.getName(), strategy);
     }
 
     /**
