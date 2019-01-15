@@ -22,7 +22,7 @@ public class ModelProvider {
     private HashMap<String, Game> games;
     private HashMap<String, CombinedStrategy> combinedStrategies;
     private HashMap<String, Initialization> initialization;
-    private HashMap<String, Strategy> strategy;
+    private HashMap<String, Strategy> strategies;
 
     private ModelProvider() {
 
@@ -103,16 +103,16 @@ public class ModelProvider {
      * @param strategy die zu speichernde {@code Strategy}
      */
     public void addStrategy(Strategy strategy) {
-        if(this.strategy.containsKey(strategy.getName())) {
-            if(this.strategy.get(strategy.getName()).equals(strategy)) {
-                // strategy already added, do nothing
+        if(this.strategies.containsKey(strategy.getName())) {
+            if(this.strategies.get(strategy.getName()).equals(strategy)) {
+                // strategies already added, do nothing
                 return;
             } else {
                 throw new DuplicateObjectNameException("Another Strategy object with the same name already exists." +
                         "Duplicate names should be checked before object creation!");
             }
         }
-        this.strategy.put(strategy.getName(), strategy);
+        this.strategies.put(strategy.getName(), strategy);
     }
 
     /**
@@ -162,7 +162,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Strategy}
      */
     public void deleteStrategy(String name) {
-        this.strategy.remove(name);
+        this.strategies.remove(name);
     }
 
     public Map<String, Configuration> getConfigurations() {
@@ -170,7 +170,7 @@ public class ModelProvider {
     }
 
     public Configuration getConfiguration(String name) {
-        return null;
+        return this.configurations.get(name);
     }
 
     public Map<String, Game> getGames() {
@@ -178,7 +178,7 @@ public class ModelProvider {
     }
 
     public Game getGame(String name) {
-        return null;
+        return this.games.get(name);
     }
 
     public Map<String, CombinedStrategy> getCombinedStrategies() {
@@ -186,7 +186,7 @@ public class ModelProvider {
     }
 
     public CombinedStrategy getCombinedStrategy(String name) {
-        return null;
+        return this.combinedStrategies.get(name);
     }
 
     public Map<String, Initialization> getInitializations() {
@@ -194,8 +194,7 @@ public class ModelProvider {
     }
 
     public Initialization getInitialization(String name) {
-        return null;
+        return this.initialization.get(name);
     }
-
 
 }
