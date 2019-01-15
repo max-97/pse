@@ -20,7 +20,7 @@ public class Game {
      * @param payoffs Payoffs des Spiels
      */
     public Game(String name, String description, Tuple[][] payoffs) {
-
+        this.name = name;
     }
 
     /**
