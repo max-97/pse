@@ -1,5 +1,6 @@
 package de.sswis.controller;
 
+import de.sswis.exceptions.DuplicateObjectNameException;
 import de.sswis.model.*;
 
 import java.util.HashMap;
@@ -54,7 +55,16 @@ public class ModelProvider {
      * @param game das zu speichernde {@code Game}
      */
     public void addGame(Game game) {
-
+        if(this.games.containsKey(game.getName())) {
+            if(this.games.get(game.getName()).equals(game)) {
+                // game already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Game object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.games.put(game.getName(), game);
     }
 
 
@@ -64,7 +74,16 @@ public class ModelProvider {
      * @param combStrategy die zu speichernde {@code CombinedStrategy}
      */
     public void addCombinedStrategy(CombinedStrategy combStrategy) {
-
+        if(this.combinedStrategies.containsKey(combStrategy.getName())) {
+            if(this.combinedStrategies.get(combStrategy.getName()).equals(combStrategy)) {
+                // combinedStrategy already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another CombinedStrategy object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.combinedStrategies.put(combStrategy.getName(), combStrategy);
     }
 
 
