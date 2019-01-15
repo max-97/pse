@@ -4,6 +4,7 @@ import de.sswis.exceptions.DuplicateObjectNameException;
 import de.sswis.model.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Verwaltet die Model-Objekte. Alle erstellten {@link Configuration Configurations}, {@link Game Games},
@@ -121,7 +122,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Configuration}
      */
     public void deleteConfiguration(String name) {
-
+        this.configurations.remove(name);
     }
 
     /**
@@ -131,7 +132,7 @@ public class ModelProvider {
      * @param name Name des zu löschende {@code Game}
      */
     public void deleteGame(String name) {
-
+        this.games.remove(name);
     }
 
     /**
@@ -141,7 +142,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code CombinedStrategy}
      */
     public void deleteCombinedStrategy(String name) {
-
+        this.combinedStrategies.remove(name);
     }
 
     /**
@@ -151,7 +152,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Initialization}
      */
     public void deleteInitialization(String name) {
-
+        this.initialization.remove(name);
     }
 
     /**
@@ -161,11 +162,10 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Strategy}
      */
     public void deleteStrategy(String name) {
-
+        this.strategy.remove(name);
     }
 
-    /*
-    public Map<String, Collection<Configuration>> getConfigurations() {
+    public Map<String, Configuration> getConfigurations() {
         return configurations;
     }
 
@@ -196,6 +196,6 @@ public class ModelProvider {
     public Initialization getInitialization(String name) {
         return null;
     }
-    */
+
 
 }
