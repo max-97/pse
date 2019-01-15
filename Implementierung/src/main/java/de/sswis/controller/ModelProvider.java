@@ -49,8 +49,17 @@ public class ModelProvider {
      *
      * @param configuration die zu speichernde {@code Configurations}
      */
-    public void addConfigurations(Configuration configuration) {
-
+    public void addConfiguration(Configuration configuration) {
+        if(this.configurations.containsKey(configuration.getName())) {
+            if(this.configurations.get(configuration.getName()).equals(configuration)) {
+                // configuration already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Configuration object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.configurations.put(configuration.getName(), configuration);
     }
 
 
@@ -98,7 +107,16 @@ public class ModelProvider {
      * @param initialization die zu speichernde {@code Initialization}
      */
     public void addInitialization(Initialization initialization) {
-
+        if(this.initialization.containsKey(initialization.getName())) {
+            if(this.initialization.get(initialization.getName()).equals(initialization)) {
+                // initialization already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Initialization object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.initialization.put(initialization.getName(), initialization);
     }
 
     /**
