@@ -39,7 +39,7 @@ public class Configuration {
      */
     public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
                          int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
-
+        this.name = name;
     }
 
     public String getName() {

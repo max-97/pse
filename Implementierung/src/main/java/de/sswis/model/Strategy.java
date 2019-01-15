@@ -17,7 +17,7 @@ public class Strategy {
      * @param probabilities Menge an Wahrscheinlichkeiten
      */
     public Strategy(String name, CombinedStrategy[] combinedStrategies, double[] probabilities) {
-
+        this.name = name;
     }
 
     public String getName(){

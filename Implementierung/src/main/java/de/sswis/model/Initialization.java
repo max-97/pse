@@ -21,7 +21,7 @@ public class Initialization {
      * @param agentCount Anzahl der Agenten
      */
     public Initialization(String name, int agentCount) {
-
+        this.name = name;
     }
 
     /**
