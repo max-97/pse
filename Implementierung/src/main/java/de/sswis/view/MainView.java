@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- *in Hauptfenster der Benutzeroberfläche.
+ * in Hauptfenster der Benutzeroberfläche.
  *
  * @author Sophie Bräuniger
  */
@@ -24,28 +24,38 @@ public class MainView implements AbstractMainView {
     private List<VMConfiguration> configurations;
 
 
-    private JButton simulationenStartenButton;
-    private JButton ergebnisseAnzeigenButton;
-    private JTree waehlenSieEineKonfigurationTree;
-    private JButton ergebisseSpeichernButton;
-
-
+    private JButton startButton;
+    private JButton showResultButton;
+    private JTree ConfigurationTree;
+    private JButton saveResultButton;
+    private JPanel TitelPanel;
+    private JPanel ContentPanel;
+    private JScrollPane ConfigurationScrollPane;
+    private JPanel MainPanel;
+    private JLabel ChooseLabel;
+    private JLabel TitleLabel;
 
 
     @Override
-    public void addConfiguration(VMConfiguration configuration) {}
+    public void addConfiguration(VMConfiguration configuration) {
+    }
 
     @Override
-    public void removeConfiguration(String configurationName) {}
+    public void removeConfiguration(String configurationName) {
+    }
 
     @Override
-    public void  addResult(String NameConfiguration, VMResult result){}
+    public void addResult(String NameConfiguration, VMResult result) {
+    }
 
     @Override
-    public void setSimulationFinished (String NameConfiguration) {}
+    public void setSimulationFinished(String NameConfiguration) {
+    }
 
     @Override
-    public VMConfiguration getSelected() { return null; }
+    public VMConfiguration getSelected() {
+        return null;
+    }
 
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
@@ -118,7 +128,8 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void update() {}
+    public void update() {
+    }
 
     @Override
     public void show() {
@@ -153,48 +164,47 @@ public class MainView implements AbstractMainView {
      */
     private void $$$setupUI$$$() {
         createUIComponents();
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(20, 20, 20, 20), -1, -1));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        Font label1Font = this.$$$getFont$$$(null, -1, 22, label1.getFont());
-        if (label1Font != null) label1.setFont(label1Font);
-        label1.setText("SSWIS Simuliert WIederholte Spiele");
-        panel2.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        MainPanel = new JPanel();
+        MainPanel.setLayout(new GridLayoutManager(3, 1, new Insets(20, 20, 20, 20), -1, -1));
+        TitelPanel = new JPanel();
+        TitelPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        MainPanel.add(TitelPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        TitleLabel = new JLabel();
+        Font TitleLabelFont = this.$$$getFont$$$(null, -1, 22, TitleLabel.getFont());
+        if (TitleLabelFont != null) TitleLabel.setFont(TitleLabelFont);
+        TitleLabel.setText("SSWIS Simuliert WIederholte Spiele");
+        TitelPanel.add(TitleLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(9, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(panel3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JScrollPane scrollPane1 = new JScrollPane();
-        scrollPane1.setHorizontalScrollBarPolicy(31);
-        scrollPane1.setVerticalScrollBarPolicy(22);
-        panel3.add(scrollPane1, new GridConstraints(1, 0, 6, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        waehlenSieEineKonfigurationTree.setEditable(true);
-        waehlenSieEineKonfigurationTree.setLargeModel(true);
-        waehlenSieEineKonfigurationTree.setRootVisible(true);
-        waehlenSieEineKonfigurationTree.setShowsRootHandles(true);
-        waehlenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
-        scrollPane1.setViewportView(waehlenSieEineKonfigurationTree);
-        final JLabel label2 = new JLabel();
-        label2.setText("Wählen Sie eine Konfiguration");
-        panel3.add(label2, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        TitelPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        ContentPanel = new JPanel();
+        ContentPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+        MainPanel.add(ContentPanel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        ConfigurationScrollPane = new JScrollPane();
+        ConfigurationScrollPane.setHorizontalScrollBarPolicy(31);
+        ConfigurationScrollPane.setVerticalScrollBarPolicy(22);
+        ContentPanel.add(ConfigurationScrollPane, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        ConfigurationTree.setEditable(true);
+        ConfigurationTree.setLargeModel(true);
+        ConfigurationTree.setRootVisible(true);
+        ConfigurationTree.setShowsRootHandles(true);
+        ConfigurationTree.putClientProperty("JTree.lineStyle", "");
+        ConfigurationScrollPane.setViewportView(ConfigurationTree);
+        ChooseLabel = new JLabel();
+        ChooseLabel.setText("Wählen Sie eine Konfiguration");
+        ContentPanel.add(ChooseLabel, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        panel3.add(spacer2, new GridConstraints(8, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        simulationenStartenButton = new JButton();
-        simulationenStartenButton.setText("Simulationen starten");
-        panel3.add(simulationenStartenButton, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        ergebnisseAnzeigenButton = new JButton();
-        ergebnisseAnzeigenButton.setText("Ergebnisse anzeigen");
-        panel3.add(ergebnisseAnzeigenButton, new GridConstraints(7, 2, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        ergebisseSpeichernButton = new JButton();
-        ergebisseSpeichernButton.setText("Ergebisse speichern");
-        panel3.add(ergebisseSpeichernButton, new GridConstraints(7, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        ContentPanel.add(spacer2, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        startButton = new JButton();
+        startButton.setText("Simulationen starten");
+        ContentPanel.add(startButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        showResultButton = new JButton();
+        showResultButton.setText("Ergebnisse anzeigen");
+        ContentPanel.add(showResultButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        saveResultButton = new JButton();
+        saveResultButton.setText("Ergebisse speichern");
+        ContentPanel.add(saveResultButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
-        panel1.add(separator1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        label2.setLabelFor(scrollPane1);
+        MainPanel.add(separator1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**
@@ -216,4 +226,10 @@ public class MainView implements AbstractMainView {
         return new Font(resultName, style >= 0 ? style : currentFont.getStyle(), size >= 0 ? size : currentFont.getSize());
     }
 
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return MainPanel;
+    }
 }
