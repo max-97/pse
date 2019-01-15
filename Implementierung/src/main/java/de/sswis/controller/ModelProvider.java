@@ -219,4 +219,12 @@ public class ModelProvider {
         return this.initialization.get(name);
     }
 
+    public Map<String, Strategy> getStrategies() {
+        return this.strategies;
+    }
+
+    public Strategy getStrategy(String name) {
+        return this.strategies.get(name);
+    }
+
 }
