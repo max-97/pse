@@ -187,6 +187,17 @@ public class ModelProvider {
         this.strategies.remove(name);
     }
 
+    /**
+     * Löscht alle gespeicherten Objekte unwiederruflich.
+     */
+    public void deleteAllObjects() {
+        this.configurations.clear();
+        this.games.clear();
+        this.strategies.clear();
+        this.initialization.clear();
+        this.combinedStrategies.clear();
+    }
+
     public Map<String, Configuration> getConfigurations() {
         return configurations;
     }
