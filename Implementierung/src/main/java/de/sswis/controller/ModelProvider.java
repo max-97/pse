@@ -25,7 +25,11 @@ public class ModelProvider {
     private HashMap<String, Strategy> strategies;
 
     private ModelProvider() {
-
+        this.configurations = new HashMap<>();
+        this.games = new HashMap<>();
+        this.combinedStrategies = new HashMap<>();
+        this.initialization = new HashMap<>();
+        this.strategies = new HashMap<>();
     }
 
     /**
