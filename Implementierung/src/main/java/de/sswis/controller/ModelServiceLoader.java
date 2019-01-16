@@ -7,6 +7,7 @@ import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
@@ -23,11 +24,11 @@ public class ModelServiceLoader {
     private ServiceLoader<RankingAlgorithm> rankAlgLoader = ServiceLoader.load(RankingAlgorithm.class);
     private ServiceLoader<Condition> conditionLoader = ServiceLoader.load(Condition.class);
     private ServiceLoader<BaseStrategy> baseStrategyLoader = ServiceLoader.load(BaseStrategy.class);
-    private List<AdaptationAlgorithm> adaptAlgorithms = null;
-    private List<PairingAlgorithm> pairAlgorithms = null;
-    private List<RankingAlgorithm> rankAlgorithms = null;
-    private List<Condition> conditions = null;
-    private List<BaseStrategy> baseStrategies = null;
+    private List<AdaptationAlgorithm> adaptAlgorithms = new ArrayList<>();
+    private List<PairingAlgorithm> pairAlgorithms = new ArrayList<>();
+    private List<RankingAlgorithm> rankAlgorithms = new ArrayList<>();
+    private List<Condition> conditions = new ArrayList<>();
+    private List<BaseStrategy> baseStrategies = new ArrayList<>();
 
     /**
      * Liefert eine Liste mit allen Algorithmen, die das {@code AdaptationAlgorithm}-Interface implementieren.
@@ -35,11 +36,11 @@ public class ModelServiceLoader {
      * @return eine Liste mit allen Adaptionsalgorithmen
      */
     public List<AdaptationAlgorithm> getAdaptAlgorithmList() {
-        /*if (adaptAlgorithms == null) {
+        if (adaptAlgorithms.isEmpty()) {
             for (AdaptationAlgorithm aa : this.adaptAlgLoader) {
                 adaptAlgorithms.add(aa);
             }
-        }*/
+        }
         return adaptAlgorithms;
     }
 
@@ -49,11 +50,11 @@ public class ModelServiceLoader {
      * @return eine Liste mit allen Paarungsalgorithmen
      */
     public List<PairingAlgorithm> getPairAlgorithmList() {
-        /*if (pairAlgorithms == null) {
+        if (pairAlgorithms.isEmpty()) {
             for (PairingAlgorithm pa : this.pairAlgLoader) {
                 pairAlgorithms.add(pa);
             }
-        }*/
+        }
         return pairAlgorithms;
     }
 
@@ -63,11 +64,11 @@ public class ModelServiceLoader {
      * @return eine Liste mit allen Bewertungsalgorithmen
      */
     public List<RankingAlgorithm> getRankAlgorithmList() {
-        /*if (rankAlgorithms == null) {
+        if (rankAlgorithms.isEmpty()) {
             for (RankingAlgorithm ra : this.rankAlgLoader) {
                 rankAlgorithms.add(ra);
             }
-        }*/
+        }
         return rankAlgorithms;
     }
 
@@ -77,11 +78,11 @@ public class ModelServiceLoader {
      * @return eine Liste mit allen Bedingungen
      */
     public List<Condition> getConditionList() {
-        /*if (conditions == null) {
+        if (conditions.isEmpty()) {
             for (Condition c : this.conditionLoader) {
                 conditions.add(c);
             }
-        }*/
+        }
         return conditions;
     }
 
@@ -91,11 +92,11 @@ public class ModelServiceLoader {
      * @return eine Liste mit allen Basis-Strategien
      */
     public List<BaseStrategy> getBaseStrategyList() {
-        /*if (baseStrategies == null) {
+        if (baseStrategies.isEmpty()) {
             for (BaseStrategy bs : this.baseStrategyLoader) {
                 baseStrategies.add(bs);
             }
-        }*/
+        }
         return baseStrategies;
     }
 
