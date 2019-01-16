@@ -7,6 +7,8 @@ import de.sswis.util.AgentDistribution;
  * @author Michel Bodé
  */
 public class Initialization {
+
+    private String name;
     private Group[] groups;
     private int agentCount;
     private Agent[] agents;
@@ -15,10 +17,11 @@ public class Initialization {
     /**
      * Erstellt eine Initialisierung.
      *
+     * @param name Name der Initialisierung
      * @param agentCount Anzahl der Agenten
      */
-    public Initialization(int agentCount) {
-
+    public Initialization(String name, int agentCount) {
+        this.name = name;
     }
 
     /**
@@ -54,6 +57,10 @@ public class Initialization {
      */
     public void setCapitalDistribution(AgentDistribution distribution, int capital, Group group) {
 
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Group[] getGroups () {
