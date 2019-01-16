@@ -20,7 +20,7 @@ public class CombinedStrategy implements Strategy{
      * @param conditions Menge an Bedingungen
      */
     public CombinedStrategy(String name, BaseStrategy[] strategies, Condition[] conditions) {
-
+        this.name = name;
     }
 
     @Override
