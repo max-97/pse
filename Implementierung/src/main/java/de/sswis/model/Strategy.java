@@ -1,27 +1,19 @@
 package de.sswis.model;
 
 /**
- * Eine Strategie bestehend aus Paaren von kombinierten Strategien und Wahrscheinlichkeiten.
- * Eine Strategie kann sowohl eine einfache als auch eine gemischte Strategie darstellen.
+ * Eine Strategie welche sowohl eine einfache als auch eine gemischte Strategie sein kann.
  * @author Michel Bodé
  */
-public class Strategy {
-    private String name;
-    private CombinedStrategy[] combinedStrategies;
-    private double[] probabilities;
+public interface Strategy {
 
     /**
-     * Erstellt eine Strategie.
-     * @param name Name der Strategie
-     * @param combinedStrategies Menge an kombinierten Strategien
-     * @param probabilities Menge an Wahrscheinlichkeiten
+     * Gibt den Namen der Strategie zurück.
+     * @return Name
      */
+    String getName();
+
     public Strategy(String name, CombinedStrategy[] combinedStrategies, double[] probabilities) {
         this.name = name;
-    }
-
-    public String getName(){
-        return name;
     }
 
     /**
@@ -30,8 +22,6 @@ public class Strategy {
      * @param agent2 Gegenspieler
      * @return die Aktion des Agenten
      */
-    public  Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
-    }
+    Action calculateAction(Agent agent1, Agent agent2);
 
 }
