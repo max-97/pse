@@ -36,6 +36,8 @@ public class MainView implements AbstractMainView {
     private JLabel TitleLabel;
 
 
+
+
     @Override
     public void addConfiguration(VMConfiguration configuration) {
     }

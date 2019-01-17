@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="de.sswis.view.ManageGamesView">
-  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
       <xy x="20" y="20" width="923" height="496"/>
@@ -8,7 +8,7 @@
     <properties/>
     <border type="none"/>
     <children>
-      <grid id="5e08e" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="5e08e" binding="ButtonPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -16,7 +16,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="4dae6" class="javax.swing.JButton" binding="aenderungenSpeichernUndSchließenButton">
+          <component id="4dae6" class="javax.swing.JButton" binding="saveAndQuitButton">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -24,7 +24,7 @@
               <text value="Änderungen speichern und schließen"/>
             </properties>
           </component>
-          <component id="50bd0" class="javax.swing.JButton" binding="abbrechenButton" default-binding="true">
+          <component id="50bd0" class="javax.swing.JButton" binding="cancelButton">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -40,7 +40,7 @@
         </constraints>
         <properties/>
       </component>
-      <tabbedpane id="3d1a4">
+      <tabbedpane id="3d1a4" binding="GamesPane">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="200" height="200"/>
@@ -54,7 +54,7 @@
           <grid id="8ccaa" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Gefangenendilemma"/>
+              <tabbedpane title="Spiel"/>
             </constraints>
             <properties/>
             <border type="none"/>
@@ -121,20 +121,20 @@
                       <text value="Spieler1 / Spieler2"/>
                     </properties>
                   </component>
-                  <component id="2700f" class="javax.swing.JLabel">
+                  <component id="2700f" class="javax.swing.JLabel" binding="upLeftPayOffLabel">
                     <constraints>
                       <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="-1 / -1"/>
+                      <text value="0 / 0"/>
                     </properties>
                   </component>
-                  <component id="edde8" class="javax.swing.JLabel">
+                  <component id="edde8" class="javax.swing.JLabel" binding="bottomLeftPayOffLabel">
                     <constraints>
                       <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="0 / -3"/>
+                      <text value="0 / 0"/>
                     </properties>
                   </component>
                   <component id="2ffc6" class="javax.swing.JSeparator">
@@ -173,7 +173,7 @@
                       </grid>
                     </constraints>
                   </vspacer>
-                  <component id="dc6dd" class="javax.swing.JLabel">
+                  <component id="dc6dd" class="javax.swing.JLabel" binding="descriptionLabel">
                     <constraints>
                       <grid row="8" column="0" row-span="1" col-span="6" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -189,7 +189,7 @@
                     </constraints>
                     <properties/>
                   </component>
-                  <component id="95d7d" class="javax.swing.JButton" binding="spielLoeschenButton">
+                  <component id="95d7d" class="javax.swing.JButton" binding="deleteButton">
                     <constraints>
                       <grid row="10" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -197,28 +197,28 @@
                       <text value="Spiel löschen"/>
                     </properties>
                   </component>
-                  <component id="2cd5c" class="javax.swing.JLabel">
+                  <component id="2cd5c" class="javax.swing.JLabel" binding="nameLabel">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Gefangenendilemma"/>
+                      <text value="Spiel"/>
                     </properties>
                   </component>
-                  <component id="4c54f" class="javax.swing.JLabel">
+                  <component id="4c54f" class="javax.swing.JLabel" binding="upRightPayOffLabel">
                     <constraints>
                       <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="-3 / 0"/>
+                      <text value="0 / 0"/>
                     </properties>
                   </component>
-                  <component id="b13c1" class="javax.swing.JLabel">
+                  <component id="b13c1" class="javax.swing.JLabel" binding="bottomRightPayOffLabel">
                     <constraints>
                       <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="2 / 2"/>
+                      <text value="0 / 0"/>
                     </properties>
                   </component>
                   <vspacer id="71a4f">
@@ -228,7 +228,7 @@
                       </grid>
                     </constraints>
                   </vspacer>
-                  <component id="2de26" class="javax.swing.JButton" binding="spielBearbeitenButton" default-binding="true">
+                  <component id="2de26" class="javax.swing.JButton" binding="editButton">
                     <constraints>
                       <grid row="10" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -267,7 +267,7 @@
           </grid>
         </children>
       </tabbedpane>
-      <component id="29110" class="javax.swing.JButton" binding="neuesSpielButton" default-binding="true">
+      <component id="29110" class="javax.swing.JButton" binding="newGameButton">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
