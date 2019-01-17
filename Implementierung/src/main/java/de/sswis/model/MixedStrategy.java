@@ -16,7 +16,7 @@ public class MixedStrategy implements Strategy {
      * @param probabilies Menge an Wahrscheinlichkeiten
      */
     public MixedStrategy(String name, CombinedStrategy[] combinedStrategies, double[] probabilies) {
-
+        this.name = name;
     }
 
     @Override
