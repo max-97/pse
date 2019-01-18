@@ -50,7 +50,7 @@ public class Game {
         return description;
     }
 
-    public class Tuple {
+    public static class Tuple {
         public int x;
         public int y;
 
