@@ -16,6 +16,17 @@ import java.util.List;
  */
 public class ManageCombinedStrategiesView implements AbstractManageCombinedStrategiesView {
     private List<VMCombinedStrategy> vmCombinedStrategies;
+    private JPanel ButtonPanel;
+    private JButton saveAndQuitButton;
+    private JButton cancelButton;
+    private JTabbedPane StrategiesPane;
+    private JLabel descriptionLabel;
+    private JTextPane textPane1;
+    private JButton deleteButton;
+    private JLabel nameLabel;
+    private JButton editButton;
+    private JButton newGameButton;
+    private JPanel MainPanel;
 
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
