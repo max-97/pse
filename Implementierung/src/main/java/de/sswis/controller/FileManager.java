@@ -6,6 +6,9 @@ import com.google.gson.stream.JsonReader;
 import de.sswis.view.model.*;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 
 /**
@@ -229,13 +232,13 @@ public class FileManager {
      * @param name der Name der {@code VMStrategy}
      * @return die {@code VMStrategy} mit dem angegebenen Namen
      */
-    public VMStrategy loadStrategy(String name) throws FileNotFoundException {
+    public VMStrategy loadMixedStrategy(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_STRATEGY, name);
         JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadStrategy(jsonReader);
+        return this.loadMixedStrategy(jsonReader);
     }
 
-    private VMStrategy loadStrategy(JsonReader reader) {
+    private VMStrategy loadMixedStrategy(JsonReader reader) {
         return this.gson.fromJson(reader, VMStrategy.class);
     }
 
@@ -262,8 +265,9 @@ public class FileManager {
      *
      * @param name der Name der {@code VMConfiguration}
      */
-    public void deleteConfiguration(String name) {
-
+    public void deleteConfiguration(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_CONFIGURATION, name));
+        Files.deleteIfExists(path);
     }
 
     /**
@@ -272,8 +276,9 @@ public class FileManager {
      *
      * @param name der Name des {@code VMGame}
      */
-    public void deleteGame(String name) {
-
+    public void deleteGame(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_GAME, name));
+        Files.deleteIfExists(path);
     }
 
     /**
@@ -282,8 +287,9 @@ public class FileManager {
      *
      * @param name der Name der {@code VMInitialisation}
      */
-    public void deleteInitalization(String name) {
-
+    public void deleteInitalization(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_INITIALIZATION, name));
+        Files.deleteIfExists(path);
     }
 
     /**
@@ -292,8 +298,20 @@ public class FileManager {
      *
      * @param name der Name der {@code VMCombinedStrategy}
      */
-    public void deleteCombinedStrategy(String name) {
+    public void deleteCombinedStrategy(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_COMBINED_STRATEGY, name));
+        Files.deleteIfExists(path);
+    }
 
+    /**
+     * Löscht die gespeicherte {@code VMStrategy} mit dem angegebenen Namen. Der Name wird vom Benutzer beim
+     * Erstellen der kombinierten Strategie festegelegt.
+     *
+     * @param name der Name der {@code VMStrategy}
+     */
+    public void deleteMixedStrategy(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_STRATEGY, name));
+        Files.deleteIfExists(path);
     }
 
     /**
@@ -302,11 +320,12 @@ public class FileManager {
      *
      * @param name der Name des {@code VMResult}
      */
-    public void deleteResult(String name) {
-
+    public void deleteResult(String name) throws IOException {
+        Path path = Paths.get(this.getFilePath(FileManager.VM_RESULT, name));
+        Files.deleteIfExists(path);
     }
 
     private String getFilePath(String objectType, String objectName) {
-        return this.BASE_PATH + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
+        return FileManager.BASE_PATH + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
     }
 }
