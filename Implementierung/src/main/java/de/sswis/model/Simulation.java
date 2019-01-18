@@ -86,7 +86,7 @@ public class Simulation implements Runnable, ObservableSimulation {
      * @see Configuration#getName()
      */
     public String getName() {
-        return null;
+        return this.config.getName();
     }
 
     @Override
