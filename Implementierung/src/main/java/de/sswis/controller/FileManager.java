@@ -2,11 +2,10 @@ package de.sswis.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
 import de.sswis.view.model.*;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.util.Collection;
 
 /**
@@ -162,8 +161,14 @@ public class FileManager {
      * @param name der Name der {@code VMConfiguration}
      * @return die {@code VMConfiguration} mit dem angegebenen Namen
      */
-    public VMConfiguration loadConfiguration(String name) {
-        return null;
+    public VMConfiguration loadConfiguration(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadConfiguration(jsonReader);
+    }
+
+    private VMConfiguration loadConfiguration(JsonReader reader) {
+        return this.gson.fromJson(reader, VMConfiguration.class);
     }
 
     /**
@@ -173,8 +178,14 @@ public class FileManager {
      * @param name der Name des {@code VMGame}
      * @return das {@code VMGame} mit dem angegebenen Namen
      */
-    public VMGame loadGame(String name) {
-        return null;
+    public VMGame loadGame(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_GAME, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadGame(jsonReader);
+    }
+
+    private VMGame loadGame(JsonReader reader) {
+        return this.gson.fromJson(reader, VMGame.class);
     }
 
     /**
@@ -184,8 +195,14 @@ public class FileManager {
      * @param name der Name der {@code VMInitialization}
      * @return die {@code VMInitialization} mit dem angegebenen Namen
      */
-    public VMInitialization loadInitalization(String name) {
-        return null;
+    public VMInitialization loadInitalization(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadInitialization(jsonReader);
+    }
+
+    private VMInitialization loadInitialization(JsonReader reader) {
+        return this.gson.fromJson(reader, VMInitialization.class);
     }
 
     /**
@@ -195,8 +212,31 @@ public class FileManager {
      * @param name der Name der {@code VMCombinedStrategy}
      * @return die {@code VMCombinedStrategy} mit dem angegebenen Namen
      */
-    public VMCombinedStrategy loadCombinedStrategy(String name) {
-        return null;
+    public VMCombinedStrategy loadCombinedStrategy(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadCombinedStrategy(jsonReader);
+    }
+
+    private VMCombinedStrategy loadCombinedStrategy(JsonReader reader) {
+        return this.gson.fromJson(reader, VMCombinedStrategy.class);
+    }
+
+    /**
+     * Lädt die {@code VMStrategy} mit dem angegebenen Namen. Der Name wird vom Benutzer beim Erstellen der
+     * gemischten Strategie festegelegt.
+     *
+     * @param name der Name der {@code VMStrategy}
+     * @return die {@code VMStrategy} mit dem angegebenen Namen
+     */
+    public VMStrategy loadStrategy(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_STRATEGY, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadStrategy(jsonReader);
+    }
+
+    private VMStrategy loadStrategy(JsonReader reader) {
+        return this.gson.fromJson(reader, VMStrategy.class);
     }
 
     /**
@@ -206,8 +246,14 @@ public class FileManager {
      * @param name der Name des {@code VMResult}
      * @return das {@code VMResult} mit dem angegebenen Namen
      */
-    public VMResult loadResult(String name) {
-        return null;
+    public VMResult loadResult(String name) throws FileNotFoundException {
+        String filePath = this.getFilePath(FileManager.VM_RESULT, name);
+        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
+        return this.loadResult(jsonReader);
+    }
+
+    private VMResult loadResult(JsonReader reader) {
+        return this.gson.fromJson(reader, VMResult.class);
     }
 
     /**
