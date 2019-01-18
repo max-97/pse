@@ -57,7 +57,27 @@ public class ModelParser {
      * @param vmGame das zu übersetzende {@code VMGame}
      * @return das übersetzte {@code Game}
      */
-    public Game parseVMGameToGame(VMGame vmGame) { return null; }
+    public Game parseVMGameToGame(VMGame vmGame) {
+
+        Game game = new Game(
+                vmGame.getName(),
+                vmGame.getDescription(),
+                parseVMGamePayoffsToGamePayoffs(vmGame));
+
+        return null; }
+
+    private Game.Tuple[][] parseVMGamePayoffsToGamePayoffs(VMGame vmGame) {
+
+        Game.Tuple[][] outPayoffs = new Game.Tuple[2][2];
+        int[][] inPayoffs = vmGame.getPayoffs();
+
+        for (int row = 0; row < 2; row ++)
+            for (int col = 0; col < 2; col++)
+                outPayoffs[row][col] = new Game.Tuple(inPayoffs[row][(2*col)], inPayoffs[row][(2*col)+1]);
+
+        return outPayoffs; }
+
+
 
     /**
      * Übersetzt ein {@code VMGroup}-Objekt in ein {@code Group}-Objekt.
