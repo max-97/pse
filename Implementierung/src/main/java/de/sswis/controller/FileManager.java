@@ -21,13 +21,13 @@ public class FileManager {
 
     private Gson gson;
     //TODO is this relative file path correct?
-    private final String basePath = "src/main/resources/saves/";
+    public static final String BASE_PATH            = "src/main/resources/saves/";
 
-    public static final String VM_CONFIGURATION     = "VMConfiguration_";
-    public static final String VM_INITIALIZATION    = "VMInitialization_";
-    public static final String VM_GAME              = "VMGame_";
-    public static final String VM_COMBINED_STRATEGY = "VMCombinedStrategy_";
-    public static final String VM_RESULT            = "VMResult_";
+    public static final String VM_CONFIGURATION     = "VMConfiguration";
+    public static final String VM_INITIALIZATION    = "VMInitialization";
+    public static final String VM_GAME              = "VMGame";
+    public static final String VM_COMBINED_STRATEGY = "VMCombinedStrategy";
+    public static final String VM_RESULT            = "VMResult";
     public static final String VM_STRATEGY          = "VMStrategy";
     public static final String JSON_EXTENSION       = ".json";
 
@@ -89,8 +89,7 @@ public class FileManager {
      * @param configuration die zu speichernde {@code VMConfiguration}
      */
     public void saveConfiguration(VMConfiguration configuration) throws IOException {
-        String filePath = this.basePath + FileManager.VM_CONFIGURATION + configuration.getName()
-                + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, configuration.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(configuration, writer);
         }
@@ -102,7 +101,7 @@ public class FileManager {
      * @param game das zu speichernde {@code VMGame}
      */
     public void saveGame(VMGame game) throws IOException {
-        String filePath = this.basePath + FileManager.VM_GAME + game.getName() + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_GAME, game.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(game, writer);
         }
@@ -114,8 +113,7 @@ public class FileManager {
      * @param initialization die zu speichernde {@code VMInitialization}
      */
     public void saveInitalization(VMInitialization initialization) throws IOException {
-        String filePath = this.basePath + FileManager.VM_INITIALIZATION + initialization.getName()
-                + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, initialization.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(initialization, writer);
         }
@@ -127,8 +125,7 @@ public class FileManager {
      * @param combinedStrategy die zu speichernde {@code VMCombinedStrategy}
      */
     public void saveCombinedStrategy(VMCombinedStrategy combinedStrategy) throws IOException {
-        String filePath = this.basePath + FileManager.VM_COMBINED_STRATEGY + combinedStrategy.getName()
-                + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, combinedStrategy.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(combinedStrategy, writer);
         }
@@ -140,7 +137,7 @@ public class FileManager {
      * @param strategy die zu speichernde {@code VMStrategy}
      */
     public void saveMixedStrategy(VMStrategy strategy) throws IOException {
-        String filePath = this.basePath + FileManager.VM_STRATEGY + strategy.getName() + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_STRATEGY, strategy.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(strategy, writer);
         }
@@ -152,7 +149,7 @@ public class FileManager {
      * @param result das zu speichernde {@code VMResult}
      */
     public void saveResult(VMResult result) throws IOException {
-        String filePath = this.basePath + FileManager.VM_RESULT + result.getName() + FileManager.JSON_EXTENSION;
+        String filePath = this.getFilePath(FileManager.VM_RESULT, result.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(result, writer);
         }
@@ -261,5 +258,9 @@ public class FileManager {
      */
     public void deleteResult(String name) {
 
+    }
+
+    private String getFilePath(String objectType, String objectName) {
+        return this.BASE_PATH + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
     }
 }
