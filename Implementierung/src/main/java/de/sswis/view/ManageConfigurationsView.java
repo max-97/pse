@@ -17,6 +17,17 @@ import java.util.List;
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
     private List<VMConfiguration> vmConfigurations;
+    private JPanel ButtonPanel;
+    private JButton saveAndQuitButton;
+    private JButton cancelButton;
+    private JTabbedPane ConfigurationsPane;
+    private JLabel descriptionLabel;
+    private JTextPane textPane1;
+    private JButton deleteButton;
+    private JLabel nameLabel;
+    private JButton editButton;
+    private JButton newConfigButton;
+    private JPanel MainPanel;
 
 
     @Override
@@ -86,5 +97,9 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private void $$$setupUI$$$() {
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
