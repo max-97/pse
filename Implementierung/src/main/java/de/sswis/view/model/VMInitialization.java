@@ -39,8 +39,29 @@ public class VMInitialization {
      */
     public String getToolTipText() {    return ""; }
 
+    public void addGroup(VMGroup group) {
+        this.groups.add(group);
+    }
 
+    public List<VMGroup> getGroups() {
+        return this.groups;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAgentCount() {
+        return agentCount;
+    }
+
+    public void setAgentCount(int agentCount) {
+        this.agentCount = agentCount;
+    }
 }
 
 
