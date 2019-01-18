@@ -9,6 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -23,7 +24,7 @@ public class FileManager {
 
     private Gson gson;
     //TODO is this relative file path correct?
-    public static final String BASE_PATH            = "src/main/resources/saves/";
+    public static final String BASE_PATH            = "src/main/resources/saves";
 
     public static final String VM_CONFIGURATION     = "VMConfiguration";
     public static final String VM_INITIALIZATION    = "VMInitialization";
@@ -46,7 +47,26 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMConfigurations}
      */
     public Collection<VMConfiguration> loadAllConfigurations() {
-        return null;
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMConfiguration> configurations = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_CONFIGURATION)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    // this exception should never occur, if it doesn't exist it shouldn't have been loaded
+                    // in dir.listFiles()
+                    e.printStackTrace();
+                }
+                configurations.add(this.loadConfiguration(reader));
+            }
+        }
+        return configurations;
     }
 
     /**
@@ -55,7 +75,24 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMGame}
      */
     public Collection<VMGame> loadAllGames() {
-        return null;
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMGame> games = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_GAME)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                games.add(this.loadGame(reader));
+            }
+        }
+        return games;
     }
 
     /**
@@ -64,7 +101,24 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMInitialization}
      */
     public Collection<VMInitialization> loadAllInitializations() {
-        return null;
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMInitialization> initializations = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_INITIALIZATION)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                initializations.add(this.loadInitialization(reader));
+            }
+        }
+        return initializations;
     }
 
     /**
@@ -73,7 +127,50 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMCombinedStrategy}
      */
     public Collection<VMCombinedStrategy> loadAllCombinedStrategies() {
-        return null;
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMCombinedStrategy> combinedStrategies = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_COMBINED_STRATEGY)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                combinedStrategies.add(this.loadCombinedStrategy(reader));
+            }
+        }
+        return combinedStrategies;
+    }
+
+    /**
+     * Lädt alle vorhandenen {@code VMStrategy} Objekte.
+     *
+     * @return eine {@code Collection} von {@code VMStartegy}
+     */
+    public Collection<VMStrategy> loadAllMixedStrageyies() {
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMStrategy> mixedStrategies = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_STRATEGY)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                mixedStrategies.add(this.loadMixedStrategy(reader));
+            }
+        }
+        return mixedStrategies;
     }
 
     /**
@@ -82,7 +179,24 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMResult}
      */
     public Collection<VMResult> loadAllResults() {
-        return null;
+        File dir = new File(FileManager.BASE_PATH);
+        File[] filesInDir = dir.listFiles();
+        ArrayList<VMResult> results = new ArrayList<>();
+
+        for (File file : filesInDir) {
+            if (file.isDirectory())
+                continue;
+            if (file.getName().startsWith(FileManager.VM_RESULT)) {
+                JsonReader reader = null;
+                try {
+                    reader = new JsonReader(new FileReader(file));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                results.add(this.loadResult(reader));
+            }
+        }
+        return results;
     }
 
     /**
@@ -198,7 +312,7 @@ public class FileManager {
      * @param name der Name der {@code VMInitialization}
      * @return die {@code VMInitialization} mit dem angegebenen Namen
      */
-    public VMInitialization loadInitalization(String name) throws FileNotFoundException {
+    public VMInitialization loadInitialization(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, name);
         JsonReader jsonReader = new JsonReader(new FileReader(filePath));
         return this.loadInitialization(jsonReader);
@@ -326,6 +440,6 @@ public class FileManager {
     }
 
     private String getFilePath(String objectType, String objectName) {
-        return FileManager.BASE_PATH + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
+        return FileManager.BASE_PATH + "/" + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
     }
 }
