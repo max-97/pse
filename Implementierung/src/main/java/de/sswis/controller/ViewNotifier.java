@@ -19,11 +19,11 @@ public class ViewNotifier implements SimulationObserver {
      * @param mainView das Hauptfenster, das benachrichtigt wird
      */
     public ViewNotifier(AbstractMainView mainView) {
-
+        this.mainView = mainView;
     }
 
     @Override
     public void update(Simulation sim) {
-
+        this.mainView.setSimulationFinished(sim.getName());
     }
 }

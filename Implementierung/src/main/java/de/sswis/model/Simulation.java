@@ -79,6 +79,16 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     }
 
+    /**
+     * Liefert den Namen der Simulation zurück. Der Name ist identisch zum Namen der zugehörigen
+     * {@code Configuration}.
+     * @return der Name der Simulation
+     * @see Configuration#getName()
+     */
+    public String getName() {
+        return null;
+    }
+
     @Override
     public void run() {
 
