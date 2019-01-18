@@ -17,6 +17,17 @@ import java.util.List;
 public class ManageInitializationsView implements AbstractManageInitializationsView {
 
     private List<VMInitialization> vmInits;
+    private JPanel ButtonPanel;
+    private JButton saveAndQuitButton;
+    private JButton cancelButton;
+    private JTabbedPane InitsPane;
+    private JLabel descriptionLabel;
+    private JTextPane textPane1;
+    private JButton deleteButton;
+    private JLabel nameLabel;
+    private JButton editButton;
+    private JButton newInitButton;
+    private JPanel MainPanel;
 
     @Override
     public void addInit(VMInitialization vmInitialization) {
