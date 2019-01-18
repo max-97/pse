@@ -11,8 +11,6 @@ public class VMResult {
     private String name;
     private VMConfiguration vmConfig;
 
-
-
     /*
     public boolean isCorrect () {
         //TODO: implement me
@@ -20,5 +18,19 @@ public class VMResult {
     }
     */
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public VMConfiguration getVmConfig() {
+        return vmConfig;
+    }
+
+    public void setVmConfig(VMConfiguration vmConfig) {
+        this.vmConfig = vmConfig;
+    }
 }
