@@ -1,14 +1,18 @@
 package de.sswis.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import de.sswis.view.model.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.Collection;
 
 /**
  * Verwaltet {@code ViewModel} Objekte in Dateien. Dies beinhaltet das Speichern, Löschen, Laden eines Objekts
  * und Laden aller Objekte eines Typs. Die {@code ViewModel} Objekte werden alle in einer eigenen Datei als
- * Json-String gespeichert. Der Dateiname ist definiert als {@code <Objekttyp>_<Objektname>.sswis}.
+ * Json-String gespeichert. Der Dateiname ist definiert als {@code <Objekttyp>_<Objektname>.json}.
  * Das Speicherverzeichnis befindet sich in der jar-Datei und kann nicht geändert werden.
  *
  * @author Max Braun
@@ -16,12 +20,14 @@ import java.util.Collection;
 public class FileManager {
 
     private Gson gson;
+    //TODO is this relative file path correct?
+    private final String basePath = "src/main/resources/saves/";
 
     /**
      * Standardkonstruktor
      */
     public FileManager() {
-        gson = new Gson();
+        this.gson = new GsonBuilder().create();
     }
 
     /**
@@ -74,8 +80,11 @@ public class FileManager {
      *
      * @param configuration die zu speichernde {@code VMConfiguration}
      */
-    public void saveConfiguration(VMConfiguration configuration) {
-
+    public void saveConfiguration(VMConfiguration configuration) throws IOException {
+        String filePath = this.basePath + "VMConfiguration_" + configuration.getName() + ".json";
+        try (Writer writer = new FileWriter(filePath)) {
+            this.gson.toJson(configuration, writer);
+        }
     }
 
     /**
@@ -83,8 +92,11 @@ public class FileManager {
      *
      * @param game das zu speichernde {@code VMGame}
      */
-    public void saveGame(VMGame game) {
-
+    public void saveGame(VMGame game) throws IOException {
+        String filePath = this.basePath + "VMGame_" + game.getName() + ".json";
+        try (Writer writer = new FileWriter(filePath)) {
+            this.gson.toJson(game, writer);
+        }
     }
 
     /**
@@ -92,8 +104,11 @@ public class FileManager {
      *
      * @param initialization die zu speichernde {@code VMInitialization}
      */
-    public void saveInitalization(VMInitialization initialization) {
-
+    public void saveInitalization(VMInitialization initialization) throws IOException {
+        String filePath = this.basePath + "VMInitialization_" + initialization.getName() + ".json";
+        try (Writer writer = new FileWriter(filePath)) {
+            this.gson.toJson(initialization, writer);
+        }
     }
 
     /**
@@ -101,8 +116,11 @@ public class FileManager {
      *
      * @param combinedStrategy die zu speichernde {@code VMCombinedStrategy}
      */
-    public void saveCombinedStrategy(VMCombinedStrategy combinedStrategy) {
-
+    public void saveCombinedStrategy(VMCombinedStrategy combinedStrategy) throws IOException {
+        String filePath = this.basePath + "VMCombinedStrategy_" + combinedStrategy.getName() + ".json";
+        try (Writer writer = new FileWriter(filePath)) {
+            this.gson.toJson(combinedStrategy, writer);
+        }
     }
 
     /**
@@ -110,8 +128,11 @@ public class FileManager {
      *
      * @param result das zu speichernde {@code VMResult}
      */
-    public void saveResult(VMResult result) {
-
+    public void saveResult(VMResult result) throws IOException {
+        String filePath = this.basePath + "VMResult_" + result.getName() + ".json";
+        try (Writer writer = new FileWriter(filePath)) {
+            this.gson.toJson(result, writer);
+        }
     }
 
     /**
