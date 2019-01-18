@@ -4,6 +4,7 @@ package de.sswis.controller;
 import de.sswis.model.*;
 import de.sswis.view.model.*;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -77,8 +78,6 @@ public class ModelParser {
 
         return outPayoffs; }
 
-
-
     /**
      * Übersetzt ein {@code VMGroup}-Objekt in ein {@code Group}-Objekt.
      *
@@ -94,7 +93,32 @@ public class ModelParser {
      * @param vmInitialization die zu übersetzende {@code VMInitialization}
      * @return die übersetzte {@code Collection<Initialization>}
      */
-    public Collection<Initialization> parseVMInitializationToInitialization(VMInitialization vmInitialization) { return null; }
+    public Collection<Initialization> parseVMInitializationToInitialization(VMInitialization vmInitialization) {
+
+        Collection<Initialization> initializations = new ArrayList<>();
+
+        return initializations; }
+
+    private Initialization parseSingleVMInitializationToInitialization(VMInitialization vmInitialization) {
+
+        Initialization initialization = new Initialization(
+                vmInitialization.getName(),
+                vmInitialization.getAgentCount());
+        /*
+        initialization.setGroupDistribution(
+                AgentDistribution distribution,
+                Group group);
+        initialization.setStrategyDistribution(
+                AgentDistribution distribution,
+                CombinedStrategy strategy,
+                Group group);
+        initialization.setStrategyDistribution(
+                AgentDistribution distribution,
+                CombinedStrategy strategy,
+                Group group);
+        */
+        return initialization;
+    }
 
     /**
      * Übersetzt ein {@code VMStrategy}-Objekt in ein {@code Strategy}-Objekt.
