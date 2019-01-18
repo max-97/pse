@@ -14,6 +14,15 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class ManageResultsView implements AbstractManageResultsView {
+    private JPanel ButtonPanel;
+    private JButton saveAndQuitButton;
+    private JButton cancelButton;
+    private JTabbedPane ResultsPane;
+    private JButton deleteButton;
+    private JLabel nameLabel;
+    private JButton openButton;
+    private JPanel MainPanel;
+
     @Override
     public void addResult(VMResult vmResult) {
 
