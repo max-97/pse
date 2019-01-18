@@ -23,7 +23,7 @@ import java.util.Collection;
 public class FileManager {
 
     private Gson gson;
-    //TODO is this relative file path correct?
+
     public static final String BASE_PATH            = "src/main/resources/saves";
 
     public static final String VM_CONFIGURATION     = "VMConfiguration";
