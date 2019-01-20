@@ -1,6 +1,7 @@
 package de.sswis.model;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -10,22 +11,31 @@ import java.util.HashMap;
  */
 public class History {
     private int currentRound;
-    private int[] score;
-    private boolean[] cooperated;
-    private Agent[] opponent;
-    private String[] strategies;
+    private ArrayList<Integer> score;
+    private ArrayList<Boolean> cooperated;
+    private ArrayList<Agent> opponent;
+    private ArrayList<String> strategies;
     private boolean alwaysCooperated;
     private HashMap<Agent, Boolean> cooperatedLastTime;
     private HashMap<Agent, Boolean> cooperatedEveryTime;
     private HashMap<Group, Boolean> groupCooperatedLastTime;
     private HashMap<Group, Boolean> groupCooperatedEveryTime;
+    private final int INITIAL_CAPACITY = 1000;
 
     /**
      * Erstellt eine {@code History}.
-     * @param rounds Anzahl der Runden der Konfiguration
      */
-    public History(int rounds) {
-
+    public History() {
+        this.currentRound = 0;
+        this.score = new ArrayList<>(INITIAL_CAPACITY);
+        this.cooperated = new ArrayList<>(INITIAL_CAPACITY);
+        this.opponent = new ArrayList<>(INITIAL_CAPACITY);
+        this.strategies = new ArrayList<>(INITIAL_CAPACITY);
+        this.alwaysCooperated = true;
+        this.cooperatedLastTime = new HashMap<Agent, Boolean>();
+        this.cooperatedEveryTime = new HashMap<Agent, Boolean>();
+        this.groupCooperatedLastTime = new HashMap<Group, Boolean>();
+        this.groupCooperatedEveryTime = new HashMap<Group, Boolean>();
     }
 
     /**
@@ -40,7 +50,7 @@ public class History {
      * Gibt die Punktzahl des Agenten aus der letzten Runde zurück zurück.
      * @return aktuelle Punktzahl
      */
-    public int getScore() { return score[currentRound]; }
+    public int getScore() { return score.get(currentRound); }
 
     /**
      * Gibt die Punktzahl des Agenten in einer bestimmten Runde zurueck.
@@ -48,7 +58,7 @@ public class History {
      * @return Punktzahl
      */
     public int getScore(int round) {
-        return score[round];
+        return score.get(round);
     }
 
     /**
@@ -56,7 +66,7 @@ public class History {
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
     public boolean getCooperated() {
-        return cooperated[currentRound];
+        return cooperated.get(currentRound);
     }
 
     /**
@@ -65,7 +75,7 @@ public class History {
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
     public boolean getCooperated(int round) {
-        return cooperated[round];
+        return cooperated.get(round);
     }
 
     /**
@@ -74,7 +84,7 @@ public class History {
      * @return Gegenspieler
      */
     public Agent getOpponent(int round) {
-        return opponent[round];
+        return opponent.get(round);
     }
 
     /**
@@ -83,7 +93,7 @@ public class History {
      * @return Name der Strategie
      */
     public String getStrategy(int round) {
-        return strategies[round];
+        return strategies.get(round);
     }
 
     /**
@@ -91,7 +101,7 @@ public class History {
      * @param score aktuelle Punktzahl
      */
     public void setScore(int score){
-
+        this.score.add(currentRound, score);
     }
 
     /**
@@ -99,7 +109,7 @@ public class History {
      * @param cooperated ob der Gegenspieler kooperiert hat
      */
     public void setCooperated(boolean cooperated) {
-
+        this.cooperated.add(currentRound, cooperated);
     }
 
     /**
@@ -107,7 +117,7 @@ public class History {
      * @param opponent Gegenspieler
      */
     public void setOpponent(Agent opponent) {
-
+        this.opponent.add(currentRound, opponent);
     }
 
     /**
@@ -115,7 +125,7 @@ public class History {
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
-
+        this.strategies.add(currentRound, strategy.getName());
     }
 
     /**
@@ -123,7 +133,7 @@ public class History {
      * @param alwaysCooperated Wert der angibt ob er immer kooperiert hat
      */
     public void setAlwaysCooperated(boolean alwaysCooperated) {
-
+        this.alwaysCooperated = alwaysCooperated;
     }
 
     /**

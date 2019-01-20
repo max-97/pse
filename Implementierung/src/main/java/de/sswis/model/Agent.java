@@ -21,6 +21,12 @@ public class Agent {
      * @param initialStrategy Anfangsstrategie des Agenten
      */
     public Agent(int id, int initialScore, Group group, Strategy initialStrategy) {
+        this.id = id;
+        this.initialScore = initialScore;
+        this.group = group;
+        this.strategy = initialStrategy;
+        this.history = new History();
+        history.setScore(initialScore);
     }
 
     public int getId() {
@@ -31,7 +37,6 @@ public class Agent {
 
 
     public History getHistory() { return history; }
-
 
     public Group getGroup() {
         return group;
