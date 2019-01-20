@@ -105,7 +105,15 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractManageCombinedStrategiesView createManageCombinedStrategiesView() {
-        return null;
+        AbstractManageCombinedStrategiesView manageCombinedStrategiesView = new ManageCombinedStrategiesView();
+
+        manageCombinedStrategiesView.addCancelButtonActionlistener(new CancleHandler(manageCombinedStrategiesView));
+        manageCombinedStrategiesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageCombinedStrategiesView));
+        manageCombinedStrategiesView.addNewStrategyButtonActionlistener(new NewCombinedStrategyHandler(this));
+        manageCombinedStrategiesView.addEditStrategyButtonActionlistener(new EditCombinedStrategyHandler(this));
+        manageCombinedStrategiesView.addDeleteStrategyButtonActionlistener(new DeleteCombinedStrategyHandler(manageCombinedStrategiesView));
+
+        return manageCombinedStrategiesView;
     }
 
     @Override
