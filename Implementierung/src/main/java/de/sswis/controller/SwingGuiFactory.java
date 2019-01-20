@@ -69,22 +69,38 @@ public class SwingGuiFactory implements AbstractGuiFactory {
         AbstractManageConfigurationsView manageConfigurationsView = new ManageConfigurationsView();
 
         manageConfigurationsView.addCancelButtonActionlistener(new CancleHandler(manageConfigurationsView));
-        manageConfigurationsView.addDeleteConfigurationButtonActionlistener(new DeleteConfigurationHandler(manageConfigurationsView));
-        manageConfigurationsView.addEditConfigurationButtonActionlistener(new EditConfigurationHandler(this));
-        manageConfigurationsView.addNewConfigurationButtonActionlistener(new NewConfigurationHandler(this));
         manageConfigurationsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageConfigurationsView));
+        manageConfigurationsView.addNewConfigurationButtonActionlistener(new NewConfigurationHandler(this));
+        manageConfigurationsView.addEditConfigurationButtonActionlistener(new EditConfigurationHandler(this));
+        manageConfigurationsView.addDeleteConfigurationButtonActionlistener(new DeleteConfigurationHandler(manageConfigurationsView));
 
         return manageConfigurationsView;
     }
 
     @Override
     public AbstractManageInitializationsView createManageInitializationsView() {
-        return null;
+        AbstractManageInitializationsView manageInitializationsView = new ManageInitializationsView();
+
+        manageInitializationsView.addCancelButtonActionlistener(new CancleHandler(manageInitializationsView));
+        manageInitializationsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageInitializationsView));
+        manageInitializationsView.addNewInitButtonActionlistener(new NewInitializationHandler(this));
+        manageInitializationsView.addEditInitButtonActionlistener(new EditInitializationHandler(this));
+        manageInitializationsView.addDeleteInitButtonActionlistener(new DeleteInitializationHandler(manageInitializationsView));
+
+        return manageInitializationsView;
     }
 
     @Override
     public AbstractManageStrategiesView createManageStrategiesView() {
-        return null;
+        AbstractManageStrategiesView manageStrategiesView = new ManageStrategiesView();
+
+        manageStrategiesView.addCancelButtonActionlistener(new CancleHandler(manageStrategiesView));
+        manageStrategiesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageStrategiesView));
+        manageStrategiesView.addNewMixedStrategyButtonActionlistener(new NewStrategyHandler(this));
+        manageStrategiesView.addEditMixedStrategyButtonActionlistener(new EditStrategyHandler(this));
+        manageStrategiesView.addDeleteMixedStrategyButtonActionlistener(new DeleteStrategyHandler(manageStrategiesView));
+
+        return manageStrategiesView;
     }
 
     @Override
