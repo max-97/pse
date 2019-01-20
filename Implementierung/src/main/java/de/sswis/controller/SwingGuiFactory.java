@@ -118,7 +118,15 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractManageGamesView createManageGamesView() {
-        return null;
+        AbstractManageGamesView manageGamesView = new ManageGamesView();
+
+        manageGamesView.addCancelButtonActionlistener(new CancleHandler(manageGamesView));
+        manageGamesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageGamesView));
+        manageGamesView.addNewGameButtonActionlistener(new NewGameHandler(this));
+        manageGamesView.addEditGameButtonActionlistener(new EditGameHandler(this));
+        manageGamesView.addDeleteGameButtonActionlistener(new DeleteGameHandler(manageGamesView));
+
+        return manageGamesView;
     }
 
     @Override
