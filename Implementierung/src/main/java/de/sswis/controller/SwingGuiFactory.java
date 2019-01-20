@@ -1,5 +1,6 @@
 package de.sswis.controller;
 
+import de.sswis.controller.handlers.*;
 import de.sswis.view.*;
 
 /**
@@ -14,7 +15,26 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractMainView createMainView() {
-        return null;
+        AbstractMainView mainView = new MainView();
+
+        mainView.addNewConfigMenuActionListener(new NewConfigurationViewHandler(this));
+        mainView.addNewInitMenuActionListener(new NewInitializationViewHandler(this));
+        mainView.addNewGameMenuActionListener(new NewGameViewHandler(this));
+        mainView.addNewCombiStrategyMenuActionListener(new NewCombinedStrategyViewHandler(this));
+        mainView.addNewStrategyMenuActionListener(new NewStrategyViewHandler(this));
+
+        mainView.addManageConfigMenuActionListener(new ManageConfigurationsHandler(this));
+        mainView.addManageInitMenuActionListener(new ManageInitializationHandler(this));
+        mainView.addManageGameMenuActionListener(new ManageGamesHandler(this));
+        mainView.addManageCombiStrategyMenuActionListener(new ManageCombinedStrategiesHandler(this));
+        mainView.addManageStrategyMenuActionListener(new ManageStrategiesHandler(this));
+
+        mainView.addSaveButtonActionlistener(new SaveAndQuitHandler(mainView));
+        mainView.addShowButtonActionlistener(new ShowResultsHandler(mainView, this));
+        mainView.addStartButtonActionlistener(new StartSimulationHandler(mainView));
+        mainView.addStopActionListener(new StopSimulationHandler(mainView));
+
+        return mainView;
     }
 
     @Override
