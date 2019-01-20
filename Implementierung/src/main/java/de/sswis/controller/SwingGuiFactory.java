@@ -142,26 +142,51 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractNewConfigurationView createNewConfigurationView() {
-        return null;
+        AbstractNewConfigurationView newConfigurationView = new NewConfigurationView();
+
+        newConfigurationView.addCancelButtonActionlistener(new CancleHandler(newConfigurationView));
+        newConfigurationView.addFinishButtonActionlistener(new SaveAndQuitHandler(newConfigurationView));
+
+        return newConfigurationView;
     }
 
     @Override
     public AbstractNewInitializationView createNewInitializationView() {
-        return null;
+        AbstractNewInitializationView newInitializationView = new NewInitializationView();
+
+        newInitializationView.addCancelButtonActionlistener(new CancleHandler(newInitializationView));
+        newInitializationView.addFinishButtonActionlistener(new SaveAndQuitHandler(newInitializationView));
+
+        return newInitializationView;
     }
 
     @Override
     public AbstractNewStrategyView createNewStrategyView() {
-        return null;
+        AbstractNewStrategyView newStrategyView = new NewStrategyView();
+
+        newStrategyView.addCancelButtonActionlistener(new CancleHandler(newStrategyView));
+        newStrategyView.addFinishButtonActionlistener(new SaveAndQuitHandler(newStrategyView));
+
+        return newStrategyView;
     }
 
     @Override
     public AbstractNewCombinedStrategyView createNewCombinedStrategyView() {
-        return null;
+        AbstractNewCombinedStrategyView newCombinedStrategyView = new NewCombinedStrategyView();
+
+        newCombinedStrategyView.addCancelButtonActionlistener(new CancleHandler(newCombinedStrategyView));
+        newCombinedStrategyView.addFinishButtonActionlistener(new SaveAndQuitHandler(newCombinedStrategyView));
+
+        return newCombinedStrategyView;
     }
 
     @Override
     public AbstractNewGameView createNewGameView() {
-        return null;
+        AbstractNewGameView newGameView = new NewGameView();
+
+        newGameView.addCancelButtonActionlistener(new CancleHandler(newGameView));
+        newGameView.addFinishButtonActionlistener(new SaveAndQuitHandler(newGameView));
+
+        return newGameView;
     }
 }
