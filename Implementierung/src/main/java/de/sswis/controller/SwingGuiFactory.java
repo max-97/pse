@@ -131,7 +131,13 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractManageResultsView createManageResultsView() {
-        return null;
+        AbstractManageResultsView manageResultsView = new ManageResultsView();
+
+        manageResultsView.addCancelButtonActionlistener(new CancleHandler(manageResultsView));
+        manageResultsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageResultsView));
+        manageResultsView.addDeleteResultButtonActionlistener(new DeleteResultHandler(manageResultsView));
+
+        return manageResultsView;
     }
 
     @Override

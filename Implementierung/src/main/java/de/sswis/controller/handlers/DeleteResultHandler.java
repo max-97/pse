@@ -1,6 +1,7 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.view.AbstractMainView;
+import de.sswis.view.AbstractManageResultsView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,7 @@ public class DeleteResultHandler implements ActionListener {
      *
      * @param mainView View, welche das zu löschende {@code Result} beinhaltet
      */
-    public DeleteResultHandler(AbstractMainView mainView) {
+    public DeleteResultHandler(AbstractManageResultsView mainView) {
 
     }
 
