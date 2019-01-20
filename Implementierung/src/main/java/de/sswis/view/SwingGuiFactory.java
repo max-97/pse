@@ -1,7 +1,6 @@
-package de.sswis.controller;
+package de.sswis.view;
 
 import de.sswis.controller.handlers.*;
-import de.sswis.view.*;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs mit {@code Swing}. Diese Fabrik erzeugt Benutzeroberflächen, welche ausschließlich
