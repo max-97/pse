@@ -39,22 +39,42 @@ public class SwingGuiFactory implements AbstractGuiFactory {
 
     @Override
     public AbstractShowResultView createShowResultView() {
-        return null;
+        AbstractShowResultView showResultView = new ShowResultView();
+
+        //TODO Methoden in showResultView definieren
+
+        return showResultView;
     }
 
     @Override
     public AbstractShowCompareView createCompareResultsView() {
-        return null;
+        AbstractShowCompareView showCompareView = new ShowCompareView();
+
+        showCompareView.addCompareButtonActionlistener(new CompareResultsHandler(this));
+
+        return showCompareView;
     }
 
     @Override
     public AbstractShowMultiResultView createMultiResultsView() {
-        return null;
+        AbstractShowMultiResultView multiResultView = new ShowMultiResultView();
+
+        multiResultView.addCompareButtonActionlistener(new CompareResultsHandler(this));
+
+        return multiResultView;
     }
 
     @Override
     public AbstractManageConfigurationsView createManageConfigurationsView() {
-        return null;
+        AbstractManageConfigurationsView manageConfigurationsView = new ManageConfigurationsView();
+
+        manageConfigurationsView.addCancelButtonActionlistener(new CancleHandler(manageConfigurationsView));
+        manageConfigurationsView.addDeleteConfigurationButtonActionlistener(new DeleteConfigurationHandler(manageConfigurationsView));
+        manageConfigurationsView.addEditConfigurationButtonActionlistener(new EditConfigurationHandler(this));
+        manageConfigurationsView.addNewConfigurationButtonActionlistener(new NewConfigurationHandler(this));
+        manageConfigurationsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageConfigurationsView));
+
+        return manageConfigurationsView;
     }
 
     @Override
