@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class ManageResultsView implements AbstractManageResultsView {
+
+    private JFrame frame;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -22,6 +25,8 @@ public class ManageResultsView implements AbstractManageResultsView {
     private JLabel nameLabel;
     private JButton openButton;
     private JPanel MainPanel;
+
+
 
     @Override
     public void addResult(VMResult vmResult) {
@@ -55,6 +60,11 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void show() {
+        frame = new JFrame("Ergebnis Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

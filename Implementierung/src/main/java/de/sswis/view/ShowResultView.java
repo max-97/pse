@@ -15,6 +15,9 @@ import java.awt.*;
  */
 public class ShowResultView implements AbstractShowResultView {
 
+    private JFrame frame;
+
+
     private VMConfiguration vmConfiguration;
 
 
@@ -23,6 +26,8 @@ public class ShowResultView implements AbstractShowResultView {
     private JRadioButton zeigeDieKTeRadioButton;
     private JFormattedTextField formattedTextField1;
     private JSlider slider1;
+    private JPanel MainPanel;
+
 
     @Override
     public void update() {
@@ -31,6 +36,11 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void show() {
+        frame = new JFrame("Ergebnisse");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

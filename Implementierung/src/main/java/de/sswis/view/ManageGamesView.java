@@ -17,6 +17,8 @@ import java.util.List;
  */
 public class ManageGamesView implements AbstractManageGamesView {
 
+    private JFrame frame;
+
     private List<VMGame> vmGames;
 
 
@@ -26,6 +28,8 @@ public class ManageGamesView implements AbstractManageGamesView {
     private JPanel MainPanel;
     private JPanel ButtonPanel;
     private JTabbedPane GamesPane;
+
+
 
     @Override
     public void addGame(VMGame game) {
@@ -69,6 +73,11 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void show() {
+        frame = new JFrame("Spiele Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

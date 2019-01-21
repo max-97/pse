@@ -15,6 +15,9 @@ import java.util.List;
  * @author Sophie Bräuniger
  */
 public class ManageCombinedStrategiesView implements AbstractManageCombinedStrategiesView {
+
+    private JFrame frame;
+
     private List<VMCombinedStrategy> vmCombinedStrategies;
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -27,6 +30,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     private JButton editButton;
     private JButton newGameButton;
     private JPanel MainPanel;
+
+
 
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
@@ -70,6 +75,11 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void show() {
+        frame = new JFrame("Kombinierte Strategien Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

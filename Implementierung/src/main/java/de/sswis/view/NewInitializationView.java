@@ -16,6 +16,9 @@ import java.awt.event.ActionListener;
  */
 public class NewInitializationView implements AbstractNewInitializationView {
 
+    private JFrame frame;
+
+
     private VMInitialization vmInitialization;
 
     private JPanel panel1;
@@ -32,6 +35,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JButton button5;
     private JButton button6;
 
+
+
     @Override
     public void update() {
 
@@ -39,6 +44,11 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public void show() {
+        frame = new JFrame("Initialisierung Bearbeiten");
+        frame.setContentPane(this.panel1);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

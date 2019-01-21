@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class ManageInitializationsView implements AbstractManageInitializationsView {
 
+    private JFrame frame;
+
     private List<VMInitialization> vmInits;
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -28,6 +30,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private JButton editButton;
     private JButton newInitButton;
     private JPanel MainPanel;
+
+
 
     @Override
     public void addInit(VMInitialization vmInitialization) {
@@ -71,6 +75,11 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void show() {
+        frame = new JFrame("Initialisierungen Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

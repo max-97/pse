@@ -14,7 +14,13 @@ import java.util.List;
  * @author Sophie Bräuniger
  */
 public class ShowMultiResultView implements AbstractShowMultiResultView {
+
+    private JFrame frame;
+
     private List<VMConfiguration> vmConfigurations;
+    private JPanel MainPanel;
+
+
 
     @Override
     public void update() {
@@ -23,6 +29,11 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void show() {
+        frame = new JFrame("Ergebnisse Mehrfachkonfiguration");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

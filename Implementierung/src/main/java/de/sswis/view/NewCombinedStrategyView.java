@@ -14,7 +14,12 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView {
+
+    private JFrame frame;
+
     private VMCombinedStrategy vmCombinedStrategy;
+    private JPanel MainPanel;
+
 
 
     @Override
@@ -24,6 +29,11 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public void show() {
+        frame = new JFrame("Kombinierte Strategie Bearbeiten");
+        frame.setContentPane(new NewCombinedStrategyView().MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

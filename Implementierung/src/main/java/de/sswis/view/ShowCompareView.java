@@ -17,6 +17,9 @@ import java.util.List;
  */
 public class ShowCompareView implements AbstractShowCompareView {
 
+    private JFrame frame;
+
+
     private List<VMConfiguration> configurations;
 
 
@@ -25,6 +28,9 @@ public class ShowCompareView implements AbstractShowCompareView {
     private JRadioButton zeigeDieKTeRadioButton;
     private JFormattedTextField formattedTextField1;
     private JTabbedPane tabbedPane1;
+    private JPanel MainPanel;
+
+
 
     @Override
     public void update() {
@@ -33,6 +39,11 @@ public class ShowCompareView implements AbstractShowCompareView {
 
     @Override
     public void show() {
+        frame = new JFrame("Ergebnisse Vergleichen");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

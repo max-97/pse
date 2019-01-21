@@ -16,6 +16,8 @@ import java.util.List;
  */
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
+    private JFrame frame;
+
     private List<VMConfiguration> vmConfigurations;
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -28,6 +30,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JButton editButton;
     private JButton newConfigButton;
     private JPanel MainPanel;
+
 
 
     @Override
@@ -72,6 +75,11 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void show() {
+        frame = new JFrame("Konfigurationen Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

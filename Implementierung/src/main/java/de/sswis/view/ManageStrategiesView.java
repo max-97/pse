@@ -15,12 +15,18 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class ManageStrategiesView implements AbstractManageStrategiesView {
+
+    private JFrame frame;
+
     private JButton aenderungenSpeichernUndSchließenButton;
     private JButton abbrechenButton;
     private JTextPane textPane1;
     private JButton kombinierteStrategieLoeschenButton;
     private JButton neueGemischteStrategieButton;
     private JButton kombinierteStrategieBearbeitenButton;
+    private JPanel MainPanel;
+
+
 
     @Override
     public void addStrategy(VMStrategy vmStrategy) {
@@ -64,6 +70,11 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void show() {
+        frame = new JFrame("Gemischte Strategien Verwaltung");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

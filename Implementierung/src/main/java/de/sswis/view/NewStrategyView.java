@@ -14,7 +14,13 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class NewStrategyView implements AbstractNewStrategyView {
+
+    private JFrame frame;
+
     private VMStrategy vmStrategy;
+    private JPanel MainPanel;
+
+
 
     @Override
     public void update() {
@@ -23,6 +29,11 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public void show() {
+        frame = new JFrame("Gemischte Strategie Bearbeiten");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

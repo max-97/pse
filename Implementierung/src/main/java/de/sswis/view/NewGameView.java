@@ -15,7 +15,12 @@ import java.awt.event.ActionListener;
  */
 public class NewGameView implements AbstractNewGameView {
 
+    private JFrame frame;
+
+
     private VMGame vmGame;
+    private JPanel MainPanel;
+
 
 
     @Override
@@ -25,7 +30,11 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void show() {
-
+        frame = new JFrame("Stufenspiel Bearbeiten");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     @Override

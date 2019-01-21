@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class MainView implements AbstractMainView {
 
+    private JFrame frame;
 
     private List<VMConfiguration> configurations;
 
@@ -34,6 +35,7 @@ public class MainView implements AbstractMainView {
     private JPanel MainPanel;
     private JLabel ChooseLabel;
     private JLabel TitleLabel;
+
 
 
     @Override
@@ -133,6 +135,12 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void show() {
+
+        frame = new JFrame("SSWIS");
+        frame.setContentPane(this.MainPanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
     }
 

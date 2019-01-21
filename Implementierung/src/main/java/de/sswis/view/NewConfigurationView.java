@@ -18,6 +18,9 @@ import java.util.List;
  */
 public class NewConfigurationView implements AbstractNewConfigurationView {
 
+    private JFrame frame;
+
+
     private VMConfiguration vmConfiguration;
 
     private List<String> adaptationAlgs;
@@ -45,6 +48,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     private JScrollPane adaptionAlgoParamPane;
 
 
+
     @Override
     public void update() {
 
@@ -52,18 +56,11 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void show() {
-
-
-        JFrame frame = new JFrame("NewConfigurationView");
-        frame.setContentPane(this.ContentPane);
+        frame = new JFrame("NewConfigurationView");
+        frame.setContentPane(new NewConfigurationView().ContentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.pack();
         frame.setVisible(true);
-
-
-
-
 
     }
 
