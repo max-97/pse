@@ -21,7 +21,6 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     private JPanel MainPanel;
 
 
-
     @Override
     public void update() {
 
@@ -62,7 +61,14 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        MainPanel = new JPanel();
+        MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return MainPanel;
     }
 }
