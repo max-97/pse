@@ -1,4 +1,4 @@
-package de.sswis.model.algorithms.adaptation;
+package de.sswis.model.algorithms.ranking;
 
 import de.sswis.model.Agent;
 import de.sswis.model.algorithms.ranking.Score;
