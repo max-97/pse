@@ -212,6 +212,14 @@ public class History {
     }
 
     /**
+     * Gibt die aktuelle Rundenzahl zurück.
+     * @return Rundenzahl
+     */
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    /**
      * Inkrementiert den Rundenzähler um eins.
      */
     public void increaseRoundCount() {

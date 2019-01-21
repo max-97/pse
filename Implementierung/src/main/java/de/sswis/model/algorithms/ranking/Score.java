@@ -2,9 +2,7 @@ package de.sswis.model.algorithms.ranking;
 
 import de.sswis.model.Agent;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Ein Algorithmus der die Agenten einer Simulation entsprechend ihrer bisherigen Gesamtpunktzahl bewertet.
@@ -19,18 +17,28 @@ public class Score implements  RankingAlgorithm {
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
-        TreeMap<Integer, Agent> map = new TreeMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
+        List<Agent> agentList = new ArrayList<>(agents.length);
 
         for(int i = 0; i < agents.length; i++) {
-            map.put(agents[i].getHistory().getScore(), agents[i]);
+            agentList.add(agents[i]);
         }
 
-        int count = agents.length;
-        for(Map.Entry<Integer, Agent> entry : map.entrySet()) {
-            result.put(entry.getValue(), count--);
-        }
+        Collections.sort(agentList, (a1, a2) -> a2.getHistory().getScore() - a1.getHistory().getScore());
+        Iterator<Agent> it = agentList.iterator();
 
+        int count = 1;
+        int previousScore = 0;
+        boolean first = true;
+        while(it.hasNext()) {
+            Agent current = it.next();
+            if(!first && previousScore != current.getHistory().getScore()) {
+                count++;
+            }
+            result.put(current, count);
+            previousScore = current.getHistory().getScore();
+            first = false;
+        }
         return result;
     }
 }
