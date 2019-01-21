@@ -19,7 +19,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     private JButton abbrechenButton;
     private JTextPane textPane1;
     private JButton kombinierteStrategieLoeschenButton;
-    private JButton neueKombinierteStrategieButton;
+    private JButton neueGemischteStrategieButton;
     private JButton kombinierteStrategieBearbeitenButton;
 
     @Override
@@ -193,9 +193,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane1.addTab("TitforTat", panel6);
-        neueKombinierteStrategieButton = new JButton();
-        neueKombinierteStrategieButton.setText("neue kombinierte Strategie");
-        panel2.add(neueKombinierteStrategieButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        neueGemischteStrategieButton = new JButton();
+        neueGemischteStrategieButton.setText("neue kombinierte Strategie");
+        panel2.add(neueGemischteStrategieButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

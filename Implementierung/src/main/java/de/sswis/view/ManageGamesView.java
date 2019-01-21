@@ -20,21 +20,12 @@ public class ManageGamesView implements AbstractManageGamesView {
     private List<VMGame> vmGames;
 
 
-    private JTextPane textPane1;
-    private JButton deleteButton;
     private JButton newGameButton;
     private JButton cancelButton;
     private JButton saveAndQuitButton;
-    private JButton editButton;
     private JPanel MainPanel;
     private JPanel ButtonPanel;
     private JTabbedPane GamesPane;
-    private JLabel upLeftPayOffLabel;
-    private JLabel bottomLeftPayOffLabel;
-    private JLabel upRightPayOffLabel;
-    private JLabel bottomRightPayOffLabel;
-    private JLabel nameLabel;
-    private JLabel descriptionLabel;
 
     @Override
     public void addGame(VMGame game) {

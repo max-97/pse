@@ -2,14 +2,20 @@ package de.sswis.view.CustomComponents;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import de.sswis.view.model.VMCombinedStrategy;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CombinedStrategyTab {
-    private JTextField textField1;
-    private JPanel MainPanel;
 
+    private VMCombinedStrategy combinedStrategy;
+
+    private JPanel MainPanel;
+    private JTextPane textPane1;
+    private JButton kombinierteStrategieLoeschenButton;
+    private JButton kombinierteStrategieBearbeitenButton;
+    private JLabel nameLabel;
 
 
     {
@@ -43,5 +49,9 @@ public class CombinedStrategyTab {
      */
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
