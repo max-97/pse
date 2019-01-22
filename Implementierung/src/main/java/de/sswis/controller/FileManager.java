@@ -218,4 +218,7 @@ public class FileManager {
     public void deleteResult(String name) {
 
     }
+
+    public void saveMixedStrategy(VMStrategy vmStrategy) {
+    }
 }
