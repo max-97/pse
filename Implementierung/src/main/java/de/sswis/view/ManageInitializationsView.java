@@ -65,5 +65,10 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     }
 
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
 
 }

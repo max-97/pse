@@ -25,4 +25,7 @@ public interface AbstractNewConfigurationView extends AbstractView {
     void addFinishButtonActionlistener(ActionListener listener);
 
     VMConfiguration getVMConfiguration();
+
+    AbstractManageConfigurationsView getParenteView();
+
 }

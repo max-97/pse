@@ -50,4 +50,9 @@ public class ManageResultsView implements AbstractManageResultsView {
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }

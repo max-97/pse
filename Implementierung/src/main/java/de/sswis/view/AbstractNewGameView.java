@@ -24,4 +24,7 @@ public interface AbstractNewGameView extends AbstractView {
     void addFinishButtonActionlistener(ActionListener listener);
 
     VMGame getVMGame();
+
+    AbstractManageGamesView getParentView();
+
 }

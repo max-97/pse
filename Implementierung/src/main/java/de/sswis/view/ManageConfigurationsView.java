@@ -65,4 +65,9 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }
