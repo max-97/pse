@@ -4,4 +4,6 @@ import javax.swing.*;
 
 public class InitialStrategyTab {
     private JPanel MainPanel;
+
+
 }

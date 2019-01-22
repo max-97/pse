@@ -18,9 +18,13 @@ public class CombinedStrategyTab {
     private JButton kombinierteStrategieBearbeitenButton;
     private JLabel nameLabel;
 
+    public CombinedStrategyTab(VMCombinedStrategy combinedStrategy) {
+        this.combinedStrategy = combinedStrategy;
+    }
+
+    private void addConditionLines() {}
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 
     {

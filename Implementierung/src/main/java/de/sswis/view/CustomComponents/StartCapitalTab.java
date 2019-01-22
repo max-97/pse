@@ -5,5 +5,6 @@ import javax.swing.*;
 public class StartCapitalTab {
 
     private JPanel MainPanel;
+    private JFormattedTextField formattedTextField1;
 
 }

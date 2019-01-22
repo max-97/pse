@@ -34,7 +34,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JFormattedTextField formattedTextField1;
     private JButton button5;
     private JButton button6;
-
+    private JTextPane textPane1;
 
 
     @Override
