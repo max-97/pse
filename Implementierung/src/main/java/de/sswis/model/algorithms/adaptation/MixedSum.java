@@ -106,7 +106,7 @@ public class MixedSum implements AdaptationAlgorithm{
 
     private Agent getRandomAgent(Agent[] agents) {
         double rndDouble = (double)rnd.nextInt(101)/100;
-        return agents[(int)Math.floor(agents.length*rndDouble)];
+        return agents[(int)Math.floor((agents.length - 1)*rndDouble)];
     }
 
     private void normalize(double[] probabilities) {
