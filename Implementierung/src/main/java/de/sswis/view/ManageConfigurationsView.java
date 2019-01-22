@@ -52,6 +52,11 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     }
 
     @Override
+    public VMConfiguration getDelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }

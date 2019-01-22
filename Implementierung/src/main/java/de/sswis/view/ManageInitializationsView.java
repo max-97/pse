@@ -51,6 +51,11 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     }
 
     @Override
+    public VMInitialization getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
