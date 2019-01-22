@@ -134,8 +134,12 @@ public class VMConfiguration {
         return strategies;
     }
 
-    public void setStrategies(List<String> strategies) {
-        this.strategies = strategies;
+    public void addStrategy(String strategy) {
+        this.strategies.add(strategy);
+    }
+
+    public void removeStrategy(String strategy) {
+        this.strategies.remove(strategy);
     }
 
     public VMResult getResult() {
