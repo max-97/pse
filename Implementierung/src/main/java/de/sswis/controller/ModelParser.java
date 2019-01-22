@@ -2,6 +2,7 @@ package de.sswis.controller;
 
 
 import de.sswis.model.*;
+import de.sswis.model.algorithms.adaptation.*;
 import de.sswis.view.model.*;
 
 import java.util.ArrayList;
@@ -51,6 +52,13 @@ public class ModelParser {
                 ...
         )
         return config;*/
+        return null;
+    }
+
+    private Configuration parseSingleVMConfigurationToConfiguration(VMConfiguration vmConfig) {
+
+
+
         return null;
     }
 
@@ -162,6 +170,39 @@ public class ModelParser {
         }
 
         return outCombinedStrategies;
+    }
+
+    private AdaptationAlgorithm parseStringToAdaptationAlgorithm(String name) {
+
+        AdaptationAlgorithm adaptAlg;
+        String[] cases = {"MixedLinearInterpolation", "MixedSum", "RandomAdaptation",
+                "RankPercentage", "ReplicatorDynamicRank", "ReplicatorDynamicScore"};
+
+        int i;
+        for(i = 0; i < cases.length; i++)
+            if(name.startsWith(cases[i])) break;
+
+        switch (i) {
+            case 0: adaptAlg = new MixedLinearInterpolation();
+                break;
+            case 1: adaptAlg = new MixedSum();
+                break;
+            case 2: adaptAlg = new RandomAdaptation(Integer.parseInt(
+                    name.replace("RandomAdaptation","")));
+                break;
+            case 3: adaptAlg = new RankPercentage(Integer.parseInt(
+                    name.replace("RankPercentage","")));
+                break;
+            case 4: adaptAlg = new ReplicatorDynamicRank(Double.parseDouble(
+                    name.replace("ReplicatorDynamicRank","")));
+                break;
+            case 5: adaptAlg = new ReplicatorDynamicScore(Double.parseDouble(
+                    name.replace("ReplicatorDynamicScore","")));
+                break;
+            default: throw new IllegalArgumentException("No corresponding AdaptationAlgorithm found!");
+        }
+
+        return adaptAlg;
     }
 
 
