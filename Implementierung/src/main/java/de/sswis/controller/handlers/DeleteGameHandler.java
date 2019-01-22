@@ -1,6 +1,8 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.controller.FileManager;
 import de.sswis.view.AbstractManageGamesView;
+import de.sswis.view.model.VMGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,17 +15,22 @@ import java.awt.event.ActionListener;
 public class DeleteGameHandler implements ActionListener {
 
     private AbstractManageGamesView manageGamesView;
+    private FileManager fileManager;
 
     /**
      *
      * @param manageGamesView View, welche das zu löschende {@code Game} beinhaltet
      */
     public DeleteGameHandler(AbstractManageGamesView manageGamesView) {
-
+        this.manageGamesView = manageGamesView;
+        this.fileManager = new FileManager();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        VMGame selectedVM = this.manageGamesView.getSelectedVM();
+        this.manageGamesView.removeGame(selectedVM.getName());
+        this.manageGamesView.update();
+        this.fileManager.deleteGame(selectedVM.getName());
     }
 }
