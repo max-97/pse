@@ -187,4 +187,9 @@ public class ManageGamesView implements AbstractManageGamesView{
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }

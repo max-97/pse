@@ -146,4 +146,9 @@ public class ShowResultView implements AbstractShowResultView {
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }

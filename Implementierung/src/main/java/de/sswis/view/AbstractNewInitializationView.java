@@ -25,4 +25,7 @@ public interface AbstractNewInitializationView extends AbstractView {
     void addFinishButtonActionlistener(ActionListener listener);
 
     VMInitialization getVMInitialization();
+
+    AbstractManageInitializationsView getParentView();
+
 }

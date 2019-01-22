@@ -216,4 +216,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }

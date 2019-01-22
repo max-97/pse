@@ -63,4 +63,9 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     public void close() {
 
     }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
 }

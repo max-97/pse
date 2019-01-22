@@ -31,6 +31,11 @@ public class NewGameView implements AbstractNewGameView {
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
+    @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
 
     }
@@ -42,6 +47,11 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public VMGame getVMGame() {
+        return null;
+    }
+
+    @Override
+    public AbstractManageGamesView getParentView() {
         return null;
     }
 }

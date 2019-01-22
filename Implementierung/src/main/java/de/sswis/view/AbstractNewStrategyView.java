@@ -24,4 +24,6 @@ public interface AbstractNewStrategyView extends AbstractView {
     void addFinishButtonActionlistener(ActionListener listener);
 
     VMStrategy getVMStrategy();
+
+    AbstractManageStrategiesView getParentView();
 }

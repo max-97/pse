@@ -131,6 +131,11 @@ public class MainView implements AbstractMainView {
 
     }
 
+    @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
