@@ -38,4 +38,9 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
+
+    @Override
+    public VMCombinedStrategy getCombinedStrategy() {
+        return null;
+    }
 }

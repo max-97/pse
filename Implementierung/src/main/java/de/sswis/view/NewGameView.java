@@ -39,4 +39,9 @@ public class NewGameView implements AbstractNewGameView {
     public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
+
+    @Override
+    public VMGame getVMGame() {
+        return null;
+    }
 }

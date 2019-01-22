@@ -37,4 +37,9 @@ public class NewStrategyView implements AbstractNewStrategyView {
     public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
+
+    @Override
+    public VMStrategy getVMStrategy() {
+        return null;
+    }
 }

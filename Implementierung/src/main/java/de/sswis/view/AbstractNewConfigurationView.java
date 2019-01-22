@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMConfiguration;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -22,5 +24,5 @@ public interface AbstractNewConfigurationView extends AbstractView {
      */
     void addFinishButtonActionlistener(ActionListener listener);
 
-
+    VMConfiguration getVMConfiguration();
 }
