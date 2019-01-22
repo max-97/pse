@@ -6,6 +6,8 @@ import de.sswis.view.model.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Übersetzt Objekte zwischen dem {@code ViewModel} und dem {@code Model}.
@@ -126,10 +128,41 @@ public class ModelParser {
      * @param vmStrategy die zu übersetzende {@code VMStrategy}
      * @return die übersetzte {@code Strategy}
      */
-    public Strategy parseVMStrategyToStrategy(VMStrategy vmStrategy) { return null; }
+    public Strategy parseVMStrategyToMixedStrategy(VMStrategy vmStrategy) {
+        //vmStrategy.isCorrect()
+        return new MixedStrategy(
+                vmStrategy.getName(),
+                loadCombinedStrategies(vmStrategy.getCombinedStrategies()),
+                probabilitiesArray(vmStrategy.getProbabilities()));
+    }
 
+    private double[] probabilitiesArray(List<String> inProbabilities) {
 
+        double[] outProbabilities = new double[inProbabilities.size()];
+        Iterator<String> it = inProbabilities.iterator();
+        int i = 0;
 
+        while (it.hasNext()) {
+            outProbabilities[i] = Double.parseDouble(it.next().replace(",","."));
+            i++;
+        }
+        return outProbabilities;
+    }
+
+    private CombinedStrategy[] loadCombinedStrategies(List<String> inCombinedStrategies) {
+
+        FileManager fm = new FileManager();
+        CombinedStrategy[] outCombinedStrategies = new CombinedStrategy[inCombinedStrategies.size()];
+        Iterator<String> it = inCombinedStrategies.iterator();
+        int i = 0;
+
+        while (it.hasNext()) {
+            outCombinedStrategies[i] = parseVMCombinedStrategyToCombinedStrategy(fm.loadCombinedStrategy(it.next()));
+            i++;
+        }
+
+        return outCombinedStrategies;
+    }
 
 
 }
