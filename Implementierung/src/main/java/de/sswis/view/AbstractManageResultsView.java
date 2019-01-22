@@ -42,5 +42,5 @@ public interface AbstractManageResultsView extends AbstractView {
      */
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
-    VMResult getSelected();
+    VMResult getSelectedVM();
 }
