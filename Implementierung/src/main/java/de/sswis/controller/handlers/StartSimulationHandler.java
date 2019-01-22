@@ -35,9 +35,8 @@ public class StartSimulationHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         //TODO make mainView.getSelected return a collection
-        VMConfiguration vmConfig = mainView.getSelected();
         ArrayList<VMConfiguration> selected = new ArrayList<>();
-        selected.add(vmConfig);
+        selected.add(mainView.getSelected());
 
         for (VMConfiguration c : selected) {
             Configuration config = this.provider.getConfiguration(c.getName());
