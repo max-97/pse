@@ -59,9 +59,26 @@ public class ModelParser {
 
     private Configuration parseSingleVMConfigurationToConfiguration(VMConfiguration vmConfig) {
 
+        FileManager fm = new FileManager();
+        List<Strategy> strategies = new ArrayList<>();
+        Iterator<String> it = vmConfig.getStrategies().iterator();
 
+        while (it.hasNext()) {
+            //TODO: Strategien aus FM laden, mit entsprechenden Methoden parsen und strategies hinzufügen
+            it.next();
+        }
 
-        return null;
+        return new Configuration(
+                vmConfig.getName(),
+                parseVMGameToGame(fm.loadGame(vmConfig.getGame())),
+                parseSingleVMInitializationToInitialization(fm.loadInitalization(vmConfig.getInit())),
+                parseStringToAdaptationAlgorithm(vmConfig.getAdaptationAlg()),
+                parseStringToPairingAlgorithm(vmConfig.getPairingAlg()),
+                parseStringToRankingAlgorithm(vmConfig.getRankingAlg()),
+                Integer.parseInt(vmConfig.getRounds()),
+                Integer.parseInt(vmConfig.getCycles()),
+                Double.parseDouble(vmConfig.getAdaptationProbability()),
+                strategies);
     }
 
     /**
