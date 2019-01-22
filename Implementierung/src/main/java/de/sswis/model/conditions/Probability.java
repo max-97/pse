@@ -10,18 +10,21 @@ public class Probability implements Condition {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
-    private double alpha;
+    public static final int PARAMETER_COUNT = 1;
+    public static final String[] PARAMETER_NAMES = {"ALPHA"};
+    private final double ALPHA;
 
     /**
      * Konstruktor
-     * @param alpha Wahrscheinlichkeit mit der die Bedingung erfuellt ist
+     * @param ALPHA Wahrscheinlichkeit mit der die Bedingung erfuellt ist
      */
-    public Probability(double alpha) {
-
+    public Probability(double ALPHA) {
+        this.ALPHA = ALPHA;
     }
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return false;
+        double random = Math.random();
+        return random < ALPHA;
     }
 }

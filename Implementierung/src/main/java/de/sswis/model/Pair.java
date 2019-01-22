@@ -1,7 +1,7 @@
 package de.sswis.model;
 
 /**
- * Ein Paar von Agenten welche ein vorgegebenes Stufenspiel spielen koennen.
+ * Ein Paar von Agenten.
  * @author Michel Bodé
  */
 public class Pair {
@@ -13,17 +13,24 @@ public class Pair {
      * Erstellt ein Paar von Agenten.
      * @param agent1 erster Agent
      * @param agent2 zweiter Agent
-     * @param game zu spielendes Stufenspiel
      */
-    public Pair(Agent agent1, Agent agent2, Game game) {
+    public Pair(Agent agent1, Agent agent2) {
 
     }
 
     /**
-     * Das vorgegebene Stufenspiel wird von den zwei Agenten gespielt, entsprechend ihrer Aktionen werden
-     * die Payoffs verteilt.
+     * Gibt einen bestimmten Agenten des Paars zurück.
+     * @param agentNumber Nummer des Agenten, eins für den Ersten, zwei für den Zweiten
+     * @return spezifizierter Agent
      */
-    public void playGame() {
-
+    public Agent getAgent(int agentNumber) {
+        if(agentNumber == 1) {
+            return agent1;
+        } else if(agentNumber == 2) {
+            return agent2;
+        } else {
+            return null;
+        }
     }
+
 }
