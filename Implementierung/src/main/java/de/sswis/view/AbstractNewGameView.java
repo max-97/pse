@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMGame;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -21,5 +23,5 @@ public interface AbstractNewGameView extends AbstractView {
      */
     void addFinishButtonActionlistener(ActionListener listener);
 
-
+    VMGame getVMGame();
 }

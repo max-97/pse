@@ -295,4 +295,9 @@ public class NewInitializationView implements AbstractNewInitializationView{
     public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
+
+    @Override
+    public VMInitialization getVMInitialization() {
+        return null;
+    }
 }

@@ -159,4 +159,9 @@ public class NewConfigurationView implements AbstractNewConfigurationView{
     public void addFinishButtonActionlistener(ActionListener listener) {
 
     }
+
+    @Override
+    public VMConfiguration getVMConfiguration() {
+        return null;
+    }
 }
