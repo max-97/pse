@@ -1,6 +1,7 @@
 package de.sswis.model;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -10,22 +11,31 @@ import java.util.HashMap;
  */
 public class History {
     private int currentRound;
-    private int[] score;
-    private boolean[] cooperated;
-    private Agent[] opponent;
-    private String[] strategies;
+    private ArrayList<Integer> score;
+    private ArrayList<Boolean> opponentCooperated;
+    private ArrayList<Agent> opponent;
+    private ArrayList<String> strategies;
     private boolean alwaysCooperated;
     private HashMap<Agent, Boolean> cooperatedLastTime;
     private HashMap<Agent, Boolean> cooperatedEveryTime;
     private HashMap<Group, Boolean> groupCooperatedLastTime;
     private HashMap<Group, Boolean> groupCooperatedEveryTime;
+    private final int INITIAL_CAPACITY = 1000;
 
     /**
      * Erstellt eine {@code History}.
-     * @param rounds Anzahl der Runden der Konfiguration
      */
-    public History(int rounds) {
-
+    public History() {
+        this.currentRound = 0;
+        this.score = new ArrayList<>(INITIAL_CAPACITY);
+        this.opponentCooperated = new ArrayList<>(INITIAL_CAPACITY);
+        this.opponent = new ArrayList<>(INITIAL_CAPACITY);
+        this.strategies = new ArrayList<>(INITIAL_CAPACITY);
+        this.alwaysCooperated = true;
+        this.cooperatedLastTime = new HashMap<>();
+        this.cooperatedEveryTime = new HashMap<>();
+        this.groupCooperatedLastTime = new HashMap<>();
+        this.groupCooperatedEveryTime = new HashMap<>();
     }
 
     /**
@@ -40,7 +50,7 @@ public class History {
      * Gibt die Punktzahl des Agenten aus der letzten Runde zurück zurück.
      * @return aktuelle Punktzahl
      */
-    public int getScore() { return score[currentRound]; }
+    public int getScore() { return score.get(currentRound); }
 
     /**
      * Gibt die Punktzahl des Agenten in einer bestimmten Runde zurueck.
@@ -48,15 +58,15 @@ public class History {
      * @return Punktzahl
      */
     public int getScore(int round) {
-        return score[round];
+        return score.get(round);
     }
 
     /**
      * Gibt an ob der Gegenspieler des Agenten in der letzten Runde kooperiert hat.
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
-    public boolean getCooperated() {
-        return cooperated[currentRound];
+    public boolean getOpponentCooperated() {
+        return opponentCooperated.get(currentRound);
     }
 
     /**
@@ -64,8 +74,8 @@ public class History {
      * @param round Runde der gesuchten Aktion
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
-    public boolean getCooperated(int round) {
-        return cooperated[round];
+    public boolean getOpponentCooperated(int round) {
+        return opponentCooperated.get(round);
     }
 
     /**
@@ -74,7 +84,7 @@ public class History {
      * @return Gegenspieler
      */
     public Agent getOpponent(int round) {
-        return opponent[round];
+        return opponent.get(round);
     }
 
     /**
@@ -83,7 +93,7 @@ public class History {
      * @return Name der Strategie
      */
     public String getStrategy(int round) {
-        return strategies[round];
+        return strategies.get(round);
     }
 
     /**
@@ -91,7 +101,7 @@ public class History {
      * @param score aktuelle Punktzahl
      */
     public void setScore(int score){
-
+        this.score.add(currentRound, score);
     }
 
     /**
@@ -99,7 +109,7 @@ public class History {
      * @param cooperated ob der Gegenspieler kooperiert hat
      */
     public void setCooperated(boolean cooperated) {
-
+        this.opponentCooperated.add(currentRound, cooperated);
     }
 
     /**
@@ -107,7 +117,7 @@ public class History {
      * @param opponent Gegenspieler
      */
     public void setOpponent(Agent opponent) {
-
+        this.opponent.add(currentRound, opponent);
     }
 
     /**
@@ -115,7 +125,7 @@ public class History {
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
-
+        this.strategies.add(currentRound, strategy.getName());
     }
 
     /**
@@ -123,7 +133,7 @@ public class History {
      * @param alwaysCooperated Wert der angibt ob er immer kooperiert hat
      */
     public void setAlwaysCooperated(boolean alwaysCooperated) {
-
+        this.alwaysCooperated = alwaysCooperated;
     }
 
     /**
@@ -132,7 +142,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean cooperatedLastTime(Agent agent) {
-        return false;
+        if(cooperatedLastTime.get(agent) == null){
+            cooperatedLastTime.put(agent, true);
+            return true;
+        }else {
+            return cooperatedLastTime.get(agent);
+        }
     }
 
     /**
@@ -141,7 +156,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean cooperatedEveryTime(Agent agent) {
-        return false;
+        if(cooperatedEveryTime.get(agent) == null){
+            cooperatedEveryTime.put(agent, true);
+            return true;
+        }else {
+            return cooperatedEveryTime.get(agent);
+        }
     }
 
     /**
@@ -150,7 +170,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean groupCooperatedLastTime(Group group) {
-        return false;
+        if(groupCooperatedLastTime.get(group) == null){
+            groupCooperatedLastTime.put(group, true);
+            return true;
+        }else {
+            return groupCooperatedLastTime.get(group);
+        }
     }
 
     /**
@@ -160,7 +185,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean groupCooperatedEveryTime(Group group) {
-        return false;
+        if(groupCooperatedEveryTime.get(group) == null){
+            groupCooperatedEveryTime.put(group, true);
+            return true;
+        }else {
+            return groupCooperatedEveryTime.get(group);
+        }
     }
 
     /**
@@ -169,7 +199,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setCooperatedLastTime(Agent agent, boolean cooperated){
-
+        if(cooperatedLastTime.containsKey(agent)) {
+            cooperatedLastTime.replace(agent, cooperated);
+        }else {
+            cooperatedLastTime.put(agent, cooperated);
+        }
     }
 
     /**
@@ -178,7 +212,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setCooperatedEveryTime(Agent agent, boolean cooperated) {
-
+        if(cooperatedEveryTime.containsKey(agent)) {
+            cooperatedEveryTime.replace(agent, cooperated);
+        }else {
+            cooperatedEveryTime.put(agent, cooperated);
+        }
     }
 
     /**
@@ -188,7 +226,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setGroupCooperatedLastTime(Group group, boolean cooperated) {
-
+        if(groupCooperatedLastTime.containsKey(group)) {
+            groupCooperatedLastTime.replace(group, cooperated);
+        }else {
+            groupCooperatedLastTime.put(group, cooperated);
+        }
     }
 
     /**
@@ -198,8 +240,18 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setGroupCooperatedEveryTime(Group group, boolean cooperated) {
-
+        if(groupCooperatedEveryTime.containsKey(group)) {
+            groupCooperatedEveryTime.replace(group, cooperated);
+        }else {
+            groupCooperatedEveryTime.put(group, cooperated);
+        }
     }
+
+    /**
+     * Gibt die aktuelle Rundenzahl zurück.
+     * @return Rundenzahl
+     */
+    public int getCurrentRound() { return currentRound; }
 
     /**
      * Inkrementiert den Rundenzähler um eins.
