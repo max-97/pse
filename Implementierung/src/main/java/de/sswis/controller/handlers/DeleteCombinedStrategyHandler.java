@@ -20,11 +20,11 @@ public class DeleteCombinedStrategyHandler implements ActionListener {
      * @param manageStrategiesView View, welche die zu löschende {@code CombinedStrategy} beinhaltet
      */
     public DeleteCombinedStrategyHandler(AbstractManageCombinedStrategiesView manageStrategiesView) {
-        this.manageStrategiesView = manageStrategiesView;
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        manageStrategiesView
+
     }
 }
