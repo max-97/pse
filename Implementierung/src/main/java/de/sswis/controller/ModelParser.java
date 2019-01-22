@@ -3,6 +3,8 @@ package de.sswis.controller;
 
 import de.sswis.model.*;
 import de.sswis.model.algorithms.adaptation.*;
+import de.sswis.model.algorithms.pairing.*;
+import de.sswis.model.algorithms.ranking.*;
 import de.sswis.view.model.*;
 
 import java.util.ArrayList;
@@ -203,6 +205,57 @@ public class ModelParser {
         }
 
         return adaptAlg;
+    }
+
+    private PairingAlgorithm parseStringToPairingAlgorithm(String name) {
+
+        PairingAlgorithm pairAlg;
+        String[] cases = {"RandomPairing", "MaximumWeightMatching", "BruteForcePairing", "BruteForcePairingHeuristic"};
+
+        int i;
+        for(i = 0; i < cases.length; i++)
+            if(name.startsWith(cases[i])) break;
+
+        switch (i) {
+            case 0: pairAlg = new RandomPairing();
+                break;
+            case 1: pairAlg = new MaximumWeightMatching();
+                break;
+            case 2: pairAlg = new BruteForcePairing();
+                break;
+            case 3: pairAlg = new BruteForcePairingHeuristic(Double.parseDouble(
+                    name.replace("BruteForcePairingHeuristic","")));
+                break;
+            default: throw new IllegalArgumentException("No corresponding PairingAlgorithm found!");
+        }
+
+        return pairAlg;
+    }
+
+    private RankingAlgorithm parseStringToRankingAlgorithm(String name) {
+
+        RankingAlgorithm rankAlg;
+        String[] cases = {"AverageRank", "CurrentCycleScore", "CustomCycleScore", "Score"};
+
+        int i;
+        for(i = 0; i < cases.length; i++)
+            if(name.startsWith(cases[i])) break;
+
+        switch (i) {
+            case 0: rankAlg = new AverageRank(Integer.parseInt(
+                    name.replace("AverageRank","")));
+                break;
+            case 1: rankAlg = new CurrentCycleScore();
+                break;
+            case 2: rankAlg = new CustomCycleScore(Integer.parseInt(
+                    name.replace("CustomCycleScore","")));
+                break;
+            case 3: rankAlg = new Score();
+                break;
+            default: throw new IllegalArgumentException("No corresponding RankingAlgorithm found!");
+        }
+
+        return rankAlg;
     }
 
 
