@@ -54,5 +54,5 @@ public interface AbstractManageInitializationsView extends AbstractView {
      */
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
-
+    VMInitialization getSelectedVM();
 }

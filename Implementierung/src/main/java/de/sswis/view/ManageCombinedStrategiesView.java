@@ -50,6 +50,11 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     }
 
     @Override
+    public VMCombinedStrategy getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }

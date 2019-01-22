@@ -37,6 +37,11 @@ public class ManageResultsView implements AbstractManageResultsView {
     }
 
     @Override
+    public VMResult getSelected() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }

@@ -203,6 +203,11 @@ public class ManageStrategiesView implements AbstractManageStrategiesView{
     }
 
     @Override
+    public VMStrategy getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
