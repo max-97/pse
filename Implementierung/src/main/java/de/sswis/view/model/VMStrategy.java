@@ -46,15 +46,31 @@ public class VMStrategy {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
 
+    public List<String> getCombinedStrategies() {
+        return combinedStrategies;
+    }
+
+    public List<String> getProbabilities() {
+        return probabilities;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setCombinedStrategies(List<String> combinedStrategies) {
+        this.combinedStrategies = combinedStrategies;
+    }
+
+    public void setProbabilities(List<String> probabilities) {
+        this.probabilities = probabilities;
     }
 }
