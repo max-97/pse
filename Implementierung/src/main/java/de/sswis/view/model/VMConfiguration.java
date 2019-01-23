@@ -58,4 +58,95 @@ public class VMConfiguration {
      */
     public String getToolTipText() {    return ""; }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGame() {
+        return game;
+    }
+
+    public void setGame(String game) {
+        this.game = game;
+    }
+
+    public String getInit() {
+        return init;
+    }
+
+    public void setInit(String init) {
+        this.init = init;
+    }
+
+    public String getAdaptationAlg() {
+        return adaptationAlg;
+    }
+
+    public void setAdaptationAlg(String adaptationAlg) {
+        this.adaptationAlg = adaptationAlg;
+    }
+
+    public String getPairingAlg() {
+        return pairingAlg;
+    }
+
+    public void setPairingAlg(String pairingAlg) {
+        this.pairingAlg = pairingAlg;
+    }
+
+    public String getRankingAlg() {
+        return rankingAlg;
+    }
+
+    public void setRankingAlg(String rankingAlg) {
+        this.rankingAlg = rankingAlg;
+    }
+
+    public String getRounds() {
+        return rounds;
+    }
+
+    public void setRounds(String rounds) {
+        this.rounds = rounds;
+    }
+
+    public String getCycles() {
+        return cycles;
+    }
+
+    public void setCycles(String cycles) {
+        this.cycles = cycles;
+    }
+
+    public String getAdaptationProbability() {
+        return adaptationProbability;
+    }
+
+    public void setAdaptationProbability(String adaptationProbability) {
+        this.adaptationProbability = adaptationProbability;
+    }
+
+    public List<String> getStrategies() {
+        return strategies;
+    }
+
+    public void addStrategy(String strategy) {
+        this.strategies.add(strategy);
+    }
+
+    public void removeStrategy(String strategy) {
+        this.strategies.remove(strategy);
+    }
+
+    public VMResult getResult() {
+        return result;
+    }
+
+    public void setResult(VMResult result) {
+        this.result = result;
+    }
 }
