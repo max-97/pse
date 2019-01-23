@@ -57,4 +57,5 @@ public interface AbstractManageConfigurationsView extends AbstractView {
     VMConfiguration getSelectedVM();
 
     AbstractMainView getParentView();
+
 }

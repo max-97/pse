@@ -45,4 +45,5 @@ public interface AbstractManageResultsView extends AbstractView {
     VMResult getSelectedVM();
 
     AbstractMainView getParentView();
+
 }

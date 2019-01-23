@@ -57,4 +57,5 @@ public interface AbstractManageInitializationsView extends AbstractView {
     VMInitialization getSelectedVM();
 
     AbstractMainView getParentView();
+
 }

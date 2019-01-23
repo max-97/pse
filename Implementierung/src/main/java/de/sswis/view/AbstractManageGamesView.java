@@ -57,4 +57,5 @@ public interface AbstractManageGamesView extends AbstractView {
     VMGame getSelectedVM();
 
     AbstractMainView getParentView();
+
 }
