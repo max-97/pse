@@ -137,7 +137,7 @@ public class VMConfiguration {
     public void setStrategies(List<String> strategies) {
         this.strategies = strategies;
     }
-  
+
     public void addStrategy(String strategy) {
         this.strategies.add(strategy);
     }
