@@ -119,6 +119,11 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public Collection<VMResult> getResults() {
+        return null;
+    }
+
+    @Override
     public void update() {}
 
     @Override

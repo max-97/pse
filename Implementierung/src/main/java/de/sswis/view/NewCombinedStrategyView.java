@@ -1,6 +1,5 @@
 package de.sswis.view;
 
-import de.sswis.view.AbstractNewCombinedStrategyView;
 import de.sswis.view.model.VMCombinedStrategy;
 
 import java.awt.event.ActionListener;
@@ -27,11 +26,6 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public void close() {
-
-    }
-
-    @Override
-    public void setParentView(AbstractView parentView) {
 
     }
 

@@ -1,7 +1,6 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
-import de.sswis.view.AbstractMainView;
 import de.sswis.view.AbstractManageResultsView;
 
 import java.awt.event.ActionEvent;
@@ -14,15 +13,15 @@ import java.awt.event.ActionListener;
  */
 public class DeleteResultHandler implements ActionListener {
 
-    private AbstractMainView mainView;
+    private AbstractManageResultsView manageResultsView;
     private FileManager fileManager;
 
     /**
      *
-     * @param mainView View, welche das zu löschende {@code Result} beinhaltet
+     * @param manageResultsView View, welche das zu löschende {@code Result} beinhaltet
      */
-    public DeleteResultHandler(AbstractMainView mainView) {
-        this.mainView = mainView;
+    public DeleteResultHandler(AbstractManageResultsView manageResultsView) {
+        this.manageResultsView = manageResultsView;
         this.fileManager = new FileManager();
     }
 
