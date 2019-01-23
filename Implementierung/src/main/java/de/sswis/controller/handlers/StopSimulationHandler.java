@@ -7,7 +7,7 @@ import de.sswis.view.model.VMConfiguration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Bricht die ausgewählte {@code Simulation} ab. Es werden keine Ergebnisse der {@code Simulation} gespeichert.
@@ -30,8 +30,7 @@ public class StopSimulationHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ArrayList<VMConfiguration> configurations = new ArrayList<>();
-        configurations.add(mainView.getSelected());
+        Collection<VMConfiguration> configurations = mainView.getSelected();
         for (VMConfiguration c : configurations) {
             Configuration config = this.provider.getConfiguration(c.getName());
             config.getSimulation().abort();

@@ -9,7 +9,6 @@ import de.sswis.view.model.VMConfiguration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -34,9 +33,7 @@ public class StartSimulationHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //TODO make mainView.getSelected return a collection
-        ArrayList<VMConfiguration> selected = new ArrayList<>();
-        selected.add(mainView.getSelected());
+        Collection<VMConfiguration> selected = mainView.getSelected();
 
         for (VMConfiguration c : selected) {
             Configuration config = this.provider.getConfiguration(c.getName());
