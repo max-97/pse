@@ -1,8 +1,10 @@
 package de.sswis.controller;
 
+import de.sswis.exceptions.DuplicateObjectNameException;
 import de.sswis.model.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Verwaltet die Model-Objekte. Alle erstellten {@link Configuration Configurations}, {@link Game Games},
@@ -20,10 +22,14 @@ public class ModelProvider {
     private HashMap<String, Game> games;
     private HashMap<String, CombinedStrategy> combinedStrategies;
     private HashMap<String, Initialization> initialization;
-    private HashMap<String, Strategy> strategy;
+    private HashMap<String, Strategy> strategies;
 
     private ModelProvider() {
-
+        this.configurations = new HashMap<>();
+        this.games = new HashMap<>();
+        this.combinedStrategies = new HashMap<>();
+        this.initialization = new HashMap<>();
+        this.strategies = new HashMap<>();
     }
 
     /**
@@ -43,8 +49,17 @@ public class ModelProvider {
      *
      * @param configuration die zu speichernde {@code Configurations}
      */
-    public void addConfigurations(Configuration configuration) {
-
+    public void addConfiguration(Configuration configuration) {
+        if(this.configurations.containsKey(configuration.getName())) {
+            if(this.configurations.get(configuration.getName()).equals(configuration)) {
+                // configuration already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Configuration object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.configurations.put(configuration.getName(), configuration);
     }
 
 
@@ -54,7 +69,16 @@ public class ModelProvider {
      * @param game das zu speichernde {@code Game}
      */
     public void addGame(Game game) {
-
+        if(this.games.containsKey(game.getName())) {
+            if(this.games.get(game.getName()).equals(game)) {
+                // game already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Game object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.games.put(game.getName(), game);
     }
 
 
@@ -64,7 +88,16 @@ public class ModelProvider {
      * @param combStrategy die zu speichernde {@code CombinedStrategy}
      */
     public void addCombinedStrategy(CombinedStrategy combStrategy) {
-
+        if(this.combinedStrategies.containsKey(combStrategy.getName())) {
+            if(this.combinedStrategies.get(combStrategy.getName()).equals(combStrategy)) {
+                // combinedStrategy already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another CombinedStrategy object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.combinedStrategies.put(combStrategy.getName(), combStrategy);
     }
 
 
@@ -74,7 +107,16 @@ public class ModelProvider {
      * @param initialization die zu speichernde {@code Initialization}
      */
     public void addInitialization(Initialization initialization) {
-
+        if(this.initialization.containsKey(initialization.getName())) {
+            if(this.initialization.get(initialization.getName()).equals(initialization)) {
+                // initialization already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Initialization object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.initialization.put(initialization.getName(), initialization);
     }
 
     /**
@@ -83,7 +125,16 @@ public class ModelProvider {
      * @param strategy die zu speichernde {@code Strategy}
      */
     public void addStrategy(Strategy strategy) {
-
+        if(this.strategies.containsKey(strategy.getName())) {
+            if(this.strategies.get(strategy.getName()).equals(strategy)) {
+                // strategies already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another Strategy object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        this.strategies.put(strategy.getName(), strategy);
     }
 
     /**
@@ -93,7 +144,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Configuration}
      */
     public void deleteConfiguration(String name) {
-
+        this.configurations.remove(name);
     }
 
     /**
@@ -103,7 +154,7 @@ public class ModelProvider {
      * @param name Name des zu löschende {@code Game}
      */
     public void deleteGame(String name) {
-
+        this.games.remove(name);
     }
 
     /**
@@ -113,7 +164,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code CombinedStrategy}
      */
     public void deleteCombinedStrategy(String name) {
-
+        this.combinedStrategies.remove(name);
     }
 
     /**
@@ -123,7 +174,7 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Initialization}
      */
     public void deleteInitialization(String name) {
-
+        this.initialization.remove(name);
     }
 
     /**
@@ -133,16 +184,26 @@ public class ModelProvider {
      * @param name Name der zu löschenden {@code Strategy}
      */
     public void deleteStrategy(String name) {
-
+        this.strategies.remove(name);
     }
 
-    /*
-    public Map<String, Collection<Configuration>> getConfigurations() {
+    /**
+     * Löscht alle gespeicherten Objekte unwiederruflich.
+     */
+    public void deleteAllObjects() {
+        this.configurations.clear();
+        this.games.clear();
+        this.strategies.clear();
+        this.initialization.clear();
+        this.combinedStrategies.clear();
+    }
+
+    public Map<String, Configuration> getConfigurations() {
         return configurations;
     }
 
     public Configuration getConfiguration(String name) {
-        return null;
+        return this.configurations.get(name);
     }
 
     public Map<String, Game> getGames() {
@@ -150,7 +211,7 @@ public class ModelProvider {
     }
 
     public Game getGame(String name) {
-        return null;
+        return this.games.get(name);
     }
 
     public Map<String, CombinedStrategy> getCombinedStrategies() {
@@ -158,7 +219,7 @@ public class ModelProvider {
     }
 
     public CombinedStrategy getCombinedStrategy(String name) {
-        return null;
+        return this.combinedStrategies.get(name);
     }
 
     public Map<String, Initialization> getInitializations() {
@@ -166,8 +227,15 @@ public class ModelProvider {
     }
 
     public Initialization getInitialization(String name) {
-        return null;
+        return this.initialization.get(name);
     }
-    */
+
+    public Map<String, Strategy> getStrategies() {
+        return this.strategies;
+    }
+
+    public Strategy getStrategy(String name) {
+        return this.strategies.get(name);
+    }
 
 }

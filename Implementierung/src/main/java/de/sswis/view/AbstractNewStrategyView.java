@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMStrategy;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -21,5 +23,7 @@ public interface AbstractNewStrategyView extends AbstractView {
      */
     void addFinishButtonActionlistener(ActionListener listener);
 
+    VMStrategy getVMStrategy();
 
+    AbstractManageStrategiesView getParentView();
 }

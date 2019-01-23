@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class ManageCombinedStrategiesView implements AbstractManageCombinedStrategiesView {
     private List<VMCombinedStrategy> vmCombinedStrategies;
+    private AbstractMainView parentView;
 
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
@@ -50,6 +51,11 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     }
 
     @Override
+    public VMCombinedStrategy getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -62,5 +68,15 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 }

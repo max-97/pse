@@ -1,5 +1,6 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.view.AbstractNewCombinedStrategyView;
 import de.sswis.view.AbstractNewStrategyView;
 
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
      *
      * @param strategyView die View mit der zu speichernden {@code kombinierten Strategie}
      */
-    public SaveCombinedStrategiesHandler(AbstractNewStrategyView strategyView) {
+    public SaveCombinedStrategiesHandler(AbstractNewCombinedStrategyView strategyView) {
 
     }
 

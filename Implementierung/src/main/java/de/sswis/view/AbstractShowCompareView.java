@@ -19,4 +19,6 @@ public interface AbstractShowCompareView extends AbstractView {
      * @param listener ActionListener
      */
     void addCompareButtonActionlistener (ActionListener listener);
+
+    AbstractMainView getParentView();
 }
