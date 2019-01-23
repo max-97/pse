@@ -80,4 +80,13 @@ public class VMCombinedStrategy {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<String> getStrategies() {
+        return this.strategies;
+    }
+
+    public List<String> getConditions() {
+        return this.conditions;
+    }
+
 }

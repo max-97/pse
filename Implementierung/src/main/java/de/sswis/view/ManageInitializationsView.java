@@ -14,6 +14,7 @@ import java.util.List;
 public class ManageInitializationsView implements AbstractManageInitializationsView {
 
     private List<VMInitialization> vmInits;
+    private AbstractMainView parentView;
 
     @Override
     public void addInit(VMInitialization vmInitialization) {
@@ -51,6 +52,11 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     }
 
     @Override
+    public VMInitialization getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -63,6 +69,16 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 
 
