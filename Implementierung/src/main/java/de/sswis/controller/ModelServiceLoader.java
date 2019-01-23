@@ -3,17 +3,13 @@ package de.sswis.controller;
 
 import de.sswis.model.algorithms.adaptation.AdaptationAlgorithm;
 import de.sswis.model.algorithms.pairing.PairingAlgorithm;
-import de.sswis.model.algorithms.ranking.AverageRank;
 import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.ServiceLoader;
-import java.util.stream.Collectors;
 
 /**
  * Ein Dienstleister zur Bereitstellung von Listen mit allen Ausprägungen eines bestimmten Algorithmentyps sowie von Bedingungen und Basis-Strategien.
