@@ -26,8 +26,8 @@ public class MinimumWeightMatching implements PairingAlgorithm {
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
         Pair[] result = new Pair[agents.length/2];
-        DefaultUndirectedWeightedGraph<Agent, DefaultEdge> agentGraph = agentsToGraph(agents);
-        KolmogorovMinimumWeightPerfectMatching<Agent, DefaultEdge> alg = new KolmogorovMinimumWeightPerfectMatching(agentGraph);
+        Graph<Agent, DefaultEdge> agentGraph = agentsToGraph(agents);
+        KolmogorovMinimumWeightPerfectMatching<Agent, DefaultEdge> alg = new KolmogorovMinimumWeightPerfectMatching<>(agentGraph);
         MatchingAlgorithm.Matching<Agent, DefaultEdge> matching = alg.getMatching();
         Iterator<DefaultEdge> it = matching.iterator();
 
@@ -39,9 +39,8 @@ public class MinimumWeightMatching implements PairingAlgorithm {
         return result;
     }
 
-    private DefaultUndirectedWeightedGraph<Agent, DefaultEdge> agentsToGraph(Agent[] agents) {
-        DefaultUndirectedWeightedGraph<Agent, DefaultEdge> agentGraph =
-                new DefaultUndirectedWeightedGraph<>(null, null);
+    private Graph<Agent, DefaultEdge> agentsToGraph(Agent[] agents) {
+        Graph<Agent, DefaultEdge> agentGraph = new DefaultUndirectedWeightedGraph<>(null, null);
 
         for(int i = 0; i < agents.length; i++) {
             agentGraph.addVertex(agents[i]);
