@@ -12,7 +12,7 @@ import java.util.Random;
  * Konstante, so dass delta*beta zwischen 0 und 1 liegt.
  * @author Michel Bodé
  */
-public class ReplicatorDynamicScore implements AdaptationAlgorithm{
+public class ReplicatorDynamicScore implements AdaptationAlgorithm {
 
     public static final String NAME = "";
     public static final String DESCRIPTION = "";
@@ -23,14 +23,14 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm{
     @Override
     public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         rnd = new Random();
-        double beta = 1/getHighestScoreDifference(agents);
+        double beta = 1 / getHighestScoreDifference(agents);
 
-        for(int i = 0; i < agents.length; i++) {
+        for (int i = 0; i < agents.length; i++) {
             int rndInt = rnd.nextInt(101);
-            if(rndInt < adaptationProbability*100) {
-                Agent randomAgent = getRandomAgent(agents);
+            if (rndInt < adaptationProbability * 100) {
+                Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 int delta = Math.min(randomAgent.getHistory().getScore() - agents[i].getHistory().getScore(), 0);
-                if(currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndInt < delta*beta*100){
+                if (currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndInt < delta * beta * 100) {
                     agents[i].setStrategy(randomAgent.getStrategy());
                 }
             }
@@ -41,20 +41,15 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm{
         int max = agents[0].getHistory().getScore();
         int min = max;
 
-        for(int i = 0; i < agents.length; i++) {
+        for (int i = 0; i < agents.length; i++) {
             int currentScore = agents[i].getHistory().getScore();
-            if(currentScore > max) {
+            if (currentScore > max) {
                 max = currentScore;
             }
-            if(currentScore < min) {
+            if (currentScore < min) {
                 min = currentScore;
             }
         }
         return max - min;
-    }
-
-    private Agent getRandomAgent(Agent[] agents) {
-        double rndDouble = (double)rnd.nextInt(101)/100;
-        return agents[(int)Math.floor((agents.length - 1)*rndDouble)];
     }
 }
