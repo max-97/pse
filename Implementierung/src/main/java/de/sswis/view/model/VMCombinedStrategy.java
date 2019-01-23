@@ -88,4 +88,5 @@ public class VMCombinedStrategy {
     public List<String> getConditions() {
         return this.conditions;
     }
+
 }
