@@ -166,6 +166,11 @@ public class ShowCompareView implements AbstractShowCompareView{
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
+    @Override
     public void addCompareButtonActionlistener(ActionListener listener) {
 
     }

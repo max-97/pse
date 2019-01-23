@@ -30,6 +30,11 @@ public class ShowMultiResultView implements AbstractShowMultiResultView{
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
+    @Override
     public void addCompareButtonActionlistener(ActionListener listener) {
 
     }

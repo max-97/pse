@@ -442,4 +442,7 @@ public class FileManager {
     private String getFilePath(String objectType, String objectName) {
         return FileManager.BASE_PATH + "/" + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
     }
+
+    public void saveMixedStrategy(VMStrategy vmStrategy) {
+    }
 }

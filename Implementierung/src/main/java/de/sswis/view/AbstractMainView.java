@@ -133,7 +133,7 @@ public interface AbstractMainView extends AbstractView {
      */
     void addManageConfigMenuActionListener(ActionListener listener);
 
-
+    Collection<VMResult> getResults();
 
 
 

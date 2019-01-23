@@ -288,6 +288,11 @@ public class NewInitializationView implements AbstractNewInitializationView{
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
+    @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
 
     }

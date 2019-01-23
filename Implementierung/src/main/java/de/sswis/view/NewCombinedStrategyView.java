@@ -31,6 +31,11 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+
+    }
+
+    @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
 
     }
