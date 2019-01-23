@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ShowMultiResultView implements AbstractShowMultiResultView{
     private List<VMConfiguration> vmConfigurations;
+    private AbstractMainView parentView;
 
     @Override
     public void update() {
@@ -36,5 +37,15 @@ public class ShowMultiResultView implements AbstractShowMultiResultView{
     @Override
     public void addCompareButtonActionlistener(ActionListener listener) {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 }

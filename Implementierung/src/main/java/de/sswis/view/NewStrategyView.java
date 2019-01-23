@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  */
 public class NewStrategyView implements AbstractNewStrategyView {
     private VMStrategy vmStrategy;
+    private AbstractManageStrategiesView parentView;
 
     @Override
     public void update() {
@@ -49,7 +50,12 @@ public class NewStrategyView implements AbstractNewStrategyView {
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractManageStrategiesView) parentView;
+    }
+
+    @Override
     public AbstractManageStrategiesView getParentView() {
-        return null;
+        return this.parentView;
     }
 }

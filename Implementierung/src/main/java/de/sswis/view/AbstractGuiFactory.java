@@ -1,6 +1,4 @@
-package de.sswis.controller;
-
-import de.sswis.view.*;
+package de.sswis.view;
 
 /**
  * Eine Fabrik zum Erzeugen von GUIs. Der Nutzer dieser Schnittstelle kann sich alle Benutzeroberflächen erzeugen

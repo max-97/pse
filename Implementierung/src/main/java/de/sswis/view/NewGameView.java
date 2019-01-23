@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 public class NewGameView implements AbstractNewGameView {
 
     private VMGame vmGame;
+    private AbstractManageGamesView parentView;
 
 
     @Override
@@ -51,7 +52,12 @@ public class NewGameView implements AbstractNewGameView {
     }
 
     @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractManageGamesView) parentView;
+    }
+
+    @Override
     public AbstractManageGamesView getParentView() {
-        return null;
+        return this.parentView;
     }
 }

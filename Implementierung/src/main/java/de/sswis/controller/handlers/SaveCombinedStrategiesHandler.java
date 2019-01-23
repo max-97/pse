@@ -1,5 +1,6 @@
 package de.sswis.controller.handlers;
 
+
 import de.sswis.controller.FileManager;
 import de.sswis.view.AbstractManageCombinedStrategiesView;
 import de.sswis.view.AbstractNewCombinedStrategyView;

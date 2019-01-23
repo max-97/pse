@@ -15,6 +15,6 @@ public interface AbstractShowMultiResultView extends AbstractView {
      */
     void addCompareButtonActionlistener (ActionListener listener);
 
-
+    AbstractMainView getParentView();
 
 }
