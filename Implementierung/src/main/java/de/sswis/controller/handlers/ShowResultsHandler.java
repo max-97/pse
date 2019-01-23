@@ -1,6 +1,6 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.controller.AbstractGuiFactory;
+import de.sswis.view.AbstractGuiFactory;
 import de.sswis.view.AbstractMainView;
 
 import java.awt.event.ActionEvent;
