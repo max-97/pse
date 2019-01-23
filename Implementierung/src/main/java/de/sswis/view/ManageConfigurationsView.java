@@ -14,6 +14,7 @@ import java.util.List;
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
     private List<VMConfiguration> vmConfigurations;
+    private AbstractMainView parentView;
 
 
     @Override
@@ -52,6 +53,11 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     }
 
     @Override
+    public VMConfiguration getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -64,5 +70,15 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 }
