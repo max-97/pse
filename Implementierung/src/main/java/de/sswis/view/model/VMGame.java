@@ -53,4 +53,8 @@ public class VMGame {
     public void setPayoffs(int[][] payoffs) {
         this.payoffs = payoffs;
     }
+
+    public void setPayoffEntry(int x, int y, int value) {
+        this.payoffs[x][y] = value;
+    }
 }

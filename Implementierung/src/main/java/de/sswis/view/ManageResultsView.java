@@ -11,6 +11,9 @@ import java.awt.event.ActionListener;
  * @author Sophie Bräuniger
  */
 public class ManageResultsView implements AbstractManageResultsView {
+
+    private AbstractMainView parentView;
+
     @Override
     public void addResult(VMResult vmResult) {
 
@@ -37,7 +40,7 @@ public class ManageResultsView implements AbstractManageResultsView {
     }
 
     @Override
-    public VMResult getSelected() {
+    public VMResult getSelectedVM() {
         return null;
     }
 
@@ -54,5 +57,15 @@ public class ManageResultsView implements AbstractManageResultsView {
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 }

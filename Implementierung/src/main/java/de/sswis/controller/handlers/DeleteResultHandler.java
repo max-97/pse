@@ -2,6 +2,7 @@ package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
 import de.sswis.view.AbstractMainView;
+import de.sswis.view.AbstractManageResultsView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

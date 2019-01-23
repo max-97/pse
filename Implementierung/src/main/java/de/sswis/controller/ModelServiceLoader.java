@@ -7,7 +7,8 @@ import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.ServiceLoader;
 
 /**
@@ -18,29 +19,15 @@ import java.util.ServiceLoader;
  */
 public class ModelServiceLoader {
 
-    private ServiceLoader<AdaptationAlgorithm> adaptAlgLoader = ServiceLoader.load(AdaptationAlgorithm.class);
-    private ServiceLoader<PairingAlgorithm> pairAlgLoader = ServiceLoader.load(PairingAlgorithm.class);
-    private ServiceLoader<RankingAlgorithm> rankAlgLoader = ServiceLoader.load(RankingAlgorithm.class);
-    private ServiceLoader<Condition> conditionLoader = ServiceLoader.load(Condition.class);
-    private ServiceLoader<BaseStrategy> baseStrategyLoader = ServiceLoader.load(BaseStrategy.class);
-    private List<AdaptationAlgorithm> adaptAlgorithms = null;
-    private List<PairingAlgorithm> pairAlgorithms = null;
-    private List<RankingAlgorithm> rankAlgorithms = null;
-    private List<Condition> conditions = null;
-    private List<BaseStrategy> baseStrategies = null;
-
     /**
      * Liefert eine Liste mit allen Algorithmen, die das {@code AdaptationAlgorithm}-Interface implementieren.
      *
      * @return eine Liste mit allen Adaptionsalgorithmen
      */
-    public List<AdaptationAlgorithm> getAdaptAlgorithmList() {
-        /*if (adaptAlgorithms == null) {
-            for (AdaptationAlgorithm aa : this.adaptAlgLoader) {
-                adaptAlgorithms.add(aa);
-            }
-        }*/
-        return adaptAlgorithms;
+    public Collection<AdaptationAlgorithm> getAdaptAlgorithmList() {
+        ArrayList<AdaptationAlgorithm> list = new ArrayList<>();
+        ServiceLoader.load(AdaptationAlgorithm.class).iterator().forEachRemaining(list::add);
+        return list;
     }
 
     /**
@@ -48,13 +35,10 @@ public class ModelServiceLoader {
      *
      * @return eine Liste mit allen Paarungsalgorithmen
      */
-    public List<PairingAlgorithm> getPairAlgorithmList() {
-        /*if (pairAlgorithms == null) {
-            for (PairingAlgorithm pa : this.pairAlgLoader) {
-                pairAlgorithms.add(pa);
-            }
-        }*/
-        return pairAlgorithms;
+    public Collection<PairingAlgorithm> getPairAlgorithmList() {
+        ArrayList<PairingAlgorithm> list = new ArrayList<>();
+        ServiceLoader.load(PairingAlgorithm.class).iterator().forEachRemaining(list::add);
+        return list;
     }
 
     /**
@@ -62,13 +46,10 @@ public class ModelServiceLoader {
      *
      * @return eine Liste mit allen Bewertungsalgorithmen
      */
-    public List<RankingAlgorithm> getRankAlgorithmList() {
-        /*if (rankAlgorithms == null) {
-            for (RankingAlgorithm ra : this.rankAlgLoader) {
-                rankAlgorithms.add(ra);
-            }
-        }*/
-        return rankAlgorithms;
+    public Collection<RankingAlgorithm> getRankAlgorithmList() {
+        ArrayList<RankingAlgorithm> list = new ArrayList<>();
+        ServiceLoader.load(RankingAlgorithm.class).iterator().forEachRemaining(list::add);
+        return list;
     }
 
     /**
@@ -76,13 +57,10 @@ public class ModelServiceLoader {
      *
      * @return eine Liste mit allen Bedingungen
      */
-    public List<Condition> getConditionList() {
-        /*if (conditions == null) {
-            for (Condition c : this.conditionLoader) {
-                conditions.add(c);
-            }
-        }*/
-        return conditions;
+    public Collection<Condition> getConditionList() {
+        ArrayList<Condition> list = new ArrayList<>();
+        ServiceLoader.load(Condition.class).iterator().forEachRemaining(list::add);
+        return list;
     }
 
     /**
@@ -90,13 +68,10 @@ public class ModelServiceLoader {
      *
      * @return eine Liste mit allen Basis-Strategien
      */
-    public List<BaseStrategy> getBaseStrategyList() {
-        /*if (baseStrategies == null) {
-            for (BaseStrategy bs : this.baseStrategyLoader) {
-                baseStrategies.add(bs);
-            }
-        }*/
-        return baseStrategies;
+    public Collection<BaseStrategy> getBaseStrategyList() {
+        ArrayList<BaseStrategy> list = new ArrayList<>();
+        ServiceLoader.load(BaseStrategy.class).iterator().forEachRemaining(list::add);
+        return list;
     }
 
 }

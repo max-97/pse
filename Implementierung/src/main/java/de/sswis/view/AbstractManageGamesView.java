@@ -55,4 +55,7 @@ public interface AbstractManageGamesView extends AbstractView {
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
     VMGame getSelectedVM();
+
+    AbstractMainView getParentView();
+
 }
