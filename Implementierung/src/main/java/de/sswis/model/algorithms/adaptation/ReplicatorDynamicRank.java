@@ -26,11 +26,11 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
         double beta = 1/(agents.length - 1);
 
         for(int i = 0; i < agents.length; i++) {
-            int rndInt = rnd.nextInt(101);
-            if(rndInt < adaptationProbability*100) {
+            double rndDouble = rnd.nextDouble();
+            if(rndDouble < adaptationProbability) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < currentRanking.get(agents[i]) &&
-                        rndInt < (Math.abs(currentRanking.get(agents[i]) - currentRanking.get(randomAgent))*beta*100)){
+                        rndDouble < (Math.abs(currentRanking.get(agents[i]) - currentRanking.get(randomAgent))*beta)){
                     agents[i].setStrategy(randomAgent.getStrategy());
                 }
             }
