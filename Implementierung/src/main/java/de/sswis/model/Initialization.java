@@ -22,6 +22,7 @@ public class Initialization {
      */
     public Initialization(String name, int agentCount) {
         this.name = name;
+        this.agentCount = agentCount;
     }
 
     /**
