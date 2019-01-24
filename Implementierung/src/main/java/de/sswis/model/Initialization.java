@@ -44,7 +44,7 @@ public class Initialization {
         } else {
             int agentNumber = 0;
             for (int x = 0; x < agents.length; x++) {
-                if (agents[x].getGroup() == null) {
+                if (agents[x].getGroup().equals(group)) {
                     group.addMember(agents[x]);
                     agentNumber++;
                 }
@@ -65,7 +65,27 @@ public class Initialization {
      * @param group die {@code Gruppe} in welcher die Verteilung angewandt wird
      */
     public void setStrategyDistribution(AgentDistribution distribution, CombinedStrategy strategy, Group group) {
-
+        Agent[] members = group.getMembers();
+        if (distribution.usesIDS()){
+            int[] ids = distribution.getIDs();
+            for (int i = 0; i < distribution.getIDs().length; i++) {
+                for (int j = 0; j < group.getMembers().length; j++) {
+                    if (ids[i] == members[j].getId()) {
+                        members[j]. setStrategy(strategy);
+                    }
+                }
+            }
+        } else {
+            int agentNumber = 0;
+            for (int x = 0; x < members.length; x++) {
+                    members[x].setStrategy(strategy);
+                    agentNumber++;
+                if ((agentNumber/members.length) == distribution.getPercentage()) {
+                    break;
+                }
+            }
+        }
+        group.setMembers(members);
     }
 
     /**
