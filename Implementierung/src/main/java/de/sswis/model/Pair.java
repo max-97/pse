@@ -23,6 +23,10 @@ public class Pair {
         this.game = game;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
     /**
      * Gibt einen bestimmten Agenten des Paars zurück.
      * @param agentNumber Nummer des Agenten, eins für den Ersten, zwei für den Zweiten
