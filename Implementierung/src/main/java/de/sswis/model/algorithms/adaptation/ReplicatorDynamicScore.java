@@ -29,7 +29,7 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
             double rndDouble = rnd.nextDouble();
             if (rndDouble < adaptationProbability) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
-                int delta = Math.min(randomAgent.getHistory().getScore() - agents[i].getHistory().getScore(), 0);
+                int delta = Math.min(randomAgent.getScore() - agents[i].getScore(), 0);
                 if (currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndDouble < delta * beta) {
                     agents[i].setStrategy(randomAgent.getStrategy());
                 }
@@ -38,11 +38,11 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
     }
 
     private int getHighestScoreDifference(Agent[] agents) {
-        int max = agents[0].getHistory().getScore();
+        int max = agents[0].getScore();
         int min = max;
 
         for (int i = 0; i < agents.length; i++) {
-            int currentScore = agents[i].getHistory().getScore();
+            int currentScore = agents[i].getScore();
             if (currentScore > max) {
                 max = currentScore;
             }

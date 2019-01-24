@@ -8,6 +8,7 @@ package de.sswis.model;
 public class Agent {
 
     private int id;
+    private int score;
     private int initialScore;
     private History history;
     private Group group;
@@ -40,6 +41,8 @@ public class Agent {
     public Strategy getStrategy() {
         return strategy;
     }
+
+    public int getScore() { return score;}
 
     /**
      * Ersetzt die Strategie des Agenten durch eine neue.
