@@ -30,6 +30,8 @@ public class Group {
         return name;
     }
 
+    public List<Agent> getMembers { return members; }
+
     /**
      * Fuegt dieser Gruppe einen neuen Agenten hinzu.
      * @param newMember neuer Agent
