@@ -32,6 +32,14 @@ public class Initialization {
      * @param group die {@code Gruppe} für welche die Verteilung angewandt wird
      */
     public void setGroupDistribution(AgentDistribution distribution, Group group) {
+        int[] ids = distribution.getIDs();
+        for (int i = 0; i < distribution.getIDs().length; i++) {
+            for (int j = 0; j < agents.length; j++) {
+                if (ids[i] == agents[j].geiId()) {
+                    group.addMember(agents[j]);
+                }
+            }
+        }
 
     }
 
