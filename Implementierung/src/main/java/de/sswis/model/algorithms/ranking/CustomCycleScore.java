@@ -21,7 +21,6 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     /**
      * Konstruktor
-     * @param cycleRoundCount Rundenanzahl eines Zyklus
      * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen
      */
     public CustomCycleScore(int WINDOW_SIZE) {

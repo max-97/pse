@@ -33,7 +33,6 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer> averageRanks = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        HashMap<Agent, Integer[]> cycleRankings;
         currentRounds = agents[1].getHistory().getCurrentRound();
         currentCycle = agents[1].getHistory().getCurrentCycle();
 
@@ -41,7 +40,7 @@ public class AverageRank implements RankingAlgorithm {
             agentList.add(agents[i]);
         }
 
-        cycleRankings = getCycleRankings(agentList);
+        HashMap<Agent, Integer[]> cycleRankings = getCycleRankings(agentList);
 
         for(int i = 0; i < agents.length; i++) {
             int rankSum = 0;
@@ -83,14 +82,14 @@ public class AverageRank implements RankingAlgorithm {
             result.put(it.next(), new Integer[currentCycle]);
         }
 
-        for(int i = 0; i < currentCycle; i++) {
+        for(int i = 1; i <= currentCycle; i++) {
             for(int j = 0; j < agentList.size(); j++) {
-                if(i == currentCycle - 1) {
+                if(i == currentCycle) {
                     cyclesScores.put(agentList.get(j), agentList.get(j).getScore() -
-                            agentList.get(j).getHistory().getScore(1));
+                            agentList.get(j).getHistory().getScore(Math.max(i - WINDOW_SIZE, 1)));
                 } else {
                     cyclesScores.put(agentList.get(j), agentList.get(j).getHistory().getScore(i) -
-                            agentList.get(j).getHistory().getScore(1));
+                            agentList.get(j).getHistory().getScore(Math.max(i - WINDOW_SIZE, 1)));
                 }
             }
 
@@ -105,14 +104,12 @@ public class AverageRank implements RankingAlgorithm {
                 if(!first && previousScore != cyclesScores.get(current)) {
                     rankCount++;
                 }
-                result.get(current)[i] = rankCount;
+                result.get(current)[i - 1] = rankCount;
                 previousScore = cyclesScores.get(current);
                 first = false;
             }
             cyclesScores.clear();
         }
-
-
         return result;
     }
 }
