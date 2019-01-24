@@ -164,7 +164,12 @@ public class NewConfigurationView implements AbstractNewConfigurationView{
 
     @Override
     public VMConfiguration getVMConfiguration() {
-        return null;
+        return this.vmConfiguration;
+    }
+
+    @Override
+    public void setConfiguration(VMConfiguration configuration) {
+        this.vmConfiguration = configuration;
     }
 
     @Override

@@ -28,4 +28,5 @@ public interface AbstractNewInitializationView extends AbstractView {
 
     AbstractManageInitializationsView getParentView();
 
+    void setInitialization(VMInitialization initialization);
 }

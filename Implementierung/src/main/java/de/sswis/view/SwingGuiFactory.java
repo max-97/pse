@@ -67,11 +67,13 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageConfigurationsView createManageConfigurationsView() {
         AbstractManageConfigurationsView manageConfigurationsView = new ManageConfigurationsView();
 
-        manageConfigurationsView.addCancelButtonActionlistener(new CancleHandler(manageConfigurationsView));
+        manageConfigurationsView.addCancelButtonActionlistener(new CancelHandler(manageConfigurationsView));
         manageConfigurationsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageConfigurationsView));
         manageConfigurationsView.addNewConfigurationButtonActionlistener(new NewConfigurationHandler(this));
-        manageConfigurationsView.addEditConfigurationButtonActionlistener(new EditConfigurationHandler(this));
-        manageConfigurationsView.addDeleteConfigurationButtonActionlistener(new DeleteConfigurationHandler(manageConfigurationsView));
+        manageConfigurationsView.addEditConfigurationButtonActionlistener(
+                new EditConfigurationHandler(this, manageConfigurationsView));
+        manageConfigurationsView.addDeleteConfigurationButtonActionlistener(
+                new DeleteConfigurationHandler(manageConfigurationsView));
 
         return manageConfigurationsView;
     }
@@ -80,11 +82,13 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageInitializationsView createManageInitializationsView() {
         AbstractManageInitializationsView manageInitializationsView = new ManageInitializationsView();
 
-        manageInitializationsView.addCancelButtonActionlistener(new CancleHandler(manageInitializationsView));
+        manageInitializationsView.addCancelButtonActionlistener(new CancelHandler(manageInitializationsView));
         manageInitializationsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageInitializationsView));
         manageInitializationsView.addNewInitButtonActionlistener(new NewInitializationHandler(this));
-        manageInitializationsView.addEditInitButtonActionlistener(new EditInitializationHandler(this));
-        manageInitializationsView.addDeleteInitButtonActionlistener(new DeleteInitializationHandler(manageInitializationsView));
+        manageInitializationsView.addEditInitButtonActionlistener(
+                new EditInitializationHandler(this, manageInitializationsView));
+        manageInitializationsView.addDeleteInitButtonActionlistener(
+                new DeleteInitializationHandler(manageInitializationsView));
 
         return manageInitializationsView;
     }
@@ -93,11 +97,13 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageStrategiesView createManageStrategiesView() {
         AbstractManageStrategiesView manageStrategiesView = new ManageStrategiesView();
 
-        manageStrategiesView.addCancelButtonActionlistener(new CancleHandler(manageStrategiesView));
+        manageStrategiesView.addCancelButtonActionlistener(new CancelHandler(manageStrategiesView));
         manageStrategiesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageStrategiesView));
         manageStrategiesView.addNewMixedStrategyButtonActionlistener(new NewStrategyHandler(this));
-        manageStrategiesView.addEditMixedStrategyButtonActionlistener(new EditStrategyHandler(this));
-        manageStrategiesView.addDeleteMixedStrategyButtonActionlistener(new DeleteStrategyHandler(manageStrategiesView));
+        manageStrategiesView.addEditMixedStrategyButtonActionlistener(
+                new EditStrategyHandler(this, manageStrategiesView));
+        manageStrategiesView.addDeleteMixedStrategyButtonActionlistener(
+                new DeleteStrategyHandler(manageStrategiesView));
 
         return manageStrategiesView;
     }
@@ -106,11 +112,13 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageCombinedStrategiesView createManageCombinedStrategiesView() {
         AbstractManageCombinedStrategiesView manageCombinedStrategiesView = new ManageCombinedStrategiesView();
 
-        manageCombinedStrategiesView.addCancelButtonActionlistener(new CancleHandler(manageCombinedStrategiesView));
+        manageCombinedStrategiesView.addCancelButtonActionlistener(new CancelHandler(manageCombinedStrategiesView));
         manageCombinedStrategiesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageCombinedStrategiesView));
         manageCombinedStrategiesView.addNewStrategyButtonActionlistener(new NewCombinedStrategyHandler(this));
-        manageCombinedStrategiesView.addEditStrategyButtonActionlistener(new EditCombinedStrategyHandler(this));
-        manageCombinedStrategiesView.addDeleteStrategyButtonActionlistener(new DeleteCombinedStrategyHandler(manageCombinedStrategiesView));
+        manageCombinedStrategiesView.addEditStrategyButtonActionlistener(
+                new EditCombinedStrategyHandler(this, manageCombinedStrategiesView));
+        manageCombinedStrategiesView.addDeleteStrategyButtonActionlistener(
+                new DeleteCombinedStrategyHandler(manageCombinedStrategiesView));
 
         return manageCombinedStrategiesView;
     }
@@ -119,10 +127,10 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageGamesView createManageGamesView() {
         AbstractManageGamesView manageGamesView = new ManageGamesView();
 
-        manageGamesView.addCancelButtonActionlistener(new CancleHandler(manageGamesView));
+        manageGamesView.addCancelButtonActionlistener(new CancelHandler(manageGamesView));
         manageGamesView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageGamesView));
         manageGamesView.addNewGameButtonActionlistener(new NewGameHandler(this));
-        manageGamesView.addEditGameButtonActionlistener(new EditGameHandler(this));
+        manageGamesView.addEditGameButtonActionlistener(new EditGameHandler(this, manageGamesView));
         manageGamesView.addDeleteGameButtonActionlistener(new DeleteGameHandler(manageGamesView));
 
         return manageGamesView;
@@ -132,7 +140,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractManageResultsView createManageResultsView() {
         AbstractManageResultsView manageResultsView = new ManageResultsView();
 
-        manageResultsView.addCancelButtonActionlistener(new CancleHandler(manageResultsView));
+        manageResultsView.addCancelButtonActionlistener(new CancelHandler(manageResultsView));
         manageResultsView.addSaveQuitButtonActionlistener(new SaveAndQuitHandler(manageResultsView));
         manageResultsView.addDeleteResultButtonActionlistener(new DeleteResultHandler(manageResultsView));
 
@@ -143,7 +151,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractNewConfigurationView createNewConfigurationView() {
         AbstractNewConfigurationView newConfigurationView = new NewConfigurationView();
 
-        newConfigurationView.addCancelButtonActionlistener(new CancleHandler(newConfigurationView));
+        newConfigurationView.addCancelButtonActionlistener(new CancelHandler(newConfigurationView));
         newConfigurationView.addFinishButtonActionlistener(new SaveConfigurationsHandler(newConfigurationView));
 
         return newConfigurationView;
@@ -153,7 +161,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractNewInitializationView createNewInitializationView() {
         AbstractNewInitializationView newInitializationView = new NewInitializationView();
 
-        newInitializationView.addCancelButtonActionlistener(new CancleHandler(newInitializationView));
+        newInitializationView.addCancelButtonActionlistener(new CancelHandler(newInitializationView));
         newInitializationView.addFinishButtonActionlistener(new SaveInitializationsHandler(newInitializationView));
 
         return newInitializationView;
@@ -163,7 +171,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractNewStrategyView createNewStrategyView() {
         AbstractNewStrategyView newStrategyView = new NewStrategyView();
 
-        newStrategyView.addCancelButtonActionlistener(new CancleHandler(newStrategyView));
+        newStrategyView.addCancelButtonActionlistener(new CancelHandler(newStrategyView));
         newStrategyView.addFinishButtonActionlistener(new SaveStrategiesHandler(newStrategyView));
 
         return newStrategyView;
@@ -173,7 +181,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractNewCombinedStrategyView createNewCombinedStrategyView() {
         AbstractNewCombinedStrategyView newCombinedStrategyView = new NewCombinedStrategyView();
 
-        newCombinedStrategyView.addCancelButtonActionlistener(new CancleHandler(newCombinedStrategyView));
+        newCombinedStrategyView.addCancelButtonActionlistener(new CancelHandler(newCombinedStrategyView));
         newCombinedStrategyView.addFinishButtonActionlistener(new SaveCombinedStrategiesHandler(newCombinedStrategyView));
 
         return newCombinedStrategyView;
@@ -183,7 +191,7 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractNewGameView createNewGameView() {
         AbstractNewGameView newGameView = new NewGameView();
 
-        newGameView.addCancelButtonActionlistener(new CancleHandler(newGameView));
+        newGameView.addCancelButtonActionlistener(new CancelHandler(newGameView));
         newGameView.addFinishButtonActionlistener(new SaveGamesHandler(newGameView));
 
         return newGameView;

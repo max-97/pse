@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  *
  * @author Max Braun
  */
-public class CancleHandler implements ActionListener {
+public class CancelHandler implements ActionListener {
 
     private AbstractView view;
 
@@ -18,12 +18,12 @@ public class CancleHandler implements ActionListener {
      *
      * @param view die zu schließende View
      */
-    public CancleHandler(AbstractView view) {
-
+    public CancelHandler(AbstractView view) {
+        this.view = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        this.view.close();
     }
 }
