@@ -35,6 +35,10 @@ public class Group {
      * @param newMember neuer Agent
      */
     public void addMember(Agent newMember) {
-
+        if (!this.members.contains(newMember)) {
+            this.members.add(newMember);
+        } else {
+            throw new DuplicateObjectNameException("this agent is already a member of this group.");
+        }
     }
 }
