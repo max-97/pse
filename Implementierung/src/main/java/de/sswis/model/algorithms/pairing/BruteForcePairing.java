@@ -1,8 +1,6 @@
 package de.sswis.model.algorithms.pairing;
 
-import de.sswis.model.Agent;
-import de.sswis.model.Game;
-import de.sswis.model.Pair;
+import de.sswis.model.*;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,7 +33,7 @@ public class BruteForcePairing implements PairingAlgorithm{
             Agent bestPartner = null;
             while(it.hasNext() && smallestDistance != 0) {
                 Agent currentAgent = it.next();
-                double distance = calculateDistance(agent1, currentAgent);
+                double distance = (calculateDistance(agent1, currentAgent) + calculateDistance(currentAgent, agent1))/2;
                 if(distance < smallestDistance) {
                     smallestDistance = distance;
                     bestPartner = currentAgent;
@@ -49,7 +47,25 @@ public class BruteForcePairing implements PairingAlgorithm{
     }
 
     private double calculateDistance(Agent agent1, Agent agent2) {
-        //TODO
-        return 0;
+        Strategy strategy = agent1.getStrategy();
+        double distance = 1;
+
+        if(strategy instanceof CombinedStrategy) {
+            if(strategy.calculateAction(agent1, agent2) == Action.COOPERATION){
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            CombinedStrategy[] combinedStrategies = ((MixedStrategy)strategy).getCombinedStrategies();
+            double[] probabilities = ((MixedStrategy)strategy).getProbabilities();
+
+            for(int i = 0; i < combinedStrategies.length; i++) {
+                if(combinedStrategies[i].calculateAction(agent1, agent2) == Action.COOPERATION){
+                    distance -= probabilities[i];
+                }
+            }
+        }
+        return distance;
     }
 }

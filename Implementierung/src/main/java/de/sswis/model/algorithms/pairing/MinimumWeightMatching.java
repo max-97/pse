@@ -1,9 +1,7 @@
 package de.sswis.model.algorithms.pairing;
 
 
-import de.sswis.model.Agent;
-import de.sswis.model.Game;
-import de.sswis.model.Pair;
+import de.sswis.model.*;
 import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.MatchingAlgorithm;
 import org.jgrapht.alg.matching.blossom.v5.KolmogorovMinimumWeightPerfectMatching;
@@ -49,14 +47,33 @@ public class MinimumWeightMatching implements PairingAlgorithm {
         for(int i = 0; i < agents.length - 1; i++) {
             for(int j = i + 1; j < agents.length; j++) {
                 agentGraph.addEdge(agents[i], agents[j]);
-                agentGraph.setEdgeWeight(agents[i], agents[j], calculateDistance(agents[i], agents[j]));
+                agentGraph.setEdgeWeight(agents[i], agents[j],
+                        (calculateDistance(agents[i], agents[j]) + calculateDistance(agents[j], agents[i]))/2);
             }
         }
         return agentGraph;
     }
 
     private double calculateDistance(Agent agent1, Agent agent2) {
-        //TODO
-        return 0;
+        Strategy strategy = agent1.getStrategy();
+        double distance = 1;
+
+        if(strategy instanceof CombinedStrategy) {
+            if(strategy.calculateAction(agent1, agent2) == Action.COOPERATION){
+                return 0;
+            } else {
+                return 1;
+            }
+        } else {
+            CombinedStrategy[] combinedStrategies = ((MixedStrategy)strategy).getCombinedStrategies();
+            double[] probabilities = ((MixedStrategy)strategy).getProbabilities();
+
+            for(int i = 0; i < combinedStrategies.length; i++) {
+                if(combinedStrategies[i].calculateAction(agent1, agent2) == Action.COOPERATION){
+                    distance -= probabilities[i];
+                }
+            }
+        }
+        return distance;
     }
 }
