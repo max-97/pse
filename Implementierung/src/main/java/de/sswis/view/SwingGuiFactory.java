@@ -22,11 +22,11 @@ public class SwingGuiFactory implements AbstractGuiFactory {
         mainView.addNewCombiStrategyMenuActionListener(new NewCombinedStrategyViewHandler(this));
         mainView.addNewStrategyMenuActionListener(new NewStrategyViewHandler(this));
 
-        mainView.addManageConfigMenuActionListener(new ManageConfigurationsHandler(this));
-        mainView.addManageInitMenuActionListener(new ManageInitializationHandler(this));
-        mainView.addManageGameMenuActionListener(new ManageGamesHandler(this));
-        mainView.addManageCombiStrategyMenuActionListener(new ManageCombinedStrategiesHandler(this));
-        mainView.addManageStrategyMenuActionListener(new ManageStrategiesHandler(this));
+        mainView.addManageConfigMenuActionListener(new ManageConfigurationsHandler(this, mainView));
+        mainView.addManageInitMenuActionListener(new ManageInitializationHandler(this, mainView));
+        mainView.addManageGameMenuActionListener(new ManageGamesHandler(this, mainView));
+        mainView.addManageCombiStrategyMenuActionListener(new ManageCombinedStrategiesHandler(this, mainView));
+        mainView.addManageStrategyMenuActionListener(new ManageStrategiesHandler(this, mainView));
 
         mainView.addSaveButtonActionlistener(new SaveAndQuitHandler(mainView));
         mainView.addShowButtonActionlistener(new ShowResultsHandler(mainView, this));
