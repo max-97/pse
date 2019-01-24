@@ -7,6 +7,7 @@ import de.sswis.view.model.VMInitialization;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Speichert die erstellte {@code Initialisierung}. Die View, die diesen {@code ActionListener} verwendet muss eine
@@ -31,7 +32,12 @@ public class SaveInitializationsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMInitialization vmInitialization = this.initializationView.getVMInitialization();
-        this.fileManager.saveInitalization(vmInitialization);
+        try {
+            this.fileManager.saveInitalization(vmInitialization);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         AbstractManageInitializationsView parentView = this.initializationView.getParentView();
         parentView.addInit(vmInitialization);
         parentView.update();

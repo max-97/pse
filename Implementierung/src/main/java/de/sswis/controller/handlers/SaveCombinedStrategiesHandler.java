@@ -8,6 +8,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 
 /**
@@ -33,7 +34,12 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMCombinedStrategy combinedStrategy = this.combinedStrategyView.getCombinedStrategy();
-        this.fileManager.saveCombinedStrategy(combinedStrategy);
+        try {
+            this.fileManager.saveCombinedStrategy(combinedStrategy);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
         parentView.addStrategy(combinedStrategy);
         parentView.update();

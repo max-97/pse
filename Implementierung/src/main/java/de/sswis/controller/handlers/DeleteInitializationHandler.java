@@ -6,6 +6,7 @@ import de.sswis.view.model.VMInitialization;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Löscht die ausgewählte {@code Initialisierung}.
@@ -29,8 +30,13 @@ public class DeleteInitializationHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMInitialization selectedVM = this.manageInitializationsView.getSelectedVM();
+        try {
+            this.fileManager.deleteInitalization(selectedVM.getName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         this.manageInitializationsView.removeInit(selectedVM.getName());
         this.manageInitializationsView.update();
-        this.fileManager.deleteInitalization(selectedVM.getName());
     }
 }

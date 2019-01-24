@@ -6,6 +6,7 @@ import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -31,7 +32,11 @@ public class SaveResultsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         for (VMResult r : this.mainView.getResults()) {
-            this.fileManager.saveResult(r);
+            try {
+                this.fileManager.saveResult(r);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ import de.sswis.view.model.VMGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Löscht das ausgewählte {@code Spiel}.
@@ -29,8 +30,13 @@ public class DeleteGameHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMGame selectedVM = this.manageGamesView.getSelectedVM();
+        try {
+            this.fileManager.deleteGame(selectedVM.getName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         this.manageGamesView.removeGame(selectedVM.getName());
         this.manageGamesView.update();
-        this.fileManager.deleteGame(selectedVM.getName());
     }
 }

@@ -6,6 +6,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Löscht die ausgewählte {@code kombinierte Strategie}.
@@ -29,8 +30,13 @@ public class DeleteCombinedStrategyHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMCombinedStrategy selectedVM = manageStrategiesView.getSelectedVM();
+        try {
+            this.fileManager.deleteCombinedStrategy(selectedVM.getName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         this.manageStrategiesView.removeStrategy(selectedVM.getName());
         this.manageStrategiesView.update();
-        this.fileManager.deleteCombinedStrategy(selectedVM.getName());
     }
 }

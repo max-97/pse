@@ -6,6 +6,7 @@ import de.sswis.view.model.VMConfiguration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Löscht die ausgewählte {@code Konfiguration}.
@@ -29,8 +30,13 @@ public class DeleteConfigurationHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMConfiguration selectedVM = this.manageConfigurationsView.getSelectedVM();
+        try {
+            this.fileManager.deleteConfiguration(selectedVM.getName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         this.manageConfigurationsView.removeConfiguration(selectedVM.getName());
         this.manageConfigurationsView.update();
-        this.fileManager.deleteConfiguration(selectedVM.getName());
     }
 }
