@@ -113,7 +113,11 @@ public class Configuration {
      * @param newStrategy hinzuzufuegende Strategie
      */
     public void addStrategy(Strategy newStrategy) {
-
+        if(!this.strategies.contains(newStrategy)) {
+            this,strategies.add(newStrategy);
+        } else {
+            throw new DupplicateObjectNameException("this strategy exit already.")
+        }
     }
 
 }
