@@ -30,6 +30,10 @@ public class Group {
         return name;
     }
 
+    public void setMembers(List<Agent> members) {
+        this.members = members;
+    }
+
     public List<Agent> getMembers { return members; }
 
     /**
