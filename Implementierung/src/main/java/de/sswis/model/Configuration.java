@@ -52,7 +52,7 @@ public class Configuration {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public Game getGame() {
