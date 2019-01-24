@@ -7,6 +7,7 @@ import de.sswis.view.model.VMGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Speichert das erstellte {@code Spiel}. Die View, die diesen {@code ActionListener} verwendet muss ein
@@ -31,7 +32,12 @@ public class SaveGamesHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMGame vmGame = this.gameView.getVMGame();
-        this.fileManager.saveGame(vmGame);
+        try {
+            this.fileManager.saveGame(vmGame);
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
         AbstractManageGamesView parentView = this.gameView.getParentView();
         parentView.addGame(vmGame);
         parentView.update();
