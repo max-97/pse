@@ -11,6 +11,7 @@ import java.util.HashMap;
  */
 public class History {
     private int currentRound;
+    private int currentCycle;
     private ArrayList<Integer> score;
     private ArrayList<Boolean> opponentCooperated;
     private ArrayList<Agent> opponent;
@@ -20,17 +21,19 @@ public class History {
     private HashMap<Agent, Boolean> cooperatedEveryTime;
     private HashMap<Group, Boolean> groupCooperatedLastTime;
     private HashMap<Group, Boolean> groupCooperatedEveryTime;
-    private final int INITIAL_CAPACITY = 1000;
+    private final int INITIAL_CAPACITY_ROUNDS = 1000;
+    private final int INITIAL_CAPACITY_CYCLE = 100;
 
     /**
      * Erstellt eine {@code History}.
      */
     public History() {
         this.currentRound = 0;
-        this.score = new ArrayList<>(INITIAL_CAPACITY);
-        this.opponentCooperated = new ArrayList<>(INITIAL_CAPACITY);
-        this.opponent = new ArrayList<>(INITIAL_CAPACITY);
-        this.strategies = new ArrayList<>(INITIAL_CAPACITY);
+        this.currentCycle = 1;
+        this.score = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
+        this.opponentCooperated = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
+        this.opponent = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
+        this.strategies = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
         this.alwaysCooperated = true;
         this.cooperatedLastTime = new HashMap<>();
         this.cooperatedEveryTime = new HashMap<>();
@@ -47,18 +50,12 @@ public class History {
     }
 
     /**
-     * Gibt die Punktzahl des Agenten aus der letzten Runde zurück zurück.
-     * @return aktuelle Punktzahl
-     */
-    public int getScore() { return score.get(currentRound); }
-
-    /**
-     * Gibt die Punktzahl des Agenten in einer bestimmten Runde zurueck.
-     * @param round Runde der gesuchten Punktzahl
+     * Gibt die Punktzahl des Agenten in einem bestimmten Zyklus zurueck.
+     * @param cycle Zyklus der gesuchten Punktzahl
      * @return Punktzahl
      */
-    public int getScore(int round) {
-        return score.get(round);
+    public int getScore(int cycle) {
+        return score.get(cycle);
     }
 
     /**
@@ -88,20 +85,20 @@ public class History {
     }
 
     /**
-     * Gibt den Namen der Strategie des Agenten in einer bestimmten Runde zurueck.
-     * @param round Runde der gesuchten Strategie
+     * Gibt den Namen der Strategie des Agenten in einem bestimmten Zyklus zurueck.
+     * @param cycle Zyklus der gesuchten Strategie
      * @return Name der Strategie
      */
-    public String getStrategy(int round) {
-        return strategies.get(round);
+    public String getStrategy(int cycle) {
+        return strategies.get(cycle);
     }
 
     /**
-     * Speichert die Punktzahl fuer die aktuelle Runde.
+     * Speichert die Punktzahl fuer den aktuellen Zyklus.
      * @param score aktuelle Punktzahl
      */
     public void setScore(int score){
-        this.score.add(currentRound, score);
+        this.score.add(currentCycle, score);
     }
 
     /**
@@ -121,11 +118,11 @@ public class History {
     }
 
     /**
-     * Speichert den Namen der Strategie fuer die aktuelle Runde.
+     * Speichert den Namen der Strategie für den aktuellen Zyklus.
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
-        this.strategies.add(currentRound, strategy.getName());
+        this.strategies.add(currentCycle, strategy.getName());
     }
 
     /**
@@ -254,9 +251,22 @@ public class History {
     public int getCurrentRound() { return currentRound; }
 
     /**
+     * Gibt die aktuelle Zykluszahl zurück.
+     * @return Rundenzahl
+     */
+    public int getCurrentCycle() { return currentCycle; }
+
+    /**
      * Inkrementiert den Rundenzähler um eins.
      */
     public void increaseRoundCount() {
         currentRound++;
+    }
+
+    /**
+     * Inkrementiert den Zykluszähler um eins.
+     */
+    public void increaseCycleCount() {
+        currentCycle++;
     }
 }
