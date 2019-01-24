@@ -219,6 +219,8 @@ public class History {
         return currentRound;
     }
 
+    public int getCurrentCycle() { return 0; }
+
     /**
      * Inkrementiert den Rundenzähler um eins.
      */

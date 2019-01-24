@@ -15,27 +15,16 @@ public class CurrentCycleScore implements RankingAlgorithm {
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
-    private int cycleRoundCount;
-    private int currentRounds;
-
-    /**
-     * Konstruktor
-     * @param cycleRoundCount Rundenanzahl eines Zyklus
-     */
-    public CurrentCycleScore(int cycleRoundCount) {
-        this.cycleRoundCount = cycleRoundCount;
-    }
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
         HashMap<Agent, Integer> cycleScores = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        currentRounds = agents[1].getHistory().getCurrentRound();
-        int start = Math.max(1, currentRounds - cycleRoundCount);
+        int currentCycle = agents[1].getHistory().getCurrentCycle();
 
         for(int i = 0; i < agents.length; i++) {
-            cycleScores.put(agents[i], agents[i].getHistory().getScore() - agents[i].getHistory().getScore(start));
+            cycleScores.put(agents[i], agents[i].getScore() - agents[i].getHistory().getScore(currentCycle));
             agentList.add(agents[i]);
         }
 

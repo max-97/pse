@@ -24,7 +24,7 @@ public class Score implements  RankingAlgorithm {
             agentList.add(agents[i]);
         }
 
-        Collections.sort(agentList, (a1, a2) -> a2.getHistory().getScore() - a1.getHistory().getScore());
+        Collections.sort(agentList, (a1, a2) -> a2.getScore() - a1.getScore());
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;
@@ -32,11 +32,11 @@ public class Score implements  RankingAlgorithm {
         boolean first = true;
         while(it.hasNext()) {
             Agent current = it.next();
-            if(!first && previousScore != current.getHistory().getScore()) {
+            if(!first && previousScore != current.getScore()) {
                 count++;
             }
             result.put(current, count);
-            previousScore = current.getHistory().getScore();
+            previousScore = current.getScore();
             first = false;
         }
         return result;

@@ -18,16 +18,13 @@ public class CustomCycleScore implements RankingAlgorithm {
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"Window size"};
     private final int WINDOW_SIZE;
-    private int cycleRoundCount;
-    private int currentRounds;
 
     /**
      * Konstruktor
      * @param cycleRoundCount Rundenanzahl eines Zyklus
      * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen
      */
-    public CustomCycleScore(int cycleRoundCount, int WINDOW_SIZE) {
-        this.cycleRoundCount = cycleRoundCount;
+    public CustomCycleScore(int WINDOW_SIZE) {
         this.WINDOW_SIZE = WINDOW_SIZE;
     }
 
@@ -36,11 +33,10 @@ public class CustomCycleScore implements RankingAlgorithm {
         HashMap<Agent, Integer> cyclesScores = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        currentRounds = agents[1].getHistory().getCurrentRound();
-        int start = Math.max(1, currentRounds - cycleRoundCount*WINDOW_SIZE);
+        int startCycle = Math.max(agents[1].getHistory().getCurrentCycle() - WINDOW_SIZE, 1);
 
         for(int i = 0; i < agents.length; i++) {
-            cyclesScores.put(agents[i], agents[i].getHistory().getScore() - agents[i].getHistory().getScore(start));
+            cyclesScores.put(agents[i], agents[i].getScore() - agents[i].getHistory().getScore(startCycle));
             agentList.add(agents[i]);
         }
 
