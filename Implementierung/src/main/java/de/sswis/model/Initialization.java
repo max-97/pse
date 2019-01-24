@@ -71,7 +71,7 @@ public class Initialization {
             for (int i = 0; i < distribution.getIDs().length; i++) {
                 for (int j = 0; j < group.getMembers().length; j++) {
                     if (ids[i] == members[j].getId()) {
-                        members[j]. setStrategy(strategy);
+                        members[j].setStrategy(strategy);
                     }
                 }
             }
@@ -97,7 +97,27 @@ public class Initialization {
      * @param group die {@code Gruppe} in welcher die Verteilung angewandt wird
      */
     public void setCapitalDistribution(AgentDistribution distribution, int capital, Group group) {
-
+        Agent[] members = group.getMembers();
+        if (distribution.usesIDS()){
+            int[] ids = distribution.getIDs();
+            for (int i = 0; i < distribution.getIDs().length; i++) {
+                for (int j = 0; j < group.getMembers().length; j++) {
+                    if (ids[i] == members[j].getId()) {
+                        members[j].setScore(capital);
+                    }
+                }
+            }
+        } else {
+            int agentNumber = 0;
+            for (int x = 0; x < members.length; x++) {
+                members[x].setScore(capital);
+                agentNumber++;
+                if ((agentNumber/members.length) == distribution.getPercentage()) {
+                    break;
+                }
+            }
+        }
+        group.setMembers(members);
     }
 
     public String getName() {
