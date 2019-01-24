@@ -1,6 +1,9 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.view.AbstractGuiFactory;
+import de.sswis.view.AbstractManageStrategiesView;
+import de.sswis.view.AbstractNewStrategyView;
+import de.sswis.view.model.VMStrategy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,17 +18,23 @@ import java.awt.event.ActionListener;
 public class NewStrategyHandler implements ActionListener {
 
     private AbstractGuiFactory factory;
+    private AbstractManageStrategiesView strategiesView;
 
     /**
      *
      * @param factory Fabrik zum Erstellen der View
      */
-    public NewStrategyHandler(AbstractGuiFactory factory) {
+    public NewStrategyHandler(AbstractGuiFactory factory, AbstractManageStrategiesView view) {
         this.factory = factory;
+        this.strategiesView = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        AbstractNewStrategyView newStrategyView = this.factory.createNewStrategyView();
+        newStrategyView.setParentView(strategiesView);
+        newStrategyView.setStrategy(new VMStrategy());
+        newStrategyView.update();
+        newStrategyView.show();
     }
 }
