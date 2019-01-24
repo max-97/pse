@@ -114,7 +114,7 @@ public class Configuration {
      */
     public void addStrategy(Strategy newStrategy) {
         if(!this.strategies.contains(newStrategy)) {
-            this,strategies.add(newStrategy);
+            this.strategies.add(newStrategy);
         } else {
             throw new DupplicateObjectNameException("this strategy exit already.")
         }
