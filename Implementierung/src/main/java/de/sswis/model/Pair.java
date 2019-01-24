@@ -15,7 +15,8 @@ public class Pair {
      * @param agent2 zweiter Agent
      */
     public Pair(Agent agent1, Agent agent2) {
-
+         this.agent1 = agent1;
+         this.agent2 = agent2;
     }
 
     /**
