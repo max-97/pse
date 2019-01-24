@@ -41,6 +41,14 @@ public class Configuration {
     public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
                          int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
         this.name = name;
+        this.game = game;
+        this.adaptationAlg = adaptation;
+        this.pairingAlg = pairing;
+        this.rankingAlg = ranking;
+        this.rounds = rounds;
+        this.cycles = cycles;
+        this.adaptationProbability = adaptationProbability;
+        this.strategies = strategies;
     }
 
     public String getName() {
