@@ -39,6 +39,8 @@ public class SaveConfigurationsHandler implements ActionListener {
             return;
         }
         AbstractManageConfigurationsView parentView = this.configurationView.getParenteView();
+        if (parentView == null)
+            return;
         parentView.addConfiguration(vmConfiguration);
         parentView.update();
         this.configurationView.close();

@@ -41,6 +41,8 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
             return;
         }
         AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
+        if (parentView == null)
+            return;
         parentView.addStrategy(combinedStrategy);
         parentView.update();
         this.combinedStrategyView.close();

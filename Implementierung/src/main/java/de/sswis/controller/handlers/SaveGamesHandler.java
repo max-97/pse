@@ -39,6 +39,8 @@ public class SaveGamesHandler implements ActionListener {
             return;
         }
         AbstractManageGamesView parentView = this.gameView.getParentView();
+        if (parentView == null)
+            return;
         parentView.addGame(vmGame);
         parentView.update();
         this.gameView.close();
