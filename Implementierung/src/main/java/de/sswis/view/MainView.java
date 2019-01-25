@@ -38,7 +38,6 @@ public class MainView implements AbstractMainView {
     private JLabel TitleLabel;
 
 
-
     @Override
     public void addConfiguration(VMConfiguration configuration) {
     }
@@ -56,7 +55,9 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public VMConfiguration getSelected() { return null; }
+    public VMConfiguration getSelected() {
+        return null;
+    }
 
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
@@ -135,7 +136,8 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void update() {}
+    public void update() {
+    }
 
     @Override
     public void show() {
