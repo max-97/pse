@@ -299,7 +299,17 @@ public class NewInitializationView implements AbstractNewInitializationView{
 
     @Override
     public VMInitialization getVMInitialization() {
-        return null;
+        return this.vmInitialization;
+    }
+
+    @Override
+    public void setInitialization(VMInitialization initialization) {
+        this.vmInitialization = initialization;
+    }
+
+    @Override
+    public void addCombinedStrategy(String name) {
+
     }
 
     @Override

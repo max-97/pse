@@ -33,13 +33,12 @@ public class StartSimulationHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        Collection<VMConfiguration> selected = mainView.getSelected();
+        VMConfiguration selected = mainView.getSelected();
 
-        for (VMConfiguration c : selected) {
-            Configuration config = this.provider.getConfiguration(c.getName());
-            Simulation sim = config.simulate();
-            sim.addObserver(new ViewNotifier(this.mainView));
-            new Thread(sim).start();
-        }
+        Configuration config = this.provider.getConfiguration(selected.getName());
+        Simulation sim = config.simulate();
+        sim.addObserver(new ViewNotifier(this.mainView));
+        new Thread(sim).start();
+
     }
 }

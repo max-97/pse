@@ -17,4 +17,6 @@ public interface BaseStrategy {
      * @return eine {@code Action} die entweder Kooperation oder Defektion ist
      */
     Action calculateAction(Agent agent1, Agent agent2);
+
+    String getName();
 }

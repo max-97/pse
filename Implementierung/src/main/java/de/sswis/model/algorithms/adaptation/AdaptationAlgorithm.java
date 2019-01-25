@@ -19,4 +19,6 @@ public interface AdaptationAlgorithm {
      * @param adaptationProbability Wahrscheinlichkeit der Strategieanpassung
      */
     void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability);
+
+    String getName();
 }

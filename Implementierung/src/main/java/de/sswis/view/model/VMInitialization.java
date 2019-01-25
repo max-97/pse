@@ -13,6 +13,7 @@ public class VMInitialization {
     private String name;
     private List<VMGroup> groups;
     private int agentCount;
+    private int numberOfInstances;
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -61,6 +62,10 @@ public class VMInitialization {
 
     public void setAgentCount(int agentCount) {
         this.agentCount = agentCount;
+    }
+
+    public int getNumberOfInstances() {
+        return this.numberOfInstances;
     }
 }
 

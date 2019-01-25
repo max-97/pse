@@ -41,7 +41,17 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public VMStrategy getVMStrategy() {
-        return null;
+        return this.vmStrategy;
+    }
+
+    @Override
+    public void setStrategy(VMStrategy strategy) {
+        this.vmStrategy = strategy;
+    }
+
+    @Override
+    public void addCombinedStrategy(String name) {
+
     }
 
     @Override

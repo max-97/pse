@@ -40,6 +40,8 @@ public class SaveStrategiesHandler implements ActionListener {
             return;
         }
         AbstractManageStrategiesView parentView = this.strategyView.getParentView();
+        if (parentView == null)
+            return;
         parentView.addStrategy(vmStrategy);
         parentView.update();
         this.strategyView.close();
