@@ -16,16 +16,14 @@ public class CustomCycleScoreTest {
     @Before
     public void init() {
         agents = new Agent[4];
+        rankingAlgorithm = new CustomCycleScore(2);
     }
 
     @Test
     public void getRankingsTest1() {
-
         for(int i = 0; i < agents.length; i++) {
             agents[i] = new Agent(i + 1, i*100, null, null);
         }
-
-        rankingAlgorithm = new CustomCycleScore(2);
 
         for(int i = 0 ; i < 3; i++) {
             agents[0].setScore(agents[0].getScore() + 10);
@@ -40,10 +38,10 @@ public class CustomCycleScoreTest {
         }
 
         HashMap<Agent, Integer> ranking = rankingAlgorithm.getRankings(agents);
-        assertEquals((int) ranking.get(agents[0]), 1);
-        assertEquals((int) ranking.get(agents[1]), 2);
-        assertEquals((int) ranking.get(agents[2]), 2);
-        assertEquals((int) ranking.get(agents[3]), 3);
+        assertEquals(1, (int) ranking.get(agents[0]));
+        assertEquals(2, (int) ranking.get(agents[1]));
+        assertEquals(2, (int) ranking.get(agents[2]));
+        assertEquals(3, (int) ranking.get(agents[3]));
     }
 
     @Test
@@ -58,9 +56,9 @@ public class CustomCycleScoreTest {
         agents[3].setScore(7);
 
         HashMap<Agent, Integer> ranking = rankingAlgorithm.getRankings(agents);
-        assertEquals((int) ranking.get(agents[0]), 1);
-        assertEquals((int) ranking.get(agents[1]), 3);
-        assertEquals((int) ranking.get(agents[2]), 3);
-        assertEquals((int) ranking.get(agents[3]), 2);
+        assertEquals(1, (int) ranking.get(agents[0]));
+        assertEquals(3, (int) ranking.get(agents[1]));
+        assertEquals(3, (int) ranking.get(agents[2]));
+        assertEquals(2, (int) ranking.get(agents[3]));
     }
 }

@@ -53,7 +53,7 @@ public class AverageRank implements RankingAlgorithm {
         }
 
         Collections.sort(agentList, (a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
-                averageRanks.get(a2) - averageRanks.get(a1) :
+                averageRanks.get(a1) - averageRanks.get(a2) :
                 a2.getScore() - a1.getScore());
         Iterator<Agent> it = agentList.iterator();
 

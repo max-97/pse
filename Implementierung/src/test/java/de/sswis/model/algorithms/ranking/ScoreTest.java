@@ -30,9 +30,9 @@ public class ScoreTest {
         agents[2].setScore(5);
         agents[3].setScore(7);
         HashMap<Agent, Integer> ranking = rankingAlgorithm.getRankings(agents);
-        assertEquals((int) ranking.get(agents[0]), 1);
-        assertEquals((int) ranking.get(agents[1]), 3);
-        assertEquals((int) ranking.get(agents[2]), 3);
-        assertEquals((int) ranking.get(agents[3]), 2);
+        assertEquals(1, (int) ranking.get(agents[0]));
+        assertEquals(3, (int) ranking.get(agents[1]));
+        assertEquals(3, (int) ranking.get(agents[2]));
+        assertEquals(2, (int) ranking.get(agents[3]));
     }
 }
