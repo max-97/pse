@@ -7,6 +7,7 @@ import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Ein Tab fuer eine Konfiguration, der in der ManageConfigurationsView angezeigt wird.
@@ -32,8 +33,27 @@ public class ConfigurationTab {
         this.vmConfiguration = vmConfiguration;
     }
 
+    public void addEditButtonActionlistener(ActionListener listener) {
+        editButton.addActionListener(listener);
+    }
+
+    public void addDeleteButtonActionlistener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        nameGameLabel = new JLabel(vmConfiguration.getGame());
+        nameAdaptionAlgoLabel = new JLabel(vmConfiguration.getAdaptationAlg());
+        nameGameLabel = new JLabel(vmConfiguration.getGame());
+        nameInitializationLabel = new JLabel(vmConfiguration.getInit());
+        namePairingAlgoLabel = new JLabel(vmConfiguration.getPairingAlg());
+        nameRankingAlgoLabel = new JLabel(vmConfiguration.getRankingAlg());
+        probalityAdaptionLabel = new JLabel(vmConfiguration.getAdaptationProbability());
+        numberOfRoundsLabel = new JLabel(vmConfiguration.getRounds());
+        maxNumberOfCyclesLabel = new JLabel(vmConfiguration.getCycles());
+        nameConfigurationLabel = new JLabel(vmConfiguration.getName());
     }
 
     {

@@ -8,6 +8,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,6 +38,9 @@ public class CombinedStrategyTab {
     public CombinedStrategyTab(VMCombinedStrategy combinedStrategy) {
 
         this.combinedStrategy = combinedStrategy;
+        priorityLabels = new ArrayList<JLabel>();
+        conditionLabels = new ArrayList<JLabel>();
+        strategyLabels = new ArrayList<JLabel>();
         createConditionLines();
     }
 
