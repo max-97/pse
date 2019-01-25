@@ -7,7 +7,7 @@ import de.sswis.model.strategies.BaseStrategy;
  * Eine kombinierte Strategie bestehend aus Paaren von Basisstrategien und Bedingungen.
  * @author Michel Bodé
  */
-public class CombinedStrategy {
+public class CombinedStrategy implements Strategy{
 
     private String name;
     private BaseStrategy[] strategies;
@@ -20,20 +20,23 @@ public class CombinedStrategy {
      * @param conditions Menge an Bedingungen
      */
     public CombinedStrategy(String name, BaseStrategy[] strategies, Condition[] conditions) {
-
+        this.name = name;
+        this.strategies = strategies;
+        this.conditions = conditions;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * Berechnet die Aktion des Agenten um dessen Strategie es sich handelt im Spiel mit einem zweiten Agenten.
-     * @param agent1 Agent
-     * @param agent2 Gegenspieler
-     * @return die Aktion des Agenten
-     */
+    @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
+        for(int i = 0; i < conditions.length; i++) {
+            if(conditions[i].fulfillsCondition(agent1, agent2)) {
+                return strategies[i].calculateAction(agent1, agent2);
+            }
+        }
         return null;
     }
 }

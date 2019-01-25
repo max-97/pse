@@ -22,12 +22,17 @@ public class ManageGamesView implements AbstractManageGamesView {
     private List<VMGame> vmGames;
 
 
+
     private JButton newGameButton;
     private JButton cancelButton;
     private JButton saveAndQuitButton;
     private JPanel MainPanel;
     private JPanel ButtonPanel;
     private JTabbedPane GamesPane;
+  
+    private AbstractMainView parentView;
+
+
 
 
     @Override
@@ -66,6 +71,11 @@ public class ManageGamesView implements AbstractManageGamesView {
     }
 
     @Override
+    public VMGame getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -84,6 +94,17 @@ public class ManageGamesView implements AbstractManageGamesView {
     public void close() {
 
     }
+  
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

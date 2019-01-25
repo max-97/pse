@@ -10,6 +10,7 @@ import de.sswis.view.model.VMResult;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -55,9 +56,7 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public VMConfiguration getSelected() {
-        return null;
-    }
+    public Collection<VMConfiguration> getSelected() { return null; }
 
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
@@ -130,8 +129,13 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void update() {
+
+    public Collection<VMResult> getResults() {
+        return null;
     }
+
+    @Override
+    public void update() {}
 
     @Override
     public void show() {
@@ -146,6 +150,11 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void close() {
+
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
 
     }
 

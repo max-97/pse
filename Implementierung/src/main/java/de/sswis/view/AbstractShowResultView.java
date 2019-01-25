@@ -11,6 +11,6 @@ public interface AbstractShowResultView extends AbstractView {
 
 
 
-
+    AbstractMainView getParentView();
 
 }

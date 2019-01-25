@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMInitialization;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -22,5 +24,8 @@ public interface AbstractNewInitializationView extends AbstractView {
      */
     void addFinishButtonActionlistener(ActionListener listener);
 
+    VMInitialization getVMInitialization();
+
+    AbstractManageInitializationsView getParentView();
 
 }

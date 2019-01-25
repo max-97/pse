@@ -7,7 +7,7 @@ package de.sswis.util;
  */
 public class AgentDistribution {
 
-    private boolean ChooseIDs;
+    private boolean usesIDs;
     private int[] agentIDs;
     private int percentage;
 
@@ -17,7 +17,10 @@ public class AgentDistribution {
      *
      * @param ids die IDs der Agenten
      */
-    public AgentDistribution (int[] ids){}
+    public AgentDistribution (int[] ids) {
+        this.agentIDs = ids;
+        this.usesIDs = true;
+    }
 
     /**
      * Erzeugt eine Zuordnung basierend auf dem prozentualen Anteil. Die Gruppenzuteilung erfolgt im Bezug auf
@@ -35,6 +38,20 @@ public class AgentDistribution {
      *
      * @param percentage der prozentuale Anteil
      */
-    public AgentDistribution (int percentage){}
+    public AgentDistribution (int percentage) {
+        this.percentage = percentage;
+        this.usesIDs = false;
+    }
 
+    public boolean usesIDS() {
+        return this.usesIDs;
+    }
+
+    public int[] getAgentIDs() {
+        return this.agentIDs;
+    }
+
+    public int getPercentage() {
+        return this.percentage;
+    }
 }

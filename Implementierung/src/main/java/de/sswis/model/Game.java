@@ -20,7 +20,7 @@ public class Game {
      * @param payoffs Payoffs des Spiels
      */
     public Game(String name, String description, Tuple[][] payoffs) {
-
+        this.name = name;
     }
 
     /**
@@ -31,6 +31,15 @@ public class Game {
      */
     public Tuple getPayoffs(Action a1, Action a2) {
         return null;
+    }
+
+    /**
+     * Das Stufenspiel wird von den zwei Agenten gespielt, entsprechend ihrer Aktionen werden
+     * die Payoffs verteilt.
+     * @param pair Agentenpaar
+     */
+    public void playGame(Pair pair) {
+
     }
 
     public String getName() {

@@ -54,5 +54,7 @@ public interface AbstractManageStrategiesView extends AbstractView {
      */
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
+    VMStrategy getSelectedVM();
 
+    AbstractMainView getParentView();
 }

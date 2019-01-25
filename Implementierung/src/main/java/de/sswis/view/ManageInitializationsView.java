@@ -21,6 +21,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private JFrame frame;
 
     private List<VMInitialization> vmInits;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -32,6 +33,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private JButton editButton;
     private JButton newInitButton;
     private JPanel MainPanel;
+
+    private AbstractMainView parentView;
 
 
     @Override
@@ -70,6 +73,11 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     }
 
     @Override
+    public VMInitialization getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -87,6 +95,16 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void close() {
 
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
     }
 
 

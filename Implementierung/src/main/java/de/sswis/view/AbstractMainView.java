@@ -4,6 +4,7 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 
 /**
@@ -44,7 +45,7 @@ public interface AbstractMainView extends AbstractView {
      *
      * @return die in der Liste ausgewählt Konfiguration
      */
-    VMConfiguration getSelected();
+    Collection<VMConfiguration> getSelected();
 
     /**
      * Fügt ein ActionListener zum Button Simulation starten hinzu.
@@ -132,7 +133,7 @@ public interface AbstractMainView extends AbstractView {
      */
     void addManageConfigMenuActionListener(ActionListener listener);
 
-
+    Collection<VMResult> getResults();
 
 
 

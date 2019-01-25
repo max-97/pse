@@ -1,7 +1,8 @@
 package de.sswis.model.algorithms.pairing;
 
+import de.sswis.model.Agent;
+import de.sswis.model.Game;
 import de.sswis.model.Pair;
-import de.sswis.model.Simulation;
 
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation so paart, dass jeder Agent mit dem
@@ -11,9 +12,16 @@ import de.sswis.model.Simulation;
  * @author Michel Bodé
  */
 public class BruteForcePairingHeuristic implements PairingAlgorithm{
+    public static final int PARAMETER_COUNT = 0;
+    public static final String[] PARAMETER_NAMES = {};
+    private final double THRESHOLD;
+
+    public BruteForcePairingHeuristic(double THRESHOLD) {
+        this.THRESHOLD = THRESHOLD;
+    }
 
     @Override
-    public Pair[] getPairing(Simulation sim) {
+    public Pair[] getPairing(Agent[] agents, Game game) {
         return new Pair[0];
     }
 }

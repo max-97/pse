@@ -21,6 +21,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JFrame frame;
 
     private List<VMConfiguration> vmConfigurations;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -32,6 +33,9 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JButton editButton;
     private JButton newConfigButton;
     private JPanel MainPanel;
+
+    private AbstractMainView parentView;
+
 
 
     @Override
@@ -70,6 +74,11 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     }
 
     @Override
+    public VMConfiguration getSelectedVM() {
+        return null;
+    }
+
+    @Override
     public void update() {
 
     }
@@ -88,6 +97,17 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     public void close() {
 
     }
+  
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public AbstractMainView getParentView() {
+        return this.parentView;
+    }
+
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

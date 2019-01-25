@@ -34,7 +34,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JFormattedTextField formattedTextField1;
     private JButton button5;
     private JButton button6;
+
     private JTextPane textPane1;
+  
+    private AbstractManageInitializationsView parentView;
 
 
     @Override
@@ -65,6 +68,21 @@ public class NewInitializationView implements AbstractNewInitializationView {
     @Override
     public void addFinishButtonActionlistener(ActionListener listener) {
 
+    }
+
+    @Override
+    public VMInitialization getVMInitialization() {
+        return null;
+    }
+
+    @Override
+    public void setParentView(AbstractView parentView) {
+        this.parentView = (AbstractManageInitializationsView) parentView;
+    }
+
+    @Override
+    public AbstractManageInitializationsView getParentView() {
+        return this.parentView;
     }
 
     {
@@ -305,4 +323,5 @@ public class NewInitializationView implements AbstractNewInitializationView {
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
+
 }

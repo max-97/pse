@@ -12,6 +12,8 @@ import java.util.List;
  * @author Michel Bodé
  */
 public class Configuration {
+
+    private String name;
     private Game game;
     private Initialization init;
     private AdaptationAlgorithm adaptationAlg;
@@ -22,9 +24,11 @@ public class Configuration {
     private int cycleRoundCount;
     private double adaptationProbability;
     private List<Strategy> strategies;
+    private Simulation simulation;
 
     /**
      * Erstellt eine Konfiguration.
+     * @param name Name
      * @param game Stufenspiel
      * @param adaptation Anpassungsalgorithmus
      * @param pairing Paarungsalgorithmus
@@ -34,9 +38,13 @@ public class Configuration {
      * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
      * @param strategies Menge an moeglichen Strategien
      */
-    public Configuration(Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
+    public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
                          int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
+        this.name = name;
+    }
 
+    public String getName() {
+        return name;
     }
 
     public Game getGame() {
@@ -76,7 +84,12 @@ public class Configuration {
      * @return erzeugte Simulation
      */
     public Simulation simulate() {
-        return new Simulation(this);
+        this.simulation = new Simulation(this);
+        return this.simulation;
+    }
+
+    public Simulation getSimulation() {
+        return this.simulation;
     }
 
     /**
