@@ -48,7 +48,7 @@ public class SaveConfigurationsHandler implements ActionListener {
         for (Configuration c : configurations) {
             ModelProvider.getInstance().addConfiguration(c);
         }
-        AbstractManageConfigurationsView parentView = this.configurationView.getParenteView();
+        AbstractManageConfigurationsView parentView = this.configurationView.getParentView();
         if (parentView == null)
             return;
         parentView.addConfiguration(vmConfiguration);

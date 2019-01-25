@@ -17,4 +17,9 @@ public class Always implements Condition {
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return true;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

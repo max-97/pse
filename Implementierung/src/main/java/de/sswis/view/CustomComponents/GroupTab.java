@@ -20,7 +20,7 @@ public class GroupTab {
     private JFormattedTextField formattedTextField7;
     private JTabbedPane initialStrategiesTabbedPane;
     private JTextField textField3;
-    private JButton neuesStartkapitalHinzufügenButton;
+    private JButton neuesStartkapitalHinzufuegenButton;
     private JTabbedPane capitalsTabbedPane;
     private JLabel groupIDLabel;
 

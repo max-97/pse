@@ -31,4 +31,9 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
     public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
 
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

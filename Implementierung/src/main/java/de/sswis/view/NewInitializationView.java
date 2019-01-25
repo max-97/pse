@@ -72,7 +72,17 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public VMInitialization getVMInitialization() {
-        return null;
+        return this.vmInitialization;
+    }
+
+    @Override
+    public void addCombinedStrategy(String name) {
+
+    }
+
+    @Override
+    public void setInitialization(VMInitialization initialization) {
+        this.vmInitialization = initialization;
     }
 
     @Override
@@ -322,42 +332,6 @@ public class NewInitializationView implements AbstractNewInitializationView {
      */
     public JComponent $$$getRootComponent$$$() {
         return panel1;
-    }
-
-
-    @Override
-    public void addCancelButtonActionlistener(ActionListener listener) {
-
-    }
-
-    @Override
-    public void addFinishButtonActionlistener(ActionListener listener) {
-
-    }
-
-    @Override
-    public VMInitialization getVMInitialization() {
-        return this.vmInitialization;
-    }
-
-    @Override
-    public void setInitialization(VMInitialization initialization) {
-        this.vmInitialization = initialization;
-    }
-
-    @Override
-    public void addCombinedStrategy(String name) {
-
-    }
-
-    @Override
-    public void setParentView(AbstractView parentView) {
-        this.parentView = (AbstractManageInitializationsView) parentView;
-    }
-
-    @Override
-    public AbstractManageInitializationsView getParentView() {
-        return this.parentView;
     }
 
 }

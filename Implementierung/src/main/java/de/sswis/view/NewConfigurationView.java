@@ -231,7 +231,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     }
 
     @Override
-    public AbstractManageConfigurationsView getParenteView() {
+    public AbstractManageConfigurationsView getParentView() {
         return this.parentView;
     }
 }
