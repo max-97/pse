@@ -55,7 +55,7 @@ public class History {
      * @return Punktzahl
      */
     public int getScore(int cycle) {
-        return score.get(cycle);
+        return score.get(cycle - 1);
     }
 
     /**
@@ -90,7 +90,7 @@ public class History {
      * @return Name der Strategie
      */
     public String getStrategy(int cycle) {
-        return strategies.get(cycle);
+        return strategies.get(cycle - 1);
     }
 
     /**
@@ -98,7 +98,7 @@ public class History {
      * @param score aktuelle Punktzahl
      */
     public void setScore(int score){
-        this.score.add(currentCycle, score);
+        this.score.add(currentCycle - 1, score);
     }
 
     /**
@@ -122,7 +122,7 @@ public class History {
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
-        this.strategies.add(currentCycle, strategy.getName());
+        this.strategies.add(currentCycle - 1, strategy.getName());
     }
 
     /**

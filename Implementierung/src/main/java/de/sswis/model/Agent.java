@@ -66,6 +66,6 @@ public class Agent {
     }
 
     public void setScore(int newScore) {
-        this.score = score;
+        this.score = newScore;
     }
 }
