@@ -4,6 +4,9 @@ import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 
+/**
+ * Ein Tab fuer eine Initialisierung, der in der ManageInitializationsView angezeigt wird.
+ */
 public class InitializationTab {
 
     private VMInitialization vmInitialization;

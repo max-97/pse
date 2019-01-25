@@ -8,6 +8,9 @@ import de.sswis.view.model.VMGame;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ein Tab fuer ein Stufenspiel, der in der ManageGamesView angezeigt wird.
+ */
 public class GameTab {
 
     private VMGame vmGame;

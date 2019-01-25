@@ -4,6 +4,9 @@ import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 
+/**
+ * Ein Tab fuer eine Konfiguration, der in der ManageConfigurationsView angezeigt wird.
+ */
 public class ConfigurationTab {
 
     private VMConfiguration vmConfiguration;

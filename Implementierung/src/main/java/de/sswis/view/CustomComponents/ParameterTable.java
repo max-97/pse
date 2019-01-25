@@ -7,7 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-
+/**
+ * Ein Panel, das eine Tabelle bestehend aus festgelegtem Text Labels und Text Eingabe Feldern.
+ */
 public class ParameterTable {
 
     private List<String> parameterNames;

@@ -5,6 +5,9 @@ import de.sswis.view.model.VMGroup;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * Ein Tab fuer eine Gruppe, der in der NewInitializationView angezeigt wird.
+ */
 public class GroupTab {
     private VMGroup vmGroup;
     private List<String> allStrategies;

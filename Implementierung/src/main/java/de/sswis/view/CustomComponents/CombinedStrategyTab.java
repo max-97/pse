@@ -8,6 +8,9 @@ import de.sswis.view.model.VMCombinedStrategy;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ein Tab fuer eine kombinierte Strategie, der in der ManageCombinedStrategiesView angezeigt wird.
+ */
 public class CombinedStrategyTab {
 
     private VMCombinedStrategy combinedStrategy;
@@ -18,6 +21,11 @@ public class CombinedStrategyTab {
     private JButton kombinierteStrategieBearbeitenButton;
     private JLabel nameLabel;
 
+    /**
+     * Erstellt ein neues Tab für die kombinierte Strategie.
+     *
+     * @param combinedStrategy die kombinierte Strategie
+     */
     public CombinedStrategyTab(VMCombinedStrategy combinedStrategy) {
         this.combinedStrategy = combinedStrategy;
     }
@@ -146,6 +154,9 @@ public class CombinedStrategyTab {
     }
 
     /**
+     * $$$ get root component $$$ j component.
+     *
+     * @return the j component
      * @noinspection ALL
      */
     public JComponent $$$getRootComponent$$$() {

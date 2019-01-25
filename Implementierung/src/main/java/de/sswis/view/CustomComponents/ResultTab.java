@@ -4,6 +4,9 @@ import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 
+/**
+ * Ein Tab fuer ein Ergebnis, der in der ManageResultsView angezeigt wird.
+ */
 public class ResultTab {
 
     private VMResult vmResult;

@@ -21,12 +21,20 @@ public class ShowResultView implements AbstractShowResultView {
     private VMConfiguration vmConfiguration;
 
 
-    private JButton vergleichenMitButton;
-    private JRadioButton zeigeDurchschnittAllerWiederholungenRadioButton;
-    private JRadioButton zeigeDieKTeRadioButton;
-    private JFormattedTextField formattedTextField1;
-    private JSlider slider1;
+    private JButton compareButton;
+    private JRadioButton averageRadioButton1;
+    private JRadioButton singleRadioButton1;
     private JPanel MainPanel;
+    private JLabel configNameLabel;
+    private JRadioButton averageRadioButton2;
+    private JRadioButton singleRadioButton2;
+    private JRadioButton averageRadioButton3;
+    private JRadioButton singleRadioButton3;
+    private JFormattedTextField kTextField1;
+    private JFormattedTextField kTextField2;
+    private JFormattedTextField kTextField3;
+    private JComboBox comboBox1;
+    private JFormattedTextField formattedTextField1;
 
 
     @Override
@@ -83,13 +91,13 @@ public class ShowResultView implements AbstractShowResultView {
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(7, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel4, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        zeigeDurchschnittAllerWiederholungenRadioButton = new JRadioButton();
-        zeigeDurchschnittAllerWiederholungenRadioButton.setSelected(true);
-        zeigeDurchschnittAllerWiederholungenRadioButton.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel4.add(zeigeDurchschnittAllerWiederholungenRadioButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        zeigeDieKTeRadioButton = new JRadioButton();
-        zeigeDieKTeRadioButton.setText("Zeige die k'te Wiederholung");
-        panel4.add(zeigeDieKTeRadioButton, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        averageRadioButton1 = new JRadioButton();
+        averageRadioButton1.setSelected(true);
+        averageRadioButton1.setText("Zeige Durchschnitt aller Wiederholungen");
+        panel4.add(averageRadioButton1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        singleRadioButton1 = new JRadioButton();
+        singleRadioButton1.setText("Zeige die k'te Wiederholung");
+        panel4.add(singleRadioButton1, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setEnabled(false);
         label1.setText("k = ");
@@ -100,7 +108,7 @@ public class ShowResultView implements AbstractShowResultView {
         final JLabel label2 = new JLabel();
         label2.setText("Variabler Parameter");
         panel4.add(label2, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        slider1 = new JSlider();
+        JSlider slider1 = new JSlider();
         panel4.add(slider1, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("x = ");
@@ -133,9 +141,9 @@ public class ShowResultView implements AbstractShowResultView {
         panel7.add(label4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator2 = new JSeparator();
         panel7.add(separator2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        vergleichenMitButton = new JButton();
-        vergleichenMitButton.setText("Vergleichen mit...");
-        panel1.add(vergleichenMitButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        compareButton = new JButton();
+        compareButton.setText("Vergleichen mit...");
+        panel1.add(compareButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -162,5 +170,9 @@ public class ShowResultView implements AbstractShowResultView {
      */
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

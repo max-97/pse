@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="de.sswis.view.ShowCompareView">
-  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="1154" height="740"/>
+      <xy x="20" y="20" width="1158" height="740"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -11,7 +11,7 @@
       <grid id="647f4" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -240,7 +240,206 @@
                     </constraints>
                     <properties/>
                     <border type="none"/>
-                    <children/>
+                    <children>
+                      <grid id="aaa2e" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <scrollpane id="1028b">
+                            <constraints>
+                              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children/>
+                          </scrollpane>
+                          <grid id="349d6" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                            <margin top="0" left="0" bottom="0" right="0"/>
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="81031" class="javax.swing.JRadioButton">
+                                <constraints>
+                                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="true"/>
+                                  <text value="Wähle für alle Konfigurationen"/>
+                                </properties>
+                              </component>
+                              <component id="3cc03" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Zeige die k'te Wiederholung"/>
+                                </properties>
+                              </component>
+                              <component id="aab78" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                  <text value="k = "/>
+                                </properties>
+                              </component>
+                              <component id="c8165" class="javax.swing.JFormattedTextField" default-binding="true">
+                                <constraints>
+                                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                </properties>
+                              </component>
+                              <vspacer id="f191">
+                                <constraints>
+                                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                    <minimum-size width="-1" height="100"/>
+                                  </grid>
+                                </constraints>
+                              </vspacer>
+                              <component id="318bb" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="true"/>
+                                  <text value="Zeige Durchschnitt aller Wiederholungen"/>
+                                </properties>
+                              </component>
+                              <hspacer id="cbe10">
+                                <constraints>
+                                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                              </hspacer>
+                              <component id="13e7c" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="false"/>
+                                  <text value="Wähle für einzelne Konfigurationen"/>
+                                </properties>
+                              </component>
+                              <tabbedpane id="c0df0" default-binding="true">
+                                <constraints>
+                                  <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                    <preferred-size width="200" height="200"/>
+                                  </grid>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                  <tabPlacement value="2"/>
+                                </properties>
+                                <border type="none"/>
+                                <children>
+                                  <grid id="1b95d" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="Konfiguration1"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children>
+                                      <component id="f812b" class="javax.swing.JRadioButton" default-binding="true">
+                                        <constraints>
+                                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <selected value="true"/>
+                                          <text value="Zeige Durchschnitt aller Wiederholungen"/>
+                                        </properties>
+                                      </component>
+                                      <vspacer id="d945a">
+                                        <constraints>
+                                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                      </vspacer>
+                                      <component id="6186d" class="javax.swing.JRadioButton" default-binding="true">
+                                        <constraints>
+                                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <text value="Zeige die k'te Wiederholung"/>
+                                        </properties>
+                                      </component>
+                                      <component id="d0a1b" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <text value="k = "/>
+                                        </properties>
+                                      </component>
+                                      <component id="3056a" class="javax.swing.JFormattedTextField" default-binding="true">
+                                        <constraints>
+                                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                        </properties>
+                                      </component>
+                                    </children>
+                                  </grid>
+                                  <grid id="23d8e" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="Konfiguration2"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children/>
+                                  </grid>
+                                </children>
+                              </tabbedpane>
+                            </children>
+                          </grid>
+                          <vspacer id="60bde">
+                            <constraints>
+                              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <minimum-size width="-1" height="400"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                          <hspacer id="d5b80">
+                            <constraints>
+                              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="600" height="-1"/>
+                              </grid>
+                            </constraints>
+                          </hspacer>
+                          <hspacer id="b2ad6">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="10" height="-1"/>
+                              </grid>
+                            </constraints>
+                          </hspacer>
+                          <vspacer id="dcd34">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <minimum-size width="-1" height="20"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                    </children>
                   </grid>
                   <grid id="6313a" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                     <margin top="0" left="0" bottom="0" right="0"/>
@@ -249,7 +448,206 @@
                     </constraints>
                     <properties/>
                     <border type="none"/>
-                    <children/>
+                    <children>
+                      <grid id="9f5d0" layout-manager="GridLayoutManager" row-count="3" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <scrollpane id="63092">
+                            <constraints>
+                              <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children/>
+                          </scrollpane>
+                          <grid id="14f4d" layout-manager="GridLayoutManager" row-count="7" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                            <margin top="0" left="0" bottom="0" right="0"/>
+                            <constraints>
+                              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="9b3f" class="javax.swing.JRadioButton">
+                                <constraints>
+                                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="true"/>
+                                  <text value="Wähle für alle Konfigurationen"/>
+                                </properties>
+                              </component>
+                              <component id="87ef3" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <text value="Zeige die k'te Wiederholung"/>
+                                </properties>
+                              </component>
+                              <component id="e46fc" class="javax.swing.JLabel">
+                                <constraints>
+                                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                  <text value="k = "/>
+                                </properties>
+                              </component>
+                              <component id="c87ea" class="javax.swing.JFormattedTextField" default-binding="true">
+                                <constraints>
+                                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                    <preferred-size width="150" height="-1"/>
+                                  </grid>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                </properties>
+                              </component>
+                              <vspacer id="d6ada">
+                                <constraints>
+                                  <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                    <minimum-size width="-1" height="100"/>
+                                  </grid>
+                                </constraints>
+                              </vspacer>
+                              <component id="1506" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="true"/>
+                                  <text value="Zeige Durchschnitt aller Wiederholungen"/>
+                                </properties>
+                              </component>
+                              <hspacer id="e3a74">
+                                <constraints>
+                                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                              </hspacer>
+                              <component id="f6b86" class="javax.swing.JRadioButton" default-binding="true">
+                                <constraints>
+                                  <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                </constraints>
+                                <properties>
+                                  <selected value="false"/>
+                                  <text value="Wähle für einzelne Konfigurationen"/>
+                                </properties>
+                              </component>
+                              <tabbedpane id="d8e0b" default-binding="true">
+                                <constraints>
+                                  <grid row="5" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                    <preferred-size width="200" height="200"/>
+                                  </grid>
+                                </constraints>
+                                <properties>
+                                  <enabled value="false"/>
+                                  <tabPlacement value="2"/>
+                                </properties>
+                                <border type="none"/>
+                                <children>
+                                  <grid id="8fe75" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="Konfiguration1"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children>
+                                      <component id="19869" class="javax.swing.JRadioButton" default-binding="true">
+                                        <constraints>
+                                          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <selected value="true"/>
+                                          <text value="Zeige Durchschnitt aller Wiederholungen"/>
+                                        </properties>
+                                      </component>
+                                      <vspacer id="91879">
+                                        <constraints>
+                                          <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                      </vspacer>
+                                      <component id="88dbf" class="javax.swing.JRadioButton" default-binding="true">
+                                        <constraints>
+                                          <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <text value="Zeige die k'te Wiederholung"/>
+                                        </properties>
+                                      </component>
+                                      <component id="483bc" class="javax.swing.JLabel">
+                                        <constraints>
+                                          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                          <text value="k = "/>
+                                        </properties>
+                                      </component>
+                                      <component id="fbd28" class="javax.swing.JFormattedTextField" default-binding="true">
+                                        <constraints>
+                                          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                                            <preferred-size width="150" height="-1"/>
+                                          </grid>
+                                        </constraints>
+                                        <properties>
+                                          <enabled value="false"/>
+                                        </properties>
+                                      </component>
+                                    </children>
+                                  </grid>
+                                  <grid id="643a7" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                    <margin top="0" left="0" bottom="0" right="0"/>
+                                    <constraints>
+                                      <tabbedpane title="Konfiguration2"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none"/>
+                                    <children/>
+                                  </grid>
+                                </children>
+                              </tabbedpane>
+                            </children>
+                          </grid>
+                          <vspacer id="d214c">
+                            <constraints>
+                              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <minimum-size width="-1" height="400"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                          <hspacer id="beb4">
+                            <constraints>
+                              <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="600" height="-1"/>
+                              </grid>
+                            </constraints>
+                          </hspacer>
+                          <hspacer id="7d790">
+                            <constraints>
+                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                                <minimum-size width="10" height="-1"/>
+                              </grid>
+                            </constraints>
+                          </hspacer>
+                          <vspacer id="ec312">
+                            <constraints>
+                              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+                                <minimum-size width="-1" height="20"/>
+                              </grid>
+                            </constraints>
+                          </vspacer>
+                        </children>
+                      </grid>
+                    </children>
                   </grid>
                 </children>
               </tabbedpane>
@@ -293,7 +691,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="df287" class="javax.swing.JTree" binding="waehlenSieEineKonfigurationTree">
+              <component id="df287" class="javax.swing.JTree" binding="configurationTree" custom-create="true">
                 <constraints/>
                 <properties>
                   <editable value="true"/>

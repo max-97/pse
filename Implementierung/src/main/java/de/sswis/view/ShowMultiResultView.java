@@ -19,6 +19,25 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     private List<VMConfiguration> vmConfigurations;
     private JPanel MainPanel;
+    private JRadioButton averageRadioButton1;
+    private JRadioButton singleRadioButton1;
+    private JFormattedTextField kTextField1;
+    private JSlider xSlider1;
+    private JLabel configNameLabel;
+    private JButton compareButton;
+    private JRadioButton averageRadioButton2;
+    private JRadioButton averageRadioButton3;
+    private JRadioButton singleRadioButton3;
+    private JRadioButton singleRadioButton2;
+    private JFormattedTextField kTextField2;
+    private JFormattedTextField kTextField3;
+    private JSlider xSlider2;
+    private JSlider xSlider3;
+    private JScrollPane graphicResultPane3;
+    private JScrollPane graphicResultPane2;
+    private JScrollPane graphicResultPane1;
+    private JComboBox comboBox1;
+    private JFormattedTextField formattedTextField1;
 
 
     @Override

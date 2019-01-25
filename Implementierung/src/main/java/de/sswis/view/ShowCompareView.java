@@ -23,7 +23,7 @@ public class ShowCompareView implements AbstractShowCompareView {
     private List<VMConfiguration> configurations;
 
 
-    private JTree waehlenSieEineKonfigurationTree;
+    private JTree configurationTree;
     private JRadioButton waehleFuerAlleKonfigurationenRadioButton;
     private JRadioButton zeigeDieKTeRadioButton;
     private JFormattedTextField formattedTextField1;
@@ -170,13 +170,13 @@ public class ShowCompareView implements AbstractShowCompareView {
         panel9.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         panel9.add(scrollPane2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        waehlenSieEineKonfigurationTree = new JTree();
-        waehlenSieEineKonfigurationTree.setEditable(true);
-        waehlenSieEineKonfigurationTree.setLargeModel(true);
-        waehlenSieEineKonfigurationTree.setRootVisible(true);
-        waehlenSieEineKonfigurationTree.setShowsRootHandles(true);
-        waehlenSieEineKonfigurationTree.putClientProperty("JTree.lineStyle", "");
-        scrollPane2.setViewportView(waehlenSieEineKonfigurationTree);
+        configurationTree = new JTree();
+        configurationTree.setEditable(true);
+        configurationTree.setLargeModel(true);
+        configurationTree.setRootVisible(true);
+        configurationTree.setShowsRootHandles(true);
+        configurationTree.putClientProperty("JTree.lineStyle", "");
+        scrollPane2.setViewportView(configurationTree);
     }
 
     /**
@@ -184,5 +184,9 @@ public class ShowCompareView implements AbstractShowCompareView {
      */
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }

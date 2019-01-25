@@ -4,6 +4,9 @@ import de.sswis.view.model.VMStrategy;
 
 import javax.swing.*;
 
+/**
+ * Ein Tab fuer eine gemischte Strategie, der in der ManageStrategiesView angezeigt wird.
+ */
 public class MixedStrategyTab {
 
     private VMStrategy vmStrategy;
