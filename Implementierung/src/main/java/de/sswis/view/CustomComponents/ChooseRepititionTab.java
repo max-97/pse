@@ -37,7 +37,7 @@ public class ChooseRepititionTab {
         return tabTitle;
     }
 
-    public boolean isAverageSelected () {
+    public boolean isAverageSelected() {
         return averageRadioButton.isSelected();
     }
 
@@ -45,7 +45,7 @@ public class ChooseRepititionTab {
         return (int) repititionTextField.getValue();
     }
 
-    public void update () {
+    public void update() {
 
         kLabel.setEnabled(repititionRadioButton.isSelected());
         repititionTextField.setEnabled(repititionRadioButton.isSelected());
@@ -92,15 +92,13 @@ public class ChooseRepititionTab {
         panel1.add(averageRadioButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        repititionRadioButton = new JRadioButton();
         repititionRadioButton.setEnabled(false);
         repititionRadioButton.setText("Zeige die k'te Wiederholung");
         panel1.add(repititionRadioButton, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        label1.setEnabled(false);
-        label1.setText("k = ");
-        panel1.add(label1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        repititionTextField = new JFormattedTextField();
+        kLabel = new JLabel();
+        kLabel.setEnabled(false);
+        kLabel.setText("k = ");
+        panel1.add(kLabel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         repititionTextField.setEnabled(false);
         panel1.add(repititionTextField, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
