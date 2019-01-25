@@ -1,8 +1,10 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.controller.FileManager;
 import de.sswis.view.AbstractGuiFactory;
 import de.sswis.view.AbstractManageStrategiesView;
 import de.sswis.view.AbstractNewStrategyView;
+import de.sswis.view.model.VMCombinedStrategy;
 import de.sswis.view.model.VMStrategy;
 
 import java.awt.event.ActionEvent;
@@ -19,6 +21,7 @@ public class NewStrategyHandler implements ActionListener {
 
     private AbstractGuiFactory factory;
     private AbstractManageStrategiesView strategiesView;
+    private FileManager fileManager;
 
     /**
      *
@@ -27,6 +30,7 @@ public class NewStrategyHandler implements ActionListener {
     public NewStrategyHandler(AbstractGuiFactory factory, AbstractManageStrategiesView view) {
         this.factory = factory;
         this.strategiesView = view;
+        this.fileManager = new FileManager();
     }
 
     @Override
@@ -34,6 +38,9 @@ public class NewStrategyHandler implements ActionListener {
         AbstractNewStrategyView newStrategyView = this.factory.createNewStrategyView();
         newStrategyView.setParentView(strategiesView);
         newStrategyView.setStrategy(new VMStrategy());
+        for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
+            newStrategyView.addCombinedStrategy(c.getName());
+        }
         newStrategyView.update();
         newStrategyView.show();
     }

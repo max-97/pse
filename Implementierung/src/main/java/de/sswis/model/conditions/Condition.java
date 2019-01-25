@@ -16,4 +16,6 @@ public interface Condition {
      * @return {@code true}, wenn die Bedingung erfuellt ist, {@code false} sonst
      */
     public abstract boolean fulfillsCondition(Agent agent1, Agent agent2);
+
+    String getName();
 }

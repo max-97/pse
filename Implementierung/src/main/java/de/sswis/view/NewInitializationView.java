@@ -308,6 +308,11 @@ public class NewInitializationView implements AbstractNewInitializationView{
     }
 
     @Override
+    public void addCombinedStrategy(String name) {
+
+    }
+
+    @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractManageInitializationsView) parentView;
     }

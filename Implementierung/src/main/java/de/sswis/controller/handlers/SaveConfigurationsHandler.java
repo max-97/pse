@@ -1,6 +1,9 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
+import de.sswis.controller.ModelParser;
+import de.sswis.controller.ModelProvider;
+import de.sswis.model.Configuration;
 import de.sswis.view.AbstractManageConfigurationsView;
 import de.sswis.view.AbstractNewConfigurationView;
 import de.sswis.view.model.VMConfiguration;
@@ -8,6 +11,7 @@ import de.sswis.view.model.VMConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Speichert die erstellte {@code Konfiguration}. Die View, die diesen {@code ActionListener} verwendet muss eine
@@ -19,6 +23,7 @@ public class SaveConfigurationsHandler implements ActionListener {
 
     private AbstractNewConfigurationView configurationView;
     private FileManager fileManager;
+    private ModelParser parser;
 
     /**
      *
@@ -27,6 +32,7 @@ public class SaveConfigurationsHandler implements ActionListener {
     public SaveConfigurationsHandler(AbstractNewConfigurationView configurationView) {
         this.configurationView = configurationView;
         this.fileManager = new FileManager();
+        this.parser = new ModelParser();
     }
 
     @Override
@@ -37,6 +43,10 @@ public class SaveConfigurationsHandler implements ActionListener {
         } catch (IOException e1) {
             e1.printStackTrace();
             return;
+        }
+        Collection<Configuration> configurations = this.parser.parseVMConfigurationToConfigurations(vmConfiguration);
+        for (Configuration c : configurations) {
+            ModelProvider.getInstance().addConfiguration(c);
         }
         AbstractManageConfigurationsView parentView = this.configurationView.getParenteView();
         if (parentView == null)

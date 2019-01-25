@@ -45,7 +45,7 @@ public interface AbstractMainView extends AbstractView {
      *
      * @return die in der Liste ausgewählt Konfiguration
      */
-    Collection<VMConfiguration> getSelected();
+    VMConfiguration getSelected();
 
     /**
      * Fügt ein ActionListener zum Button Simulation starten hinzu.

@@ -50,6 +50,11 @@ public class NewStrategyView implements AbstractNewStrategyView {
     }
 
     @Override
+    public void addCombinedStrategy(String name) {
+
+    }
+
+    @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractManageStrategiesView) parentView;
     }

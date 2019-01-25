@@ -1,6 +1,7 @@
 package de.sswis.view;
 
 import de.sswis.view.model.VMConfiguration;
+import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -42,5 +43,10 @@ public class ShowMultiResultView implements AbstractShowMultiResultView{
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void addVMResult(VMResult vmResult) {
+
     }
 }

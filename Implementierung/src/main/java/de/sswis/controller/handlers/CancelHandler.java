@@ -1,5 +1,7 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.view.AbstractMainView;
+import de.sswis.view.AbstractManageConfigurationsView;
 import de.sswis.view.AbstractView;
 
 import java.awt.event.ActionEvent;

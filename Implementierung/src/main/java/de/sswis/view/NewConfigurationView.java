@@ -173,6 +173,31 @@ public class NewConfigurationView implements AbstractNewConfigurationView{
     }
 
     @Override
+    public void addAdaptionAlgorithm(String name) {
+
+    }
+
+    @Override
+    public void addPairingAlgorithm(String name) {
+
+    }
+
+    @Override
+    public void addRankingAlgorithm(String name) {
+
+    }
+
+    @Override
+    public void addInitialization(String name) {
+
+    }
+
+    @Override
+    public void addGame(String name) {
+
+    }
+
+    @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractManageConfigurationsView) parentView;
     }

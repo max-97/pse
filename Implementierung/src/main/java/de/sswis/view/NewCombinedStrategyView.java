@@ -50,6 +50,16 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     }
 
     @Override
+    public void addCondition(String name) {
+
+    }
+
+    @Override
+    public void addBaseStrategy(String name) {
+
+    }
+
+    @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractManageCombinedStrategiesView) parentView;
     }

@@ -1,6 +1,9 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
+import de.sswis.controller.ModelParser;
+import de.sswis.controller.ModelProvider;
+import de.sswis.model.Initialization;
 import de.sswis.view.AbstractManageInitializationsView;
 import de.sswis.view.AbstractNewInitializationView;
 import de.sswis.view.model.VMInitialization;
@@ -8,6 +11,7 @@ import de.sswis.view.model.VMInitialization;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Collection;
 
 /**
  * Speichert die erstellte {@code Initialisierung}. Die View, die diesen {@code ActionListener} verwendet muss eine
@@ -19,6 +23,7 @@ public class SaveInitializationsHandler implements ActionListener {
 
     private AbstractNewInitializationView initializationView;
     private FileManager fileManager;
+    private ModelParser parser;
 
     /**
      *
@@ -27,6 +32,7 @@ public class SaveInitializationsHandler implements ActionListener {
     public SaveInitializationsHandler(AbstractNewInitializationView initializationView) {
         this.initializationView = initializationView;
         this.fileManager = new FileManager();
+        this.parser = new ModelParser();
     }
 
     @Override
@@ -37,6 +43,10 @@ public class SaveInitializationsHandler implements ActionListener {
         } catch (IOException e1) {
             e1.printStackTrace();
             return;
+        }
+        Collection<Initialization> initializations = this.parser.parseVMInitializationToInitialization(vmInitialization);
+        for (Initialization i : initializations) {
+            ModelProvider.getInstance().addInitialization(i);
         }
         AbstractManageInitializationsView parentView = this.initializationView.getParentView();
         if (parentView == null)
