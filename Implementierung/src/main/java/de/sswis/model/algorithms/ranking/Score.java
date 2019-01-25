@@ -24,7 +24,7 @@ public class Score implements  RankingAlgorithm {
             agentList.add(agents[i]);
         }
 
-        Collections.sort(agentList, (a1, a2) -> a2.getScore() - a1.getScore());
+        Collections.sort(agentList, (a1, a2) -> Integer.compare(a2.getScore(), a1.getScore()));
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;

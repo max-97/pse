@@ -29,7 +29,8 @@ public class CurrentCycleScore implements RankingAlgorithm {
         }
 
 
-        Collections.sort(agentList, (a1, a2) -> cycleScores.get(a2) - cycleScores.get(a1));
+        Collections.sort(agentList, (a1, a2) -> cycleScores.get(a2) > cycleScores.get(a1) ? 1 :
+                cycleScores.get(a2) < cycleScores.get(a1) ? -1 : 0);
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;

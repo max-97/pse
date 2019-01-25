@@ -56,22 +56,4 @@ public class AverageRankTest {
         assertEquals(3, (int) ranking.get(agents[2]));
         assertEquals(2, (int) ranking.get(agents[3]));
     }
-
-    @Test
-    public void getRankingsTest3() {
-        agents[0].setScore(10);
-        agents[1].setScore(5);
-        agents[2].setScore(5);
-        agents[3].setScore(7);
-
-        for(int i = 0; i < agents.length; i++) {
-            agents[i].getHistory().increaseCycleCount();
-        }
-
-        HashMap<Agent, Integer> ranking = rankingAlgorithm.getRankings(agents);
-        assertEquals(1, (int) ranking.get(agents[0]));
-        assertEquals(3, (int) ranking.get(agents[1]));
-        assertEquals(3, (int) ranking.get(agents[2]));
-        assertEquals(2, (int) ranking.get(agents[3]));
-    }
 }
