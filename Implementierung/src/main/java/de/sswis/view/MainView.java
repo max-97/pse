@@ -56,7 +56,7 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public Collection<VMConfiguration> getSelected() { return null; }
+    public VMConfiguration getSelected() { return null; }
 
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {

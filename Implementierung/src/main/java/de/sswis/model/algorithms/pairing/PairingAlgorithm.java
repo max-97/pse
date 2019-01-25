@@ -17,4 +17,6 @@ public interface PairingAlgorithm {
      * @return eine Menge von Agent-Paaren
      */
     Pair[] getPairing(Agent[] agents, Game game);
+
+    String getName();
 }

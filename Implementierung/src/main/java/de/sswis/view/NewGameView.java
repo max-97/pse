@@ -58,7 +58,12 @@ public class NewGameView implements AbstractNewGameView {
   
     @Override
     public VMGame getVMGame() {
-        return null;
+        return this.vmGame;
+    }
+
+    @Override
+    public void setGame(VMGame game) {
+        this.vmGame = game;
     }
 
     @Override

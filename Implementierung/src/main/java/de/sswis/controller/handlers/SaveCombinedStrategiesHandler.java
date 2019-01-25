@@ -2,6 +2,9 @@ package de.sswis.controller.handlers;
 
 
 import de.sswis.controller.FileManager;
+import de.sswis.controller.ModelParser;
+import de.sswis.controller.ModelProvider;
+import de.sswis.model.CombinedStrategy;
 import de.sswis.view.AbstractManageCombinedStrategiesView;
 import de.sswis.view.AbstractNewCombinedStrategyView;
 import de.sswis.view.model.VMCombinedStrategy;
@@ -21,6 +24,7 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
 
     private AbstractNewCombinedStrategyView combinedStrategyView;
     private FileManager fileManager;
+    private ModelParser parser;
 
     /**
      *
@@ -29,6 +33,7 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
     public SaveCombinedStrategiesHandler(AbstractNewCombinedStrategyView combinedStrategyView) {
         this.combinedStrategyView = combinedStrategyView;
         this.fileManager = new FileManager();
+        this.parser = new ModelParser();
     }
 
     @Override
@@ -40,7 +45,11 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
             e1.printStackTrace();
             return;
         }
+        CombinedStrategy cs = this.parser.parseVMCombinedStrategyToCombinedStrategy(combinedStrategy);
+        ModelProvider.getInstance().addCombinedStrategy(cs);
         AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
+        if (parentView == null)
+            return;
         parentView.addStrategy(combinedStrategy);
         parentView.update();
         this.combinedStrategyView.close();

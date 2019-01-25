@@ -4,6 +4,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.model.VMConfiguration;
+import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
@@ -186,5 +187,10 @@ public class ShowResultView implements AbstractShowResultView {
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setVMResult(VMResult vmResult) {
+
     }
 }

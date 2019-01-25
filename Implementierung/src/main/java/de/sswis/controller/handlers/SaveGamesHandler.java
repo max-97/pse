@@ -1,6 +1,9 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
+import de.sswis.controller.ModelParser;
+import de.sswis.controller.ModelProvider;
+import de.sswis.model.Game;
 import de.sswis.view.AbstractManageGamesView;
 import de.sswis.view.AbstractNewGameView;
 import de.sswis.view.model.VMGame;
@@ -19,6 +22,7 @@ public class SaveGamesHandler implements ActionListener {
 
     private AbstractNewGameView gameView;
     private FileManager fileManager;
+    private ModelParser parser;
 
     /**
      *
@@ -27,6 +31,7 @@ public class SaveGamesHandler implements ActionListener {
     public SaveGamesHandler(AbstractNewGameView gameView) {
         this.gameView = gameView;
         this.fileManager = new FileManager();
+        this.parser = new ModelParser();
     }
 
     @Override
@@ -38,7 +43,11 @@ public class SaveGamesHandler implements ActionListener {
             e1.printStackTrace();
             return;
         }
+        Game game = this.parser.parseVMGameToGame(vmGame);
+        ModelProvider.getInstance().addGame(game);
         AbstractManageGamesView parentView = this.gameView.getParentView();
+        if (parentView == null)
+            return;
         parentView.addGame(vmGame);
         parentView.update();
         this.gameView.close();

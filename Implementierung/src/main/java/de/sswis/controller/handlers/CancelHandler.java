@@ -1,5 +1,7 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.view.AbstractMainView;
+import de.sswis.view.AbstractManageConfigurationsView;
 import de.sswis.view.AbstractView;
 
 import java.awt.event.ActionEvent;
@@ -10,7 +12,7 @@ import java.awt.event.ActionListener;
  *
  * @author Max Braun
  */
-public class CancleHandler implements ActionListener {
+public class CancelHandler implements ActionListener {
 
     private AbstractView view;
 
@@ -18,12 +20,12 @@ public class CancleHandler implements ActionListener {
      *
      * @param view die zu schließende View
      */
-    public CancleHandler(AbstractView view) {
-
+    public CancelHandler(AbstractView view) {
+        this.view = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        this.view.close();
     }
 }

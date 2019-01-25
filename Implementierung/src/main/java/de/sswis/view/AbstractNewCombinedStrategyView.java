@@ -27,4 +27,9 @@ public interface AbstractNewCombinedStrategyView extends AbstractView {
 
     AbstractManageCombinedStrategiesView getParentView();
 
+    void setCombinedStrategy(VMCombinedStrategy combinedStrategy);
+
+    void addCondition(String name);
+
+    void addBaseStrategy(String name);
 }
