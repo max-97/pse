@@ -7,6 +7,7 @@ import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Ein Tab fuer ein Stufenspiel, der in der ManageGamesView angezeigt wird.
@@ -30,8 +31,27 @@ public class GameTab {
         this.vmGame = vmGame;
     }
 
+    public void addEditButtonActionlistener(ActionListener listener) {
+        editButton.addActionListener(listener);
+    }
+
+    public void addDeleteButtonActionlistener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
+
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+        nameLabel = new JLabel(vmGame.getName());
+        upLeftPayOffLabel = new JLabel(vmGame.getPayoffs()[0][0]
+                + "/" + vmGame.getPayoffs()[0][1]);
+        upRightPayOffLabel = new JLabel(vmGame.getPayoffs()[0][2]
+                + "/" + vmGame.getPayoffs()[0][3]);
+        bottomLeftPayOffLabel = new JLabel(vmGame.getPayoffs()[1][0]
+                + "/" + vmGame.getPayoffs()[1][1]);
+        bottomRightPayOffLabel = new JLabel(vmGame.getPayoffs()[1][2]
+                + "/" + vmGame.getPayoffs()[1][3]);
+        descriptionPane = new JTextPane();
+        descriptionPane.setText(vmGame.getDescription());
     }
 
     {
