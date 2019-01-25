@@ -26,4 +26,9 @@ public class SpecificGroup implements Condition {
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return agent2.getGroup().getId() == GROUP_ID;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

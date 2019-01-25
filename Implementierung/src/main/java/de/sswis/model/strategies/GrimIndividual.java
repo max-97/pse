@@ -22,4 +22,9 @@ public class GrimIndividual implements BaseStrategy {
             return Action.DEFECTION;
         }
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

@@ -20,4 +20,9 @@ public class CurrentCycleScore implements RankingAlgorithm {
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
         return null;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

@@ -26,7 +26,7 @@ public interface AbstractNewConfigurationView extends AbstractView {
 
     VMConfiguration getVMConfiguration();
 
-    AbstractManageConfigurationsView getParenteView();
+    AbstractManageConfigurationsView getParentView();
 
     void setConfiguration(VMConfiguration configuration);
 

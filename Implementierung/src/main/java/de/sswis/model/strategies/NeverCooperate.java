@@ -17,4 +17,9 @@ public class NeverCooperate implements BaseStrategy {
     public Action calculateAction(Agent agent1, Agent agent2) {
         return Action.DEFECTION;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }
