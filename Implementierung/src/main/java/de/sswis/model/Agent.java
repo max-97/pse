@@ -56,4 +56,8 @@ public class Agent {
     public void setStrategy(Strategy newStrategy) {
 
     }
+
+    public void setScore(int newScore) {
+        this.score = newScore;
+    }
 }

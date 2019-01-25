@@ -15,24 +15,29 @@ public class ScoreTest {
 
     @Before
     public void init() {
-        agents = new Agent[10];
+        agents = new Agent[5];
         rankingAlgorithm = new Score();
 
-        for(int i = 0; i < 10; i++) {
-            agents[i] = new Agent(i + 1, 0, null, null);
-        }
-
         for(int i = 0; i < agents.length; i++) {
-            agents[i].getHistory().increaseRoundCount();
-            agents[i].getHistory().setScore(10 - i);
+            agents[i] = new Agent(i + 1, 0, null, null);
         }
     }
 
     @Test
-    public void rankingShouldBeCorrect() {
+    public void getRankingsTest1() {
+        for(int i = 0; i < agents.length; i++) {
+            agents[i].getHistory().increaseRoundCount();
+            agents[i].setScore(10 - i);
+        }
+
         HashMap<Agent, Integer> ranking = rankingAlgorithm.getRankings(agents);
         for(int i = 0; i < 10; i++) {
             assertEquals((int) ranking.get(agents[i]), agents[i].getId());
         }
+    }
+
+    @Test
+    public void getRankingsTest2() {
+        agents[1].g
     }
 }
