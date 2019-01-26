@@ -3,11 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.model.Game;
+import de.sswis.view.CustomComponents.GameTab;
 import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +24,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     private List<VMGame> vmGames;
 
-
+    private List<GameTab> gameTabs;
 
     private JButton newGameButton;
     private JButton cancelButton;
@@ -32,8 +35,10 @@ public class ManageGamesView implements AbstractManageGamesView {
   
     private AbstractMainView parentView;
 
-
-
+    public ManageGamesView() {
+        vmGames = new ArrayList<VMGame>();
+        gameTabs = new ArrayList<GameTab>();
+    }
 
     @Override
     public void addGame(VMGame game) {

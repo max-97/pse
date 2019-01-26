@@ -3,11 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.CustomComponents.MixedStrategyTab;
 import de.sswis.view.model.VMStrategy;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Ein Fenster zum Verwalten von gemischten Strategien.
@@ -17,6 +20,9 @@ import java.awt.event.ActionListener;
 public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     private JFrame frame;
+
+    private List<VMStrategy> vmStrategies;
+    private List<MixedStrategyTab> strategyTabs;
 
     private JButton aenderungenSpeichernUndSchließenButton;
     private JButton abbrechenButton;
@@ -28,6 +34,10 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
   
     private AbstractMainView parentView;
 
+    public ManageStrategiesView() {
+        vmStrategies = new ArrayList<VMStrategy>();
+        strategyTabs = new ArrayList<MixedStrategyTab>();
+    }
 
     @Override
     public void addStrategy(VMStrategy vmStrategy) {

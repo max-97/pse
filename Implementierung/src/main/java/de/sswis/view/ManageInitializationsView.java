@@ -4,11 +4,13 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.AbstractManageInitializationsView;
+import de.sswis.view.CustomComponents.InitializationTab;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private JFrame frame;
 
     private List<VMInitialization> vmInits;
+    private List<InitializationTab> initializationTabs;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -36,6 +39,10 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     private AbstractMainView parentView;
 
+    public ManageInitializationsView() {
+        vmInits = new ArrayList<VMInitialization>();
+        initializationTabs = new ArrayList<InitializationTab>();
+    }
 
     @Override
     public void addInit(VMInitialization vmInitialization) {

@@ -4,11 +4,13 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.AbstractManageConfigurationsView;
+import de.sswis.view.CustomComponents.ConfigurationTab;
 import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +23,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JFrame frame;
 
     private List<VMConfiguration> vmConfigurations;
+
+    private List<ConfigurationTab> configTabs;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -36,7 +40,10 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     private AbstractMainView parentView;
 
-
+    public ManageConfigurationsView() {
+        vmConfigurations = new ArrayList<VMConfiguration>();
+        configTabs = new ArrayList<ConfigurationTab>();
+    }
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {

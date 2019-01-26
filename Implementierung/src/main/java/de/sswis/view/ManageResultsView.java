@@ -4,11 +4,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.AbstractManageResultsView;
+import de.sswis.view.CustomComponents.ResultTab;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Ein Fenster zum Verwalten von Ergebnissen.
@@ -19,6 +22,10 @@ public class ManageResultsView implements AbstractManageResultsView {
 
 
     private JFrame frame;
+
+    private List<VMResult> vmResults;
+
+    private List<ResultTab> resultTabs;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -31,6 +38,10 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     private AbstractMainView parentView;
 
+    public ManageResultsView() {
+        vmResults = new ArrayList<VMResult>();
+        resultTabs = new ArrayList<ResultTab>();
+    }
 
     @Override
     public void addResult(VMResult vmResult) {
