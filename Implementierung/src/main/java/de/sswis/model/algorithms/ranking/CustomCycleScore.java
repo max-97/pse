@@ -40,7 +40,7 @@ public class CustomCycleScore implements RankingAlgorithm {
         }
 
 
-        Collections.sort(agentList, (a1, a2) -> cyclesScores.get(a2) > cyclesScores.get(a1) ? 1 :
+        agentList.sort((a1, a2) -> cyclesScores.get(a2) > cyclesScores.get(a1) ? 1 :
                 cyclesScores.get(a2) < cyclesScores.get(a1) ? -1 : 0);
         Iterator<Agent> it = agentList.iterator();
 

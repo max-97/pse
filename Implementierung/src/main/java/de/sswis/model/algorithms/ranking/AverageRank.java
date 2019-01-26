@@ -36,9 +36,7 @@ public class AverageRank implements RankingAlgorithm {
         currentRounds = agents[1].getHistory().getCurrentRound();
         currentCycle = agents[1].getHistory().getCurrentCycle();
 
-        for(int i = 0; i < agents.length; i++) {
-            agentList.add(agents[i]);
-        }
+        agentList.addAll(Arrays.asList(agents));
 
         HashMap<Agent, Integer[]> cycleRankings = getCycleRankings(agentList);
 
@@ -52,7 +50,7 @@ public class AverageRank implements RankingAlgorithm {
             averageRanks.put(agents[i], avgRank);
         }
 
-        Collections.sort(agentList, (a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
+        agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
                 averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
                 a2.getScore() - a1.getScore());
         Iterator<Agent> it = agentList.iterator();
@@ -93,7 +91,7 @@ public class AverageRank implements RankingAlgorithm {
                 }
             }
 
-            Collections.sort(agentList, (a1, a2) -> cyclesScores.get(a2) > cyclesScores.get(a1) ? 1 :
+            agentList.sort((a1, a2) -> cyclesScores.get(a2) > cyclesScores.get(a1) ? 1 :
                     cyclesScores.get(a2) < cyclesScores.get(a1) ? -1 : 0);
             Iterator<Agent> agentIterator = agentList.iterator();
             int rankCount = 1;

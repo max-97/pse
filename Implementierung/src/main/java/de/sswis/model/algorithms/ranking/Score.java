@@ -20,11 +20,9 @@ public class Score implements  RankingAlgorithm {
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
 
-        for(int i = 0; i < agents.length; i++) {
-            agentList.add(agents[i]);
-        }
+        agentList.addAll(Arrays.asList(agents));
 
-        Collections.sort(agentList, (a1, a2) -> Integer.compare(a2.getScore(), a1.getScore()));
+        agentList.sort((a1, a2) -> Integer.compare(a2.getScore(), a1.getScore()));
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;
