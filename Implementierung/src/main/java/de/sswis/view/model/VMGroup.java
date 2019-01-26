@@ -22,46 +22,6 @@ public class VMGroup {
     private List<String> startCapital;
     private List<List<String>> startCapitalDistributions;
 
-    public List<String> getAgentIntervals() {
-        return agentIntervals;
-    }
-
-    public void setAgentIntervals(List<String> agentIntervals) {
-        this.agentIntervals = agentIntervals;
-    }
-
-    public List<String> getStrategies() {
-        return strategies;
-    }
-
-    public void setStrategies(List<String> strategies) {
-        this.strategies = strategies;
-    }
-
-    public List<List<String>> getStrategyDistributions() {
-        return strategyDistributions;
-    }
-
-    public void setStrategyDistributions(List<List<String>> strategyDistributions) {
-        this.strategyDistributions = strategyDistributions;
-    }
-
-    public List<String> getStartCapital() {
-        return startCapital;
-    }
-
-    public void setStartCapital(List<String> startCapital) {
-        this.startCapital = startCapital;
-    }
-
-    public List<List<String>> getStartCapitalDistributions() {
-        return startCapitalDistributions;
-    }
-
-    public void setStartCapitalDistributions(List<List<String>> startCapitalDistributions) {
-        this.startCapitalDistributions = startCapitalDistributions;
-    }
-
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
      * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
@@ -73,37 +33,15 @@ public class VMGroup {
         return false;
     }
 
-    /**
-     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung in Prozent, hinzu.
-     *
-     * @param name Name der Strategie
-     * @param percentage Prozentzahl der Agenten mit dieser Strategie
-     */
-    public void addStrategy (String name, int percentage) {}
+    public void addStrategy(String name, List<String> distribution) {
+        this.strategies.add(name);
+        this.strategyDistributions.add(distribution);
+    }
 
-    /**
-     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung nach ihren IDs, hinzu.
-     *
-     * @param name Name der Strategie
-     * @param ids IDs der Agenten mit dieser Strategie
-     */
-    public void addStrategy (String name, int[] ids) {}
-
-    /**
-     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung in Prozent, hinzu.
-     *
-     * @param capital Höhe des Startkapitals
-     * @param percentage Prozentzahl der Agenten mit diesem Startkapital
-     */
-    public void addStartCapital (int capital, int percentage) {}
-
-    /**
-     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung nach ihren IDs, hinzu.
-     *
-     * @param capital Höhe des Startkapitals
-     * @param ids IDs der Agenten mit diesem Startkapital
-     */
-    public void addStartCapital (int capital, int[] ids) {}
+    public void addStartCapital(String capital, List<String> distribution) {
+        this.startCapital.add(capital);
+        this.startCapitalDistributions.add(distribution);
+    }
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser Gruppe zusammenfasst.
@@ -131,5 +69,21 @@ public class VMGroup {
 
     public void setAgents(List<String> agentIntervals) {
         this.agentIntervals = agentIntervals;
+    }
+
+    public List<String> getStrategies() {
+        return strategies;
+    }
+
+    public List<List<String>> getStrategyDistributions() {
+        return strategyDistributions;
+    }
+
+    public List<String> getStartCapital() {
+        return startCapital;
+    }
+
+    public List<List<String>> getStartCapitalDistributions() {
+        return startCapitalDistributions;
     }
 }
