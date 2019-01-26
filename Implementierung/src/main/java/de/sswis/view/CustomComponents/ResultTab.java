@@ -80,7 +80,7 @@ public class ResultTab {
         showButton.setText("Ergebnisse anzeigen");
         panel1.add(showButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deleteButton = new JButton();
-        deleteButton.setText("Ergabnisse löschen");
+        deleteButton.setText("Ergebnisse löschen");
         panel1.add(deleteButton, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
