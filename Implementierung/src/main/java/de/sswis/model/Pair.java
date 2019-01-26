@@ -7,7 +7,6 @@ package de.sswis.model;
 public class Pair {
     private Agent agent1;
     private Agent agent2;
-    private Game game;
 
     /**
      * Erstellt ein Paar von Agenten.
