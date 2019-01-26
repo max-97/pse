@@ -21,19 +21,12 @@ public class RandomPairing implements PairingAlgorithm {
     public Pair[] getPairing(Agent[] agents, Game game) {
         Agent[] agentsArray = agents.clone();
         shuffle(agentsArray);
-        HashSet<Agent> agentSet = new HashSet<>(Arrays.asList(agentsArray));
+        Pair[] pairs = new Pair[agents.length/2];
 
-        Iterator<Agent> it = agentSet.iterator();
-        int count = 0;
-        Pair[] pairs = new Pair[agentSet.size()/2];
-
-        while(it.hasNext()) {
-            Agent agent1 = it.next();
-            Agent agent2 = it.next();
-            agentSet.remove(agent1);
-            agentSet.remove(agent2);
-            pairs[count++] = new Pair(agent1, agent2);
+        for(int i = 0; i < pairs.length; i++) {
+            pairs[i] = new Pair(agents[i], agents[agents.length - 1 - i]);
         }
+
         return pairs;
     }
 
