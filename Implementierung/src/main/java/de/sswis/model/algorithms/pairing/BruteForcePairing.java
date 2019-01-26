@@ -47,7 +47,7 @@ public class BruteForcePairing implements PairingAlgorithm{
 
     private double calculateCoopProbability(Agent agent1, Agent agent2) {
         Strategy strategy = agent1.getStrategy();
-        double distance = 0;
+        double probability = 0;
 
         if(strategy instanceof CombinedStrategy) {
             if(strategy.calculateAction(agent1, agent2) == Action.COOPERATION){
@@ -61,10 +61,10 @@ public class BruteForcePairing implements PairingAlgorithm{
 
             for(int i = 0; i < combinedStrategies.length; i++) {
                 if(combinedStrategies[i].calculateAction(agent1, agent2) == Action.COOPERATION){
-                    distance += probabilities[i];
+                    probability += probabilities[i];
                 }
             }
         }
-        return distance;
+        return probability;
     }
 }
