@@ -65,7 +65,7 @@ public class History {
     public boolean getOpponentCooperated() {
         return opponentCooperated.get(currentRound);
     }
-
+  
     /**
      * Gibt an ob der Gegenspieler des Agenten in einer bestimmten Runde kooperiert hat.
      * @param round Runde der gesuchten Aktion
@@ -248,7 +248,9 @@ public class History {
      * Gibt die aktuelle Rundenzahl zurück.
      * @return Rundenzahl
      */
-    public int getCurrentRound() { return currentRound; }
+    public int getCurrentRound() {
+        return currentRound;
+    }
 
     /**
      * Gibt die aktuelle Zykluszahl zurück.
