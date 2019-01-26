@@ -116,4 +116,9 @@ public class AverageRank implements RankingAlgorithm {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

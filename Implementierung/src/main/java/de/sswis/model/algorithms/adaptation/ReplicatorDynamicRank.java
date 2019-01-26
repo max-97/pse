@@ -36,4 +36,9 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

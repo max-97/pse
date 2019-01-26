@@ -8,6 +8,8 @@ import org.jgrapht.Graph;
 import org.jgrapht.alg.interfaces.MatchingAlgorithm;
 import org.jgrapht.graph.DefaultEdge;
 
+import java.util.HashMap;
+
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation so paart, dass die Anzahl an kooperierenden Paaren
  * maximal ist. Der Algorithmus erstellt dabei einen vollstaendigen Graphen mit Agenten als Knoten und den
@@ -27,6 +29,11 @@ public class MaximumWeightMatching implements PairingAlgorithm {
     @Override
     public String getName() {
         return null;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
     }
 
     /*

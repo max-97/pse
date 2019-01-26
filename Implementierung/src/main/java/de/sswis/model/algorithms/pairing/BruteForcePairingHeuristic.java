@@ -4,6 +4,8 @@ import de.sswis.model.Agent;
 import de.sswis.model.Game;
 import de.sswis.model.Pair;
 
+import java.util.HashMap;
+
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation so paart, dass jeder Agent mit dem
  * ersten verbleibenden Agenten gepaart wird, so dass die Distanz des Paares unter einem gewissen Schwellwert liegt.
@@ -28,5 +30,10 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
     @Override
     public String getName() {
         return null;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
     }
 }

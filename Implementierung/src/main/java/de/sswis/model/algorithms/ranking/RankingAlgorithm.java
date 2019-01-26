@@ -17,4 +17,6 @@ public interface RankingAlgorithm {
     HashMap<Agent, Integer> getRankings(Agent[] agents);
 
     String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
 }

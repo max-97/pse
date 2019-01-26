@@ -21,4 +21,6 @@ public interface AdaptationAlgorithm {
     void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability);
 
     String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
 }

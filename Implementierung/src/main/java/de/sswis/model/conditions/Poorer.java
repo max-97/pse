@@ -23,4 +23,9 @@ public class Poorer implements Condition {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameter(double conditionParameter) {
+
+    }
 }

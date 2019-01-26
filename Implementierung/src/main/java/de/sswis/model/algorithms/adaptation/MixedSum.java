@@ -27,4 +27,9 @@ public class MixedSum implements AdaptationAlgorithm{
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

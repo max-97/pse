@@ -23,4 +23,9 @@ public class Richer implements Condition {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameter(double conditionParameter) {
+
+    }
 }

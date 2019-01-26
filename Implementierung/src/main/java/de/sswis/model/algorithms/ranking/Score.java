@@ -44,4 +44,9 @@ public class Score implements  RankingAlgorithm {
     public String getName() {
         return null;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

@@ -5,12 +5,12 @@ import de.sswis.model.*;
 import de.sswis.model.algorithms.adaptation.*;
 import de.sswis.model.algorithms.pairing.*;
 import de.sswis.model.algorithms.ranking.*;
+import de.sswis.model.conditions.Condition;
+import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.view.model.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 /**
  * Übersetzt Objekte zwischen dem {@code ViewModel} und dem {@code Model}.
@@ -20,6 +20,16 @@ import java.util.List;
  * @author Simon Hügel
  */
 public class ModelParser {
+
+    private ModelServiceLoader serviceLoader;
+    private FileManager fileManager;
+    private ModelProvider provider;
+
+    public ModelParser() {
+        this.serviceLoader = new ModelServiceLoader();
+        this.fileManager = new FileManager();
+        this.provider = ModelProvider.getInstance();
+    }
 
     /**
      * Übersetzt das {@code Simulation}-Objekt einer abgeschlossenen Simulation in ein {@code VMResult}-Objekt.
@@ -38,7 +48,34 @@ public class ModelParser {
      * @param vmCombinedStrategy die zu übersetzende {@code VMCombinedStrategy}
      * @return die übersetzte {@code CombinedStrategy}
      */
-    public CombinedStrategy parseVMCombinedStrategyToCombinedStrategy(VMCombinedStrategy vmCombinedStrategy) { return null; }
+    public CombinedStrategy parseVMCombinedStrategy(VMCombinedStrategy vmCombinedStrategy) {
+        String name = vmCombinedStrategy.getName();
+        int strategySize = vmCombinedStrategy.getStrategies().size();
+        int conditionSize = vmCombinedStrategy.getConditions().size();
+        BaseStrategy[] strategies = new BaseStrategy[strategySize];
+        Condition[] conditions = new Condition[conditionSize];
+
+        List<String> strategyNames = vmCombinedStrategy.getStrategies();
+        for (int i = 0; i < strategySize; i++) {
+            for (BaseStrategy b : this.serviceLoader.getBaseStrategyList()) {
+                if (b.getName().equals(strategyNames.get(i))) {
+                    strategies[i] = b;
+                }
+            }
+        }
+
+        List<String> conditionNames = vmCombinedStrategy.getConditions();
+        for (int i = 0; i < conditionSize; i++) {
+            for (Condition c : this.serviceLoader.getConditionList()) {
+                if (c.getName().equals(conditionNames.get(i))) {
+                    c.setParameter(vmCombinedStrategy.getConditionParameter(conditionNames.get(i)));
+                    conditions[i] = c;
+                }
+            }
+        }
+
+        return new CombinedStrategy(name, strategies, conditions);
+    }
 
     /**
      * Übersetzt ein {@code VMConfiguration}-Objekt in eine Sammlung an {@code Configuration}-Objekten.
@@ -47,39 +84,81 @@ public class ModelParser {
      * @param vmConfig die zu übersetzende {@code VMConfiguration}
      * @return die übersetzte {@code Collection<Configuration>}
      */
-    public Collection<Configuration> parseVMConfigurationToConfigurations(VMConfiguration vmConfig) {
+    public Collection<Configuration> parseVMConfiguration(VMConfiguration vmConfig) {
 
-        /*Configuration config = new Configuration(
-                parseVMGameToGame(VMGame vmConfig.getGame()),
-                ...
-        )
-        return config;*/
-        return null;
-    }
+        String init = vmConfig.getInit();
+        VMInitialization vmInitialization;
 
-    private Configuration parseSingleVMConfigurationToConfiguration(VMConfiguration vmConfig) {
-
-        FileManager fm = new FileManager();
-        List<Strategy> strategies = new ArrayList<>();
-        Iterator<String> it = vmConfig.getStrategies().iterator();
-
-        while (it.hasNext()) {
-            //TODO: Strategien aus FM laden, mit entsprechenden Methoden parsen und strategies hinzufügen
-            it.next();
+        try{
+            vmInitialization = this.fileManager.loadInitialization(init);
+        } catch(FileNotFoundException e){
+            e.printStackTrace();
+            return null;
         }
 
-        return new Configuration(
-                vmConfig.getName(),
-                parseVMGameToGame(fm.loadGame(vmConfig.getGame())),
-                parseSingleVMInitializationToInitialization(fm.loadInitalization(vmConfig.getInit())),
-                parseStringToAdaptationAlgorithm(vmConfig.getAdaptationAlg()),
-                parseStringToPairingAlgorithm(vmConfig.getPairingAlg()),
-                parseStringToRankingAlgorithm(vmConfig.getRankingAlg()),
-                Integer.parseInt(vmConfig.getRounds()),
-                Integer.parseInt(vmConfig.getCycles()),
-                Double.parseDouble(vmConfig.getAdaptationProbability()),
-                strategies);
+        ArrayList<Configuration> configurations = new ArrayList<>();
+
+        String name = vmConfig.getName();
+        Game game = this.provider.getGame(vmConfig.getName());
+        AdaptationAlgorithm adaptationAlgorithm = this.parseAdaptationAlgorithm(vmConfig.getAdaptationAlg(),
+                vmConfig.getAdaptationParameters());
+        PairingAlgorithm pairingAlgorithm = this.parsePairingAlgorithm(vmConfig.getPairingAlg(),
+                vmConfig.getPairingParameters());
+        RankingAlgorithm rankingAlgorithm = this.parseRankingAlgorithm(vmConfig.getRankingAlg(),
+                vmConfig.getRankingParameters());
+        int rounds = Integer.parseInt(vmConfig.getRounds());
+        int cycles = Integer.parseInt(vmConfig.getCycles());
+        double adaptationProbability = Double.parseDouble(vmConfig.getAdaptationProbability());
+
+        List<Strategy> strategies = new ArrayList<>();
+        for (String strategyName : vmConfig.getStrategies()) {
+            strategies.add(this.provider.getStrategy(strategyName));
+        }
+
+        if (vmInitialization.isMultiInitialisation()) {
+            String initName = vmInitialization.getName();
+
+            for (int i = 1; this.provider.getInitialization(initName + i) != null; i++) {
+
+                Initialization initialization = this.provider.getInitialization(initName + i);
+
+                Configuration c = new Configuration(
+                        name + i,
+                        game,
+                        initialization,
+                        adaptationAlgorithm,
+                        pairingAlgorithm,
+                        rankingAlgorithm,
+                        rounds,
+                        cycles,
+                        adaptationProbability,
+                        strategies
+                );
+                configurations.add(c);
+            }
+
+        } else {
+
+            Initialization initialization = this.provider.getInitialization(vmInitialization.getName());
+
+            Configuration c = new Configuration(
+                    name,
+                    game,
+                    initialization,
+                    adaptationAlgorithm,
+                    pairingAlgorithm,
+                    rankingAlgorithm,
+                    rounds,
+                    cycles,
+                    adaptationProbability,
+                    strategies
+            );
+
+            configurations.add(c);
+        }
+        return configurations;
     }
+
 
     /**
      * Übersetzt ein {@code VMGame}-Objekt in ein {@code Game}-Objekt.
@@ -87,25 +166,29 @@ public class ModelParser {
      * @param vmGame das zu übersetzende {@code VMGame}
      * @return das übersetzte {@code Game}
      */
-    public Game parseVMGameToGame(VMGame vmGame) {
+    public Game parseVMGame(VMGame vmGame) {
 
         Game game = new Game(
                 vmGame.getName(),
                 vmGame.getDescription(),
-                parseVMGamePayoffsToGamePayoffs(vmGame));
+                parseVMGamePayoffs(vmGame));
 
-        return null; }
+        return game;
+    }
 
-    private Game.Tuple[][] parseVMGamePayoffsToGamePayoffs(VMGame vmGame) {
+    private Game.Tuple[][] parseVMGamePayoffs(VMGame vmGame) {
 
         Game.Tuple[][] outPayoffs = new Game.Tuple[2][2];
         int[][] inPayoffs = vmGame.getPayoffs();
 
-        for (int row = 0; row < 2; row ++)
-            for (int col = 0; col < 2; col++)
-                outPayoffs[row][col] = new Game.Tuple(inPayoffs[row][(2*col)], inPayoffs[row][(2*col)+1]);
+        for (int row = 0; row < 2; row++){
+            for (int col = 0; col < 2; col++){
+                outPayoffs[row][col] = new Game.Tuple(inPayoffs[row][(2 * col)], inPayoffs[row][(2 * col) + 1]);
+            }
+        }
 
-        return outPayoffs; }
+        return outPayoffs;
+    }
 
     /**
      * Übersetzt ein {@code VMGroup}-Objekt in ein {@code Group}-Objekt.
@@ -113,7 +196,9 @@ public class ModelParser {
      * @param vmGroup die zu übersetzende {@code VMGroup}
      * @return die übersetzte {@code Group}
      */
-    public Group parseVMGroupToGroup(VMGroup vmGroup) { return null; }
+    public Group parseVMGroupToGroup(VMGroup vmGroup) {
+        return null;
+    }
 
     /**
      * Übersetzt ein {@code VMInitialization}-Objekt in eine Sammlung an {@code Initialization}-Objekten.
@@ -155,8 +240,8 @@ public class ModelParser {
      * @param vmStrategy die zu übersetzende {@code VMStrategy}
      * @return die übersetzte {@code Strategy}
      */
-    public Strategy parseVMStrategyToMixedStrategy(VMStrategy vmStrategy) {
-        //vmStrategy.isCorrect()
+    public MixedStrategy parseVMStrategy(VMStrategy vmStrategy) {
+
         return new MixedStrategy(
                 vmStrategy.getName(),
                 loadCombinedStrategies(vmStrategy.getCombinedStrategies()),
@@ -166,114 +251,48 @@ public class ModelParser {
     private double[] probabilitiesArray(List<String> inProbabilities) {
 
         double[] outProbabilities = new double[inProbabilities.size()];
-        Iterator<String> it = inProbabilities.iterator();
-        int i = 0;
 
-        while (it.hasNext()) {
-            outProbabilities[i] = Double.parseDouble(it.next().replace(",","."));
-            i++;
+        for (int i = 0; i < outProbabilities.length; i++) {
+            outProbabilities[i] = Double.parseDouble(inProbabilities.get(i));
         }
         return outProbabilities;
     }
 
     private CombinedStrategy[] loadCombinedStrategies(List<String> inCombinedStrategies) {
-
-        FileManager fm = new FileManager();
-        CombinedStrategy[] outCombinedStrategies = new CombinedStrategy[inCombinedStrategies.size()];
-        Iterator<String> it = inCombinedStrategies.iterator();
-        int i = 0;
-
-        while (it.hasNext()) {
-            outCombinedStrategies[i] = parseVMCombinedStrategyToCombinedStrategy(fm.loadCombinedStrategy(it.next()));
-            i++;
+        CombinedStrategy[] cs = new CombinedStrategy[inCombinedStrategies.size()];
+        for (int i = 0; i < cs.length; i++) {
+            cs[i] = this.provider.getCombinedStrategy(inCombinedStrategies.get(i));
         }
-
-        return outCombinedStrategies;
+        return cs;
     }
 
-    private AdaptationAlgorithm parseStringToAdaptationAlgorithm(String name) {
-
-        AdaptationAlgorithm adaptAlg;
-        String[] cases = {"MixedLinearInterpolation", "MixedSum", "RandomAdaptation",
-                "RankPercentage", "ReplicatorDynamicRank", "ReplicatorDynamicScore"};
-
-        int i;
-        for(i = 0; i < cases.length; i++)
-            if(name.startsWith(cases[i])) break;
-
-        switch (i) {
-            case 0: adaptAlg = new MixedLinearInterpolation();
-                break;
-            case 1: adaptAlg = new MixedSum();
-                break;
-            case 2: adaptAlg = new RandomAdaptation(Integer.parseInt(
-                    name.replace("RandomAdaptation","")));
-                break;
-            case 3: adaptAlg = new RankPercentage(Integer.parseInt(
-                    name.replace("RankPercentage","")));
-                break;
-            case 4: adaptAlg = new ReplicatorDynamicRank(Double.parseDouble(
-                    name.replace("ReplicatorDynamicRank","")));
-                break;
-            case 5: adaptAlg = new ReplicatorDynamicScore(Double.parseDouble(
-                    name.replace("ReplicatorDynamicScore","")));
-                break;
-            default: throw new IllegalArgumentException("No corresponding AdaptationAlgorithm found!");
+    private AdaptationAlgorithm parseAdaptationAlgorithm(String name, HashMap<String, Object> parameters) {
+        for (AdaptationAlgorithm a : this.serviceLoader.getAdaptAlgorithmList()) {
+            if (a.getName().equals(name)) {
+                a.setParameters(parameters);
+                return a;
+            }
         }
-
-        return adaptAlg;
+        return null;
     }
 
-    private PairingAlgorithm parseStringToPairingAlgorithm(String name) {
-
-        PairingAlgorithm pairAlg;
-        String[] cases = {"RandomPairing", "MaximumWeightMatching", "BruteForcePairing", "BruteForcePairingHeuristic"};
-
-        int i;
-        for(i = 0; i < cases.length; i++)
-            if(name.startsWith(cases[i])) break;
-
-        switch (i) {
-            case 0: pairAlg = new RandomPairing();
-                break;
-            case 1: pairAlg = new MaximumWeightMatching();
-                break;
-            case 2: pairAlg = new BruteForcePairing();
-                break;
-            case 3: pairAlg = new BruteForcePairingHeuristic(Double.parseDouble(
-                    name.replace("BruteForcePairingHeuristic","")));
-                break;
-            default: throw new IllegalArgumentException("No corresponding PairingAlgorithm found!");
+    private PairingAlgorithm parsePairingAlgorithm(String name, HashMap<String, Object> parameters) {
+        for (PairingAlgorithm p : this.serviceLoader.getPairAlgorithmList()) {
+            if (p.getName().equals(name)) {
+                p.setParameters(parameters);
+                return p;
+            }
         }
-
-        return pairAlg;
+        return null;
     }
 
-    private RankingAlgorithm parseStringToRankingAlgorithm(String name) {
-
-        RankingAlgorithm rankAlg;
-        String[] cases = {"AverageRank", "CurrentCycleScore", "CustomCycleScore", "Score"};
-
-        int i;
-        for(i = 0; i < cases.length; i++)
-            if(name.startsWith(cases[i])) break;
-
-        switch (i) {
-            case 0: rankAlg = new AverageRank(Integer.parseInt(
-                    name.replace("AverageRank","")));
-                break;
-            case 1: rankAlg = new CurrentCycleScore();
-                break;
-            case 2: rankAlg = new CustomCycleScore(Integer.parseInt(
-                    name.replace("CustomCycleScore","")));
-                break;
-            case 3: rankAlg = new Score();
-                break;
-            default: throw new IllegalArgumentException("No corresponding RankingAlgorithm found!");
+    private RankingAlgorithm parseRankingAlgorithm(String name, HashMap<String, Object> parameters) {
+        for (RankingAlgorithm r : this.serviceLoader.getRankAlgorithmList()) {
+            if (r.getName().equals(name)) {
+                r.setParameters(parameters);
+                return r;
+            }
         }
-
-        return rankAlg;
+        return null;
     }
-
-
 }
