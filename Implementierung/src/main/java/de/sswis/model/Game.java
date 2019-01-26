@@ -32,7 +32,22 @@ public class Game {
      * @return ein Paar von Payoffs
      */
     public Tuple getPayoffs(Action a1, Action a2) {
-        return null;
+        int i = 0;
+        int j = 0;
+        switch (a1) {
+            case COOPERATION:
+                i = 0;
+            case  DEFECTION:
+                i = 1;
+        }
+        switch (a2) {
+            case COOPERATION:
+                j = 0;
+            case DEFECTION:
+                i = 1;
+        }
+        Tuple tuple = payoffs[i][j];
+        return tuple;
     }
 
     /**
@@ -59,6 +74,14 @@ public class Game {
         public Tuple(int x, int y) {
             this.x = x;
             this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
         }
 
     }
