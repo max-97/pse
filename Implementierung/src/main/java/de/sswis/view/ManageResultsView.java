@@ -55,17 +55,17 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void addDeleteResultButtonActionlistener(ActionListener listener) {
-
+        deleteButton.addActionListener(listener);
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override

@@ -73,24 +73,27 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public void addEditStrategyButtonActionlistener(ActionListener listener) {
         for (int i = 0; i < strategyTabs.size(); i++) {
-            //strategyTabs.get(i)
+            strategyTabs.get(i).addEditButtonActionlistener(listener);
         }
 
     }
 
     @Override
     public void addDeleteStrategyButtonActionlistener(ActionListener listener) {
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            strategyTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
 
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override

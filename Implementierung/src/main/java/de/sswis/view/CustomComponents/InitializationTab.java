@@ -7,6 +7,7 @@ import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Ein Tab fuer eine Initialisierung, der in der ManageInitializationsView angezeigt wird.
@@ -25,8 +26,17 @@ public class InitializationTab {
         this.vmInitialization = vmInitialization;
     }
 
+    public void addEditButtonActionlistener(ActionListener listener) {
+        editButton.addActionListener(listener);
+    }
+
+    public void addDeleteButtonActionlistener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+        nameInitializationLabel = new JLabel(vmInitialization.getName());
+
     }
 
     {

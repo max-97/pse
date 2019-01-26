@@ -57,27 +57,31 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void addNewConfigurationButtonActionlistener(ActionListener listener) {
-
+        newConfigButton.addActionListener(listener);
     }
 
     @Override
     public void addEditConfigurationButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < configTabs.size(); i++) {
+            configTabs.get(i).addEditButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addDeleteConfigurationButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < configTabs.size(); i++) {
+            configTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override

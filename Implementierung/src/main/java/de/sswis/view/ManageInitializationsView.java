@@ -56,27 +56,31 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void addNewInitButtonActionlistener(ActionListener listener) {
-
+        newInitButton.addActionListener(listener);
     }
 
     @Override
     public void addEditInitButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < initializationTabs.size(); i++) {
+            initializationTabs.get(i).addEditButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addDeleteInitButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < initializationTabs.size(); i++) {
+            initializationTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override

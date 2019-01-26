@@ -52,27 +52,31 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void addNewGameButtonActionlistener(ActionListener listener) {
-
+        newGameButton.addActionListener(listener);
     }
 
     @Override
     public void addEditGameButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < gameTabs.size(); i++) {
+            gameTabs.get(i).addEditButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addDeleteGameButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < gameTabs.size(); i++) {
+            gameTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override

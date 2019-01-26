@@ -24,12 +24,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     private List<VMStrategy> vmStrategies;
     private List<MixedStrategyTab> strategyTabs;
 
-    private JButton aenderungenSpeichernUndSchließenButton;
-    private JButton abbrechenButton;
-    private JTextPane textPane1;
-    private JButton kombinierteStrategieLoeschenButton;
-    private JButton neueGemischteStrategieButton;
-    private JButton kombinierteStrategieBearbeitenButton;
+    private JButton saveAndQuitButton;
+    private JButton cancelButton;
+    private JButton newStrategyButton;
     private JPanel MainPanel;
   
     private AbstractMainView parentView;
@@ -51,27 +48,31 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void addNewMixedStrategyButtonActionlistener(ActionListener listener) {
-
+        newStrategyButton.addActionListener(listener);
     }
 
     @Override
     public void addEditMixedStrategyButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            strategyTabs.get(i).addEditButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addDeleteMixedStrategyButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            strategyTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
   
     @Override
@@ -134,12 +135,12 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel2, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        aenderungenSpeichernUndSchließenButton = new JButton();
-        aenderungenSpeichernUndSchließenButton.setText("Änderungen speichern und schließen");
-        panel2.add(aenderungenSpeichernUndSchließenButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        abbrechenButton = new JButton();
-        abbrechenButton.setText("Abbrechen");
-        panel2.add(abbrechenButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        saveAndQuitButton = new JButton();
+        saveAndQuitButton.setText("Änderungen speichern und schließen");
+        panel2.add(saveAndQuitButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        cancelButton = new JButton();
+        cancelButton.setText("Abbrechen");
+        panel2.add(cancelButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel1.add(separator1, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
@@ -160,11 +161,11 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         final JLabel label1 = new JLabel();
         label1.setText("Beschreibung:");
         panel4.add(label1, new GridConstraints(8, 0, 1, 9, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        textPane1 = new JTextPane();
-        panel4.add(textPane1, new GridConstraints(9, 0, 1, 9, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
-        kombinierteStrategieLoeschenButton = new JButton();
-        kombinierteStrategieLoeschenButton.setText("kombinierte Strategie löschen");
-        panel4.add(kombinierteStrategieLoeschenButton, new GridConstraints(10, 8, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextPane = new JTextPane();
+        panel4.add(descriptionTextPane, new GridConstraints(9, 0, 1, 9, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        deleteButton = new JButton();
+        deleteButton.setText("kombinierte Strategie löschen");
+        panel4.add(deleteButton, new GridConstraints(10, 8, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         Font label2Font = this.$$$getFont$$$(null, Font.BOLD, -1, label2.getFont());
         if (label2Font != null) label2.setFont(label2Font);
@@ -217,9 +218,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         final JLabel label15 = new JLabel();
         label15.setText("keine Kooperation");
         panel4.add(label15, new GridConstraints(6, 8, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        kombinierteStrategieBearbeitenButton = new JButton();
-        kombinierteStrategieBearbeitenButton.setText("kombinierte Strategie bearbeiten");
-        panel4.add(kombinierteStrategieBearbeitenButton, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        editButton = new JButton();
+        editButton.setText("kombinierte Strategie bearbeiten");
+        panel4.add(editButton, new GridConstraints(10, 0, 1, 7, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel4.add(spacer4, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(25, -1), null, null, 0, false));
         final Spacer spacer5 = new Spacer();
@@ -229,9 +230,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         final JLabel label16 = new JLabel();
         label16.setText("GruppenTitForTat");
         panel4.add(label16, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        neueGemischteStrategieButton = new JButton();
-        neueGemischteStrategieButton.setText("neue gemischte Strategie");
-        panel1.add(neueGemischteStrategieButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        newStrategyButton = new JButton();
+        newStrategyButton.setText("neue gemischte Strategie");
+        panel1.add(newStrategyButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
