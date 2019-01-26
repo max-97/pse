@@ -7,6 +7,7 @@ import de.sswis.view.model.VMStrategy;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer gemischten Strategie.
@@ -19,7 +20,20 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     private VMStrategy vmStrategy;
 
+    private List<String> combinedStrategies;
+
+    private List<JFormattedTextField> probabilityTextFields;
+    private List<JComboBox> strategyComboBoxes;
+
     private JPanel MainPanel;
+    private JPanel ContentPane;
+    private JPanel panel1;
+    private JTextPane descriptionTextPane;
+    private JFormattedTextField nameTextField;
+    private JButton addStrategyButton;
+    private JButton finishButton;
+    private JButton cancelButton;
+    private JButton letzteKombinerteStrategieEntfernenButton;
 
     private AbstractManageStrategiesView parentView;
 

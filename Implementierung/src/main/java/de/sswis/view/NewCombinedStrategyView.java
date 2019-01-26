@@ -7,6 +7,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer kombinierten Strategie.
@@ -19,8 +20,26 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     private VMCombinedStrategy vmCombinedStrategy;
 
+    private List<String> conditions;
+    private List<String> baseStrategies;
+
     private JPanel MainPanel;
-  
+
+    private List<JLabel> priorityLabels;
+    private List<JComboBox> conditionComboBoxes;
+    private List<JComboBox> strategyComboBoxes;
+
+
+    private JPanel ContentPane;
+    private JButton finishButton;
+    private JButton cancelButton;
+    private JPanel panel1;
+    private JTextPane descriptionTextPane;
+    private JFormattedTextField nameTextField;
+    private JComboBox comboBox1;
+    private JButton addConditionButton;
+    private JButton letzteBedingungEntfernenButton;
+
     private AbstractManageCombinedStrategiesView parentView;
 
 
