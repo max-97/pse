@@ -50,17 +50,7 @@
           <tabPlacement value="2"/>
         </properties>
         <border type="none"/>
-        <children>
-          <grid id="8ccaa" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="0" left="0" bottom="0" right="0"/>
-            <constraints>
-              <tabbedpane title="Spiel"/>
-            </constraints>
-            <properties/>
-            <border type="none"/>
-            <children/>
-          </grid>
-        </children>
+        <children/>
       </tabbedpane>
       <component id="29110" class="javax.swing.JButton" binding="newGameButton">
         <constraints>

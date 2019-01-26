@@ -30,11 +30,6 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JButton saveAndQuitButton;
     private JButton cancelButton;
     private JTabbedPane ConfigurationsPane;
-    private JLabel descriptionLabel;
-    private JTextPane textPane1;
-    private JButton deleteButton;
-    private JLabel nameLabel;
-    private JButton editButton;
     private JButton newConfigButton;
     private JPanel MainPanel;
 

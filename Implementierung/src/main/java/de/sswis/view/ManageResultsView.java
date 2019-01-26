@@ -32,8 +32,6 @@ public class ManageResultsView implements AbstractManageResultsView {
     private JButton cancelButton;
     private JTabbedPane ResultsPane;
     private JButton deleteButton;
-    private JLabel nameLabel;
-    private JButton openButton;
     private JPanel MainPanel;
 
     private AbstractMainView parentView;

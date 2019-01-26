@@ -29,11 +29,6 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     private JButton saveAndQuitButton;
     private JButton cancelButton;
     private JTabbedPane StrategiesPane;
-    private JLabel descriptionLabel;
-    private JTextPane textPane1;
-    private JButton deleteButton;
-    private JLabel nameLabel;
-    private JButton editButton;
     private JButton newStrategyButton;
     private JPanel MainPanel;
 
