@@ -56,7 +56,17 @@ public class Game {
      * @param pair Agentenpaar
      */
     public void playGame(Pair pair) {
-
+        Agent agent1 = pair.getAgent(1);
+        Agent agent2 = pair.getAgent(2);
+        Action action1 = agent1.getStrategy().calculateAction(agent1, agent2);
+        Action action2 = agent2.getStrategy().calculateAction(agent2, agent1);
+        Tuple tuple = getPayoffs(action1, action2);
+        int score1 = agent1.getScore();
+        int pay1 = tuple.getX();
+        int score2 = agent2.getScore();
+        int pay2 = tuple.getY();
+        pair.getAgent(1).setScore(score1 + pay1);
+        pair.getAgent(2).setScore(score2 + pay2);
     }
 
     public String getName() {
