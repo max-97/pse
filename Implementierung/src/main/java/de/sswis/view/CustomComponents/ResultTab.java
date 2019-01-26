@@ -7,6 +7,7 @@ import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Ein Tab fuer ein Ergebnis, der in der ManageResultsView angezeigt wird.
@@ -21,8 +22,25 @@ public class ResultTab {
     private JButton showButton;
     private JButton deleteButton;
 
+    public ResultTab(VMResult vmResult) {
+        this.vmResult = vmResult;
+    }
+
+    public void addShowButtonActionlistener(ActionListener listener) {
+        showButton.addActionListener(listener);
+    }
+
+    public void addDeleteButtonActionlistener(ActionListener listener) {
+        deleteButton.addActionListener(listener);
+    }
+
+    public VMResult getVmResult() {
+        return vmResult;
+    }
+
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+        configurationNameLabel = new JLabel(vmResult.getVmConfig().getName());
+        numberOfRepitionsLabel = new JLabel(vmResult.getNumberOfRepititions() + "");
     }
 
     {
