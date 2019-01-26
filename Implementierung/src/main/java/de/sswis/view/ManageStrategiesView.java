@@ -91,7 +91,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public VMStrategy getSelectedVM() {
-        return null;
+        return vmStrategies.get(strategiesPane.getSelectedIndex());
     }
 
     @Override

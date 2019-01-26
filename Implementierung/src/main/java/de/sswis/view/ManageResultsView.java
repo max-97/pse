@@ -82,7 +82,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public VMResult getSelectedVM() {
-        return null;
+        return vmResults.get(ResultsPane.getSelectedIndex());
     }
 
     @Override

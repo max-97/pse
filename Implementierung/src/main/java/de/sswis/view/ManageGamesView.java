@@ -94,7 +94,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public VMGame getSelectedVM() {
-        return null;
+        return vmGames.get(GamesPane.getSelectedIndex());
     }
 
     @Override

@@ -98,7 +98,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public VMInitialization getSelectedVM() {
-        return null;
+        return vmInits.get(InitsPane.getSelectedIndex());
     }
 
     @Override

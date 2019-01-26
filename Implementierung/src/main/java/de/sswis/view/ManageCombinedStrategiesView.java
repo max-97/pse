@@ -98,7 +98,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public VMCombinedStrategy getSelectedVM() {
-        return null;
+
+        return vmCombinedStrategies.get(StrategiesPane.getSelectedIndex());
     }
 
     @Override

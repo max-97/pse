@@ -98,7 +98,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public VMConfiguration getSelectedVM() {
-        return null;
+        return vmConfigurations.get(ConfigurationsPane.getSelectedIndex());
     }
 
     @Override
