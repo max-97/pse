@@ -36,17 +36,4 @@ public class Group {
 
     public List<Agent> getMembers { return members; }
 
-    /**
-     * Fuegt dieser Gruppe einen neuen Agenten hinzu.
-     * @param newMember neuer Agent
-     */
-    public void addMember(Agent newMember) {
-        if (!this.members.contains(newMember) &&  newMember.getGroup().equals(this)) {
-            this.members.add(newMember);
-        } else if (this.members.contains(newMember)){
-            throw new DuplicateObjectNameException("this agent is already a member of this group.");
-        } else if (!newMember.getGroup().equals(this)) {
-            throw new DuplicateObjectNameException("this agent belong to other group.");
-        }
-    }
 }
