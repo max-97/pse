@@ -7,7 +7,6 @@ package de.sswis.model;
 public class Pair {
     private Agent agent1;
     private Agent agent2;
-    private Game game;
 
     /**
      * Erstellt ein Paar von Agenten.
@@ -15,9 +14,9 @@ public class Pair {
      * @param agent2 zweiter Agent
      */
     public Pair(Agent agent1, Agent agent2) {
-
+         this.agent1 = agent1;
+         this.agent2 = agent2;
     }
-
     /**
      * Gibt einen bestimmten Agenten des Paars zurück.
      * @param agentNumber Nummer des Agenten, eins für den Ersten, zwei für den Zweiten
