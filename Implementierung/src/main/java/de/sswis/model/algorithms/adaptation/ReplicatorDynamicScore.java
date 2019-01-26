@@ -18,12 +18,11 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
-    private Random rnd;
 
     @Override
     public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
-        rnd = new Random();
-        double beta = 1 / getHighestScoreDifference(agents);
+        Random rnd = new Random();
+        double beta = 1.0 / getHighestScoreDifference(agents);
 
         for (int i = 0; i < agents.length; i++) {
             double rndDouble = rnd.nextDouble();

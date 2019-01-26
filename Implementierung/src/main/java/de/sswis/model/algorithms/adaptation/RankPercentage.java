@@ -18,7 +18,6 @@ public class RankPercentage implements AdaptationAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
     private final int PERCENTAGE;
-    private Random rnd;
 
     /**
      * Konstruktor
@@ -31,7 +30,7 @@ public class RankPercentage implements AdaptationAlgorithm {
     @Override
     public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int cutOff = (int) Math.ceil(agents.length*(double)PERCENTAGE/100);
-        rnd = new Random();
+        Random rnd = new Random();
 
         for(int i = 0; i < agents.length; i++) {
             double rndDouble = rnd.nextDouble();
