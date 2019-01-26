@@ -16,4 +16,9 @@ public class RandomPairing implements PairingAlgorithm {
     public Pair[] getPairing(Agent[] agents, Game game) {
         return new Pair[0];
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

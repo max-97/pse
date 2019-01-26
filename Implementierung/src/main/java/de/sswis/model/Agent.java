@@ -8,8 +8,8 @@ package de.sswis.model;
 public class Agent {
 
     private int id;
-    private int initialScore;
     private int score;
+    private int initialScore;
     private History history;
     private Group group;
     private Strategy strategy;
@@ -40,7 +40,6 @@ public class Agent {
 
     public History getHistory() { return history; }
 
-
     public Group getGroup() {
         return group;
     }
@@ -66,6 +65,7 @@ public class Agent {
     }
 
     public void setScore(int newScore) {
-        this.score = score;
+        this.score = newScore;
     }
+
 }

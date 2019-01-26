@@ -26,7 +26,7 @@ public class Delta implements Condition{
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return Math.abs(agent1.getHistory().getScore() - agent2.getHistory().getScore()) <= DELTA;
+        return Math.abs(agent1.getScore() - agent2.getScore()) <= DELTA;
     }
 
     @Override
