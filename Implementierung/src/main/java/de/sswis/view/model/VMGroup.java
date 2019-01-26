@@ -89,7 +89,7 @@ public class VMGroup {
         return startCapitalDistributions;
     }
 
-    public boolean isRelativeStrategyDistribution() {
+    public boolean usesRelativeStrategyDistribution() {
         return relativeStrategyDistribution;
     }
 
@@ -97,7 +97,7 @@ public class VMGroup {
         this.relativeStrategyDistribution = relativeStrategyDistribution;
     }
 
-    public boolean isRelativeCaptialDistribution() {
+    public boolean usesRelativeCaptialDistribution() {
         return relativeCaptialDistribution;
     }
 
