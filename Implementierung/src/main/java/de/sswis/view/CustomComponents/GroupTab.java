@@ -7,6 +7,7 @@ import de.sswis.view.model.VMGroup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,9 @@ public class GroupTab {
     private VMGroup vmGroup;
     private List<String> allStrategies;
     private List<InitialStrategyTab> strategyTabs;
+    private List<StartCapitalTab> startCapitalTabs;
 
     private JPanel MainPanel;
-    private String title;
 
     private JTabbedPane initGroupTabbedPane;
 
@@ -33,25 +34,75 @@ public class GroupTab {
     private JTabbedPane capitalsTabbedPane;
     private JLabel groupIDLabel;
     private JButton addCapitalButton;
+    private JLabel idLabel;
+    private JLabel percentageLabel;
 
     public GroupTab(VMGroup vmGroup, List<String> allStrategies) {
         this.vmGroup = vmGroup;
         this.allStrategies = allStrategies;
+
+        strategyTabs = new ArrayList<InitialStrategyTab>();
+        createStrategyTabs();
+
+        startCapitalTabs = new ArrayList<StartCapitalTab>();
+    }
+
+    private void createStrategyTabs() {
+        for (int i = 0; i < allStrategies.size(); i++){
+            strategyTabs.add(new InitialStrategyTab(allStrategies.get(i)));
+        }
     }
 
     private void addStrategyTabs() {
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            initialStrategiesTabbedPane.addTab(strategyTabs.get(i).getTitle(),
+                    strategyTabs.get(i).$$$getRootComponent$$$());
+
+        }
     }
 
     private void addCapital() {
+        StartCapitalTab capitalTab = new StartCapitalTab();
+        startCapitalTabs.add(capitalTab);
+        capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
+
+
 
     public void update() {
         percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
+        percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
+
         idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
+        idLabel.setEnabled(idAgentRadioButton.isSelected());
+
+    }
+
+    public void updateVM() {
+        if (groupNameTextField.getText() != null) {
+            vmGroup.setName(groupNameTextField.getText());
+        }
+        //TODO: implement me!
+    }
+
+    public String getTitle() {
+        String title = vmGroup.getId() + ": ";
+
+        if (vmGroup.getName() == null) {
+            title = title + "unbenannt";
+        } else {
+            title = title + vmGroup.getName();
+        }
+
+        return title;
+    }
+
+    public VMGroup getVmGroup() {
+        return vmGroup;
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+
         groupIDLabel = new JLabel(vmGroup.getId() + "");
 
         idAgentRadioButton = new JRadioButton();
@@ -59,6 +110,8 @@ public class GroupTab {
         buttonGroup = new ButtonGroup();
         buttonGroup.add(idAgentRadioButton);
         buttonGroup.add(percentageAgentRadioButton);
+
+        addStrategyTabs();
 
     }
 
