@@ -1,11 +1,12 @@
 package de.swiss.view;
 
-import de.sswis.view.CustomComponents.CombinedStrategyTab;
+import de.sswis.view.MainView;
 
 public class PreviewForms {
     public static void main(String args[]) {
-        CombinedStrategyTab preview = new CombinedStrategyTab();
-        preview.preview();
 
+        MainView view = new MainView();
+
+        view.show();
     }
 }
