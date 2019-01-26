@@ -3,12 +3,13 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.CustomComponents.CombinedStrategyTab;
 import de.sswis.view.model.VMCombinedStrategy;
-import de.sswis.view.model.VMStrategy;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     private List<VMCombinedStrategy> vmCombinedStrategies;
 
+    private List<CombinedStrategyTab> strategyTabs;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -31,30 +34,47 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     private JButton deleteButton;
     private JLabel nameLabel;
     private JButton editButton;
-    private JButton newGameButton;
+    private JButton newStrategyButton;
     private JPanel MainPanel;
 
 
     private AbstractMainView parentView;
 
+    public ManageCombinedStrategiesView() {
+        vmCombinedStrategies = new ArrayList<VMCombinedStrategy>();
+        strategyTabs = new ArrayList<CombinedStrategyTab>();
+
+    }
 
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
+        vmCombinedStrategies.add(vmStrategy);
+        addTab(vmStrategy);
 
     }
 
     @Override
     public void removeStrategy(String strategyName) {
-
+        for (int i = 0; i < vmCombinedStrategies.size(); i++) {
+            if (vmCombinedStrategies.get(i).getName().equals(strategyName)) {
+                vmCombinedStrategies.remove(i);
+                StrategiesPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override
     public void addNewStrategyButtonActionlistener(ActionListener listener) {
+        newStrategyButton.addActionListener(listener);
 
     }
 
     @Override
     public void addEditStrategyButtonActionlistener(ActionListener listener) {
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            //strategyTabs.get(i)
+        }
 
     }
 
@@ -107,6 +127,15 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     public AbstractMainView getParentView() {
         return this.parentView;
     }
+
+
+    private void addTab(VMCombinedStrategy strategy) {
+        CombinedStrategyTab tab = new CombinedStrategyTab(strategy);
+        strategyTabs.add(tab);
+        StrategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
+
+    }
+
 
 
     {
@@ -165,9 +194,9 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
         editButton = new JButton();
         editButton.setText("Bearbeiten");
         panel3.add(editButton, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        newGameButton = new JButton();
-        newGameButton.setText("Neue kombinierte Strategie");
-        panel1.add(newGameButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        newStrategyButton = new JButton();
+        newStrategyButton.setText("Neue kombinierte Strategie");
+        panel1.add(newStrategyButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
@@ -177,5 +206,9 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
      */
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
+    }
+
+    private void createUIComponents() {
+        StrategiesPane = new JTabbedPane();
     }
 }
