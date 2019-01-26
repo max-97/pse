@@ -47,12 +47,24 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {
+        vmConfigurations.add(configuration);
+        addTab(configuration);
+    }
 
+    private void addTab(VMConfiguration configuration) {
+        ConfigurationTab tab = new ConfigurationTab(configuration);
+        ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeConfiguration(String configName) {
-
+        for (int i = 0; i < vmConfigurations.size(); i++) {
+            if (vmConfigurations.get(i).getName().equals(configName)) {
+                vmConfigurations.remove(i);
+                ConfigurationsPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override

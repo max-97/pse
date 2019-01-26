@@ -46,11 +46,24 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void addInit(VMInitialization vmInitialization) {
+        vmInits.add(vmInitialization);
+        addTab(vmInitialization);
+    }
 
+    private void addTab(VMInitialization initialization) {
+        InitializationTab tab = new InitializationTab(initialization);
+        InitsPane.addTab(initialization.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeInit(String initName) {
+        for (int i = 0; i < vmInits.size(); i++) {
+            if (vmInits.get(i).getName().equals(initName)) {
+                vmInits.remove(i);
+                InitsPane.removeTabAt(i);
+                break;
+            }
+        }
 
     }
 

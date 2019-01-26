@@ -40,14 +40,27 @@ public class ManageGamesView implements AbstractManageGamesView {
         gameTabs = new ArrayList<GameTab>();
     }
 
+
     @Override
     public void addGame(VMGame game) {
+        vmGames.add(game);
+        addTab(game);
+    }
 
+    private void addTab(VMGame game) {
+        GameTab tab = new GameTab(game);
+        GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeGame(String gameName) {
-
+        for (int i = 0; i < vmGames.size(); i++) {
+            if (vmGames.get(i).getName().equals(gameName)) {
+                vmGames.remove(i);
+                GamesPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override

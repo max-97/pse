@@ -45,12 +45,24 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void addResult(VMResult vmResult) {
+        vmResults.add(vmResult);
+        addTab(vmResult);
+    }
 
+    private void addTab(VMResult result) {
+        ResultTab tab = new ResultTab(result);
+        ResultsPane.addTab(result.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeResult(String resultName) {
-
+        for (int i = 0; i < vmResults.size(); i++) {
+            if (vmResults.get(i).getName().equals(resultName)) {
+                vmResults.remove(i);
+                ResultsPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override
