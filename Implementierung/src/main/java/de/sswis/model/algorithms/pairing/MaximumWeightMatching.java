@@ -24,6 +24,11 @@ public class MaximumWeightMatching implements PairingAlgorithm {
         return new Pair[0];
     }
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
     /*
     private Graph<Agent, DefaultEdge> agentsToGraph() { return null; }
     */

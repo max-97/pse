@@ -28,4 +28,9 @@ public class Delta implements Condition{
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return Math.abs(agent1.getScore() - agent2.getScore()) <= DELTA;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

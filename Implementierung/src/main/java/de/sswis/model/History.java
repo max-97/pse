@@ -13,7 +13,7 @@ public class History {
     private int currentRound;
     private int currentCycle;
     private ArrayList<Integer> score;
-    private ArrayList<Boolean> cooperated;
+    private ArrayList<Boolean> opponentCooperated;
     private ArrayList<Agent> opponent;
     private ArrayList<String> strategies;
     private boolean alwaysCooperated;
@@ -31,7 +31,7 @@ public class History {
         this.currentRound = 0;
         this.currentCycle = 1;
         this.score = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
-        this.cooperated = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
+        this.opponentCooperated = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
         this.opponent = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
         this.strategies = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
         this.alwaysCooperated = true;
@@ -62,17 +62,17 @@ public class History {
      * Gibt an ob der Gegenspieler des Agenten in der letzten Runde kooperiert hat.
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
-    public boolean getCooperated() {
-        return cooperated.get(currentRound);
+    public boolean getOpponentCooperated() {
+        return opponentCooperated.get(currentRound);
     }
-
+  
     /**
      * Gibt an ob der Gegenspieler des Agenten in einer bestimmten Runde kooperiert hat.
      * @param round Runde der gesuchten Aktion
      * @return wahr wenn er kooperiert hat, falsch sonst
      */
-    public boolean getCooperated(int round) {
-        return cooperated.get(round);
+    public boolean getOpponentCooperated(int round) {
+        return opponentCooperated.get(round);
     }
 
     /**
@@ -85,12 +85,12 @@ public class History {
     }
 
     /**
-     * Gibt den Namen der Strategie des Agenten in einer bestimmten Runde zurueck.
-     * @param round Runde der gesuchten Strategie
+     * Gibt den Namen der Strategie des Agenten in einem bestimmten Zyklus zurueck.
+     * @param cycle Zyklus der gesuchten Strategie
      * @return Name der Strategie
      */
-    public String getStrategy(int round) {
-        return strategies.get(round);
+    public String getStrategy(int cycle) {
+        return strategies.get(cycle - 1);
     }
 
     /**
@@ -106,7 +106,7 @@ public class History {
      * @param cooperated ob der Gegenspieler kooperiert hat
      */
     public void setCooperated(boolean cooperated) {
-        this.cooperated.add(currentRound, cooperated);
+        this.opponentCooperated.add(currentRound, cooperated);
     }
 
     /**
@@ -118,11 +118,11 @@ public class History {
     }
 
     /**
-     * Speichert den Namen der Strategie fuer die aktuelle Runde.
+     * Speichert den Namen der Strategie für den aktuellen Zyklus.
      * @param strategy Name der Strategie
      */
     public void setStrategy(Strategy strategy) {
-        this.strategies.add(currentRound, strategy.getName());
+        this.strategies.add(currentCycle - 1, strategy.getName());
     }
 
     /**
@@ -139,7 +139,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean cooperatedLastTime(Agent agent) {
-        return false;
+        if(cooperatedLastTime.get(agent) == null){
+            cooperatedLastTime.put(agent, true);
+            return true;
+        }else {
+            return cooperatedLastTime.get(agent);
+        }
     }
 
     /**
@@ -148,7 +153,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean cooperatedEveryTime(Agent agent) {
-        return false;
+        if(cooperatedEveryTime.get(agent) == null){
+            cooperatedEveryTime.put(agent, true);
+            return true;
+        }else {
+            return cooperatedEveryTime.get(agent);
+        }
     }
 
     /**
@@ -157,7 +167,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean groupCooperatedLastTime(Group group) {
-        return false;
+        if(groupCooperatedLastTime.get(group) == null){
+            groupCooperatedLastTime.put(group, true);
+            return true;
+        }else {
+            return groupCooperatedLastTime.get(group);
+        }
     }
 
     /**
@@ -167,7 +182,12 @@ public class History {
      * @return wahr, wenn er kooperiert hat, falsch sonst
      */
     public boolean groupCooperatedEveryTime(Group group) {
-        return false;
+        if(groupCooperatedEveryTime.get(group) == null){
+            groupCooperatedEveryTime.put(group, true);
+            return true;
+        }else {
+            return groupCooperatedEveryTime.get(group);
+        }
     }
 
     /**
@@ -176,7 +196,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setCooperatedLastTime(Agent agent, boolean cooperated){
-
+        if(cooperatedLastTime.containsKey(agent)) {
+            cooperatedLastTime.replace(agent, cooperated);
+        }else {
+            cooperatedLastTime.put(agent, cooperated);
+        }
     }
 
     /**
@@ -185,7 +209,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setCooperatedEveryTime(Agent agent, boolean cooperated) {
-
+        if(cooperatedEveryTime.containsKey(agent)) {
+            cooperatedEveryTime.replace(agent, cooperated);
+        }else {
+            cooperatedEveryTime.put(agent, cooperated);
+        }
     }
 
     /**
@@ -195,7 +223,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setGroupCooperatedLastTime(Group group, boolean cooperated) {
-
+        if(groupCooperatedLastTime.containsKey(group)) {
+            groupCooperatedLastTime.replace(group, cooperated);
+        }else {
+            groupCooperatedLastTime.put(group, cooperated);
+        }
     }
 
     /**
@@ -205,7 +237,11 @@ public class History {
      * @param cooperated wahr wenn er kooperiert hat, falsch sonst
      */
     public void setGroupCooperatedEveryTime(Group group, boolean cooperated) {
-
+        if(groupCooperatedEveryTime.containsKey(group)) {
+            groupCooperatedEveryTime.replace(group, cooperated);
+        }else {
+            groupCooperatedEveryTime.put(group, cooperated);
+        }
     }
 
     /**
@@ -216,6 +252,10 @@ public class History {
         return currentRound;
     }
 
+    /**
+     * Gibt die aktuelle Zykluszahl zurück.
+     * @return Rundenzahl
+     */
     public int getCurrentCycle() { return currentCycle; }
 
     /**
@@ -225,6 +265,9 @@ public class History {
         currentRound++;
     }
 
+    /**
+     * Inkrementiert den Zykluszähler um eins.
+     */
     public void increaseCycleCount() {
         currentCycle++;
     }

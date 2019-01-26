@@ -111,4 +111,9 @@ public class AverageRank implements RankingAlgorithm {
         }
         return result;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

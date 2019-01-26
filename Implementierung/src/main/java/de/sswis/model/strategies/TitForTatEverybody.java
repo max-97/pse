@@ -16,10 +16,15 @@ public class TitForTatEverybody implements BaseStrategy {
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        if(agent1.getHistory().getCooperated()) {
+        if(agent1.getHistory().getOpponentCooperated()) {
             return Action.COOPERATION;
         }else {
             return Action.DEFECTION;
         }
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

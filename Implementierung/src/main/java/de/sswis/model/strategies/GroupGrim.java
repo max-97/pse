@@ -23,4 +23,9 @@ public class GroupGrim implements BaseStrategy {
             return Action.DEFECTION;
         }
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

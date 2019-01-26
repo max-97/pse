@@ -58,4 +58,9 @@ public class CustomCycleScore implements RankingAlgorithm {
         }
         return result;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

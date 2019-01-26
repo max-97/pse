@@ -18,7 +18,8 @@ public class Group {
      * @param name Name der Gruppe
      */
     public Group(int id, String name) {
-
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {

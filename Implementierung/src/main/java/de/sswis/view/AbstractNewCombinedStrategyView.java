@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMCombinedStrategy;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -20,4 +22,14 @@ public interface AbstractNewCombinedStrategyView extends AbstractView {
      * @param listener ActionListener
      */
     void addFinishButtonActionlistener(ActionListener listener);
+
+    VMCombinedStrategy getCombinedStrategy();
+
+    AbstractManageCombinedStrategiesView getParentView();
+
+    void setCombinedStrategy(VMCombinedStrategy combinedStrategy);
+
+    void addCondition(String name);
+
+    void addBaseStrategy(String name);
 }
