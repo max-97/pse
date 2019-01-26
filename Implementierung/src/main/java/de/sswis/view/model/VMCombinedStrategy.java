@@ -18,7 +18,6 @@ public class VMCombinedStrategy {
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
 
 
-
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
      * Fehlerhafte Daten beinhalten: illegale Eingaben.
@@ -52,6 +51,9 @@ public class VMCombinedStrategy {
         this.defaultStrategy = baseStrategy;
     }
 
+    public String getDefaultStrategy() {
+        return defaultStrategy;
+    }
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
