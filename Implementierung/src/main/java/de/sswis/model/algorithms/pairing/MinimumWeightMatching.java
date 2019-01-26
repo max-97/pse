@@ -48,21 +48,22 @@ public class MinimumWeightMatching implements PairingAlgorithm {
             for(int j = i + 1; j < agents.length; j++) {
                 agentGraph.addEdge(agents[i], agents[j]);
                 agentGraph.setEdgeWeight(agents[i], agents[j],
-                        (calculateDistance(agents[i], agents[j]) + calculateDistance(agents[j], agents[i]))/2);
+                        (1 - calculateCoopProbability(agents[i], agents[j]) *
+                                calculateCoopProbability(agents[j], agents[i])));
             }
         }
         return agentGraph;
     }
 
-    private double calculateDistance(Agent agent1, Agent agent2) {
+    private double calculateCoopProbability(Agent agent1, Agent agent2) {
         Strategy strategy = agent1.getStrategy();
-        double distance = 1;
+        double distance = 0;
 
         if(strategy instanceof CombinedStrategy) {
             if(strategy.calculateAction(agent1, agent2) == Action.COOPERATION){
-                return 0;
-            } else {
                 return 1;
+            } else {
+                return 0;
             }
         } else {
             CombinedStrategy[] combinedStrategies = ((MixedStrategy)strategy).getCombinedStrategies();
@@ -70,7 +71,7 @@ public class MinimumWeightMatching implements PairingAlgorithm {
 
             for(int i = 0; i < combinedStrategies.length; i++) {
                 if(combinedStrategies[i].calculateAction(agent1, agent2) == Action.COOPERATION){
-                    distance -= probabilities[i];
+                    distance += probabilities[i];
                 }
             }
         }

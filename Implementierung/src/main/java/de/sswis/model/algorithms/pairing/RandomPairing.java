@@ -4,6 +4,7 @@ import de.sswis.model.Agent;
 import de.sswis.model.Game;
 import de.sswis.model.Pair;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
@@ -19,12 +20,8 @@ public class RandomPairing implements PairingAlgorithm {
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
         Agent[] agentsArray = agents.clone();
-        HashSet<Agent> agentSet = new HashSet<>();
         shuffle(agentsArray);
-
-        for(int i = 0; i < agentsArray.length; i++) {
-            agentSet.add(agentsArray[i]);
-        }
+        HashSet<Agent> agentSet = new HashSet<>(Arrays.asList(agentsArray));
 
         Iterator<Agent> it = agentSet.iterator();
         int count = 0;

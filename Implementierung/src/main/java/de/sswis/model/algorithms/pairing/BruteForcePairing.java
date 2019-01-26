@@ -2,6 +2,7 @@ package de.sswis.model.algorithms.pairing;
 
 import de.sswis.model.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -18,12 +19,7 @@ public class BruteForcePairing implements PairingAlgorithm{
 
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
-        HashSet<Agent> agentSet = new HashSet<>();
-
-        for(int i = 0; i < agents.length; i++) {
-            agentSet.add(agents[i]);
-        }
-
+        HashSet<Agent> agentSet = new HashSet<>(Arrays.asList(agents));
         Pair[] pairs = new Pair[agentSet.size()/2];
 
         for(int i = 0; i < agents.length/2; i++) {
@@ -31,14 +27,17 @@ public class BruteForcePairing implements PairingAlgorithm{
             Agent agent1 = it.next();
             double smallestDistance = 2;
             Agent bestPartner = null;
+
             while(it.hasNext() && smallestDistance != 0) {
                 Agent currentAgent = it.next();
-                double distance = (calculateDistance(agent1, currentAgent) + calculateDistance(currentAgent, agent1))/2;
+                double distance = 1 - (calculateCoopProbability(agent1, currentAgent) *
+                        calculateCoopProbability(currentAgent, agent1));
                 if(distance < smallestDistance) {
                     smallestDistance = distance;
                     bestPartner = currentAgent;
                 }
             }
+
             pairs[i] = new Pair(agent1, bestPartner);
             agentSet.remove(agent1);
             agentSet.remove(bestPartner);
@@ -46,15 +45,15 @@ public class BruteForcePairing implements PairingAlgorithm{
         return pairs;
     }
 
-    private double calculateDistance(Agent agent1, Agent agent2) {
+    private double calculateCoopProbability(Agent agent1, Agent agent2) {
         Strategy strategy = agent1.getStrategy();
-        double distance = 1;
+        double distance = 0;
 
         if(strategy instanceof CombinedStrategy) {
             if(strategy.calculateAction(agent1, agent2) == Action.COOPERATION){
-                return 0;
-            } else {
                 return 1;
+            } else {
+                return 0;
             }
         } else {
             CombinedStrategy[] combinedStrategies = ((MixedStrategy)strategy).getCombinedStrategies();
@@ -62,7 +61,7 @@ public class BruteForcePairing implements PairingAlgorithm{
 
             for(int i = 0; i < combinedStrategies.length; i++) {
                 if(combinedStrategies[i].calculateAction(agent1, agent2) == Action.COOPERATION){
-                    distance -= probabilities[i];
+                    distance += probabilities[i];
                 }
             }
         }
