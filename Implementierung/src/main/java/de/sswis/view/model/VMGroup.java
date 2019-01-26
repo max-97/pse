@@ -14,13 +14,53 @@ public class VMGroup {
 
     private String name;
     private int id;
-    private AgentDistribution agents;
+    private List<String> agentIntervals;
 
     private List<String> strategies;
-    private List<AgentDistribution> strategyDistributions;
+    private List<List<String>> strategyDistributions;
 
     private List<String> startCapital;
-    private List<AgentDistribution> startCapitalDistributions;
+    private List<List<String>> startCapitalDistributions;
+
+    public List<String> getAgentIntervals() {
+        return agentIntervals;
+    }
+
+    public void setAgentIntervals(List<String> agentIntervals) {
+        this.agentIntervals = agentIntervals;
+    }
+
+    public List<String> getStrategies() {
+        return strategies;
+    }
+
+    public void setStrategies(List<String> strategies) {
+        this.strategies = strategies;
+    }
+
+    public List<List<String>> getStrategyDistributions() {
+        return strategyDistributions;
+    }
+
+    public void setStrategyDistributions(List<List<String>> strategyDistributions) {
+        this.strategyDistributions = strategyDistributions;
+    }
+
+    public List<String> getStartCapital() {
+        return startCapital;
+    }
+
+    public void setStartCapital(List<String> startCapital) {
+        this.startCapital = startCapital;
+    }
+
+    public List<List<String>> getStartCapitalDistributions() {
+        return startCapitalDistributions;
+    }
+
+    public void setStartCapitalDistributions(List<List<String>> startCapitalDistributions) {
+        this.startCapitalDistributions = startCapitalDistributions;
+    }
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -87,11 +127,9 @@ public class VMGroup {
         this.id = id;
     }
 
-    public AgentDistribution getAgents() {
-        return agents;
-    }
+    public List<String> getAgents() { return agentIntervals; }
 
-    public void setAgents(AgentDistribution agents) {
-        this.agents = agents;
+    public void setAgents(List<String> agentIntervals) {
+        this.agentIntervals = agentIntervals;
     }
 }
