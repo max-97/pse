@@ -22,4 +22,5 @@ public interface AbstractView {
      */
     void close();
 
+    void setParentView(AbstractView parentView);
 }

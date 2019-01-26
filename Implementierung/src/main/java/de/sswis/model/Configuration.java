@@ -24,6 +24,7 @@ public class Configuration {
     private int cycleRoundCount;
     private double adaptationProbability;
     private List<Strategy> strategies;
+    private Simulation simulation;
 
     /**
      * Erstellt eine Konfiguration.
@@ -84,7 +85,12 @@ public class Configuration {
      * @return erzeugte Simulation
      */
     public Simulation simulate() {
-        return new Simulation(this);
+        this.simulation = new Simulation(this);
+        return this.simulation;
+    }
+
+    public Simulation getSimulation() {
+        return this.simulation;
     }
 
     /**

@@ -1,5 +1,7 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMResult;
+
 import java.awt.event.ActionListener;
 
 /**
@@ -15,6 +17,7 @@ public interface AbstractShowMultiResultView extends AbstractView {
      */
     void addCompareButtonActionlistener (ActionListener listener);
 
+    AbstractMainView getParentView();
 
-
+    void addVMResult(VMResult vmResult);
 }

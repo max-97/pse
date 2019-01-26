@@ -27,4 +27,9 @@ public class Probability implements Condition {
         double random = Math.random();
         return random < ALPHA;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

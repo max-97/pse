@@ -17,4 +17,9 @@ public class OwnGroup implements Condition {
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return agent1.getGroup().getId() == agent2.getGroup().getId() ;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }
