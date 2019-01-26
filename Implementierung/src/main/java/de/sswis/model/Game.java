@@ -21,6 +21,8 @@ public class Game {
      */
     public Game(String name, String description, Tuple[][] payoffs) {
         this.name = name;
+        this.description = description;
+        this.payoffs = payoffs;
     }
 
     /**
