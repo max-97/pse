@@ -3,11 +3,15 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.CustomComponents.GroupTab;
+import de.sswis.view.model.VMGroup;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
@@ -21,24 +25,41 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private VMInitialization vmInitialization;
 
-    private JPanel panel1;
-    private JTabbedPane tabbedPane1;
-    private JTextField textField2;
-    private JTabbedPane tabbedPane2;
-    private JTextField textField3;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
-    private JFormattedTextField formattedTextField6;
-    private JFormattedTextField formattedTextField7;
-    private JTabbedPane tabbedPane3;
-    private JFormattedTextField formattedTextField1;
-    private JButton button5;
-    private JButton button6;
+    private List<GroupTab> groupTabs;
 
-    private JTextPane textPane1;
+    private List<String> strategies;
+
+    private JPanel panel1;
+    private JTabbedPane groupTabbedPane;
+    private JTextField agentNumberTextField;
+    private JButton finishButton;
+    private JButton cancelButton;
+
+    private JTextPane descriptionTextPane;
+    private JButton addGroupButton;
+    private JFormattedTextField nameTextField;
 
     private AbstractManageInitializationsView parentView;
 
+    public NewInitializationView() {
+        groupTabs = new ArrayList<GroupTab>();
+        strategies = new ArrayList<String>();
+
+        vmInitialization = new VMInitialization();
+    }
+
+    private void addNewGroupTab()  {
+        GroupTab tab = new GroupTab(strategies);
+        groupTabs.add(tab);
+        groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
+    }
+
+    private void addSpecificGroupTab(VMGroup vmGroup) {
+        GroupTab tab = new GroupTab(strategies);
+        tab.setVMGroup(vmGroup);
+        groupTabs.add(tab);
+        groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
+    }
 
     @Override
     public void update() {
@@ -62,12 +83,13 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
+        cancelButton.addActionListener(listener);
 
     }
 
     @Override
     public void addFinishButtonActionlistener(ActionListener listener) {
-
+        finishButton.addActionListener(listener);
     }
 
     @Override
@@ -77,12 +99,20 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public void addCombinedStrategy(String name) {
-
+        strategies.add(name);
     }
 
     @Override
     public void setInitialization(VMInitialization initialization) {
+
         this.vmInitialization = initialization;
+        nameTextField.setText(vmInitialization.getName());
+
+        if (!vmInitialization.getGroups().isEmpty()) {
+            for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
+                addSpecificGroupTab(vmInitialization.getGroups().get(i));
+            }
+        }
     }
 
     @Override
@@ -129,21 +159,21 @@ public class NewInitializationView implements AbstractNewInitializationView {
         panel2.add(spacer1, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel2.add(spacer2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
-        textField2 = new JTextField();
-        panel2.add(textField2, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        agentNumberTextField = new JTextField();
+        panel2.add(agentNumberTextField, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JSeparator separator2 = new JSeparator();
         panel2.add(separator2, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel2.add(spacer3, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
-        tabbedPane1 = new JTabbedPane();
-        panel2.add(tabbedPane1, new GridConstraints(10, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        groupTabbedPane = new JTabbedPane();
+        panel2.add(groupTabbedPane, new GridConstraints(10, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane1.addTab("1: Name", panel3);
+        groupTabbedPane.addTab("1: Name", panel3);
         panel3.setBorder(BorderFactory.createTitledBorder("Gruppe 1"));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(3, 2, new Insets(10, 10, 10, 10), -1, -1));
-        tabbedPane1.addTab("2: Name", panel4);
+        groupTabbedPane.addTab("2: Name", panel4);
         tabbedPane2 = new JTabbedPane();
         panel4.add(tabbedPane2, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel5 = new JPanel();
@@ -262,8 +292,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
         final JLabel label13 = new JLabel();
         label13.setText("Startkapital: ");
         panel14.add(label13, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        formattedTextField1 = new JFormattedTextField();
-        panel14.add(formattedTextField1, new GridConstraints(1, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        nameTextField = new JFormattedTextField();
+        panel14.add(nameTextField, new GridConstraints(1, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JFormattedTextField formattedTextField5 = new JFormattedTextField();
         panel14.add(formattedTextField5, new GridConstraints(5, 1, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final Spacer spacer8 = new Spacer();
@@ -287,7 +317,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         panel4.add(textField3, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel18 = new JPanel();
         panel18.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane1.addTab("+", panel18);
+        groupTabbedPane.addTab("+", panel18);
         final JLabel label16 = new JLabel();
         Font label16Font = this.$$$getFont$$$(null, -1, 16, label16.getFont());
         if (label16Font != null) label16.setFont(label16Font);
@@ -298,21 +328,21 @@ public class NewInitializationView implements AbstractNewInitializationView {
         final JLabel label17 = new JLabel();
         label17.setText("Beschreibung (Dient nur zur Wiedererkennung und kann leer gelassen werden.) :");
         panel2.add(label17, new GridConstraints(5, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        textPane1 = new JTextPane();
-        panel2.add(textPane1, new GridConstraints(6, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        descriptionTextPane = new JTextPane();
+        panel2.add(descriptionTextPane, new GridConstraints(6, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final Spacer spacer10 = new Spacer();
         panel2.add(spacer10, new GridConstraints(7, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
         final JPanel panel19 = new JPanel();
         panel19.setLayout(new GridLayoutManager(1, 3, new Insets(10, 10, 10, 10), -1, -1));
         panel1.add(panel19, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        button5 = new JButton();
-        button5.setText("Speichern");
-        panel19.add(button5, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        finishButton = new JButton();
+        finishButton.setText("Speichern");
+        panel19.add(finishButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer11 = new Spacer();
         panel19.add(spacer11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        button6 = new JButton();
-        button6.setText("Abbrechen");
-        panel19.add(button6, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        cancelButton = new JButton();
+        cancelButton.setText("Abbrechen");
+        panel19.add(cancelButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -339,5 +369,15 @@ public class NewInitializationView implements AbstractNewInitializationView {
      */
     public JComponent $$$getRootComponent$$$() {
         return panel1;
+    }
+
+    private void createUIComponents() {
+        nameTextField = new JFormattedTextField();
+
+        agentNumberTextField = new JTextField();
+
+        descriptionTextPane = new JTextPane();
+
+
     }
 }
