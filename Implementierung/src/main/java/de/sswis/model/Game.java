@@ -65,6 +65,26 @@ public class Game {
         int pay1 = tuple.getX();
         int score2 = agent2.getScore();
         int pay2 = tuple.getY();
+        pair.getAgent(1).getHistory().setCooperatedLastTime(pair.getAgent(2), pair.getAgent(1).getHistory().cooperatedEveryTime(pair.getAgent(2)));
+        pair.getAgent(1).getHistory().setCooperatedEveryTime(pair.getAgent(2), action1.equals(Action.COOPERATION));
+        pair.getAgent(1).getHistory().setGroupCooperatedLastTime(pair.getAgent(2).getGroup(), pair.getAgent(1).getHistory().groupCooperatedEveryTime(agent2.getGroup()));
+        pair.getAgent(1).getHistory().setGroupCooperatedEveryTime(pair.getAgent(2).getGroup(), action1.equals(Action.COOPERATION));
+        if (action1.equals(Action.COOPERATION) && air.getAgent(1).getHistory().getAlwaysCooperated()) {
+            pair.getAgent(1).getHistory().setAlwaysCooperated(true);
+        } else {
+            pair.getAgent(1).getHistory().setAlwaysCooperated(false);
+        }
+        pair.getAgent(1).getHistory().setOpponent(pair.getAgent(2));
+        pair.getAgent(2).getHistory().setCooperatedLastTime(pair.getAgent(1), pair.getAgent(2).getHistory().cooperatedEveryTime(pair.getAgent(1)));
+        pair.getAgent(2).getHistory().setCooperatedEveryTime(pair.getAgent(1), action2.equals(Action.COOPERATION));
+        pair.getAgent(2).getHistory().setGroupCooperatedLastTime(pair.getAgent(1).getGroup(), pair.getAgent(2).getHistory().groupCooperatedEveryTime(pair.getAgent(1).getGroup()));
+        pair.getAgent(2).getHistory().setGroupCooperatedEveryTime(pair.getAgent(1).getGroup(), action2.equals(Action.COOPERATION));
+        if (action2.equals(Action.COOPERATION) && air.getAgent(2).getHistory().getAlwaysCooperated()) {
+            pair.getAgent(2).getHistory().setAlwaysCooperated(true);
+        } else {
+            pair.getAgent(2).getHistory().setAlwaysCooperated(false);
+        }
+        [air.getAgent(2).getHistory().setOpponent(pair.getAgent(1));
         pair.getAgent(1).setScore(score1 + pay1);
         pair.getAgent(2).setScore(score2 + pay2);
     }
