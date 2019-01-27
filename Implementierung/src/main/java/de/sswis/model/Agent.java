@@ -10,7 +10,6 @@ public class Agent {
     private int id;
     private int score;
     private int initialScore;
-    private int score;
     private History history;
     private Group group;
     private Strategy strategy;
@@ -69,7 +68,4 @@ public class Agent {
         this.score = newScore;
     }
 
-    public void setScore(int newScore) {
-        this.score = newScore;
-    }
 }
