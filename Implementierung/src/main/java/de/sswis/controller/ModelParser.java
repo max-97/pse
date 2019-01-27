@@ -214,7 +214,6 @@ public class ModelParser {
         return initializations; }
 
     private Initialization parseSingleVMInitializationToInitialization(VMInitialization vmInitialization) {
-
         Initialization initialization = new Initialization(
                 vmInitialization.getName(),
                 vmInitialization.getAgentCount());
