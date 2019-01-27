@@ -57,10 +57,6 @@ public class MainView implements AbstractMainView {
     private JLabel TitleLabel;
     private JButton stopButton;
 
-    public MainView(List<VMConfiguration> configurations) {
-        this.configurations = configurations;
-        $$$setupUI$$$();
-    }
 
     public MainView() {
 

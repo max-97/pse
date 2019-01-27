@@ -411,7 +411,7 @@
                                   <text value="Zeige Durchschnitt aller Wiederholungen"/>
                                 </properties>
                               </component>
-                              <component id="6b35c" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="6b35c" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>

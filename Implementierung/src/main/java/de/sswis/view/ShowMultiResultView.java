@@ -109,4 +109,8 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     public void addVMResult(VMResult vmResult) {
 
     }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }
