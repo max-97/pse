@@ -4,11 +4,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.AbstractManageResultsView;
+import de.sswis.view.CustomComponents.ResultTab;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Ein Fenster zum Verwalten von Ergebnissen.
@@ -20,46 +23,64 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     private JFrame frame;
 
+    private List<VMResult> vmResults;
+
+    private List<ResultTab> resultTabs;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
     private JTabbedPane ResultsPane;
     private JButton deleteButton;
-    private JLabel nameLabel;
-    private JButton openButton;
     private JPanel MainPanel;
 
     private AbstractMainView parentView;
 
+    public ManageResultsView() {
+        vmResults = new ArrayList<VMResult>();
+        resultTabs = new ArrayList<ResultTab>();
+    }
 
     @Override
     public void addResult(VMResult vmResult) {
+        vmResults.add(vmResult);
+        addTab(vmResult);
+    }
 
+    private void addTab(VMResult result) {
+        ResultTab tab = new ResultTab(result);
+        ResultsPane.addTab(result.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeResult(String resultName) {
-
+        for (int i = 0; i < vmResults.size(); i++) {
+            if (vmResults.get(i).getName().equals(resultName)) {
+                vmResults.remove(i);
+                ResultsPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override
     public void addDeleteResultButtonActionlistener(ActionListener listener) {
-
+        deleteButton.addActionListener(listener);
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override
     public VMResult getSelectedVM() {
-        return null;
+        return vmResults.get(ResultsPane.getSelectedIndex());
     }
 
     @Override
@@ -81,8 +102,8 @@ public class ManageResultsView implements AbstractManageResultsView {
     public void close() {
 
     }
-  
-  
+
+
     @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractMainView) parentView;
@@ -128,25 +149,8 @@ public class ManageResultsView implements AbstractManageResultsView {
         ResultsPane = new JTabbedPane();
         ResultsPane.setTabPlacement(2);
         panel1.add(ResultsPane, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        ResultsPane.addTab("Beispiel", panel2);
-        final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(3, 3, new Insets(10, 10, 10, 10), -1, -1));
-        panel2.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel3.add(spacer1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 30), null, 0, false));
-        deleteButton = new JButton();
-        deleteButton.setText("Löschen");
-        panel3.add(deleteButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        nameLabel = new JLabel();
-        nameLabel.setText("Ergebnis: \"Name\"");
-        panel3.add(nameLabel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        openButton = new JButton();
-        openButton.setText("Öffnen");
-        panel3.add(openButton, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        panel1.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(spacer1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**
@@ -154,6 +158,5 @@ public class ManageResultsView implements AbstractManageResultsView {
      */
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
-
     }
 }

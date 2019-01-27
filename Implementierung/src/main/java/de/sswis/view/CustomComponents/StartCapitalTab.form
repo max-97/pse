@@ -29,7 +29,7 @@
               <text value="Bestimme die Agenten, die dieses Startkapital haben sollen..."/>
             </properties>
           </component>
-          <component id="a0488" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="a0488" class="javax.swing.JRadioButton" binding="idAgentRadioButton" custom-create="true">
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -38,7 +38,7 @@
               <text value="Wähle Agenten nach ihren IDs"/>
             </properties>
           </component>
-          <component id="37c6" class="javax.swing.JLabel">
+          <component id="37c6" class="javax.swing.JLabel" binding="idLabel">
             <constraints>
               <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -46,7 +46,7 @@
               <text value="IDs:"/>
             </properties>
           </component>
-          <component id="41a85" class="javax.swing.JRadioButton" default-binding="true">
+          <component id="41a85" class="javax.swing.JRadioButton" binding="percentageAgentRadioButton" custom-create="true">
             <constraints>
               <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -54,7 +54,7 @@
               <text value="Wähle Agenten nach prozentualem Anteil"/>
             </properties>
           </component>
-          <component id="478fa" class="javax.swing.JLabel">
+          <component id="478fa" class="javax.swing.JLabel" binding="percentageLabel">
             <constraints>
               <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -63,7 +63,7 @@
               <text value="Anteil:"/>
             </properties>
           </component>
-          <component id="473f" class="javax.swing.JFormattedTextField" default-binding="true">
+          <component id="473f" class="javax.swing.JFormattedTextField" binding="percentageAgentTextField">
             <constraints>
               <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -89,7 +89,7 @@
               <text value="Startkapital: "/>
             </properties>
           </component>
-          <component id="26d36" class="javax.swing.JFormattedTextField" binding="formattedTextField1" default-binding="true">
+          <component id="26d36" class="javax.swing.JFormattedTextField" binding="startCapitalTextField">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -97,7 +97,7 @@
             </constraints>
             <properties/>
           </component>
-          <component id="5c28e" class="javax.swing.JFormattedTextField" default-binding="true">
+          <component id="5c28e" class="javax.swing.JFormattedTextField" binding="idAgentTextField">
             <constraints>
               <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>

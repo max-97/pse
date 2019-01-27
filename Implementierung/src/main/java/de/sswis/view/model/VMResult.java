@@ -33,4 +33,9 @@ public class VMResult {
     public void setVmConfig(VMConfiguration vmConfig) {
         this.vmConfig = vmConfig;
     }
+
+    public int getNumberOfRepititions() {
+        //TODO: implement me
+        return 0;
+    }
 }

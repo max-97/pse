@@ -8,8 +8,13 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,7 +29,21 @@ public class MainView implements AbstractMainView {
     private JFrame frame;
 
     private List<VMConfiguration> configurations;
+    private List<String> simulatingConfigs;
+    private JMenuBar menuBar;
 
+    private JMenuItem newGameItem;
+    private JMenuItem newCombinedStrategyItem;
+    private JMenuItem newMixedStrategyItem;
+    private JMenuItem newInitiliazationItem;
+    private JMenuItem newConfigurationItem;
+
+    private JMenuItem manageGamesItem;
+    private JMenuItem manageCombinedStrategiesItem;
+    private JMenuItem manageMixedStrategiesItem;
+    private JMenuItem manageInitiliazationsItem;
+    private JMenuItem manageConfigurationsItem;
+    private JMenuItem manageResultsItem;
 
     private JButton startButton;
     private JButton showResultButton;
@@ -36,86 +55,120 @@ public class MainView implements AbstractMainView {
     private JPanel MainPanel;
     private JLabel ChooseLabel;
     private JLabel TitleLabel;
+    private JButton stopButton;
 
 
+    public MainView() {
+
+        configurations = new ArrayList<VMConfiguration>();
+        $$$setupUI$$$();
+        setMenuBar();
+    }
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {
+        configurations.add(configuration);
     }
 
     @Override
     public void removeConfiguration(String configurationName) {
+        //TODO: was soll passieren bei Konfigurationen mit gleichem Namen?
+        for (int i = 0; i < configurations.size(); i++) {
+            if (configurations.get(i).getName().equals(configurationName)) {
+                configurations.remove(i);
+                break;
+            }
+        }
     }
 
     @Override
     public void addResult(String NameConfiguration, VMResult result) {
+
+        for (int i = 0; i < configurations.size(); i++) {
+            if (configurations.get(i).getName().equals(NameConfiguration)) {
+                configurations.get(i).setResult(result);
+                break;
+            }
+        }
     }
 
     @Override
     public void setSimulationFinished(String NameConfiguration) {
+        simulatingConfigs.remove(NameConfiguration);
     }
 
     @Override
-    public VMConfiguration getSelected() { return null; }
+    public VMConfiguration getSelected() {
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) ConfigurationTree.getLastSelectedPathComponent();
+        if (node != null && node.isLeaf()) {
+            for (int i = 0; i < configurations.size(); i++) {
+                if (configurations.get(i).getName().equals(node.getUserObject())) {
+                    return configurations.get(i);
+                }
+            }
+        }
+        return null;
+    }
 
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
+        startButton.addActionListener(listener);
 
     }
 
     @Override
     public void addStopActionListener(ActionListener listener) {
-
+        stopButton.addActionListener(listener);
     }
 
     @Override
     public void addShowButtonActionlistener(ActionListener listener) {
-
+        showResultButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveButtonActionlistener(ActionListener listener) {
-
+        saveResultButton.addActionListener(listener);
     }
 
     @Override
     public void addNewGameMenuActionListener(ActionListener listener) {
-
+        newGameItem.addActionListener(listener);
     }
 
     @Override
     public void addNewCombiStrategyMenuActionListener(ActionListener listener) {
-
+        newCombinedStrategyItem.addActionListener(listener);
     }
 
     @Override
     public void addNewStrategyMenuActionListener(ActionListener listener) {
-
+        newMixedStrategyItem.addActionListener(listener);
     }
 
     @Override
     public void addNewInitMenuActionListener(ActionListener listener) {
-
+        newInitiliazationItem.addActionListener(listener);
     }
 
     @Override
     public void addNewConfigMenuActionListener(ActionListener listener) {
-
+        newConfigurationItem.addActionListener(listener);
     }
 
     @Override
     public void addManageGameMenuActionListener(ActionListener listener) {
-
+        manageGamesItem.addActionListener(listener);
     }
 
     @Override
     public void addManageCombiStrategyMenuActionListener(ActionListener listener) {
-
+        manageCombinedStrategiesItem.addActionListener(listener);
     }
 
     @Override
     public void addManageStrategyMenuActionListener(ActionListener listener) {
-
+        newMixedStrategyItem.addActionListener(listener);
     }
 
     @Override
@@ -125,17 +178,17 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addManageConfigMenuActionListener(ActionListener listener) {
-
+        manageConfigurationsItem.addActionListener(listener);
     }
 
     @Override
-
     public Collection<VMResult> getResults() {
         return null;
     }
 
     @Override
-    public void update() {}
+    public void update() {
+    }
 
     @Override
     public void show() {
@@ -143,6 +196,7 @@ public class MainView implements AbstractMainView {
         frame = new JFrame("SSWIS");
         frame.setContentPane(this.MainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setJMenuBar(menuBar);
         frame.pack();
         frame.setVisible(true);
 
@@ -158,19 +212,72 @@ public class MainView implements AbstractMainView {
 
     }
 
+    private void setMenuBar() {
+        menuBar = new JMenuBar();
+        JMenu newMenu = new JMenu("Neu");
+        newGameItem = new JMenuItem("Stufenspiel");
+        newMenu.add(newGameItem);
+        newCombinedStrategyItem = new JMenuItem("Kombinierte Strategie");
+        newMenu.add(newCombinedStrategyItem);
+        newMixedStrategyItem = new JMenuItem("Gemischte Strategie");
+        newMenu.add(newMixedStrategyItem);
+        newInitiliazationItem = new JMenuItem("Initialisierung");
+        newMenu.add(newInitiliazationItem);
+        newConfigurationItem = new JMenuItem("Konfiguration");
+        newMenu.add(newConfigurationItem);
+
+        menuBar.add(newMenu);
+
+        JMenu manageMenu = new JMenu("Verwalten");
+        manageGamesItem = new JMenuItem("Stufenspiele");
+        manageMenu.add(manageGamesItem);
+        manageCombinedStrategiesItem = new JMenuItem("Kombinierte Strategien");
+        manageMenu.add(manageCombinedStrategiesItem);
+        manageMixedStrategiesItem = new JMenuItem("Gemischte Strategien");
+        manageMenu.add(manageMixedStrategiesItem);
+        manageInitiliazationsItem = new JMenuItem("Initialisierungen");
+        manageMenu.add(manageInitiliazationsItem);
+        manageConfigurationsItem = new JMenuItem("Konfigurationen");
+        manageMenu.add(manageConfigurationsItem);
+        manageResultsItem = new JMenuItem("Ergebnisse");
+        manageMenu.add(manageResultsItem);
+
+        menuBar.add(manageMenu);
+
+    }
+
+    private TreeModel createConfigurationTree() {
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Konfigurationen");
+        DefaultMutableTreeNode simple = new DefaultMutableTreeNode("Einfache Konfigurationen");
+        DefaultMutableTreeNode multi = new DefaultMutableTreeNode("Mehrfache Konfigurationen");
+
+
+        DefaultMutableTreeNode config;
+        for (int i = 0; i < configurations.size(); i++) {
+            config = new DefaultMutableTreeNode(configurations.get(i).getName());
+            if (configurations.get(i).isMultiConfiguration()) {
+                multi.add(config);
+            } else {
+                simple.add(config);
+            }
+        }
+
+        root.add(simple);
+        root.add(multi);
+
+        TreeModel configTreeModel = new DefaultTreeModel(root);
+
+        return configTreeModel;
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        ConfigurationTree = new JTree();
+        ConfigurationTree.setModel(createConfigurationTree());
 
 
     }
 
-    {
-// GUI initializer generated by IntelliJ IDEA GUI Designer
-// >>> IMPORTANT!! <<<
-// DO NOT EDIT OR ADD ANY CODE HERE!
-        $$$setupUI$$$();
-    }
 
     /**
      * Method generated by IntelliJ IDEA GUI Designer
@@ -194,12 +301,12 @@ public class MainView implements AbstractMainView {
         final Spacer spacer1 = new Spacer();
         TitelPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         ContentPanel = new JPanel();
-        ContentPanel.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+        ContentPanel.setLayout(new GridLayoutManager(4, 4, new Insets(0, 0, 0, 0), -1, -1));
         MainPanel.add(ContentPanel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         ConfigurationScrollPane = new JScrollPane();
         ConfigurationScrollPane.setHorizontalScrollBarPolicy(31);
         ConfigurationScrollPane.setVerticalScrollBarPolicy(22);
-        ContentPanel.add(ConfigurationScrollPane, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        ContentPanel.add(ConfigurationScrollPane, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         ConfigurationTree.setEditable(true);
         ConfigurationTree.setLargeModel(true);
         ConfigurationTree.setRootVisible(true);
@@ -208,18 +315,25 @@ public class MainView implements AbstractMainView {
         ConfigurationScrollPane.setViewportView(ConfigurationTree);
         ChooseLabel = new JLabel();
         ChooseLabel.setText("Wählen Sie eine Konfiguration");
-        ContentPanel.add(ChooseLabel, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        ContentPanel.add(ChooseLabel, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        ContentPanel.add(spacer2, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        ContentPanel.add(spacer2, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         startButton = new JButton();
+        startButton.setEnabled(false);
         startButton.setText("Simulationen starten");
         ContentPanel.add(startButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showResultButton = new JButton();
+        showResultButton.setEnabled(false);
         showResultButton.setText("Ergebnisse anzeigen");
-        ContentPanel.add(showResultButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        ContentPanel.add(showResultButton, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_SOUTH, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         saveResultButton = new JButton();
+        saveResultButton.setEnabled(false);
         saveResultButton.setText("Ergebisse speichern");
-        ContentPanel.add(saveResultButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        ContentPanel.add(saveResultButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        stopButton = new JButton();
+        stopButton.setEnabled(false);
+        stopButton.setText("Simulation stoppen");
+        ContentPanel.add(stopButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         MainPanel.add(separator1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
