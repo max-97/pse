@@ -70,7 +70,7 @@
               <text value="Spieler1 / Spieler2"/>
             </properties>
           </component>
-          <component id="25341" class="javax.swing.JLabel" binding="upLeftPayOffLabel" custom-create="true">
+          <component id="25341" class="javax.swing.JLabel" binding="upLeftPayOffLabel">
             <constraints>
               <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -78,7 +78,7 @@
               <text value=" / "/>
             </properties>
           </component>
-          <component id="e48ca" class="javax.swing.JLabel" binding="bottomLeftPayOffLabel" custom-create="true">
+          <component id="e48ca" class="javax.swing.JLabel" binding="bottomLeftPayOffLabel">
             <constraints>
               <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -176,55 +176,55 @@
               </grid>
             </constraints>
           </hspacer>
-          <component id="7bd4" class="javax.swing.JSpinner" binding="spinner1" default-binding="true">
+          <component id="7bd4" class="javax.swing.JSpinner" binding="spinner1" custom-create="true" default-binding="true">
             <constraints>
               <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="bd452" class="javax.swing.JSpinner" binding="spinner2" default-binding="true">
+          <component id="bd452" class="javax.swing.JSpinner" binding="spinner2" custom-create="true" default-binding="true">
             <constraints>
               <grid row="4" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="38d4" class="javax.swing.JSpinner" binding="spinner3" default-binding="true">
+          <component id="38d4" class="javax.swing.JSpinner" binding="spinner3" custom-create="true" default-binding="true">
             <constraints>
               <grid row="4" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="62a50" class="javax.swing.JSpinner" binding="spinner4" default-binding="true">
+          <component id="62a50" class="javax.swing.JSpinner" binding="spinner4" custom-create="true" default-binding="true">
             <constraints>
               <grid row="4" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="cc349" class="javax.swing.JSpinner" default-binding="true">
+          <component id="cc349" class="javax.swing.JSpinner" binding="spinner5" custom-create="true">
             <constraints>
               <grid row="6" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="f2e7f" class="javax.swing.JSpinner" default-binding="true">
+          <component id="f2e7f" class="javax.swing.JSpinner" binding="spinner6" custom-create="true">
             <constraints>
               <grid row="6" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="ac816" class="javax.swing.JSpinner" default-binding="true">
+          <component id="ac816" class="javax.swing.JSpinner" binding="spinner7" custom-create="true">
             <constraints>
               <grid row="6" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="3405a" class="javax.swing.JSpinner" default-binding="true">
+          <component id="3405a" class="javax.swing.JSpinner" binding="spinner8" custom-create="true">
             <constraints>
               <grid row="6" column="9" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties/>
           </component>
-          <component id="ea64" class="javax.swing.JFormattedTextField" binding="nameTextField">
+          <component id="ea64" class="javax.swing.JFormattedTextField" binding="nameTextField" custom-create="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="4" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
