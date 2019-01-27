@@ -46,6 +46,7 @@ public class Configuration {
         this.rounds = rounds;
         this.cycles = cycles;
         this.adaptationProbability = adaptationProbability;
+        this.cycleRoundCount = rounds/cycles;
 }
 
     public String getName() {
