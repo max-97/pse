@@ -3,6 +3,7 @@ package de.sswis.view.CustomComponents;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.util.AgentDistribution;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,6 +69,21 @@ public class StartCapitalTab {
             return idAgentTextField.getText();
 
         return percentageAgentTextField.getText();
+    }
+
+    public void setStartCapital(String capital, AgentDistribution distribution) {
+        startCapitalTextField.setText(capital);
+
+        if (distribution.usesIDS()) {
+            idAgentRadioButton.setSelected(true);
+            //TODO: correct next Line with correct getter
+            idAgentTextField.setText(distribution.getAgentIDs() + "");
+        } else {
+            percentageAgentRadioButton.setSelected(true);
+            //TODO: correct next Line with correct getter
+            percentageAgentTextField.setText(distribution.getPercentage() + "");
+        }
+
     }
 
     private void createUIComponents() {

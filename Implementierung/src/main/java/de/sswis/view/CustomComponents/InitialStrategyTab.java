@@ -3,6 +3,7 @@ package de.sswis.view.CustomComponents;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.util.AgentDistribution;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,8 +27,10 @@ public class InitialStrategyTab {
 
 
     public InitialStrategyTab(String title) {
+
         this.title = title;
     }
+
 
 
     public void update() {
@@ -47,6 +50,18 @@ public class InitialStrategyTab {
             return idAgentTextField.getText();
 
         return percentageAgentTextField.getText();
+    }
+
+    public void setDistribution(AgentDistribution distribution) {
+        if (distribution.usesIDS()) {
+            idAgentRadioButton.setSelected(true);
+            //TODO: correct next Line with correct getter
+            idAgentTextField.setText(distribution.getAgentIDs() + "");
+        } else {
+            percentageAgentRadioButton.setSelected(true);
+            //TODO: correct next Line with correct getter
+            percentageAgentTextField.setText(distribution.getPercentage() + "");
+        }
     }
 
     public String getTitle() {

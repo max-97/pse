@@ -37,8 +37,8 @@ public class GroupTab {
     private JLabel idLabel;
     private JLabel percentageLabel;
 
-    public GroupTab(VMGroup vmGroup, List<String> allStrategies) {
-        this.vmGroup = vmGroup;
+    public GroupTab(List<String> allStrategies) {
+        this.vmGroup = new VMGroup();
         this.allStrategies = allStrategies;
 
         strategyTabs = new ArrayList<InitialStrategyTab>();
@@ -47,6 +47,8 @@ public class GroupTab {
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
     }
+
+
 
     private void createStrategyTabs() {
         for (int i = 0; i < allStrategies.size(); i++) {
@@ -95,6 +97,24 @@ public class GroupTab {
         }
 
         return title;
+    }
+
+    public void setVMGroup(VMGroup vmGroup) {
+        this.vmGroup = vmGroup;
+
+        groupIDLabel.setText(vmGroup.getId() + "");
+        groupNameTextField.setText(vmGroup.getName());
+        if (vmGroup.getAgents().usesIDS()) {
+            idAgentRadioButton.setSelected(true);
+            idAgentTextField.setText(vmGroup.getAgents().getAgentIDs() + "");
+
+        } else {
+            percentageAgentRadioButton.setSelected(true);
+            percentageAgentTextField.setText(vmGroup.getAgents().getPercentage() + "");
+        }
+
+        //TODO: implement strategies and capitals
+
     }
 
     public VMGroup getVmGroup() {
