@@ -65,7 +65,7 @@ class VariableDistribution {
 		}
 	}
 
-	public int getSize() {
+	public static int getSize() {
 		return size;
 	}
 

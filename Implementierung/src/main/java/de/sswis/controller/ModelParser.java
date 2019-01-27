@@ -7,7 +7,9 @@ import de.sswis.model.algorithms.pairing.*;
 import de.sswis.model.algorithms.ranking.*;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
+import de.sswis.model.strategies.GrimEverybody;
 import de.sswis.view.model.*;
+import org.jgrapht.alg.util.Pair;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -207,30 +209,112 @@ public class ModelParser {
      * @param vmInitialization die zu übersetzende {@code VMInitialization}
      * @return die übersetzte {@code Collection<Initialization>}
      */
-    public Collection<Initialization> parseVMInitializationToInitialization(VMInitialization vmInitialization) {
-
+    public Collection<Initialization> parseVMInitialization(VMInitialization vmInitialization) {
         Collection<Initialization> initializations = new ArrayList<>();
 
-        return initializations; }
+        String name = vmInitialization.getName();
+        int agentCount = vmInitialization.getAgentCount();
+        List<VMGroup> groups = vmInitialization.getGroups();
+
+        HashMap<Group, VariableDistribution[]> groupDistribution = calculateGroupDistribution(groups);
+
+        HashMap<Pair<Group, Strategy>, VariableDistribution[]> strategyDistributionID =
+                calculateStrategyDistribution(groups, groupDistribution.keySet(), false);
+
+        HashMap<Pair<Group, Strategy>, VariableDistribution[]> strategyDistributionRelative =
+                calculateStrategyDistribution(groups, groupDistribution.keySet(), true);
+
+        HashMap<Pair<Group, Integer>, VariableDistribution[]> capitalDistributionID =
+                calculateCapitalDistribution(groups, groupDistribution.keySet(), false);
+
+        HashMap<Pair<Group, Integer>, VariableDistribution[]> capitalDistributionRelative =
+                calculateCapitalDistribution(groups, groupDistribution.keySet(), true);
+
+        if (VariableDistribution.getSize() == 1) {
+            // Eine Initialization
+        } else {
+            // Multi Initialization
+        }
+
+        return initializations;
+    }
+
+    private HashMap<Pair<Group, Integer>, VariableDistribution[]> calculateCapitalDistribution(
+            List<VMGroup> groups, Set<Group> groupSet, boolean useRelative) {
+
+        HashMap<Pair<Group, Integer>, VariableDistribution[]> distribution = new HashMap<>();
+
+        for (Group g : groupSet) {
+            for (VMGroup vmG : groups) {
+                if ( (g.getId() == vmG.getId()) && (vmG.getRelativeCapitalDistributions() == useRelative) ) {
+
+                    List<String> startCapital = vmG.getStartCapital();
+                    List<List<String>> startCapitalDistributions = vmG.getStartCapitalDistributions();
+
+                    for (int i = 0; i < startCapital.size(); i++) {
+                        int capital = Integer.parseInt(startCapital.get(i).trim());
+                        VariableDistribution[] varDist = calculateVariables(startCapitalDistributions.get(i));
+                        distribution.put(new Pair<Group, Integer>(g, capital), varDist);
+                    }
+                }
+            }
+        }
+
+        return distribution;
+    }
+
+    private VariableDistribution[] calculateVariables(List<String> values) {
+        VariableDistribution[] varDist = new VariableDistribution[values.size()];
+        for (int j = 0; j < varDist.length; j++) {
+            varDist[j] = new VariableDistribution(values.get(j));
+        }
+        return varDist;
+    }
+
+    private HashMap<Pair<Group, Strategy>, VariableDistribution[]> calculateStrategyDistribution(
+            List<VMGroup> groups, Set<Group> groupSet, boolean useRelative) {
+
+        HashMap<Pair<Group, Strategy>, VariableDistribution[]> distribution = new HashMap<>();
+
+        ModelProvider provider = ModelProvider.getInstance();
+
+        for(Group g : groupSet){
+            for (VMGroup vmG : groups) {
+                if ( (g.getId() == vmG.getId()) && (vmG.getRelativeStrategyDistributions() == useRelative) ) {
+
+                    List<String> strategies = vmG.getStrategies();
+                    List<List<String>> strategyDistributions = vmG.getStrategyDistributions();
+
+                    for (int i = 0; i < strategies.size(); i++) {
+                        Strategy strategy = provider.getStrategy(strategies.get(i));
+                        VariableDistribution[] varDist = calculateVariables(strategyDistributions.get(i));
+                        distribution.put(new Pair<Group, Strategy>(g, strategy), varDist);
+                    }
+                }
+            }
+        }
+
+        return distribution;
+    }
+
+    private HashMap<Group, VariableDistribution[]> calculateGroupDistribution(List<VMGroup> groups) {
+        HashMap<Group, VariableDistribution[]> distribution = new HashMap<>();
+
+        for (VMGroup g: groups) {
+            Group group = new Group(g.getId(), g.getName());
+            VariableDistribution[] varDist = new VariableDistribution[g.getAgents().size()];
+            List<String> agents = g.getAgents();
+            for (int i = 0; i < varDist.length; i++) {
+                varDist[i] = new VariableDistribution(agents.get(i));
+            }
+            distribution.put(group, varDist);
+        }
+        return distribution;
+    }
 
     private Initialization parseSingleVMInitializationToInitialization(VMInitialization vmInitialization) {
-        Initialization initialization = new Initialization(
-                vmInitialization.getName(),
-                vmInitialization.getAgentCount());
-        /*
-        initialization.setGroupDistribution(
-                AgentDistribution distribution,
-                Group group);
-        initialization.setStrategyDistribution(
-                AgentDistribution distribution,
-                CombinedStrategy strategy,
-                Group group);
-        initialization.setStrategyDistribution(
-                AgentDistribution distribution,
-                CombinedStrategy strategy,
-                Group group);
-        */
-        return initialization;
+
+        return null;
     }
 
     /**

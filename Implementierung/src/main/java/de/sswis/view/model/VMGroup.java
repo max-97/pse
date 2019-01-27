@@ -16,11 +16,11 @@ public class VMGroup {
 
     private List<String> strategies;
     private List<List<String>> strategyDistributions;
-    private List<Boolean> relativeStrategyDistributions;
+    private boolean relativeStrategyDistribution;
 
     private List<String> startCapital;
     private List<List<String>> startCapitalDistributions;
-    private List<Boolean> relativeCapitalDistributions;
+    private boolean relativeCapitalDistribution;
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -87,19 +87,19 @@ public class VMGroup {
         return startCapitalDistributions;
     }
 
-    public List<Boolean> getRelativeStrategyDistributions() {
-        return relativeStrategyDistributions;
+    public boolean getRelativeStrategyDistributions() {
+        return relativeStrategyDistribution;
     }
 
-    public void addRelativeStrategyDistribution(boolean relativeStrategyDistribution) {
-        this.relativeStrategyDistributions.add(relativeStrategyDistribution);
+    public void setRelativeStrategyDistribution(boolean relativeStrategyDistribution) {
+        this.relativeStrategyDistribution = relativeStrategyDistribution;
     }
 
-    public List<Boolean> getRelativeCapitalDistributions() {
-        return relativeCapitalDistributions;
+    public boolean getRelativeCapitalDistributions() {
+        return relativeCapitalDistribution;
     }
 
-    public void addRelativeCapitalDistributions(boolean relativeCapitalDistributions) {
-        this.relativeCapitalDistributions.add(relativeCapitalDistributions);
+    public void setRelativeCapitalDistributions(boolean relativeCapitalDistributions) {
+        this.relativeCapitalDistribution = relativeCapitalDistributions;
     }
 }
