@@ -128,12 +128,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
 
     private void normalize(double[] probabilities) {
         double sum = 0;
-        for(int i = 0; i < probabilities.length; i++) {
-            sum += probabilities[i];
-        }
-        for(int i = 0; i < probabilities.length; i++) {
-            probabilities[i] *= 1/sum;
-        }
-
+        for(int i = 0; i < probabilities.length; i++) sum += probabilities[i];
+        for(int i = 0; i < probabilities.length; i++) probabilities[i] *= 1/sum;
     }
 }
