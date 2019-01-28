@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  */
 public class Always implements Condition {
 
-    public static final String NAME = "";
+    public static final String NAME = "Immer";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -20,6 +20,6 @@ public class Always implements Condition {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

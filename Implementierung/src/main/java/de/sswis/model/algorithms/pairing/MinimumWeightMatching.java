@@ -18,6 +18,8 @@ import java.util.Iterator;
  * @author Michel Bodé
  */
 public class MinimumWeightMatching implements PairingAlgorithm {
+
+    public static final String NAME = "Minimales Graphen Gewicht";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
@@ -80,6 +82,6 @@ public class MinimumWeightMatching implements PairingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

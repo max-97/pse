@@ -13,7 +13,7 @@ import java.util.*;
  */
 public class CustomCycleScore implements RankingAlgorithm {
 
-    public static final String NAME = "";
+    public static final String NAME = "Letzte w Zyklen";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"Window size"};
@@ -61,6 +61,6 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  */
 public class SpecificGroup implements Condition {
 
-    public static final String NAME = "";
+    public static final String NAME = "Spezifische Gruppe";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"GROUP_ID"};
@@ -29,6 +29,6 @@ public class SpecificGroup implements Condition {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }
