@@ -65,28 +65,25 @@ public class Game {
         int pay1 = tuple.getX();
         int score2 = agent2.getScore();
         int pay2 = tuple.getY();
-        pair.getAgent(1).getHistory().setCooperatedLastTime(pair.getAgent(2), pair.getAgent(1).getHistory().cooperatedEveryTime(pair.getAgent(2)));
-        pair.getAgent(1).getHistory().setCooperatedEveryTime(pair.getAgent(2), action1.equals(Action.COOPERATION));
-        pair.getAgent(1).getHistory().setGroupCooperatedLastTime(pair.getAgent(2).getGroup(), pair.getAgent(1).getHistory().groupCooperatedEveryTime(agent2.getGroup()));
-        pair.getAgent(1).getHistory().setGroupCooperatedEveryTime(pair.getAgent(2).getGroup(), action1.equals(Action.COOPERATION));
-        if (action1.equals(Action.COOPERATION) && air.getAgent(1).getHistory().getAlwaysCooperated()) {
-            pair.getAgent(1).getHistory().setAlwaysCooperated(true);
+        updateHistory(agent1, agent2, action1, action2);
+        updateHistory(agent2, agent1, action2, action1);
+        agent1.setScore(score1 + pay1);
+        agent2.setScore(score2 + pay2);
+    }
+
+    private void updateHistory(Agent agent1, Agent agent2, Action action1, Action action2) {
+        agent1.getHistory().setCooperatedLastTime(agent2, action2.equals(Action.COOPERATION));
+        agent1.getHistory().setCooperatedEveryTime(agent2, action2.equals(Action.COOPERATION) &&
+                agent1.getHistory().cooperatedEveryTime(agent2));
+        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action2.equals(Action.COOPERATION));
+        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action2.equals(Action.COOPERATION) &&
+                agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
+        agent1.getHistory().setOpponent(agent2);
+        if (action1.equals(Action.COOPERATION) && agent1.getHistory().getAlwaysCooperated()) {
+            agent1.getHistory().setAlwaysCooperated(true);
         } else {
-            pair.getAgent(1).getHistory().setAlwaysCooperated(false);
+            agent1.getHistory().setAlwaysCooperated(false);
         }
-        pair.getAgent(1).getHistory().setOpponent(pair.getAgent(2));
-        pair.getAgent(2).getHistory().setCooperatedLastTime(pair.getAgent(1), pair.getAgent(2).getHistory().cooperatedEveryTime(pair.getAgent(1)));
-        pair.getAgent(2).getHistory().setCooperatedEveryTime(pair.getAgent(1), action2.equals(Action.COOPERATION));
-        pair.getAgent(2).getHistory().setGroupCooperatedLastTime(pair.getAgent(1).getGroup(), pair.getAgent(2).getHistory().groupCooperatedEveryTime(pair.getAgent(1).getGroup()));
-        pair.getAgent(2).getHistory().setGroupCooperatedEveryTime(pair.getAgent(1).getGroup(), action2.equals(Action.COOPERATION));
-        if (action2.equals(Action.COOPERATION) && air.getAgent(2).getHistory().getAlwaysCooperated()) {
-            pair.getAgent(2).getHistory().setAlwaysCooperated(true);
-        } else {
-            pair.getAgent(2).getHistory().setAlwaysCooperated(false);
-        }
-        [air.getAgent(2).getHistory().setOpponent(pair.getAgent(1));
-        pair.getAgent(1).setScore(score1 + pay1);
-        pair.getAgent(2).setScore(score2 + pay2);
     }
 
     public String getName() {
