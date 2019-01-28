@@ -14,6 +14,7 @@ public class VMInitialization {
     private List<VMGroup> groups;
     private int agentCount;
     private int numberOfInstances;
+    private boolean realtiveDistribution;
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -66,6 +67,10 @@ public class VMInitialization {
 
     public int getNumberOfInstances() {
         return this.numberOfInstances;
+    }
+
+    public boolean hasRelativeDistribution() {
+        return this.realtiveDistribution;
     }
 }
 

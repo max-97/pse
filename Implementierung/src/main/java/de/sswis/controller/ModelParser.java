@@ -8,6 +8,7 @@ import de.sswis.model.algorithms.ranking.*;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.model.strategies.GrimEverybody;
+import de.sswis.util.AgentDistribution;
 import de.sswis.view.model.*;
 import org.jgrapht.alg.util.Pair;
 
@@ -232,6 +233,23 @@ public class ModelParser {
 
         if (VariableDistribution.getSize() == 1) {
             // Eine Initialization
+            Initialization init = new Initialization(name, agentCount);
+            if (vmInitialization.hasRelativeDistribution()) {
+                for (Group g : groupDistribution.keySet()) {
+                    int percent = groupDistribution.get(g)[0].getValue(0);
+                    AgentDistribution ad = new AgentDistribution(percent);
+                    init.setGroupDistribution(ad, g);
+                }
+            } else {
+                for (Group g : groupDistribution.keySet()) {
+                    VariableDistribution[] varDist = groupDistribution.get(g);
+                    for (int i = 0; i < varDist.length; i++) {
+                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                        init.setGroupDistribution(ad, g);
+                    }
+                }
+            }
+            initializations.add(init);
         } else {
             // Multi Initialization
         }
