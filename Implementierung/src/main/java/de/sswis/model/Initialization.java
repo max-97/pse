@@ -33,6 +33,21 @@ public class Initialization {
         this.agents = agents;
     }
 
+    public void addGroup(int id, String name) {
+        for (int i = 0; i < groups.length; i++) {
+            if (groups[i].getId() == id || groups[i].getName() == name) {
+                throw new DuplicateObjectNameException("this group is already exit.");
+            }
+        }
+        Group group = new Group(id, name);
+        Group[] newgoups = new Group[groups.length + 1];
+        for (int i = 0; i < groups.length; i++) {
+            newgoups[i] = groups[i]
+        }
+        newgoups[groups.length] = group;
+        groups = newgoups;
+    }
+
     /**
      * Setzt die Verteilung der {@code Agenten} für eine {@code Group}.
      *
@@ -159,13 +174,13 @@ public class Initialization {
     /**
      * Berechnet die initialen Zustände der Agenten basierend auf den vorher gesetzten Verteilungen.
      *
-     * @return ein Array von {@code Agenten} mit den initialen {@code Gruppen}, {@code kombinierten Strategien} und
+     * @return ein ArrayList von {@code Agenten} mit den initialen {@code Gruppen}, {@code kombinierten Strategien} und
      * Startkapital
      * @see Initialization#setCapitalDistribution(AgentDistribution, int, Group)
      * @see Initialization#setGroupDistribution(AgentDistribution, Group)
      * @see Initialization#setStrategyDistribution(AgentDistribution, CombinedStrategy, Group)
      */
-    public Agent[] calculateInitialAgentState() {
+    public List<Agent> calculateInitialAgentState() {
         return agents;
     }
 
