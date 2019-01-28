@@ -11,7 +11,7 @@ import java.util.List;
 public class Initialization {
 
     private String name;
-    private Group[] groups;
+    private List<Group> groups;
     private int agentCount;
     private List<Agent> agents;
 
@@ -33,6 +33,10 @@ public class Initialization {
         this.agents = agents;
     }
 
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
+
     public void addGroup(int id, String name) {
         for (int i = 0; i < groups.length; i++) {
             if (groups[i].getId() == id || groups[i].getName() == name) {
@@ -40,12 +44,7 @@ public class Initialization {
             }
         }
         Group group = new Group(id, name);
-        Group[] newgoups = new Group[groups.length + 1];
-        for (int i = 0; i < groups.length; i++) {
-            newgoups[i] = groups[i]
-        }
-        newgoups[groups.length] = group;
-        groups = newgoups;
+        groups.add(group);
     }
 
     /**
@@ -164,6 +163,10 @@ public class Initialization {
     }
 
     public Group[] getGroups () {
+        Group[] newGroups = new Group[groups.getSize()];
+        for (int i = 0; i < groups.getSize(); i++) {
+            newGroups[i] = groups.get(i);
+        }
         return groups;
     }
 
@@ -180,7 +183,11 @@ public class Initialization {
      * @see Initialization#setGroupDistribution(AgentDistribution, Group)
      * @see Initialization#setStrategyDistribution(AgentDistribution, CombinedStrategy, Group)
      */
-    public List<Agent> calculateInitialAgentState() {
+    public Agent[] calculateInitialAgentState() {
+        Agent[] newAgents = new Agent[agents.getSize()];
+        for (int i = 0; i < agents.getSize(); i++) {
+            newAgents[i] = agents.get(i);
+        }
         return agents;
     }
 
