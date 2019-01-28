@@ -21,6 +21,7 @@ public class Simulation implements Runnable, ObservableSimulation {
     private boolean equilibrium;
     private List<SimulationObserver> observers;
     private Result result;
+    private final int THRESHOLD = 100;
 
     /**
      * Erstellt eine Simulation.
@@ -46,7 +47,39 @@ public class Simulation implements Runnable, ObservableSimulation {
      */
     private void simulateRun() {
         Agent[] agents = copyAgents(initialAgents);
+        int maxRounds = config.getRounds();
+        int cycleRoundCount = config.getCycleRoundCount();
+        Game game = config.getGame();
+        round = 0;
+        cycle = 1;
+        boolean equilibriumAchieved = false;
 
+        while(!equilibriumAchieved && round < maxRounds) {
+            currentPairs = config.getPairingAlg().getPairing(agents, game);
+
+            for(Pair pair : currentPairs) {
+                game.playGame(pair);
+            }
+
+            currentRanking = config.getRankingAlg().getRankings(agents);
+            round++;
+            for(Agent agent : agents) {
+                agent.getHistory().increaseRoundCount();
+            }
+
+            if(round - (cycle * cycleRoundCount) == 0) {
+                cycle++;
+                int adaptationCount = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
+                if(adaptationCount < THRESHOLD) {
+                    equilibriumAchieved = true;
+                }
+                for(Agent agent : agents) {
+                    agent.getHistory().increaseCycleCount();
+                    agent.getHistory().setScore(agent.getScore());
+                    agent.getHistory().setStrategy(agent.getStrategy());
+                }
+            }
+        }
 
     }
 
