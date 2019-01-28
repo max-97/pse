@@ -14,6 +14,8 @@ import java.util.Iterator;
  * @author Michel Bodé
  */
 public class BruteForcePairingHeuristic implements PairingAlgorithm{
+
+    public static final String NAME = "Brute Force Paarung Heuristik";
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"Threshold"};
     private final double THRESHOLD;
@@ -75,6 +77,6 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

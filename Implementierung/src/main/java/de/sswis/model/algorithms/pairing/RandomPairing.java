@@ -14,6 +14,8 @@ import java.util.Random;
  * @author Michel Bodé
  */
 public class RandomPairing implements PairingAlgorithm {
+
+    public static final String NAME = "Zufällige Paarung";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
@@ -44,6 +46,6 @@ public class RandomPairing implements PairingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

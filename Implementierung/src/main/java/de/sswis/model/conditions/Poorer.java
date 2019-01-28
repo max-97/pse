@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  */
 public class Poorer implements Condition {
 
-    public static final String NAME = "";
+    public static final String NAME = "Ärmer als ich";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -21,6 +21,6 @@ public class Poorer implements Condition {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

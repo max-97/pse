@@ -13,7 +13,9 @@ import java.util.Iterator;
  * und 1 fuer 0% Kooperationswahrscheinlichkeit steht.
  * @author Michel Bodé
  */
-public class BruteForcePairing implements PairingAlgorithm{
+public class BruteForcePairing implements PairingAlgorithm {
+
+    public static final String NAME = "Brute Force Paarung";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
@@ -70,6 +72,6 @@ public class BruteForcePairing implements PairingAlgorithm{
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

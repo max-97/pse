@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class GrimEverybody implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Grim mit jedem";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -25,6 +25,6 @@ public class GrimEverybody implements BaseStrategy {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }

@@ -18,7 +18,7 @@ import java.util.Random;
  */
 public class MixedLinearInterpolation implements AdaptationAlgorithm{
 
-    public static final String NAME = "";
+    public static final String NAME = "Mixed Linear Interpolation";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -134,6 +134,6 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }
