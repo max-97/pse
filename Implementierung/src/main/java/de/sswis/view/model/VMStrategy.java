@@ -58,14 +58,6 @@ public class VMStrategy {
         return description;
     }
 
-    public List<String> getCombinedStrategies() {
-        return combinedStrategies;
-    }
-
-    public List<String> getProbabilities() {
-        return probabilities;
-    }
-
     public void setName(String name) {
         this.name = name;
     }

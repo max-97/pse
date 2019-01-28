@@ -87,13 +87,12 @@ public class Initialization {
     /**
      * Setzt die Verteilung der initialen {@code kombinierten Strategien} für die {@code Agenten} in einer
      * {@code Group}.
-     *
-     * @param distribution eine {@link AgentDistribution}, welche die Verteilung initialen
+     *  @param distribution eine {@link AgentDistribution}, welche die Verteilung initialen
      *                      {@code kombinierten Strategien} der Agenten in einer Gruppe beschreibt
      * @param strategy die {@code kombinierten Strategien} für welche die Verteilung angewandt wird
      * @param group die {@code Gruppe} in welcher die Verteilung angewandt wird
      */
-    public void setStrategyDistribution(AgentDistribution distribution, CombinedStrategy strategy, Group group) {
+    public void setStrategyDistribution(AgentDistribution distribution, Strategy strategy, Group group) {
         List<Agent> members = group.getMembers();
         if (distribution.usesIDS()){
             int[] ids = distribution.getAgentIDs();
@@ -184,7 +183,7 @@ public class Initialization {
      * Startkapital
      * @see Initialization#setCapitalDistribution(AgentDistribution, int, Group)
      * @see Initialization#setGroupDistribution(AgentDistribution, Group)
-     * @see Initialization#setStrategyDistribution(AgentDistribution, CombinedStrategy, Group)
+     * @see Initialization#setStrategyDistribution(AgentDistribution, Strategy, Group)
      */
     public Agent[] calculateInitialAgentState() {
         Agent[] newAgents = new Agent[agents.size()];

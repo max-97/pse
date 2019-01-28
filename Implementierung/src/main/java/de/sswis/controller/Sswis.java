@@ -19,25 +19,25 @@ public class Sswis {
 
         Collection<VMGame> vmGames = fileManager.loadAllGames();
         for (VMGame g : vmGames) {
-            Game game = parser.parseVMGameToGame(g);
+            Game game = parser.parseVMGame(g);
             provider.addGame(game);
         }
 
         Collection<VMCombinedStrategy> vmCombinedStrategies = fileManager.loadAllCombinedStrategies();
         for (VMCombinedStrategy cs : vmCombinedStrategies) {
-            CombinedStrategy combinedStrategy = parser.parseVMCombinedStrategyToCombinedStrategy(cs);
+            CombinedStrategy combinedStrategy = parser.parseVMCombinedStrategy(cs);
             provider.addStrategy(combinedStrategy);
         }
 
         Collection<VMStrategy> vmStrategies = fileManager.loadAllMixedStrageyies();
         for (VMStrategy s : vmStrategies) {
-            Strategy strategy = parser.parseVMStrategyToStrategy(s);
+            Strategy strategy = parser.parseVMStrategy(s);
             provider.addStrategy(strategy);
         }
 
         Collection<VMInitialization> vmInitializations = fileManager.loadAllInitializations();
         for (VMInitialization i : vmInitializations) {
-            Collection<Initialization> initializations = parser.parseVMInitializationToInitialization(i);
+            Collection<Initialization> initializations = parser.parseVMInitialization(i);
             for (Initialization init : initializations) {
                 provider.addInitialization(init);
             }
@@ -45,7 +45,7 @@ public class Sswis {
 
         Collection<VMConfiguration> vmConfigurations = fileManager.loadAllConfigurations();
         for (VMConfiguration c : vmConfigurations) {
-            Collection<Configuration> configurations = parser.parseVMConfigurationToConfigurations(c);
+            Collection<Configuration> configurations = parser.parseVMConfiguration(c);
             mainView.addConfiguration(c);
             for (Configuration config : configurations) {
                 provider.addConfiguration(config);

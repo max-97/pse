@@ -155,8 +155,7 @@ public class ModelParser {
                         rankingAlgorithm,
                         rounds,
                         cycles,
-                        adaptationProbability,
-                        strategies
+                        adaptationProbability
                 );
                 configurations.add(c);
             }
@@ -174,8 +173,7 @@ public class ModelParser {
                     rankingAlgorithm,
                     rounds,
                     cycles,
-                    adaptationProbability,
-                    strategies
+                    adaptationProbability
             );
 
             configurations.add(c);
