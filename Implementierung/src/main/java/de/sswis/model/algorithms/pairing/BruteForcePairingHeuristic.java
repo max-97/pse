@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import java.util.HashMap;
+
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation so paart, dass jeder Agent mit dem
  * ersten verbleibenden Agenten gepaart wird, so dass die Distanz des Paares unter einem gewissen Schwellwert liegt.
@@ -78,5 +80,10 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
     }
 }

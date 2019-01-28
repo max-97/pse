@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 
+import java.util.HashMap;
+
 /**
  * Ein Paarungsalgorithmus der die Agenten einer Simulation zufaellig miteinander paart.
  * @author Michel Bodé
@@ -47,5 +49,10 @@ public class RandomPairing implements PairingAlgorithm {
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
     }
 }

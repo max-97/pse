@@ -52,4 +52,9 @@ public class CurrentCycleScore implements RankingAlgorithm {
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

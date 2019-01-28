@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,8 +13,9 @@ public class VMCombinedStrategy {
     private String name;
     private String description;
 
-    private List<String> conditions;
-    private List<String> strategies;
+    private String defaultStrategy;
+    private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
+    private List<String> conditions = new ArrayList<>();     // == conditions.length()
 
 
     /**
@@ -29,35 +31,29 @@ public class VMCombinedStrategy {
 
     /**
      * Fügt ein Paar von Bedingung und Basisstrategie hinzu.
-     * @param strategyName Name der Strategie
+     * Eventuell von der Bedingung benötigte Parameter werden dem String angehängt.
+     * <br>
+     * Bsp. "Delta20,5" entspricht der Bedingung Delta mit Delta.DELTA = 20.5
+     *
+     * @param baseStrategy Name der Basisstrategie
      * @param condition Bedingung
      */
-    public void addStrategy(String strategyName, String condition) {}
+    public void addStrategy(String baseStrategy, String condition) {
+        baseStrategies.add(baseStrategy);
+        conditions.add(condition);
+    }
 
     /**
-     * Fügt ein Paar bestehend aus einer Bedingung, die eine weitere Eingabe x benötigt,
-     * und einer Basisstrategie  hinzu.
-     * @param strategyName Name der Strategie
-     * @param condition Bedingung
-     * @param x Parameter der Bedingung
+     * Setzt die Standard-Strategie, diejenige mit niedrigster Priorität und ohne Bedingung.
+     * @param baseStrategy Name der Basisstrategie
      */
-    public void addStrategy(String strategyName, String condition, double x) {}
+    public void setDefaultStrategy(String baseStrategy) {
+        this.defaultStrategy = baseStrategy;
+    }
 
-    /**
-     * Fügt ein Paar bestehend aus einer Bedingung, die eine weitere Eingabe x benötigt,
-     * und einer Basisstrategie  hinzu.
-     * @param strategyName Name der Strategie
-     * @param condition Bedingung
-     * @param x Parameter der Bedingung
-     */
-    public void addStrategy(String strategyName, String condition, int x) {}
-
-    /**
-     * Setzt die Standard Strategie, die die niedrigster Priorität und keine Bedingung hat.
-     * @param strategyName Name der Strategie
-     */
-    public void setDefaultStrategy(String strategyName) {}
-
+    public String getDefaultStrategy() {
+        return defaultStrategy;
+    }
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
@@ -82,11 +78,15 @@ public class VMCombinedStrategy {
     }
 
     public List<String> getStrategies() {
-        return this.strategies;
+        return this.baseStrategies;
     }
 
     public List<String> getConditions() {
         return this.conditions;
+    }
+
+    public double getConditionParameter(String conditionName) {
+        return 0;
     }
 
 }
