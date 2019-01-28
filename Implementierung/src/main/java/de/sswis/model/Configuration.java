@@ -69,6 +69,8 @@ public class Configuration {
         return pairingAlg;
     }
 
+    public RankingAlgorithm getRankingAlg() { return rankingAlg; }
+
     public int getRounds() {
         return rounds;
     }

@@ -29,6 +29,7 @@ public class Agent {
         this.strategy = initialStrategy;
         this.history = new History();
         history.setScore(initialScore);
+        history.setStrategy(initialStrategy);
     }
 
     public int getId() {
