@@ -14,23 +14,39 @@ public class Simulation implements Runnable, ObservableSimulation {
     private Configuration config;
     private int round;
     private int cycle;
+    private int repetitions;
+    private Agent[] initialAgents;
     private HashMap<Agent, Integer> currentRanking;
     private Pair[] currentPairs;
     private boolean equilibrium;
     private List<SimulationObserver> observers;
+    private Result result;
 
     /**
      * Erstellt eine Simulation.
      * @param config zugrunde liegende Konfiguration
      */
     public Simulation(Configuration config) {
-
+        this.config = config;
+        this.result = new Result();
+        this.initialAgents = config.getInit().calculateInitialAgentState();
     }
 
     /**
      * Startet die Simulation.
      */
-    public void simulate() {
+    private void simulate() {
+        for(int i = 0; i < repetitions; i++) {
+            simulateRun();
+        }
+    }
+
+    /**
+     * Startet einen Simulationsdurchlauf.
+     */
+    private void simulateRun() {
+        Agent[] agents = copyAgents(initialAgents);
+
 
     }
 
@@ -53,16 +69,8 @@ public class Simulation implements Runnable, ObservableSimulation {
      * und dem Verlauf der Simulation enthalten.
      * @return Menge an Agenten
      */
-    public Agent[] getResults() {
-        return null;
-    }
-
-    /**
-     * Gibt zurueck ob ein Gleichgewicht erreicht wurde.
-     * @return wahr, wenn ein Gleichgewicht erreicht wurde, falsch sonst
-     */
-    public boolean EquilibriumAchieved() {
-        return  equilibrium;
+    public Result getResults() {
+        return this.result;
     }
 
     /**
@@ -89,6 +97,10 @@ public class Simulation implements Runnable, ObservableSimulation {
         return this.config.getName();
     }
 
+    private Agent[] copyAgents(Agent[] agents) {
+        return null;
+    }
+
     @Override
     public void run() {
 
@@ -96,7 +108,7 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void addObserver(SimulationObserver o) {
-
+        this.observers.add(o);
     }
 
     @Override
@@ -106,6 +118,6 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void deleteObserver(SimulationObserver o) {
-
+        this.observers.remove(o);
     }
 }
