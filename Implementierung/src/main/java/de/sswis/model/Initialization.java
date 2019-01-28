@@ -2,6 +2,8 @@ package de.sswis.model;
 
 import de.sswis.util.AgentDistribution;
 
+import java.util.List;
+
 /**
  * Eine Initialisierung welche die in ihr enthaltenen Agenten und Gruppen festlegt.
  * @author Michel Bodé
@@ -32,27 +34,29 @@ public class Initialization {
      * @param group die {@code Gruppe} für welche die Verteilung angewandt wird
      */
     public void setGroupDistribution(AgentDistribution distribution, Group group) {
+        List<Agent> members = new ArrayList();
+        NumberFormat numberformat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(2);
         if (distribution.usesIDS()){
             int[] ids = distribution.getIDs();
                 for (int i = 0; i < distribution.getIDs().length; i++) {
-                    for (int j = 0; j < agents.length; j++) {
-                        if (ids[i] == agents[j].getId()) {
-                            group.addMember(agents[j]);
-                    }
-                }
+                 Agent agent = new Agent(ids[i], 0, group, null);
+                 members.add(agent);
             }
         } else {
             int agentNumber = 0;
-            for (int x = 0; x < agents.length; x++) {
-                if (agents[x].getGroup().equals(group)) {
-                    group.addMember(agents[x]);
-                    agentNumber++;
-                }
-                if ((agentNumber/agents.length) == distribution.getPercentage()) {
+            for (int x = 0; x < agentCount; x++) {
+                Agent agent = new Agent(x, 0, group, null);
+                members.add(agent);
+                agentNumber++;
+                String result = numberFormat.format((float)agentNumber/(float)agentCount * 100);
+                int percent = IInteger.parseInt(result);
+                if (percent == distribution.getPercentage()) {
                     break;
                 }
             }
         }
+        group.setMembers(members);
     }
 
     /**
@@ -65,22 +69,26 @@ public class Initialization {
      * @param group die {@code Gruppe} in welcher die Verteilung angewandt wird
      */
     public void setStrategyDistribution(AgentDistribution distribution, CombinedStrategy strategy, Group group) {
-        Agent[] members = group.getMembers();
+        List<Agent> members = group.getMembers();
+        NumberFormat numberformat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(2);
         if (distribution.usesIDS()){
             int[] ids = distribution.getIDs();
             for (int i = 0; i < distribution.getIDs().length; i++) {
-                for (int j = 0; j < group.getMembers().length; j++) {
-                    if (ids[i] == members[j].getId()) {
-                        members[j].setStrategy(strategy);
+                for (int j = 0; j < group.getMembers().size(); j++) {
+                    if (ids[i] == members.get(j).getId()) {
+                        members.get(j).setStrategy(strategy);
                     }
                 }
             }
         } else {
             int agentNumber = 0;
             for (int x = 0; x < members.length; x++) {
-                    members[x].setStrategy(strategy);
-                    agentNumber++;
-                if ((agentNumber/members.length) == distribution.getPercentage()) {
+                members[x].setStrategy(strategy);
+                agentNumber++;
+                String result = numberFormat.format((float)agentNumber/(float)members.length * 100);
+                int percent = IInteger.parseInt(result);
+                if (percent == distribution.getPercentage()) {
                     break;
                 }
             }
@@ -97,22 +105,26 @@ public class Initialization {
      * @param group die {@code Gruppe} in welcher die Verteilung angewandt wird
      */
     public void setCapitalDistribution(AgentDistribution distribution, int capital, Group group) {
-        Agent[] members = group.getMembers();
+        List<Agent> members = group.getMembers();
+        NumberFormat numberformat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(2);
         if (distribution.usesIDS()){
             int[] ids = distribution.getIDs();
             for (int i = 0; i < distribution.getIDs().length; i++) {
-                for (int j = 0; j < group.getMembers().length; j++) {
-                    if (ids[i] == members[j].getId()) {
-                        members[j].setScore(capital);
+                for (int j = 0; j < group.getMembers().size(); j++) {
+                    if (ids[i] == members.get(j).getId()) {
+                        members.get(j).setScore(capital);
                     }
                 }
             }
         } else {
             int agentNumber = 0;
-            for (int x = 0; x < members.length; x++) {
-                members[x].setScore(capital);
+            for (int x = 0; x < members.size(); x++) {
+                members.get(x).setScore(capital);
                 agentNumber++;
-                if ((agentNumber/members.length) == distribution.getPercentage()) {
+                String result = numberFormat.format((float)agentNumber/(float)members.length * 100);
+                int percent = IInteger.parseInt(result);
+                if (percent == distribution.getPercentage()) {
                     break;
                 }
             }
