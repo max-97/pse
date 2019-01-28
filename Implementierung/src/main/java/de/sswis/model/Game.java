@@ -21,6 +21,8 @@ public class Game {
      */
     public Game(String name, String description, Tuple[][] payoffs) {
         this.name = name;
+        this.description = description;
+        this.payoffs = payoffs;
     }
 
     /**
@@ -30,7 +32,22 @@ public class Game {
      * @return ein Paar von Payoffs
      */
     public Tuple getPayoffs(Action a1, Action a2) {
-        return null;
+        int i = 0;
+        int j = 0;
+        switch (a1) {
+            case COOPERATION:
+                i = 0;
+            case  DEFECTION:
+                i = 1;
+        }
+        switch (a2) {
+            case COOPERATION:
+                j = 0;
+            case DEFECTION:
+                i = 1;
+        }
+        Tuple tuple = payoffs[i][j];
+        return tuple;
     }
 
     /**
@@ -39,7 +56,34 @@ public class Game {
      * @param pair Agentenpaar
      */
     public void playGame(Pair pair) {
+        Agent agent1 = pair.getAgent(1);
+        Agent agent2 = pair.getAgent(2);
+        Action action1 = agent1.getStrategy().calculateAction(agent1, agent2);
+        Action action2 = agent2.getStrategy().calculateAction(agent2, agent1);
+        Tuple tuple = getPayoffs(action1, action2);
+        int score1 = agent1.getScore();
+        int pay1 = tuple.getX();
+        int score2 = agent2.getScore();
+        int pay2 = tuple.getY();
+        updateHistory(agent1, agent2, action1, action2);
+        updateHistory(agent2, agent1, action2, action1);
+        agent1.setScore(score1 + pay1);
+        agent2.setScore(score2 + pay2);
+    }
 
+    private void updateHistory(Agent agent1, Agent agent2, Action action1, Action action2) {
+        agent1.getHistory().setCooperatedLastTime(agent2, action2.equals(Action.COOPERATION));
+        agent1.getHistory().setCooperatedEveryTime(agent2, action2.equals(Action.COOPERATION) &&
+                agent1.getHistory().cooperatedEveryTime(agent2));
+        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action2.equals(Action.COOPERATION));
+        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action2.equals(Action.COOPERATION) &&
+                agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
+        agent1.getHistory().setOpponent(agent2);
+        if (action1.equals(Action.COOPERATION) && agent1.getHistory().getAlwaysCooperated()) {
+            agent1.getHistory().setAlwaysCooperated(true);
+        } else {
+            agent1.getHistory().setAlwaysCooperated(false);
+        }
     }
 
     public String getName() {
@@ -55,7 +99,16 @@ public class Game {
         public int y;
 
         public Tuple(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
 
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
         }
 
     }
