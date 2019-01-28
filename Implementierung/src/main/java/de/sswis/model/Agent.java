@@ -69,4 +69,8 @@ public class Agent {
         this.score = newScore;
     }
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
 }
