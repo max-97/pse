@@ -8,6 +8,7 @@ import org.jgrapht.alg.matching.blossom.v5.KolmogorovMinimumWeightPerfectMatchin
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
 
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -83,5 +84,10 @@ public class MinimumWeightMatching implements PairingAlgorithm {
     @Override
     public String getName() {
         return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
     }
 }
