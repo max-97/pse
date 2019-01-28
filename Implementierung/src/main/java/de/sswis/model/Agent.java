@@ -48,4 +48,8 @@ public class Agent {
     public void setStrategy(Strategy newStrategy) {
 
     }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }
