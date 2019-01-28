@@ -26,7 +26,8 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     private int highestScoreDifference;
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
         rnd = new Random();
         highestScoreDifference = getHighestScoreDifference(agents);
 
@@ -36,9 +37,11 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
                     adaptStrategy(agents[i], randomAgent);
+                    adaptationCount++;
                 }
             }
         }
+        return adaptationCount;
     }
 
     private void adaptStrategy(Agent agent1, Agent agent2) {

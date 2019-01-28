@@ -20,7 +20,8 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
     public static final String[] PARAMETER_NAMES = {};
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
         Random rnd = new Random();
         double beta = 1.0 / (agents.length - 1);
 
@@ -31,9 +32,11 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
                 if(currentRanking.get(randomAgent) < currentRanking.get(agents[i]) &&
                         rndDouble < (Math.abs(currentRanking.get(agents[i]) - currentRanking.get(randomAgent)) * beta)){
                     agents[i].setStrategy(randomAgent.getStrategy());
+                    adaptationCount++;
                 }
             }
         }
+        return adaptationCount;
     }
 
     @Override
