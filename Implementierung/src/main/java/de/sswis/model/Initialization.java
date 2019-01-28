@@ -177,7 +177,7 @@ public class Initialization {
     /**
      * Berechnet die initialen Zustände der Agenten basierend auf den vorher gesetzten Verteilungen.
      *
-     * @return ein ArrayList von {@code Agenten} mit den initialen {@code Gruppen}, {@code kombinierten Strategien} und
+     * @return ein Array von {@code Agenten} mit den initialen {@code Gruppen}, {@code kombinierten Strategien} und
      * Startkapital
      * @see Initialization#setCapitalDistribution(AgentDistribution, int, Group)
      * @see Initialization#setGroupDistribution(AgentDistribution, Group)
