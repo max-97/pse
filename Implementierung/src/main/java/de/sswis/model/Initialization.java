@@ -13,7 +13,7 @@ public class Initialization {
     private String name;
     private Group[] groups;
     private int agentCount;
-    private Agent[] agents;
+    private List<Agent> agents;
 
 
     /**
@@ -25,6 +25,11 @@ public class Initialization {
     public Initialization(String name, int agentCount) {
         this.name = name;
         this.agentCount = agentCount;
+        List<Agent> agents = new ArrayList();
+        for (int i = 0; i < agentCount; i++) {
+            Agent agent = new Agent(i, 0, null, null);
+            agents.add(agent);
+        }
     }
 
     /**
@@ -34,21 +39,25 @@ public class Initialization {
      * @param group die {@code Gruppe} für welche die Verteilung angewandt wird
      */
     public void setGroupDistribution(AgentDistribution distribution, Group group) {
-        List<Agent> members = new ArrayList();
         NumberFormat numberformat = NumberFormat.getInstance();
         numberFormat.setMaximumFractionDigits(2);
         if (distribution.usesIDS()){
             int[] ids = distribution.getIDs();
                 for (int i = 0; i < distribution.getIDs().length; i++) {
-                 Agent agent = new Agent(ids[i], 0, group, null);
-                 members.add(agent);
+                    for (int j = 0; j < agentCount; j++) {
+                        if (agents.get(j).getGroup() == null)
+                            agents.setGroup(group);
+                            members.add(agents.get(j));
+                    }
             }
         } else {
             int agentNumber = 0;
             for (int x = 0; x < agentCount; x++) {
-                Agent agent = new Agent(x, 0, group, null);
-                members.add(agent);
-                agentNumber++;
+                if (agents.get(x).getGroup() == null)
+                    agents.setGroup(group);
+                    members.add(agents.get(x));
+                    agentNumber++;
+            }
                 String result = numberFormat.format((float)agentNumber/(float)agentCount * 100);
                 int percent = IInteger.parseInt(result);
                 if (percent == distribution.getPercentage()) {
@@ -77,15 +86,19 @@ public class Initialization {
             for (int i = 0; i < distribution.getIDs().length; i++) {
                 for (int j = 0; j < group.getMembers().size(); j++) {
                     if (ids[i] == members.get(j).getId()) {
-                        members.get(j).setStrategy(strategy);
+                        if (members.get(j).getStrategy() == null) {
+                            members.get(j).setStrategy(strategy);
+                        }
                     }
                 }
             }
         } else {
             int agentNumber = 0;
             for (int x = 0; x < members.length; x++) {
-                members[x].setStrategy(strategy);
-                agentNumber++;
+                if (members.get(x).getStrategy() == null) {
+                    members.get(x).setStrategy(strategy);
+                    agentNumber++;
+                }
                 String result = numberFormat.format((float)agentNumber/(float)members.length * 100);
                 int percent = IInteger.parseInt(result);
                 if (percent == distribution.getPercentage()) {
@@ -113,15 +126,19 @@ public class Initialization {
             for (int i = 0; i < distribution.getIDs().length; i++) {
                 for (int j = 0; j < group.getMembers().size(); j++) {
                     if (ids[i] == members.get(j).getId()) {
-                        members.get(j).setScore(capital);
+                        if (members.get(j).getScore() == 0) {
+                            members.get(j).setScore(capital);
+                        }
                     }
                 }
             }
         } else {
             int agentNumber = 0;
             for (int x = 0; x < members.size(); x++) {
-                members.get(x).setScore(capital);
-                agentNumber++;
+                if (members.get(x).getScore() == 0) {
+                    members.get(x).setScore(capital);
+                    agentNumber++;
+                }
                 String result = numberFormat.format((float)agentNumber/(float)members.length * 100);
                 int percent = IInteger.parseInt(result);
                 if (percent == distribution.getPercentage()) {
