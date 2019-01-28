@@ -30,6 +30,7 @@ public class Initialization {
             Agent agent = new Agent(i, 0, null, null);
             agents.add(agent);
         }
+        this.agents = agents;
     }
 
     /**
