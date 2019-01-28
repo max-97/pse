@@ -26,17 +26,6 @@ public class VMConfiguration {
     private VMResult result;
 
     /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-
-    /**
      * Zeigt ob die Konfiguration variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */

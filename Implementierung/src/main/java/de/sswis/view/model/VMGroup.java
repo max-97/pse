@@ -22,17 +22,6 @@ public class VMGroup {
     private List<List<String>> startCapitalDistributions;
     private List<Boolean> relativeCapitalDistributions;
 
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-
     public void addStrategy(String name, List<String> distribution) {
         this.strategies.add(name);
         this.strategyDistributions.add(distribution);

@@ -16,18 +16,6 @@ public class VMInitialization {
     private int numberOfInstances;
 
     /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben,
-     * Inkonsistenzen von Agentenzuteilungen innerhalb und unterhalb der Gruppen.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-
-    /**
      * Zeigt ob die Initialisierung variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */

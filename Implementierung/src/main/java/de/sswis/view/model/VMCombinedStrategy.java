@@ -17,18 +17,6 @@ public class VMCombinedStrategy {
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
 
-
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-
     /**
      * Fügt ein Paar von Bedingung und Basisstrategie hinzu.
      * Eventuell von der Bedingung benötigte Parameter werden dem String angehängt.
