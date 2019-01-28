@@ -1,7 +1,5 @@
 package de.sswis.view.model;
 
-import de.sswis.util.AgentDistribution;
-
 import java.util.List;
 
 /**
@@ -18,11 +16,11 @@ public class VMGroup {
 
     private List<String> strategies;
     private List<List<String>> strategyDistributions;
-    private boolean relativeStrategyDistribution;
+    private List<Boolean> relativeStrategyDistributions;
 
     private List<String> startCapital;
     private List<List<String>> startCapitalDistributions;
-    private boolean relativeCaptialDistribution;
+    private List<Boolean> relativeCapitalDistributions;
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -89,19 +87,19 @@ public class VMGroup {
         return startCapitalDistributions;
     }
 
-    public boolean usesRelativeStrategyDistribution() {
-        return relativeStrategyDistribution;
+    public List<Boolean> getRelativeStrategyDistributions() {
+        return relativeStrategyDistributions;
     }
 
-    public void setRelativeStrategyDistribution(boolean relativeStrategyDistribution) {
-        this.relativeStrategyDistribution = relativeStrategyDistribution;
+    public void addRelativeStrategyDistribution(boolean relativeStrategyDistribution) {
+        this.relativeStrategyDistributions.add(relativeStrategyDistribution);
     }
 
-    public boolean usesRelativeCaptialDistribution() {
-        return relativeCaptialDistribution;
+    public List<Boolean> getRelativeCapitalDistributions() {
+        return relativeCapitalDistributions;
     }
 
-    public void setRelativeCaptialDistribution(boolean relativeCaptialDistribution) {
-        this.relativeCaptialDistribution = relativeCaptialDistribution;
+    public void addRelativeCapitalDistributions(boolean relativeCapitalDistributions) {
+        this.relativeCapitalDistributions.add(relativeCapitalDistributions);
     }
 }
