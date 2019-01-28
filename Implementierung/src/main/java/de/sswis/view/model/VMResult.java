@@ -1,5 +1,9 @@
 package de.sswis.view.model;
 
+import de.sswis.model.Agent;
+
+import java.util.Collection;
+
 /**
  *Ein Ergebnis zum Speichern von Daten von abgeschlossenen Simulationen.
  *Berechnet Daten zum Anzeigen von Diagrammen vor.
@@ -10,8 +14,9 @@ public class VMResult {
 
     private String name;
     private VMConfiguration vmConfig;
+    private Collection<Agent> agents; //TODO: falls möglich, löschen
 
-    /*
+/*
     public boolean isCorrect () {
         //TODO: implement me
         return false;
@@ -32,5 +37,13 @@ public class VMResult {
 
     public void setVmConfig(VMConfiguration vmConfig) {
         this.vmConfig = vmConfig;
+    }
+
+    public Collection<Agent> getAgents() {
+        return agents;
+    }
+
+    public void setAgents(Collection<Agent> agents) {
+        this.agents = agents;
     }
 }
