@@ -40,6 +40,7 @@ public class Agent {
 
     public History getHistory() { return history; }
 
+
     public Group getGroup() {
         return group;
     }

@@ -3,6 +3,7 @@ package de.sswis.model.algorithms.adaptation;
 import de.sswis.model.Agent;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Ein Algorithmus der die Strategie eines Agenten einer Simulation anpasst, in Abhaengigkeit von der Differenz
@@ -17,19 +18,22 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
-    private final double BETA;
-
-    /**
-     * Konstruktor
-     * @param BETA Konstante beta, so dass delta*beta zwischen 0 und 1 liegt
-     */
-    public ReplicatorDynamicRank(double BETA) {
-        this.BETA = BETA;
-    }
 
     @Override
     public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        Random rnd = new Random();
+        double beta = 1.0 / (agents.length - 1);
 
+        for(int i = 0; i < agents.length; i++) {
+            double rndDouble = rnd.nextDouble();
+            if(rndDouble < adaptationProbability) {
+                Agent randomAgent = agents[rnd.nextInt(agents.length)];
+                if(currentRanking.get(randomAgent) < currentRanking.get(agents[i]) &&
+                        rndDouble < (Math.abs(currentRanking.get(agents[i]) - currentRanking.get(randomAgent)) * beta)){
+                    agents[i].setStrategy(randomAgent.getStrategy());
+                }
+            }
+        }
     }
 
     @Override
