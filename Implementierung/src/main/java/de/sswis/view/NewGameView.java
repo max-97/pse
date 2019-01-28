@@ -20,16 +20,16 @@ public class NewGameView implements AbstractNewGameView {
     private JFrame frame;
 
 
-    private VMGame vmGame;
+    private VMGame vmGame = new VMGame();
 
     private JPanel MainPanel;
     private JLabel upLeftPayOffLabel;
     private JLabel bottomLeftPayOffLabel;
     private JLabel descriptionLabel;
     private JTextPane descriptionPane;
-    private JLabel nameLabel;
-    private JLabel upRightPayOffLabel;
-    private JLabel bottomRightPayOffLabel;
+    private JLabel nameLabel = new JLabel();
+    private JLabel upRightPayOffLabel = new JLabel();
+    private JLabel bottomRightPayOffLabel = new JLabel();
     private JSpinner spinner1;
     private JSpinner spinner2;
     private JSpinner spinner3;
