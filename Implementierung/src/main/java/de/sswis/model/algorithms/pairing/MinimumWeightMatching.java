@@ -77,4 +77,9 @@ public class MinimumWeightMatching implements PairingAlgorithm {
         }
         return probability;
     }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }
