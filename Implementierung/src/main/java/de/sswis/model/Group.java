@@ -34,6 +34,6 @@ public class Group {
         this.members = members;
     }
 
-    public List<Agent> getMembers { return members; }
+    public List<Agent> getMembers() { return members; }
 
 }
