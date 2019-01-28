@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class AlwaysCooperate implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Immer kooperieren";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -16,5 +16,10 @@ public class AlwaysCooperate implements BaseStrategy {
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
         return Action.COOPERATION;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

@@ -26,6 +26,17 @@ public interface AbstractNewConfigurationView extends AbstractView {
 
     VMConfiguration getVMConfiguration();
 
-    AbstractManageConfigurationsView getParenteView();
+    AbstractManageConfigurationsView getParentView();
 
+    void setConfiguration(VMConfiguration configuration);
+
+    void addAdaptionAlgorithm(String name);
+
+    void addPairingAlgorithm(String name);
+
+    void addRankingAlgorithm(String name);
+
+    void addInitialization(String name);
+
+    void addGame(String name);
 }

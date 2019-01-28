@@ -8,6 +8,7 @@ package de.sswis.model;
 public class Agent {
 
     private int id;
+    private int score;
     private int initialScore;
     private History history;
     private Group group;
@@ -21,6 +22,13 @@ public class Agent {
      * @param initialStrategy Anfangsstrategie des Agenten
      */
     public Agent(int id, int initialScore, Group group, Strategy initialStrategy) {
+        this.id = id;
+        this.initialScore = initialScore;
+        this.score = initialScore;
+        this.group = group;
+        this.strategy = initialStrategy;
+        this.history = new History();
+        history.setScore(initialScore);
     }
 
     public int getId() {
@@ -41,15 +49,28 @@ public class Agent {
         return strategy;
     }
 
+    public int getScore() { return score; }
+
     /**
      * Ersetzt die Strategie des Agenten durch eine neue.
      * @param newStrategy neue Strategie
      */
     public void setStrategy(Strategy newStrategy) {
+        if(newStrategy instanceof CombinedStrategy) {
+            this.strategy = newStrategy;
+        } else {
+            MixedStrategy newMixedStrategy = (MixedStrategy)strategy;
+            this.strategy = new MixedStrategy(newMixedStrategy.getName(), newMixedStrategy.getCombinedStrategies(),
+                    newMixedStrategy.getProbabilities());
+        }
+    }
 
+    public void setScore(int newScore) {
+        this.score = newScore;
     }
 
     public void setGroup(Group group) {
         this.group = group;
     }
+
 }

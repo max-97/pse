@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  */
 public class OwnGroup implements Condition {
 
-    public static final String NAME = "";
+    public static final String NAME = "Eigene Gruppe";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -16,5 +16,10 @@ public class OwnGroup implements Condition {
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return agent1.getGroup().getId() == agent2.getGroup().getId() ;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

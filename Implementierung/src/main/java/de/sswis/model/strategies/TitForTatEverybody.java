@@ -9,17 +9,22 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class TitForTatEverybody implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Tit-for-Tat mit jedem";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        if(agent1.getHistory().getCooperated()) {
+        if(agent1.getHistory().getOpponentCooperated()) {
             return Action.COOPERATION;
         }else {
             return Action.DEFECTION;
         }
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

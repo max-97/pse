@@ -36,6 +36,14 @@ public class VMStrategy {
      */
     public void addStrategy (String strategyName, double probability) {}
 
+    public List<String> getCombinedStrategies() {
+        return combinedStrategies;
+    }
+
+    public List<String> getProbabilities() {
+        return probabilities;
+    }
+
     /**
      * Gibt eine String der wichtige Informationen zu dieser gemischten Strategie zusammenfasst.
      * @return String enthält Kurzbeschreibung der gemischten Strategie

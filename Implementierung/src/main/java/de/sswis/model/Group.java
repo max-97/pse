@@ -18,7 +18,8 @@ public class Group {
      * @param name Name der Gruppe
      */
     public Group(int id, String name) {
-
+        this.id = id;
+        this.name = name;
     }
 
     public int getId() {
@@ -29,11 +30,10 @@ public class Group {
         return name;
     }
 
-    /**
-     * Fuegt dieser Gruppe einen neuen Agenten hinzu.
-     * @param newMember neuer Agent
-     */
-    public void addMember(Agent newMember) {
-
+    public void setMembers(List<Agent> members) {
+        this.members = members;
     }
+
+    public List<Agent> getMembers() { return members; }
+
 }

@@ -8,7 +8,7 @@ import de.sswis.model.Agent;
  */
 public class Probability implements Condition {
 
-    public static final String NAME = "";
+    public static final String NAME = "Wahrscheinlichkeit";
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"ALPHA"};
@@ -26,5 +26,10 @@ public class Probability implements Condition {
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         double random = Math.random();
         return random < ALPHA;
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }
