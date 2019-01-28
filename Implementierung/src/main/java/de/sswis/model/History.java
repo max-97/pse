@@ -3,6 +3,7 @@ package de.sswis.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Ein Objekt zur Zustandsspeicherung von Agenten im Laufe einer Simulation.
@@ -58,6 +59,10 @@ public class History {
         return score.get(cycle - 1);
     }
 
+    public List<Integer> getScores() {
+        return this.score;
+    }
+
     /**
      * Gibt an ob der Gegenspieler des Agenten in der letzten Runde kooperiert hat.
      * @return wahr wenn er kooperiert hat, falsch sonst
@@ -91,6 +96,10 @@ public class History {
      */
     public String getStrategy(int cycle) {
         return strategies.get(cycle - 1);
+    }
+
+    public List<String> getStrategies() {
+        return this.strategies;
     }
 
     /**

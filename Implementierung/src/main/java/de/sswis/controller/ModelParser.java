@@ -42,7 +42,28 @@ public class ModelParser {
      * @return die für die Ergebnisansicht aufbereiteten Ergebnisse
      */
     public VMResult parseSimulationToVMResult(Simulation simulation) {
-        return null;
+        VMResult result = new VMResult();
+
+        List<Agent> agents = Arrays.asList(simulation.getResults());
+        result.setAgents(agents);
+        VMConfiguration configuration;
+        try {
+            configuration = this.fileManager.loadConfiguration(simulation.getName());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        result.setVmConfig(configuration);
+        result.setName(configuration.getName());
+
+        Collection<VMAgentHistory> agentHistories = new ArrayList<>();
+        for (Agent a : agents) {
+
+            VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(), new ArrayList<>(), a.getHistory().getStrategies());
+            agentHistories.add(vmAH);
+        }
+        result.setAgentHistories(agentHistories);
+        return result;
     }
 
     /**
