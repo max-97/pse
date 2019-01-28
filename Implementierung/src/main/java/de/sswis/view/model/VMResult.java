@@ -15,6 +15,7 @@ public class VMResult {
     private String name;
     private VMConfiguration vmConfig;
     private Collection<Agent> agents; //TODO: falls möglich, löschen
+    private Collection<VMAgentHistory> agentHistories;
 
 /*
     public boolean isCorrect () {
@@ -29,6 +30,14 @@ public class VMResult {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Collection<VMAgentHistory> getAgentHistories() {
+        return agentHistories;
+    }
+
+    public void setAgentHistories(Collection<VMAgentHistory> agentHistories) {
+        this.agentHistories = agentHistories;
     }
 
     public VMConfiguration getVmConfig() {
