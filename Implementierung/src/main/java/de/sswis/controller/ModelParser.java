@@ -249,9 +249,97 @@ public class ModelParser {
                     }
                 }
             }
+
+            for (Pair<Group, Strategy> p : strategyDistributionID.keySet()) {
+                VariableDistribution[] varDist = strategyDistributionID.get(p);
+                for (int i = 0; i < varDist.length; i++) {
+                    AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                    init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+                }
+            }
+
+            for (Pair<Group, Strategy> p : strategyDistributionRelative.keySet()) {
+                VariableDistribution[] varDist = strategyDistributionRelative.get(p);
+                for (int i = 0; i < varDist.length; i++) {
+                    AgentDistribution ad = new AgentDistribution(varDist[i].getValue(0));
+                    init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+                }
+            }
+
+            for (Pair<Group, Integer> p : capitalDistributionID.keySet()) {
+                VariableDistribution[] varDist = capitalDistributionID.get(p);
+                for (int i = 0; i < varDist.length; i++) {
+                    AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                    init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                }
+            }
+
+            for (Pair<Group, Integer> p : capitalDistributionRelative.keySet()) {
+                VariableDistribution[] varDist = capitalDistributionRelative.get(p);
+                for (int i = 0; i < varDist.length; i++) {
+                    AgentDistribution ad = new AgentDistribution(varDist[i].getValue(0));
+                    init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                }
+            }
+
             initializations.add(init);
+
         } else {
             // Multi Initialization
+            int numberOfInstances = VariableDistribution.getSize();
+            for (int j = 0; j < numberOfInstances; j++) {
+                Initialization init = new Initialization(name + (j + 1), agentCount);
+
+                if (vmInitialization.hasRelativeDistribution()) {
+                    for (Group g : groupDistribution.keySet()) {
+                        int percent = groupDistribution.get(g)[0].getValue(j);
+                        AgentDistribution ad = new AgentDistribution(percent);
+                        init.setGroupDistribution(ad, g);
+                    }
+                } else {
+                    for (Group g : groupDistribution.keySet()) {
+                        VariableDistribution[] varDist = groupDistribution.get(g);
+                        for (int i = 0; i < varDist.length; i++) {
+                            AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                            init.setGroupDistribution(ad, g);
+                        }
+                    }
+                }
+
+                for (Pair<Group, Strategy> p : strategyDistributionID.keySet()) {
+                    VariableDistribution[] varDist = strategyDistributionID.get(p);
+                    for (int i = 0; i < varDist.length; i++) {
+                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                        init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+                    }
+                }
+
+                for (Pair<Group, Strategy> p : strategyDistributionRelative.keySet()) {
+                    VariableDistribution[] varDist = strategyDistributionRelative.get(p);
+                    for (int i = 0; i < varDist.length; i++) {
+                        AgentDistribution ad = new AgentDistribution(varDist[i].getValue(j));
+                        init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+                    }
+                }
+
+                for (Pair<Group, Integer> p : capitalDistributionID.keySet()) {
+                    VariableDistribution[] varDist = capitalDistributionID.get(p);
+                    for (int i = 0; i < varDist.length; i++) {
+                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
+                        init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                    }
+                }
+
+                for (Pair<Group, Integer> p : capitalDistributionRelative.keySet()) {
+                    VariableDistribution[] varDist = capitalDistributionRelative.get(p);
+                    for (int i = 0; i < varDist.length; i++) {
+                        AgentDistribution ad = new AgentDistribution(varDist[i].getValue(j));
+                        init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                    }
+                }
+
+                initializations.add(init);
+            }
         }
 
         return initializations;
@@ -328,11 +416,6 @@ public class ModelParser {
             distribution.put(group, varDist);
         }
         return distribution;
-    }
-
-    private Initialization parseSingleVMInitializationToInitialization(VMInitialization vmInitialization) {
-
-        return null;
     }
 
     /**
