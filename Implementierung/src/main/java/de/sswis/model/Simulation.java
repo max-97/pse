@@ -126,9 +126,10 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     private Agent[] copyAgents(Agent[] agents) {
         Agent[] result = new Agent[agents.length];
-        for(Agent agent : agents) {
-            Agent newAgent = new Agent(agent.getId(), agent.getInitialScore(), agent.getGroup(),
-                    agent.getStrategy());
+        for(int i = 0; i < agents.length; i++) {
+            Agent newAgent = new Agent(agents[i].getId(), agents[i].getInitialScore(), agents[i].getGroup(),
+                    agents[i].getStrategy());
+            result[i] = newAgent;
         }
         return result;
     }
