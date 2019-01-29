@@ -27,7 +27,7 @@ public class Initialization {
     public Initialization(String name, int agentCount) {
         this.name = name;
         this.agentCount = agentCount;
-        List<Agent> agents = new ArrayList();
+        List<Agent> agents = new ArrayList<>();
         for (int i = 0; i < agentCount; i++) {
             Agent agent = new Agent(i, 0, null, null);
             agents.add(agent);
@@ -40,8 +40,8 @@ public class Initialization {
     }
 
     public void addGroup(int id, String name) {
-        for (int i = 0; i < groups.size(); i++) {
-            if (groups.get(i).getId() == id || groups.get(i).getName() == name) {
+        for (Group g : groups) {
+            if (g.getId() == id || g.getName().equals(name)) {
                 throw new DuplicateObjectNameException("this group is already exit.");
             }
         }
@@ -56,7 +56,7 @@ public class Initialization {
      * @param group die {@code Gruppe} für welche die Verteilung angewandt wird
      */
     public void setGroupDistribution(AgentDistribution distribution, Group group) {
-        List<Agent> members = new ArrayList();
+        List<Agent> members = new ArrayList<>();
         if (distribution.usesIDS()){
             int[] ids = distribution.getAgentIDs();
             for (int i = 0; i < distribution.getAgentIDs().length; i++) {
