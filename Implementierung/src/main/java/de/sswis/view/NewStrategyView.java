@@ -82,7 +82,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
     public void show() {
         frame = new JFrame("Gemischte Strategie Bearbeiten");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 

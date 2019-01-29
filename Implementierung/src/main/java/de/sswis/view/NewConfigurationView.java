@@ -22,15 +22,15 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     private AbstractManageConfigurationsView parentView;
 
-    private VMConfiguration vmConfiguration;
+    private VMConfiguration vmConfiguration = new VMConfiguration();
 
-    private List<String> adaptationAlgs;
-    private List<String> pairingAlgs;
-    private List<String> rankingAlgs;
-    private List<String> games;
-    private List<String> inits;
-    private List<String> strategies;
-    private List<String> cStrategies;
+    private List<String> adaptationAlgs = new ArrayList<>();
+    private List<String> pairingAlgs = new ArrayList<>();
+    private List<String> rankingAlgs = new ArrayList<>();
+    private List<String> games = new ArrayList<>();
+    private List<String> inits = new ArrayList<>();
+    private List<String> strategies = new ArrayList<>();
+    private List<String> cStrategies = new ArrayList<>();
 
 
     private JComboBox gameComboBox;
@@ -67,7 +67,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     public void show() {
         frame = new JFrame("NewConfigurationView");
         frame.setContentPane(new NewConfigurationView().ContentPane);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 

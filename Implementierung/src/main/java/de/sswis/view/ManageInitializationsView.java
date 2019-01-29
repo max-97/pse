@@ -105,7 +105,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     public void show() {
         frame = new JFrame("Initialisierungen Verwaltung");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 

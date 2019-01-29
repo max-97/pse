@@ -56,7 +56,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab(strategies);
-        tab.setVMGroup(vmGroup);
+        tab.setVMGroup(vmGroup, vmInitialization.hasRelativeDistribution());
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
