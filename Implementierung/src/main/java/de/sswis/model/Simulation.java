@@ -77,21 +77,10 @@ public class Simulation implements Runnable, ObservableSimulation {
                 }
             }
         }
+        sortAfterRank(agents);
         result.getAgents().put(repetition, agents);
         result.getEquilibriums().put(repetition, equilibriumAchieved);
     }
-
-    /**
-     * Gibt das aktuelle Ranking der Agenten zurueck.
-     * @return Ranking der Agenten
-     */
-    public HashMap<Agent, Integer> getCurrentRanking() { return currentRanking; }
-
-    /**
-     * Gibt die aktuellen Paare zurueck.
-     * @return Menge an Agentpaaren
-     */
-    public Pair[] getCurrentPairs() { return currentPairs;}
 
     /**
      * Gibt die Agenten nach Beendigung der Simulation zurueck, welche alle Daten bezueglich den Ergebnissen
@@ -132,6 +121,15 @@ public class Simulation implements Runnable, ObservableSimulation {
             result[i] = newAgent;
         }
         return result;
+    }
+
+    private void sortAfterRank(Agent[] agents) {
+        for(int i = 0; i < agents.length; i++) {
+            int rank = currentRanking.get(agents[i]);
+            Agent temp = agents[rank - 1];
+            agents[rank - 1] = agents[i];
+            agents[i] = temp;
+        }
     }
 
     @Override
