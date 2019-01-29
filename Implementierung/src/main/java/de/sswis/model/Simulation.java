@@ -3,6 +3,7 @@ package de.sswis.model;
 import de.sswis.controller.SimulationObserver;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 /**
  * Eine Simulation basierend auf einer Konfiguration, welche gestartet werden kann und nach Beenden
@@ -12,13 +13,10 @@ import java.util.List;
  */
 public class Simulation implements Runnable, ObservableSimulation {
     private Configuration config;
-    private int round;
-    private int cycle;
     private int repetitions;
     private Agent[] initialAgents;
     private HashMap<Agent, Integer> currentRanking;
     private Pair[] currentPairs;
-    private boolean equilibrium;
     private List<SimulationObserver> observers;
     private Result result;
     private final int THRESHOLD = 100;
@@ -31,6 +29,15 @@ public class Simulation implements Runnable, ObservableSimulation {
         this.config = config;
         this.result = new Result();
         this.initialAgents = config.getInit().calculateInitialAgentState();
+        this.observers = new LinkedList<>();
+    }
+
+    /**
+     * Legt die Anzahl an Wiederholungen, dieser {@code Simulation} fest.
+     * @param repetitions Anzahl an Wiederholungen
+     */
+    public void setRepetitions(int repetitions) {
+        this.repetitions = repetitions;
     }
 
     /**
