@@ -37,9 +37,10 @@ public class Configuration {
      * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
      */
     public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
-                         int rounds, int cycles, double adaptationProbability) {
+                         Initialization init, int rounds, int cycles, double adaptationProbability) {
         this.name = name;
         this.game = game;
+        this.init = init;
         this.adaptationAlg = adaptation;
         this.pairingAlg = pairing;
         this.rankingAlg = ranking;
