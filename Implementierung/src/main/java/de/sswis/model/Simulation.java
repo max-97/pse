@@ -34,25 +34,21 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     /**
-     * Startet die Simulation.
-     */
-    private void simulate() {
-        for(int i = 0; i < repetitions; i++) {
-            simulateRun();
-        }
-    }
-
-    /**
      * Startet einen Simulationsdurchlauf.
      */
-    private void simulateRun() {
+    private void simulateRun(int repetition) {
         Agent[] agents = copyAgents(initialAgents);
         int maxRounds = config.getRounds();
         int cycleRoundCount = config.getCycleRoundCount();
         Game game = config.getGame();
-        round = 0;
-        cycle = 1;
+        int round = 0;
+        int cycle = 1;
         boolean equilibriumAchieved = false;
+
+        for(Agent agent : agents) {
+            agent.getHistory().setScore(agent.getScore());
+            agent.getHistory().setStrategy(agent.getStrategy());
+        }
 
         while(!equilibriumAchieved && round < maxRounds) {
             currentPairs = config.getPairingAlg().getPairing(agents, game);
@@ -63,11 +59,12 @@ public class Simulation implements Runnable, ObservableSimulation {
 
             currentRanking = config.getRankingAlg().getRankings(agents);
             round++;
+
             for(Agent agent : agents) {
                 agent.getHistory().increaseRoundCount();
             }
 
-            if(round - (cycle * cycleRoundCount) == 0) {
+            if(round == (cycle * cycleRoundCount)) {
                 cycle++;
                 int adaptationCount = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
                 if(adaptationCount < THRESHOLD) {
@@ -80,16 +77,15 @@ public class Simulation implements Runnable, ObservableSimulation {
                 }
             }
         }
-
+        result.getAgents().put(repetition, agents);
+        result.getEquilibriums().put(repetition, equilibriumAchieved);
     }
 
     /**
      * Gibt das aktuelle Ranking der Agenten zurueck.
      * @return Ranking der Agenten
      */
-    public HashMap<Agent, Integer> getCurrentRanking() {
-        return currentRanking;
-    }
+    public HashMap<Agent, Integer> getCurrentRanking() { return currentRanking; }
 
     /**
      * Gibt die aktuellen Paare zurueck.
@@ -102,9 +98,7 @@ public class Simulation implements Runnable, ObservableSimulation {
      * und dem Verlauf der Simulation enthalten.
      * @return Menge an Agenten
      */
-    public Result getResults() {
-        return this.result;
-    }
+    public Result getResults() { return this.result; }
 
     /**
      * Startet die Simulation neu.
@@ -131,12 +125,20 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     private Agent[] copyAgents(Agent[] agents) {
-        return null;
+        Agent[] result = new Agent[agents.length];
+        for(Agent agent : agents) {
+            Agent newAgent = new Agent(agent.getId(), agent.getInitialScore(), agent.getGroup(),
+                    agent.getStrategy());
+        }
+        return result;
     }
 
     @Override
     public void run() {
-
+        for(int i = 0; i < repetitions; i++) {
+            simulateRun(i + 1);
+        }
+        notifyObservers();
     }
 
     @Override
@@ -146,7 +148,9 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void notifyObservers() {
-
+        for(SimulationObserver o : observers) {
+            o.update(this);
+        }
     }
 
     @Override
