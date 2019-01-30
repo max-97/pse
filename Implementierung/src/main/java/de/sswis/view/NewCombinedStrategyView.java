@@ -88,8 +88,8 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.add(strategyComboBoxes.get(index),
                 new GridConstraints(1 + index * 2, 4, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
-        //conditionPanel.add(additionalParameterLists.get(index).$$$getRootComponent$$$(),
-        //        new GridConstraints(2 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        conditionPanel.add(additionalParameterLists.get(index).$$$getRootComponent$$$(),
+                new GridConstraints(2 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
     }
 
