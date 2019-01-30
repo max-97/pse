@@ -14,6 +14,10 @@ public class Probability implements Condition {
     public static final String[] PARAMETER_NAMES = {"ALPHA"};
     private final double ALPHA;
 
+    public Probability() {
+        ALPHA = 0.5;
+    }
+
     /**
      * Konstruktor
      * @param ALPHA Wahrscheinlichkeit mit der die Bedingung erfuellt ist

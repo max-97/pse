@@ -57,8 +57,9 @@ public class NewGameView implements AbstractNewGameView {
     public void show() {
         frame = new JFrame("Stufenspiel Bearbeiten");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
 

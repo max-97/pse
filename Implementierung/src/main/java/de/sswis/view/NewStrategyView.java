@@ -21,16 +21,16 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     private JFrame frame;
 
-    private VMStrategy vmStrategy;
+    private VMStrategy vmStrategy = new VMStrategy();
 
-    private List<String> combinedStrategies;
+    private List<String> combinedStrategies = new ArrayList<>();
 
-    private List<JFormattedTextField> probabilityTextFields;
-    private List<JComboBox> strategyComboBoxes;
+    private List<JFormattedTextField> probabilityTextFields = new ArrayList<>();
+    private List<JComboBox> strategyComboBoxes = new ArrayList<>();
 
     private JPanel MainPanel;
     private JPanel ContentPane;
-    private JPanel panel1;
+    private JPanel panel1 = new JPanel();
     private JTextPane descriptionTextPane;
     private JFormattedTextField nameTextField;
     private JButton addStrategyButton;
@@ -82,8 +82,9 @@ public class NewStrategyView implements AbstractNewStrategyView {
     public void show() {
         frame = new JFrame("Gemischte Strategie Bearbeiten");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

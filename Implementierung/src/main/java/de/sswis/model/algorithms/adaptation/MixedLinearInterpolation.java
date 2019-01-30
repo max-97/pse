@@ -25,6 +25,10 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     private Random rnd;
     private int highestScoreDifference;
 
+    public MixedLinearInterpolation() {
+
+    }
+
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;

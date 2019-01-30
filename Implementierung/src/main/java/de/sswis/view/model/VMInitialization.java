@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,13 @@ public class VMInitialization {
     private int agentCount;
     private int numberOfInstances;
     private boolean realtiveDistribution;
+
+    public VMInitialization() {
+        name = "";
+        groups = new ArrayList<>();
+        agentCount = 0;
+        realtiveDistribution = false;
+    }
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.

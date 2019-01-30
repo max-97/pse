@@ -168,12 +168,12 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addManageStrategyMenuActionListener(ActionListener listener) {
-        newMixedStrategyItem.addActionListener(listener);
+        manageMixedStrategiesItem.addActionListener(listener);
     }
 
     @Override
     public void addManageInitMenuActionListener(ActionListener listener) {
-
+        manageInitiliazationsItem.addActionListener(listener);
     }
 
     @Override
@@ -182,8 +182,18 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public void addManageResultMenuActionListener(ActionListener listener) {
+        manageResultsItem.addActionListener(listener);
+    }
+
+
+    @Override
     public Collection<VMResult> getResults() {
-        return null;
+        Collection<VMResult> results = new ArrayList<>();
+        for (VMConfiguration c : configurations) {
+            results.add(c.getResult());
+        }
+        return results;
     }
 
     @Override
@@ -198,6 +208,8 @@ public class MainView implements AbstractMainView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(menuBar);
         frame.pack();
+        // Das muss immer nach pack() stehen
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
@@ -363,4 +375,5 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

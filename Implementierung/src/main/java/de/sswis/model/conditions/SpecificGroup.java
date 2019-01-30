@@ -14,6 +14,10 @@ public class SpecificGroup implements Condition {
     public static final String[] PARAMETER_NAMES = {"GROUP_ID"};
     private final int GROUP_ID;
 
+    public SpecificGroup() {
+        GROUP_ID = 1;
+    }
+
     /**
      * Konstruktor
      * @param GROUP_ID Gruppen-ID der Gruppe deren Mitglieder die Bedingung erfuellen

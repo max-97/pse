@@ -22,6 +22,10 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
     public static final String[] PARAMETER_NAMES = {"Threshold"};
     private final double THRESHOLD;
 
+    public BruteForcePairingHeuristic() {
+        THRESHOLD = 0.5;
+    }
+
     public BruteForcePairingHeuristic(double THRESHOLD) {
         this.THRESHOLD = THRESHOLD;
     }

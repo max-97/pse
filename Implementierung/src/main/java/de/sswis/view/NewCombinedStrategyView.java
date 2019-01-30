@@ -22,24 +22,24 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     private JFrame frame;
 
-    private VMCombinedStrategy vmCombinedStrategy;
+    private VMCombinedStrategy vmCombinedStrategy = new VMCombinedStrategy();
 
-    private List<String> conditions;
-    private List<String> baseStrategies;
+    private List<String> conditions = new ArrayList<>();
+    private List<String> baseStrategies = new ArrayList<>();
 
     private JPanel MainPanel;
 
     private List<JLabel> priorityLabels;
-    private List<JComboBox> conditionComboBoxes;
+    private List<JComboBox> conditionComboBoxes = new ArrayList<>();
 
-    private List<ParameterTable> additionalParameterLists;
-    private List<JComboBox> strategyComboBoxes;
+    private List<ParameterTable> additionalParameterLists = new ArrayList<>();
+    private List<JComboBox> strategyComboBoxes = new ArrayList<>();
 
 
     private JPanel ContentPane;
     private JButton finishButton;
     private JButton cancelButton;
-    private JPanel panel1;
+    private JPanel panel1 = new JPanel();
     private JTextPane descriptionTextPane;
     private JFormattedTextField nameTextField;
     private JComboBox defaultStrategy;
@@ -112,8 +112,9 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     public void show() {
         frame = new JFrame("Kombinierte Strategie Bearbeiten");
         frame.setContentPane(new NewCombinedStrategyView().MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
@@ -306,4 +307,5 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

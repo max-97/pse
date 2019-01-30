@@ -16,6 +16,10 @@ public class Delta implements Condition{
     public static final String[] PARAMETER_NAMES = {"DELTA"};
     private final double DELTA;
 
+    public Delta() {
+        DELTA = 0.5;
+    }
+
     /**
      * Konstruktor
      * @param DELTA maximaler Betrag der Differenz der Gesamtpunktzahlen, der die Bedingung erfuellt

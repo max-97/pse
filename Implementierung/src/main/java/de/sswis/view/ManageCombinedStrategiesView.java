@@ -106,8 +106,9 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     public void show() {
         frame = new JFrame("Kombinierte Strategien Verwaltung");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
