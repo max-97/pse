@@ -44,7 +44,7 @@ public class ModelParser {
     public VMResult parseSimulationToVMResult(Simulation simulation) {
         VMResult result = new VMResult();
 
-        List<Agent> agents = Arrays.asList();
+        List<Agent> agents = Arrays.asList(simulation.getResults());
         result.setAgents(agents);
         VMConfiguration configuration;
         try {
