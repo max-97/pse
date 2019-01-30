@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,13 @@ public class VMStrategy {
 
     private List<String> combinedStrategies;
     private List<String> probabilities;
+
+    public VMStrategy() {
+        name = "";
+        description = "";
+        combinedStrategies = new ArrayList<>();
+        probabilities = new ArrayList<>();
+    }
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
