@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedingung die erfuellt ist, wenn der Gegenspieler Mitglied einer spezifischen Gruppe ist.
  * @author Michel Bodé
@@ -27,7 +29,7 @@ public class SpecificGroup implements Condition {
     }
 
     @Override
-    public void setParameter(double conditionParameter) {
-        groupId = (int) conditionParameter;
+    public void setParameter(HashMap<String, Object> parameters) {
+        groupId = (int)parameters.get("GROUP_ID");
     }
 }

@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedingung die erfuellt ist wenn der Gegenspieler aermer ist.
  * Ein Agent ist aermer als ein anderer, wenn er weniger Punkte hat.
@@ -25,7 +27,7 @@ public class Poorer implements Condition {
     }
 
     @Override
-    public void setParameter(double conditionParameter) {
+    public void setParameter(HashMap<String, Object> parameters) {
 
     }
 }

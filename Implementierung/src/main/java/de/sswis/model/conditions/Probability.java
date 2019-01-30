@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedingung die mit einer gewissen Wahrscheinlichkeit {@code alpha} erfuellt ist.
  * @author Michel Bodé
@@ -31,7 +33,7 @@ public class Probability implements Condition {
     }
 
     @Override
-    public void setParameter(double conditionParameter) {
-        alpha = conditionParameter;
+    public void setParameter(HashMap<String, Object> parameters) {
+        alpha = (double)parameters.get("APLHA");
     }
 }

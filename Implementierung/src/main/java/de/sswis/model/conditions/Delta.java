@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedingung die erfuellt ist, wenn beide Agenten ungefaehr gleich reich sind.
  * Zwei Agenten sind ungefaehr gleich reich, wenn der Betrag der Differenz ihrer Gesamtpunktzahlen kleiner
@@ -31,7 +33,7 @@ public class Delta implements Condition{
     }
 
     @Override
-    public void setParameter(double conditionParameter) {
-        delta = conditionParameter;
+    public void setParameter(HashMap<String, Object> parameters) {
+        delta = (double)parameters.get("DELTA");
     }
 }
