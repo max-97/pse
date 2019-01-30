@@ -23,7 +23,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JFrame frame;
 
 
-    private VMInitialization vmInitialization;
+    private VMInitialization vmInitialization = new VMInitialization();
 
     private List<GroupTab> groupTabs;
 
@@ -70,7 +70,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     public void show() {
         frame = new JFrame("Initialisierung Bearbeiten");
         frame.setContentPane(this.panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
