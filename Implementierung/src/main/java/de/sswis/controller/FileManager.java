@@ -205,6 +205,7 @@ public class FileManager {
      * @param configuration die zu speichernde {@code VMConfiguration}
      */
     public void saveConfiguration(VMConfiguration configuration) throws IOException {
+        deleteConfiguration(configuration.getName());
         String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, configuration.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(configuration, writer);
@@ -217,6 +218,7 @@ public class FileManager {
      * @param game das zu speichernde {@code VMGame}
      */
     public void saveGame(VMGame game) throws IOException {
+        deleteGame(game.getName());
         String filePath = this.getFilePath(FileManager.VM_GAME, game.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(game, writer);
@@ -228,7 +230,8 @@ public class FileManager {
      *
      * @param initialization die zu speichernde {@code VMInitialization}
      */
-    public void saveInitalization(VMInitialization initialization) throws IOException {
+    public void saveInitialization(VMInitialization initialization) throws IOException {
+        deleteInitalization(initialization.getName());
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, initialization.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(initialization, writer);
@@ -241,6 +244,7 @@ public class FileManager {
      * @param combinedStrategy die zu speichernde {@code VMCombinedStrategy}
      */
     public void saveCombinedStrategy(VMCombinedStrategy combinedStrategy) throws IOException {
+        deleteCombinedStrategy(combinedStrategy.getName());
         String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, combinedStrategy.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(combinedStrategy, writer);
@@ -253,6 +257,7 @@ public class FileManager {
      * @param strategy die zu speichernde {@code VMStrategy}
      */
     public void saveMixedStrategy(VMStrategy strategy) throws IOException {
+        deleteMixedStrategy(strategy.getName());
         String filePath = this.getFilePath(FileManager.VM_STRATEGY, strategy.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(strategy, writer);
@@ -265,6 +270,7 @@ public class FileManager {
      * @param result das zu speichernde {@code VMResult}
      */
     public void saveResult(VMResult result) throws IOException {
+        deleteResult(result.getName());
         String filePath = this.getFilePath(FileManager.VM_RESULT, result.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(result, writer);
