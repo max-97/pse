@@ -39,6 +39,12 @@ public interface AbstractMainView extends AbstractView {
      * Wird aufgerufen wenn eine Simulation beendet wurde.
      * @param NameConfiguration Name der Konfiguration, mit der die beendete Simulation ausgeführt wurde
      */
+    void setSimulationStarted (String NameConfiguration);
+
+    /**
+     * Wird aufgerufen wenn eine Simulation gestartet wurde.
+     * @param NameConfiguration Name der Konfiguration, mit der die Simulation ausgeführt wird
+     */
     void setSimulationFinished (String NameConfiguration);
 
     /**

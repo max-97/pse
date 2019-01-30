@@ -93,10 +93,18 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void setSimulationFinished(String NameConfiguration) {
-        simulatingConfigs.remove(NameConfiguration);
+    public void setSimulationStarted(String NameConfiguration) {
+        simulatingConfigs.add(NameConfiguration);
+        update();
     }
-    
+
+    @Override
+    public void setSimulationFinished(String NameConfiguration) {
+
+        simulatingConfigs.remove(NameConfiguration);
+        update();
+    }
+
 
     @Override
     public VMConfiguration getSelected() {
