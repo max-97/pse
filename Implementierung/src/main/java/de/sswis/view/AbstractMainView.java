@@ -3,6 +3,7 @@ package de.sswis.view;
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 
@@ -132,6 +133,9 @@ public interface AbstractMainView extends AbstractView {
      * @param listener ActionListener
      */
     void addManageConfigMenuActionListener(ActionListener listener);
+
+
+
 
     Collection<VMResult> getResults();
 

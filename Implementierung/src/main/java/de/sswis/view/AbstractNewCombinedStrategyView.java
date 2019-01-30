@@ -2,6 +2,7 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMCombinedStrategy;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 
 /**
@@ -22,6 +23,14 @@ public interface AbstractNewCombinedStrategyView extends AbstractView {
      * @param listener ActionListener
      */
     void addFinishButtonActionlistener(ActionListener listener);
+
+    /**
+     * Fügt ein Changelistener zu allen veränderbaren Komponenten,
+     * wie Eingabe-Textfelder, Dropdownmenüs und Checkboxes hinzu.
+     *
+     * @param listener Changelistener
+     */
+    void addChangeListener(ChangeListener listener);
 
     VMCombinedStrategy getCombinedStrategy();
 

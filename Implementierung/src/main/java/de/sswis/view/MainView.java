@@ -96,6 +96,7 @@ public class MainView implements AbstractMainView {
     public void setSimulationFinished(String NameConfiguration) {
         simulatingConfigs.remove(NameConfiguration);
     }
+    
 
     @Override
     public VMConfiguration getSelected() {
@@ -188,7 +189,32 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void update() {
+        if (getSelected() != null) {
+            if (simulatingConfigs.contains(getSelected().getName())) {
+                startButton.enable(false);
+                stopButton.enable(true);
+            } else {
+                startButton.enable(true);
+                stopButton.enable(false);
+            }
+
+            if (getSelected().hasResult()) {
+                showResultButton.enable(true);
+                saveResultButton.enable(true);
+            } else {
+            }
+
+        } else {
+            startButton.enable(false);
+            stopButton.enable(false);
+            showResultButton.enable(false);
+            saveResultButton.enable(false);
+        }
+
+        frame.pack();
     }
+
+
 
     @Override
     public void show() {
