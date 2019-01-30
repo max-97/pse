@@ -21,16 +21,16 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     private JFrame frame;
 
-    private VMStrategy vmStrategy;
+    private VMStrategy vmStrategy = new VMStrategy();
 
-    private List<String> combinedStrategies;
+    private List<String> combinedStrategies = new ArrayList<>();
 
-    private List<JFormattedTextField> probabilityTextFields;
-    private List<JComboBox> strategyComboBoxes;
+    private List<JFormattedTextField> probabilityTextFields = new ArrayList<>();
+    private List<JComboBox> strategyComboBoxes = new ArrayList<>();
 
     private JPanel MainPanel;
     private JPanel ContentPane;
-    private JPanel panel1;
+    private JPanel panel1 = new JPanel();
     private JTextPane descriptionTextPane;
     private JFormattedTextField nameTextField;
     private JButton addStrategyButton;
