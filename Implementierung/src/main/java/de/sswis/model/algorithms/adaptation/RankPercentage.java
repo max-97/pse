@@ -28,7 +28,8 @@ public class RankPercentage implements AdaptationAlgorithm {
     }
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
         int cutOff = (int) Math.ceil(agents.length*(double)PERCENTAGE/100);
         Random rnd = new Random();
 
@@ -38,10 +39,12 @@ public class RankPercentage implements AdaptationAlgorithm {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < cutOff && currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
                     agents[i].setStrategy(randomAgent.getStrategy());
+                    adaptationCount++;
                 }
 
             }
         }
+        return adaptationCount;
     }
 
     @Override

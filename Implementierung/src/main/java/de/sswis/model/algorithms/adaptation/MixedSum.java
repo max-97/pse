@@ -26,7 +26,8 @@ public class MixedSum implements AdaptationAlgorithm{
     private Random rnd;
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
         rnd = new Random();
         for(int i = 0; i < agents.length; i++) {
             double rndDouble = rnd.nextDouble();
@@ -34,10 +35,12 @@ public class MixedSum implements AdaptationAlgorithm{
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
                     adaptStrategy(agents[i], randomAgent.getStrategy());
+                    adaptationCount++;
                 }
 
             }
         }
+        return adaptationCount;
     }
 
     private void adaptStrategy(Agent agent, Strategy strategy) {
