@@ -15,6 +15,8 @@ public class Score implements  RankingAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
+    public Score() {}
+
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
         HashMap<Agent, Integer> result = new HashMap<>();

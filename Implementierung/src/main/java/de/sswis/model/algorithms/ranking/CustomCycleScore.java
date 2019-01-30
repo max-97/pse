@@ -19,6 +19,10 @@ public class CustomCycleScore implements RankingAlgorithm {
     public static final String[] PARAMETER_NAMES = {"Window size"};
     private final int WINDOW_SIZE;
 
+    public CustomCycleScore() {
+        WINDOW_SIZE = 5;
+    }
+
     /**
      * Konstruktor
      * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen

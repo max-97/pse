@@ -21,6 +21,8 @@ public class BruteForcePairing implements PairingAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
+    public BruteForcePairing() {}
+
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
         HashSet<Agent> agentSet = new HashSet<>(Arrays.asList(agents));

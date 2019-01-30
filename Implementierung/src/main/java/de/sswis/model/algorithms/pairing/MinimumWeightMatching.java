@@ -24,6 +24,8 @@ public class MinimumWeightMatching implements PairingAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
+    public MinimumWeightMatching() {}
+
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
         Pair[] result = new Pair[agents.length/2];

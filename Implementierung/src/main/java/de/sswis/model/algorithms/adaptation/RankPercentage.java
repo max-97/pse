@@ -1,6 +1,7 @@
 package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Agent;
+import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -18,6 +19,10 @@ public class RankPercentage implements AdaptationAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
     private final int PERCENTAGE;
+
+    public RankPercentage() {
+        PERCENTAGE = 10;
+    }
 
     /**
      * Konstruktor
