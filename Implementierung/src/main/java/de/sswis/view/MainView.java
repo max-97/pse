@@ -189,7 +189,11 @@ public class MainView implements AbstractMainView {
 
     @Override
     public Collection<VMResult> getResults() {
-        return null;
+        Collection<VMResult> results = new ArrayList<>();
+        for (VMConfiguration c : configurations) {
+            results.add(c.getResult());
+        }
+        return results;
     }
 
     @Override
@@ -369,4 +373,5 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }
