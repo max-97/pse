@@ -182,6 +182,12 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public void addManageResultMenuActionListener(ActionListener listener) {
+        manageResultsItem.addActionListener(listener);
+    }
+
+
+    @Override
     public Collection<VMResult> getResults() {
         return null;
     }
