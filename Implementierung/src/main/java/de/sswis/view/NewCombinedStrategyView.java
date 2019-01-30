@@ -99,7 +99,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.remove(conditionComboBoxes.remove(index));
         conditionPanel.remove(strategyComboBoxes.remove(index));
         conditionPanel.remove(priorityLabels.remove(index));
-        //conditionPanel.remove(additionalParameterLists.remove(index).$$$getRootComponent$$$());
+        conditionPanel.remove(additionalParameterLists.remove(index).$$$getRootComponent$$$());
 
     }
 

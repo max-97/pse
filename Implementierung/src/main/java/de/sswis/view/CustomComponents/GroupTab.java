@@ -58,8 +58,8 @@ public class GroupTab {
 
     private void addStrategyTabs() {
         for (int i = 0; i < strategyTabs.size(); i++) {
-            //initialStrategiesTabbedPane.addTab(strategyTabs.get(i).getTitle(),
-                    //strategyTabs.get(i).$$$getRootComponent$$$());
+            initialStrategiesTabbedPane.addTab(strategyTabs.get(i).getTitle(),
+                    strategyTabs.get(i).$$$getRootComponent$$$());
 
         }
     }
@@ -67,7 +67,7 @@ public class GroupTab {
     private void addCapital() {
         StartCapitalTab capitalTab = new StartCapitalTab();
         startCapitalTabs.add(capitalTab);
-        //capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
+        capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
 
