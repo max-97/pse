@@ -168,12 +168,12 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addManageStrategyMenuActionListener(ActionListener listener) {
-        newMixedStrategyItem.addActionListener(listener);
+        manageMixedStrategiesItem.addActionListener(listener);
     }
 
     @Override
     public void addManageInitMenuActionListener(ActionListener listener) {
-
+        manageInitiliazationsItem.addActionListener(listener);
     }
 
     @Override
