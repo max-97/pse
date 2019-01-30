@@ -8,6 +8,7 @@ import de.sswis.view.CustomComponents.ParameterTable;
 import de.sswis.view.model.VMCombinedStrategy;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -105,7 +106,27 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public void update() {
+        vmCombinedStrategy = new VMCombinedStrategy();
 
+        vmCombinedStrategy.setName(nameTextField.getText());
+
+        for (int i = 0; i < conditionComboBoxes.size(); i++) {
+            vmCombinedStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
+                    (String) conditionComboBoxes.get(i).getSelectedItem());
+        }
+
+        vmCombinedStrategy.setDefaultStrategy((String) defaultStrategy.getSelectedItem());
+
+        vmCombinedStrategy.setDescription(descriptionTextPane.getText());
+
+        removeLastButton.enable(!conditionComboBoxes.isEmpty());
+        //TODO: check number 20
+        if (conditionComboBoxes.size() >= 20) {
+            addConditionButton.enable(false);
+        } else {
+            addConditionButton.enable(true);
+        }
+        frame.pack();
     }
 
     @Override
@@ -132,6 +153,11 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     @Override
     public void addFinishButtonActionlistener(ActionListener listener) {
         finishButton.addActionListener(listener);
+
+    }
+
+    @Override
+    public void addChangeListener(ChangeListener listener) {
 
     }
 

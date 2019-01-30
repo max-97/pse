@@ -50,7 +50,14 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void update() {
+        vmGame.setName(nameTextField.getText());
 
+        int[][] payOffs = {{(int) spinner1.getValue(), (int) spinner2.getValue(), (int) spinner3.getValue(), (int) spinner4.getValue()},
+            {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
+        vmGame.setPayoffs(payOffs);
+        vmGame.setDescription(descriptionPane.getText());
+
+        frame.pack();
     }
 
     @Override

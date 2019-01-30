@@ -39,7 +39,9 @@ public class InitialStrategyTab {
 
         percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
         percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
+
     }
+
 
     public boolean isAgentIDsSelected() {
         return idAgentRadioButton.isSelected();

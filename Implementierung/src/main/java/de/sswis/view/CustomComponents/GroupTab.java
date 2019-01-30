@@ -78,13 +78,23 @@ public class GroupTab {
         idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
         idLabel.setEnabled(idAgentRadioButton.isSelected());
 
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            strategyTabs.get(i).update();
+        }
+
+        for (int i = 0; i < startCapitalTabs.size(); i++) {
+            startCapitalTabs.get(i).update();
+        }
+
+        updateVM();
+
     }
 
     public void updateVM() {
-        if (groupNameTextField.getText() != null) {
-            vmGroup.setName(groupNameTextField.getText());
-        }
-        //TODO: implement me!
+
+        vmGroup.setName(groupNameTextField.getText());
+
+        //TODO: VMGruppe setter?!
     }
 
     public String getTitle() {
@@ -104,7 +114,8 @@ public class GroupTab {
 
         groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
-        if (vmGroup.getAgents().usesIDS()) {
+        /*
+        if () {
             idAgentRadioButton.setSelected(true);
             idAgentTextField.setText(vmGroup.getAgents().getAgentIDs() + "");
 
@@ -112,6 +123,7 @@ public class GroupTab {
             percentageAgentRadioButton.setSelected(true);
             percentageAgentTextField.setText(vmGroup.getAgents().getPercentage() + "");
         }
+         */
 
         //TODO: implement strategies and capitals
 

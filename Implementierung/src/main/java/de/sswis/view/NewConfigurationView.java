@@ -47,6 +47,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     private JPanel ContentPane;
     private JScrollPane rankingAlgoParamPane;
     private JScrollPane adaptionAlgoParamPane;
+    private JFormattedTextField nameTextField;
 
     public NewConfigurationView() {
         adaptationAlgs = new ArrayList<String>();
@@ -60,6 +61,19 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void update() {
+
+        vmConfiguration.setName(nameTextField.getText());
+        vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
+        vmConfiguration.setInit((String) initComboBox.getSelectedItem());
+        vmConfiguration.setPairingAlg((String) pairingComboBox.getSelectedItem());
+        vmConfiguration.setRankingAlg((String) rankingComboBox.getSelectedItem());
+        vmConfiguration.setAdaptationAlg((String) adaptionComboBox.getSelectedItem());
+
+        vmConfiguration.setAdaptationProbability(adaptionProbabilityTextField.getText());
+        vmConfiguration.setRounds(roundsTextField.getText());
+        vmConfiguration.setCycles(cyclesTextField.getText());
+
+        frame.pack();
 
     }
 
