@@ -14,23 +14,15 @@ public class Delta implements Condition{
     public static final String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 1;
     public static final String[] PARAMETER_NAMES = {"DELTA"};
-    private final double DELTA;
+    private double delta;
 
     public Delta() {
-        DELTA = 0.5;
-    }
-
-    /**
-     * Konstruktor
-     * @param DELTA maximaler Betrag der Differenz der Gesamtpunktzahlen, der die Bedingung erfuellt
-     */
-    public Delta(double DELTA) {
-        this.DELTA = DELTA;
+        delta = 0.5;
     }
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
-        return Math.abs(agent1.getScore() - agent2.getScore()) <= DELTA;
+        return Math.abs(agent1.getScore() - agent2.getScore()) <= delta;
     }
 
     @Override
@@ -40,6 +32,6 @@ public class Delta implements Condition{
 
     @Override
     public void setParameter(double conditionParameter) {
-
+        delta = conditionParameter;
     }
 }
