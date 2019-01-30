@@ -44,7 +44,7 @@ public class SaveInitializationsHandler implements ActionListener {
             e1.printStackTrace();
             return;
         }
-        Collection<Initialization> initializations = this.parser.parseVMInitializationToInitialization(vmInitialization);
+        Collection<Initialization> initializations = this.parser.parseVMInitialization(vmInitialization);
         for (Initialization i : initializations) {
             ModelProvider.getInstance().addInitialization(i);
         }

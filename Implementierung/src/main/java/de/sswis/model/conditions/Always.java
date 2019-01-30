@@ -22,4 +22,9 @@ public class Always implements Condition {
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public void setParameter(double conditionParameter) {
+
+    }
 }

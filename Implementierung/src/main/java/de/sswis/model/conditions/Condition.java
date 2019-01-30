@@ -18,4 +18,6 @@ public interface Condition {
     public abstract boolean fulfillsCondition(Agent agent1, Agent agent2);
 
     String getName();
+
+	void setParameter(double conditionParameter);
 }

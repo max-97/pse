@@ -36,8 +36,8 @@ public class Configuration {
      * @param cycles Zyklenanzahl
      * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
      */
-    public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
-                         Initialization init, int rounds, int cycles, double adaptationProbability) {
+    public Configuration(String name, Game game, Initialization init, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
+                         int rounds, int cycles, double adaptationProbability) {
         this.name = name;
         this.game = game;
         this.init = init;
@@ -48,7 +48,7 @@ public class Configuration {
         this.cycles = cycles;
         this.adaptationProbability = adaptationProbability;
         this.cycleRoundCount = rounds/cycles;
-}
+  }
 
     public String getName() {
         return name;

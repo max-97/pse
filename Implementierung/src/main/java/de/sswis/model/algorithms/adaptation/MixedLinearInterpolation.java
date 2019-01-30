@@ -139,4 +139,9 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     public String getName() {
         return NAME;
     }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
 }

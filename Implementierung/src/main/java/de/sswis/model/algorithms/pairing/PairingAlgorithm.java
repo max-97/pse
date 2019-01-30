@@ -4,6 +4,8 @@ import de.sswis.model.Agent;
 import de.sswis.model.Game;
 import de.sswis.model.Pair;
 
+import java.util.HashMap;
+
 /**
  * Ein Algorithmus zum Bilden von Paaren von Agenten einer Simulation.
  *
@@ -19,4 +21,6 @@ public interface PairingAlgorithm {
     Pair[] getPairing(Agent[] agents, Game game);
 
     String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
 }

@@ -43,7 +43,7 @@ public class SaveGamesHandler implements ActionListener {
             e1.printStackTrace();
             return;
         }
-        Game game = this.parser.parseVMGameToGame(vmGame);
+        Game game = this.parser.parseVMGame(vmGame);
         ModelProvider.getInstance().addGame(game);
         AbstractManageGamesView parentView = this.gameView.getParentView();
         if (parentView == null)

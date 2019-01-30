@@ -12,6 +12,12 @@ public class VMGame {
     private String description;
     private int[][] payoffs;
 
+    public VMGame() {
+        name = "";
+        description = "";
+        payoffs = new int[2][2];
+    }
+
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
      * Fehlerhafte Daten beinhalten: illegale Eingaben.
@@ -46,6 +52,29 @@ public class VMGame {
         this.description = description;
     }
 
+    /**
+     * Gibt die Payoffs eines spieltheoretischen Stufenspiels in der folgenden Form zurück:
+     *
+     * <table>
+     *   <tr>
+     *      <td> </td> <td> </td> <td> </td> <td>  </td> <td> Spieler 2 </td> <td> </td>
+     *   </tr>
+     *   <tr>
+     *      <td> </td> <td> </td> <td> </td> <td> Kooperation </td> <td> </td> <td> Defektion </td>
+     *   </tr>
+     *   <tr>
+     *     <td> </td> <td> Kooperation </td> <td> </td> <td> payoffs[0][0] / payoffs[0][1] </td> <td> </td> <td> payoffs[0][2] / payoffs[0][2] </td>
+     *   </tr>
+     *   <tr>
+     *      <td> Spieler 1 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+     *   </tr>
+     *   <tr>
+     *     <td> </td> <td> Defektion </td> <td>  </td> <td> payoffs[1][0] / payoffs[1][1] </td> <td>  </td> <td> payoffs[1][2] / payoffs[1][2] </td>
+     *   </tr>
+     * </table>
+     *
+     * @return die Payoffs
+     */
     public int[][] getPayoffs() {
         return payoffs;
     }

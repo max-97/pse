@@ -1,7 +1,5 @@
 package de.sswis.view.model;
 
-import de.sswis.util.AgentDistribution;
-
 import java.util.List;
 
 /**
@@ -14,13 +12,15 @@ public class VMGroup {
 
     private String name;
     private int id;
-    private AgentDistribution agents;
+    private List<String> agentIntervals;
 
     private List<String> strategies;
-    private List<AgentDistribution> strategyDistributions;
+    private List<List<String>> strategyDistributions;
+    private boolean relativeStrategyDistribution;
 
     private List<String> startCapital;
-    private List<AgentDistribution> startCapitalDistributions;
+    private List<List<String>> startCapitalDistributions;
+    private boolean relativeCapitalDistribution;
 
     /**
      * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
@@ -33,37 +33,15 @@ public class VMGroup {
         return false;
     }
 
-    /**
-     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung in Prozent, hinzu.
-     *
-     * @param name Name der Strategie
-     * @param percentage Prozentzahl der Agenten mit dieser Strategie
-     */
-    public void addStrategy (String name, int percentage) {}
+    public void addStrategy(String name, List<String> distribution) {
+        this.strategies.add(name);
+        this.strategyDistributions.add(distribution);
+    }
 
-    /**
-     * Fügt eine neue Strategie, mit ihrer Agentenzuteilung nach ihren IDs, hinzu.
-     *
-     * @param name Name der Strategie
-     * @param ids IDs der Agenten mit dieser Strategie
-     */
-    public void addStrategy (String name, int[] ids) {}
-
-    /**
-     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung in Prozent, hinzu.
-     *
-     * @param capital Höhe des Startkapitals
-     * @param percentage Prozentzahl der Agenten mit diesem Startkapital
-     */
-    public void addStartCapital (int capital, int percentage) {}
-
-    /**
-     * Fügt eine neue Startkapital, mit seiner Agentenzuteilung nach ihren IDs, hinzu.
-     *
-     * @param capital Höhe des Startkapitals
-     * @param ids IDs der Agenten mit diesem Startkapital
-     */
-    public void addStartCapital (int capital, int[] ids) {}
+    public void addStartCapital(String capital, List<String> distribution) {
+        this.startCapital.add(capital);
+        this.startCapitalDistributions.add(distribution);
+    }
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser Gruppe zusammenfasst.
@@ -87,11 +65,41 @@ public class VMGroup {
         this.id = id;
     }
 
-    public AgentDistribution getAgents() {
-        return agents;
+    public List<String> getAgents() { return agentIntervals; }
+
+    public void setAgents(List<String> agentIntervals) {
+        this.agentIntervals = agentIntervals;
     }
 
-    public void setAgents(AgentDistribution agents) {
-        this.agents = agents;
+    public List<String> getStrategies() {
+        return strategies;
+    }
+
+    public List<List<String>> getStrategyDistributions() {
+        return strategyDistributions;
+    }
+
+    public List<String> getStartCapital() {
+        return startCapital;
+    }
+
+    public List<List<String>> getStartCapitalDistributions() {
+        return startCapitalDistributions;
+    }
+
+    public boolean getRelativeStrategyDistributions() {
+        return relativeStrategyDistribution;
+    }
+
+    public void setRelativeStrategyDistribution(boolean relativeStrategyDistribution) {
+        this.relativeStrategyDistribution = relativeStrategyDistribution;
+    }
+
+    public boolean getRelativeCapitalDistributions() {
+        return relativeCapitalDistribution;
+    }
+
+    public void setRelativeCapitalDistributions(boolean relativeCapitalDistributions) {
+        this.relativeCapitalDistribution = relativeCapitalDistributions;
     }
 }
