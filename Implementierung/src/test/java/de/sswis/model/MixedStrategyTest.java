@@ -3,10 +3,8 @@ package de.sswis.model;
 import de.sswis.model.conditions.Always;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.conditions.OwnGroup;
-import de.sswis.model.conditions.Richer;
 import de.sswis.model.strategies.AlwaysCooperate;
 import de.sswis.model.strategies.BaseStrategy;
-import de.sswis.model.strategies.TitForTatIndividual;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -47,5 +45,14 @@ public class MixedStrategyTest {
         agents[0].setGroup(group1);
         agents[1].setGroup(group1);
         assertEquals(Action.COOPERATION, agents[0].getStrategy().calculateAction(agents[0], agents[1]));
+    }
+
+    @Test
+    public void calculateActionTest3() {
+        MixedStrategy mixedStrategy = new MixedStrategy("Mixed Strategy",
+                new CombinedStrategy[]{}, new double[]{});
+        agents[0].setStrategy(mixedStrategy);
+        agents[1].setStrategy(mixedStrategy);
+        assertEquals(null, agents[0].getStrategy().calculateAction(agents[0], agents[1]));
     }
 }
