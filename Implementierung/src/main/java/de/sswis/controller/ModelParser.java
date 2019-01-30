@@ -41,11 +41,9 @@ public class ModelParser {
      * @param simulation die abgeschlossene Simulation
      * @return die für die Ergebnisansicht aufbereiteten Ergebnisse
      */
-    public VMResult parseSimulationToVMResult(Simulation simulation) {
-        VMResult result = new VMResult();
+    public Collection<VMResult> parseSimulationToVMResult(Simulation simulation) {
+        ArrayList<VMResult> results = new ArrayList<>();
 
-        List<Agent> agents = Arrays.asList(simulation.getResults());
-        result.setAgents(agents);
         VMConfiguration configuration;
         try {
             configuration = this.fileManager.loadConfiguration(simulation.getName());
@@ -53,17 +51,24 @@ public class ModelParser {
             e.printStackTrace();
             return null;
         }
-        result.setVmConfig(configuration);
-        result.setName(configuration.getName());
 
-        Collection<VMAgentHistory> agentHistories = new ArrayList<>();
-        for (Agent a : agents) {
+        for (Integer i : simulation.getResults().getAgents().keySet()) {
+            VMResult result = new VMResult();
 
-            VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(), new ArrayList<>(), a.getHistory().getStrategies());
-            agentHistories.add(vmAH);
+            result.setVmConfig(configuration);
+            result.setName(configuration.getName());
+
+            Agent[] agents = simulation.getResults().getAgents().get(i);
+            Collection<VMAgentHistory> agentHistories = new ArrayList<>();
+            for (Agent a : Arrays.asList(agents)) {
+
+                VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(), new ArrayList<>(), a.getHistory().getStrategies());
+                agentHistories.add(vmAH);
+            }
+            result.setAgentHistories(agentHistories);
+            results.add(result);
         }
-        result.setAgentHistories(agentHistories);
-        return result;
+        return results;
     }
 
     /**
@@ -155,8 +160,7 @@ public class ModelParser {
                         rankingAlgorithm,
                         rounds,
                         cycles,
-                        adaptationProbability,
-                        strategies
+                        adaptationProbability
                 );
                 configurations.add(c);
             }
@@ -174,8 +178,7 @@ public class ModelParser {
                     rankingAlgorithm,
                     rounds,
                     cycles,
-                    adaptationProbability,
-                    strategies
+                    adaptationProbability
             );
 
             configurations.add(c);

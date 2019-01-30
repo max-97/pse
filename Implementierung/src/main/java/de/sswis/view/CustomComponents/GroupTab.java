@@ -99,18 +99,18 @@ public class GroupTab {
         return title;
     }
 
-    public void setVMGroup(VMGroup vmGroup) {
+    public void setVMGroup(VMGroup vmGroup, boolean hasRelativeDist) {
         this.vmGroup = vmGroup;
 
         groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
-        if (vmGroup.getAgents().usesIDS()) {
+        if (hasRelativeDist) {
             idAgentRadioButton.setSelected(true);
-            idAgentTextField.setText(vmGroup.getAgents().getAgentIDs() + "");
+            idAgentTextField.setText(vmGroup.getAgents().get(0) + "");
 
         } else {
             percentageAgentRadioButton.setSelected(true);
-            percentageAgentTextField.setText(vmGroup.getAgents().getPercentage() + "");
+            percentageAgentTextField.setText(vmGroup.getAgents().get(0) + "");
         }
 
         //TODO: implement strategies and capitals

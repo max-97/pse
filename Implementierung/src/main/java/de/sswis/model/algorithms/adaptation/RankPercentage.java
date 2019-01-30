@@ -1,6 +1,7 @@
 package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Agent;
+import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -19,6 +20,10 @@ public class RankPercentage implements AdaptationAlgorithm {
     public static final String[] PARAMETER_NAMES = {};
     private final int PERCENTAGE;
 
+    public RankPercentage() {
+        PERCENTAGE = 10;
+    }
+
     /**
      * Konstruktor
      * @param PERCENTAGE Prozentsatz der angibt von welchen Agenten Stragegien uebernommen werden
@@ -30,7 +35,7 @@ public class RankPercentage implements AdaptationAlgorithm {
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;
-        int cutOff = (int) Math.ceil(agents.length*(double)PERCENTAGE/100);
+        int cutOff = (int) Math.round(agents.length*(double)PERCENTAGE/100);
         Random rnd = new Random();
 
         for(int i = 0; i < agents.length; i++) {

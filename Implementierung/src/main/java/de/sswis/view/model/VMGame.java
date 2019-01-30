@@ -15,7 +15,7 @@ public class VMGame {
     public VMGame() {
         name = "";
         description = "";
-        payoffs = new int[2][2];
+        payoffs = new int[2][4];
     }
 
     /**

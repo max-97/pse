@@ -31,7 +31,7 @@ public class ManageResultsView implements AbstractManageResultsView {
     private JButton saveAndQuitButton;
     private JButton cancelButton;
     private JTabbedPane ResultsPane;
-    private JButton deleteButton;
+    private JButton deleteButton = new JButton();
     private JPanel MainPanel;
 
     private AbstractMainView parentView;
@@ -92,8 +92,9 @@ public class ManageResultsView implements AbstractManageResultsView {
     public void show() {
         frame = new JFrame("Ergebnis Verwaltung");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

@@ -47,8 +47,9 @@ public class ShowResultView implements AbstractShowResultView {
     public void show() {
         frame = new JFrame("Ergebnisse");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

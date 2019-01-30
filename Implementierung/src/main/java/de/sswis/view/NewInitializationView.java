@@ -23,7 +23,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JFrame frame;
 
 
-    private VMInitialization vmInitialization;
+    private VMInitialization vmInitialization = new VMInitialization();
 
     private List<GroupTab> groupTabs;
 
@@ -56,7 +56,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab(strategies);
-        tab.setVMGroup(vmGroup);
+        tab.setVMGroup(vmGroup, vmInitialization.hasRelativeDistribution());
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
@@ -70,8 +70,9 @@ public class NewInitializationView implements AbstractNewInitializationView {
     public void show() {
         frame = new JFrame("Initialisierung Bearbeiten");
         frame.setContentPane(this.panel1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

@@ -106,8 +106,9 @@ public class ManageGamesView implements AbstractManageGamesView {
     public void show() {
         frame = new JFrame("Spiele Verwaltung");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

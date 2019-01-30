@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class GameTab {
 
-    private VMGame vmGame;
+    private VMGame vmGame = new VMGame();
 
     private JLabel upLeftPayOffLabel;
     private JLabel bottomLeftPayOffLabel;

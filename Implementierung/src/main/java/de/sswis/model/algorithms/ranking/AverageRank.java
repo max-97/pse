@@ -20,6 +20,10 @@ public class AverageRank implements RankingAlgorithm {
     private int currentCycle;
     private final int WINDOW_SIZE;
 
+    public AverageRank() {
+        WINDOW_SIZE = 5;
+    }
+
     /**
      * Konstruktor
      * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen

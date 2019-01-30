@@ -25,6 +25,8 @@ public class MixedSum implements AdaptationAlgorithm{
     public static final String[] PARAMETER_NAMES = {};
     private Random rnd;
 
+    public MixedSum() {}
+
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;
