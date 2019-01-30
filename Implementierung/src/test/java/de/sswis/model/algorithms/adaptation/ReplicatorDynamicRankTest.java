@@ -18,19 +18,11 @@ public class ReplicatorDynamicRankTest {
 
     @Before
     public void init() {
-        Group group = new Group(1, "1");
-        ranking = new HashMap<>();
-        agents = new Agent[100];
-
-        for(int i = 0; i < agents.length; i++) {
-            agents[i] = new Agent(i + 1, 0, group, new CombinedStrategy(Integer.toString(i + 1),
-                    null, null));
-            ranking.put(agents[i], agents[i].getId());
-        }
+        adaptationAlgorithm = new ReplicatorDynamicRank();
     }
 
     @Test
-    public void adaptTest() {
+    public void adaptTest1() {
         adaptationAlgorithm = new ReplicatorDynamicRank();
         ranking = new HashMap<>();
         Group group = new Group(1, "1");
@@ -43,5 +35,26 @@ public class ReplicatorDynamicRankTest {
         //agents[1] should always adapt to agents[0]
         assertTrue(Integer.parseInt(agents[0].getStrategy().getName()) == 1);
         assertTrue(Integer.parseInt(agents[0].getStrategy().getName()) == 1);
+    }
+
+    @Test
+    public void adaptTest2() {
+        Group group = new Group(1, "1");
+        ranking = new HashMap<>();
+        agents = new Agent[100];
+
+        for(int i = 0; i < agents.length; i++) {
+            agents[i] = new Agent(i + 1, 0, group, new CombinedStrategy(Integer.toString(i + 1),
+                    null, null));
+            ranking.put(agents[i], agents[i].getId());
+        }
+
+        for(int i = 0; i < 11; i++) {
+            adaptationAlgorithm.adapt(agents, ranking, 1);
+        }
+        for(Agent agent : agents) {
+            //only adaptation to strategies of higher ranked agents
+            assertTrue(agent.getId() >= Integer.parseInt(agent.getStrategy().getName()));
+        }
     }
 }
