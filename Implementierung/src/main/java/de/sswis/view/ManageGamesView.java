@@ -49,6 +49,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     private void addTab(VMGame game) {
         GameTab tab = new GameTab(game);
+        gameTabs.add(tab);
         GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
     }
 
@@ -57,6 +58,7 @@ public class ManageGamesView implements AbstractManageGamesView {
         for (int i = 0; i < vmGames.size(); i++) {
             if (vmGames.get(i).getName().equals(gameName)) {
                 vmGames.remove(i);
+                gameTabs.remove(i);
                 GamesPane.removeTabAt(i);
                 break;
             }
@@ -99,7 +101,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override

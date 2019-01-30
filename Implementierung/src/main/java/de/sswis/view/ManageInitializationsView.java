@@ -47,6 +47,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     private void addTab(VMInitialization initialization) {
         InitializationTab tab = new InitializationTab(initialization);
+        initializationTabs.add(tab);
         InitsPane.addTab(initialization.getName(), tab.$$$getRootComponent$$$());
     }
 
@@ -98,7 +99,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override

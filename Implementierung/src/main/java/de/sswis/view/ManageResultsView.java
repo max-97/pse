@@ -49,6 +49,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     private void addTab(VMResult result) {
         ResultTab tab = new ResultTab(result);
+        resultTabs.add(tab);
         ResultsPane.addTab(result.getName(), tab.$$$getRootComponent$$$());
     }
 
@@ -85,7 +86,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override

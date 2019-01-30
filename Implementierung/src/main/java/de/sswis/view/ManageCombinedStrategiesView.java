@@ -54,6 +54,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
             if (vmCombinedStrategies.get(i).getName().equals(strategyName)) {
                 vmCombinedStrategies.remove(i);
                 StrategiesPane.removeTabAt(i);
+                strategyTabs.remove(i);
                 break;
             }
         }
@@ -99,6 +100,14 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void update() {
+        StrategiesPane.removeAll();
+
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            StrategiesPane.addTab(strategyTabs.get(i).getCombinedStrategy().getName(),
+                    strategyTabs.get(i).$$$getRootComponent$$$());
+        }
+
+        frame.pack();
 
     }
 

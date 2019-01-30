@@ -43,11 +43,13 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         vmConfigurations.add(configuration);
+
         addTab(configuration);
     }
 
     private void addTab(VMConfiguration configuration) {
         ConfigurationTab tab = new ConfigurationTab(configuration);
+        configTabs.add(tab);
         ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
     }
 
@@ -56,6 +58,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
         for (int i = 0; i < vmConfigurations.size(); i++) {
             if (vmConfigurations.get(i).getName().equals(configName)) {
                 vmConfigurations.remove(i);
+                configTabs.get(i);
                 ConfigurationsPane.removeTabAt(i);
                 break;
             }
@@ -98,7 +101,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override

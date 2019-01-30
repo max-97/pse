@@ -46,6 +46,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     private void addTab(VMStrategy strategy) {
         MixedStrategyTab tab = new MixedStrategyTab(strategy);
+        strategyTabs.add(tab);
         strategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
     }
 
@@ -96,7 +97,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override
