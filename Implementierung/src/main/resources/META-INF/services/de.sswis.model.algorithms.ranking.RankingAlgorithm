@@ -1,0 +1,4 @@
+de.sswis.model.algorithms.ranking.AverageRank
+de.sswis.model.algorithms.ranking.CurrentCycleScore
+de.sswis.model.algorithms.ranking.CustomCycleScore
+de.sswis.model.algorithms.ranking.Score
