@@ -114,6 +114,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         frame.setContentPane(new NewCombinedStrategyView().MainPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }

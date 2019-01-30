@@ -208,6 +208,8 @@ public class MainView implements AbstractMainView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(menuBar);
         frame.pack();
+        // Das muss immer nach pack() stehen
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
