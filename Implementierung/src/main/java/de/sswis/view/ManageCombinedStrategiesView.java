@@ -132,7 +132,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     private void addTab(VMCombinedStrategy strategy) {
         CombinedStrategyTab tab = new CombinedStrategyTab(strategy);
         strategyTabs.add(tab);
-        StrategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
+        //StrategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
 
     }
 

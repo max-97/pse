@@ -23,6 +23,7 @@ public class AverageRankTest {
 
         for(int i = 0; i < agents.length; i++) {
             agents[i] = new Agent(i + 1, 0, null, null);
+            agents[i].getHistory().setScore(agents[i].getScore());
         }
     }
 

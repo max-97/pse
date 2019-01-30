@@ -48,7 +48,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     private void addTab(VMConfiguration configuration) {
         ConfigurationTab tab = new ConfigurationTab(configuration);
-        ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
+        //ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
