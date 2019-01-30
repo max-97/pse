@@ -35,7 +35,7 @@ public class RankPercentage implements AdaptationAlgorithm {
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;
-        int cutOff = (int) Math.ceil(agents.length*(double)PERCENTAGE/100);
+        int cutOff = (int) Math.round(agents.length*(double)PERCENTAGE/100);
         Random rnd = new Random();
 
         for(int i = 0; i < agents.length; i++) {
