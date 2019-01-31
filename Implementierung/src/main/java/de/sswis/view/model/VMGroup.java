@@ -129,8 +129,30 @@ public class VMGroup {
         this.relativeCapitalDistribution = relativeCapitalDistributions;
     }
 
+    public boolean hasMultiComponent() {
+
+        for (String str1 : this.agentIntervals) {
+            if (isMultiString(str1)) return true;
+        }
+        for (List<String> list2 : this.strategyDistributions) {
+            for (String str2 : list2) {
+                if (isMultiString(str2)) return true;
+            }
+        }
+        for (List<String> list3 : this.startCapitalDistributions) {
+            for (String str3 : list3) {
+                if (isMultiString(str3)) return true;
+            }
+        }
+        return false;
+    }
+
     private List<String> distributionList(String distribution) {
         String[] parts = distribution.trim().split(",");
         return new ArrayList<>(Arrays.asList(parts));
+    }
+
+    private boolean isMultiString(String str) {
+        return str.matches(".*(-.*){2}.*");
     }
 }
