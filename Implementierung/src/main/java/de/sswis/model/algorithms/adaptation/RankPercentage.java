@@ -1,6 +1,7 @@
 package de.sswis.model.algorithms.adaptation;
 
 import de.sswis.model.Agent;
+import de.sswis.model.algorithms.ranking.RankingAlgorithm;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -15,21 +16,17 @@ import java.util.Random;
 public class RankPercentage implements AdaptationAlgorithm {
     public static final String NAME = "Rank Percentage";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
-    private final int PERCENTAGE;
+    private static final String[] PARAMETER_NAMES = {"Percentage"};
+    private int percentage;
 
-    /**
-     * Konstruktor
-     * @param PERCENTAGE Prozentsatz der angibt von welchen Agenten Stragegien uebernommen werden
-     */
-    public RankPercentage(int PERCENTAGE) {
-        this.PERCENTAGE = PERCENTAGE;
+    public RankPercentage() {
+        percentage = 10;
     }
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
-        int cutOff = (int) Math.ceil(agents.length*(double)PERCENTAGE/100);
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
+        int cutOff = (int) Math.round(agents.length*(double)percentage/100);
         Random rnd = new Random();
 
         for(int i = 0; i < agents.length; i++) {
@@ -37,11 +34,13 @@ public class RankPercentage implements AdaptationAlgorithm {
             if(rndDouble < adaptationProbability) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < cutOff && currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
-                    agents[i].setStrategy(randomAgent.getStrategy());
+                    agents[i].setStrategy(randomAgent.getStrategy().clone());
+                    adaptationCount++;
                 }
 
             }
         }
+        return adaptationCount;
     }
 
     @Override
@@ -51,6 +50,11 @@ public class RankPercentage implements AdaptationAlgorithm {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
+        percentage = (int)parameters.get("Percentage");
+    }
 
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

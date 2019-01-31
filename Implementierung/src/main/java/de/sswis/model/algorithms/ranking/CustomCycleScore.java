@@ -15,24 +15,20 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     public static final String NAME = "Letzte w Zyklen";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Window size"};
-    private final int WINDOW_SIZE;
+    private static final String[] PARAMETER_NAMES = {"Window size"};
+    private int windowSize;
 
-    /**
-     * Konstruktor
-     * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen
-     */
-    public CustomCycleScore(int WINDOW_SIZE) {
-        this.WINDOW_SIZE = WINDOW_SIZE;
+    public CustomCycleScore() {
+        windowSize = 5;
     }
+
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
         HashMap<Agent, Integer> cyclesScores = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        int startCycle = Math.max(agents[1].getHistory().getCurrentCycle() - WINDOW_SIZE, 1);
+        int startCycle = Math.max(agents[1].getHistory().getCurrentCycle() - windowSize, 1);
 
         for(int i = 0; i < agents.length; i++) {
             cyclesScores.put(agents[i], agents[i].getScore() - agents[i].getHistory().getScore(startCycle));
@@ -66,6 +62,11 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
+        windowSize = (int)parameters.get("Window size");
+    }
 
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

@@ -1,5 +1,7 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,15 +19,11 @@ public class VMStrategy {
     private List<String> combinedStrategies;
     private List<String> probabilities;
 
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: illegale Eingaben, Inkonsistenzen innerhalb der Wahrscheinlichkeiten.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
+    public VMStrategy() {
+        name = "";
+        description = "";
+        combinedStrategies = new ArrayList<>();
+        probabilities = new ArrayList<>();
     }
 
     /**
@@ -34,7 +32,27 @@ public class VMStrategy {
      * @param strategyName Name der Strategie
      * @param probability Wahrscheinlichkeit
      */
-    public void addStrategy (String strategyName, double probability) {}
+    public void addStrategy (String strategyName, String probability) {
+        this.combinedStrategies.add(strategyName);
+        this.probabilities.add(probability);
+    }
+
+    public void addStrategyList(List<String> strategyNames, List<String> probabilities) {
+        //names.size() == distributions.size()
+        Iterator<String> it1 = strategyNames.iterator();
+        Iterator<String> it2 = probabilities.iterator();
+
+        while (it1.hasNext()) { // == it2.hasNext()
+            addStrategy(it1.next(), it2.next());
+        }
+    }
+
+    public void setStrategyList(List<String> strategyNames, List<String> probabilities) {
+        //names.size() == distributions.size()
+        this.combinedStrategies = new ArrayList<>(strategyNames.size());
+        this.probabilities = new ArrayList<>(strategyNames.size());
+        addStrategyList(strategyNames, probabilities);
+    }
 
     public List<String> getCombinedStrategies() {
         return combinedStrategies;
@@ -58,27 +76,11 @@ public class VMStrategy {
         return description;
     }
 
-    public List<String> getCombinedStrategies() {
-        return combinedStrategies;
-    }
-
-    public List<String> getProbabilities() {
-        return probabilities;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setCombinedStrategies(List<String> combinedStrategies) {
-        this.combinedStrategies = combinedStrategies;
-    }
-
-    public void setProbabilities(List<String> probabilities) {
-        this.probabilities = probabilities;
     }
 }

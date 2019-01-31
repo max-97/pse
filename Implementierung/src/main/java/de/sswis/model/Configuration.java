@@ -48,7 +48,7 @@ public class Configuration {
         this.cycles = cycles;
         this.adaptationProbability = adaptationProbability;
         this.cycleRoundCount = rounds/cycles;
-}
+  }
 
     public String getName() {
         return name;
@@ -69,6 +69,8 @@ public class Configuration {
     public PairingAlgorithm getPairingAlg() {
         return pairingAlg;
     }
+
+    public RankingAlgorithm getRankingAlg() { return rankingAlg; }
 
     public int getRounds() {
         return rounds;

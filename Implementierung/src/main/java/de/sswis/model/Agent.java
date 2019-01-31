@@ -28,7 +28,6 @@ public class Agent {
         this.group = group;
         this.strategy = initialStrategy;
         this.history = new History();
-        history.setScore(initialScore);
     }
 
     public int getId() {
@@ -56,13 +55,7 @@ public class Agent {
      * @param newStrategy neue Strategie
      */
     public void setStrategy(Strategy newStrategy) {
-        if(newStrategy instanceof CombinedStrategy) {
-            this.strategy = newStrategy;
-        } else {
-            MixedStrategy newMixedStrategy = (MixedStrategy)strategy;
-            this.strategy = new MixedStrategy(newMixedStrategy.getName(), newMixedStrategy.getCombinedStrategies(),
-                    newMixedStrategy.getProbabilities());
-        }
+        this.strategy = newStrategy;
     }
 
     public void setScore(int newScore) {

@@ -31,23 +31,14 @@ public class Game {
      * @param a2 Aktion des zweiten Agenten
      * @return ein Paar von Payoffs
      */
-    public Tuple getPayoffs(Action a1, Action a2) {
+    private Tuple getPayoffs(Action a1, Action a2) {
         int i = 0;
         int j = 0;
-        switch (a1) {
-            case COOPERATION:
-                i = 0;
-            case  DEFECTION:
-                i = 1;
-        }
-        switch (a2) {
-            case COOPERATION:
-                j = 0;
-            case DEFECTION:
-                i = 1;
-        }
-        Tuple tuple = payoffs[i][j];
-        return tuple;
+
+        if (a1 == Action.DEFECTION) i = 1;
+        if (a2 == Action.DEFECTION) j = 1;
+
+        return payoffs[i][j];
     }
 
     /**
@@ -75,8 +66,8 @@ public class Game {
         agent1.getHistory().setCooperatedLastTime(agent2, action2.equals(Action.COOPERATION));
         agent1.getHistory().setCooperatedEveryTime(agent2, action2.equals(Action.COOPERATION) &&
                 agent1.getHistory().cooperatedEveryTime(agent2));
-        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action2.equals(Action.COOPERATION));
-        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action2.equals(Action.COOPERATION) &&
+        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action1.equals(Action.COOPERATION));
+        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action1.equals(Action.COOPERATION) &&
                 agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
         agent1.getHistory().setOpponent(agent2);
         if (action1.equals(Action.COOPERATION) && agent1.getHistory().getAlwaysCooperated()) {

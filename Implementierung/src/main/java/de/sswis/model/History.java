@@ -14,6 +14,7 @@ public class History {
     private int currentRound;
     private int currentCycle;
     private ArrayList<Integer> score;
+    private ArrayList<Integer> rank;
     private ArrayList<Boolean> opponentCooperated;
     private ArrayList<Agent> opponent;
     private ArrayList<String> strategies;
@@ -32,6 +33,7 @@ public class History {
         this.currentRound = 0;
         this.currentCycle = 1;
         this.score = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
+        this.rank = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
         this.opponentCooperated = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
         this.opponent = new ArrayList<>(INITIAL_CAPACITY_ROUNDS);
         this.strategies = new ArrayList<>(INITIAL_CAPACITY_CYCLE);
@@ -61,6 +63,19 @@ public class History {
 
     public List<Integer> getScores() {
         return this.score;
+    }
+
+    /**
+     * Gibt den Rang des Agenten in einem bestimmten Zyklus zurueck.
+     * @param cycle Zyklus des gesuchten Rangs
+     * @return Punktzahl
+     */
+    public int getRank(int cycle) {
+        return rank.get(cycle - 1);
+    }
+
+    public List<Integer> getRanks() {
+        return this.rank;
     }
 
     /**
@@ -100,6 +115,14 @@ public class History {
 
     public List<String> getStrategies() {
         return this.strategies;
+    }
+
+    /**
+     * Speichert den Rang fuer den aktuellen Zyklus.
+     * @param rank aktuelle Punktzahl
+     */
+    public void setRank(int rank){
+        this.rank.add(currentCycle - 1, rank);
     }
 
     /**

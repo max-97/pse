@@ -118,11 +118,12 @@ public class GroupTab {
         return title;
     }
 
-    public void setVMGroup(VMGroup vmGroup) {
+    public void setVMGroup(VMGroup vmGroup, boolean hasRelativeDist) {
         this.vmGroup = vmGroup;
 
         groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
+
         //distributionTextField.setText(vmGroup.getAgents());
 
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
@@ -132,6 +133,7 @@ public class GroupTab {
             List<String> distribution = vmGroup.getStrategyDistributions().get(i);
             //TODO: vm getter anpassen
             //strategyTabs.get(i).setDistribution();
+
         }
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {

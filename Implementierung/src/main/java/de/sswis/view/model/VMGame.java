@@ -15,18 +15,7 @@ public class VMGame {
     public VMGame() {
         name = "";
         description = "";
-        payoffs = new int[2][2];
-    }
-
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
+        payoffs = new int[2][4];
     }
 
     /**

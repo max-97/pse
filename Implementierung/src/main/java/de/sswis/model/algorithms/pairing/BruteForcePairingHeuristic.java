@@ -18,12 +18,11 @@ import java.util.HashMap;
 public class BruteForcePairingHeuristic implements PairingAlgorithm{
 
     public static final String NAME = "Brute Force Paarung Heuristik";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Threshold"};
-    private final double THRESHOLD;
+    private static final String[] PARAMETER_NAMES = {"Threshold"};
+    private double threshold;
 
-    public BruteForcePairingHeuristic(double THRESHOLD) {
-        this.THRESHOLD = THRESHOLD;
+    public BruteForcePairingHeuristic() {
+        threshold = 0.5;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
             double smallestDistance = 2;
             Agent bestPartner = null;
 
-            while(it.hasNext() && smallestDistance > THRESHOLD) {
+            while(it.hasNext() && smallestDistance > threshold) {
                 Agent currentAgent = it.next();
                 double distance = 1 -(calculateCoopProbability(agent1, currentAgent) *
                         calculateCoopProbability(currentAgent, agent1));
@@ -84,6 +83,11 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
+        threshold = (double)parameters.get("Threshold");
+    }
 
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

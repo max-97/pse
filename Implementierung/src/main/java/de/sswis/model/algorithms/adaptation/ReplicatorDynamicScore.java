@@ -16,11 +16,13 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
 
     public static final String NAME = "Replicator Dynamic Score";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
+
+    public ReplicatorDynamicScore() {}
 
     @Override
-    public void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+    public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
+        int adaptationCount = 0;
         Random rnd = new Random();
         double beta = 1.0 / getHighestScoreDifference(agents);
 
@@ -30,10 +32,12 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 int delta = Math.min(randomAgent.getScore() - agents[i].getScore(), 0);
                 if (currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndDouble < delta * beta) {
-                    agents[i].setStrategy(randomAgent.getStrategy());
+                    agents[i].setStrategy(randomAgent.getStrategy().clone());
+                    adaptationCount++;
                 }
             }
         }
+        return adaptationCount;
     }
 
     private int getHighestScoreDifference(Agent[] agents) {
@@ -60,5 +64,10 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

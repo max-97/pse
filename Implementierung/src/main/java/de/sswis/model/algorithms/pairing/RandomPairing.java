@@ -21,6 +21,8 @@ public class RandomPairing implements PairingAlgorithm {
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
+    public RandomPairing() {}
+
     @Override
     public Pair[] getPairing(Agent[] agents, Game game) {
         Agent[] agentsArray = agents.clone();
@@ -54,5 +56,9 @@ public class RandomPairing implements PairingAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

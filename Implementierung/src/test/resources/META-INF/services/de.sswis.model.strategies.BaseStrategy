@@ -1,0 +1,9 @@
+de.sswis.model.strategies.AlwaysCooperate
+de.sswis.model.strategies.GrimEverybody
+de.sswis.model.strategies.GrimIndividual
+de.sswis.model.strategies.GroupGrim
+de.sswis.model.strategies.GroupTitForTat
+de.sswis.model.strategies.NeverCooperate
+de.sswis.model.strategies.Random
+de.sswis.model.strategies.TitForTatEverybody
+de.sswis.model.strategies.TitForTatIndividual
