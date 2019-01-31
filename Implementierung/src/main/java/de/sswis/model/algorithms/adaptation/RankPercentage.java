@@ -34,7 +34,7 @@ public class RankPercentage implements AdaptationAlgorithm {
             if(rndDouble < adaptationProbability) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < cutOff && currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
-                    agents[i].setStrategy(randomAgent.getStrategy());
+                    agents[i].setStrategy(randomAgent.getStrategy().clone());
                     adaptationCount++;
                 }
 
