@@ -7,8 +7,11 @@ import de.sswis.view.AbstractNewGameView;
 import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels.
@@ -50,14 +53,16 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void update() {
+        frame.pack();
+    }
+
+    private void updateVM() {
         vmGame.setName(nameTextField.getText());
 
         int[][] payOffs = {{(int) spinner1.getValue(), (int) spinner2.getValue(), (int) spinner3.getValue(), (int) spinner4.getValue()},
-            {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
+                {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
         vmGame.setPayoffs(payOffs);
         vmGame.setDescription(descriptionPane.getText());
-
-        frame.pack();
     }
 
     @Override
@@ -86,15 +91,31 @@ public class NewGameView implements AbstractNewGameView {
 
     }
 
-
     @Override
     public VMGame getVMGame() {
+        updateVM();
         return this.vmGame;
     }
 
     @Override
     public void setGame(VMGame game) {
         this.vmGame = game;
+
+        nameTextField.setText(vmGame.getName());
+
+        int[][] payOffs = vmGame.getPayoffs();
+        spinner1.setValue(payOffs[0][0]);
+        spinner2.setValue(payOffs[0][1]);
+        spinner3.setValue(payOffs[0][2]);
+        spinner4.setValue(payOffs[0][3]);
+
+        spinner5.setValue(payOffs[1][0]);
+        spinner6.setValue(payOffs[1][1]);
+        spinner7.setValue(payOffs[1][2]);
+        spinner8.setValue(payOffs[1][3]);
+
+        descriptionPane.setText(vmGame.getDescription());
+
     }
 
     @Override
@@ -109,40 +130,7 @@ public class NewGameView implements AbstractNewGameView {
 
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-        if (vmGame.getName() != null) {
-            nameTextField.setText(vmGame.getName());
-        }
 
-        spinner1 = new JSpinner();
-        spinner2 = new JSpinner();
-        spinner3 = new JSpinner();
-        spinner4 = new JSpinner();
-        spinner5 = new JSpinner();
-        spinner6 = new JSpinner();
-        spinner7 = new JSpinner();
-        spinner8 = new JSpinner();
-
-        int[][] payOffs = vmGame.getPayoffs();
-        if (payOffs.length == 2) {
-            if (payOffs[0].length == 4) {
-                spinner1.setValue(payOffs[0][0]);
-                spinner2.setValue(payOffs[0][1]);
-                spinner3.setValue(payOffs[0][2]);
-                spinner4.setValue(payOffs[0][3]);
-            }
-            if (payOffs[1].length == 4) {
-                spinner5.setValue(payOffs[1][0]);
-                spinner6.setValue(payOffs[1][1]);
-                spinner7.setValue(payOffs[1][2]);
-                spinner8.setValue(payOffs[1][3]);
-            }
-        }
-
-        descriptionPane = new JTextPane();
-        if (vmGame.getDescription() != null) {
-            descriptionPane.setText(vmGame.getDescription());
-        }
     }
 
     {

@@ -57,7 +57,7 @@
                   </grid>
                 </constraints>
               </vspacer>
-              <component id="17d8f" class="javax.swing.JTextField" binding="agentNumberTextField" custom-create="true">
+              <component id="17d8f" class="javax.swing.JTextField" binding="agentNumberTextField">
                 <constraints>
                   <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -112,7 +112,7 @@
                   <text value="Beschreibung (Dient nur zur Wiedererkennung und kann leer gelassen werden.) :"/>
                 </properties>
               </component>
-              <component id="5bf88" class="javax.swing.JTextPane" binding="descriptionTextPane" custom-create="true">
+              <component id="5bf88" class="javax.swing.JTextPane" binding="descriptionTextPane">
                 <constraints>
                   <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="50"/>
@@ -127,7 +127,7 @@
                   </grid>
                 </constraints>
               </vspacer>
-              <component id="4f75" class="javax.swing.JButton" binding="addGroupButton">
+              <component id="4f75" class="javax.swing.JButton" binding="addGroupButton" custom-create="true">
                 <constraints>
                   <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -135,7 +135,7 @@
                   <text value="Gruppe hinzufügen"/>
                 </properties>
               </component>
-              <component id="95378" class="javax.swing.JFormattedTextField" binding="nameTextField" custom-create="true">
+              <component id="95378" class="javax.swing.JFormattedTextField" binding="nameTextField">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

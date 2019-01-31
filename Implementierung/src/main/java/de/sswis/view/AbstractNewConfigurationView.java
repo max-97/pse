@@ -2,7 +2,9 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMConfiguration;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer Konfiguration.
@@ -23,6 +25,7 @@ public interface AbstractNewConfigurationView extends AbstractView {
      * @param listener ActionListener
      */
     void addFinishButtonActionlistener(ActionListener listener);
+
 
     VMConfiguration getVMConfiguration();
 

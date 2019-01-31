@@ -25,6 +25,9 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     private List<VMStrategy> vmStrategies;
     private List<MixedStrategyTab> strategyTabs;
 
+    ActionListener editListener;
+    ActionListener deleteListener;
+
     private JButton saveAndQuitButton;
     private JButton cancelButton;
     private JButton newStrategyButton;
@@ -41,14 +44,14 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public void addStrategy(VMStrategy vmStrategy) {
         vmStrategies.add(vmStrategy);
-        addTab(vmStrategy);
+        MixedStrategyTab tab = new MixedStrategyTab(vmStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.add(tab);
+        strategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMStrategy strategy) {
-        MixedStrategyTab tab = new MixedStrategyTab(strategy);
-        strategyTabs.add(tab);
-        strategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
-    }
 
     @Override
     public void removeStrategy(String strategyName) {
@@ -68,16 +71,12 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void addEditMixedStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteMixedStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override

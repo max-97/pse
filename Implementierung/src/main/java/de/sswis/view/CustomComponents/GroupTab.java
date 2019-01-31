@@ -3,21 +3,31 @@ package de.sswis.view.CustomComponents;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.NewInitializationView;
 import de.sswis.view.model.VMGroup;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
  * Ein Tab fuer eine Gruppe, der in der NewInitializationView angezeigt wird.
  */
 public class GroupTab {
+
+    private NewInitializationView initializationView;
+
+
     private VMGroup vmGroup;
     private List<String> allStrategies;
     private List<InitialStrategyTab> strategyTabs;
     private List<StartCapitalTab> startCapitalTabs;
+
+    EventListener listener;
 
     private JPanel MainPanel;
 
@@ -43,51 +53,40 @@ public class GroupTab {
 
         strategyTabs = new ArrayList<InitialStrategyTab>();
         $$$setupUI$$$();
-        createStrategyTabs();
+        addStrategyTabs();
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
     }
 
 
 
-    private void createStrategyTabs() {
-        for (int i = 0; i < allStrategies.size(); i++) {
-            strategyTabs.add(new InitialStrategyTab(allStrategies.get(i)));
-        }
-    }
-
     private void addStrategyTabs() {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            initialStrategiesTabbedPane.addTab(strategyTabs.get(i).getTitle(),
-                    strategyTabs.get(i).$$$getRootComponent$$$());
+        for (int i = 0; i < allStrategies.size(); i++) {
+            InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
+            tab.addRadioButtonListener(initializationView);
 
+            initialStrategiesTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
+
+            strategyTabs.add(tab);
         }
     }
 
     private void addCapital() {
         StartCapitalTab capitalTab = new StartCapitalTab();
+        capitalTab.addListeners(initializationView, this);
+
         startCapitalTabs.add(capitalTab);
         capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
 
-    public void update() {
+
+    public void updateButtonGroup() {
         percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
         percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
 
         idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
         idLabel.setEnabled(idAgentRadioButton.isSelected());
-
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).update();
-        }
-
-        for (int i = 0; i < startCapitalTabs.size(); i++) {
-            startCapitalTabs.get(i).update();
-        }
-
-        updateVM();
-
     }
 
     public void updateVM() {
@@ -130,20 +129,46 @@ public class GroupTab {
     }
 
     public VMGroup getVmGroup() {
+        updateVM();
         return vmGroup;
     }
+
+    public void setInitializationView(NewInitializationView initializationView) {
+        this.initializationView = initializationView;
+    }
+
+    public void updateCapitalsTitle() {
+        for (int i = 0; i < startCapitalTabs.size(); i++) {
+            capitalsTabbedPane.setTitleAt(i, startCapitalTabs.get(i).getTitle());
+        }
+    }
+
 
     private void createUIComponents() {
 
         groupIDLabel = new JLabel(vmGroup.getId() + "");
 
         idAgentRadioButton = new JRadioButton();
+        idAgentRadioButton.addChangeListener(e -> {
+                    updateButtonGroup();
+                    initializationView.update();
+        });
+
         percentageAgentRadioButton = new JRadioButton();
+        percentageAgentRadioButton.addChangeListener(e -> {
+            updateButtonGroup();
+            initializationView.update();
+        });
+
         buttonGroup = new ButtonGroup();
         buttonGroup.add(idAgentRadioButton);
         buttonGroup.add(percentageAgentRadioButton);
 
-        addStrategyTabs();
+        addCapitalButton.addActionListener(e -> addCapital());
+
+
+
+
 
     }
 
@@ -226,4 +251,6 @@ public class GroupTab {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
+
 }

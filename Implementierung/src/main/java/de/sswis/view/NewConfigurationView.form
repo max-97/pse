@@ -91,7 +91,7 @@
                   <text value="Wahrscheinlichkeit, dass Agent seine Strategie anpasst"/>
                 </properties>
               </component>
-              <component id="27391" class="javax.swing.JTextField" binding="adaptionProbabilityTextField" custom-create="true">
+              <component id="27391" class="javax.swing.JTextField" binding="adaptionProbabilityTextField">
                 <constraints>
                   <grid row="15" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -115,7 +115,7 @@
                   <text value="Maximale Anzahl der Zyklen"/>
                 </properties>
               </component>
-              <component id="93935" class="javax.swing.JTextField" binding="roundsTextField" custom-create="true">
+              <component id="93935" class="javax.swing.JTextField" binding="roundsTextField">
                 <constraints>
                   <grid row="18" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -123,7 +123,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="15ae1" class="javax.swing.JTextField" binding="cyclesTextField" custom-create="true">
+              <component id="15ae1" class="javax.swing.JTextField" binding="cyclesTextField">
                 <constraints>
                   <grid row="19" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>

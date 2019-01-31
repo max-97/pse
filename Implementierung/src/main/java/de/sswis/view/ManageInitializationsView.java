@@ -25,6 +25,9 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private List<VMInitialization> vmInits;
     private List<InitializationTab> initializationTabs;
 
+    ActionListener editListener;
+    ActionListener deleteListener;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -42,14 +45,14 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void addInit(VMInitialization vmInitialization) {
         vmInits.add(vmInitialization);
-        addTab(vmInitialization);
+        InitializationTab tab = new InitializationTab(vmInitialization);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        initializationTabs.add(tab);
+        InitsPane.addTab(vmInitialization.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMInitialization initialization) {
-        InitializationTab tab = new InitializationTab(initialization);
-        initializationTabs.add(tab);
-        InitsPane.addTab(initialization.getName(), tab.$$$getRootComponent$$$());
-    }
 
     @Override
     public void removeInit(String initName) {
@@ -70,16 +73,12 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void addEditInitButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < initializationTabs.size(); i++) {
-            initializationTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteInitButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < initializationTabs.size(); i++) {
-            initializationTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override

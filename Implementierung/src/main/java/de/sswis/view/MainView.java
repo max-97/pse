@@ -8,10 +8,11 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.List;
 public class MainView implements AbstractMainView {
 
     private JFrame frame;
+
 
     private List<VMConfiguration> configurations;
     private List<String> simulatingConfigs;
@@ -65,6 +67,8 @@ public class MainView implements AbstractMainView {
         setMenuBar();
     }
 
+
+
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         configurations.add(configuration);
@@ -95,14 +99,14 @@ public class MainView implements AbstractMainView {
     @Override
     public void setSimulationStarted(String NameConfiguration) {
         simulatingConfigs.add(NameConfiguration);
-        update();
+        updateButtons();
     }
 
     @Override
     public void setSimulationFinished(String NameConfiguration) {
 
         simulatingConfigs.remove(NameConfiguration);
-        update();
+        updateButtons();
     }
 
 
@@ -190,6 +194,7 @@ public class MainView implements AbstractMainView {
         manageConfigurationsItem.addActionListener(listener);
     }
 
+
     @Override
     public Collection<VMResult> getResults() {
         return null;
@@ -197,6 +202,11 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void update() {
+        frame.pack();
+    }
+
+
+    private void updateButtons() {
         if (getSelected() != null) {
             if (simulatingConfigs.contains(getSelected().getName())) {
                 startButton.enable(false);
@@ -218,10 +228,8 @@ public class MainView implements AbstractMainView {
             showResultButton.enable(false);
             saveResultButton.enable(false);
         }
-
-        frame.pack();
+        update();
     }
-
 
 
     @Override
@@ -307,10 +315,13 @@ public class MainView implements AbstractMainView {
     private void createUIComponents() {
         // TODO: place custom component creation code here
         ConfigurationTree = new JTree();
+        ConfigurationTree.addTreeSelectionListener(e -> updateButtons());
         ConfigurationTree.setModel(createConfigurationTree());
 
 
     }
+
+
 
 
     /**
@@ -397,4 +408,6 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
+
 }

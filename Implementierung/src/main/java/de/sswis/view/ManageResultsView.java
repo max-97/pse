@@ -27,6 +27,8 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     private List<ResultTab> resultTabs;
 
+    ActionListener deleteListener;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -44,14 +46,13 @@ public class ManageResultsView implements AbstractManageResultsView {
     @Override
     public void addResult(VMResult vmResult) {
         vmResults.add(vmResult);
-        addTab(vmResult);
+        ResultTab tab = new ResultTab(vmResult);
+        tab.addDeleteButtonActionlistener(deleteListener);
+
+        resultTabs.add(tab);
+        ResultsPane.addTab(vmResult.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMResult result) {
-        ResultTab tab = new ResultTab(result);
-        resultTabs.add(tab);
-        ResultsPane.addTab(result.getName(), tab.$$$getRootComponent$$$());
-    }
 
     @Override
     public void removeResult(String resultName) {
@@ -66,7 +67,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void addDeleteResultButtonActionlistener(ActionListener listener) {
-        deleteButton.addActionListener(listener);
+        deleteListener = listener;
     }
 
     @Override

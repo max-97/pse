@@ -40,7 +40,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void update() {
-
+        frame.pack();
     }
 
     @Override

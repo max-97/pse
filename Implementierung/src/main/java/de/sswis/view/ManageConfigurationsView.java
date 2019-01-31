@@ -26,6 +26,9 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     private List<ConfigurationTab> configTabs;
 
+    ActionListener editListener;
+    ActionListener deleteListener;
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -44,14 +47,14 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     public void addConfiguration(VMConfiguration configuration) {
         vmConfigurations.add(configuration);
 
-        addTab(configuration);
-    }
-
-    private void addTab(VMConfiguration configuration) {
         ConfigurationTab tab = new ConfigurationTab(configuration);
+
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
         configTabs.add(tab);
         ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
     }
+
 
     @Override
     public void removeConfiguration(String configName) {
@@ -72,16 +75,12 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void addEditConfigurationButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < configTabs.size(); i++) {
-            configTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteConfigurationButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < configTabs.size(); i++) {
-            configTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override

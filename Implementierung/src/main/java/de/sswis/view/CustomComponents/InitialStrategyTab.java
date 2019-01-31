@@ -4,9 +4,13 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.util.AgentDistribution;
+import de.sswis.view.NewInitializationView;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  * Ein Tab fuer eine initiale Strategie in einer Gruppe, der in der NewInitializationView angezeigt wird.
@@ -33,7 +37,7 @@ public class InitialStrategyTab {
 
 
 
-    public void update() {
+    public void updateButtonGroup() {
         idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
         idLabel.setEnabled(idAgentRadioButton.isSelected());
 
@@ -70,8 +74,21 @@ public class InitialStrategyTab {
         return title;
     }
 
+    public void addRadioButtonListener(NewInitializationView view) {
+        idAgentRadioButton.addChangeListener(e -> {
+            updateButtonGroup();
+            view.update();
+        });
+
+        percentageAgentRadioButton.addChangeListener(e -> {
+            updateButtonGroup();
+            view.update();
+        });
+    }
+
     private void createUIComponents() {
         idAgentRadioButton = new JRadioButton();
+
         percentageAgentRadioButton = new JRadioButton();
 
         buttonGroup = new ButtonGroup();

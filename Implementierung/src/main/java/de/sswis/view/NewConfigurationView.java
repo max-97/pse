@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -62,6 +63,10 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void update() {
 
+        frame.pack();
+    }
+
+    private  void updateVM() {
         vmConfiguration.setName(nameTextField.getText());
         vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
         vmConfiguration.setInit((String) initComboBox.getSelectedItem());
@@ -72,9 +77,6 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         vmConfiguration.setAdaptationProbability(adaptionProbabilityTextField.getText());
         vmConfiguration.setRounds(roundsTextField.getText());
         vmConfiguration.setCycles(cyclesTextField.getText());
-
-        frame.pack();
-
     }
 
     @Override
@@ -89,7 +91,6 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void close() {
-
     }
 
     @Override
@@ -106,12 +107,26 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public VMConfiguration getVMConfiguration() {
+        updateVM();
         return this.vmConfiguration;
     }
 
     @Override
     public void setConfiguration(VMConfiguration configuration) {
         this.vmConfiguration = configuration;
+
+        gameComboBox.setSelectedItem(vmConfiguration.getGame());
+        initComboBox.setSelectedItem(vmConfiguration.getInit());
+        pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
+        rankingComboBox.setSelectedItem(vmConfiguration.getRankingAlg());
+        adaptionComboBox.setSelectedItem(vmConfiguration.getAdaptationAlg());
+
+        adaptionProbabilityTextField.setText(vmConfiguration.getAdaptationProbability());
+        roundsTextField.setText(vmConfiguration.getRounds());
+        cyclesTextField.setText(vmConfiguration.getCycles());
+
+
+
     }
 
     @Override
@@ -150,39 +165,16 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     }
 
     private void createUIComponents() {
-        gameComboBox = new JComboBox(games.toArray());
-        if (vmConfiguration.getGame() != null) {
-            gameComboBox.setSelectedItem(vmConfiguration.getGame());
-        }
 
+        gameComboBox = new JComboBox(games.toArray());
         initComboBox = new JComboBox(inits.toArray());
-        if (vmConfiguration.getInit() != null) {
-            initComboBox.setSelectedItem(vmConfiguration.getInit());
-        }
 
         pairingComboBox = new JComboBox(pairingAlgs.toArray());
-        if (vmConfiguration.getPairingAlg() != null) {
-            pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
-        }
 
         rankingComboBox = new JComboBox(rankingAlgs.toArray());
-        if (vmConfiguration.getRankingAlg() != null) {
-            rankingComboBox.setSelectedItem(vmConfiguration.getRankingAlg());
-        }
 
         adaptionComboBox = new JComboBox(adaptationAlgs.toArray());
-        if (vmConfiguration.getAdaptationAlg() != null) {
-            adaptionComboBox.setSelectedItem(vmConfiguration.getAdaptationAlg());
-        }
 
-        adaptionProbabilityTextField = new JTextField();
-        adaptionProbabilityTextField.setText(vmConfiguration.getAdaptationProbability());
-
-        roundsTextField = new JTextField();
-        roundsTextField.setText(vmConfiguration.getRounds());
-
-        cyclesTextField = new JTextField();
-        cyclesTextField.setText(vmConfiguration.getCycles());
     }
 
     {

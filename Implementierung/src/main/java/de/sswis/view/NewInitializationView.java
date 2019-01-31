@@ -3,14 +3,17 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.model.Action;
 import de.sswis.view.CustomComponents.GroupTab;
 import de.sswis.view.model.VMGroup;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -50,13 +53,17 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private void addNewGroupTab() {
         GroupTab tab = new GroupTab(strategies);
+        tab.setInitializationView(this);
+
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab(strategies);
+        tab.setInitializationView(this);
         tab.setVMGroup(vmGroup);
+
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
@@ -64,6 +71,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
     @Override
     public void update() {
 
+        frame.pack();
+    }
+
+    private void updateVM() {
         vmInitialization = new VMInitialization();
 
         vmInitialization.setName(nameTextField.getText());
@@ -73,9 +84,6 @@ public class NewInitializationView implements AbstractNewInitializationView {
             groupTabs.get(i).update();
             vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
         }
-
-        frame.pack();
-
     }
 
     @Override
@@ -104,8 +112,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
         finishButton.addActionListener(listener);
     }
 
+
     @Override
     public VMInitialization getVMInitialization() {
+        updateVM();
         return this.vmInitialization;
     }
 
@@ -120,11 +130,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
         this.vmInitialization = initialization;
         nameTextField.setText(vmInitialization.getName());
 
-        if (!vmInitialization.getGroups().isEmpty()) {
-            for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
-                addSpecificGroupTab(vmInitialization.getGroups().get(i));
-            }
+        for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
+            addSpecificGroupTab(vmInitialization.getGroups().get(i));
         }
+
     }
 
     @Override
@@ -138,12 +147,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-
-        agentNumberTextField = new JTextField();
-
-        descriptionTextPane = new JTextPane();
-
+        addGroupButton = new JButton();
+        addGroupButton.addActionListener(e -> addNewGroupTab());
 
     }
 

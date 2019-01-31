@@ -9,9 +9,11 @@ import de.sswis.view.model.VMCombinedStrategy;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -27,6 +29,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     private List<String> conditions;
     private List<String> baseStrategies;
+
 
     private JPanel MainPanel;
 
@@ -64,22 +67,25 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         additionalParameterLists = new ArrayList<ParameterTable>();
     }
 
-    private void createNewLine() {
+    private void addNewLine() {
         JLabel prio = new JLabel((priorityLabels.size() + 1) + ".");
         priorityLabels.add(prio);
 
         JComboBox condition = new JComboBox(conditions.toArray());
+
         conditionComboBoxes.add(condition);
 
         ParameterTable param = new ParameterTable(new ArrayList<String>());
         additionalParameterLists.add(param);
 
         JComboBox strategy = new JComboBox(baseStrategies.toArray());
+
         strategyComboBoxes.add(strategy);
 
-    }
+        //add to panel
 
-    private void addLine(int index) {
+        int index = conditionComboBoxes.size() - 1;
+
         conditionPanel.add(conditionComboBoxes.get(index),
                 new GridConstraints(1 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
@@ -92,6 +98,12 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.add(additionalParameterLists.get(index).$$$getRootComponent$$$(),
                 new GridConstraints(2 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
+
+        removeLastButton.enable(!conditionComboBoxes.isEmpty());
+        //TODO: check number 20
+        addConditionButton.enable(!(conditionComboBoxes.size() >= 20));
+
+        update();
     }
 
     private void removeLastLine() {
@@ -102,10 +114,16 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.remove(priorityLabels.remove(index));
         conditionPanel.remove(additionalParameterLists.remove(index).$$$getRootComponent$$$());
 
+        removeLastButton.enable(!conditionComboBoxes.isEmpty());
+        update();
     }
 
     @Override
     public void update() {
+        frame.pack();
+    }
+
+    private void updateVM() {
         vmCombinedStrategy = new VMCombinedStrategy();
 
         vmCombinedStrategy.setName(nameTextField.getText());
@@ -118,15 +136,6 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         vmCombinedStrategy.setDefaultStrategy((String) defaultStrategy.getSelectedItem());
 
         vmCombinedStrategy.setDescription(descriptionTextPane.getText());
-
-        removeLastButton.enable(!conditionComboBoxes.isEmpty());
-        //TODO: check number 20
-        if (conditionComboBoxes.size() >= 20) {
-            addConditionButton.enable(false);
-        } else {
-            addConditionButton.enable(true);
-        }
-        frame.pack();
     }
 
     @Override
@@ -156,14 +165,10 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     }
 
-    @Override
-    public void addChangeListener(ChangeListener listener) {
-
-    }
-
 
     @Override
     public VMCombinedStrategy getCombinedStrategy() {
+        updateVM();
         return this.vmCombinedStrategy;
     }
 
@@ -171,8 +176,10 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     public void setCombinedStrategy(VMCombinedStrategy combinedStrategy) {
 
         this.vmCombinedStrategy = combinedStrategy;
+        nameTextField.setText(vmCombinedStrategy.getName());
+        descriptionTextPane.setText(vmCombinedStrategy.getDescription());
         for (int i = 0; i < vmCombinedStrategy.getConditions().size() - 1; i++) {
-            createNewLine();
+            addNewLine();
             //TODO: do for additional Parameters
             //TODO: VM check for correct Order!
             conditionComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getConditions().get(i));
@@ -202,27 +209,14 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-        if (vmCombinedStrategy.getName() != null) {
-            nameTextField.setText(vmCombinedStrategy.getName());
-        }
+        addConditionButton = new JButton();
+        addConditionButton.addActionListener(e -> addNewLine());
 
-        descriptionTextPane = new JTextPane();
-        if (vmCombinedStrategy.getDescription() != null) {
-            descriptionTextPane.setText(vmCombinedStrategy.getDescription());
-        }
+        removeLastButton = new JButton();
+        removeLastButton.addActionListener(e -> removeLastLine());
 
         defaultStrategy = new JComboBox(baseStrategies.toArray());
-        if (!vmCombinedStrategy.getStrategies().isEmpty()) {
-            int index = vmCombinedStrategy.getStrategies().size() - 1;
-            defaultStrategy.setSelectedItem(vmCombinedStrategy.getStrategies().get(index));
-        }
 
-        if (!conditionComboBoxes.isEmpty()) {
-            for (int i = 0; i < conditionComboBoxes.size(); i++) {
-                addLine(i);
-            }
-        }
     }
 
     {

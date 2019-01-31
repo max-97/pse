@@ -4,9 +4,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.util.AgentDistribution;
+import de.sswis.view.MainView;
+import de.sswis.view.NewInitializationView;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  * Ein Tab fuer ein Startkapital innerhalb einer Gruppe, der in der NewInitializationView angezeigt wird.
@@ -14,6 +19,8 @@ import java.awt.*;
  * Dient zur Bestimmung der Höhe und der Agentenverteilung des Startkapitals.
  */
 public class StartCapitalTab {
+
+    private MainView mainView;
 
     private JPanel MainPanel;
     private String title;
@@ -33,7 +40,8 @@ public class StartCapitalTab {
         update();
     }
 
-    public void update() {
+
+    private void update() {
         idLabel.setEnabled(idAgentRadioButton.isSelected());
         idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
 
@@ -86,8 +94,29 @@ public class StartCapitalTab {
 
     }
 
+    public void addTitleChangeListener() {
+
+    }
+
+    public void addListeners(NewInitializationView view, GroupTab groupTab) {
+        idAgentRadioButton.addChangeListener(e -> {
+            update();
+            view.update();
+        });
+
+        percentageAgentRadioButton.addChangeListener(e -> {
+            update();
+            view.update();
+        });
+
+        startCapitalTextField.addActionListener(e -> {
+            groupTab.updateCapitalsTitle();
+        });
+    }
+
     private void createUIComponents() {
         idAgentRadioButton = new JRadioButton();
+
         percentageAgentRadioButton = new JRadioButton();
 
         buttonGroup = new ButtonGroup();
