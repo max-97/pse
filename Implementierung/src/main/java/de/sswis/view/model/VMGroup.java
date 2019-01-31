@@ -103,7 +103,7 @@ public class VMGroup {
         Iterator<String> it2 = distributions.iterator();
 
         while (it1.hasNext()) { // == it2.hasNext()
-            addStrategy(it1.next(), it2.next());
+            addStartCapital(it1.next(), it2.next());
         }
     }
 
