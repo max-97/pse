@@ -67,7 +67,7 @@ public class Initialization {
                 }
             }
         } else {
-            int agentNumber = group.getMembers().getSize();
+            int agentNumber = group.getMembers().size();
             for (int x = 0; x < agentCount; x++) {
                 if (agents.get(x).getGroup() == null) {
                     agents.get(x).setGroup(group);
@@ -76,7 +76,11 @@ public class Initialization {
                 }
                 float result = (float) distribution.getPercentage()/100 * (float)agentCount;
                 int number = Math.round(result);
-                if (agentNumber == number) {
+                int allAgent = 0;
+                for (int z = 0; z < groups.size(); z++) {
+                    allAgent = allAgent + groups.get(z).getMembers().size();
+                }
+                if (agentNumber == number || allAgent == agentCount) {
                     break;
                 }
             }
@@ -113,13 +117,19 @@ public class Initialization {
                 }
             }
             for (int x = 0; x < members.size(); x++) {
+                boolean isAll = true;
                 if (members.get(x).getStrategy() == null) {
                     members.get(x).setStrategy(strategy);
                     agentNumber++;
                 }
                 float result = (float) distribution.getPercentage()/100 * (float)members.size();
                 int number = Math.round(result);
-                if (agentNumber == number) {
+                for (int z = 0; z < groups.getMembers().size(); z++) {
+                    if (groups.getMembers().get(i).getStrategy == null) {
+                        isAll = false;
+                    }
+                }
+                if (agentNumber == number || isAll) {
                     break;
                 }
             }
@@ -156,13 +166,19 @@ public class Initialization {
                 }
             }
             for (int x = 0; x < members.size(); x++) {
+                boolean isAll = true;
                 if (members.get(x).getScore() == 0) {
                     members.get(x).setScore(capital);
                     agentNumber++;
                 }
                 float result = (float) distribution.getPercentage()/100 * (float)members.size();
                 int number = Math.round(result);
-                if (agentNumber == number) {
+                for (int z = 0; z < groups.getMembers().size(); z++) {
+                    if (groups.getMembers().get(i).getScore() == 0) {
+                        isAll = false;
+                    }
+                }
+                if (agentNumber == number || isAll) {
                     break;
                 }
             }
