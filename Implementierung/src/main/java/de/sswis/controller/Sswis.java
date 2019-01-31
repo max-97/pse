@@ -26,13 +26,13 @@ public class Sswis {
         Collection<VMCombinedStrategy> vmCombinedStrategies = fileManager.loadAllCombinedStrategies();
         for (VMCombinedStrategy cs : vmCombinedStrategies) {
             CombinedStrategy combinedStrategy = parser.parseVMCombinedStrategy(cs);
-            provider.addStrategy(combinedStrategy);
+            provider.addCombinedStrategy(combinedStrategy);
         }
 
         Collection<VMStrategy> vmStrategies = fileManager.loadAllMixedStrageyies();
         for (VMStrategy s : vmStrategies) {
-            Strategy strategy = parser.parseVMStrategy(s);
-            provider.addStrategy(strategy);
+            MixedStrategy strategy = parser.parseVMStrategy(s);
+            provider.addMixedStrategy(strategy);
         }
 
         Collection<VMInitialization> vmInitializations = fileManager.loadAllInitializations();

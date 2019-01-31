@@ -17,7 +17,7 @@ public class ModelProviderTest {
     private static Game game;
     private static Configuration configuration;
     private static Initialization initialization;
-    private static Strategy strategy;
+    private static MixedStrategy strategy;
     private static CombinedStrategy combinedStrategy;
 
     @BeforeClass
@@ -36,7 +36,7 @@ public class ModelProviderTest {
         modelProvider.addGame(game);
         modelProvider.addConfiguration(configuration);
         modelProvider.addInitialization(initialization);
-        modelProvider.addStrategy(strategy);
+        modelProvider.addMixedStrategy(strategy);
         modelProvider.addCombinedStrategy(combinedStrategy);
     }
 
@@ -50,7 +50,7 @@ public class ModelProviderTest {
         assertEquals(game, modelProvider.getGame("testGame"));
         assertEquals(configuration, modelProvider.getConfiguration("testConfig"));
         assertEquals(initialization, modelProvider.getInitialization("testInit"));
-        assertEquals(strategy, modelProvider.getStrategy("testStrategy"));
+        assertEquals(strategy, modelProvider.getMixedStrategy("testStrategy"));
         assertEquals(combinedStrategy, modelProvider.getCombinedStrategy("testCombStrat"));
     }
 
@@ -59,13 +59,13 @@ public class ModelProviderTest {
         modelProvider.deleteGame("testGame");
         modelProvider.deleteConfiguration("testConfig");
         modelProvider.deleteInitialization("testInit");
-        modelProvider.deleteStrategy("testStrategy");
+        modelProvider.deleteMixedStrategy("testStrategy");
         modelProvider.deleteCombinedStrategy("testCombStrat");
 
         assertNull(modelProvider.getGame("testGame"));
         assertNull(modelProvider.getConfiguration("testConfig"));
         assertNull(modelProvider.getInitialization("testInit"));
-        assertNull(modelProvider.getStrategy("testStrategy"));
+        assertNull(modelProvider.getMixedStrategy("testStrategy"));
         assertNull(modelProvider.getCombinedStrategy("testCombStrat"));
     }
 
@@ -74,13 +74,13 @@ public class ModelProviderTest {
         modelProvider.deleteGame("foo");
         modelProvider.deleteConfiguration("foo");
         modelProvider.deleteInitialization("testinit");
-        modelProvider.deleteStrategy("Strategy");
+        modelProvider.deleteMixedStrategy("Strategy");
         modelProvider.deleteCombinedStrategy("test");
 
         assertEquals(game, modelProvider.getGame("testGame"));
         assertEquals(configuration, modelProvider.getConfiguration("testConfig"));
         assertEquals(initialization, modelProvider.getInitialization("testInit"));
-        assertEquals(strategy, modelProvider.getStrategy("testStrategy"));
+        assertEquals(strategy, modelProvider.getMixedStrategy("testStrategy"));
         assertEquals(combinedStrategy, modelProvider.getCombinedStrategy("testCombStrat"));
     }
 
@@ -109,7 +109,7 @@ public class ModelProviderTest {
     public void shouldRaiseDuplicateNameExceptionStrategy() {
         /*
         Strategy otherStrategy = new Strategy("testStrategy", null, null);
-        modelProvider.addStrategy(otherStrategy);
+        modelProvider.addMixedStrategy(otherStrategy);
         */
     }
 
