@@ -18,6 +18,7 @@ public class RankPercentageTest {
 
     @Before
     public void init() {
+        adaptationAlgorithm = new RankPercentage();
         Group group = new Group(1, "1");
         ranking = new HashMap<>();
         agents = new Agent[100];
@@ -31,7 +32,9 @@ public class RankPercentageTest {
 
     @Test
     public void zeroPercentage() {
-        adaptationAlgorithm = new RankPercentage(0);
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("Percentage", 0);
+        adaptationAlgorithm.setParameters(parameters);
         for(int i = 0; i < 11; i++) {
             adaptationAlgorithm.adapt(agents, ranking, 1);
         }
@@ -42,7 +45,9 @@ public class RankPercentageTest {
 
     @Test
     public void zeroAdaptationProbability() {
-        adaptationAlgorithm = new RankPercentage(100);
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("Percentage", 100);
+        adaptationAlgorithm.setParameters(parameters);
         for(int i = 0; i < 11; i++) {
             adaptationAlgorithm.adapt(agents, ranking, 0);
         }
@@ -53,7 +58,9 @@ public class RankPercentageTest {
 
     @Test
     public void adaptTest() {
-        adaptationAlgorithm = new RankPercentage(50);
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("Percentage", 50);
+        adaptationAlgorithm.setParameters(parameters);
         for(int i = 0; i < 11; i++) {
             adaptationAlgorithm.adapt(agents, ranking, 1);
         }

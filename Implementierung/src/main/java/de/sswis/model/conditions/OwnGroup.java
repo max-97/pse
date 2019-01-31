@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedinung die erfuellt ist, wenn beide Agenten der gleichen Gruppe zugehoerig sind.
  * @author Michel Bodé
@@ -24,7 +26,7 @@ public class OwnGroup implements Condition {
     }
 
     @Override
-    public void setParameter(double conditionParameter) {
+    public void setParameter(HashMap<String, Object> parameters) {
 
     }
 }
