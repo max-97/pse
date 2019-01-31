@@ -115,7 +115,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

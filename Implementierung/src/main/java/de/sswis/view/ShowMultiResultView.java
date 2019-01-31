@@ -65,7 +65,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

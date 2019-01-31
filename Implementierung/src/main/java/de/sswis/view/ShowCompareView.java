@@ -53,7 +53,7 @@ public class ShowCompareView implements AbstractShowCompareView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

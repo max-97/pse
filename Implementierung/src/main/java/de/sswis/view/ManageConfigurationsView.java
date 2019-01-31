@@ -114,7 +114,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override
