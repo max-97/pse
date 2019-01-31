@@ -16,8 +16,7 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
 
     public static final String NAME = "Replicator Dynamic Rank";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
 
     public ReplicatorDynamicRank() {}
 
@@ -49,5 +48,10 @@ public class ReplicatorDynamicRank implements AdaptationAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

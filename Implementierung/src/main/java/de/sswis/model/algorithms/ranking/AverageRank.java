@@ -14,8 +14,7 @@ import java.util.*;
 public class AverageRank implements RankingAlgorithm {
     public static final String NAME = "Durschnittsrang";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Window size"};
+    private static final String[] PARAMETER_NAMES = {"Window size"};
     private int currentRounds;
     private int currentCycle;
     private int windowSize;
@@ -116,5 +115,10 @@ public class AverageRank implements RankingAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
         windowSize = (int)parameters.get("Window size");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

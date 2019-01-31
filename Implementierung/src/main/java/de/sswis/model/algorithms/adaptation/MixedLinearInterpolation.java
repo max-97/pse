@@ -20,8 +20,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
 
     public static final String NAME = "Mixed Linear Interpolation";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
     private Random rnd;
     private int highestScoreDifference;
 
@@ -147,5 +146,10 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }
