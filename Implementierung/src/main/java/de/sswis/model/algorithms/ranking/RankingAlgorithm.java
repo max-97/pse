@@ -19,4 +19,6 @@ public interface RankingAlgorithm {
     String getName();
 
 	void setParameters(HashMap<String, Object> parameters);
+
+    String[] getParameters();
 }

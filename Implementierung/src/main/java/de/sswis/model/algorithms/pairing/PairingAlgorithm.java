@@ -23,4 +23,6 @@ public interface PairingAlgorithm {
     String getName();
 
 	void setParameters(HashMap<String, Object> parameters);
+
+    String[] getParameters();
 }

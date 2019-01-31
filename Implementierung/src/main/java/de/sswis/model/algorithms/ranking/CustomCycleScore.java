@@ -15,8 +15,7 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     public static final String NAME = "Letzte w Zyklen";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Window size"};
+    private static final String[] PARAMETER_NAMES = {"Window size"};
     private int windowSize;
 
     public CustomCycleScore() {
@@ -64,5 +63,10 @@ public class CustomCycleScore implements RankingAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
         windowSize = (int)parameters.get("Window size");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

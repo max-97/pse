@@ -12,8 +12,7 @@ public class SpecificGroup implements Condition {
 
     public static final String NAME = "Spezifische Gruppe";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"GROUP_ID"};
+    private static final String[] PARAMETER_NAMES = {"GROUP_ID"};
     private int groupId;
 
     public SpecificGroup() { groupId = 1; }
@@ -29,7 +28,12 @@ public class SpecificGroup implements Condition {
     }
 
     @Override
-    public void setParameter(HashMap<String, Object> parameters) {
+    public void setParameters(HashMap<String, Object> parameters) {
         groupId = (int)parameters.get("GROUP_ID");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

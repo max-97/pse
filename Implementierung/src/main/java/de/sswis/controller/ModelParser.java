@@ -7,7 +7,6 @@ import de.sswis.model.algorithms.pairing.*;
 import de.sswis.model.algorithms.ranking.*;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
-import de.sswis.model.strategies.GrimEverybody;
 import de.sswis.util.AgentDistribution;
 import de.sswis.view.model.*;
 import org.jgrapht.alg.util.Pair;
@@ -97,7 +96,7 @@ public class ModelParser {
         for (int i = 0; i < conditionSize; i++) {
             for (Condition c : this.serviceLoader.getConditionList()) {
                 if (c.getName().equals(conditionNames.get(i))) {
-                    c.setParameter(vmCombinedStrategy.getConditionParameter(conditionNames.get(i)));
+                    c.setParameters(vmCombinedStrategy.getConditionParameter(conditionNames.get(i)));
                     conditions[i] = c;
                 }
             }
