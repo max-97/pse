@@ -25,6 +25,7 @@ public class VMConfiguration {
     private List<String> strategies;
 
     private VMResult result;
+    private boolean hasResult = false;
 
     /**
      *Zeigt ob Ergebnisse einer Simulation vorliegen, die mit dieser Konfiguration ausgeführt wurde.
@@ -32,8 +33,7 @@ public class VMConfiguration {
      * @return true wenn es Ergebnisse von Simulationen mit dieser Konfiguration gibt, sonst false
      */
     public boolean hasResult () {
-        //TODO: implement me
-        return false;
+        return this.hasResult;
     }
 
     /**
@@ -136,6 +136,7 @@ public class VMConfiguration {
 
     public void setResult(VMResult result) {
         this.result = result;
+        this.hasResult = true;
     }
 
     public HashMap<String, Object> getAdaptationParameters() {
