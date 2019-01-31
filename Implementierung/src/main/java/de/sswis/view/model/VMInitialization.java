@@ -15,13 +15,13 @@ public class VMInitialization {
     private List<VMGroup> groups;
     private int agentCount;
     private int numberOfInstances;
-    private boolean realtiveDistribution;
+    private boolean relativeDistribution;
 
     public VMInitialization() {
         name = "";
         groups = new ArrayList<>();
         agentCount = 0;
-        realtiveDistribution = false;
+        relativeDistribution = false;
     }
 
     /**
@@ -71,7 +71,7 @@ public class VMInitialization {
     }
 
     public boolean hasRelativeDistribution() {
-        return this.realtiveDistribution;
+        return this.relativeDistribution;
     }
 }
 
