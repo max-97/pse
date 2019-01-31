@@ -53,7 +53,9 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void update() {
+
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {

@@ -78,6 +78,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
     @Override
     public void update() {
         frame.pack();
+        frame.setLocationRelativeTo(null);
 
     }
 

@@ -76,6 +76,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     public void update() {
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {

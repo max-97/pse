@@ -76,7 +76,6 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void removeConfiguration(String configurationName) {
-        //TODO: was soll passieren bei Konfigurationen mit gleichem Namen?
         for (int i = 0; i < configurations.size(); i++) {
             if (configurations.get(i).getName().equals(configurationName)) {
                 configurations.remove(i);
@@ -203,6 +202,7 @@ public class MainView implements AbstractMainView {
     @Override
     public void update() {
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
 
@@ -313,7 +313,6 @@ public class MainView implements AbstractMainView {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         ConfigurationTree = new JTree();
         ConfigurationTree.addTreeSelectionListener(e -> updateButtons());
         ConfigurationTree.setModel(createConfigurationTree());

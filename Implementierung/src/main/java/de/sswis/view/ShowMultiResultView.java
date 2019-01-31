@@ -51,6 +51,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     public void update() {
 
         frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override

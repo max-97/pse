@@ -110,6 +110,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public void update() {
         frame.pack();
+        frame.setLocationRelativeTo(null);
 
     }
 
