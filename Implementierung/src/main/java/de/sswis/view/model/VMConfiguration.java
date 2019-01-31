@@ -19,18 +19,12 @@ public class VMConfiguration {
     private String adaptationAlg;
     private String pairingAlg;
     private String rankingAlg;
-    private String rounds;
-    private String cycles;
-    private String adaptationProbability;
+    private int rounds;
+    private int cycles;
+    private int adaptationProbability;
     private List<String> strategies;
 
     private VMResult result;
-
-    /**
-     * Zeigt ob die Konfiguration variable Parameter enthält.
-     * @return true wenn es genau einen variablen Parameter gibt, sonst false
-     */
-    public boolean isMultiConfiguration() { return false; }
 
     /**
      *Zeigt ob Ergebnisse einer Simulation vorliegen, die mit dieser Konfiguration ausgeführt wurde.
@@ -96,27 +90,27 @@ public class VMConfiguration {
         this.rankingAlg = rankingAlg;
     }
 
-    public String getRounds() {
+    public int getRounds() {
         return rounds;
     }
 
-    public void setRounds(String rounds) {
+    public void setRounds(int rounds) {
         this.rounds = rounds;
     }
 
-    public String getCycles() {
+    public int getCycles() {
         return cycles;
     }
 
-    public void setCycles(String cycles) {
+    public void setCycles(int cycles) {
         this.cycles = cycles;
     }
 
-    public String getAdaptationProbability() {
+    public int getAdaptationProbability() {
         return adaptationProbability;
     }
 
-    public void setAdaptationProbability(String adaptationProbability) {
+    public void setAdaptationProbability(int adaptationProbability) {
         this.adaptationProbability = adaptationProbability;
     }
 

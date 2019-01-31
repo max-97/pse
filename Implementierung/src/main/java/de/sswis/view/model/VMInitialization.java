@@ -28,7 +28,12 @@ public class VMInitialization {
      * Zeigt ob die Initialisierung variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */
-    public boolean isMultiInitialisation() { return false; }
+    public boolean isMultiInitialisation() {
+        for (VMGroup g : groups) {
+            if (g.hasMultiComponent()) return true;
+        }
+        return false;
+    }
 
 
     /**
