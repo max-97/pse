@@ -1,6 +1,7 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class VMStrategy {
 
 
     private List<String> combinedStrategies;
-    private List<String> probabilities;
+    private List<Integer> probabilities;
 
     public VMStrategy() {
         name = "";
@@ -31,13 +32,33 @@ public class VMStrategy {
      * @param strategyName Name der Strategie
      * @param probability Wahrscheinlichkeit
      */
-    public void addStrategy (String strategyName, double probability) {}
+    public void addStrategy (String strategyName, int probability) {
+        this.combinedStrategies.add(strategyName);
+        this.probabilities.add(probability);
+    }
+
+    public void addStrategyList(List<String> strategyNames, List<Integer> probabilities) {
+        //names.size() == distributions.size()
+        Iterator<String> it1 = strategyNames.iterator();
+        Iterator<Integer> it2 = probabilities.iterator();
+
+        while (it1.hasNext()) { // == it2.hasNext()
+            addStrategy(it1.next(), it2.next());
+        }
+    }
+
+    public void setStrategyList(List<String> strategyNames, List<Integer> probabilities) {
+        //names.size() == distributions.size()
+        this.combinedStrategies = new ArrayList<>(strategyNames.size());
+        this.probabilities = new ArrayList<>(strategyNames.size());
+        addStrategyList(strategyNames, probabilities);
+    }
 
     public List<String> getCombinedStrategies() {
         return combinedStrategies;
     }
 
-    public List<String> getProbabilities() {
+    public List<Integer> getProbabilities() {
         return probabilities;
     }
 
@@ -61,13 +82,5 @@ public class VMStrategy {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setCombinedStrategies(List<String> combinedStrategies) {
-        this.combinedStrategies = combinedStrategies;
-    }
-
-    public void setProbabilities(List<String> probabilities) {
-        this.probabilities = probabilities;
     }
 }
