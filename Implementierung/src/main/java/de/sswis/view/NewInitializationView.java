@@ -42,6 +42,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JButton addGroupButton;
     private JFormattedTextField nameTextField;
 
+    private ButtonGroup buttonGroup;
+    private JRadioButton idAgentGroupRadioButton;
+    private JRadioButton percentageAgentGroupRadioButton;
+
     private AbstractManageInitializationsView parentView;
 
     public NewInitializationView() {
@@ -81,9 +85,12 @@ public class NewInitializationView implements AbstractNewInitializationView {
         vmInitialization.setAgentCount((int) nameTextField.getValue());
 
         for (int i = 0; i < groupTabs.size(); i++) {
-            groupTabs.get(i).update();
             vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
         }
+    }
+
+    public boolean isIDAgentDistributionSelected() {
+        return idAgentGroupRadioButton.isSelected();
     }
 
     @Override
@@ -149,6 +156,13 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private void createUIComponents() {
         addGroupButton = new JButton();
         addGroupButton.addActionListener(e -> addNewGroupTab());
+
+        buttonGroup = new ButtonGroup();
+        idAgentGroupRadioButton = new JRadioButton();
+        buttonGroup.add(idAgentGroupRadioButton);
+
+        percentageAgentGroupRadioButton = new JRadioButton();
+        buttonGroup.add(percentageAgentGroupRadioButton);
 
     }
 

@@ -4,13 +4,9 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.util.AgentDistribution;
-import de.sswis.view.NewInitializationView;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 /**
  * Ein Tab fuer eine initiale Strategie in einer Gruppe, der in der NewInitializationView angezeigt wird.
@@ -21,10 +17,7 @@ public class InitialStrategyTab {
     private JPanel MainPanel;
     private String title;
 
-    private ButtonGroup buttonGroup;
-    private JRadioButton idAgentRadioButton;
-    private JRadioButton percentageAgentRadioButton;
-    private JFormattedTextField idAgentTextField;
+    private JFormattedTextField inputTextField;
     private JFormattedTextField percentageAgentTextField;
     private JLabel idLabel;
     private JLabel percentageLabel;
@@ -36,64 +29,22 @@ public class InitialStrategyTab {
     }
 
 
-
-    public void updateButtonGroup() {
-        idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
-        idLabel.setEnabled(idAgentRadioButton.isSelected());
-
-        percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
-        percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
-
-    }
-
-
-    public boolean isAgentIDsSelected() {
-        return idAgentRadioButton.isSelected();
-    }
-
     public String getUserInput() {
-        if (isAgentIDsSelected())
-            return idAgentTextField.getText();
 
-        return percentageAgentTextField.getText();
+        return inputTextField.getText();
     }
 
-    public void setDistribution(AgentDistribution distribution) {
-        if (distribution.usesIDS()) {
-            idAgentRadioButton.setSelected(true);
-            //TODO: correct next Line with correct getter
-            idAgentTextField.setText(distribution.getAgentIDs() + "");
-        } else {
-            percentageAgentRadioButton.setSelected(true);
-            //TODO: correct next Line with correct getter
-            percentageAgentTextField.setText(distribution.getPercentage() + "");
-        }
+    public void setDistribution(String agents) {
+        inputTextField.setText(agents);
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void addRadioButtonListener(NewInitializationView view) {
-        idAgentRadioButton.addChangeListener(e -> {
-            updateButtonGroup();
-            view.update();
-        });
 
-        percentageAgentRadioButton.addChangeListener(e -> {
-            updateButtonGroup();
-            view.update();
-        });
-    }
 
     private void createUIComponents() {
-        idAgentRadioButton = new JRadioButton();
-
-        percentageAgentRadioButton = new JRadioButton();
-
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(idAgentRadioButton);
-        buttonGroup.add(percentageAgentRadioButton);
     }
 
     {
@@ -128,8 +79,8 @@ public class InitialStrategyTab {
         idLabel = new JLabel();
         idLabel.setText("IDs:");
         panel1.add(idLabel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        idAgentTextField = new JFormattedTextField();
-        panel1.add(idAgentTextField, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        inputTextField = new JFormattedTextField();
+        panel1.add(inputTextField, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         percentageAgentRadioButton.setText("Wähle Agenten nach prozentualem Anteil");
         panel1.add(percentageAgentRadioButton, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         percentageLabel = new JLabel();

@@ -3,15 +3,10 @@ package de.sswis.view.CustomComponents;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.util.AgentDistribution;
 import de.sswis.view.MainView;
-import de.sswis.view.NewInitializationView;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 /**
  * Ein Tab fuer ein Startkapital innerhalb einer Gruppe, der in der NewInitializationView angezeigt wird.
@@ -20,52 +15,23 @@ import java.util.EventListener;
  */
 public class StartCapitalTab {
 
-    private MainView mainView;
-
     private JPanel MainPanel;
-    private String title;
 
     private JFormattedTextField startCapitalTextField;
 
-    private ButtonGroup buttonGroup;
-    private JRadioButton idAgentRadioButton;
-    private JRadioButton percentageAgentRadioButton;
     private JLabel idLabel;
-    private JFormattedTextField idAgentTextField;
+    private JFormattedTextField distributionTextField;
     private JLabel percentageLabel;
     private JFormattedTextField percentageAgentTextField;
 
     public StartCapitalTab() {
         $$$setupUI$$$();
-        update();
     }
 
 
-    private void update() {
-        idLabel.setEnabled(idAgentRadioButton.isSelected());
-        idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
-
-        percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
-        percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
-
-        if (startCapitalTextField.getText() == null) {
-            title = "?";
-        } else {
-            title = startCapitalTextField.getText();
-        }
-
-        if (getAgentUserInput() == null) {
-            title = "*" + title;
-        }
-
-    }
-
-    public boolean isAgentIDsSelected() {
-        return idAgentRadioButton.isSelected();
-    }
 
     public String getTitle() {
-        return title;
+        return startCapitalTextField.getText();
     }
 
     public String getStartCapital() {
@@ -73,41 +39,17 @@ public class StartCapitalTab {
     }
 
     public String getAgentUserInput() {
-        if (isAgentIDsSelected())
-            return idAgentTextField.getText();
+        return distributionTextField.getText();
 
-        return percentageAgentTextField.getText();
     }
 
-    public void setStartCapital(String capital, AgentDistribution distribution) {
+    public void setStartCapital(String capital, String distribution) {
         startCapitalTextField.setText(capital);
-
-        if (distribution.usesIDS()) {
-            idAgentRadioButton.setSelected(true);
-            //TODO: correct next Line with correct getter
-            idAgentTextField.setText(distribution.getAgentIDs() + "");
-        } else {
-            percentageAgentRadioButton.setSelected(true);
-            //TODO: correct next Line with correct getter
-            percentageAgentTextField.setText(distribution.getPercentage() + "");
-        }
+        distributionTextField.setText(distribution);
 
     }
 
-    public void addTitleChangeListener() {
-
-    }
-
-    public void addListeners(NewInitializationView view, GroupTab groupTab) {
-        idAgentRadioButton.addChangeListener(e -> {
-            update();
-            view.update();
-        });
-
-        percentageAgentRadioButton.addChangeListener(e -> {
-            update();
-            view.update();
-        });
+    public void addTitleChangeListeners(GroupTab groupTab) {
 
         startCapitalTextField.addActionListener(e -> {
             groupTab.updateCapitalsTitle();
@@ -115,13 +57,7 @@ public class StartCapitalTab {
     }
 
     private void createUIComponents() {
-        idAgentRadioButton = new JRadioButton();
 
-        percentageAgentRadioButton = new JRadioButton();
-
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(idAgentRadioButton);
-        buttonGroup.add(percentageAgentRadioButton);
     }
 
     /**
@@ -166,8 +102,8 @@ public class StartCapitalTab {
         panel1.add(label3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         startCapitalTextField = new JFormattedTextField();
         panel1.add(startCapitalTextField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        idAgentTextField = new JFormattedTextField();
-        panel1.add(idAgentTextField, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        distributionTextField = new JFormattedTextField();
+        panel1.add(distributionTextField, new GridConstraints(5, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
     }

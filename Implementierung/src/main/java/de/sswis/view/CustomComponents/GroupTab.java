@@ -27,24 +27,26 @@ public class GroupTab {
     private List<InitialStrategyTab> strategyTabs;
     private List<StartCapitalTab> startCapitalTabs;
 
-    EventListener listener;
 
     private JPanel MainPanel;
 
     private JTabbedPane initGroupTabbedPane;
 
-    private ButtonGroup buttonGroup;
-    private JRadioButton idAgentRadioButton;
-    private JRadioButton percentageAgentRadioButton;
+    private ButtonGroup buttonGroupCapital;
+    private ButtonGroup buttonGroupStrategy;
     private JFormattedTextField idAgentTextField;
     private JFormattedTextField percentageAgentTextField;
     private JTabbedPane initialStrategiesTabbedPane;
     private JTextField groupNameTextField;
-    private JButton neuesStartkapitalHinzufuegenButton;
     private JTabbedPane capitalsTabbedPane;
     private JLabel groupIDLabel;
     private JButton addCapitalButton;
     private JLabel idLabel;
+    private JRadioButton idAgentStrategyRadioButton;
+    private JRadioButton percentageAgentStrategyRadioButton;
+    private JRadioButton idAgentCapitalRadioButton;
+    private JRadioButton percentageAgentCapitalRadioButton;
+    private JFormattedTextField distributionTextField;
     private JLabel percentageLabel;
 
     public GroupTab(List<String> allStrategies) {
@@ -63,7 +65,6 @@ public class GroupTab {
     private void addStrategyTabs() {
         for (int i = 0; i < allStrategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
-            tab.addRadioButtonListener(initializationView);
 
             initialStrategiesTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
 
@@ -73,28 +74,41 @@ public class GroupTab {
 
     private void addCapital() {
         StartCapitalTab capitalTab = new StartCapitalTab();
-        capitalTab.addListeners(initializationView, this);
+        capitalTab.addTitleChangeListeners(this);
 
         startCapitalTabs.add(capitalTab);
         capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
+    private void addSpecificCapital(String capital, String distribution) {
+        StartCapitalTab capitalTab = new StartCapitalTab();
+        capitalTab.addTitleChangeListeners(this);
+        capitalTab.setStartCapital(capital, distribution);
 
-
-    public void updateButtonGroup() {
-        percentageAgentTextField.setEnabled(percentageAgentRadioButton.isSelected());
-        percentageLabel.setEnabled(percentageAgentRadioButton.isSelected());
-
-        idAgentTextField.setEnabled(idAgentRadioButton.isSelected());
-        idLabel.setEnabled(idAgentRadioButton.isSelected());
+        startCapitalTabs.add(capitalTab);
+        capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
     public void updateVM() {
 
         vmGroup.setName(groupNameTextField.getText());
+        //TODO: make setter
+        //vmGroup.setRelativeAgentDistributions(!initializationView.isIDAgentDistributionSelected());
+        vmGroup.setAgents(distributionTextField.getText());
+        vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
 
-        //TODO: VMGruppe setter?!
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
+
+        }
+
+        vmGroup.setRelativeStrategyDistribution(percentageAgentStrategyRadioButton.isSelected());
+        for (int i = 0; i < startCapitalTabs.size(); i++) {
+            vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(),
+                    startCapitalTabs.get(i).getAgentUserInput());
+        }
     }
+
 
     public String getTitle() {
         String title = vmGroup.getId() + ": ";
@@ -113,18 +127,21 @@ public class GroupTab {
 
         groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
-        /*
-        if () {
-            idAgentRadioButton.setSelected(true);
-            idAgentTextField.setText(vmGroup.getAgents().getAgentIDs() + "");
+        distributionTextField.setText(vmGroup.getAgents());
 
-        } else {
-            percentageAgentRadioButton.setSelected(true);
-            percentageAgentTextField.setText(vmGroup.getAgents().getPercentage() + "");
+        percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
+        percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
+
+        for (int i = 0; i < vmGroup.getStrategies().size(); i++) {
+            List<String> distribution = vmGroup.getStrategyDistributions().get(i);
+            //TODO: vm getter anpassen
+            //strategyTabs.get(i).setDistribution();
         }
-         */
 
-        //TODO: implement strategies and capitals
+        for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
+            //TODO: vm getter anpassen
+            addSpecificCapital(vmGroup.getStartCapital().get(i), );
+        }
 
     }
 
@@ -148,27 +165,24 @@ public class GroupTab {
 
         groupIDLabel = new JLabel(vmGroup.getId() + "");
 
-        idAgentRadioButton = new JRadioButton();
-        idAgentRadioButton.addChangeListener(e -> {
-                    updateButtonGroup();
-                    initializationView.update();
-        });
+        buttonGroupCapital = new ButtonGroup();
 
-        percentageAgentRadioButton = new JRadioButton();
-        percentageAgentRadioButton.addChangeListener(e -> {
-            updateButtonGroup();
-            initializationView.update();
-        });
+        idAgentCapitalRadioButton = new JRadioButton();
+        buttonGroupCapital.add(idAgentCapitalRadioButton);
 
-        buttonGroup = new ButtonGroup();
-        buttonGroup.add(idAgentRadioButton);
-        buttonGroup.add(percentageAgentRadioButton);
+        percentageAgentCapitalRadioButton = new JRadioButton();
+        buttonGroupCapital.add(percentageAgentCapitalRadioButton);
+
+
+        buttonGroupStrategy = new ButtonGroup();
+
+        idAgentStrategyRadioButton = new JRadioButton();
+        buttonGroupStrategy.add(idAgentStrategyRadioButton);
+
+        percentageAgentStrategyRadioButton = new JRadioButton();
+        buttonGroupStrategy.add(percentageAgentStrategyRadioButton);
 
         addCapitalButton.addActionListener(e -> addCapital());
-
-
-
-
 
     }
 
