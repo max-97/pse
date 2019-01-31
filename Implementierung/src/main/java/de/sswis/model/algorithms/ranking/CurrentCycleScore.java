@@ -11,10 +11,11 @@ import java.util.*;
  */
 public class CurrentCycleScore implements RankingAlgorithm {
 
-    public static final String NAME = "";
+    public static final String NAME = "Aktueller Zyklus";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
+
+    public CurrentCycleScore() {}
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
@@ -50,6 +51,16 @@ public class CurrentCycleScore implements RankingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

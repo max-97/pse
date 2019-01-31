@@ -13,12 +13,16 @@ import java.util.HashMap;
 public interface AdaptationAlgorithm {
 
     /**
-     * Passt die Strategien der Agenten entsprechend des Algorithmus an.
+     * Passt die Strategien der Agenten entsprechend des Algorithmus an und gibt die Anzahl der Anpassungen zurück.
      * @param agents Menge an Agenten deren Strategie angepasst werden soll
      * @param currentRanking aktuelles Ranking
      * @param adaptationProbability Wahrscheinlichkeit der Strategieanpassung
      */
-    void adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability);
+    int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability);
 
     String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
+
+    String[] getParameters();
 }

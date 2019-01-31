@@ -12,6 +12,12 @@ public class VMGame {
     private String description;
     private int[][] payoffs;
 
+    public VMGame() {
+        name = "";
+        description = "";
+        payoffs = new int[2][4];
+    }
+
     /**
      * Gibt eine String der wichtige Informationen des Stufenspiels zusammenfasst.
      * @return String enthält Kurzbeschreibung des Stufenspiels
@@ -35,10 +41,40 @@ public class VMGame {
         this.description = description;
     }
 
+    /**
+     * Gibt die Payoffs eines spieltheoretischen Stufenspiels in der folgenden Form zurück:
+     *
+     * <table>
+     *   <tr>
+     *      <td> </td> <td> </td> <td> </td> <td>  </td> <td> Spieler 2 </td> <td> </td>
+     *   </tr>
+     *   <tr>
+     *      <td> </td> <td> </td> <td> </td> <td> Kooperation </td> <td> </td> <td> Defektion </td>
+     *   </tr>
+     *   <tr>
+     *     <td> </td> <td> Kooperation </td> <td> </td> <td> payoffs[0][0] / payoffs[0][1] </td> <td> </td> <td> payoffs[0][2] / payoffs[0][2] </td>
+     *   </tr>
+     *   <tr>
+     *      <td> Spieler 1 </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td>
+     *   </tr>
+     *   <tr>
+     *     <td> </td> <td> Defektion </td> <td>  </td> <td> payoffs[1][0] / payoffs[1][1] </td> <td>  </td> <td> payoffs[1][2] / payoffs[1][2] </td>
+     *   </tr>
+     * </table>
+     *
+     * @return die Payoffs
+     */
     public int[][] getPayoffs() {
         return payoffs;
     }
 
+    /**
+     * setzt die Parameter der Payoffs, wie in der Tabelle:
+     * Spieler1/Spieler2    K                       D
+     *      K               int[0][0]/int[0][1]     int[0][2]/int[0][3]
+     *      D               int[1][0]/int[1][1]     int[1][2]/int[1][3]
+     * @param payoffs
+     */
     public void setPayoffs(int[][] payoffs) {
         this.payoffs = payoffs;
     }

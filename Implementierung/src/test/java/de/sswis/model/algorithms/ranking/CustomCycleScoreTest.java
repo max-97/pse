@@ -16,13 +16,17 @@ public class CustomCycleScoreTest {
     @Before
     public void init() {
         agents = new Agent[4];
-        rankingAlgorithm = new CustomCycleScore(2);
+        rankingAlgorithm = new CustomCycleScore();
+        HashMap<String, Object> parameters = new HashMap<>();
+        parameters.put("Window size", 2);
+        rankingAlgorithm.setParameters(parameters);
     }
 
     @Test
     public void getRankingsTest1() {
         for(int i = 0; i < agents.length; i++) {
             agents[i] = new Agent(i + 1, i*100, null, null);
+            agents[i].getHistory().setScore(agents[i].getScore());
         }
 
         for(int i = 0 ; i < 3; i++) {
@@ -48,6 +52,7 @@ public class CustomCycleScoreTest {
     public void getRankingsTest2() {
         for(int i = 0; i < agents.length; i++) {
             agents[i] = new Agent(i + 1, 0, null, null);
+            agents[i].getHistory().setScore(agents[i].getScore());
         }
 
         agents[0].setScore(10);

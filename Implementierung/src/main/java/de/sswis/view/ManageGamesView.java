@@ -3,11 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.model.Game;
+import de.sswis.view.CustomComponents.GameTab;
 import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +24,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     private List<VMGame> vmGames;
 
-
+    private List<GameTab> gameTabs;
 
     private JButton newGameButton;
     private JButton cancelButton;
@@ -29,50 +32,69 @@ public class ManageGamesView implements AbstractManageGamesView {
     private JPanel MainPanel;
     private JPanel ButtonPanel;
     private JTabbedPane GamesPane;
-  
+
     private AbstractMainView parentView;
 
-
+    public ManageGamesView() {
+        vmGames = new ArrayList<VMGame>();
+        gameTabs = new ArrayList<GameTab>();
+    }
 
 
     @Override
     public void addGame(VMGame game) {
+        vmGames.add(game);
+        addTab(game);
+    }
 
+    private void addTab(VMGame game) {
+        GameTab tab = new GameTab(game);
+        GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
     }
 
     @Override
     public void removeGame(String gameName) {
-
+        for (int i = 0; i < vmGames.size(); i++) {
+            if (vmGames.get(i).getName().equals(gameName)) {
+                vmGames.remove(i);
+                GamesPane.removeTabAt(i);
+                break;
+            }
+        }
     }
 
     @Override
     public void addNewGameButtonActionlistener(ActionListener listener) {
-
+        newGameButton.addActionListener(listener);
     }
 
     @Override
     public void addEditGameButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < gameTabs.size(); i++) {
+            gameTabs.get(i).addEditButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addDeleteGameButtonActionlistener(ActionListener listener) {
-
+        for (int i = 0; i < gameTabs.size(); i++) {
+            gameTabs.get(i).addDeleteButtonActionlistener(listener);
+        }
     }
 
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
-
+        cancelButton.addActionListener(listener);
     }
 
     @Override
     public void addSaveQuitButtonActionlistener(ActionListener listener) {
-
+        saveAndQuitButton.addActionListener(listener);
     }
 
     @Override
     public VMGame getSelectedVM() {
-        return null;
+        return vmGames.get(GamesPane.getSelectedIndex());
     }
 
     @Override
@@ -84,8 +106,9 @@ public class ManageGamesView implements AbstractManageGamesView {
     public void show() {
         frame = new JFrame("Spiele Verwaltung");
         frame.setContentPane(this.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
     }
@@ -94,7 +117,7 @@ public class ManageGamesView implements AbstractManageGamesView {
     public void close() {
 
     }
-  
+
     @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractMainView) parentView;
@@ -141,9 +164,6 @@ public class ManageGamesView implements AbstractManageGamesView {
         GamesPane = new JTabbedPane();
         GamesPane.setTabPlacement(2);
         MainPanel.add(GamesPane, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        GamesPane.addTab("Spiel", panel1);
         newGameButton = new JButton();
         newGameButton.setText("neues Spiel");
         MainPanel.add(newGameButton, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

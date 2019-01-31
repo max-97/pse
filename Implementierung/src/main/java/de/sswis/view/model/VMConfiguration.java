@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -141,5 +142,17 @@ public class VMConfiguration {
 
     public void setResult(VMResult result) {
         this.result = result;
+    }
+
+    public HashMap<String, Object> getAdaptationParameters() {
+        return null;
+    }
+
+    public HashMap<String, Object> getPairingParameters() {
+        return null;
+    }
+
+    public HashMap<String, Object> getRankingParameters() {
+        return null;
     }
 }

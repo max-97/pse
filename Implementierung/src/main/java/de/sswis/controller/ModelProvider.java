@@ -50,6 +50,7 @@ public class ModelProvider {
      * @param configuration die zu speichernde {@code Configurations}
      */
     public void addConfiguration(Configuration configuration) {
+        /*
         if(this.configurations.containsKey(configuration.getName())) {
             if(this.configurations.get(configuration.getName()).equals(configuration)) {
                 // configuration already added, do nothing
@@ -59,6 +60,7 @@ public class ModelProvider {
                         "Duplicate names should be checked before object creation!");
             }
         }
+        */
         this.configurations.put(configuration.getName(), configuration);
     }
 
@@ -69,6 +71,7 @@ public class ModelProvider {
      * @param game das zu speichernde {@code Game}
      */
     public void addGame(Game game) {
+        /*
         if(this.games.containsKey(game.getName())) {
             if(this.games.get(game.getName()).equals(game)) {
                 // game already added, do nothing
@@ -78,6 +81,7 @@ public class ModelProvider {
                         "Duplicate names should be checked before object creation!");
             }
         }
+        */
         this.games.put(game.getName(), game);
     }
 
@@ -88,6 +92,7 @@ public class ModelProvider {
      * @param combStrategy die zu speichernde {@code CombinedStrategy}
      */
     public void addCombinedStrategy(CombinedStrategy combStrategy) {
+        /*
         if(this.combinedStrategies.containsKey(combStrategy.getName())) {
             if(this.combinedStrategies.get(combStrategy.getName()).equals(combStrategy)) {
                 // combinedStrategy already added, do nothing
@@ -97,6 +102,7 @@ public class ModelProvider {
                         "Duplicate names should be checked before object creation!");
             }
         }
+        */
         this.combinedStrategies.put(combStrategy.getName(), combStrategy);
     }
 
@@ -107,6 +113,7 @@ public class ModelProvider {
      * @param initialization die zu speichernde {@code Initialization}
      */
     public void addInitialization(Initialization initialization) {
+        /*
         if(this.initialization.containsKey(initialization.getName())) {
             if(this.initialization.get(initialization.getName()).equals(initialization)) {
                 // initialization already added, do nothing
@@ -116,6 +123,7 @@ public class ModelProvider {
                         "Duplicate names should be checked before object creation!");
             }
         }
+        */
         this.initialization.put(initialization.getName(), initialization);
     }
 
@@ -125,6 +133,7 @@ public class ModelProvider {
      * @param strategy die zu speichernde {@code Strategy}
      */
     public void addStrategy(Strategy strategy) {
+        /*
         if(this.strategies.containsKey(strategy.getName())) {
             if(this.strategies.get(strategy.getName()).equals(strategy)) {
                 // strategies already added, do nothing
@@ -134,6 +143,7 @@ public class ModelProvider {
                         "Duplicate names should be checked before object creation!");
             }
         }
+        */
         this.strategies.put(strategy.getName(), strategy);
     }
 

@@ -42,6 +42,11 @@ public class VMResult {
         this.vmConfig = vmConfig;
     }
 
+    public int getNumberOfRepititions() {
+        //TODO: implement me
+        return 0;
+    }
+
     public Collection<Agent> getAgents() {
         return agents;
     }

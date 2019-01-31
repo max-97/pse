@@ -15,6 +15,7 @@ import de.sswis.view.model.VMResult;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.util.Collection;
 
 /**
  * Öffnet die View mit der Ergebnissansicht der ausgewählten {@code Konfigurationen}. Die {@code Konfigurationen} werden
@@ -56,16 +57,20 @@ public class ShowResultsHandler implements ActionListener {
             int numberOfInstances = initialization.getNumberOfInstances();
             for (int i = 1; i <= numberOfInstances; i++) {
                 Configuration c = ModelProvider.getInstance().getConfiguration(selected.getName() + i);
-                VMResult vmResult = this.parser.parseSimulationToVMResult(c.getSimulation());
-                multiResultsView.addVMResult(vmResult);
+                Collection<VMResult> vmResults = this.parser.parseSimulationToVMResult(c.getSimulation());
+                for (VMResult r : vmResults) {
+                    multiResultsView.addVMResult(r);
+                }
                 multiResultsView.update();
                 multiResultsView.show();
             }
         } else {
             AbstractShowResultView resultView = this.factory.createShowResultView();
             Configuration c = ModelProvider.getInstance().getConfiguration(selected.getName());
-            VMResult vmResult = this.parser.parseSimulationToVMResult(c.getSimulation());
-            resultView.setVMResult(vmResult);
+            Collection<VMResult> vmResults = this.parser.parseSimulationToVMResult(c.getSimulation());
+            for (VMResult r : vmResults) {
+                resultView.setVMResult(r);
+            }
             resultView.update();
             resultView.show();
         }

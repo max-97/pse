@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,13 @@ public class VMStrategy {
     private List<String> combinedStrategies;
     private List<String> probabilities;
 
+    public VMStrategy() {
+        name = "";
+        description = "";
+        combinedStrategies = new ArrayList<>();
+        probabilities = new ArrayList<>();
+    }
+
     /**
      * Fügt ein Paar von kombinierte Strategie und Wahrscheinlichkeit hinzu.
      *
@@ -24,6 +32,14 @@ public class VMStrategy {
      * @param probability Wahrscheinlichkeit
      */
     public void addStrategy (String strategyName, double probability) {}
+
+    public List<String> getCombinedStrategies() {
+        return combinedStrategies;
+    }
+
+    public List<String> getProbabilities() {
+        return probabilities;
+    }
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser gemischten Strategie zusammenfasst.
@@ -35,15 +51,23 @@ public class VMStrategy {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setCombinedStrategies(List<String> combinedStrategies) {
+        this.combinedStrategies = combinedStrategies;
+    }
+
+    public void setProbabilities(List<String> probabilities) {
+        this.probabilities = probabilities;
     }
 }

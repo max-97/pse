@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class GrimIndividual implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Grim individuell";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};

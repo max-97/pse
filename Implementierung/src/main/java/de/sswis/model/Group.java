@@ -30,11 +30,10 @@ public class Group {
         return name;
     }
 
-    /**
-     * Fuegt dieser Gruppe einen neuen Agenten hinzu.
-     * @param newMember neuer Agent
-     */
-    public void addMember(Agent newMember) {
-
+    public void setMembers(List<Agent> members) {
+        this.members = members;
     }
+
+    public List<Agent> getMembers() { return members; }
+
 }

@@ -10,10 +10,11 @@ import java.util.*;
  * @author Michel Bodé
  */
 public class Score implements  RankingAlgorithm {
-    public static final String NAME = "";
+    public static final String NAME = "Gesamtpunktzahl";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
+
+    public Score() {}
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
@@ -42,6 +43,16 @@ public class Score implements  RankingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

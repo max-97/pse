@@ -12,20 +12,14 @@ import java.util.*;
  * @author Michel Bodé
  */
 public class AverageRank implements RankingAlgorithm {
-    public static final String NAME = "";
+    public static final String NAME = "Durschnittsrang";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Window size"};
-    private int currentRounds;
+    private static final String[] PARAMETER_NAMES = {"Window size"};
     private int currentCycle;
-    private final int WINDOW_SIZE;
+    private int windowSize;
 
-    /**
-     * Konstruktor
-     * @param WINDOW_SIZE Anzahl der zu betrachtenden Zyklen
-     */
-    public AverageRank(int WINDOW_SIZE) {
-        this.WINDOW_SIZE = WINDOW_SIZE;
+    public AverageRank() {
+        windowSize = 5;
     }
 
     @Override
@@ -33,7 +27,6 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer> averageRanks = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        currentRounds = agents[1].getHistory().getCurrentRound();
         currentCycle = agents[1].getHistory().getCurrentCycle();
 
         agentList.addAll(Arrays.asList(agents));
@@ -84,10 +77,10 @@ public class AverageRank implements RankingAlgorithm {
             for(int j = 0; j < agentList.size(); j++) {
                 if(i == currentCycle) {
                     cyclesScores.put(agentList.get(j), agentList.get(j).getScore() -
-                            agentList.get(j).getHistory().getScore(Math.max(i - WINDOW_SIZE, 1)));
+                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
                 } else {
                     cyclesScores.put(agentList.get(j), agentList.get(j).getHistory().getScore(i) -
-                            agentList.get(j).getHistory().getScore(Math.max(i - WINDOW_SIZE, 1)));
+                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
                 }
             }
 
@@ -114,6 +107,16 @@ public class AverageRank implements RankingAlgorithm {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
+    }
+
+    @Override
+    public void setParameters(HashMap<String, Object> parameters) {
+        windowSize = (int)parameters.get("Window size");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

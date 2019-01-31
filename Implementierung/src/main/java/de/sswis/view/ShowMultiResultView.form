@@ -468,7 +468,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <component id="f397e" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="f397e" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -477,7 +477,7 @@
                                   <text value="Zeige Durchschnitt aller Wiederholungen"/>
                                 </properties>
                               </component>
-                              <component id="81d83" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="81d83" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -494,7 +494,7 @@
                                   <text value="k = "/>
                                 </properties>
                               </component>
-                              <component id="4b4b6" class="javax.swing.JFormattedTextField" custom-create="true">
+                              <component id="4b4b6" class="javax.swing.JFormattedTextField">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -591,7 +591,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <component id="ff97f" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="ff97f" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -600,7 +600,7 @@
                                   <text value="Zeige Durchschnitt aller Wiederholungen"/>
                                 </properties>
                               </component>
-                              <component id="abf05" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="abf05" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -617,7 +617,7 @@
                                   <text value="k = "/>
                                 </properties>
                               </component>
-                              <component id="68cdb" class="javax.swing.JFormattedTextField" custom-create="true">
+                              <component id="68cdb" class="javax.swing.JFormattedTextField">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>
@@ -786,7 +786,7 @@
                             <properties/>
                             <border type="none"/>
                             <children>
-                              <component id="fbc23" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="fbc23" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -795,7 +795,7 @@
                                   <text value="Zeige Durchschnitt aller Wiederholungen"/>
                                 </properties>
                               </component>
-                              <component id="d9bfb" class="javax.swing.JRadioButton" custom-create="true">
+                              <component id="d9bfb" class="javax.swing.JRadioButton">
                                 <constraints>
                                   <grid row="1" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                                 </constraints>
@@ -812,7 +812,7 @@
                                   <text value="k = "/>
                                 </properties>
                               </component>
-                              <component id="67797" class="javax.swing.JFormattedTextField" custom-create="true">
+                              <component id="67797" class="javax.swing.JFormattedTextField">
                                 <constraints>
                                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                                     <preferred-size width="150" height="-1"/>

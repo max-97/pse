@@ -39,12 +39,12 @@ public class SaveInitializationsHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         VMInitialization vmInitialization = this.initializationView.getVMInitialization();
         try {
-            this.fileManager.saveInitalization(vmInitialization);
+            this.fileManager.saveInitialization(vmInitialization);
         } catch (IOException e1) {
             e1.printStackTrace();
             return;
         }
-        Collection<Initialization> initializations = this.parser.parseVMInitializationToInitialization(vmInitialization);
+        Collection<Initialization> initializations = this.parser.parseVMInitialization(vmInitialization);
         for (Initialization i : initializations) {
             ModelProvider.getInstance().addInitialization(i);
         }

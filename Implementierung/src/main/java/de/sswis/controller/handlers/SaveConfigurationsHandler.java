@@ -44,7 +44,7 @@ public class SaveConfigurationsHandler implements ActionListener {
             e1.printStackTrace();
             return;
         }
-        Collection<Configuration> configurations = this.parser.parseVMConfigurationToConfigurations(vmConfiguration);
+        Collection<Configuration> configurations = this.parser.parseVMConfiguration(vmConfiguration);
         for (Configuration c : configurations) {
             ModelProvider.getInstance().addConfiguration(c);
         }

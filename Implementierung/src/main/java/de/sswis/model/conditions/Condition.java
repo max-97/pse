@@ -2,6 +2,8 @@ package de.sswis.model.conditions;
 
 import de.sswis.model.Agent;
 
+import java.util.HashMap;
+
 /**
  * Eine Bedingung zur Auswahl einer Basisstrategie innerhalb einer kombinierten Strategie.
  * Die Bedingung kann sowohl vom Agenten abhaengen dessen kombinierte Strategie sie beinhaltet, als auch
@@ -18,4 +20,8 @@ public interface Condition {
     public abstract boolean fulfillsCondition(Agent agent1, Agent agent2);
 
     String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
+
+	String[] getParameters();
 }
