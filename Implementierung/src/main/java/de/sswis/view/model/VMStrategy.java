@@ -17,7 +17,7 @@ public class VMStrategy {
 
 
     private List<String> combinedStrategies;
-    private List<Integer> probabilities;
+    private List<String> probabilities;
 
     public VMStrategy() {
         name = "";
@@ -32,22 +32,22 @@ public class VMStrategy {
      * @param strategyName Name der Strategie
      * @param probability Wahrscheinlichkeit
      */
-    public void addStrategy (String strategyName, int probability) {
+    public void addStrategy (String strategyName, String probability) {
         this.combinedStrategies.add(strategyName);
         this.probabilities.add(probability);
     }
 
-    public void addStrategyList(List<String> strategyNames, List<Integer> probabilities) {
+    public void addStrategyList(List<String> strategyNames, List<String> probabilities) {
         //names.size() == distributions.size()
         Iterator<String> it1 = strategyNames.iterator();
-        Iterator<Integer> it2 = probabilities.iterator();
+        Iterator<String> it2 = probabilities.iterator();
 
         while (it1.hasNext()) { // == it2.hasNext()
             addStrategy(it1.next(), it2.next());
         }
     }
 
-    public void setStrategyList(List<String> strategyNames, List<Integer> probabilities) {
+    public void setStrategyList(List<String> strategyNames, List<String> probabilities) {
         //names.size() == distributions.size()
         this.combinedStrategies = new ArrayList<>(strategyNames.size());
         this.probabilities = new ArrayList<>(strategyNames.size());
@@ -58,7 +58,7 @@ public class VMStrategy {
         return combinedStrategies;
     }
 
-    public List<Integer> getProbabilities() {
+    public List<String> getProbabilities() {
         return probabilities;
     }
 
