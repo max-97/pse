@@ -15,32 +15,25 @@ public class VMInitialization {
     private List<VMGroup> groups;
     private int agentCount;
     private int numberOfInstances;
-    private boolean realtiveDistribution;
+    private boolean relativeDistribution;
 
     public VMInitialization() {
         name = "";
         groups = new ArrayList<>();
         agentCount = 0;
-        realtiveDistribution = false;
-    }
-
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben,
-     * Inkonsistenzen von Agentenzuteilungen innerhalb und unterhalb der Gruppen.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
+        relativeDistribution = false;
     }
 
     /**
      * Zeigt ob die Initialisierung variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */
-    public boolean isMultiInitialisation() { return false; }
+    public boolean isMultiInitialisation() {
+        for (VMGroup g : groups) {
+            if (g.hasMultiComponent()) return true;
+        }
+        return false;
+    }
 
 
     /**
@@ -78,7 +71,7 @@ public class VMInitialization {
     }
 
     public boolean hasRelativeDistribution() {
-        return this.realtiveDistribution;
+        return this.relativeDistribution;
     }
 }
 
