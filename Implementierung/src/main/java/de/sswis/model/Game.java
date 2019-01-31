@@ -66,8 +66,8 @@ public class Game {
         agent1.getHistory().setCooperatedLastTime(agent2, action2.equals(Action.COOPERATION));
         agent1.getHistory().setCooperatedEveryTime(agent2, action2.equals(Action.COOPERATION) &&
                 agent1.getHistory().cooperatedEveryTime(agent2));
-        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action2.equals(Action.COOPERATION));
-        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action2.equals(Action.COOPERATION) &&
+        agent1.getHistory().setGroupCooperatedLastTime(agent2.getGroup(), action1.equals(Action.COOPERATION));
+        agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action1.equals(Action.COOPERATION) &&
                 agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
         agent1.getHistory().setOpponent(agent2);
         if (action1.equals(Action.COOPERATION) && agent1.getHistory().getAlwaysCooperated()) {
