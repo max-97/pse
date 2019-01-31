@@ -15,14 +15,14 @@ public class VMGroup {
 
     private String name;
     private int id;
-    private List<String> agentIntervals;
+    private String agentIntervals;
 
     private List<String> strategies = new ArrayList<>();
-    private List<List<String>> strategyDistributions = new ArrayList<>();
+    private List<String> strategyDistributions = new ArrayList<>();
     private boolean relativeStrategyDistribution;
 
     private List<String> startCapital = new ArrayList<>();
-    private List<List<String>> startCapitalDistributions = new ArrayList<>();
+    private List<String> startCapitalDistributions = new ArrayList<>();
     private boolean relativeCapitalDistribution;
 
 
@@ -48,10 +48,14 @@ public class VMGroup {
         this.id = id;
     }
 
-    public List<String> getAgents() { return agentIntervals; }
+    public List<String> getAgents() { return distributionList(this.agentIntervals); }
+
+    public String getAgentsString() {
+        return this.agentIntervals;
+    }
 
     public void setAgents(String agentIntervals) {
-        this.agentIntervals = distributionList(agentIntervals);
+        this.agentIntervals = agentIntervals;
     }
 
     public List<String> getStrategies() {
@@ -59,12 +63,18 @@ public class VMGroup {
     }
 
     public List<List<String>> getStrategyDistributions() {
-        return strategyDistributions;
+        List<List<String>> output = new ArrayList<>(this.strategyDistributions.size());
+        for (String str : strategyDistributions) {
+            output.add(distributionList(str));
+        }
+        return output;
     }
+
+    public List<String> getStrategyDistributionsStrings() { return this.strategyDistributions; }
 
     public void addStrategy(String name, String distribution) {
         this.strategies.add(name);
-        this.strategyDistributions.add(distributionList(distribution));
+        this.strategyDistributions.add(distribution);
     }
 
     public void addStrategyList(List<String> names, List<String> distributions) {
@@ -89,12 +99,16 @@ public class VMGroup {
     }
 
     public List<List<String>> getStartCapitalDistributions() {
-        return startCapitalDistributions;
+        List<List<String>> output = new ArrayList<>(this.startCapitalDistributions.size());
+        for (String str : this.startCapitalDistributions) {
+            output.add(distributionList(str));
+        }
+        return output;
     }
 
     public void addStartCapital(String capital, String distribution) {
         this.startCapital.add(capital);
-        this.startCapitalDistributions.add(distributionList(distribution));
+        this.startCapitalDistributions.add(distribution);
     }
 
     public void addStartCapitalList(List<String> capital, List<String> distributions) {
@@ -131,17 +145,17 @@ public class VMGroup {
 
     public boolean hasMultiComponent() {
 
-        for (String str1 : this.agentIntervals) {
+        for (String str1 : this.agentIntervals.split(",")) {
             if (isMultiString(str1)) return true;
         }
-        for (List<String> list2 : this.strategyDistributions) {
-            for (String str2 : list2) {
-                if (isMultiString(str2)) return true;
+        for (String str2 : this.strategyDistributions) {
+            for (String str3 : str2.split(",")) {
+                if (isMultiString(str3)) return true;
             }
         }
-        for (List<String> list3 : this.startCapitalDistributions) {
-            for (String str3 : list3) {
-                if (isMultiString(str3)) return true;
+        for (String str4 : this.startCapitalDistributions) {
+            for (String str5 : str4.split(",")) {
+                if (isMultiString(str5)) return true;
             }
         }
         return false;
