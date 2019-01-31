@@ -65,7 +65,7 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

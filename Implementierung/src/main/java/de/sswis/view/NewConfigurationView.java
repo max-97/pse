@@ -76,7 +76,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

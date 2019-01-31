@@ -56,7 +56,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     private AbstractMainView parentView;

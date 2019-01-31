@@ -115,7 +115,7 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

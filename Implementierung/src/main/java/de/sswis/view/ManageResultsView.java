@@ -101,7 +101,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
 
