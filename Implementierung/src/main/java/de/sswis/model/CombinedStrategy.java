@@ -37,7 +37,7 @@ public class CombinedStrategy implements Strategy{
                 return strategies[i].calculateAction(agent1, agent2);
             }
         }
-        return null;
+        return Action.DEFECTION;
     }
 }
 
