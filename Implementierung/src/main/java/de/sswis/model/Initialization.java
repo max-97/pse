@@ -27,7 +27,8 @@ public class Initialization {
     public Initialization(String name, int agentCount) {
         this.name = name;
         this.agentCount = agentCount;
-        List<Agent> agents = new ArrayList<>();
+        agents = new ArrayList<>();
+        groups = new ArrayList<>();
         for (int i = 0; i < agentCount; i++) {
             Agent agent = new Agent(i, 0, null, null);
             agents.add(agent);
