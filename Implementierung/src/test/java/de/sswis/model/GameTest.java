@@ -65,5 +65,20 @@ public class GameTest {
         assertTrue(agent1.getHistory().groupCooperatedLastTime(agent2.getGroup()));
         assertFalse(agent2.getHistory().groupCooperatedEveryTime(agent1.getGroup()));
         assertFalse(agent2.getHistory().groupCooperatedLastTime(agent1.getGroup()));
+
+        agent2.setStrategy(strategy1);
+        game.playGame(pair);
+        assertEquals(15, agent1.getScore());
+        assertEquals(25, agent2.getScore());
+        assertTrue(agent1.getHistory().getAlwaysCooperated());
+        assertFalse(agent2.getHistory().getAlwaysCooperated());
+        assertFalse(agent1.getHistory().cooperatedEveryTime(agent2));
+        assertTrue(agent2.getHistory().cooperatedEveryTime(agent1));
+        assertTrue(agent1.getHistory().cooperatedLastTime(agent2));
+        assertTrue(agent2.getHistory().cooperatedLastTime(agent1));
+        assertTrue(agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
+        assertTrue(agent1.getHistory().groupCooperatedLastTime(agent2.getGroup()));
+        assertFalse(agent2.getHistory().groupCooperatedEveryTime(agent1.getGroup()));
+        assertTrue(agent2.getHistory().groupCooperatedLastTime(agent1.getGroup()));
     }
 }
