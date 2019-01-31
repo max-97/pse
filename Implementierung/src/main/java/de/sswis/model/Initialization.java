@@ -67,7 +67,7 @@ public class Initialization {
                 }
             }
         } else {
-            int agentNumber = 0;
+            int agentNumber = group.getMembers().getSize();
             for (int x = 0; x < agentCount; x++) {
                 if (agents.get(x).getGroup() == null) {
                     agents.get(x).setGroup(group);
@@ -107,6 +107,11 @@ public class Initialization {
             }
         } else {
             int agentNumber = 0;
+            for (int y = 0; y < members.size(); y++) {
+                if (members.get(x).getStrategy() == strategy) {
+                    agentNumber++;
+                }
+            }
             for (int x = 0; x < members.size(); x++) {
                 if (members.get(x).getStrategy() == null) {
                     members.get(x).setStrategy(strategy);
@@ -145,6 +150,11 @@ public class Initialization {
             }
         } else {
             int agentNumber = 0;
+            for (int y = 0; y < members.size(); y++) {
+                if (members.get(x).getScore() == capital) {
+                    agentNumber++;
+                }
+            }
             for (int x = 0; x < members.size(); x++) {
                 if (members.get(x).getScore() == 0) {
                     members.get(x).setScore(capital);
