@@ -21,8 +21,6 @@ public class StartCapitalTab {
 
     private JLabel idLabel;
     private JFormattedTextField distributionTextField;
-    private JLabel percentageLabel;
-    private JFormattedTextField percentageAgentTextField;
 
     public StartCapitalTab() {
         $$$setupUI$$$();

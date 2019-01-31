@@ -34,8 +34,6 @@ public class GroupTab {
 
     private ButtonGroup buttonGroupCapital;
     private ButtonGroup buttonGroupStrategy;
-    private JFormattedTextField idAgentTextField;
-    private JFormattedTextField percentageAgentTextField;
     private JTabbedPane initialStrategiesTabbedPane;
     private JTextField groupNameTextField;
     private JTabbedPane capitalsTabbedPane;
@@ -47,7 +45,6 @@ public class GroupTab {
     private JRadioButton idAgentCapitalRadioButton;
     private JRadioButton percentageAgentCapitalRadioButton;
     private JFormattedTextField distributionTextField;
-    private JLabel percentageLabel;
 
     public GroupTab(List<String> allStrategies) {
         this.vmGroup = new VMGroup();
@@ -93,18 +90,18 @@ public class GroupTab {
         vmGroup.setName(groupNameTextField.getText());
         //TODO: make setter
         //vmGroup.setRelativeAgentDistributions(!initializationView.isIDAgentDistributionSelected());
-        vmGroup.setAgents(distributionTextField.getText());
+        //vmGroup.setAgents(distributionTextField.getText());
         vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
 
         for (int i = 0; i < strategyTabs.size(); i++) {
-            vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
+            //vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
 
         }
 
         vmGroup.setRelativeStrategyDistribution(percentageAgentStrategyRadioButton.isSelected());
         for (int i = 0; i < startCapitalTabs.size(); i++) {
-            vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(),
-                    startCapitalTabs.get(i).getAgentUserInput());
+            //vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(),
+              //      startCapitalTabs.get(i).getAgentUserInput());
         }
     }
 
@@ -126,7 +123,7 @@ public class GroupTab {
 
         groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
-        distributionTextField.setText(vmGroup.getAgents());
+        //distributionTextField.setText(vmGroup.getAgents());
 
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
         percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
@@ -139,7 +136,7 @@ public class GroupTab {
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
             //TODO: vm getter anpassen
-            addSpecificCapital(vmGroup.getStartCapital().get(i), );
+            //addSpecificCapital(vmGroup.getStartCapital().get(i), );
         }
 
     }

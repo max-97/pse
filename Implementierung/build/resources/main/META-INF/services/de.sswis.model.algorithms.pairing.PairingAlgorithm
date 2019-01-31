@@ -1,0 +1,4 @@
+de.sswis.model.algorithms.pairing.BruteForcePairing
+de.sswis.model.algorithms.pairing.MinimumWeightMatching
+de.sswis.model.algorithms.pairing.RandomPairing
+de.sswis.model.algorithms.pairing.BruteForcePairingHeuristic

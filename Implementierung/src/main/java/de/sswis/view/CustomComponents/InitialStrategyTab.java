@@ -18,9 +18,7 @@ public class InitialStrategyTab {
     private String title;
 
     private JFormattedTextField inputTextField;
-    private JFormattedTextField percentageAgentTextField;
     private JLabel idLabel;
-    private JLabel percentageLabel;
 
 
     public InitialStrategyTab(String title) {

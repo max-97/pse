@@ -1,0 +1,5 @@
+de.sswis.model.algorithms.adaptation.MixedSum
+de.sswis.model.algorithms.adaptation.ReplicatorDynamicScore
+de.sswis.model.algorithms.adaptation.RankPercentage
+de.sswis.model.algorithms.adaptation.MixedLinearInterpolation
+de.sswis.model.algorithms.adaptation.ReplicatorDynamicRank

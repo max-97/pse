@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="de.sswis.model.CombinedStrategyTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-01-31T20:20:54" hostname="sophie-Aspire-5830TG" time="0.01">
+  <properties/>
+  <testcase name="calculateActionTest1" classname="de.sswis.model.CombinedStrategyTest" time="0.001"/>
+  <testcase name="calculateActionTest2" classname="de.sswis.model.CombinedStrategyTest" time="0.0"/>
+  <testcase name="calculateActionTest3" classname="de.sswis.model.CombinedStrategyTest" time="0.006"/>
+  <testcase name="calculateActionTest4" classname="de.sswis.model.CombinedStrategyTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
