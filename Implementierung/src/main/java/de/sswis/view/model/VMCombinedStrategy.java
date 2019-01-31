@@ -1,6 +1,7 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -17,6 +18,14 @@ public class VMCombinedStrategy {
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
 
+    public List<String> getStrategies() {
+        return this.baseStrategies;
+    }
+
+    public List<String> getConditions() {
+        return this.conditions;
+    }
+
     /**
      * Fügt ein Paar von Bedingung und Basisstrategie hinzu.
      * Eventuell von der Bedingung benötigte Parameter werden dem String angehängt.
@@ -29,6 +38,23 @@ public class VMCombinedStrategy {
     public void addStrategy(String baseStrategy, String condition) {
         baseStrategies.add(baseStrategy);
         conditions.add(condition);
+    }
+
+    public void addStrategyList(List<String> baseStrategies, List<String> conditions) {
+        //baseStrategies.size() == conditions.size()
+        Iterator<String> it1 = baseStrategies.iterator();
+        Iterator<String> it2 = conditions.iterator();
+
+        while (it1.hasNext()) { // == it2.hasNext()
+            addStrategy(it1.next(), it2.next());
+        }
+    }
+
+    public void setStrategyList(List<String> baseStrategies, List<String> conditions) {
+        //baseStrategies.size() == conditions.size()
+        this.baseStrategies = new ArrayList<>(baseStrategies.size());
+        this.conditions = new ArrayList<>(baseStrategies.size());
+        addStrategyList(baseStrategies, conditions);
     }
 
     /**
@@ -63,14 +89,6 @@ public class VMCombinedStrategy {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<String> getStrategies() {
-        return this.baseStrategies;
-    }
-
-    public List<String> getConditions() {
-        return this.conditions;
     }
 
     public double getConditionParameter(String conditionName) {
