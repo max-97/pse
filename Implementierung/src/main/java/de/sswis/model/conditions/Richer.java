@@ -13,8 +13,7 @@ public class Richer implements Condition {
 
     public static final String NAME = "Reicher als ich";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
 
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
@@ -27,7 +26,12 @@ public class Richer implements Condition {
     }
 
     @Override
-    public void setParameter(HashMap<String, Object> parameters) {
+    public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

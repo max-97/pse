@@ -21,5 +21,7 @@ public interface Condition {
 
     String getName();
 
-	void setParameter(HashMap<String, Object> parameters);
+	void setParameters(HashMap<String, Object> parameters);
+
+	String[] getParameters();
 }
