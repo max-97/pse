@@ -15,7 +15,6 @@ public class AverageRank implements RankingAlgorithm {
     public static final String NAME = "Durschnittsrang";
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {"Window size"};
-    private int currentRounds;
     private int currentCycle;
     private int windowSize;
 
@@ -28,7 +27,6 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer> averageRanks = new HashMap<>();
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
-        currentRounds = agents[1].getHistory().getCurrentRound();
         currentCycle = agents[1].getHistory().getCurrentCycle();
 
         agentList.addAll(Arrays.asList(agents));
