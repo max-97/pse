@@ -56,8 +56,6 @@ public class Sswis {
         for (VMResult r : vmResults) {
             mainView.addResult(r.getVmConfig().getName(), r);
         }
-
-        mainView.update();
         mainView.show();
     }
 

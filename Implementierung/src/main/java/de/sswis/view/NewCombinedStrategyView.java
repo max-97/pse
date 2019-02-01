@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     private List<String> conditions = new ArrayList<>();
     private List<String> baseStrategies = new ArrayList<>();
 
+    private HashMap<String, String[]> conditionParameters;
 
     private JPanel MainPanel;
 
@@ -40,7 +42,6 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     private List<ParameterTable> additionalParameterLists = new ArrayList<>();
     private List<JComboBox> strategyComboBoxes = new ArrayList<>();
-
 
     private JPanel ContentPane;
     private JButton finishButton;
@@ -62,11 +63,11 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         vmCombinedStrategy = new VMCombinedStrategy();
         conditions = new ArrayList<String>();
         baseStrategies = new ArrayList<String>();
-
         priorityLabels = new ArrayList<JLabel>();
         conditionComboBoxes = new ArrayList<JComboBox>();
         strategyComboBoxes = new ArrayList<JComboBox>();
         additionalParameterLists = new ArrayList<ParameterTable>();
+        conditionParameters = new HashMap<>();
     }
 
     private void addNewLine() {
@@ -203,6 +204,11 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         baseStrategies.add(name);
         defaultStrategy.addItem(name);
 
+    }
+
+    @Override
+    public void addParameters(HashMap<String, String[]> parameters) {
+        this.conditionParameters.putAll(parameters);
     }
 
     @Override

@@ -11,6 +11,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * Öffnet die View zum Bearbeiten einer {@code kombinierten Strategie}.
@@ -41,6 +42,9 @@ public class EditCombinedStrategyHandler implements ActionListener {
         newCombinedStrategyView.setCombinedStrategy(selectedVM);
         for(Condition c : this.serviceLoader.getConditionList()) {
             newCombinedStrategyView.addCondition(c.getName());
+            HashMap<String, String[]> parameters = new HashMap<>();
+            parameters.put(c.getName(), c.getParameters());
+            newCombinedStrategyView.addParameters(parameters);
         }
         for(BaseStrategy s : this.serviceLoader.getBaseStrategyList()) {
             newCombinedStrategyView.addBaseStrategy(s.getName());
