@@ -1,5 +1,11 @@
 language: java
+install: true
+
 jdk:
   - oraclejdk11
+
 notifications:
   email: false
+  
+script:
+    - Implementierung/gradlew build --scan -s
