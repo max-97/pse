@@ -4,7 +4,10 @@ import de.swwis.util.AgentDistribution;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import de.sswis.model.conditions.Always;
+import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.AlwaysCooperate;
+import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.model.strategies.NeverCooperate;
 
 public class InitializationTest {
@@ -16,7 +19,9 @@ public class InitializationTest {
     @Before
     public void init() {
         init = new Initialization("init", 10);
-        ids = int[3]{1, 5, 9};
+        ids[0] = 1;
+        ids[1] = 5;
+        ids[2] = 9;
         agentDistributions = new AgentDistribution[3];
         agentDistributions[0] = new AgentDistribution(ids);
         agentDistributions[1] = new AgentDistribution(45);
@@ -44,8 +49,10 @@ public class InitializationTest {
 
     @Test
     public void setStrategyDistributionTest() {
-        Strategy always = new AlwaysCooperate();
-        Strategy never = new NeverCooperate();
+        Strategy always = new CombinedStrategy("AlwaysCooperate",
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()});
+        Strategy never = new CombinedStrategy("NeverCooperate",
+                new BaseStrategy[]{new NeverCooperate()}, new Condition[]{new Always()});
         Agent[] agents = init.calculateInitialAgentState();
         init.addGroup(groups[0]);
         init.setGroupDistribution(agentDistributions[3], groups[0]);
