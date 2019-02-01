@@ -45,7 +45,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void addInit(VMInitialization vmInitialization) {
         vmInits.add(vmInitialization);
-        InitializationTab tab = new InitializationTab(vmInitialization);
+        InitializationTab tab = new InitializationTab();
+        tab.setVmInitialization(vmInitialization);
         tab.addDeleteButtonActionlistener(deleteListener);
         tab.addEditButtonActionlistener(editListener);
 

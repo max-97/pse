@@ -32,31 +32,34 @@ public class CombinedStrategyTab {
 
     /**
      * Erstellt ein neues Tab für die kombinierte Strategie.
-     *
-     * @param combinedStrategy die kombinierte Strategie
      */
-    public CombinedStrategyTab(VMCombinedStrategy combinedStrategy) {
+    public CombinedStrategyTab() {
 
-        this.combinedStrategy = combinedStrategy;
         priorityLabels = new ArrayList<JLabel>();
         conditionLabels = new ArrayList<JLabel>();
         strategyLabels = new ArrayList<JLabel>();
         $$$setupUI$$$();
-        createConditionLines();
     }
 
-    private void createConditionLines() {
-        for (int i = 0; i < combinedStrategy.getConditions().size(); i++) {
-            priorityLabels.add(new JLabel((i + 1) + "."));
-            conditionLabels.add(new JLabel(combinedStrategy.getConditions().get(i)));
-            strategyLabels.add(new JLabel(combinedStrategy.getStrategies().get(i)));
-        }
+    public void setVMCombinedStrategy(VMCombinedStrategy vmCombinedStrategy) {
+        this.combinedStrategy = vmCombinedStrategy;
+
+        nameLabel.setText(combinedStrategy.getName());
+        descriptionTextPane.setText(combinedStrategy.getDescription());
+
+        addConditionLines();
 
     }
 
     private void addConditionLines() {
-        for (int i = 0; i < priorityLabels.size(); i++) {
+        for (int i = 0; i < combinedStrategy.getConditions().size(); i++) {
 
+            //erstelle Komponenten
+            priorityLabels.add(new JLabel((i + 1) + "."));
+            conditionLabels.add(new JLabel(combinedStrategy.getConditions().get(i)));
+            strategyLabels.add(new JLabel(combinedStrategy.getStrategies().get(i)));
+
+            //zum Panel hinzufügen
             panel1.add(priorityLabels.get(i),
                     new GridConstraints(3 + i, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
@@ -67,9 +70,13 @@ public class CombinedStrategyTab {
                     new GridConstraints(3 + i, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
         }
+
     }
 
-    public VMCombinedStrategy getCombinedStrategy() { return combinedStrategy; }
+
+    public VMCombinedStrategy getCombinedStrategy() {
+        return combinedStrategy;
+    }
 
     public void addEditButtonActionlistener(ActionListener listener) {
         editButton.addActionListener(listener);
@@ -81,9 +88,6 @@ public class CombinedStrategyTab {
 
 
     private void createUIComponents() {
-        nameLabel = new JLabel(combinedStrategy.getName());
-        descriptionTextPane.setText(combinedStrategy.getDescription());
-        addConditionLines();
 
     }
 
@@ -109,6 +113,7 @@ public class CombinedStrategyTab {
         label1.setText("Beschreibung:");
         panel1.add(label1, new GridConstraints(31, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         descriptionTextPane = new JTextPane();
+        descriptionTextPane.setEditable(false);
         panel1.add(descriptionTextPane, new GridConstraints(32, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("kombinierte Strategie löschen");
@@ -135,6 +140,7 @@ public class CombinedStrategyTab {
         panel1.add(editButton, new GridConstraints(33, 0, 1, 3, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel1.add(spacer3, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(25, -1), null, null, 0, false));
+        nameLabel = new JLabel();
         nameLabel.setText("");
         panel1.add(nameLabel, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }

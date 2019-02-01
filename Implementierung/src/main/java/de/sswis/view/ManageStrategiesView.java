@@ -44,7 +44,8 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public void addStrategy(VMStrategy vmStrategy) {
         vmStrategies.add(vmStrategy);
-        MixedStrategyTab tab = new MixedStrategyTab(vmStrategy);
+        MixedStrategyTab tab = new MixedStrategyTab();
+        tab.setVmStrategy(vmStrategy);
         tab.addDeleteButtonActionlistener(deleteListener);
         tab.addEditButtonActionlistener(editListener);
 

@@ -70,7 +70,7 @@
               <text value="Spieler1 / Spieler2"/>
             </properties>
           </component>
-          <component id="842d" class="javax.swing.JLabel" binding="upLeftPayOffLabel" custom-create="true">
+          <component id="842d" class="javax.swing.JLabel" binding="upLeftPayOffLabel">
             <constraints>
               <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -78,7 +78,7 @@
               <text value="0 / 0"/>
             </properties>
           </component>
-          <component id="1c4e4" class="javax.swing.JLabel" binding="bottomLeftPayOffLabel" custom-create="true">
+          <component id="1c4e4" class="javax.swing.JLabel" binding="bottomLeftPayOffLabel">
             <constraints>
               <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -130,13 +130,15 @@
               <text value="Beschreibung:"/>
             </properties>
           </component>
-          <component id="84073" class="javax.swing.JTextPane" binding="descriptionPane" custom-create="true">
+          <component id="84073" class="javax.swing.JTextPane" binding="descriptionPane">
             <constraints>
               <grid row="9" column="0" row-span="1" col-span="6" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="489be" class="javax.swing.JButton" binding="deleteButton">
             <constraints>
@@ -146,7 +148,7 @@
               <text value="Spiel löschen"/>
             </properties>
           </component>
-          <component id="9ac6e" class="javax.swing.JLabel" binding="nameLabel" custom-create="true">
+          <component id="9ac6e" class="javax.swing.JLabel" binding="nameLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="5" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -154,7 +156,7 @@
               <text value="Spiel"/>
             </properties>
           </component>
-          <component id="861b" class="javax.swing.JLabel" binding="upRightPayOffLabel" custom-create="true">
+          <component id="861b" class="javax.swing.JLabel" binding="upRightPayOffLabel">
             <constraints>
               <grid row="4" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -162,7 +164,7 @@
               <text value="0 / 0"/>
             </properties>
           </component>
-          <component id="5aac2" class="javax.swing.JLabel" binding="bottomRightPayOffLabel" custom-create="true">
+          <component id="5aac2" class="javax.swing.JLabel" binding="bottomRightPayOffLabel">
             <constraints>
               <grid row="6" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
