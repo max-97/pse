@@ -17,9 +17,11 @@ public class AverageRank implements RankingAlgorithm {
     private static final String[] PARAMETER_NAMES = {"Window size"};
     private int currentCycle;
     private int windowSize;
+    private boolean ignoreInitialScore;
 
     public AverageRank() {
         windowSize = 5;
+        ignoreInitialScore = false;
     }
 
     @Override
@@ -118,5 +120,10 @@ public class AverageRank implements RankingAlgorithm {
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }

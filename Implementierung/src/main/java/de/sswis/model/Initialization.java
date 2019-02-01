@@ -16,6 +16,7 @@ public class Initialization {
     private List<Group> groups;
     private int agentCount;
     private List<Agent> agents;
+    private boolean initialScoreStrategiesOnly;
 
 
     /**
@@ -33,6 +34,7 @@ public class Initialization {
             agents.add(agent);
         }
         this.agents = agents;
+        this.initialScoreStrategiesOnly = false;
     }
 
     public void addGroup(Group group) {
@@ -191,6 +193,14 @@ public class Initialization {
             newAgents[i] = agents.get(i);
         }
         return newAgents;
+    }
+
+    public boolean getInitialScoreStrategiesOnly() {
+        return initialScoreStrategiesOnly;
+    }
+
+    public void setInitialScoreStrategiesOnly(boolean initialScoreStrategiesOnly) {
+        this.initialScoreStrategiesOnly = initialScoreStrategiesOnly;
     }
 
 }

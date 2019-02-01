@@ -17,9 +17,11 @@ public class CustomCycleScore implements RankingAlgorithm {
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {"Window size"};
     private int windowSize;
+    private boolean ignoreInitialScore;
 
     public CustomCycleScore() {
         windowSize = 5;
+        ignoreInitialScore = false;
     }
 
 
@@ -68,5 +70,10 @@ public class CustomCycleScore implements RankingAlgorithm {
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }

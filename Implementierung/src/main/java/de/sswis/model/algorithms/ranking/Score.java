@@ -13,8 +13,11 @@ public class Score implements  RankingAlgorithm {
     public static final String NAME = "Gesamtpunktzahl";
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {};
+    private boolean ignoreInitialScore;
 
-    public Score() {}
+    public Score() {
+        ignoreInitialScore = false;
+    }
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
@@ -54,5 +57,10 @@ public class Score implements  RankingAlgorithm {
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }

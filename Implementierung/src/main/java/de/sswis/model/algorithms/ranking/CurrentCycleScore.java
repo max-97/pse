@@ -14,8 +14,11 @@ public class CurrentCycleScore implements RankingAlgorithm {
     public static final String NAME = "Aktueller Zyklus";
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {};
+    private boolean ignoreInitialScore;
 
-    public CurrentCycleScore() {}
+    public CurrentCycleScore() {
+        ignoreInitialScore = false;
+    }
 
     @Override
     public HashMap<Agent, Integer> getRankings(Agent[] agents) {
@@ -62,5 +65,10 @@ public class CurrentCycleScore implements RankingAlgorithm {
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }
