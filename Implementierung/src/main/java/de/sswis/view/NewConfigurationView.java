@@ -136,26 +136,31 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void addAdaptionAlgorithm(String name) {
         adaptationAlgs.add(name);
+        adaptionComboBox.addItem(name);
     }
 
     @Override
     public void addPairingAlgorithm(String name) {
         pairingAlgs.add(name);
+        pairingComboBox.addItem(name);
     }
 
     @Override
     public void addRankingAlgorithm(String name) {
         rankingAlgs.add(name);
+        rankingComboBox.addItem(name);
     }
 
     @Override
     public void addInitialization(String name) {
         inits.add(name);
+        initComboBox.addItem(name);
     }
 
     @Override
     public void addGame(String name) {
         games.add(name);
+        gameComboBox.addItem(name);
     }
 
     @Override
