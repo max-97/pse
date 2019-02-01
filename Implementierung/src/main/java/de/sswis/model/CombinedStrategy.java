@@ -39,5 +39,9 @@ public class CombinedStrategy implements Strategy{
         }
         return Action.DEFECTION;
     }
+
+    public CombinedStrategy clone() {
+        return this;
+    }
 }
 

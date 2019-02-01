@@ -25,17 +25,7 @@ public class VMConfiguration {
     private List<String> strategies;
 
     private VMResult result;
-
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
+    private boolean hasResult = false;
 
     /**
      * Zeigt ob die Konfiguration variable Parameter enthält.
@@ -49,8 +39,7 @@ public class VMConfiguration {
      * @return true wenn es Ergebnisse von Simulationen mit dieser Konfiguration gibt, sonst false
      */
     public boolean hasResult () {
-        //TODO: implement me
-        return false;
+        return this.hasResult;
     }
 
     /**
@@ -153,6 +142,7 @@ public class VMConfiguration {
 
     public void setResult(VMResult result) {
         this.result = result;
+        this.hasResult = true;
     }
 
     public HashMap<String, Object> getAdaptationParameters() {

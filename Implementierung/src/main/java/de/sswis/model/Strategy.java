@@ -20,4 +20,5 @@ public interface Strategy {
      */
     Action calculateAction(Agent agent1, Agent agent2);
 
+    Strategy clone();
 }

@@ -18,8 +18,7 @@ import java.util.HashMap;
 public class BruteForcePairingHeuristic implements PairingAlgorithm{
 
     public static final String NAME = "Brute Force Paarung Heuristik";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Threshold"};
+    private static final String[] PARAMETER_NAMES = {"Threshold"};
     private double threshold;
 
     public BruteForcePairingHeuristic() {
@@ -85,5 +84,10 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
         threshold = (double)parameters.get("Threshold");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

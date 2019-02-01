@@ -66,7 +66,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void show() {
         frame = new JFrame("NewConfigurationView");
-        frame.setContentPane(new NewConfigurationView().ContentPane);
+        frame.setContentPane(this.ContentPane);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -76,7 +76,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

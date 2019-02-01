@@ -91,7 +91,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

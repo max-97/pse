@@ -16,8 +16,7 @@ import java.util.Random;
 public class RankPercentage implements AdaptationAlgorithm {
     public static final String NAME = "Rank Percentage";
     public static final String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 1;
-    public static final String[] PARAMETER_NAMES = {"Percentage"};
+    private static final String[] PARAMETER_NAMES = {"Percentage"};
     private int percentage;
 
     public RankPercentage() {
@@ -35,7 +34,7 @@ public class RankPercentage implements AdaptationAlgorithm {
             if(rndDouble < adaptationProbability) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < cutOff && currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
-                    agents[i].setStrategy(randomAgent.getStrategy());
+                    agents[i].setStrategy(randomAgent.getStrategy().clone());
                     adaptationCount++;
                 }
 
@@ -52,5 +51,10 @@ public class RankPercentage implements AdaptationAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
         percentage = (int)parameters.get("Percentage");
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }

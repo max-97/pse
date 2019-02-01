@@ -21,8 +21,7 @@ import java.util.Iterator;
 public class MinimumWeightMatching implements PairingAlgorithm {
 
     public static final String NAME = "Minimales Graphen Gewicht";
-    public static final int PARAMETER_COUNT = 0;
-    public static final String[] PARAMETER_NAMES = {};
+    private static final String[] PARAMETER_NAMES = {};
 
     public MinimumWeightMatching() {}
 
@@ -91,5 +90,10 @@ public class MinimumWeightMatching implements PairingAlgorithm {
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
 
+    }
+
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
     }
 }
