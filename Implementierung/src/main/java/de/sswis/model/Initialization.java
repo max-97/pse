@@ -61,9 +61,9 @@ public class Initialization {
             int[] ids = distribution.getAgentIDs();
             for (int i = 0; i < distribution.getAgentIDs().length; i++) {
                 for (int j = 0; j < agentCount; j++) {
-                    if (agents.get(j).getGroup() == null || ids[i] == agents.get(j).getId())
+                    if (agents.get(j).getGroup() == null && ids[i] == agents.get(j).getId())
                         agents.get(j).setGroup(group);
-                    members.add(agents.get(j));
+                        members.add(agents.get(j));
                 }
             }
         } else {
