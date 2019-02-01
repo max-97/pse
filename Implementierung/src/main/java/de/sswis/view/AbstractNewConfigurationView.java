@@ -44,5 +44,5 @@ public interface AbstractNewConfigurationView extends AbstractView {
 
     void addGame(String name);
 
-    void addParameters(HashMap<String, String[]> put);
+    void addParameters(HashMap<String, String[]> parameters);
 }

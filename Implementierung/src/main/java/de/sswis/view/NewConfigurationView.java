@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,6 +34,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     private List<String> strategies = new ArrayList<>();
     private List<String> cStrategies = new ArrayList<>();
 
+    private HashMap<String, String[]> algorithmParameters;
 
     private JComboBox gameComboBox;
     private JComboBox initComboBox;
@@ -58,6 +60,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         inits = new ArrayList<String>();
         strategies = new ArrayList<String>();
         cStrategies = new ArrayList<String>();
+        algorithmParameters = new HashMap<>();
     }
 
     @Override
@@ -156,6 +159,11 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void addGame(String name) {
         games.add(name);
+    }
+
+    @Override
+    public void addParameters(HashMap<String, String[]> parameters) {
+        this.algorithmParameters.putAll(parameters);
     }
 
     @Override
