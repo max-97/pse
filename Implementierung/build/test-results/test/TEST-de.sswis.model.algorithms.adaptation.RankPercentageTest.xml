@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.sswis.model.algorithms.adaptation.RankPercentageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-01-31T20:20:53" hostname="sophie-Aspire-5830TG" time="0.013">
-  <properties/>
-  <testcase name="adaptTest" classname="de.sswis.model.algorithms.adaptation.RankPercentageTest" time="0.007"/>
-  <testcase name="zeroAdaptationProbability" classname="de.sswis.model.algorithms.adaptation.RankPercentageTest" time="0.001"/>
-  <testcase name="zeroPercentage" classname="de.sswis.model.algorithms.adaptation.RankPercentageTest" time="0.003"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

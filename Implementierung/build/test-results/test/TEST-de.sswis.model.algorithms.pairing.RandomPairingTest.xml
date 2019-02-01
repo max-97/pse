@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.sswis.model.algorithms.pairing.RandomPairingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-01-31T20:20:54" hostname="sophie-Aspire-5830TG" time="0.0">
-  <properties/>
-  <testcase name="getPairingTest" classname="de.sswis.model.algorithms.pairing.RandomPairingTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

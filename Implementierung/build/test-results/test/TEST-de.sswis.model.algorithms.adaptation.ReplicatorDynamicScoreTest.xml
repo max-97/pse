@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="de.sswis.model.algorithms.adaptation.ReplicatorDynamicScoreTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-01-31T20:20:53" hostname="sophie-Aspire-5830TG" time="0.011">
-  <properties/>
-  <testcase name="adaptTest" classname="de.sswis.model.algorithms.adaptation.ReplicatorDynamicScoreTest" time="0.003"/>
-  <testcase name="adaptTest2" classname="de.sswis.model.algorithms.adaptation.ReplicatorDynamicScoreTest" time="0.008"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
