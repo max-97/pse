@@ -79,7 +79,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

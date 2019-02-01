@@ -17,12 +17,6 @@ public class VMResult {
     private Collection<Agent> agents; //TODO: falls möglich, löschen
     private Collection<VMAgentHistory> agentHistories;
 
-/*
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-    */
 
     public String getName() {
         return name;

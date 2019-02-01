@@ -112,7 +112,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

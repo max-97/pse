@@ -121,7 +121,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override

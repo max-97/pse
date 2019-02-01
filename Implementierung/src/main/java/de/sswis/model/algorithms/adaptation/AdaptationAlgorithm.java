@@ -23,4 +23,6 @@ public interface AdaptationAlgorithm {
     String getName();
 
 	void setParameters(HashMap<String, Object> parameters);
+
+    String[] getParameters();
 }

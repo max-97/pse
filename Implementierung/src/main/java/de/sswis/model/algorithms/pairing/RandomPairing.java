@@ -57,4 +57,8 @@ public class RandomPairing implements PairingAlgorithm {
     public void setParameters(HashMap<String, Object> parameters) {
 
     }
+    @Override
+    public String[] getParameters() {
+        return PARAMETER_NAMES;
+    }
 }
