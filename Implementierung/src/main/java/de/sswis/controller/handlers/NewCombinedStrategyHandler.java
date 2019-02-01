@@ -45,7 +45,6 @@ public class NewCombinedStrategyHandler implements ActionListener {
         for(BaseStrategy s : this.serviceLoader.getBaseStrategyList()) {
             newCombinedStrategyView.addBaseStrategy(s.getName());
         }
-        newCombinedStrategyView.update();
         newCombinedStrategyView.show();
     }
 }

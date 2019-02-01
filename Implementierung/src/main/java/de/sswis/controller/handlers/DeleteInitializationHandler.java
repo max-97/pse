@@ -37,6 +37,5 @@ public class DeleteInitializationHandler implements ActionListener {
             return;
         }
         this.manageInitializationsView.removeInit(selectedVM.getName());
-        this.manageInitializationsView.update();
     }
 }

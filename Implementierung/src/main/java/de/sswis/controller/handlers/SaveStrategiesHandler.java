@@ -51,7 +51,6 @@ public class SaveStrategiesHandler implements ActionListener {
         if (parentView == null)
             return;
         parentView.addStrategy(vmStrategy);
-        parentView.update();
         this.strategyView.close();
     }
 }

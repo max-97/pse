@@ -52,7 +52,6 @@ public class SaveInitializationsHandler implements ActionListener {
         if (parentView == null)
             return;
         parentView.addInit(vmInitialization);
-        parentView.update();
         this.initializationView.close();
     }
 }

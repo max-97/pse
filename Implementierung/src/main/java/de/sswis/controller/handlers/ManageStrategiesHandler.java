@@ -37,7 +37,6 @@ public class ManageStrategiesHandler implements ActionListener {
         for(VMStrategy s : this.fileManager.loadAllMixedStrageyies()) {
             manageStrategiesView.addStrategy(s);
         }
-        manageStrategiesView.update();
         manageStrategiesView.show();
     }
 }

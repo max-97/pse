@@ -33,7 +33,6 @@ public class EditGameHandler implements ActionListener {
         newGameView.setParentView(manageGamesView);
         VMGame selectedVM = this.manageGamesView.getSelectedVM();
         newGameView.setGame(selectedVM);
-        newGameView.update();
         newGameView.show();
     }
 }

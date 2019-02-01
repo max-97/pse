@@ -38,6 +38,5 @@ public class DeleteStrategyHandler implements ActionListener {
             return;
         }
         this.manageStrategiesView.removeStrategy(selectedVM.getName());
-        this.manageStrategiesView.update();
     }
 }

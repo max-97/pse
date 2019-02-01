@@ -37,7 +37,6 @@ public class ManageInitializationHandler implements ActionListener {
         for(VMInitialization i : this.fileManager.loadAllInitializations()) {
             manageInitializationsView.addInit(i);
         }
-        manageInitializationsView.update();
         manageInitializationsView.show();
     }
 }
