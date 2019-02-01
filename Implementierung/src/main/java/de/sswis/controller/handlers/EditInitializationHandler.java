@@ -40,7 +40,6 @@ public class EditInitializationHandler implements ActionListener {
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             newInitializationView.addCombinedStrategy(c.getName());
         }
-        newInitializationView.update();
         newInitializationView.show();
     }
 }

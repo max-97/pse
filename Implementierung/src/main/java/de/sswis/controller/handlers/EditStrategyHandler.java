@@ -43,7 +43,6 @@ public class EditStrategyHandler implements ActionListener {
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             newStrategyView.addCombinedStrategy(c.getName());
         }
-        newStrategyView.update();
         newStrategyView.show();
     }
 }

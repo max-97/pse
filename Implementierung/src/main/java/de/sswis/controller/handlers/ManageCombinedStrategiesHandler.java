@@ -38,7 +38,6 @@ public class ManageCombinedStrategiesHandler implements ActionListener {
         for(VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             manageCombinedStrategiesView.addStrategy(c);
         }
-        manageCombinedStrategiesView.update();
         manageCombinedStrategiesView.show();
     }
 }

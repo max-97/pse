@@ -37,6 +37,5 @@ public class DeleteResultHandler implements ActionListener {
             return;
         }
         this.manageResultsView.removeResult(vmResult.getName());
-        this.manageResultsView.update();
     }
 }

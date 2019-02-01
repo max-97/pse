@@ -47,12 +47,10 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
         }
         CombinedStrategy cs = this.parser.parseVMCombinedStrategy(combinedStrategy);
         ModelProvider.getInstance().addCombinedStrategy(cs);
-        ModelProvider.getInstance().addStrategy(cs);
         AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
         if (parentView == null)
             return;
         parentView.addStrategy(combinedStrategy);
-        parentView.update();
         this.combinedStrategyView.close();
     }
 }

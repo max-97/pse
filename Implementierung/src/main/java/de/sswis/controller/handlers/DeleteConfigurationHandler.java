@@ -37,6 +37,5 @@ public class DeleteConfigurationHandler implements ActionListener {
             return;
         }
         this.manageConfigurationsView.removeConfiguration(selectedVM.getName());
-        this.manageConfigurationsView.update();
     }
 }

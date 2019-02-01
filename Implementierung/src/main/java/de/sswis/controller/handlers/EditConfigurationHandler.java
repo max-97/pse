@@ -59,7 +59,6 @@ public class EditConfigurationHandler implements ActionListener {
         for (VMGame g : this.fileManager.loadAllGames()) {
             newConfigurationView.addGame(g.getName());
         }
-        newConfigurationView.update();
         newConfigurationView.show();
     }
 }

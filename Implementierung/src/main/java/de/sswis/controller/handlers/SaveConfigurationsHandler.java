@@ -52,7 +52,6 @@ public class SaveConfigurationsHandler implements ActionListener {
         if (parentView == null)
             return;
         parentView.addConfiguration(vmConfiguration);
-        parentView.update();
         this.configurationView.close();
     }
 }

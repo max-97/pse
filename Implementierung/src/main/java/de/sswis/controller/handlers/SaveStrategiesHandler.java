@@ -45,13 +45,12 @@ public class SaveStrategiesHandler implements ActionListener {
             return;
         }
         MixedStrategy mixedStrategy = this.parser.parseVMStrategy(vmStrategy);
-        ModelProvider.getInstance().addStrategy(mixedStrategy);
+        ModelProvider.getInstance().addMixedStrategy(mixedStrategy);
 
         AbstractManageStrategiesView parentView = this.strategyView.getParentView();
         if (parentView == null)
             return;
         parentView.addStrategy(vmStrategy);
-        parentView.update();
         this.strategyView.close();
     }
 }
