@@ -18,6 +18,21 @@ public class VMCombinedStrategy {
     private String defaultStrategy;
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
+    private List<HashMap<String, String[]>> conditionParameters = new ArrayList<>();
+
+
+    public HashMap<String, String[]> getConditionParameter(int index) {
+        return this.conditionParameters.get(index);
+    }
+
+    public List<HashMap<String, String[]>> getConditionpParameters() {
+        return conditionParameters;
+    }
+
+    public void addConditionParameter(HashMap<String, String[]> parameters) {
+        this.conditionParameters.add(parameters);
+    }
+
 
     public List<String> getStrategies() {
         return this.baseStrategies;
@@ -74,7 +89,9 @@ public class VMCombinedStrategy {
      * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
      * @return String enthält Kurzbeschreibung der kombinierten Strategie
      */
-    public String getToolTipText() {    return ""; }
+    public String getToolTipText() {
+        return "";
+    }
 
     public String getName() {
         return name;
