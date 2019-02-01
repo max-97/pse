@@ -21,12 +21,20 @@ public class InitializationTest {
         agentDistributions[2] = new AgentDistribution(55);
         groups = new Group[2];
         groups[0] = new Group(0, "Group1");
-        groups[a] = new Group(1, "Group2");
+        groups[1] = new Group(1, "Group2");
     }
 
     @Test
     public void setGroupDistributionTest() {
-
+        Agent[] agents = init.calculateInitialAgentState();
+        init.addGroup(groups[0]);
+        init.addGroup(groups[1]);
+        init.setGroupDistribution(agentDistributions[0], groups[0]);
+        init.setGroupDistribution(agentDistributions[1], groups[0]);
+        init.setGroupDistribution(agentDistributions[2], groups[1]);
+        assertTrue(groups[0].getMembers().size() == 5);
+        assertTrue(groups[1].getMembers().size() == 5);
+        assertTrue(groups[0].getMembers().contains(agents[1]));
     }
 
     @Test
