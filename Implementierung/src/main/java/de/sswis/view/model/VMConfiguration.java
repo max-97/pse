@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class VMConfiguration {
 
-
     private String name;
 
     private String game;
@@ -23,6 +22,10 @@ public class VMConfiguration {
     private String cycles;
     private String adaptationProbability;
     private List<String> strategies;
+
+    private HashMap<String, Object> pairingParameters;
+    private HashMap<String, Object> adaptationParameters;
+    private HashMap<String, Object> rankingParameters;
 
     private VMResult result;
     private boolean hasResult = false;
@@ -145,15 +148,27 @@ public class VMConfiguration {
         this.hasResult = true;
     }
 
+    public void setPairingParameters(HashMap<String, Object> pairingParameters) {
+        this.pairingParameters = pairingParameters;
+    }
+
+    public void setAdaptationParameters(HashMap<String, Object> adaptationParameters) {
+        this.adaptationParameters = adaptationParameters;
+    }
+
+    public void setRankingParameters(HashMap<String, Object> rankingParameters) {
+        this.rankingParameters = rankingParameters;
+    }
+
     public HashMap<String, Object> getAdaptationParameters() {
-        return null;
+        return this.adaptationParameters;
     }
 
     public HashMap<String, Object> getPairingParameters() {
-        return null;
+        return this.pairingParameters;
     }
 
     public HashMap<String, Object> getRankingParameters() {
-        return null;
+        return this.rankingParameters;
     }
 }
