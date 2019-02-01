@@ -11,4 +11,4 @@ notifications:
   email: false
   
 script:
-    - Implementierung/gradle test
+    - Implementierung/gradlew test
