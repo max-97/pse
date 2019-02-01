@@ -43,7 +43,7 @@ public class InitializationTest {
     }
 
     @Test
-    public void setStrategyDistribution() {
+    public void setStrategyDistributionTest() {
         Strategy always = new AlwaysCooperate();
         Strategy never = new NeverCooperate();
         Agent[] agents = init.calculateInitialAgentState();
@@ -59,18 +59,38 @@ public class InitializationTest {
                 alwaysNumber++;
             }
             if (groups[0].getMembers().get(i),getStrategy() == never) {
-                neverNumberNumber++;
+                neverNumber++;
             }
         }
         assertTrue(alwaysNumber == 5);
         assertTrue(neverNumber == 5);
-        assertEquals(always, agents[1]);
-        assertEquals(always, agents[5]);
-        assertEquals(always, agents[9]);
+        assertEquals(always, agents[1].getStrategy());
+        assertEquals(always, agents[5].getStrategy());
+        assertEquals(always, agents[9].getStrategy());
     }
 
     @Test
-    public void setCapitalDistribution() {
-
+    public void setCapitalDistributionTest() {
+        Agent[] agents = init.calculateInitialAgentState();
+        init.addGroup(groups[0]);
+        init.setGroupDistribution(agentDistributions[3], groups[0]);
+        init.setCapitalDistribution(agentDistributions[0], 10, groups[0]);
+        init.setCapitalDistribution(agentDistributions[1], 10, groups[0]);
+        init.setCapitalDistribution(agentDistributions[2], 20, groups[0]);
+        int tenNumber = 0;
+        int twNumber = 0;
+        for (int i = 0; i < groups[0].getMembers().size(); i++) {
+            if (groups[0].getMembers().get(i),getScore() == 10) {
+                tenNumber++;
+            }
+            if (groups[0].getMembers().get(i),getScore() == 20) {
+                twNumber++;
+            }
+        }
+        assertTrue(tenNumber == 5);
+        assertTrue(twNumber == 5);
+        assertTrue(agents[1].getScore() == 10);
+        assertTrue(agents[5].getScore() == 10);
+        assertTrue(agents[9].getScore() == 10);
     }
 }
