@@ -225,24 +225,24 @@ public class MainView implements AbstractMainView {
     private void updateButtons() {
         if (getSelected() != null) {
             if (simulatingConfigs.contains(getSelected().getName())) {
-                startButton.enable(false);
-                stopButton.enable(true);
+                startButton.setEnabled(false);
+                stopButton.setEnabled(true);
             } else {
-                startButton.enable(true);
-                stopButton.enable(false);
+                startButton.setEnabled(true);
+                stopButton.setEnabled(false);
             }
 
             if (getSelected().hasResult()) {
-                showResultButton.enable(true);
-                saveResultButton.enable(true);
+                showResultButton.setEnabled(true);
+                saveResultButton.setEnabled(true);
             } else {
             }
 
         } else {
-            startButton.enable(false);
-            stopButton.enable(false);
-            showResultButton.enable(false);
-            saveResultButton.enable(false);
+            startButton.setEnabled(false);
+            stopButton.setEnabled(false);
+            showResultButton.setEnabled(false);
+            saveResultButton.setEnabled(false);
         }
         update();
     }
