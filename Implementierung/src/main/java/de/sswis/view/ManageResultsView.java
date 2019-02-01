@@ -46,7 +46,8 @@ public class ManageResultsView implements AbstractManageResultsView {
     @Override
     public void addResult(VMResult vmResult) {
         vmResults.add(vmResult);
-        ResultTab tab = new ResultTab(vmResult);
+        ResultTab tab = new ResultTab();
+        tab.setVmResult(vmResult);
         tab.addDeleteButtonActionlistener(deleteListener);
 
         resultTabs.add(tab);

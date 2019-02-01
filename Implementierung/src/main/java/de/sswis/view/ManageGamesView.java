@@ -47,7 +47,8 @@ public class ManageGamesView implements AbstractManageGamesView {
     @Override
     public void addGame(VMGame game) {
         vmGames.add(game);
-        GameTab tab = new GameTab(game);
+        GameTab tab = new GameTab();
+        tab.setVmGame(game);
         tab.addDeleteButtonActionlistener(deleteListener);
         tab.addEditButtonActionlistener(editListener);
 
