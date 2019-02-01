@@ -87,7 +87,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
         vmStrategy.setName(nameTextField.getText());
         for (int i = 0; i < strategyComboBoxes.size(); i++) {
-            vmStrategy.addStrategy(strategyComboBoxes.get(i).getSelectedItem(),
+            vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
                     probabilityTextFields.get(i).getText());
         }
         vmStrategy.setDescription(descriptionTextPane.getText());

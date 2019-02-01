@@ -67,7 +67,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         GroupTab tab = new GroupTab(strategies);
 
         tab.setInitializationView(this);
-        tab.setVMGroup(vmGroup);
+        tab.setVMGroup(vmGroup, percentageAgentGroupRadioButton.isSelected());
 
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
