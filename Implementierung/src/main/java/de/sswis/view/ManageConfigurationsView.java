@@ -47,7 +47,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     public void addConfiguration(VMConfiguration configuration) {
         vmConfigurations.add(configuration);
 
-        ConfigurationTab tab = new ConfigurationTab(configuration);
+        ConfigurationTab tab = new ConfigurationTab();
+        tab.setVmConfiguration(configuration);
 
         tab.addDeleteButtonActionlistener(deleteListener);
         tab.addEditButtonActionlistener(editListener);

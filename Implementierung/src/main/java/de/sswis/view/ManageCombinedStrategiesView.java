@@ -48,7 +48,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
         vmCombinedStrategies.add(vmStrategy);
-        CombinedStrategyTab tab = new CombinedStrategyTab(vmStrategy);
+        CombinedStrategyTab tab = new CombinedStrategyTab();
+        tab.setVMCombinedStrategy(vmStrategy);
 
         tab.addDeleteButtonActionlistener(deleteListener);
         tab.addEditButtonActionlistener(editListener);

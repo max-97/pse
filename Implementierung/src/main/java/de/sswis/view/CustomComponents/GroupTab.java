@@ -180,6 +180,7 @@ public class GroupTab {
         percentageAgentStrategyRadioButton = new JRadioButton();
         buttonGroupStrategy.add(percentageAgentStrategyRadioButton);
 
+        addCapitalButton = new JButton();
         addCapitalButton.addActionListener(e -> addCapital());
 
     }
