@@ -11,4 +11,5 @@ notifications:
   email: false
   
 script:
-    - Implementierung/gradlew test
+    - cd Implementierung
+    - ./gradlew test 
