@@ -53,7 +53,7 @@
               <component id="5d14" class="javax.swing.JTree" binding="ConfigurationTree" custom-create="true">
                 <constraints/>
                 <properties>
-                  <editable value="true"/>
+                  <editable value="false"/>
                   <largeModel value="true"/>
                   <rootVisible value="true"/>
                   <showsRootHandles value="true"/>

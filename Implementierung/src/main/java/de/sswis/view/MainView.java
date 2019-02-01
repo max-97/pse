@@ -63,15 +63,19 @@ public class MainView implements AbstractMainView {
     public MainView() {
 
         configurations = new ArrayList<VMConfiguration>();
+
+        frame = new JFrame("SSWIS");
+
         $$$setupUI$$$();
         setMenuBar();
     }
 
 
-
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         configurations.add(configuration);
+
+        ConfigurationTree.setModel(createConfigurationTree());
     }
 
     @Override
@@ -82,6 +86,8 @@ public class MainView implements AbstractMainView {
                 break;
             }
         }
+
+        ConfigurationTree.setModel(createConfigurationTree());
     }
 
     @Override
@@ -330,9 +336,10 @@ public class MainView implements AbstractMainView {
         ConfigurationTree.setModel(createConfigurationTree());
 
 
+
+
+
     }
-
-
 
 
     /**
@@ -363,7 +370,7 @@ public class MainView implements AbstractMainView {
         ConfigurationScrollPane.setHorizontalScrollBarPolicy(31);
         ConfigurationScrollPane.setVerticalScrollBarPolicy(22);
         ContentPanel.add(ConfigurationScrollPane, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        ConfigurationTree.setEditable(true);
+        ConfigurationTree.setEditable(false);
         ConfigurationTree.setLargeModel(true);
         ConfigurationTree.setRootVisible(true);
         ConfigurationTree.setShowsRootHandles(true);
@@ -419,6 +426,4 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
-
-
 }
