@@ -1,6 +1,7 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -91,8 +92,8 @@ public class VMCombinedStrategy {
         this.description = description;
     }
 
-    public double getConditionParameter(String conditionName) {
-        return 0;
+    public HashMap<String, Object> getConditionParameter(String conditionName) {
+        return null;
     }
 
 }

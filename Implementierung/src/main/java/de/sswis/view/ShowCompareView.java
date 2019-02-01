@@ -37,7 +37,8 @@ public class ShowCompareView implements AbstractShowCompareView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override

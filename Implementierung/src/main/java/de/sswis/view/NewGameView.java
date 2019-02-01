@@ -7,8 +7,11 @@ import de.sswis.view.AbstractNewGameView;
 import de.sswis.view.model.VMGame;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels.
@@ -51,6 +54,17 @@ public class NewGameView implements AbstractNewGameView {
     @Override
     public void update() {
 
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+    }
+
+    private void updateVM() {
+        vmGame.setName(nameTextField.getText());
+
+        int[][] payOffs = {{(int) spinner1.getValue(), (int) spinner2.getValue(), (int) spinner3.getValue(), (int) spinner4.getValue()},
+                {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
+        vmGame.setPayoffs(payOffs);
+        vmGame.setDescription(descriptionPane.getText());
     }
 
     @Override
@@ -80,15 +94,31 @@ public class NewGameView implements AbstractNewGameView {
 
     }
 
-
     @Override
     public VMGame getVMGame() {
+        updateVM();
         return this.vmGame;
     }
 
     @Override
     public void setGame(VMGame game) {
         this.vmGame = game;
+
+        nameTextField.setText(vmGame.getName());
+
+        int[][] payOffs = vmGame.getPayoffs();
+        spinner1.setValue(payOffs[0][0]);
+        spinner2.setValue(payOffs[0][1]);
+        spinner3.setValue(payOffs[0][2]);
+        spinner4.setValue(payOffs[0][3]);
+
+        spinner5.setValue(payOffs[1][0]);
+        spinner6.setValue(payOffs[1][1]);
+        spinner7.setValue(payOffs[1][2]);
+        spinner8.setValue(payOffs[1][3]);
+
+        descriptionPane.setText(vmGame.getDescription());
+
     }
 
     @Override
@@ -103,40 +133,7 @@ public class NewGameView implements AbstractNewGameView {
 
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-        if (vmGame.getName() != null) {
-            nameTextField.setText(vmGame.getName());
-        }
 
-        spinner1 = new JSpinner();
-        spinner2 = new JSpinner();
-        spinner3 = new JSpinner();
-        spinner4 = new JSpinner();
-        spinner5 = new JSpinner();
-        spinner6 = new JSpinner();
-        spinner7 = new JSpinner();
-        spinner8 = new JSpinner();
-
-        int[][] payOffs = vmGame.getPayoffs();
-        if (payOffs.length == 2) {
-            if (payOffs[0].length == 4) {
-                spinner1.setValue(payOffs[0][0]);
-                spinner2.setValue(payOffs[0][1]);
-                spinner3.setValue(payOffs[0][2]);
-                spinner4.setValue(payOffs[0][3]);
-            }
-            if (payOffs[1].length == 4) {
-                spinner5.setValue(payOffs[1][0]);
-                spinner6.setValue(payOffs[1][1]);
-                spinner7.setValue(payOffs[1][2]);
-                spinner8.setValue(payOffs[1][3]);
-            }
-        }
-
-        descriptionPane = new JTextPane();
-        if (vmGame.getDescription() != null) {
-            descriptionPane.setText(vmGame.getDescription());
-        }
     }
 
     {
@@ -200,6 +197,7 @@ public class NewGameView implements AbstractNewGameView {
         descriptionLabel = new JLabel();
         descriptionLabel.setText("Beschreibung:");
         panel1.add(descriptionLabel, new GridConstraints(8, 0, 1, 10, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionPane = new JTextPane();
         panel1.add(descriptionPane, new GridConstraints(9, 0, 1, 10, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         nameLabel.setText("Name: ");
         panel1.add(nameLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -211,14 +209,23 @@ public class NewGameView implements AbstractNewGameView {
         panel1.add(spacer5, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 10), null, 0, false));
         final Spacer spacer6 = new Spacer();
         panel1.add(spacer6, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, new Dimension(10, -1), null, 0, false));
+        spinner1 = new JSpinner();
         panel1.add(spinner1, new GridConstraints(4, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner2 = new JSpinner();
         panel1.add(spinner2, new GridConstraints(4, 5, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner3 = new JSpinner();
         panel1.add(spinner3, new GridConstraints(4, 7, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner4 = new JSpinner();
         panel1.add(spinner4, new GridConstraints(4, 9, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner5 = new JSpinner();
         panel1.add(spinner5, new GridConstraints(6, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner6 = new JSpinner();
         panel1.add(spinner6, new GridConstraints(6, 5, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner7 = new JSpinner();
         panel1.add(spinner7, new GridConstraints(6, 7, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        spinner8 = new JSpinner();
         panel1.add(spinner8, new GridConstraints(6, 9, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameTextField = new JFormattedTextField();
         panel1.add(nameTextField, new GridConstraints(0, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));

@@ -8,9 +8,12 @@ import de.sswis.view.CustomComponents.ParameterTable;
 import de.sswis.view.model.VMCombinedStrategy;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -26,6 +29,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     private List<String> conditions = new ArrayList<>();
     private List<String> baseStrategies = new ArrayList<>();
+
 
     private JPanel MainPanel;
 
@@ -63,22 +67,25 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         additionalParameterLists = new ArrayList<ParameterTable>();
     }
 
-    private void createNewLine() {
+    private void addNewLine() {
         JLabel prio = new JLabel((priorityLabels.size() + 1) + ".");
         priorityLabels.add(prio);
 
         JComboBox condition = new JComboBox(conditions.toArray());
+
         conditionComboBoxes.add(condition);
 
         ParameterTable param = new ParameterTable(new ArrayList<String>());
         additionalParameterLists.add(param);
 
         JComboBox strategy = new JComboBox(baseStrategies.toArray());
+
         strategyComboBoxes.add(strategy);
 
-    }
+        //add to panel
 
-    private void addLine(int index) {
+        int index = conditionComboBoxes.size() - 1;
+
         conditionPanel.add(conditionComboBoxes.get(index),
                 new GridConstraints(1 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
@@ -91,6 +98,12 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.add(additionalParameterLists.get(index).$$$getRootComponent$$$(),
                 new GridConstraints(2 + index * 2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
+
+        removeLastButton.enable(!conditionComboBoxes.isEmpty());
+        //TODO: check number 20
+        addConditionButton.enable(!(conditionComboBoxes.size() >= 20));
+
+        update();
     }
 
     private void removeLastLine() {
@@ -101,11 +114,29 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         conditionPanel.remove(priorityLabels.remove(index));
         conditionPanel.remove(additionalParameterLists.remove(index).$$$getRootComponent$$$());
 
+        removeLastButton.enable(!conditionComboBoxes.isEmpty());
+        update();
     }
 
     @Override
     public void update() {
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+    }
 
+    private void updateVM() {
+        vmCombinedStrategy = new VMCombinedStrategy();
+
+        vmCombinedStrategy.setName(nameTextField.getText());
+
+        for (int i = 0; i < conditionComboBoxes.size(); i++) {
+            vmCombinedStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
+                    (String) conditionComboBoxes.get(i).getSelectedItem());
+        }
+
+        vmCombinedStrategy.setDefaultStrategy((String) defaultStrategy.getSelectedItem());
+
+        vmCombinedStrategy.setDescription(descriptionTextPane.getText());
     }
 
     @Override
@@ -139,6 +170,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public VMCombinedStrategy getCombinedStrategy() {
+        updateVM();
         return this.vmCombinedStrategy;
     }
 
@@ -146,8 +178,10 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     public void setCombinedStrategy(VMCombinedStrategy combinedStrategy) {
 
         this.vmCombinedStrategy = combinedStrategy;
+        nameTextField.setText(vmCombinedStrategy.getName());
+        descriptionTextPane.setText(vmCombinedStrategy.getDescription());
         for (int i = 0; i < vmCombinedStrategy.getConditions().size() - 1; i++) {
-            createNewLine();
+            addNewLine();
             //TODO: do for additional Parameters
             //TODO: VM check for correct Order!
             conditionComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getConditions().get(i));
@@ -177,27 +211,14 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-        if (vmCombinedStrategy.getName() != null) {
-            nameTextField.setText(vmCombinedStrategy.getName());
-        }
+        addConditionButton = new JButton();
+        addConditionButton.addActionListener(e -> addNewLine());
 
-        descriptionTextPane = new JTextPane();
-        if (vmCombinedStrategy.getDescription() != null) {
-            descriptionTextPane.setText(vmCombinedStrategy.getDescription());
-        }
+        removeLastButton = new JButton();
+        removeLastButton.addActionListener(e -> removeLastLine());
 
         defaultStrategy = new JComboBox(baseStrategies.toArray());
-        if (!vmCombinedStrategy.getStrategies().isEmpty()) {
-            int index = vmCombinedStrategy.getStrategies().size() - 1;
-            defaultStrategy.setSelectedItem(vmCombinedStrategy.getStrategies().get(index));
-        }
 
-        if (!conditionComboBoxes.isEmpty()) {
-            for (int i = 0; i < conditionComboBoxes.size(); i++) {
-                addLine(i);
-            }
-        }
     }
 
     {
@@ -233,21 +254,21 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         final JLabel label1 = new JLabel();
         label1.setText("Beschreibung:");
         panel1.add(label1, new GridConstraints(7, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextPane = new JTextPane();
         panel1.add(descriptionTextPane, new GridConstraints(8, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel1.add(separator1, new GridConstraints(4, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Name: ");
         panel1.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameTextField = new JFormattedTextField();
         panel1.add(nameTextField, new GridConstraints(0, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         panel1.add(defaultStrategy, new GridConstraints(5, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        addConditionButton = new JButton();
         addConditionButton.setText("Bedingung hinzufügen");
         panel1.add(addConditionButton, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Keine Bedingung: ");
         panel1.add(label3, new GridConstraints(5, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        removeLastButton = new JButton();
         removeLastButton.setEnabled(false);
         removeLastButton.setText("letzte Bedingung entfernen");
         panel1.add(removeLastButton, new GridConstraints(3, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

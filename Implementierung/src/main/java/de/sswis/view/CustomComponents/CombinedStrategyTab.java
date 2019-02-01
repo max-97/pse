@@ -69,6 +69,8 @@ public class CombinedStrategyTab {
         }
     }
 
+    public VMCombinedStrategy getCombinedStrategy() { return combinedStrategy; }
+
     public void addEditButtonActionlistener(ActionListener listener) {
         editButton.addActionListener(listener);
     }

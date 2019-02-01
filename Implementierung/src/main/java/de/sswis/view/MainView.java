@@ -8,10 +8,11 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.List;
 public class MainView implements AbstractMainView {
 
     private JFrame frame;
+
 
     private List<VMConfiguration> configurations;
     private List<String> simulatingConfigs;
@@ -65,6 +67,8 @@ public class MainView implements AbstractMainView {
         setMenuBar();
     }
 
+
+
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         configurations.add(configuration);
@@ -72,7 +76,6 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void removeConfiguration(String configurationName) {
-        //TODO: was soll passieren bei Konfigurationen mit gleichem Namen?
         for (int i = 0; i < configurations.size(); i++) {
             if (configurations.get(i).getName().equals(configurationName)) {
                 configurations.remove(i);
@@ -93,9 +96,18 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void setSimulationFinished(String NameConfiguration) {
-        simulatingConfigs.remove(NameConfiguration);
+    public void setSimulationStarted(String NameConfiguration) {
+        simulatingConfigs.add(NameConfiguration);
+        updateButtons();
     }
+
+    @Override
+    public void setSimulationFinished(String NameConfiguration) {
+
+        simulatingConfigs.remove(NameConfiguration);
+        updateButtons();
+    }
+
 
     @Override
     public VMConfiguration getSelected() {
@@ -181,6 +193,7 @@ public class MainView implements AbstractMainView {
         manageConfigurationsItem.addActionListener(listener);
     }
 
+
     @Override
     public void addManageResultMenuActionListener(ActionListener listener) {
         manageResultsItem.addActionListener(listener);
@@ -198,7 +211,36 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void update() {
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
+
+
+    private void updateButtons() {
+        if (getSelected() != null) {
+            if (simulatingConfigs.contains(getSelected().getName())) {
+                startButton.enable(false);
+                stopButton.enable(true);
+            } else {
+                startButton.enable(true);
+                stopButton.enable(false);
+            }
+
+            if (getSelected().hasResult()) {
+                showResultButton.enable(true);
+                saveResultButton.enable(true);
+            } else {
+            }
+
+        } else {
+            startButton.enable(false);
+            stopButton.enable(false);
+            showResultButton.enable(false);
+            saveResultButton.enable(false);
+        }
+        update();
+    }
+
 
     @Override
     public void show() {
@@ -283,12 +325,14 @@ public class MainView implements AbstractMainView {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         ConfigurationTree = new JTree();
+        ConfigurationTree.addTreeSelectionListener(e -> updateButtons());
         ConfigurationTree.setModel(createConfigurationTree());
 
 
     }
+
+
 
 
     /**
@@ -375,5 +419,6 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 
 }

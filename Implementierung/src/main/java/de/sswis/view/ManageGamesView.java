@@ -26,6 +26,9 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     private List<GameTab> gameTabs;
 
+    ActionListener editListener;
+    ActionListener deleteListener;
+
     private JButton newGameButton;
     private JButton cancelButton;
     private JButton saveAndQuitButton;
@@ -44,19 +47,21 @@ public class ManageGamesView implements AbstractManageGamesView {
     @Override
     public void addGame(VMGame game) {
         vmGames.add(game);
-        addTab(game);
-    }
-
-    private void addTab(VMGame game) {
         GameTab tab = new GameTab(game);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        gameTabs.add(tab);
         GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
     }
+
 
     @Override
     public void removeGame(String gameName) {
         for (int i = 0; i < vmGames.size(); i++) {
             if (vmGames.get(i).getName().equals(gameName)) {
                 vmGames.remove(i);
+                gameTabs.remove(i);
                 GamesPane.removeTabAt(i);
                 break;
             }
@@ -70,16 +75,12 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void addEditGameButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < gameTabs.size(); i++) {
-            gameTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteGameButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < gameTabs.size(); i++) {
-            gameTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override
@@ -99,7 +100,8 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override

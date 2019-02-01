@@ -45,8 +45,7 @@ public class ChooseRepititionTab {
         return (int) repititionTextField.getValue();
     }
 
-    public void update() {
-
+    public void updateButtonGroup() {
         kLabel.setEnabled(repititionRadioButton.isSelected());
         repititionTextField.setEnabled(repititionRadioButton.isSelected());
 
@@ -56,9 +55,11 @@ public class ChooseRepititionTab {
 
         buttonGroup = new ButtonGroup();
         averageRadioButton = new JRadioButton();
+        averageRadioButton.addChangeListener(e -> updateButtonGroup());
         buttonGroup.add(averageRadioButton);
 
         repititionRadioButton = new JRadioButton();
+        repititionRadioButton.addChangeListener(e -> updateButtonGroup());
         buttonGroup.add(repititionRadioButton);
 
         repititionTextField = new JFormattedTextField(NumberFormat.getNumberInstance());

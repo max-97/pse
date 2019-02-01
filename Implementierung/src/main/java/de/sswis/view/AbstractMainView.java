@@ -3,8 +3,10 @@ package de.sswis.view;
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.EventListener;
 
 
 /**
@@ -37,6 +39,12 @@ public interface AbstractMainView extends AbstractView {
     /**
      * Wird aufgerufen wenn eine Simulation beendet wurde.
      * @param NameConfiguration Name der Konfiguration, mit der die beendete Simulation ausgeführt wurde
+     */
+    void setSimulationStarted (String NameConfiguration);
+
+    /**
+     * Wird aufgerufen wenn eine Simulation gestartet wurde.
+     * @param NameConfiguration Name der Konfiguration, mit der die Simulation ausgeführt wird
      */
     void setSimulationFinished (String NameConfiguration);
 
@@ -134,6 +142,7 @@ public interface AbstractMainView extends AbstractView {
     void addManageConfigMenuActionListener(ActionListener listener);
 
     void addManageResultMenuActionListener(ActionListener listener);
+
 
     Collection<VMResult> getResults();
 

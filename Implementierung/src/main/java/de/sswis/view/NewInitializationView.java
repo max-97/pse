@@ -3,14 +3,17 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.model.Action;
 import de.sswis.view.CustomComponents.GroupTab;
 import de.sswis.view.model.VMGroup;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -39,6 +42,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private JButton addGroupButton;
     private JFormattedTextField nameTextField;
 
+    private ButtonGroup buttonGroup;
+    private JRadioButton idAgentGroupRadioButton;
+    private JRadioButton percentageAgentGroupRadioButton;
+
     private AbstractManageInitializationsView parentView;
 
     public NewInitializationView() {
@@ -50,13 +57,18 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private void addNewGroupTab() {
         GroupTab tab = new GroupTab(strategies);
+        tab.setInitializationView(this);
+
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab(strategies);
-        tab.setVMGroup(vmGroup, vmInitialization.hasRelativeDistribution());
+
+        tab.setInitializationView(this);
+        tab.setVMGroup(vmGroup, percentageAgentGroupRadioButton.isSelected());
+
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
@@ -64,6 +76,23 @@ public class NewInitializationView implements AbstractNewInitializationView {
     @Override
     public void update() {
 
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+    }
+
+    private void updateVM() {
+        vmInitialization = new VMInitialization();
+
+        vmInitialization.setName(nameTextField.getText());
+        vmInitialization.setAgentCount((int) nameTextField.getValue());
+
+        for (int i = 0; i < groupTabs.size(); i++) {
+            vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
+        }
+    }
+
+    public boolean isIDAgentDistributionSelected() {
+        return idAgentGroupRadioButton.isSelected();
     }
 
     @Override
@@ -93,8 +122,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
         finishButton.addActionListener(listener);
     }
 
+
     @Override
     public VMInitialization getVMInitialization() {
+        updateVM();
         return this.vmInitialization;
     }
 
@@ -109,11 +140,10 @@ public class NewInitializationView implements AbstractNewInitializationView {
         this.vmInitialization = initialization;
         nameTextField.setText(vmInitialization.getName());
 
-        if (!vmInitialization.getGroups().isEmpty()) {
-            for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
-                addSpecificGroupTab(vmInitialization.getGroups().get(i));
-            }
+        for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
+            addSpecificGroupTab(vmInitialization.getGroups().get(i));
         }
+
     }
 
     @Override
@@ -127,12 +157,15 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
+        addGroupButton = new JButton();
+        addGroupButton.addActionListener(e -> addNewGroupTab());
 
-        agentNumberTextField = new JTextField();
+        buttonGroup = new ButtonGroup();
+        idAgentGroupRadioButton = new JRadioButton();
+        buttonGroup.add(idAgentGroupRadioButton);
 
-        descriptionTextPane = new JTextPane();
-
+        percentageAgentGroupRadioButton = new JRadioButton();
+        buttonGroup.add(percentageAgentGroupRadioButton);
 
     }
 
@@ -157,7 +190,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         final JScrollPane scrollPane1 = new JScrollPane();
         panel1.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(12, 3, new Insets(10, 10, 10, 10), -1, -1));
+        panel2.setLayout(new GridLayoutManager(14, 3, new Insets(10, 10, 10, 10), -1, -1));
         scrollPane1.setViewportView(panel2);
         final JLabel label1 = new JLabel();
         label1.setText("Name :   ");
@@ -171,30 +204,37 @@ public class NewInitializationView implements AbstractNewInitializationView {
         panel2.add(spacer1, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel2.add(spacer2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
+        agentNumberTextField = new JTextField();
         panel2.add(agentNumberTextField, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JSeparator separator2 = new JSeparator();
         panel2.add(separator2, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panel2.add(spacer3, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
+        panel2.add(spacer3, new GridConstraints(13, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
         groupTabbedPane = new JTabbedPane();
-        panel2.add(groupTabbedPane, new GridConstraints(10, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        panel2.add(groupTabbedPane, new GridConstraints(12, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$(null, -1, 16, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Gruppen");
         panel2.add(label3, new GridConstraints(9, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel2.add(spacer4, new GridConstraints(10, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 300), null, null, 0, false));
+        panel2.add(spacer4, new GridConstraints(12, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 300), null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("Beschreibung (Dient nur zur Wiedererkennung und kann leer gelassen werden.) :");
         panel2.add(label4, new GridConstraints(5, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextPane = new JTextPane();
         panel2.add(descriptionTextPane, new GridConstraints(6, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final Spacer spacer5 = new Spacer();
         panel2.add(spacer5, new GridConstraints(7, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
-        addGroupButton = new JButton();
         addGroupButton.setText("Gruppe hinzufügen");
         panel2.add(addGroupButton, new GridConstraints(9, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameTextField = new JFormattedTextField();
         panel2.add(nameTextField, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        idAgentGroupRadioButton.setSelected(true);
+        idAgentGroupRadioButton.setText("Wähle Agenten nach ihren IDs");
+        panel2.add(idAgentGroupRadioButton, new GridConstraints(10, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        percentageAgentGroupRadioButton.setText("Wähle Agenten nach prozentualem Anteil");
+        panel2.add(percentageAgentGroupRadioButton, new GridConstraints(11, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(1, 3, new Insets(10, 10, 10, 10), -1, -1));
         panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));

@@ -43,7 +43,6 @@ public class ConfigurationTab {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         nameGameLabel = new JLabel(vmConfiguration.getGame());
         nameAdaptionAlgoLabel = new JLabel(vmConfiguration.getAdaptationAlg());
         nameGameLabel = new JLabel(vmConfiguration.getGame());

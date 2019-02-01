@@ -2,7 +2,9 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMCombinedStrategy;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer kombinierten Strategie.
