@@ -129,6 +129,20 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public int askForRepitionNumber() {
+        JSpinner spinner = new JSpinner(new SpinnerNumberModel(1, 1, null, 1));
+
+        String[] options = {"Abbrechen", "Ok"};
+        int option = JOptionPane.showOptionDialog(frame, spinner, "Gib die Anzahl der Wiederholungen ein", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Ok");
+
+        if (option == 1) {
+            return (int) spinner.getValue();
+        }
+
+        return -1;
+    }
+
+    @Override
     public void addStartButtonActionlistener(ActionListener listener) {
         startButton.addActionListener(listener);
 
@@ -334,9 +348,6 @@ public class MainView implements AbstractMainView {
         ConfigurationTree = new JTree();
         ConfigurationTree.addTreeSelectionListener(e -> updateButtons());
         ConfigurationTree.setModel(createConfigurationTree());
-
-
-
 
 
     }
