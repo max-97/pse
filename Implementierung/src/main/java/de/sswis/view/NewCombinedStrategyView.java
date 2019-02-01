@@ -111,7 +111,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     @Override
     public void show() {
         frame = new JFrame("Kombinierte Strategie Bearbeiten");
-        frame.setContentPane(new NewCombinedStrategyView().MainPanel);
+        frame.setContentPane(this.MainPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setLocationRelativeTo(null);
