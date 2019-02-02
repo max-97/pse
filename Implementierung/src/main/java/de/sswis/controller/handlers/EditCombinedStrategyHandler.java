@@ -40,6 +40,9 @@ public class EditCombinedStrategyHandler implements ActionListener {
         newCombinedStrategyView.setParentView(manageCombinedStrategiesView);
         VMCombinedStrategy selectedVM = this.manageCombinedStrategiesView.getSelectedVM();
         newCombinedStrategyView.setCombinedStrategy(selectedVM);
+        VMCombinedStrategy editedCombinedStrategy = new VMCombinedStrategy();
+        editedCombinedStrategy.setName(selectedVM.getName());
+        manageCombinedStrategiesView.setEditedCombinedStrategy(editedCombinedStrategy);
         for(Condition c : this.serviceLoader.getConditionList()) {
             newCombinedStrategyView.addCondition(c.getName());
             HashMap<String, String[]> parameters = new HashMap<>();

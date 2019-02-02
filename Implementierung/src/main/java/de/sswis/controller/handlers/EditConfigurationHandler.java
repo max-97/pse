@@ -45,6 +45,9 @@ public class EditConfigurationHandler implements ActionListener {
         newConfigurationView.setParentView(this.manageConfigurationsView);
         VMConfiguration selectedVM = this.manageConfigurationsView.getSelectedVM();
         newConfigurationView.setConfiguration(selectedVM);
+        VMConfiguration editedConfiguration = new VMConfiguration();
+        editedConfiguration.setName(selectedVM.getName());
+        manageConfigurationsView.setEditedConfiguration(editedConfiguration);
         for (AdaptationAlgorithm a : this.serviceLoader.getAdaptAlgorithmList()) {
             newConfigurationView.addAdaptionAlgorithm(a.getName());
             HashMap<String, String[]> parameters = new HashMap<>();
