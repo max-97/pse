@@ -35,14 +35,14 @@ public class Initialization {
         this.name = name;
         this.agentCount = agentCount;
         this.agents = new ArrayList<>();
-        this.groupAgentDistributions = new ArrayList<>;
-        this.strategyAgentDistributions = new ArrayList<>;
-        this.capitalAgentDistributions = new ArrayList<>;
-        this.strategies = new ArrayList<>;
-        this.capitals = new ArrayList<>;
-        this.groups1 = new ArrayList<>;
-        this.groups2 = new ArrayList<>;
-        this.groups3 = new ArrayList<>;
+        this.groupAgentDistributions = new ArrayList();
+        this.strategyAgentDistributions = new ArrayList();
+        this.capitalAgentDistributions = new ArrayList();
+        this.strategies = new ArrayList();
+        this.capitals = new ArrayList();
+        this.groups1 = new ArrayList();
+        this.groups2 = new ArrayList();
+        this.groups3 = new ArrayList();
         for (int i = 0; i < agentCount; i++) {
             Agent agent = new Agent(i, 0, null, null);
             agents.add(agent);
@@ -71,7 +71,7 @@ public class Initialization {
      * @param group die {@code Gruppe} für welche die Verteilung angewandt wird
      */
     public void setGroupDistribution(AgentDistribution distribution, Group group) {
-        this.groupAgentDistribution.add(distribution);
+        this.groupAgentDistributions.add(distribution);
         this.groups1.add(group);
     }
 
@@ -127,7 +127,7 @@ public class Initialization {
                 for (int i = 0; i < groupAgentDistributions.get(a).getAgentIDs().length; i++) {
                     for (int j = 0; j < agentCount; j++) {
                         if (agents.get(j).getGroup() == null && ids[i] == agents.get(j).getId()) {
-                            agents.get(j).setGroup(group);
+                            agents.get(j).setGroup(groups1.get(a));
                             members.add(agents.get(j));
                         }
                     }
@@ -138,10 +138,10 @@ public class Initialization {
         for (int b = 0; b < groups1.size(); b++) {
             List<Agent> members = ((groups1.get(b).getMembers() == null)? new ArrayList():groups1.get(b).getMembers());
             if (!groupAgentDistributions.get(b).usesIDS()) {
-                int agentNumber = group.getMembers().size();
+                int agentNumber = groups1.get(b).getMembers().size();
                 for (int x = 0; x < agentCount; x++) {
                     if (agents.get(x).getGroup() == null) {
-                        agents.get(x).setGroup(group);
+                        agents.get(x).setGroup(groups1.get(b));
                         members.add(agents.get(x));
                         agentNumber++;
                     }
@@ -168,32 +168,32 @@ public class Initialization {
                 for (int i = 0; i < strategyAgentDistributions.get(a).getAgentIDs().length; i++) {
                     for (int j = 0; j < members.size(); j++) {
                         if (ids[i] == members.get(j).getId() && members.get(j).getStrategy() == null) {
-                            members.get(j).setStrategy(strategy);
+                            members.get(j).setStrategy(strategies.get(a));
                         }
                     }
                 }
             }
-            groups2.get(b).setMembers(members);
+            groups2.get(a).setMembers(members);
         }
         for (int b = 0; b< groups2.size(); b++) {
             List<Agent> members = ((groups2.get(b).getMembers() == null)? new ArrayList():groups2.get(b).getMembers());
             if (!strategyAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
-                    if (members.get(x).getStrategy() == strategy) {
+                    if (members.get(y).getStrategy() == strategies.get(b)) {
                         agentNumber++;
                     }
                 }
                 for (int x = 0; x < members.size(); x++) {
                     boolean isAll = true;
                     if (members.get(x).getStrategy() == null) {
-                        members.get(x).setStrategy(strategy);
+                        members.get(x).setStrategy(strategies.get(b));
                         agentNumber++;
                     }
                     float result = (float) strategyAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();
                     int number = Math.round(result);
                     for (int z = 0; z < groups2.get(b).getMembers().size(); z++) {
-                        if (groups2.get(b).getMembers().get(i).getStrategy == null) {
+                        if (groups2.get(b).getMembers().get(x).getStrategy() == null) {
                             isAll = false;
                         }
                     }
@@ -215,7 +215,7 @@ public class Initialization {
                     for (int j = 0; j < groups3.get(a).getMembers().size(); j++) {
                         if (ids[i] == members.get(j).getId()) {
                             if (members.get(j).getScore() == 0) {
-                                members.get(j).setScore(capital);
+                                members.get(j).setScore(capitals.get(a));
                             }
                         }
                     }
@@ -228,20 +228,20 @@ public class Initialization {
             if (!capitalAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
-                    if (members.get(x).getScore() == capital) {
+                    if (members.get(y).getScore() == capitals.get(b)) {
                         agentNumber++;
                     }
                 }
                 for (int x = 0; x < members.size(); x++) {
                     boolean isAll = true;
                     if (members.get(x).getScore() == 0) {
-                        members.get(x).setScore(capital);
+                        members.get(x).setScore(capitals.get(b));
                         agentNumber++;
                     }
                     float result = (float) capitalAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();
                     int number = Math.round(result);
                     for (int z = 0; z < groups3.get(b).getMembers().size(); z++) {
-                        if (groups.getMembers().get(i).getScore() == 0) {
+                        if (groups3.get(b).getMembers().get(z).getScore() == 0) {
                             isAll = false;
                         }
                     }
