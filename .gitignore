@@ -29,7 +29,3 @@ hs_err_pid*
 *.pdf
 *.gz
 *.toc
-*.xml
-*.iml
-.classpath
-.project
