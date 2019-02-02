@@ -53,6 +53,20 @@ public class SaveConfigurationsHandler implements ActionListener {
         if (parentView == null) {
             return;
         }
-        parentView.addConfiguration(vmConfiguration);
+        VMConfiguration editedConfiguration = parentView.getEditedConfiguration();
+        if (editedConfiguration == null) {
+            parentView.addConfiguration(vmConfiguration);
+        } else {
+            parentView.replaceConfiguration(vmConfiguration);
+            if (!editedConfiguration.getName().equals(vmConfiguration.getName())) {
+                ModelProvider.getInstance().deleteConfiguration(editedConfiguration.getName());
+                try {
+                    this.fileManager.deleteConfiguration(editedConfiguration.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            parentView.setEditedConfiguration(null);
+        }
     }
 }

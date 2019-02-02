@@ -62,8 +62,8 @@ public class SaveGamesHandler implements ActionListener {
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
-                parentView.setEditedGame(null);
             }
+            parentView.setEditedGame(null);
         }
     }
 }
