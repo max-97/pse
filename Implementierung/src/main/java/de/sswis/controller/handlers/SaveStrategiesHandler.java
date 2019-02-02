@@ -48,9 +48,10 @@ public class SaveStrategiesHandler implements ActionListener {
         ModelProvider.getInstance().addMixedStrategy(mixedStrategy);
 
         AbstractManageStrategiesView parentView = this.strategyView.getParentView();
-        if (parentView == null)
-            return;
-        parentView.addStrategy(vmStrategy);
         this.strategyView.close();
+        if (parentView == null) {
+            return;
+        }
+        parentView.addStrategy(vmStrategy);
     }
 }
