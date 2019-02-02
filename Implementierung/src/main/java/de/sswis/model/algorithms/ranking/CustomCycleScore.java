@@ -64,7 +64,7 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        windowSize = (int)parameters.get("Window size");
+        windowSize = Integer.parseInt((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override

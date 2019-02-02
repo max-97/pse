@@ -83,7 +83,7 @@ public class BruteForcePairingHeuristic implements PairingAlgorithm{
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        threshold = (double)parameters.get("Threshold");
+        threshold = Double.parseDouble((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override
