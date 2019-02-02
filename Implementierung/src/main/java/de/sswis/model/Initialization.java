@@ -58,13 +58,17 @@ public class Initialization {
     }
 
     public void addGroup(int id, String name) {
+        if (groups.size() != 0) {
         for (Group g : groups) {
             if (g.getId() == id || g.getName().equals(name)) {
                 throw new DuplicateObjectNameException("this group is already exit.");
             }
         }
-        Group group = new Group(id, name);
-        groups.add(group);
+            Group group = new Group(id, name);
+            groups.add(group);
+        } else {
+            groups.add(group);
+        }
     }
 
     /**
