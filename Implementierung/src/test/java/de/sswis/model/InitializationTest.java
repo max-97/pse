@@ -15,6 +15,8 @@ public class InitializationTest {
     private static int[] ids;
     private Initialization init;
     private Group[] groups;
+    private Strategy always;
+    private Strategy never;
 
     @Before
     public void init() {
@@ -36,9 +38,9 @@ public class InitializationTest {
         init.setGroupDistribution(agentDistributions[1], groups[0]);
         init.setGroupDistribution(agentDistributions[2], groups[1]);
 
-        Strategy always = new CombinedStrategy("AlwaysCooperate",
+        always = new CombinedStrategy("AlwaysCooperate",
                 new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()});
-        Strategy never = new CombinedStrategy("NeverCooperate",
+        never = new CombinedStrategy("NeverCooperate",
                 new BaseStrategy[]{new NeverCooperate()}, new Condition[]{new Always()});
         init.setStrategyDistribution(agentDistributions[0], always, groups[0]);
         init.setStrategyDistribution(agentDistributions[1], never, groups[0]);
