@@ -18,18 +18,18 @@ public class VMCombinedStrategy {
     private String defaultStrategy;
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
-    private List<HashMap<String, String[]>> conditionParameters = new ArrayList<>();
+    private List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
 
 
-    public HashMap<String, String[]> getConditionParameter(int index) {
+    public HashMap<String, Object> getConditionParameter(int index) {
         return this.conditionParameters.get(index);
     }
 
-    public List<HashMap<String, String[]>> getConditionpParameters() {
+    public List<HashMap<String, Object>> getConditionpParameters() {
         return conditionParameters;
     }
 
-    public void addConditionParameter(HashMap<String, String[]> parameters) {
+    public void addConditionParameter(HashMap<String, Object> parameters) {
         this.conditionParameters.add(parameters);
     }
 
