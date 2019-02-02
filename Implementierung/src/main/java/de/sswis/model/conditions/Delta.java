@@ -33,7 +33,7 @@ public class Delta implements Condition{
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        delta = (double)parameters.get("DELTA");
+        delta = Double.parseDouble((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override
