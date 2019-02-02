@@ -38,6 +38,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
 
     private AbstractMainView parentView;
+    private VMCombinedStrategy editedCombinedStrategy;
 
     public ManageCombinedStrategiesView() {
         vmCombinedStrategies = new ArrayList<VMCombinedStrategy>();
@@ -58,6 +59,23 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
         update();
 
+    }
+
+    @Override
+    public void replaceCombinedStrategy(VMCombinedStrategy newCombinedStrategy) {
+        int index = StrategiesPane.getSelectedIndex();
+        vmCombinedStrategies.remove(index);
+        vmCombinedStrategies.add(index, newCombinedStrategy);
+
+        CombinedStrategyTab tab = new CombinedStrategyTab();
+        tab.setVMCombinedStrategy(newCombinedStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.remove(index);
+        strategyTabs.add(index, tab);
+        StrategiesPane.remove(index);
+        StrategiesPane.insertTab(newCombinedStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
     @Override
@@ -139,6 +157,16 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedCombinedStrategy(VMCombinedStrategy vmCombinedStrategy) {
+        this.editedCombinedStrategy = vmCombinedStrategy;
+    }
+
+    @Override
+    public VMCombinedStrategy getEditedCombinedStrategy() {
+        return this.editedCombinedStrategy;
     }
 
 

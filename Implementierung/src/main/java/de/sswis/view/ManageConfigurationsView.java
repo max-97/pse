@@ -37,6 +37,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JPanel MainPanel;
 
     private AbstractMainView parentView;
+    private VMConfiguration editedConfiguration;
 
     public ManageConfigurationsView() {
         vmConfigurations = new ArrayList<VMConfiguration>();
@@ -54,6 +55,23 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
         tab.addEditButtonActionlistener(editListener);
         configTabs.add(tab);
         ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
+    }
+
+    @Override
+    public void replaceConfiguration(VMConfiguration newConfiguration) {
+        int index = this.ConfigurationsPane.getSelectedIndex();
+        vmConfigurations.remove(index);
+        vmConfigurations.add(index, newConfiguration);
+
+        ConfigurationTab tab = new ConfigurationTab();
+        tab.setVmConfiguration(newConfiguration);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        configTabs.remove(index);
+        configTabs.add(index, tab);
+        ConfigurationsPane.remove(index);
+        ConfigurationsPane.insertTab(newConfiguration.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
 
@@ -129,6 +147,16 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedConfiguration(VMConfiguration vmConfiguration) {
+        this.editedConfiguration = vmConfiguration;
+    }
+
+    @Override
+    public VMConfiguration getEditedConfiguration() {
+        return this.editedConfiguration;
     }
 
 
