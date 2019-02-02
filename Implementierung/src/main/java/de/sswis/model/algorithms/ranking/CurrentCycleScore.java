@@ -27,9 +27,9 @@ public class CurrentCycleScore implements RankingAlgorithm {
         List<Agent> agentList = new ArrayList<>(agents.length);
         int currentCycle = agents[1].getHistory().getCurrentCycle();
 
-        for(int i = 0; i < agents.length; i++) {
-            cycleScores.put(agents[i], agents[i].getScore() - agents[i].getHistory().getScore(currentCycle));
-            agentList.add(agents[i]);
+        for (Agent agent : agents) {
+            cycleScores.put(agent, agent.getScore() - agent.getHistory().getScore(currentCycle));
+            agentList.add(agent);
         }
 
 

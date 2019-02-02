@@ -30,9 +30,7 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
         currentCycle = agents[1].getHistory().getCurrentCycle();
-
         agentList.addAll(Arrays.asList(agents));
-
         HashMap<Agent, Integer[]> cycleRankings = getCycleRankings(agentList);
 
         for(int i = 0; i < agents.length; i++) {
@@ -46,12 +44,12 @@ public class AverageRank implements RankingAlgorithm {
         }
 
         if(ignoreInitialScore) {
-            agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
+            agentList.sort((a1, a2) -> averageRanks.get(a2).intValue() != averageRanks.get(a1).intValue() ?
                     averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
                     Integer.compare(a2.getScore() - a2.getInitialScore(),
                             a1.getScore() - a1.getInitialScore()));
         } else {
-            agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
+            agentList.sort((a1, a2) -> averageRanks.get(a2).intValue() != averageRanks.get(a1).intValue() ?
                     averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
                     Integer.compare(a2.getScore(), a1.getScore()));
         }
@@ -84,20 +82,18 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer[]> result = new HashMap<>();
         HashMap<Agent, Integer> cyclesScores = new HashMap<>();
 
-        Iterator<Agent> it = agentList.iterator();
-
-        while (it.hasNext()) {
-            result.put(it.next(), new Integer[currentCycle]);
+        for (Agent agent : agentList) {
+            result.put(agent, new Integer[currentCycle]);
         }
 
         for(int i = 1; i <= currentCycle; i++) {
-            for(int j = 0; j < agentList.size(); j++) {
-                if(i == currentCycle) {
-                    cyclesScores.put(agentList.get(j), agentList.get(j).getScore() -
-                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
+            for (Agent agent : agentList) {
+                if (i == currentCycle) {
+                    cyclesScores.put(agent, agent.getScore() -
+                            agent.getHistory().getScore(Math.max(i - windowSize, 1)));
                 } else {
-                    cyclesScores.put(agentList.get(j), agentList.get(j).getHistory().getScore(i) -
-                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
+                    cyclesScores.put(agent, agent.getHistory().getScore(i) -
+                            agent.getHistory().getScore(Math.max(i - windowSize, 1)));
                 }
             }
 
