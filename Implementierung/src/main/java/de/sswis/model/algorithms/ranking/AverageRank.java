@@ -45,9 +45,17 @@ public class AverageRank implements RankingAlgorithm {
             averageRanks.put(agents[i], avgRank);
         }
 
-        agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
-                averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
-                a2.getScore() - a1.getScore());
+        if(ignoreInitialScore) {
+            agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
+                    averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
+                    Integer.compare(a2.getScore() - a2.getInitialScore(),
+                            a1.getScore() - a1.getInitialScore()));
+        } else {
+            agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
+                    averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
+                    Integer.compare(a2.getScore(), a1.getScore()));
+        }
+
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;
@@ -55,11 +63,18 @@ public class AverageRank implements RankingAlgorithm {
         boolean first = true;
         while(it.hasNext()) {
             Agent current = it.next();
-            if(!first && previousScore != current.getScore()) {
-                count++;
+            if(ignoreInitialScore) {
+                if(!first && previousScore != current.getScore() - current.getInitialScore()) {
+                    count++;
+                }
+                previousScore = current.getScore() - current.getInitialScore();
+            } else {
+                if (!first && previousScore != current.getScore()) {
+                    count++;
+                }
+                previousScore = current.getScore();
             }
             result.put(current, count);
-            previousScore = current.getScore();
             first = false;
         }
         return result;
