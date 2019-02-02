@@ -37,6 +37,7 @@ public class ManageGamesView implements AbstractManageGamesView {
     private JTabbedPane GamesPane;
 
     private AbstractMainView parentView;
+    private VMGame editedGame;
 
     public ManageGamesView() {
         vmGames = new ArrayList<VMGame>();
@@ -56,6 +57,23 @@ public class ManageGamesView implements AbstractManageGamesView {
         GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
     }
 
+
+    @Override
+    public void replaceGame(VMGame newGame) {
+        int index = GamesPane.getSelectedIndex();
+        vmGames.remove(index);
+        vmGames.add(index, newGame);
+
+        GameTab tab = new GameTab();
+        tab.setVmGame(newGame);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        gameTabs.remove(index);
+        gameTabs.add(index, tab);
+        GamesPane.remove(index);
+        GamesPane.insertTab(newGame.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+    }
 
     @Override
     public void removeGame(String gameName) {
@@ -131,6 +149,15 @@ public class ManageGamesView implements AbstractManageGamesView {
         return this.parentView;
     }
 
+    @Override
+    public void setEditedGame(VMGame game) {
+        this.editedGame = game;
+    }
+
+    @Override
+    public VMGame getEditedGame() {
+        return this.editedGame;
+    }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

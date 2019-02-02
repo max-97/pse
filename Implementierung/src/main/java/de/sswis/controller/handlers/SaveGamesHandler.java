@@ -50,6 +50,20 @@ public class SaveGamesHandler implements ActionListener {
         if (parentView == null) {
             return;
         }
-        parentView.addGame(vmGame);
+        VMGame editedGame = parentView.getEditedGame();
+        if (editedGame == null) {
+            parentView.addGame(vmGame);
+        } else {
+            parentView.replaceGame(vmGame);
+            if (!editedGame.getName().equals(vmGame.getName())) {
+                ModelProvider.getInstance().deleteGame(editedGame.getName());
+                try {
+                    this.fileManager.deleteGame(editedGame.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                parentView.setEditedGame(null);
+            }
+        }
     }
 }
