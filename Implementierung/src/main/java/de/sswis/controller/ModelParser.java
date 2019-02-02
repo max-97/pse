@@ -96,8 +96,8 @@ public class ModelParser {
         for (int i = 0; i < conditionSize; i++) {
             for (Condition c : this.serviceLoader.getConditionList()) {
                 if (c.getName().equals(conditionNames.get(i))) {
-                    // TODO: Allgemeine Parameter in View hinzufügen
-                    //c.setParameter(vmCombinedStrategy.getConditionParameter(conditionNames.get(i)));
+	                HashMap<String, Object> conditionParameters = vmCombinedStrategy.getConditionParameter(i);
+	                c.setParameters(conditionParameters);
                     conditions[i] = c;
                 }
             }
