@@ -9,7 +9,7 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class TitForTatIndividual implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Tit-for-Tat individuell";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -21,5 +21,10 @@ public class TitForTatIndividual implements BaseStrategy {
         }else {
             return Action.DEFECTION;
         }
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

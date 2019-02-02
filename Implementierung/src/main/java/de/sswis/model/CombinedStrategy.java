@@ -21,6 +21,8 @@ public class CombinedStrategy implements Strategy{
      */
     public CombinedStrategy(String name, BaseStrategy[] strategies, Condition[] conditions) {
         this.name = name;
+        this.strategies = strategies;
+        this.conditions = conditions;
     }
 
     @Override
@@ -30,7 +32,16 @@ public class CombinedStrategy implements Strategy{
 
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
-        return null;
+        for(int i = 0; i < conditions.length; i++) {
+            if(conditions[i].fulfillsCondition(agent1, agent2)) {
+                return strategies[i].calculateAction(agent1, agent2);
+            }
+        }
+        return Action.DEFECTION;
+    }
+
+    public CombinedStrategy clone() {
+        return this;
     }
 }
 

@@ -12,10 +12,6 @@ public interface Strategy {
      */
     String getName();
 
-    public Strategy(String name, CombinedStrategy[] combinedStrategies, double[] probabilities) {
-        this.name = name;
-    }
-
     /**
      * Berechnet die Aktion des Agenten um dessen Strategie es sich handelt im Spiel mit einem zweiten Agenten.
      * @param agent1 Agent
@@ -24,4 +20,5 @@ public interface Strategy {
      */
     Action calculateAction(Agent agent1, Agent agent2);
 
+    Strategy clone();
 }

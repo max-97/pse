@@ -1,0 +1,15 @@
+language: java
+install: true
+
+jdk:
+  - oraclejdk11
+
+before_install:
+ - chmod +x Implementierung/gradlew
+  
+notifications:
+  email: false
+  
+script:
+    - cd Implementierung
+    - ./gradlew test 

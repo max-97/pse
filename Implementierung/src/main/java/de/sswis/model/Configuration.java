@@ -23,7 +23,7 @@ public class Configuration {
     private int cycles;
     private int cycleRoundCount;
     private double adaptationProbability;
-    private List<Strategy> strategies;
+    private Simulation simulation;
 
     /**
      * Erstellt eine Konfiguration.
@@ -35,12 +35,20 @@ public class Configuration {
      * @param rounds Rundenanzahl
      * @param cycles Zyklenanzahl
      * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
-     * @param strategies Menge an moeglichen Strategien
      */
-    public Configuration(String name, Game game, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
-                         int rounds, int cycles, double adaptationProbability, List<Strategy> strategies) {
+    public Configuration(String name, Game game, Initialization init, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
+                         int rounds, int cycles, double adaptationProbability) {
         this.name = name;
-    }
+        this.game = game;
+        this.init = init;
+        this.adaptationAlg = adaptation;
+        this.pairingAlg = pairing;
+        this.rankingAlg = ranking;
+        this.rounds = rounds;
+        this.cycles = cycles;
+        this.adaptationProbability = adaptationProbability;
+        this.cycleRoundCount = rounds/cycles;
+  }
 
     public String getName() {
         return name;
@@ -61,6 +69,8 @@ public class Configuration {
     public PairingAlgorithm getPairingAlg() {
         return pairingAlg;
     }
+
+    public RankingAlgorithm getRankingAlg() { return rankingAlg; }
 
     public int getRounds() {
         return rounds;
@@ -83,23 +93,15 @@ public class Configuration {
      * @return erzeugte Simulation
      */
     public Simulation simulate() {
-        return new Simulation(this);
+        this.simulation = new Simulation(this);
+        return this.simulation;
     }
 
-    /**
-     * Gibt die moeglichen Strategien dieser Konfiguration zurueck.
-     * @return Menge an Strategien
-     */
-    public List<Strategy> getPossibleStrategies() {
-        return strategies;
+    public Simulation getSimulation() {
+        return this.simulation;
     }
 
-    /**
-     * Fuegt eine Strategie zu den moeglichen Strategien hinzu.
-     * @param newStrategy hinzuzufuegende Strategie
-     */
-    public void addStrategy(Strategy newStrategy) {
 
-    }
+
 
 }

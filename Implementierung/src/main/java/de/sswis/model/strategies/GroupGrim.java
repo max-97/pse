@@ -10,7 +10,7 @@ import de.sswis.model.Agent;
  * @author Michel Bodé
  */
 public class GroupGrim implements BaseStrategy {
-    public final static String NAME = "";
+    public final static String NAME = "Grim Gruppe";
     public final static String DESCRIPTION = "";
     public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
@@ -22,5 +22,10 @@ public class GroupGrim implements BaseStrategy {
         }else {
             return Action.DEFECTION;
         }
+    }
+
+    @Override
+    public String getName() {
+        return NAME;
     }
 }

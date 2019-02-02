@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,24 +14,26 @@ public class VMInitialization {
     private String name;
     private List<VMGroup> groups;
     private int agentCount;
+    private int numberOfInstances;
+    private boolean relativeDistribution;
 
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben,
-     * Inkonsistenzen von Agentenzuteilungen innerhalb und unterhalb der Gruppen.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
+    public VMInitialization() {
+        name = "";
+        groups = new ArrayList<>();
+        agentCount = 0;
+        relativeDistribution = false;
     }
 
     /**
      * Zeigt ob die Initialisierung variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */
-    public boolean isMultiInitialisation() { return false; }
+    public boolean isMultiInitialisation() {
+        for (VMGroup g : groups) {
+            if (g.hasMultiComponent()) return true;
+        }
+        return false;
+    }
 
 
     /**
@@ -39,8 +42,37 @@ public class VMInitialization {
      */
     public String getToolTipText() {    return ""; }
 
+    public void addGroup(VMGroup group) {
+        this.groups.add(group);
+    }
 
+    public List<VMGroup> getGroups() {
+        return this.groups;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAgentCount() {
+        return agentCount;
+    }
+
+    public void setAgentCount(int agentCount) {
+        this.agentCount = agentCount;
+    }
+
+    public int getNumberOfInstances() {
+        return this.numberOfInstances;
+    }
+
+    public boolean hasRelativeDistribution() {
+        return this.relativeDistribution;
+    }
 }
 
 

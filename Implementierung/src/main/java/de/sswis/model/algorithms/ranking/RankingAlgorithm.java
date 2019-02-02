@@ -15,4 +15,12 @@ public interface RankingAlgorithm {
      * @return eine {@code HashMap} die jedem Agenten seinen Rang zuordnet
      */
     HashMap<Agent, Integer> getRankings(Agent[] agents);
+
+    String getName();
+
+	void setParameters(HashMap<String, Object> parameters);
+
+    String[] getParameters();
+
+    void setIgnoreInitialScore(boolean ignore);
 }

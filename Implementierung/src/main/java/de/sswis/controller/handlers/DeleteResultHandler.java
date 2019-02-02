@@ -1,9 +1,12 @@
 package de.sswis.controller.handlers;
 
-import de.sswis.view.AbstractMainView;
+import de.sswis.controller.FileManager;
+import de.sswis.view.AbstractManageResultsView;
+import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * Löscht das ausgewählte {@code Ergebnis}.
@@ -12,18 +15,27 @@ import java.awt.event.ActionListener;
  */
 public class DeleteResultHandler implements ActionListener {
 
-    private AbstractMainView mainView;
+    private AbstractManageResultsView manageResultsView;
+    private FileManager fileManager;
 
     /**
      *
-     * @param mainView View, welche das zu löschende {@code Result} beinhaltet
+     * @param manageResultsView View, welche das zu löschende {@code Result} beinhaltet
      */
-    public DeleteResultHandler(AbstractMainView mainView) {
-
+    public DeleteResultHandler(AbstractManageResultsView manageResultsView) {
+        this.manageResultsView = manageResultsView;
+        this.fileManager = new FileManager();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        VMResult vmResult = this.manageResultsView.getSelectedVM();
+        try {
+            this.fileManager.deleteResult(vmResult.getName());
+        } catch (IOException e1) {
+            e1.printStackTrace();
+            return;
+        }
+        this.manageResultsView.removeResult(vmResult.getName());
     }
 }

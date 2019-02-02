@@ -54,5 +54,14 @@ public interface AbstractManageInitializationsView extends AbstractView {
      */
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
+    VMInitialization getSelectedVM();
+
+    AbstractMainView getParentView();
+
+    void setEditedInitialization(VMInitialization initialization);
+
+    VMInitialization getEditedInitialization();
+
+    void replaceInitialization(VMInitialization newInitialization);
 
 }

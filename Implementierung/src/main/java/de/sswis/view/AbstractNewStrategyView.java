@@ -1,6 +1,10 @@
 package de.sswis.view;
 
+import de.sswis.view.model.VMStrategy;
+
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer gemischten Strategie.
@@ -22,4 +26,11 @@ public interface AbstractNewStrategyView extends AbstractView {
     void addFinishButtonActionlistener(ActionListener listener);
 
 
+    VMStrategy getVMStrategy();
+
+    AbstractManageStrategiesView getParentView();
+
+    void setStrategy(VMStrategy strategy);
+
+    void addCombinedStrategy(String name);
 }

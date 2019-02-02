@@ -54,5 +54,14 @@ public interface AbstractManageConfigurationsView extends AbstractView {
      */
     void addSaveQuitButtonActionlistener(ActionListener listener);
 
+    VMConfiguration getSelectedVM();
+
+    AbstractMainView getParentView();
+
+    void setEditedConfiguration(VMConfiguration vmConfiguration);
+
+    VMConfiguration getEditedConfiguration();
+
+    void replaceConfiguration(VMConfiguration newConfiguration);
 
 }

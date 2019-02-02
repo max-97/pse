@@ -3,7 +3,9 @@ package de.sswis.view;
 import de.sswis.model.Action;
 import de.sswis.view.model.VMResult;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -19,4 +21,7 @@ public interface AbstractShowCompareView extends AbstractView {
      * @param listener ActionListener
      */
     void addCompareButtonActionlistener (ActionListener listener);
+
+
+    AbstractMainView getParentView();
 }
