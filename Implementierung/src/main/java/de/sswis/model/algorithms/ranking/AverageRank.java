@@ -17,9 +17,11 @@ public class AverageRank implements RankingAlgorithm {
     private static final String[] PARAMETER_NAMES = {"Window size"};
     private int currentCycle;
     private int windowSize;
+    private boolean ignoreInitialScore;
 
     public AverageRank() {
         windowSize = 5;
+        ignoreInitialScore = false;
     }
 
     @Override
@@ -28,24 +30,30 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer> result = new HashMap<>();
         List<Agent> agentList = new ArrayList<>(agents.length);
         currentCycle = agents[1].getHistory().getCurrentCycle();
-
         agentList.addAll(Arrays.asList(agents));
-
         HashMap<Agent, Integer[]> cycleRankings = getCycleRankings(agentList);
 
-        for(int i = 0; i < agents.length; i++) {
+        for (Agent agent : agents) {
             int rankSum = 0;
-            Integer[] agentCycleRanks = cycleRankings.get(agents[i]);
-            for(int j = 0; j < agentCycleRanks.length; j++) {
-                rankSum += agentCycleRanks[j];
+            Integer[] agentCycleRanks = cycleRankings.get(agent);
+            for (Integer agentCycleRank : agentCycleRanks) {
+                rankSum += agentCycleRank;
             }
-            int avgRank = Math.round((float)rankSum/currentCycle);
-            averageRanks.put(agents[i], avgRank);
+            int avgRank = Math.round((float) rankSum / currentCycle);
+            averageRanks.put(agent, avgRank);
         }
 
-        agentList.sort((a1, a2) -> averageRanks.get(a2) != averageRanks.get(a1) ?
-                averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
-                a2.getScore() - a1.getScore());
+        if(ignoreInitialScore) {
+            agentList.sort((a1, a2) -> averageRanks.get(a2).intValue() != averageRanks.get(a1).intValue() ?
+                    averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
+                    Integer.compare(a2.getScore() - a2.getInitialScore(),
+                            a1.getScore() - a1.getInitialScore()));
+        } else {
+            agentList.sort((a1, a2) -> averageRanks.get(a2).intValue() != averageRanks.get(a1).intValue() ?
+                    averageRanks.get(a1) > averageRanks.get(a2) ? 1 : -1 :
+                    Integer.compare(a2.getScore(), a1.getScore()));
+        }
+
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;
@@ -53,11 +61,18 @@ public class AverageRank implements RankingAlgorithm {
         boolean first = true;
         while(it.hasNext()) {
             Agent current = it.next();
-            if(!first && previousScore != current.getScore()) {
-                count++;
+            if(ignoreInitialScore) {
+                if(!first && previousScore != current.getScore() - current.getInitialScore()) {
+                    count++;
+                }
+                previousScore = current.getScore() - current.getInitialScore();
+            } else {
+                if (!first && previousScore != current.getScore()) {
+                    count++;
+                }
+                previousScore = current.getScore();
             }
             result.put(current, count);
-            previousScore = current.getScore();
             first = false;
         }
         return result;
@@ -67,20 +82,18 @@ public class AverageRank implements RankingAlgorithm {
         HashMap<Agent, Integer[]> result = new HashMap<>();
         HashMap<Agent, Integer> cyclesScores = new HashMap<>();
 
-        Iterator<Agent> it = agentList.iterator();
-
-        while (it.hasNext()) {
-            result.put(it.next(), new Integer[currentCycle]);
+        for (Agent agent : agentList) {
+            result.put(agent, new Integer[currentCycle]);
         }
 
         for(int i = 1; i <= currentCycle; i++) {
-            for(int j = 0; j < agentList.size(); j++) {
-                if(i == currentCycle) {
-                    cyclesScores.put(agentList.get(j), agentList.get(j).getScore() -
-                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
+            for (Agent agent : agentList) {
+                if (i == currentCycle) {
+                    cyclesScores.put(agent, agent.getScore() -
+                            agent.getHistory().getScore(Math.max(i - windowSize, 1)));
                 } else {
-                    cyclesScores.put(agentList.get(j), agentList.get(j).getHistory().getScore(i) -
-                            agentList.get(j).getHistory().getScore(Math.max(i - windowSize, 1)));
+                    cyclesScores.put(agent, agent.getHistory().getScore(i) -
+                            agent.getHistory().getScore(Math.max(i - windowSize, 1)));
                 }
             }
 
@@ -118,5 +131,10 @@ public class AverageRank implements RankingAlgorithm {
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }
