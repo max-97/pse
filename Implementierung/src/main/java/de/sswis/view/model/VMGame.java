@@ -19,17 +19,6 @@ public class VMGame {
     }
 
     /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
-
-    /**
      * Gibt eine String der wichtige Informationen des Stufenspiels zusammenfasst.
      * @return String enthält Kurzbeschreibung des Stufenspiels
      */

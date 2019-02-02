@@ -31,12 +31,11 @@ public class DeleteInitializationHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         VMInitialization selectedVM = this.manageInitializationsView.getSelectedVM();
         try {
-            this.fileManager.deleteInitalization(selectedVM.getName());
+            this.fileManager.deleteInitialization(selectedVM.getName());
         } catch (IOException e1) {
             e1.printStackTrace();
             return;
         }
         this.manageInitializationsView.removeInit(selectedVM.getName());
-        this.manageInitializationsView.update();
     }
 }

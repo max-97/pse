@@ -46,4 +46,8 @@ public class MixedStrategy implements Strategy {
     public CombinedStrategy[] getCombinedStrategies() {
         return combinedStrategies;
     }
+
+    public MixedStrategy clone() {
+        return new MixedStrategy(this.name, this.combinedStrategies.clone(), this.probabilities.clone());
+    }
 }

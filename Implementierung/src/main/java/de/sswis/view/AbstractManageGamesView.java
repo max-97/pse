@@ -58,4 +58,9 @@ public interface AbstractManageGamesView extends AbstractView {
 
     AbstractMainView getParentView();
 
+    void setEditedGame(VMGame game);
+
+    VMGame getEditedGame();
+
+    void replaceGame(VMGame newGame);
 }

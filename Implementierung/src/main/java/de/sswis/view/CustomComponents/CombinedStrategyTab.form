@@ -46,7 +46,9 @@
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <component id="891c2" class="javax.swing.JButton" binding="deleteButton">
             <constraints>
@@ -104,7 +106,7 @@
               </grid>
             </constraints>
           </hspacer>
-          <component id="90566" class="javax.swing.JLabel" binding="nameLabel" custom-create="true">
+          <component id="90566" class="javax.swing.JLabel" binding="nameLabel">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>

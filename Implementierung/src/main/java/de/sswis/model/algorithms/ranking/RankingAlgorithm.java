@@ -21,4 +21,6 @@ public interface RankingAlgorithm {
 	void setParameters(HashMap<String, Object> parameters);
 
     String[] getParameters();
+
+    void setIgnoreInitialScore(boolean ignore);
 }

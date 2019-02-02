@@ -40,7 +40,8 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -56,7 +57,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     private AbstractMainView parentView;

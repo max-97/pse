@@ -34,10 +34,9 @@ public class ManageStrategiesHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractManageStrategiesView manageStrategiesView = this.factory.createManageStrategiesView();
         manageStrategiesView.setParentView(mainView);
-        for(VMStrategy s : this.fileManager.loadAllMixedStrageyies()) {
+        for(VMStrategy s : this.fileManager.loadAllMixedStrategies()) {
             manageStrategiesView.addStrategy(s);
         }
-        manageStrategiesView.update();
         manageStrategiesView.show();
     }
 }

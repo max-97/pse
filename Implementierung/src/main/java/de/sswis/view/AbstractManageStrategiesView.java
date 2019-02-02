@@ -57,4 +57,11 @@ public interface AbstractManageStrategiesView extends AbstractView {
     VMStrategy getSelectedVM();
 
     AbstractMainView getParentView();
+
+    void setEditedStrategy(VMStrategy strategy);
+
+    VMStrategy getEditedStrategy();
+
+    void replaceStrategy(VMStrategy newStrategy);
+
 }

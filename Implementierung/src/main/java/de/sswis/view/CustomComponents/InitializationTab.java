@@ -3,6 +3,7 @@ package de.sswis.view.CustomComponents;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
@@ -22,8 +23,13 @@ public class InitializationTab {
     private JButton deleteButton;
     private JButton editButton;
 
-    public InitializationTab(VMInitialization vmInitialization) {
+
+    public void setVmInitialization(VMInitialization vmInitialization) {
         this.vmInitialization = vmInitialization;
+
+        nameInitializationLabel.setText(vmInitialization.getName());
+        descriptionTextArea.setText(vmInitialization.getToolTipText());
+
     }
 
     public void addEditButtonActionlistener(ActionListener listener) {
@@ -35,7 +41,6 @@ public class InitializationTab {
     }
 
     private void createUIComponents() {
-        nameInitializationLabel = new JLabel(vmInitialization.getName());
 
     }
 
@@ -54,7 +59,6 @@ public class InitializationTab {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        createUIComponents();
         MainPanel = new JPanel();
         MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(10, 10, 10, 10), -1, -1));
         final JPanel panel1 = new JPanel();
@@ -63,11 +67,14 @@ public class InitializationTab {
         final JLabel label1 = new JLabel();
         label1.setText("Name:");
         panel1.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameInitializationLabel = new JLabel();
         nameInitializationLabel.setText("Label");
         panel1.add(nameInitializationLabel, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Beschreibung:");
         panel1.add(label2, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextArea = new JTextArea();
+        descriptionTextArea.setEditable(false);
         panel1.add(descriptionTextArea, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
