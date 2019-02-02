@@ -69,7 +69,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
         initializationTabs.remove(index);
         initializationTabs.add(index, tab);
         InitsPane.remove(index);
-        InitsPane.insertTab(newInitialization.getName(),null, tab.$$$getRootComponent$$$(),null, index);
+        InitsPane.insertTab(newInitialization.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
     @Override
@@ -204,4 +204,5 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }
