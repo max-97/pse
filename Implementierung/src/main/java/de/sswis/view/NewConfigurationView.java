@@ -53,8 +53,6 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     private JButton cancelButton;
     private JScrollPane pairingAlgoParamPane;
     private JPanel ContentPane;
-    private JScrollPane rankingAlgoParamPane;
-    private JScrollPane adaptionAlgoParamPane;
     private JFormattedTextField nameTextField;
     private JPanel panel1;
     private JButton setPairingParamsButton;
@@ -102,8 +100,13 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
         vmConfiguration.setInit((String) initComboBox.getSelectedItem());
         vmConfiguration.setPairingAlg((String) pairingComboBox.getSelectedItem());
+        vmConfiguration.setPairingParameters(pairingParameterTable.getAllUserInputs());
+
         vmConfiguration.setRankingAlg((String) rankingComboBox.getSelectedItem());
+        vmConfiguration.setRankingParameters(rankingParameterTable.getAllUserInputs());
+
         vmConfiguration.setAdaptationAlg((String) adaptionComboBox.getSelectedItem());
+        vmConfiguration.setAdaptationParameters(adaptionParameterTable.getAllUserInputs());
 
         vmConfiguration.setAdaptationProbability(adaptionProbabilityTextField.getText());
         vmConfiguration.setRounds(roundsTextField.getText());
