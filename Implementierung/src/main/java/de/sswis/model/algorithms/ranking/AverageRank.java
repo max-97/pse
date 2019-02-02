@@ -33,14 +33,14 @@ public class AverageRank implements RankingAlgorithm {
         agentList.addAll(Arrays.asList(agents));
         HashMap<Agent, Integer[]> cycleRankings = getCycleRankings(agentList);
 
-        for(int i = 0; i < agents.length; i++) {
+        for (Agent agent : agents) {
             int rankSum = 0;
-            Integer[] agentCycleRanks = cycleRankings.get(agents[i]);
-            for(int j = 0; j < agentCycleRanks.length; j++) {
-                rankSum += agentCycleRanks[j];
+            Integer[] agentCycleRanks = cycleRankings.get(agent);
+            for (Integer agentCycleRank : agentCycleRanks) {
+                rankSum += agentCycleRank;
             }
-            int avgRank = Math.round((float)rankSum/currentCycle);
-            averageRanks.put(agents[i], avgRank);
+            int avgRank = Math.round((float) rankSum / currentCycle);
+            averageRanks.put(agent, avgRank);
         }
 
         if(ignoreInitialScore) {
