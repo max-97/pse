@@ -1,6 +1,5 @@
 package de.sswis.model;
 
-import de.swwis.util.AgentDistribution;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -9,6 +8,7 @@ import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.AlwaysCooperate;
 import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.model.strategies.NeverCooperate;
+import de.sswis.util.AgentDistribution;
 
 public class InitializationTest {
     private static AgentDistribution[] agentDistributions;
@@ -30,16 +30,16 @@ public class InitializationTest {
         groups = new Group[2];
         groups[0] = new Group(0, "Group1");
         groups[1] = new Group(1, "Group2");
-    }
+}
 
     @Test
     public void setGroupDistributionTest() {
-        Agent[] agents = init.calculateInitialAgentState();
         init.addGroup(groups[0]);
         init.addGroup(groups[1]);
         init.setGroupDistribution(agentDistributions[0], groups[0]);
         init.setGroupDistribution(agentDistributions[1], groups[0]);
         init.setGroupDistribution(agentDistributions[2], groups[1]);
+        Agent[] agents = init.calculateInitialAgentState();
         assertTrue(groups[0].getMembers().size() == 5);
         assertTrue(groups[1].getMembers().size() == 5);
         assertTrue(groups[0].getMembers().contains(agents[1]));
@@ -53,12 +53,12 @@ public class InitializationTest {
                 new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()});
         Strategy never = new CombinedStrategy("NeverCooperate",
                 new BaseStrategy[]{new NeverCooperate()}, new Condition[]{new Always()});
-        Agent[] agents = init.calculateInitialAgentState();
         init.addGroup(groups[0]);
         init.setGroupDistribution(agentDistributions[3], groups[0]);
         init.setStrategyDistribution(agentDistributions[0], always, groups[0]);
         init.setStrategyDistribution(agentDistributions[1], always, groups[0]);
         init.setStrategyDistribution(agentDistributions[2], never, groups[0]);
+        Agent[] agents = init.calculateInitialAgentState();
         int alwaysNumber = 0;
         int neverNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
@@ -78,12 +78,11 @@ public class InitializationTest {
 
     @Test
     public void setCapitalDistributionTest() {
-        Agent[] agents = init.calculateInitialAgentState();
-        init.addGroup(groups[0]);
         init.setGroupDistribution(agentDistributions[3], groups[0]);
         init.setCapitalDistribution(agentDistributions[0], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[1], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[2], 20, groups[0]);
+        Agent[] agents = init.calculateInitialAgentState();
         int tenNumber = 0;
         int twNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
