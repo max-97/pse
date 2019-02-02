@@ -67,6 +67,7 @@ public class Initialization {
             Group group = new Group(id, name);
             groups.add(group);
         } else {
+        	Group group = new Group(id, name);
             groups.add(group);
         }
     }
