@@ -36,6 +36,7 @@ public class Initialization {
         this.name = name;
         this.agentCount = agentCount;
         this.agents = new ArrayList<>();
+        this.groups = new ArrayList<>();
         this.groupAgentDistributions = new ArrayList();
         this.strategyAgentDistributions = new ArrayList();
         this.capitalAgentDistributions = new ArrayList();
