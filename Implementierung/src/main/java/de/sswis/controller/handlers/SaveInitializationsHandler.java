@@ -49,9 +49,24 @@ public class SaveInitializationsHandler implements ActionListener {
             ModelProvider.getInstance().addInitialization(i);
         }
         AbstractManageInitializationsView parentView = this.initializationView.getParentView();
-        if (parentView == null)
-            return;
-        parentView.addInit(vmInitialization);
         this.initializationView.close();
+        if (parentView == null) {
+            return;
+        }
+        VMInitialization editedInitialization = parentView.getEditedInitialization();
+        if (editedInitialization == null) {
+            parentView.addInit(vmInitialization);
+        } else {
+            parentView.replaceInitialization(vmInitialization);
+            if (!editedInitialization.getName().equals(vmInitialization.getName())) {
+                ModelProvider.getInstance().deleteInitialization(editedInitialization.getName());
+                try {
+                    this.fileManager.deleteInitialization(editedInitialization.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            parentView.setEditedInitialization(null);
+        }
     }
 }

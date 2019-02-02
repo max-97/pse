@@ -35,6 +35,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     private JTabbedPane strategiesPane;
 
     private AbstractMainView parentView;
+    private VMStrategy editedStrategy;
 
     public ManageStrategiesView() {
         vmStrategies = new ArrayList<VMStrategy>();
@@ -53,6 +54,22 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         strategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
     }
 
+    @Override
+    public void replaceStrategy(VMStrategy newStrategy) {
+        int index = this.strategiesPane.getSelectedIndex();
+        vmStrategies.remove(index);
+        vmStrategies.add(index, newStrategy);
+
+        MixedStrategyTab tab = new MixedStrategyTab();
+        tab.setVmStrategy(newStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.remove(index);
+        strategyTabs.add(index, tab);
+        strategiesPane.remove(index);
+        strategiesPane.insertTab(newStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+    }
 
     @Override
     public void removeStrategy(String strategyName) {
@@ -125,6 +142,16 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedStrategy(VMStrategy strategy) {
+        this.editedStrategy = strategy;
+    }
+
+    @Override
+    public VMStrategy getEditedStrategy() {
+        return this.editedStrategy;
     }
 
 

@@ -48,9 +48,24 @@ public class SaveStrategiesHandler implements ActionListener {
         ModelProvider.getInstance().addMixedStrategy(mixedStrategy);
 
         AbstractManageStrategiesView parentView = this.strategyView.getParentView();
-        if (parentView == null)
-            return;
-        parentView.addStrategy(vmStrategy);
         this.strategyView.close();
+        if (parentView == null) {
+            return;
+        }
+        VMStrategy editedStrategy = parentView.getEditedStrategy();
+        if (editedStrategy == null) {
+            parentView.addStrategy(vmStrategy);
+        } else {
+            parentView.replaceStrategy(vmStrategy);
+            if (!editedStrategy.getName().equals(vmStrategy.getName())) {
+                ModelProvider.getInstance().deleteMixedStrategy(editedStrategy.getName());
+                try {
+                    this.fileManager.deleteMixedStrategy(editedStrategy.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            parentView.setEditedStrategy(null);
+        }
     }
 }

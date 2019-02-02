@@ -29,7 +29,7 @@ public class Sswis {
             provider.addCombinedStrategy(combinedStrategy);
         }
 
-        Collection<VMStrategy> vmStrategies = fileManager.loadAllMixedStrageyies();
+        Collection<VMStrategy> vmStrategies = fileManager.loadAllMixedStrategies();
         for (VMStrategy s : vmStrategies) {
             MixedStrategy strategy = parser.parseVMStrategy(s);
             provider.addMixedStrategy(strategy);
