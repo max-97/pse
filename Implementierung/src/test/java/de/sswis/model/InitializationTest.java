@@ -17,14 +17,16 @@ public class InitializationTest {
     private Group[] groups;
     private Strategy always;
     private Strategy never;
+    private Agent[] agents;
 
     @Before
     public void init() {
         init = new Initialization("init", 10);
+        ids = new int[3];
         ids[0] = 1;
         ids[1] = 5;
         ids[2] = 9;
-        agentDistributions = new AgentDistribution[3];
+        agentDistributions = new AgentDistribution[4];
         agentDistributions[0] = new AgentDistribution(ids);
         agentDistributions[1] = new AgentDistribution(45);
         agentDistributions[2] = new AgentDistribution(55);
@@ -49,6 +51,8 @@ public class InitializationTest {
         init.setCapitalDistribution(agentDistributions[0], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[1], 20, groups[0]);
         init.setCapitalDistribution(agentDistributions[3], 20, groups[1]);
+
+        agents = init.calculateInitialAgentState();
     }
 
     @Test
