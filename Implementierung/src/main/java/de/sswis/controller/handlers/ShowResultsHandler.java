@@ -61,7 +61,6 @@ public class ShowResultsHandler implements ActionListener {
                 for (VMResult r : vmResults) {
                     multiResultsView.addVMResult(r);
                 }
-                multiResultsView.update();
                 multiResultsView.show();
             }
         } else {
@@ -71,7 +70,6 @@ public class ShowResultsHandler implements ActionListener {
             for (VMResult r : vmResults) {
                 resultView.setVMResult(r);
             }
-            resultView.update();
             resultView.show();
         }
     }

@@ -33,7 +33,7 @@ public class Probability implements Condition {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        alpha = (double)parameters.get("APLHA");
+        alpha = Double.parseDouble((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override

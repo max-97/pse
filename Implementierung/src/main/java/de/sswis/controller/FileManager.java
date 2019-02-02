@@ -24,15 +24,15 @@ public class FileManager {
 
     private Gson gson;
 
-    public static final String BASE_PATH            = "src/main/resources/saves";
+    private static final String BASE_PATH            = "src/main/resources/saves";
 
-    public static final String VM_CONFIGURATION     = "VMConfiguration";
-    public static final String VM_INITIALIZATION    = "VMInitialization";
-    public static final String VM_GAME              = "VMGame";
-    public static final String VM_COMBINED_STRATEGY = "VMCombinedStrategy";
-    public static final String VM_RESULT            = "VMResult";
-    public static final String VM_STRATEGY          = "VMStrategy";
-    public static final String JSON_EXTENSION       = ".json";
+    private static final String VM_CONFIGURATION     = "VMConfiguration";
+    private static final String VM_INITIALIZATION    = "VMInitialization";
+    private static final String VM_GAME              = "VMGame";
+    private static final String VM_COMBINED_STRATEGY = "VMCombinedStrategy";
+    private static final String VM_RESULT            = "VMResult";
+    private static final String VM_STRATEGY          = "VMStrategy";
+    private static final String JSON_EXTENSION       = ".json";
 
     /**
      * Standardkonstruktor
@@ -41,29 +41,30 @@ public class FileManager {
         this.gson = new GsonBuilder().create();
     }
 
+    private File[] getFilesInSaves() {
+        File dir = new File(FileManager.BASE_PATH);
+        return dir.listFiles();
+    }
+
     /**
      * Lädt alle vorhandenen {@code VMConfiguration} Objekte.
      *
      * @return eine {@code Collection} von {@code VMConfigurations}
      */
     public Collection<VMConfiguration> loadAllConfigurations() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMConfiguration> configurations = new ArrayList<>();
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMConfiguration> configurations = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_CONFIGURATION)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
-                    // this exception should never occur, if it doesn't exist it shouldn't have been loaded
-                    // in dir.listFiles()
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    configurations.add(this.loadConfiguration(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                configurations.add(this.loadConfiguration(reader));
             }
         }
         return configurations;
@@ -75,21 +76,19 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMGame}
      */
     public Collection<VMGame> loadAllGames() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMGame> games = new ArrayList<>();
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMGame> games = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_GAME)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    games.add(this.loadGame(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                games.add(this.loadGame(reader));
             }
         }
         return games;
@@ -101,21 +100,19 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMInitialization}
      */
     public Collection<VMInitialization> loadAllInitializations() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMInitialization> initializations = new ArrayList<>();
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMInitialization> initializations = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_INITIALIZATION)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    initializations.add(this.loadInitialization(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                initializations.add(this.loadInitialization(reader));
             }
         }
         return initializations;
@@ -127,21 +124,19 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMCombinedStrategy}
      */
     public Collection<VMCombinedStrategy> loadAllCombinedStrategies() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMCombinedStrategy> combinedStrategies = new ArrayList<>();
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMCombinedStrategy> combinedStrategies = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_COMBINED_STRATEGY)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    combinedStrategies.add(this.loadCombinedStrategy(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                combinedStrategies.add(this.loadCombinedStrategy(reader));
             }
         }
         return combinedStrategies;
@@ -152,22 +147,20 @@ public class FileManager {
      *
      * @return eine {@code Collection} von {@code VMStartegy}
      */
-    public Collection<VMStrategy> loadAllMixedStrageyies() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMStrategy> mixedStrategies = new ArrayList<>();
+    public Collection<VMStrategy> loadAllMixedStrategies() {
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMStrategy> mixedStrategies = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_STRATEGY)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    mixedStrategies.add(this.loadMixedStrategy(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                mixedStrategies.add(this.loadMixedStrategy(reader));
             }
         }
         return mixedStrategies;
@@ -179,21 +172,19 @@ public class FileManager {
      * @return eine {@code Collection} von {@code VMResult}
      */
     public Collection<VMResult> loadAllResults() {
-        File dir = new File(FileManager.BASE_PATH);
-        File[] filesInDir = dir.listFiles();
-        ArrayList<VMResult> results = new ArrayList<>();
+        File[] filesInDir = this.getFilesInSaves();
+        assert filesInDir != null;
 
+        ArrayList<VMResult> results = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_RESULT)) {
-                JsonReader reader = null;
-                try {
-                    reader = new JsonReader(new FileReader(file));
-                } catch (FileNotFoundException e) {
+                try (JsonReader reader = new JsonReader(new FileReader(file))) {
+                    results.add(this.loadResult(reader));
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                results.add(this.loadResult(reader));
             }
         }
         return results;
@@ -231,7 +222,7 @@ public class FileManager {
      * @param initialization die zu speichernde {@code VMInitialization}
      */
     public void saveInitialization(VMInitialization initialization) throws IOException {
-        deleteInitalization(initialization.getName());
+        deleteInitialization(initialization.getName());
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, initialization.getName());
         try (Writer writer = new FileWriter(filePath)) {
             this.gson.toJson(initialization, writer);
@@ -286,8 +277,12 @@ public class FileManager {
      */
     public VMConfiguration loadConfiguration(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadConfiguration(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadConfiguration(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMConfiguration loadConfiguration(JsonReader reader) {
@@ -303,8 +298,12 @@ public class FileManager {
      */
     public VMGame loadGame(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_GAME, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadGame(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadGame(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMGame loadGame(JsonReader reader) {
@@ -320,8 +319,12 @@ public class FileManager {
      */
     public VMInitialization loadInitialization(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadInitialization(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadInitialization(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMInitialization loadInitialization(JsonReader reader) {
@@ -337,8 +340,12 @@ public class FileManager {
      */
     public VMCombinedStrategy loadCombinedStrategy(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadCombinedStrategy(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadCombinedStrategy(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMCombinedStrategy loadCombinedStrategy(JsonReader reader) {
@@ -354,8 +361,12 @@ public class FileManager {
      */
     public VMStrategy loadMixedStrategy(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_STRATEGY, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadMixedStrategy(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadMixedStrategy(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMStrategy loadMixedStrategy(JsonReader reader) {
@@ -371,8 +382,12 @@ public class FileManager {
      */
     public VMResult loadResult(String name) throws FileNotFoundException {
         String filePath = this.getFilePath(FileManager.VM_RESULT, name);
-        JsonReader jsonReader = new JsonReader(new FileReader(filePath));
-        return this.loadResult(jsonReader);
+        try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
+            return this.loadResult(jsonReader);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private VMResult loadResult(JsonReader reader) {
@@ -407,7 +422,7 @@ public class FileManager {
      *
      * @param name der Name der {@code VMInitialisation}
      */
-    public void deleteInitalization(String name) throws IOException {
+    public void deleteInitialization(String name) throws IOException {
         Path path = Paths.get(this.getFilePath(FileManager.VM_INITIALIZATION, name));
         Files.deleteIfExists(path);
     }

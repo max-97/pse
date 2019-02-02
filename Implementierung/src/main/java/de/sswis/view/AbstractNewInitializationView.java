@@ -2,7 +2,9 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMInitialization;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
@@ -23,6 +25,7 @@ public interface AbstractNewInitializationView extends AbstractView {
      * @param listener ActionListener
      */
     void addFinishButtonActionlistener(ActionListener listener);
+
 
     VMInitialization getVMInitialization();
 

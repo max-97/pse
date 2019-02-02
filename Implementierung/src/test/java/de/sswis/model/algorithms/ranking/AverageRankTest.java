@@ -18,7 +18,7 @@ public class AverageRankTest {
         agents = new Agent[4];
         rankingAlgorithm = new AverageRank();
         HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("Window size", 2);
+        parameters.put("Window size", "2");
         rankingAlgorithm.setParameters(parameters);
 
         for(int i = 0; i < agents.length; i++) {

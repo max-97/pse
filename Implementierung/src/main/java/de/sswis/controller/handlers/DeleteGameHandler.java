@@ -37,6 +37,5 @@ public class DeleteGameHandler implements ActionListener {
             return;
         }
         this.manageGamesView.removeGame(selectedVM.getName());
-        this.manageGamesView.update();
     }
 }

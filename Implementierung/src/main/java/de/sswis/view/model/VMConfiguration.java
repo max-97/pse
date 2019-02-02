@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class VMConfiguration {
 
-
     private String name;
 
     private String game;
@@ -24,18 +23,12 @@ public class VMConfiguration {
     private String adaptationProbability;
     private List<String> strategies;
 
-    private VMResult result;
+    private HashMap<String, Object> pairingParameters;
+    private HashMap<String, Object> adaptationParameters;
+    private HashMap<String, Object> rankingParameters;
 
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: mehrere variable Parameter, illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
-    }
+    private VMResult result;
+    private boolean hasResult = false;
 
     /**
      * Zeigt ob die Konfiguration variable Parameter enthält.
@@ -49,8 +42,7 @@ public class VMConfiguration {
      * @return true wenn es Ergebnisse von Simulationen mit dieser Konfiguration gibt, sonst false
      */
     public boolean hasResult () {
-        //TODO: implement me
-        return false;
+        return this.hasResult;
     }
 
     /**
@@ -153,17 +145,30 @@ public class VMConfiguration {
 
     public void setResult(VMResult result) {
         this.result = result;
+        this.hasResult = true;
+    }
+
+    public void setPairingParameters(HashMap<String, Object> pairingParameters) {
+        this.pairingParameters = pairingParameters;
+    }
+
+    public void setAdaptationParameters(HashMap<String, Object> adaptationParameters) {
+        this.adaptationParameters = adaptationParameters;
+    }
+
+    public void setRankingParameters(HashMap<String, Object> rankingParameters) {
+        this.rankingParameters = rankingParameters;
     }
 
     public HashMap<String, Object> getAdaptationParameters() {
-        return null;
+        return this.adaptationParameters;
     }
 
     public HashMap<String, Object> getPairingParameters() {
-        return null;
+        return this.pairingParameters;
     }
 
     public HashMap<String, Object> getRankingParameters() {
-        return null;
+        return this.rankingParameters;
     }
 }

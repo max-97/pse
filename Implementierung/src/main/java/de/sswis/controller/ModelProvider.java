@@ -1,6 +1,5 @@
 package de.sswis.controller;
 
-import de.sswis.exceptions.DuplicateObjectNameException;
 import de.sswis.model.*;
 
 import java.util.HashMap;
@@ -22,6 +21,7 @@ public class ModelProvider {
     private HashMap<String, Game> games;
     private HashMap<String, CombinedStrategy> combinedStrategies;
     private HashMap<String, Initialization> initialization;
+    private HashMap<String, MixedStrategy> mixedStrategies;
     private HashMap<String, Strategy> strategies;
 
     private ModelProvider() {
@@ -29,6 +29,7 @@ public class ModelProvider {
         this.games = new HashMap<>();
         this.combinedStrategies = new HashMap<>();
         this.initialization = new HashMap<>();
+        this.mixedStrategies = new HashMap<>();
         this.strategies = new HashMap<>();
     }
 
@@ -85,28 +86,6 @@ public class ModelProvider {
         this.games.put(game.getName(), game);
     }
 
-
-    /**
-     * Fügt eine {@code CombinedStrategy} hinzu.
-     *
-     * @param combStrategy die zu speichernde {@code CombinedStrategy}
-     */
-    public void addCombinedStrategy(CombinedStrategy combStrategy) {
-        /*
-        if(this.combinedStrategies.containsKey(combStrategy.getName())) {
-            if(this.combinedStrategies.get(combStrategy.getName()).equals(combStrategy)) {
-                // combinedStrategy already added, do nothing
-                return;
-            } else {
-                throw new DuplicateObjectNameException("Another CombinedStrategy object with the same name already exists." +
-                        "Duplicate names should be checked before object creation!");
-            }
-        }
-        */
-        this.combinedStrategies.put(combStrategy.getName(), combStrategy);
-    }
-
-
     /**
      * Fügt eine {@code Initialization} hinzu.
      *
@@ -128,15 +107,36 @@ public class ModelProvider {
     }
 
     /**
+     * Fügt eine {@code CombinedStrategy} hinzu.
+     *
+     * @param combStrategy die zu speichernde {@code CombinedStrategy}
+     */
+    public void addCombinedStrategy(CombinedStrategy combStrategy) {
+        /*
+        if(this.combinedStrategies.containsKey(combStrategy.getName())) {
+            if(this.combinedStrategies.get(combStrategy.getName()).equals(combStrategy)) {
+                // combinedStrategy already added, do nothing
+                return;
+            } else {
+                throw new DuplicateObjectNameException("Another CombinedStrategy object with the same name already exists." +
+                        "Duplicate names should be checked before object creation!");
+            }
+        }
+        */
+        this.combinedStrategies.put(combStrategy.getName(), combStrategy);
+        this.addStrategy(combStrategy);
+    }
+
+    /**
      * Fügt eine {@code Strategy} hinzu
      *
-     * @param strategy die zu speichernde {@code Strategy}
+     * @param mixedStrategy die zu speichernde {@code Strategy}
      */
-    public void addStrategy(Strategy strategy) {
+    public void addMixedStrategy(MixedStrategy mixedStrategy) {
         /*
-        if(this.strategies.containsKey(strategy.getName())) {
-            if(this.strategies.get(strategy.getName()).equals(strategy)) {
-                // strategies already added, do nothing
+        if(this.mixedStrategies.containsKey(strategy.getName())) {
+            if(this.mixedStrategies.get(strategy.getName()).equals(strategy)) {
+                // mixedStrategies already added, do nothing
                 return;
             } else {
                 throw new DuplicateObjectNameException("Another Strategy object with the same name already exists." +
@@ -144,6 +144,11 @@ public class ModelProvider {
             }
         }
         */
+        this.mixedStrategies.put(mixedStrategy.getName(), mixedStrategy);
+        this.addStrategy(mixedStrategy);
+    }
+
+    public void addStrategy(Strategy strategy) {
         this.strategies.put(strategy.getName(), strategy);
     }
 
@@ -168,16 +173,6 @@ public class ModelProvider {
     }
 
     /**
-     * Löscht eine {@code CombinedStrategy}. Die {@code CombinedStrategy} wird über ihren Namen identifiziert.
-     * Löschen kann nicht rückgängig gemacht werden.
-     *
-     * @param name Name der zu löschenden {@code CombinedStrategy}
-     */
-    public void deleteCombinedStrategy(String name) {
-        this.combinedStrategies.remove(name);
-    }
-
-    /**
      * Löscht eine {@code Initialization}. Die {@code Initialization} wird über ihren Namen identifiziert.
      * Löschen kann nicht rückgängig geamacht werden.
      *
@@ -188,11 +183,27 @@ public class ModelProvider {
     }
 
     /**
+     * Löscht eine {@code CombinedStrategy}. Die {@code CombinedStrategy} wird über ihren Namen identifiziert.
+     * Löschen kann nicht rückgängig gemacht werden.
+     *
+     * @param name Name der zu löschenden {@code CombinedStrategy}
+     */
+    public void deleteCombinedStrategy(String name) {
+        this.combinedStrategies.remove(name);
+        this.deleteStrategy(name);
+    }
+
+    /**
      * Löscht eine {@code Strategy}. Die {@code Strategy} wird über ihren Namen identifiziert.
      * Löschen kann nicht rückgängig gemacht werden.
      *
      * @param name Name der zu löschenden {@code Strategy}
      */
+    public void deleteMixedStrategy(String name) {
+        this.mixedStrategies.remove(name);
+        this.deleteStrategy(name);
+    }
+
     public void deleteStrategy(String name) {
         this.strategies.remove(name);
     }
@@ -203,7 +214,7 @@ public class ModelProvider {
     public void deleteAllObjects() {
         this.configurations.clear();
         this.games.clear();
-        this.strategies.clear();
+        this.mixedStrategies.clear();
         this.initialization.clear();
         this.combinedStrategies.clear();
     }
@@ -224,6 +235,14 @@ public class ModelProvider {
         return this.games.get(name);
     }
 
+    public Map<String, Initialization> getInitializations() {
+        return initialization;
+    }
+
+    public Initialization getInitialization(String name) {
+        return this.initialization.get(name);
+    }
+
     public Map<String, CombinedStrategy> getCombinedStrategies() {
         return combinedStrategies;
     }
@@ -232,12 +251,12 @@ public class ModelProvider {
         return this.combinedStrategies.get(name);
     }
 
-    public Map<String, Initialization> getInitializations() {
-        return initialization;
+    public Map<String, MixedStrategy> getMixedStrategies() {
+        return this.mixedStrategies;
     }
 
-    public Initialization getInitialization(String name) {
-        return this.initialization.get(name);
+    public MixedStrategy getMixedStrategy(String name) {
+        return this.mixedStrategies.get(name);
     }
 
     public Map<String, Strategy> getStrategies() {

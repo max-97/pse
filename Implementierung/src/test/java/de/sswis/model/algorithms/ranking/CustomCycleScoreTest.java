@@ -18,7 +18,7 @@ public class CustomCycleScoreTest {
         agents = new Agent[4];
         rankingAlgorithm = new CustomCycleScore();
         HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("Window size", 2);
+        parameters.put("Window size", "2");
         rankingAlgorithm.setParameters(parameters);
     }
 

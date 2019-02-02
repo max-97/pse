@@ -46,10 +46,24 @@ public class SaveGamesHandler implements ActionListener {
         Game game = this.parser.parseVMGame(vmGame);
         ModelProvider.getInstance().addGame(game);
         AbstractManageGamesView parentView = this.gameView.getParentView();
-        if (parentView == null)
-            return;
-        parentView.addGame(vmGame);
-        parentView.update();
         this.gameView.close();
+        if (parentView == null) {
+            return;
+        }
+        VMGame editedGame = parentView.getEditedGame();
+        if (editedGame == null) {
+            parentView.addGame(vmGame);
+        } else {
+            parentView.replaceGame(vmGame);
+            if (!editedGame.getName().equals(vmGame.getName())) {
+                ModelProvider.getInstance().deleteGame(editedGame.getName());
+                try {
+                    this.fileManager.deleteGame(editedGame.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            parentView.setEditedGame(null);
+        }
     }
 }

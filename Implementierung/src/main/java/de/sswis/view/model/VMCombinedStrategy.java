@@ -1,6 +1,8 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -16,17 +18,28 @@ public class VMCombinedStrategy {
     private String defaultStrategy;
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
+    private List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
 
 
-    /**
-     * Zeigt ob die gespeicherten Daten konsistent und korrekt sind.
-     * Fehlerhafte Daten beinhalten: illegale Eingaben.
-     *
-     * @return true wenn die Daten korrekt sind und false wenn sie fehlerhaft sind.
-     */
-    public boolean isCorrect () {
-        //TODO: implement me
-        return false;
+    public HashMap<String, Object> getConditionParameter(int index) {
+        return this.conditionParameters.get(index);
+    }
+
+    public List<HashMap<String, Object>> getConditionpParameters() {
+        return conditionParameters;
+    }
+
+    public void addConditionParameter(HashMap<String, Object> parameters) {
+        this.conditionParameters.add(parameters);
+    }
+
+
+    public List<String> getStrategies() {
+        return this.baseStrategies;
+    }
+
+    public List<String> getConditions() {
+        return this.conditions;
     }
 
     /**
@@ -41,6 +54,23 @@ public class VMCombinedStrategy {
     public void addStrategy(String baseStrategy, String condition) {
         baseStrategies.add(baseStrategy);
         conditions.add(condition);
+    }
+
+    public void addStrategyList(List<String> baseStrategies, List<String> conditions) {
+        //baseStrategies.size() == conditions.size()
+        Iterator<String> it1 = baseStrategies.iterator();
+        Iterator<String> it2 = conditions.iterator();
+
+        while (it1.hasNext()) { // == it2.hasNext()
+            addStrategy(it1.next(), it2.next());
+        }
+    }
+
+    public void setStrategyList(List<String> baseStrategies, List<String> conditions) {
+        //baseStrategies.size() == conditions.size()
+        this.baseStrategies = new ArrayList<>(baseStrategies.size());
+        this.conditions = new ArrayList<>(baseStrategies.size());
+        addStrategyList(baseStrategies, conditions);
     }
 
     /**
@@ -59,7 +89,9 @@ public class VMCombinedStrategy {
      * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
      * @return String enthält Kurzbeschreibung der kombinierten Strategie
      */
-    public String getToolTipText() {    return ""; }
+    public String getToolTipText() {
+        return "";
+    }
 
     public String getName() {
         return name;
@@ -77,16 +109,8 @@ public class VMCombinedStrategy {
         this.description = description;
     }
 
-    public List<String> getStrategies() {
-        return this.baseStrategies;
-    }
-
-    public List<String> getConditions() {
-        return this.conditions;
-    }
-
-    public double getConditionParameter(String conditionName) {
-        return 0;
+    public HashMap<String, Object> getConditionParameter(String conditionName) {
+        return null;
     }
 
 }

@@ -45,13 +45,7 @@ public class Agent {
     }
 
     public Strategy getStrategy() {
-        if(strategy instanceof CombinedStrategy) {
-            return strategy;
-        } else {
-            MixedStrategy mixedStrategy = (MixedStrategy)strategy;
-            return new MixedStrategy(mixedStrategy.getName(), mixedStrategy.getCombinedStrategies().clone(),
-                    mixedStrategy.getProbabilities().clone());
-        }
+        return strategy;
     }
 
     public int getScore() { return score; }

@@ -2,7 +2,10 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMCombinedStrategy;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
+import java.util.HashMap;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer kombinierten Strategie.
@@ -32,4 +35,6 @@ public interface AbstractNewCombinedStrategyView extends AbstractView {
     void addCondition(String name);
 
     void addBaseStrategy(String name);
+
+    void addParameters(HashMap<String, String[]> parameters);
 }

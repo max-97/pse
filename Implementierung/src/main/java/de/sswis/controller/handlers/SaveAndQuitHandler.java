@@ -36,7 +36,6 @@ public class SaveAndQuitHandler implements ActionListener {
             for (VMConfiguration c : manager.loadAllConfigurations()) {
                 mainView.addConfiguration(c);
             }
-            mainView.update();
         }
         this.view.close();
     }
