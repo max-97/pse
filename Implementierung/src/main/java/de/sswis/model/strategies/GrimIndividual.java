@@ -25,6 +25,6 @@ public class GrimIndividual implements BaseStrategy {
 
     @Override
     public String getName() {
-        return null;
+        return NAME;
     }
 }
