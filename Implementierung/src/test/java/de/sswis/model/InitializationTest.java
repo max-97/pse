@@ -62,10 +62,10 @@ public class InitializationTest {
         int alwaysNumber = 0;
         int neverNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
-            if (groups[0].getMembers().get(i),getStrategy() == always) {
+            if (groups[0].getMembers().get(i).getStrategy() == always) {
                 alwaysNumber++;
             }
-            if (groups[0].getMembers().get(i),getStrategy() == never) {
+            if (groups[0].getMembers().get(i).getStrategy() == never) {
                 neverNumber++;
             }
         }
@@ -86,10 +86,10 @@ public class InitializationTest {
         int tenNumber = 0;
         int twNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
-            if (groups[0].getMembers().get(i),getScore() == 10) {
+            if (groups[0].getMembers().get(i).getScore() == 10) {
                 tenNumber++;
             }
-            if (groups[0].getMembers().get(i),getScore() == 20) {
+            if (groups[0].getMembers().get(i).getScore() == 20) {
                 twNumber++;
             }
         }
