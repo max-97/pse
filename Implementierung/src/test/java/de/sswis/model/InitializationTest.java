@@ -24,7 +24,7 @@ public class InitializationTest {
         init = new Initialization("init", 20);
         ids = new int[3];
         ids[0] = 1;
-        ids[1] = 20;
+        ids[1] = 19;
         agentDistributions = new AgentDistribution[4];
         agentDistributions[0] = new AgentDistribution(ids);
         agentDistributions[1] = new AgentDistribution(45);
@@ -62,7 +62,7 @@ public class InitializationTest {
         assertTrue(groups[0].getMembers().size() == 9);
         assertTrue(groups[1].getMembers().size() == 11);
         assertTrue(groups[0].getMembers().contains(agents[1]));
-        assertTrue(groups[0].getMembers().contains(agents[20]));
+        assertTrue(groups[0].getMembers().contains(agents[19]));
     }
 
     @Test
@@ -80,8 +80,8 @@ public class InitializationTest {
         assertTrue(alwaysNumber == 5);
         assertTrue(neverNumber == 4);
         assertEquals(always, agents[1].getStrategy());
-        assertEquals(never, agents[9].getStrategy());
-        assertEquals(always, agents[20].getStrategy());
+        assertEquals(never, agents[8].getStrategy());
+        assertEquals(always, agents[19].getStrategy());
     }
 
     @Test
@@ -99,7 +99,7 @@ public class InitializationTest {
         assertTrue(tenNumber == 5);
         assertTrue(twNumber == 4);
         assertTrue(agents[1].getScore() == 10);
-        assertTrue(agents[9].getScore() == 20);
-        assertTrue(agents[20].getScore() == 10);
+        assertTrue(agents[8].getScore() == 20);
+        assertTrue(agents[19].getScore() == 10);
     }
 }
