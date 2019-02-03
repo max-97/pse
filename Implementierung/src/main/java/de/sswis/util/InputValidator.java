@@ -48,6 +48,16 @@ public class InputValidator {
         return true;
     }
 
+    public static boolean isDouble(String str) {
+
+        try {
+            Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
     public static boolean isInterval(String str) {
 
         String[] parts = str.split("-");
