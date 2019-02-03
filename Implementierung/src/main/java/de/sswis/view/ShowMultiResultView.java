@@ -18,7 +18,8 @@ import java.util.List;
  */
 public class ShowMultiResultView implements AbstractShowMultiResultView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMConfiguration> vmConfigurations;
 

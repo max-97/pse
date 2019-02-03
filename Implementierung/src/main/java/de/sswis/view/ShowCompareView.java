@@ -17,7 +17,8 @@ import java.util.List;
  */
 public class ShowCompareView implements AbstractShowCompareView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
 
     private List<VMConfiguration> configurations;

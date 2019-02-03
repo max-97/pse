@@ -20,7 +20,8 @@ import java.util.List;
  */
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMConfiguration> vmConfigurations;
 

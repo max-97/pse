@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class MainView implements AbstractMainView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
 
 
     private List<VMConfiguration> configurations;
@@ -64,7 +64,6 @@ public class MainView implements AbstractMainView {
 
         configurations = new ArrayList<VMConfiguration>();
         simulatingConfigs = new ArrayList<>();
-        frame = new JFrame("SSWIS");
 
         $$$setupUI$$$();
         setMenuBar();

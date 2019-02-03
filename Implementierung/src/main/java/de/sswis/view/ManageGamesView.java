@@ -20,7 +20,8 @@ import java.util.List;
  */
 public class ManageGamesView implements AbstractManageGamesView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMGame> vmGames;
 
