@@ -214,22 +214,20 @@ public class Initialization {
 
     public void distributeCapital() {
         for (int a = 0; a < groups3.size(); a++) {
-            List<Agent> members = groups3.get(a).getMembers());
+            List<Agent> members = groups3.get(a).getMembers();
             if (capitalAgentDistributions.get(a).usesIDS()) {
                 int[] ids = capitalAgentDistributions.get(a).getAgentIDs();
                 for (int i = 0; i < capitalAgentDistributions.get(a).getAgentIDs().length; i++) {
-                    for (int j = 0; j < groups3.get(a).getMembers().size(); j++) {
-                        if (ids[i] == members.get(j).getId()) {
-                            if (members.get(j).getScore() == 0) {
-                                members.get(j).setScore(capitals.get(a));
-                            }
+                    for (int j = 0; j < members.size(); j++) {
+                        if (ids[i] == members.get(j).getId() && members.get(j).getScore() == 0) {
+                            members.get(j).setScore(capitals.get(a));
                         }
                     }
                 }
             }
         }
         for (int b = 0; b < groups3.size(); b++) {
-            List<Agent> members = groups3.get(b).getMembers());
+            List<Agent> members = groups3.get(b).getMembers();
             if (!capitalAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
@@ -245,8 +243,8 @@ public class Initialization {
                     }
                     float result = (float) capitalAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();
                     int number = Math.round(result);
-                    for (int z = 0; z < groups3.get(b).getMembers().size(); z++) {
-                        if (groups3.get(b).getMembers().get(z).getScore() == 0) {
+                    for (int z = 0; z < members.size(); z++) {
+                        if (members.get(z).getScore() == 0) {
                             isAll = false;
                         }
                     }
