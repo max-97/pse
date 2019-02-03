@@ -63,7 +63,7 @@ public class MainView implements AbstractMainView {
     public MainView() {
 
         configurations = new ArrayList<VMConfiguration>();
-
+        simulatingConfigs = new ArrayList<>();
         frame = new JFrame("SSWIS");
 
         $$$setupUI$$$();
