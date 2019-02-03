@@ -1,6 +1,7 @@
 package de.sswis.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Eine Gruppe welche eine Menge von Agenten enthaelt.
@@ -20,6 +21,7 @@ public class Group {
     public Group(int id, String name) {
         this.id = id;
         this.name = name;
+        this.members = new ArrayList();
     }
 
     public int getId() {
