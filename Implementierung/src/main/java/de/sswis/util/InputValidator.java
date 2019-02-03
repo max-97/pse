@@ -9,25 +9,15 @@ package de.sswis.util;
 public class InputValidator {
 
     /**
-     * Die für einen Namen maximale zulässige Anzahl an Zeichen.
-     */
-    public static final short MAX_NAME_LENGTH = 70;
-
-    /**
-     * Die für eine Beschreibung maximale zulässige Anzahl an Zeichen.
-     */
-    public static final short MAX_DESCRIPTION_LENGTH = 250;
-
-    /**
      * Prüft, ob der entgegengenommene String ein gültiger Name ist.
      * Gültig bedeutet, dass die Eingabe ausschließlich alphanumerische Zeichen beinhaltet und die maximale Länge für Namen nicht überschritten wurde.
      *
      * @param str der entgegengenommene String
      * @return {@code true}, wenn str ein gültiger Name ist, {@code false} sonst
      */
-    public boolean isLegalName(String str) {
+    public static boolean isLegalName(String str) {
 
-        return (str.length() <= MAX_NAME_LENGTH) && (str.length() != 0) && str.matches("[A-Za-z0-9]");
+        return (str.matches("\\w{1,35}"));
     }
 
     /**
@@ -37,9 +27,9 @@ public class InputValidator {
      * @param str der entgegengenommene String
      * @return {@code true}, wenn str eine gültige Beschreibung ist, {@code false} sonst
      */
-    public boolean isLegalDescription(String str) {
+    public static boolean isLegalDescription(String str) {
 
-        return (str.length() <= MAX_DESCRIPTION_LENGTH) && (str.length() != 0);
+        return (str.length() <= 200);
     }
 
     /**
@@ -48,12 +38,35 @@ public class InputValidator {
      * @param str der entgegengenommene String
      * @return {@code true}, wenn str ein einfacher Zahlenwert ist, {@code false} sonst
      */
-    public boolean isSingleValue(String str) {
+    public static boolean isSingleValue(String str) {
 
         try {
             Integer.parseInt(str);
         } catch (NumberFormatException e) {
             return false;
+        }
+        return true;
+    }
+
+    public static boolean isInterval(String str) {
+
+        String[] parts = str.split("-");
+
+        if (!(parts.length == 2
+                && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim()))) return false;
+
+        int start = Integer.parseInt(parts[0].trim());
+        int end = Integer.parseInt(parts[1].trim());
+
+        return (start < end);
+    }
+
+    public static boolean isIntervalPlusSingleValues(String str) {
+
+        String[] parts = str.split(",");
+
+        for (String part : parts) {
+            if (!(isSingleValue(part.trim()) || isInterval(part.trim()))) return false;
         }
         return true;
     }
@@ -65,20 +78,34 @@ public class InputValidator {
      * @param str der entgegengenommene String
      * @return {@code true}, wenn str eine gültige Schar von Zahlenwerten ist, {@code false} sonst
      */
-    public boolean isFamilyOfValues(String str) {
+    public static boolean isFamilyOfValues(String str) {
 
-        String[] strings = str.split(" - ");
+        String[] parts = str.split("-");
 
-        if (!(strings.length == 3 &&
-                isSingleValue(strings[0]) && isSingleValue(strings[1]) && isSingleValue(strings[2]))) return false;
+        if (!(parts.length == 3 && isSingleValue(parts[0].trim())
+                && isSingleValue(parts[1].trim()) && isSingleValue(parts[2].trim()))) return false;
 
-        int start = Integer.parseInt(strings[0]);
-        int end = Integer.parseInt(strings[1]);
-        int step = Integer.parseInt(strings[2]);
+        int start = Integer.parseInt(parts[0].trim());
+        int end = Integer.parseInt(parts[1].trim());
+        int step = Integer.parseInt(parts[2].trim());
 
-        if (step == 0) return (start == end);
+        return (start < end) && (step > 0);
+    }
 
-        return (step > 0) ? (start <= end) : (start >= end);
+    public static boolean isPercentage(String str) {
+
+        if (!(str.contains("%"))) return false;
+        String percentage = str.replace("%","").trim();
+
+        return isInPercentageRange(percentage);
+    }
+
+    public static boolean isInPercentageRange(String str) {
+
+        if (!isSingleValue(str.trim())) return false;
+        int percentage = Integer.parseInt(str.trim());
+
+        return (percentage > 0) && (percentage < 101);
     }
 
 }
