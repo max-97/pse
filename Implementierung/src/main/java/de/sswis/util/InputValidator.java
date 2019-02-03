@@ -121,4 +121,15 @@ public class InputValidator {
         return (percentage > 0) && (percentage < 101);
     }
 
+    public static boolean containsFamilyOfValues(String str) {
+
+        String[] parts = str.split(",");
+
+        for (String part : parts) {
+            if (isFamilyOfValues(part.trim())) return true;
+        }
+
+        return false;
+    }
+
 }
