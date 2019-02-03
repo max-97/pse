@@ -54,4 +54,6 @@ public class VMResult {
     public void setAgents(Collection<Agent> agents) {
         this.agents = agents;
     }
+
+
 }
