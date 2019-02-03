@@ -89,7 +89,7 @@ public class InputValidator {
         int end = Integer.parseInt(parts[1].trim());
         int step = Integer.parseInt(parts[2].trim());
 
-        return (start < end) && (step > 0);
+        return (start != end) && (step > 0);
     }
 
     public static boolean isPercentage(String str) {
