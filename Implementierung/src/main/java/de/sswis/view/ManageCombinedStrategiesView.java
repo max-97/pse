@@ -19,7 +19,8 @@ import java.util.List;
  */
 public class ManageCombinedStrategiesView implements AbstractManageCombinedStrategiesView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMCombinedStrategy> vmCombinedStrategies;
 

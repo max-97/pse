@@ -20,7 +20,8 @@ import java.util.EventListener;
  */
 public class NewGameView implements AbstractNewGameView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
 
     private VMGame vmGame = new VMGame();

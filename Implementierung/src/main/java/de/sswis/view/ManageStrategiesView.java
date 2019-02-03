@@ -20,7 +20,8 @@ import java.util.ArrayList;
  */
 public class ManageStrategiesView implements AbstractManageStrategiesView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMStrategy> vmStrategies;
     private List<MixedStrategyTab> strategyTabs;
@@ -202,5 +203,4 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
-
 }

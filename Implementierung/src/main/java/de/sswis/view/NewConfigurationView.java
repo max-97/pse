@@ -21,7 +21,8 @@ import java.util.List;
  */
 public class NewConfigurationView implements AbstractNewConfigurationView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private AbstractManageConfigurationsView parentView;
 

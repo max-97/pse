@@ -20,7 +20,8 @@ import java.util.List;
  */
 public class ManageInitializationsView implements AbstractManageInitializationsView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMInitialization> vmInits;
     private List<InitializationTab> initializationTabs;
@@ -204,5 +205,4 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
-
 }

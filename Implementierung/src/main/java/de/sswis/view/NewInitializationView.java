@@ -23,7 +23,8 @@ import java.util.List;
  */
 public class NewInitializationView implements AbstractNewInitializationView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
 
     private VMInitialization vmInitialization = new VMInitialization();

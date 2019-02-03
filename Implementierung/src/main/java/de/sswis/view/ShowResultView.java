@@ -16,7 +16,8 @@ import java.awt.*;
  */
 public class ShowResultView implements AbstractShowResultView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+
 
 
     private VMConfiguration vmConfiguration;

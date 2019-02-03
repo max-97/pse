@@ -19,7 +19,8 @@ import java.util.List;
  */
 public class NewStrategyView implements AbstractNewStrategyView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private final int MAX_LINES = 19;
 

@@ -21,7 +21,8 @@ import java.util.ArrayList;
 public class ManageResultsView implements AbstractManageResultsView {
 
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMResult> vmResults;
 
