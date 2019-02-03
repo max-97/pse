@@ -5,6 +5,9 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.containsFamilyOfValues;
+import static de.sswis.util.InputValidator.isFamilyOfPercentages;
+
 /**
  * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer {@code Group} enthält.
  * Erhält Nutzereingaben von der Benutzeroberfäche und prüft diese auf Konsistenz und Korrektheit.
@@ -19,11 +22,11 @@ public class VMGroup {
 
     private List<String> strategies = new ArrayList<>();
     private List<String> strategyDistributions = new ArrayList<>();
-    private boolean relativeStrategyDistribution;
+    private boolean relativeStrategyDistribution = false;
 
     private List<String> startCapital = new ArrayList<>();
     private List<String> startCapitalDistributions = new ArrayList<>();
-    private boolean relativeCapitalDistribution;
+    private boolean relativeCapitalDistribution = false;
 
 
     /**
@@ -145,18 +148,14 @@ public class VMGroup {
 
     public boolean hasMultiComponent() {
 
-        for (String str1 : this.agentIntervals.split(",")) {
-            if (isMultiString(str1)) return true;
+        if (containsFamilyOfValues(this.agentIntervals) || isFamilyOfPercentages(this.agentIntervals)) return true;
+
+        for (String stratDistr : this.strategyDistributions) {
+            if (containsFamilyOfValues(stratDistr) || isFamilyOfPercentages(stratDistr)) return true;
         }
-        for (String str2 : this.strategyDistributions) {
-            for (String str3 : str2.split(",")) {
-                if (isMultiString(str3)) return true;
-            }
-        }
-        for (String str4 : this.startCapitalDistributions) {
-            for (String str5 : str4.split(",")) {
-                if (isMultiString(str5)) return true;
-            }
+
+        for (String startCapDistr : this.startCapitalDistributions) {
+            if (containsFamilyOfValues(startCapDistr) || isFamilyOfPercentages(startCapDistr)) return true;
         }
         return false;
     }
@@ -164,9 +163,5 @@ public class VMGroup {
     private List<String> distributionList(String distribution) {
         String[] parts = distribution.trim().split(",");
         return new ArrayList<>(Arrays.asList(parts));
-    }
-
-    private boolean isMultiString(String str) {
-        return str.matches(".*(-.*){2}.*");
     }
 }
