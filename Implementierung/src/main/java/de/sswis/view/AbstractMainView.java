@@ -56,6 +56,16 @@ public interface AbstractMainView extends AbstractView {
     VMConfiguration getSelected();
 
     /**
+     * Öffnet ein Dialogfenster, in das der Nutzer die Anzahl der Wiederholungen eingeben soll.
+     * Gibt -1 zurück, falls die Abfrage vom Nutzer abgebrochen wurde oder gibt die Eingabe zurück,
+     * nachdem diese vom Nutzer bestätigt wurde.
+     * Der Aufrufer dieser Methode wird blockiert bis der Nutzer das Dialogfenster wieder geschlossen hat.
+     *
+     * @return -1 wenn Abfrage abgebrochen wurde, sonst die Nutzereingabe
+     */
+    int askForRepitionNumber();
+
+    /**
      * Fügt ein ActionListener zum Button Simulation starten hinzu.
      * @param listener ActionListener
      */
