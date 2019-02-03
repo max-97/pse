@@ -92,6 +92,19 @@ public class InputValidator {
         return (start != end) && (step > 0);
     }
 
+    public static boolean isFamilyOfPercentages(String str) {
+
+        String[] parts = str.split("-");
+
+        if (!(parts.length == 3 && isPercentage(parts[0].trim())
+                && isPercentage(parts[1].trim()) && isPercentage(parts[2].trim()))) return false;
+
+        int start = Integer.parseInt(parts[0].replace("%","").trim());
+        int end = Integer.parseInt(parts[1].replace("%","").trim());
+
+        return start != end;
+    }
+
     public static boolean isPercentage(String str) {
 
         if (!(str.contains("%"))) return false;
