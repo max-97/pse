@@ -28,7 +28,7 @@ public class CombinedStrategyTab {
     private List<JLabel> conditionLabels;
     private List<JLabel> strategyLabels;
 
-    private JPanel panel1;
+    private JPanel panel1 = new JPanel();
 
     /**
      * Erstellt ein neues Tab für die kombinierte Strategie.
