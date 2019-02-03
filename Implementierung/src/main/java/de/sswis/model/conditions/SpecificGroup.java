@@ -29,7 +29,7 @@ public class SpecificGroup implements Condition {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        groupId = (int)parameters.get("GROUP_ID");
+        groupId = Integer.parseInt((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override

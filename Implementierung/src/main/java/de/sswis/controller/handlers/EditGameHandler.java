@@ -32,8 +32,10 @@ public class EditGameHandler implements ActionListener {
         AbstractNewGameView newGameView = this.factory.createNewGameView();
         newGameView.setParentView(manageGamesView);
         VMGame selectedVM = this.manageGamesView.getSelectedVM();
+        VMGame editedGame = new VMGame();
+        editedGame.setName(selectedVM.getName());
+        this.manageGamesView.setEditedGame(editedGame);
         newGameView.setGame(selectedVM);
-        newGameView.update();
         newGameView.show();
     }
 }

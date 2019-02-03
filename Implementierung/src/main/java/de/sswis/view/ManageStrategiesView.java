@@ -20,10 +20,14 @@ import java.util.ArrayList;
  */
 public class ManageStrategiesView implements AbstractManageStrategiesView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMStrategy> vmStrategies;
     private List<MixedStrategyTab> strategyTabs;
+
+    ActionListener editListener;
+    ActionListener deleteListener;
 
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -32,6 +36,7 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     private JTabbedPane strategiesPane;
 
     private AbstractMainView parentView;
+    private VMStrategy editedStrategy;
 
     public ManageStrategiesView() {
         vmStrategies = new ArrayList<VMStrategy>();
@@ -41,12 +46,30 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public void addStrategy(VMStrategy vmStrategy) {
         vmStrategies.add(vmStrategy);
-        addTab(vmStrategy);
+        MixedStrategyTab tab = new MixedStrategyTab();
+        tab.setVmStrategy(vmStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.add(tab);
+        strategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMStrategy strategy) {
-        MixedStrategyTab tab = new MixedStrategyTab(strategy);
-        strategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
+    @Override
+    public void replaceStrategy(VMStrategy newStrategy) {
+        int index = this.strategiesPane.getSelectedIndex();
+        vmStrategies.remove(index);
+        vmStrategies.add(index, newStrategy);
+
+        MixedStrategyTab tab = new MixedStrategyTab();
+        tab.setVmStrategy(newStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.remove(index);
+        strategyTabs.add(index, tab);
+        strategiesPane.remove(index);
+        strategiesPane.insertTab(newStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
     @Override
@@ -67,16 +90,12 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void addEditMixedStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteMixedStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override
@@ -96,7 +115,8 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -123,6 +143,16 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedStrategy(VMStrategy strategy) {
+        this.editedStrategy = strategy;
+    }
+
+    @Override
+    public VMStrategy getEditedStrategy() {
+        return this.editedStrategy;
     }
 
 
@@ -173,5 +203,4 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
-
 }

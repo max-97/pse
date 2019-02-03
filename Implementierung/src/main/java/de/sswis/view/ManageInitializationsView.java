@@ -20,10 +20,14 @@ import java.util.List;
  */
 public class ManageInitializationsView implements AbstractManageInitializationsView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMInitialization> vmInits;
     private List<InitializationTab> initializationTabs;
+
+    ActionListener editListener;
+    ActionListener deleteListener;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -33,6 +37,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     private JPanel MainPanel;
 
     private AbstractMainView parentView;
+    private VMInitialization editedInitialization;
 
     public ManageInitializationsView() {
         vmInits = new ArrayList<VMInitialization>();
@@ -42,12 +47,30 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void addInit(VMInitialization vmInitialization) {
         vmInits.add(vmInitialization);
-        addTab(vmInitialization);
+        InitializationTab tab = new InitializationTab();
+        tab.setVmInitialization(vmInitialization);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        initializationTabs.add(tab);
+        InitsPane.addTab(vmInitialization.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMInitialization initialization) {
-        InitializationTab tab = new InitializationTab(initialization);
-        InitsPane.addTab(initialization.getName(), tab.$$$getRootComponent$$$());
+    @Override
+    public void replaceInitialization(VMInitialization newInitialization) {
+        int index = this.InitsPane.getSelectedIndex();
+        vmInits.remove(index);
+        vmInits.add(index, newInitialization);
+
+        InitializationTab tab = new InitializationTab();
+        tab.setVmInitialization(newInitialization);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        initializationTabs.remove(index);
+        initializationTabs.add(index, tab);
+        InitsPane.remove(index);
+        InitsPane.insertTab(newInitialization.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
     @Override
@@ -69,16 +92,12 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void addEditInitButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < initializationTabs.size(); i++) {
-            initializationTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteInitButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < initializationTabs.size(); i++) {
-            initializationTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override
@@ -98,7 +117,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -125,6 +145,16 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedInitialization(VMInitialization initialization) {
+        this.editedInitialization = initialization;
+    }
+
+    @Override
+    public VMInitialization getEditedInitialization() {
+        return this.editedInitialization;
     }
 
 

@@ -52,6 +52,7 @@ public class Simulation implements Runnable, ObservableSimulation {
         int round = 0;
         int cycle = 1;
         boolean equilibriumAchieved = false;
+        config.getRankingAlg().setIgnoreInitialScore(config.getInit().getInitialScoreStrategiesOnly());
         currentRanking = config.getRankingAlg().getRankings(agents);
 
         for(Agent agent : agents) {

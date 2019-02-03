@@ -34,7 +34,6 @@ public class ManageResultsHandler implements ActionListener {
         for(VMResult r : mainView.getResults()) {
             manageResultsView.addResult(r);
         }
-        manageResultsView.update();
         manageResultsView.show();
     }
 }

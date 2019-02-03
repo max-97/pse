@@ -37,7 +37,6 @@ public class ManageConfigurationsHandler implements ActionListener {
         for(VMConfiguration c : this.fileManager.loadAllConfigurations()) {
             manageConfigurationsView.addConfiguration(c);
         }
-        manageConfigurationsView.update();
         manageConfigurationsView.show();
     }
 }

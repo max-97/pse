@@ -24,7 +24,7 @@
               <text value="Name:"/>
             </properties>
           </component>
-          <component id="e201f" class="javax.swing.JLabel" binding="nameInitializationLabel" custom-create="true">
+          <component id="e201f" class="javax.swing.JLabel" binding="nameInitializationLabel">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -40,13 +40,15 @@
               <text value="Beschreibung:"/>
             </properties>
           </component>
-          <component id="cd3c8" class="javax.swing.JTextArea" binding="descriptionTextArea" custom-create="true">
+          <component id="cd3c8" class="javax.swing.JTextArea" binding="descriptionTextArea">
             <constraints>
               <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="50"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <editable value="false"/>
+            </properties>
           </component>
           <vspacer id="53d84">
             <constraints>

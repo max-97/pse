@@ -16,7 +16,8 @@ import java.awt.*;
  */
 public class ShowResultView implements AbstractShowResultView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+
 
 
     private VMConfiguration vmConfiguration;
@@ -40,7 +41,8 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override

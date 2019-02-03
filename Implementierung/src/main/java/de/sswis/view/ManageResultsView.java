@@ -21,11 +21,14 @@ import java.util.ArrayList;
 public class ManageResultsView implements AbstractManageResultsView {
 
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMResult> vmResults;
 
     private List<ResultTab> resultTabs;
+
+    ActionListener deleteListener;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -44,13 +47,14 @@ public class ManageResultsView implements AbstractManageResultsView {
     @Override
     public void addResult(VMResult vmResult) {
         vmResults.add(vmResult);
-        addTab(vmResult);
+        ResultTab tab = new ResultTab();
+        tab.setVmResult(vmResult);
+        tab.addDeleteButtonActionlistener(deleteListener);
+
+        resultTabs.add(tab);
+        ResultsPane.addTab(vmResult.getName(), tab.$$$getRootComponent$$$());
     }
 
-    private void addTab(VMResult result) {
-        ResultTab tab = new ResultTab(result);
-        ResultsPane.addTab(result.getName(), tab.$$$getRootComponent$$$());
-    }
 
     @Override
     public void removeResult(String resultName) {
@@ -65,7 +69,7 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void addDeleteResultButtonActionlistener(ActionListener listener) {
-        deleteButton.addActionListener(listener);
+        deleteListener = listener;
     }
 
     @Override
@@ -85,7 +89,8 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override

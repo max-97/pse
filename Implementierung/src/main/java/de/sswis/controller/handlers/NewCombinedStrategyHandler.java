@@ -10,6 +10,7 @@ import de.sswis.view.model.VMCombinedStrategy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 /**
  * Erstellt eine neue kombinierte Strategie. In der View zum Verwalten der {@code kombinierten Strategien} wird eine
@@ -41,11 +42,13 @@ public class NewCombinedStrategyHandler implements ActionListener {
         newCombinedStrategyView.setCombinedStrategy(new VMCombinedStrategy());
         for(Condition c : this.serviceLoader.getConditionList()) {
             newCombinedStrategyView.addCondition(c.getName());
+            HashMap<String, String[]> parameters = new HashMap<>();
+            parameters.put(c.getName(), c.getParameters());
+            newCombinedStrategyView.addParameters(parameters);
         }
         for(BaseStrategy s : this.serviceLoader.getBaseStrategyList()) {
             newCombinedStrategyView.addBaseStrategy(s.getName());
         }
-        newCombinedStrategyView.update();
         newCombinedStrategyView.show();
     }
 }

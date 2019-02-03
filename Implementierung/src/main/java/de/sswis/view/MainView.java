@@ -8,10 +8,11 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,7 +27,8 @@ import java.util.List;
  */
 public class MainView implements AbstractMainView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+
 
     private List<VMConfiguration> configurations;
     private List<String> simulatingConfigs;
@@ -61,24 +63,30 @@ public class MainView implements AbstractMainView {
     public MainView() {
 
         configurations = new ArrayList<VMConfiguration>();
+        simulatingConfigs = new ArrayList<>();
+
         $$$setupUI$$$();
         setMenuBar();
     }
 
+
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         configurations.add(configuration);
+
+        ConfigurationTree.setModel(createConfigurationTree());
     }
 
     @Override
     public void removeConfiguration(String configurationName) {
-        //TODO: was soll passieren bei Konfigurationen mit gleichem Namen?
         for (int i = 0; i < configurations.size(); i++) {
             if (configurations.get(i).getName().equals(configurationName)) {
                 configurations.remove(i);
                 break;
             }
         }
+
+        ConfigurationTree.setModel(createConfigurationTree());
     }
 
     @Override
@@ -93,9 +101,18 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void setSimulationFinished(String NameConfiguration) {
-        simulatingConfigs.remove(NameConfiguration);
+    public void setSimulationStarted(String NameConfiguration) {
+        simulatingConfigs.add(NameConfiguration);
+        updateButtons();
     }
+
+    @Override
+    public void setSimulationFinished(String NameConfiguration) {
+
+        simulatingConfigs.remove(NameConfiguration);
+        updateButtons();
+    }
+
 
     @Override
     public VMConfiguration getSelected() {
@@ -108,6 +125,20 @@ public class MainView implements AbstractMainView {
             }
         }
         return null;
+    }
+
+    @Override
+    public int askForRepitionNumber() {
+        JSpinner spinner = new JSpinner(new SpinnerNumberModel(1, 1, null, 1));
+
+        String[] options = {"Abbrechen", "Ok"};
+        int option = JOptionPane.showOptionDialog(frame, spinner, "Gib die Anzahl der Wiederholungen ein", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Ok");
+
+        if (option == 1) {
+            return (int) spinner.getValue();
+        }
+
+        return -1;
     }
 
     @Override
@@ -181,6 +212,7 @@ public class MainView implements AbstractMainView {
         manageConfigurationsItem.addActionListener(listener);
     }
 
+
     @Override
     public void addManageResultMenuActionListener(ActionListener listener) {
         manageResultsItem.addActionListener(listener);
@@ -198,7 +230,36 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void update() {
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
+
+
+    private void updateButtons() {
+        if (getSelected() != null) {
+            if (simulatingConfigs.contains(getSelected().getName())) {
+                startButton.setEnabled(false);
+                stopButton.setEnabled(true);
+            } else {
+                startButton.setEnabled(true);
+                stopButton.setEnabled(false);
+            }
+
+            if (getSelected().hasResult()) {
+                showResultButton.setEnabled(true);
+                saveResultButton.setEnabled(true);
+            } else {
+            }
+
+        } else {
+            startButton.setEnabled(false);
+            stopButton.setEnabled(false);
+            showResultButton.setEnabled(false);
+            saveResultButton.setEnabled(false);
+        }
+        update();
+    }
+
 
     @Override
     public void show() {
@@ -283,8 +344,8 @@ public class MainView implements AbstractMainView {
     }
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
         ConfigurationTree = new JTree();
+        ConfigurationTree.addTreeSelectionListener(e -> updateButtons());
         ConfigurationTree.setModel(createConfigurationTree());
 
 
@@ -319,7 +380,7 @@ public class MainView implements AbstractMainView {
         ConfigurationScrollPane.setHorizontalScrollBarPolicy(31);
         ConfigurationScrollPane.setVerticalScrollBarPolicy(22);
         ContentPanel.add(ConfigurationScrollPane, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        ConfigurationTree.setEditable(true);
+        ConfigurationTree.setEditable(false);
         ConfigurationTree.setLargeModel(true);
         ConfigurationTree.setRootVisible(true);
         ConfigurationTree.setShowsRootHandles(true);
@@ -375,5 +436,4 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
-
 }

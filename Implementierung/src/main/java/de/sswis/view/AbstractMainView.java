@@ -3,8 +3,10 @@ package de.sswis.view;
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.Collection;
+import java.util.EventListener;
 
 
 /**
@@ -38,6 +40,12 @@ public interface AbstractMainView extends AbstractView {
      * Wird aufgerufen wenn eine Simulation beendet wurde.
      * @param NameConfiguration Name der Konfiguration, mit der die beendete Simulation ausgeführt wurde
      */
+    void setSimulationStarted (String NameConfiguration);
+
+    /**
+     * Wird aufgerufen wenn eine Simulation gestartet wurde.
+     * @param NameConfiguration Name der Konfiguration, mit der die Simulation ausgeführt wird
+     */
     void setSimulationFinished (String NameConfiguration);
 
     /**
@@ -46,6 +54,16 @@ public interface AbstractMainView extends AbstractView {
      * @return die in der Liste ausgewählt Konfiguration
      */
     VMConfiguration getSelected();
+
+    /**
+     * Öffnet ein Dialogfenster, in das der Nutzer die Anzahl der Wiederholungen eingeben soll.
+     * Gibt -1 zurück, falls die Abfrage vom Nutzer abgebrochen wurde oder gibt die Eingabe zurück,
+     * nachdem diese vom Nutzer bestätigt wurde.
+     * Der Aufrufer dieser Methode wird blockiert bis der Nutzer das Dialogfenster wieder geschlossen hat.
+     *
+     * @return -1 wenn Abfrage abgebrochen wurde, sonst die Nutzereingabe
+     */
+    int askForRepitionNumber();
 
     /**
      * Fügt ein ActionListener zum Button Simulation starten hinzu.
@@ -134,6 +152,7 @@ public interface AbstractMainView extends AbstractView {
     void addManageConfigMenuActionListener(ActionListener listener);
 
     void addManageResultMenuActionListener(ActionListener listener);
+
 
     Collection<VMResult> getResults();
 

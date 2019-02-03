@@ -20,11 +20,15 @@ import java.util.List;
  */
 public class ManageConfigurationsView implements AbstractManageConfigurationsView {
 
-    private JFrame frame;
+    private JFrame frame = new JFrame();
+    ;
 
     private List<VMConfiguration> vmConfigurations;
 
     private List<ConfigurationTab> configTabs;
+
+    ActionListener editListener;
+    ActionListener deleteListener;
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
@@ -34,6 +38,7 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     private JPanel MainPanel;
 
     private AbstractMainView parentView;
+    private VMConfiguration editedConfiguration;
 
     public ManageConfigurationsView() {
         vmConfigurations = new ArrayList<VMConfiguration>();
@@ -43,19 +48,40 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public void addConfiguration(VMConfiguration configuration) {
         vmConfigurations.add(configuration);
-        addTab(configuration);
-    }
 
-    private void addTab(VMConfiguration configuration) {
-        ConfigurationTab tab = new ConfigurationTab(configuration);
+        ConfigurationTab tab = new ConfigurationTab();
+        tab.setVmConfiguration(configuration);
+
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+        configTabs.add(tab);
         ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
     }
+
+    @Override
+    public void replaceConfiguration(VMConfiguration newConfiguration) {
+        int index = this.ConfigurationsPane.getSelectedIndex();
+        vmConfigurations.remove(index);
+        vmConfigurations.add(index, newConfiguration);
+
+        ConfigurationTab tab = new ConfigurationTab();
+        tab.setVmConfiguration(newConfiguration);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        configTabs.remove(index);
+        configTabs.add(index, tab);
+        ConfigurationsPane.remove(index);
+        ConfigurationsPane.insertTab(newConfiguration.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+    }
+
 
     @Override
     public void removeConfiguration(String configName) {
         for (int i = 0; i < vmConfigurations.size(); i++) {
             if (vmConfigurations.get(i).getName().equals(configName)) {
                 vmConfigurations.remove(i);
+                configTabs.get(i);
                 ConfigurationsPane.removeTabAt(i);
                 break;
             }
@@ -69,16 +95,12 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void addEditConfigurationButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < configTabs.size(); i++) {
-            configTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
     }
 
     @Override
     public void addDeleteConfigurationButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < configTabs.size(); i++) {
-            configTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
     }
 
     @Override
@@ -98,7 +120,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void update() {
-
+        frame.pack();
+        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -125,6 +148,16 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public AbstractMainView getParentView() {
         return this.parentView;
+    }
+
+    @Override
+    public void setEditedConfiguration(VMConfiguration vmConfiguration) {
+        this.editedConfiguration = vmConfiguration;
+    }
+
+    @Override
+    public VMConfiguration getEditedConfiguration() {
+        return this.editedConfiguration;
     }
 
 

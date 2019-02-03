@@ -22,40 +22,42 @@ public class MixedStrategyTab {
     private List<JLabel> probabilityLabels;
 
     private JPanel MainPanel;
-    private JTextPane descriptionTextPane;
+    private JTextPane descriptionTextPane = new JTextPane();
     private JButton deleteButton;
     private JButton editButton;
-    private JLabel nameLabel;
+    private JLabel nameLabel = new JLabel();
     private JPanel panel1;
 
-    public MixedStrategyTab(VMStrategy vmStrategy) {
-
-        this.vmStrategy = vmStrategy;
+    public MixedStrategyTab() {
         strategyLabels = new ArrayList<JLabel>();
         probabilityLabels = new ArrayList<JLabel>();
 
         $$$setupUI$$$();
-        createProbabiltiesLines();
     }
 
-    private void createProbabiltiesLines() {
-        for (int i = 0; i < vmStrategy.getCombinedStrategies().size(); i++) {
-            strategyLabels.add(new JLabel(vmStrategy.getCombinedStrategies().get(i)));
-            probabilityLabels.add(new JLabel(vmStrategy.getProbabilities().get(i)));
-        }
+    public void setVmStrategy(VMStrategy vmStrategy) {
+        this.vmStrategy = vmStrategy;
+
+        nameLabel.setText(vmStrategy.getName());
+        descriptionTextPane.setText(vmStrategy.getDescription());
+
+        addProbabiltiesLines();
     }
 
     private void addProbabiltiesLines() {
-        for (int i = 0; i < strategyLabels.size(); i++) {
+        for (int i = 0; i < vmStrategy.getCombinedStrategies().size(); i++) {
+            strategyLabels.add(new JLabel(vmStrategy.getCombinedStrategies().get(i)));
+            probabilityLabels.add(new JLabel(vmStrategy.getProbabilities().get(i)));
+
             panel1.add(strategyLabels.get(i),
                     new GridConstraints(i + 3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
             panel1.add(probabilityLabels.get(i),
                     new GridConstraints(i + 3, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
-
         }
     }
+
 
     public void addEditButtonActionlistener(ActionListener listener) {
         editButton.addActionListener(listener);
@@ -66,11 +68,6 @@ public class MixedStrategyTab {
     }
 
     private void createUIComponents() {
-        nameLabel = new JLabel(vmStrategy.getName());
-        descriptionTextPane = new JTextPane();
-        descriptionTextPane.setText(vmStrategy.getDescription());
-
-        addProbabiltiesLines();
     }
 
     /**
@@ -94,6 +91,7 @@ public class MixedStrategyTab {
         final JLabel label1 = new JLabel();
         label1.setText("Beschreibung:");
         panel1.add(label1, new GridConstraints(31, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextPane.setEditable(false);
         panel1.add(descriptionTextPane, new GridConstraints(32, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("gemischte Strategie löschen");

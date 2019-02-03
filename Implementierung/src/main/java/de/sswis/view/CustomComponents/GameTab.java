@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  */
 public class GameTab {
 
-    private VMGame vmGame = new VMGame();
+    private VMGame vmGame;
 
     private JLabel upLeftPayOffLabel;
     private JLabel bottomLeftPayOffLabel;
@@ -27,9 +27,6 @@ public class GameTab {
     private JButton editButton;
     private JPanel MainPanel;
 
-    public GameTab(VMGame vmGame) {
-        this.vmGame = vmGame;
-    }
 
     public void addEditButtonActionlistener(ActionListener listener) {
         editButton.addActionListener(listener);
@@ -39,19 +36,24 @@ public class GameTab {
         deleteButton.addActionListener(listener);
     }
 
+    public void setVmGame(VMGame vmGame) {
+        this.vmGame = vmGame;
+
+        nameLabel.setText(vmGame.getName());
+        nameLabel.setText(vmGame.getName());
+        upLeftPayOffLabel.setText(vmGame.getPayoffs()[0][0]
+                + "/" + vmGame.getPayoffs()[0][1]);
+        upRightPayOffLabel.setText(vmGame.getPayoffs()[0][2]
+                + "/" + vmGame.getPayoffs()[0][3]);
+        bottomLeftPayOffLabel.setText(vmGame.getPayoffs()[1][0]
+                + "/" + vmGame.getPayoffs()[1][1]);
+        bottomRightPayOffLabel.setText(vmGame.getPayoffs()[1][2]
+                + "/" + vmGame.getPayoffs()[1][3]);
+        descriptionPane.setText(vmGame.getDescription());
+
+    }
 
     private void createUIComponents() {
-        nameLabel = new JLabel(vmGame.getName());
-        upLeftPayOffLabel = new JLabel(vmGame.getPayoffs()[0][0]
-                + "/" + vmGame.getPayoffs()[0][1]);
-        upRightPayOffLabel = new JLabel(vmGame.getPayoffs()[0][2]
-                + "/" + vmGame.getPayoffs()[0][3]);
-        bottomLeftPayOffLabel = new JLabel(vmGame.getPayoffs()[1][0]
-                + "/" + vmGame.getPayoffs()[1][1]);
-        bottomRightPayOffLabel = new JLabel(vmGame.getPayoffs()[1][2]
-                + "/" + vmGame.getPayoffs()[1][3]);
-        descriptionPane = new JTextPane();
-        descriptionPane.setText(vmGame.getDescription());
     }
 
     {
@@ -69,7 +71,6 @@ public class GameTab {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        createUIComponents();
         MainPanel = new JPanel();
         MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
@@ -94,8 +95,10 @@ public class GameTab {
         final JLabel label5 = new JLabel();
         label5.setText("Spieler1 / Spieler2");
         panel1.add(label5, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        upLeftPayOffLabel = new JLabel();
         upLeftPayOffLabel.setText("0 / 0");
         panel1.add(upLeftPayOffLabel, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bottomLeftPayOffLabel = new JLabel();
         bottomLeftPayOffLabel.setText("0 / 0");
         panel1.add(bottomLeftPayOffLabel, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
@@ -113,14 +116,19 @@ public class GameTab {
         descriptionLabel = new JLabel();
         descriptionLabel.setText("Beschreibung:");
         panel1.add(descriptionLabel, new GridConstraints(8, 0, 1, 6, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionPane = new JTextPane();
+        descriptionPane.setEditable(false);
         panel1.add(descriptionPane, new GridConstraints(9, 0, 1, 6, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("Spiel löschen");
         panel1.add(deleteButton, new GridConstraints(10, 5, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        nameLabel = new JLabel();
         nameLabel.setText("Spiel");
         panel1.add(nameLabel, new GridConstraints(0, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        upRightPayOffLabel = new JLabel();
         upRightPayOffLabel.setText("0 / 0");
         panel1.add(upRightPayOffLabel, new GridConstraints(4, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bottomRightPayOffLabel = new JLabel();
         bottomRightPayOffLabel.setText("0 / 0");
         panel1.add(bottomRightPayOffLabel, new GridConstraints(6, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();

@@ -58,4 +58,10 @@ public interface AbstractManageConfigurationsView extends AbstractView {
 
     AbstractMainView getParentView();
 
+    void setEditedConfiguration(VMConfiguration vmConfiguration);
+
+    VMConfiguration getEditedConfiguration();
+
+    void replaceConfiguration(VMConfiguration newConfiguration);
+
 }

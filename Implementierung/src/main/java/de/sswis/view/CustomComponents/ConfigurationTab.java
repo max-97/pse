@@ -17,20 +17,32 @@ public class ConfigurationTab {
     private VMConfiguration vmConfiguration;
 
     private JPanel MainPanel;
-    private JLabel nameGameLabel;
-    private JLabel nameInitializationLabel;
-    private JLabel namePairingAlgoLabel;
-    private JLabel nameRankingAlgoLabel;
-    private JLabel nameAdaptionAlgoLabel;
-    private JLabel probalityAdaptionLabel;
-    private JLabel numberOfRoundsLabel;
-    private JLabel maxNumberOfCyclesLabel;
-    private JLabel nameConfigurationLabel;
+    private JLabel nameGameLabel = new JLabel();
+    private JLabel nameInitializationLabel = new JLabel();
+    private JLabel namePairingAlgoLabel = new JLabel();
+    private JLabel nameRankingAlgoLabel = new JLabel();
+    private JLabel nameAdaptionAlgoLabel = new JLabel();
+    private JLabel probalityAdaptionLabel = new JLabel();
+    private JLabel numberOfRoundsLabel = new JLabel();
+    private JLabel maxNumberOfCyclesLabel = new JLabel();
+    private JLabel nameConfigurationLabel = new JLabel();
     private JButton editButton;
     private JButton deleteButton;
 
-    public ConfigurationTab(VMConfiguration vmConfiguration) {
+    public void setVmConfiguration(VMConfiguration vmConfiguration) {
         this.vmConfiguration = vmConfiguration;
+
+        nameGameLabel.setText(vmConfiguration.getGame());
+        nameAdaptionAlgoLabel.setText(vmConfiguration.getAdaptationAlg());
+        nameGameLabel.setText(vmConfiguration.getGame());
+        nameInitializationLabel.setText(vmConfiguration.getInit());
+        namePairingAlgoLabel.setText(vmConfiguration.getPairingAlg());
+        nameRankingAlgoLabel.setText(vmConfiguration.getRankingAlg());
+        probalityAdaptionLabel.setText(vmConfiguration.getAdaptationProbability());
+        numberOfRoundsLabel.setText(vmConfiguration.getRounds());
+        maxNumberOfCyclesLabel.setText(vmConfiguration.getCycles());
+        nameConfigurationLabel.setText(vmConfiguration.getName());
+
     }
 
     public void addEditButtonActionlistener(ActionListener listener) {
@@ -43,17 +55,6 @@ public class ConfigurationTab {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
-        nameGameLabel = new JLabel(vmConfiguration.getGame());
-        nameAdaptionAlgoLabel = new JLabel(vmConfiguration.getAdaptationAlg());
-        nameGameLabel = new JLabel(vmConfiguration.getGame());
-        nameInitializationLabel = new JLabel(vmConfiguration.getInit());
-        namePairingAlgoLabel = new JLabel(vmConfiguration.getPairingAlg());
-        nameRankingAlgoLabel = new JLabel(vmConfiguration.getRankingAlg());
-        probalityAdaptionLabel = new JLabel(vmConfiguration.getAdaptationProbability());
-        numberOfRoundsLabel = new JLabel(vmConfiguration.getRounds());
-        maxNumberOfCyclesLabel = new JLabel(vmConfiguration.getCycles());
-        nameConfigurationLabel = new JLabel(vmConfiguration.getName());
     }
 
     {
