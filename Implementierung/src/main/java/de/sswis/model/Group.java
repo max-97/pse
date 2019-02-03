@@ -20,6 +20,7 @@ public class Group {
     public Group(int id, String name) {
         this.id = id;
         this.name = name;
+        this.members = new ArrayList();
     }
 
     public int getId() {

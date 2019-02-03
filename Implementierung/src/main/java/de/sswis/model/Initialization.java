@@ -146,7 +146,7 @@ public class Initialization {
         for (int b = 0; b < groups1.size(); b++) {
             List<Agent> members = ((groups1.get(b).getMembers() == null)? new ArrayList():groups1.get(b).getMembers());
             if (!groupAgentDistributions.get(b).usesIDS()) {
-                int agentNumber = groups1.get(b).getMembers().size();
+                int agentNumber = members.size();
                 for (int x = 0; x < agentCount; x++) {
                     if (agents.get(x).getGroup() == null) {
                         agents.get(x).setGroup(groups1.get(b));
@@ -170,7 +170,7 @@ public class Initialization {
 
     public void distributeStrategy() {
         for (int a = 0; a < groups2.size(); a++) {
-            List<Agent> members = ((groups2.get(a).getMembers() == null)? new ArrayList():groups2.get(a).getMembers());
+            List<Agent> members = groups2.get(a).getMembers());
             if (strategyAgentDistributions.get(a).usesIDS()) {
                 int[] ids = strategyAgentDistributions.get(a).getAgentIDs();
                 for (int i = 0; i < strategyAgentDistributions.get(a).getAgentIDs().length; i++) {
@@ -181,10 +181,9 @@ public class Initialization {
                     }
                 }
             }
-            groups2.get(a).setMembers(members);
         }
         for (int b = 0; b< groups2.size(); b++) {
-            List<Agent> members = ((groups2.get(b).getMembers() == null)? new ArrayList():groups2.get(b).getMembers());
+            List<Agent> members = groups2.get(b).getMembers());
             if (!strategyAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
@@ -210,13 +209,12 @@ public class Initialization {
                     }
                 }
             }
-            groups2.get(b).setMembers(members);
         }
     }
 
     public void distributeCapital() {
         for (int a = 0; a < groups3.size(); a++) {
-            List<Agent> members = ((groups3.get(a).getMembers() == null)? new ArrayList():groups3.get(a).getMembers());
+            List<Agent> members = groups3.get(a).getMembers());
             if (capitalAgentDistributions.get(a).usesIDS()) {
                 int[] ids = capitalAgentDistributions.get(a).getAgentIDs();
                 for (int i = 0; i < capitalAgentDistributions.get(a).getAgentIDs().length; i++) {
@@ -229,10 +227,9 @@ public class Initialization {
                     }
                 }
             }
-            groups3.get(a).setMembers(members);
         }
         for (int b = 0; b < groups3.size(); b++) {
-            List<Agent> members = ((groups3.get(b).getMembers() == null)? new ArrayList():groups3.get(b).getMembers());
+            List<Agent> members = groups3.get(b).getMembers());
             if (!capitalAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
@@ -258,7 +255,6 @@ public class Initialization {
                     }
                 }
             }
-            groups3.get(b).setMembers(members);
         }
     }
 
