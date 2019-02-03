@@ -35,9 +35,9 @@ public class ManageCombinedStrategiesHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractManageCombinedStrategiesView manageCombinedStrategiesView = this.factory.createManageCombinedStrategiesView();
         manageCombinedStrategiesView.setParentView(this.mainView);
+        manageCombinedStrategiesView.show();
         for(VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             manageCombinedStrategiesView.addStrategy(c);
         }
-        manageCombinedStrategiesView.show();
     }
 }

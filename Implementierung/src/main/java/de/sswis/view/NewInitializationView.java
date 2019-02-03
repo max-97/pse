@@ -84,7 +84,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         vmInitialization = new VMInitialization();
 
         vmInitialization.setName(nameTextField.getText());
-        vmInitialization.setAgentCount((int) nameTextField.getValue());
+        vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText()));
 
         for (int i = 0; i < groupTabs.size(); i++) {
             vmInitialization.addGroup(groupTabs.get(i).getVmGroup());

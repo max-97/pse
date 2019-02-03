@@ -22,10 +22,10 @@ public class MixedStrategyTab {
     private List<JLabel> probabilityLabels;
 
     private JPanel MainPanel;
-    private JTextPane descriptionTextPane;
+    private JTextPane descriptionTextPane = new JTextPane();
     private JButton deleteButton;
     private JButton editButton;
-    private JLabel nameLabel;
+    private JLabel nameLabel = new JLabel();
     private JPanel panel1;
 
     public MixedStrategyTab() {

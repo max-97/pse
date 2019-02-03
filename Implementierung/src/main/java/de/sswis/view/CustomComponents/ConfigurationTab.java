@@ -17,15 +17,15 @@ public class ConfigurationTab {
     private VMConfiguration vmConfiguration;
 
     private JPanel MainPanel;
-    private JLabel nameGameLabel;
-    private JLabel nameInitializationLabel;
-    private JLabel namePairingAlgoLabel;
-    private JLabel nameRankingAlgoLabel;
-    private JLabel nameAdaptionAlgoLabel;
-    private JLabel probalityAdaptionLabel;
-    private JLabel numberOfRoundsLabel;
-    private JLabel maxNumberOfCyclesLabel;
-    private JLabel nameConfigurationLabel;
+    private JLabel nameGameLabel = new JLabel();
+    private JLabel nameInitializationLabel = new JLabel();
+    private JLabel namePairingAlgoLabel = new JLabel();
+    private JLabel nameRankingAlgoLabel = new JLabel();
+    private JLabel nameAdaptionAlgoLabel = new JLabel();
+    private JLabel probalityAdaptionLabel = new JLabel();
+    private JLabel numberOfRoundsLabel = new JLabel();
+    private JLabel maxNumberOfCyclesLabel = new JLabel();
+    private JLabel nameConfigurationLabel = new JLabel();
     private JButton editButton;
     private JButton deleteButton;
 
