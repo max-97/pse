@@ -200,7 +200,7 @@ public class Initialization {
                     float result = (float) strategyAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();
                     int number = Math.round(result);
                     for (int z = 0; z < members.size(); z++) {
-                        if (members.getStrategy() == null) {
+                        if (members.get(z).getStrategy() == null) {
                             isAll = false;
                         }
                     }
