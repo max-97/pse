@@ -1,5 +1,6 @@
 package de.sswis.view.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class VMConfiguration {
     private String rounds;
     private String cycles;
     private String adaptationProbability;
-    private List<String> strategies;
+    private List<String> strategies = new ArrayList<>();
 
     private HashMap<String, Object> pairingParameters;
     private HashMap<String, Object> adaptationParameters;

@@ -88,20 +88,16 @@ public class GroupTab {
     public void updateVM() {
 
         vmGroup.setName(groupNameTextField.getText());
-        //TODO: make setter
-        //vmGroup.setRelativeAgentDistributions(!initializationView.isIDAgentDistributionSelected());
-        //vmGroup.setAgents(distributionTextField.getText());
-        vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
-
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            //vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
-
-        }
+        vmGroup.setAgents(distributionTextField.getText());
 
         vmGroup.setRelativeStrategyDistribution(percentageAgentStrategyRadioButton.isSelected());
+        for (int i = 0; i < strategyTabs.size(); i++) {
+            vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
+        }
+
+        vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
         for (int i = 0; i < startCapitalTabs.size(); i++) {
-            //vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(),
-              //      startCapitalTabs.get(i).getAgentUserInput());
+            vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(), startCapitalTabs.get(i).getAgentUserInput());
         }
     }
 
