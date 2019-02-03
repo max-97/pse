@@ -21,11 +21,10 @@ public class InitializationTest {
 
     @Before
     public void init() {
-        init = new Initialization("init", 10);
+        init = new Initialization("init", 20);
         ids = new int[3];
         ids[0] = 1;
-        ids[1] = 5;
-        ids[2] = 9;
+        ids[1] = 20;
         agentDistributions = new AgentDistribution[4];
         agentDistributions[0] = new AgentDistribution(ids);
         agentDistributions[1] = new AgentDistribution(45);
@@ -34,6 +33,7 @@ public class InitializationTest {
         groups = new Group[2];
         groups[0] = new Group(0, "Group1");
         groups[1] = new Group(1, "Group2");
+
         init.addGroup(groups[0]);
         init.addGroup(groups[1]);
         init.setGroupDistribution(agentDistributions[0], groups[0]);
@@ -46,10 +46,12 @@ public class InitializationTest {
                 new BaseStrategy[]{new NeverCooperate()}, new Condition[]{new Always()});
         init.setStrategyDistribution(agentDistributions[0], always, groups[0]);
         init.setStrategyDistribution(agentDistributions[1], never, groups[0]);
+        init.setStrategyDistribution(agentDistributions[2], always, groups[0]);
         init.setStrategyDistribution(agentDistributions[3], never, groups[1]);
 
         init.setCapitalDistribution(agentDistributions[0], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[1], 20, groups[0]);
+        init.setCapitalDistribution(agentDistributions[1], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[3], 20, groups[1]);
 
         agents = init.calculateInitialAgentState();
@@ -57,17 +59,14 @@ public class InitializationTest {
 
     @Test
     public void setGroupDistributionTest() {
-        Agent[] agents = init.calculateInitialAgentState();
-        assertTrue(groups[0].getMembers().size() == 5);
-        assertTrue(groups[1].getMembers().size() == 5);
+        assertTrue(groups[0].getMembers().size() == 9);
+        assertTrue(groups[1].getMembers().size() == 11);
         assertTrue(groups[0].getMembers().contains(agents[1]));
-        assertTrue(groups[0].getMembers().contains(agents[5]));
-        assertTrue(groups[0].getMembers().contains(agents[9]));
+        assertTrue(groups[0].getMembers().contains(agents[20]));
     }
 
     @Test
     public void setStrategyDistributionTest() {
-        Agent[] agents = init.calculateInitialAgentState();
         int alwaysNumber = 0;
         int neverNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
@@ -78,16 +77,15 @@ public class InitializationTest {
                 neverNumber++;
             }
         }
-        assertTrue(alwaysNumber == 3);
-        assertTrue(neverNumber == 2);
+        assertTrue(alwaysNumber == 5);
+        assertTrue(neverNumber == 4);
         assertEquals(always, agents[1].getStrategy());
-        assertEquals(always, agents[5].getStrategy());
-        assertEquals(always, agents[9].getStrategy());
+        assertEquals(never, agents[9].getStrategy());
+        assertEquals(always, agents[20].getStrategy());
     }
 
     @Test
     public void setCapitalDistributionTest() {
-        Agent[] agents = init.calculateInitialAgentState();
         int tenNumber = 0;
         int twNumber = 0;
         for (int i = 0; i < groups[0].getMembers().size(); i++) {
@@ -98,10 +96,10 @@ public class InitializationTest {
                 twNumber++;
             }
         }
-        assertTrue(tenNumber == 3);
-        assertTrue(twNumber == 2);
+        assertTrue(tenNumber == 5);
+        assertTrue(twNumber == 4);
         assertTrue(agents[1].getScore() == 10);
-        assertTrue(agents[5].getScore() == 10);
-        assertTrue(agents[9].getScore() == 10);
+        assertTrue(agents[9].getScore() == 20);
+        assertTrue(agents[20].getScore() == 10);
     }
 }

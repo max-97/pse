@@ -170,7 +170,7 @@ public class Initialization {
 
     public void distributeStrategy() {
         for (int a = 0; a < groups2.size(); a++) {
-            List<Agent> members = groups2.get(a).getMembers());
+            List<Agent> members = groups2.get(a).getMembers();
             if (strategyAgentDistributions.get(a).usesIDS()) {
                 int[] ids = strategyAgentDistributions.get(a).getAgentIDs();
                 for (int i = 0; i < strategyAgentDistributions.get(a).getAgentIDs().length; i++) {
@@ -183,7 +183,7 @@ public class Initialization {
             }
         }
         for (int b = 0; b< groups2.size(); b++) {
-            List<Agent> members = groups2.get(b).getMembers());
+            List<Agent> members = groups2.get(b).getMembers();
             if (!strategyAgentDistributions.get(b).usesIDS()) {
                 int agentNumber = 0;
                 for (int y = 0; y < members.size(); y++) {
