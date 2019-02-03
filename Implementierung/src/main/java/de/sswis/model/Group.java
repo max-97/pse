@@ -1,6 +1,7 @@
 package de.sswis.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Eine Gruppe welche eine Menge von Agenten enthaelt.
