@@ -51,10 +51,13 @@ public class Simulation implements Runnable, ObservableSimulation {
         int round = 0;
         int cycle = 1;
         boolean equilibriumAchieved = false;
+        config.getRankingAlg().setIgnoreInitialScore(config.getInit().getInitialScoreStrategiesOnly());
+        currentRanking = config.getRankingAlg().getRankings(agents);
 
         for(Agent agent : agents) {
             agent.getHistory().setScore(agent.getScore());
             agent.getHistory().setStrategy(agent.getStrategy());
+            agent.getHistory().setRank(currentRanking.get(agent));
         }
 
         while(!equilibriumAchieved && round < maxRounds) {
@@ -81,10 +84,10 @@ public class Simulation implements Runnable, ObservableSimulation {
                     agent.getHistory().increaseCycleCount();
                     agent.getHistory().setScore(agent.getScore());
                     agent.getHistory().setStrategy(agent.getStrategy());
+                    agent.getHistory().setRank(currentRanking.get(agent));
                 }
             }
         }
-        sortAfterRank(agents);
         result.getAgents().put(repetition, agents);
         result.getEquilibriums().put(repetition, equilibriumAchieved);
     }
@@ -128,15 +131,6 @@ public class Simulation implements Runnable, ObservableSimulation {
             result[i] = newAgent;
         }
         return result;
-    }
-
-    private void sortAfterRank(Agent[] agents) {
-        for(int i = 0; i < agents.length; i++) {
-            int rank = currentRanking.get(agents[i]);
-            Agent temp = agents[rank - 1];
-            agents[rank - 1] = agents[i];
-            agents[i] = temp;
-        }
     }
 
     @Override

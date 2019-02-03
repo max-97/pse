@@ -1,6 +1,7 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,6 +18,21 @@ public class VMCombinedStrategy {
     private String defaultStrategy;
     private List<String> baseStrategies = new ArrayList<>(); //    baseStrategies.length()
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
+    private List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
+
+
+    public HashMap<String, Object> getConditionParameter(int index) {
+        return this.conditionParameters.get(index);
+    }
+
+    public List<HashMap<String, Object>> getConditionpParameters() {
+        return conditionParameters;
+    }
+
+    public void addConditionParameter(HashMap<String, Object> parameters) {
+        this.conditionParameters.add(parameters);
+    }
+
 
     public List<String> getStrategies() {
         return this.baseStrategies;
@@ -73,7 +89,9 @@ public class VMCombinedStrategy {
      * Gibt eine String der wichtige Informationen zu dieser kombinierten Strategie zusammenfasst.
      * @return String enthält Kurzbeschreibung der kombinierten Strategie
      */
-    public String getToolTipText() {    return ""; }
+    public String getToolTipText() {
+        return "";
+    }
 
     public String getName() {
         return name;
@@ -91,8 +109,8 @@ public class VMCombinedStrategy {
         this.description = description;
     }
 
-    public double getConditionParameter(String conditionName) {
-        return 0;
+    public HashMap<String, Object> getConditionParameter(String conditionName) {
+        return null;
     }
 
 }

@@ -37,7 +37,6 @@ public class ManageGamesHandler implements ActionListener {
         for(VMGame g : this.fileManager.loadAllGames()) {
             manageGamesView.addGame(g);
         }
-        manageGamesView.update();
         manageGamesView.show();
     }
 }

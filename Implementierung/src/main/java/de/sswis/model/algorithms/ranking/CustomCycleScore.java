@@ -17,9 +17,11 @@ public class CustomCycleScore implements RankingAlgorithm {
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {"Window size"};
     private int windowSize;
+    private boolean ignoreInitialScore;
 
     public CustomCycleScore() {
         windowSize = 5;
+        ignoreInitialScore = false;
     }
 
 
@@ -30,9 +32,9 @@ public class CustomCycleScore implements RankingAlgorithm {
         List<Agent> agentList = new ArrayList<>(agents.length);
         int startCycle = Math.max(agents[1].getHistory().getCurrentCycle() - windowSize, 1);
 
-        for(int i = 0; i < agents.length; i++) {
-            cyclesScores.put(agents[i], agents[i].getScore() - agents[i].getHistory().getScore(startCycle));
-            agentList.add(agents[i]);
+        for (Agent agent : agents) {
+            cyclesScores.put(agent, agent.getScore() - agent.getHistory().getScore(startCycle));
+            agentList.add(agent);
         }
 
 
@@ -62,11 +64,16 @@ public class CustomCycleScore implements RankingAlgorithm {
 
     @Override
     public void setParameters(HashMap<String, Object> parameters) {
-        windowSize = (int)parameters.get("Window size");
+        windowSize = Integer.parseInt((String) parameters.get(PARAMETER_NAMES[0]));
     }
 
     @Override
     public String[] getParameters() {
         return PARAMETER_NAMES;
+    }
+
+    @Override
+    public void setIgnoreInitialScore(boolean ignore) {
+        this.ignoreInitialScore = ignore;
     }
 }

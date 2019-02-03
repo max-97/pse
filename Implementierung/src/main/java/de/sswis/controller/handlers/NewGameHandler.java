@@ -33,7 +33,6 @@ public class NewGameHandler implements ActionListener {
         AbstractNewGameView newGameView = this.factory.createNewGameView();
         newGameView.setParentView(gamesView);
         newGameView.setGame(new VMGame());
-        newGameView.update();
         newGameView.show();
     }
 }

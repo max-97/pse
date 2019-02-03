@@ -2,7 +2,10 @@ package de.sswis.view;
 
 import de.sswis.view.model.VMConfiguration;
 
+import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.util.EventListener;
+import java.util.HashMap;
 
 /**
  *Ein Fenster zum Erstellen oder Bearbeiten einer Konfiguration.
@@ -24,6 +27,7 @@ public interface AbstractNewConfigurationView extends AbstractView {
      */
     void addFinishButtonActionlistener(ActionListener listener);
 
+
     VMConfiguration getVMConfiguration();
 
     AbstractManageConfigurationsView getParentView();
@@ -39,4 +43,6 @@ public interface AbstractNewConfigurationView extends AbstractView {
     void addInitialization(String name);
 
     void addGame(String name);
+
+    void addParameters(HashMap<String, String[]> parameters);
 }

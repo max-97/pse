@@ -25,6 +25,10 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     private List<CombinedStrategyTab> strategyTabs;
 
+    ActionListener editListener;
+    ActionListener deleteListener;
+
+
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
     private JButton cancelButton;
@@ -34,6 +38,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
 
     private AbstractMainView parentView;
+    private VMCombinedStrategy editedCombinedStrategy;
 
     public ManageCombinedStrategiesView() {
         vmCombinedStrategies = new ArrayList<VMCombinedStrategy>();
@@ -44,8 +49,33 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
     @Override
     public void addStrategy(VMCombinedStrategy vmStrategy) {
         vmCombinedStrategies.add(vmStrategy);
-        addTab(vmStrategy);
+        CombinedStrategyTab tab = new CombinedStrategyTab();
+        tab.setVMCombinedStrategy(vmStrategy);
 
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+        strategyTabs.add(tab);
+        StrategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
+
+        update();
+
+    }
+
+    @Override
+    public void replaceCombinedStrategy(VMCombinedStrategy newCombinedStrategy) {
+        int index = StrategiesPane.getSelectedIndex();
+        vmCombinedStrategies.remove(index);
+        vmCombinedStrategies.add(index, newCombinedStrategy);
+
+        CombinedStrategyTab tab = new CombinedStrategyTab();
+        tab.setVMCombinedStrategy(newCombinedStrategy);
+        tab.addDeleteButtonActionlistener(deleteListener);
+        tab.addEditButtonActionlistener(editListener);
+
+        strategyTabs.remove(index);
+        strategyTabs.add(index, tab);
+        StrategiesPane.remove(index);
+        StrategiesPane.insertTab(newCombinedStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
     }
 
     @Override
@@ -54,9 +84,12 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
             if (vmCombinedStrategies.get(i).getName().equals(strategyName)) {
                 vmCombinedStrategies.remove(i);
                 StrategiesPane.removeTabAt(i);
+                strategyTabs.remove(i);
                 break;
             }
         }
+
+        update();
     }
 
     @Override
@@ -67,17 +100,13 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void addEditStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addEditButtonActionlistener(listener);
-        }
+        editListener = listener;
 
     }
 
     @Override
     public void addDeleteStrategyButtonActionlistener(ActionListener listener) {
-        for (int i = 0; i < strategyTabs.size(); i++) {
-            strategyTabs.get(i).addDeleteButtonActionlistener(listener);
-        }
+        deleteListener = listener;
 
     }
 
@@ -99,6 +128,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void update() {
+        frame.pack();
+        frame.setLocationRelativeTo(null);
 
     }
 
@@ -115,7 +146,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override
@@ -128,12 +159,14 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
         return this.parentView;
     }
 
+    @Override
+    public void setEditedCombinedStrategy(VMCombinedStrategy vmCombinedStrategy) {
+        this.editedCombinedStrategy = vmCombinedStrategy;
+    }
 
-    private void addTab(VMCombinedStrategy strategy) {
-        CombinedStrategyTab tab = new CombinedStrategyTab(strategy);
-        strategyTabs.add(tab);
-        StrategiesPane.addTab(strategy.getName(), tab.$$$getRootComponent$$$());
-
+    @Override
+    public VMCombinedStrategy getEditedCombinedStrategy() {
+        return this.editedCombinedStrategy;
     }
 
 

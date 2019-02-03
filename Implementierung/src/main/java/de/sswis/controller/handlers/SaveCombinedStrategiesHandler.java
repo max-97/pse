@@ -47,12 +47,25 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
         }
         CombinedStrategy cs = this.parser.parseVMCombinedStrategy(combinedStrategy);
         ModelProvider.getInstance().addCombinedStrategy(cs);
-        ModelProvider.getInstance().addStrategy(cs);
         AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
-        if (parentView == null)
-            return;
-        parentView.addStrategy(combinedStrategy);
-        parentView.update();
         this.combinedStrategyView.close();
+        if (parentView == null) {
+            return;
+        }
+        VMCombinedStrategy editedCombinedStrategy = parentView.getEditedCombinedStrategy();
+        if (editedCombinedStrategy == null) {
+            parentView.addStrategy(combinedStrategy);
+        } else {
+            parentView.replaceCombinedStrategy(combinedStrategy);
+            if (!editedCombinedStrategy.getName().equals(combinedStrategy.getName())) {
+                ModelProvider.getInstance().deleteCombinedStrategy(editedCombinedStrategy.getName());
+                try {
+                    this.fileManager.deleteCombinedStrategy(editedCombinedStrategy.getName());
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+            parentView.setEditedCombinedStrategy(null);
+        }
     }
 }

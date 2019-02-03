@@ -21,6 +21,8 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     private JFrame frame;
 
+    private final int MAX_LINES = 19;
+
     private VMStrategy vmStrategy = new VMStrategy();
 
     private List<String> combinedStrategies = new ArrayList<>();
@@ -36,7 +38,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
     private JButton addStrategyButton;
     private JButton finishButton;
     private JButton cancelButton;
-    private JButton letzteKombinerteStrategieEntfernenButton;
+    private JButton removeLastLineButton;
     private JPanel strategiesPanel;
 
     private AbstractManageStrategiesView parentView;
@@ -48,34 +50,59 @@ public class NewStrategyView implements AbstractNewStrategyView {
         strategyComboBoxes = new ArrayList<JComboBox>();
     }
 
-    private void createNewLine() {
+    private void addNewLine() {
+
         probabilityTextFields.add(new JFormattedTextField());
 
         JComboBox strategy = new JComboBox(combinedStrategies.toArray());
         strategyComboBoxes.add(strategy);
 
-    }
+        int index = strategyComboBoxes.size() - 1;
 
-    private void addLine(int index) {
         strategiesPanel.add(probabilityTextFields.get(index),
-                new GridConstraints(1 + index, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+                new GridConstraints(1 + index, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
         strategiesPanel.add(strategyComboBoxes.get(index),
-                new GridConstraints(1 + index, 4, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+                new GridConstraints(1 + index, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
+
+        removeLastLineButton.setEnabled(true);
+        addStrategyButton.setEnabled(!(strategyComboBoxes.size() >= MAX_LINES));
+
+        update();
 
     }
 
     private void removeLastLine() {
         int index = strategyComboBoxes.size() - 1;
-        //TODO: check if the next line removes the right component
+
         strategiesPanel.remove(probabilityTextFields.remove(index));
         strategiesPanel.remove(strategyComboBoxes.remove(index));
+
+
+        removeLastLineButton.setEnabled(!(strategyComboBoxes.isEmpty()));
+        addStrategyButton.setEnabled(!(strategyComboBoxes.size() >= MAX_LINES));
+
+        update();
 
     }
 
     @Override
     public void update() {
+        frame.pack();
+        frame.setLocationRelativeTo(null);
 
+    }
+
+    private void updateVM() {
+        vmStrategy = new VMStrategy();
+
+        vmStrategy.setName(nameTextField.getText());
+        for (int i = 0; i < strategyComboBoxes.size(); i++) {
+            vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
+                    probabilityTextFields.get(i).getText());
+        }
+        vmStrategy.setDescription(descriptionTextPane.getText());
     }
 
     @Override
@@ -91,7 +118,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public void close() {
-
+        frame.dispose();
     }
 
     @Override
@@ -107,6 +134,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public VMStrategy getVMStrategy() {
+        updateVM();
         return this.vmStrategy;
     }
 
@@ -114,7 +142,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
     public void setStrategy(VMStrategy strategy) {
         this.vmStrategy = strategy;
         for (int i = 0; i < vmStrategy.getCombinedStrategies().size(); i++) {
-            createNewLine();
+            addNewLine();
             //TODO: VM check for correct Order!
             probabilityTextFields.get(i).setText(vmStrategy.getProbabilities().get(i));
             strategyComboBoxes.get(i).setSelectedItem(vmStrategy.getCombinedStrategies().get(i));
@@ -139,21 +167,11 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
 
     private void createUIComponents() {
-        nameTextField = new JFormattedTextField();
-        if (vmStrategy.getName() != null) {
-            nameTextField.setText(vmStrategy.getName());
-        }
+        addStrategyButton = new JButton();
+        addStrategyButton.addActionListener(e -> addNewLine());
 
-        descriptionTextPane = new JTextPane();
-        if (vmStrategy.getDescription() != null) {
-            descriptionTextPane.setText(vmStrategy.getDescription());
-        }
-
-        if (!strategyComboBoxes.isEmpty()) {
-            for (int i = 0; i < strategyComboBoxes.size(); i++) {
-                addLine(i);
-            }
-        }
+        removeLastLineButton = new JButton();
+        removeLastLineButton.addActionListener(e -> removeLastLine());
     }
 
     {
@@ -180,44 +198,44 @@ public class NewStrategyView implements AbstractNewStrategyView {
         final JScrollPane scrollPane1 = new JScrollPane();
         scrollPane1.setHorizontalScrollBarPolicy(31);
         ContentPane.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        panel1.setLayout(new GridLayoutManager(8, 5, new Insets(20, 20, 20, 20), -1, -1));
+        panel1.setLayout(new GridLayoutManager(9, 3, new Insets(20, 20, 20, 20), -1, -1));
         scrollPane1.setViewportView(panel1);
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 30), null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        panel1.add(spacer2, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 30), null, null, 0, false));
+        panel1.add(spacer2, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 30), null, null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Beschreibung:");
-        panel1.add(label1, new GridConstraints(6, 0, 1, 5, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        panel1.add(descriptionTextPane, new GridConstraints(7, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        panel1.add(label1, new GridConstraints(7, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        descriptionTextPane = new JTextPane();
+        panel1.add(descriptionTextPane, new GridConstraints(8, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JSeparator separator1 = new JSeparator();
-        panel1.add(separator1, new GridConstraints(4, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(separator1, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Name: ");
         panel1.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nameTextField = new JFormattedTextField();
-        panel1.add(nameTextField, new GridConstraints(0, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        addStrategyButton = new JButton();
+        panel1.add(nameTextField, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         addStrategyButton.setText("Kombinierte Strategie hinzufügen");
-        panel1.add(addStrategyButton, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        letzteKombinerteStrategieEntfernenButton = new JButton();
-        letzteKombinerteStrategieEntfernenButton.setText("letzte Kombinerte Strategie entfernen");
-        panel1.add(letzteKombinerteStrategieEntfernenButton, new GridConstraints(3, 4, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel1.add(addStrategyButton, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        removeLastLineButton.setEnabled(false);
+        removeLastLineButton.setText("letzte Kombinerte Strategie entfernen");
+        panel1.add(removeLastLineButton, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         strategiesPanel = new JPanel();
-        strategiesPanel.setLayout(new GridLayoutManager(20, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel1.add(strategiesPanel, new GridConstraints(2, 0, 1, 5, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        strategiesPanel.setLayout(new GridLayoutManager(20, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.add(strategiesPanel, new GridConstraints(2, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$(null, Font.BOLD, -1, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Wahrscheinlichkeit");
         strategiesPanel.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        strategiesPanel.add(spacer3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(25, -1), null, null, 0, false));
         final JLabel label4 = new JLabel();
         Font label4Font = this.$$$getFont$$$(null, Font.BOLD, -1, label4.getFont());
         if (label4Font != null) label4.setFont(label4Font);
         label4.setText("Kombinierte Strategie");
-        strategiesPanel.add(label4, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        strategiesPanel.add(label4, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer3 = new Spacer();
+        panel1.add(spacer3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), new Dimension(-1, 50), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         ContentPane.add(panel2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
