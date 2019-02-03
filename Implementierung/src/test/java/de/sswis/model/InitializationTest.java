@@ -51,7 +51,7 @@ public class InitializationTest {
 
         init.setCapitalDistribution(agentDistributions[0], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[1], 20, groups[0]);
-        init.setCapitalDistribution(agentDistributions[1], 10, groups[0]);
+        init.setCapitalDistribution(agentDistributions[2], 10, groups[0]);
         init.setCapitalDistribution(agentDistributions[3], 20, groups[1]);
 
         agents = init.calculateInitialAgentState();
