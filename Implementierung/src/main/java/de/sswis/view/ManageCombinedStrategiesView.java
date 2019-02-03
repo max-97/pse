@@ -57,6 +57,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
         strategyTabs.add(tab);
         StrategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
 
+
         update();
 
     }
