@@ -38,11 +38,6 @@ public class EditCombinedStrategyHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewCombinedStrategyView newCombinedStrategyView = this.factory.createNewCombinedStrategyView();
         newCombinedStrategyView.setParentView(manageCombinedStrategiesView);
-        VMCombinedStrategy selectedVM = this.manageCombinedStrategiesView.getSelectedVM();
-        newCombinedStrategyView.setCombinedStrategy(selectedVM);
-        VMCombinedStrategy editedCombinedStrategy = new VMCombinedStrategy();
-        editedCombinedStrategy.setName(selectedVM.getName());
-        manageCombinedStrategiesView.setEditedCombinedStrategy(editedCombinedStrategy);
         for(Condition c : this.serviceLoader.getConditionList()) {
             newCombinedStrategyView.addCondition(c.getName());
             HashMap<String, String[]> parameters = new HashMap<>();
@@ -52,6 +47,11 @@ public class EditCombinedStrategyHandler implements ActionListener {
         for(BaseStrategy s : this.serviceLoader.getBaseStrategyList()) {
             newCombinedStrategyView.addBaseStrategy(s.getName());
         }
+        VMCombinedStrategy selectedVM = this.manageCombinedStrategiesView.getSelectedVM();
+        newCombinedStrategyView.setCombinedStrategy(selectedVM);
+        VMCombinedStrategy editedCombinedStrategy = new VMCombinedStrategy();
+        editedCombinedStrategy.setName(selectedVM.getName());
+        manageCombinedStrategiesView.setEditedCombinedStrategy(editedCombinedStrategy);
         newCombinedStrategyView.show();
     }
 }

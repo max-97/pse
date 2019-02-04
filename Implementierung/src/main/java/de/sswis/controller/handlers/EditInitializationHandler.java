@@ -35,14 +35,14 @@ public class EditInitializationHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewInitializationView newInitializationView = this.factory.createNewInitializationView();
         newInitializationView.setParentView(this.manageInitializationsView);
+        for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
+            newInitializationView.addCombinedStrategy(c.getName());
+        }
         VMInitialization selectedVM = this.manageInitializationsView.getSelectedVM();
         newInitializationView.setInitialization(selectedVM);
         VMInitialization editedInitialization = new VMInitialization();
         editedInitialization.setName(selectedVM.getName());
         manageInitializationsView.setEditedInitialization(editedInitialization);
-        for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
-            newInitializationView.addCombinedStrategy(c.getName());
-        }
         newInitializationView.show();
     }
 }

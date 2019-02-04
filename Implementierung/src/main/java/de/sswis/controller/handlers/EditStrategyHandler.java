@@ -39,13 +39,13 @@ public class EditStrategyHandler implements ActionListener {
         AbstractNewStrategyView newStrategyView = this.factory.createNewStrategyView();
         newStrategyView.show();
         newStrategyView.setParentView(this.manageStrategiesView);
+        for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
+            newStrategyView.addCombinedStrategy(c.getName());
+        }
         VMStrategy selectedVM = this.manageStrategiesView.getSelectedVM();
         newStrategyView.setStrategy(selectedVM);
         VMStrategy editedStrategy = new VMStrategy();
         editedStrategy.setName(selectedVM.getName());
         manageStrategiesView.setEditedStrategy(editedStrategy);
-        for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
-            newStrategyView.addCombinedStrategy(c.getName());
-        }
     }
 }
