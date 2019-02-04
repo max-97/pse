@@ -36,6 +36,7 @@ public class NewInitializationHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewInitializationView newInitializationView = this.factory.createNewInitializationView();
         newInitializationView.setParentView(initializationsView);
+        initializationsView.setEditedInitialization(null);
         newInitializationView.setInitialization(new VMInitialization());
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             newInitializationView.addCombinedStrategy(c.getName());

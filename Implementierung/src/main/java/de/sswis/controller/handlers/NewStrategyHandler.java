@@ -37,6 +37,7 @@ public class NewStrategyHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewStrategyView newStrategyView = this.factory.createNewStrategyView();
         newStrategyView.setParentView(strategiesView);
+        strategiesView.setEditedStrategy(null);
         newStrategyView.setStrategy(new VMStrategy());
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
             newStrategyView.addCombinedStrategy(c.getName());
