@@ -175,7 +175,7 @@ public class Initialization {
                 for (int i = 0; i < strategyAgentDistributions.get(a).getAgentIDs().length; i++) {
                     for (int j = 0; j < members.size(); j++) {
                         if (ids[i] == members.get(j).getId() && members.get(j).getStrategy() == null) {
-                            members.get(j).setStrategy(strategies.get(a));
+                            members.get(j).setStrategy(strategies.get(a).clone());
                         }
                     }
                 }
@@ -193,7 +193,7 @@ public class Initialization {
                 for (int x = 0; x < members.size(); x++) {
                     boolean isAll = true;
                     if (members.get(x).getStrategy() == null) {
-                        members.get(x).setStrategy(strategies.get(b));
+                        members.get(x).setStrategy(strategies.get(b).clone());
                         agentNumber++;
                     }
                     float result = (float) strategyAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();
