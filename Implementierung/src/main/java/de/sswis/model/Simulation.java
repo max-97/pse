@@ -19,13 +19,14 @@ public class Simulation implements Runnable, ObservableSimulation {
     private Pair[] currentPairs;
     private List<SimulationObserver> observers;
     private Result result;
-    private final double THRESHOLD = 0;
+    private double threshold;
 
     /**
      * Erstellt eine Simulation.
      * @param config zugrunde liegende Konfiguration
      */
     public Simulation(Configuration config) {
+        this.threshold = 0.10;
         this.repetitions = 1;
         this.config = config;
         this.result = new Result();
@@ -78,7 +79,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             if(round == (cycle * cycleRoundCount)) {
                 cycle++;
                 int adaptationCount = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
-                if(adaptationCount < THRESHOLD * agents.length) {
+                if(adaptationCount < threshold * agents.length) {
                     equilibriumAchieved = true;
                 }
                 for(Agent agent : agents) {
@@ -132,6 +133,10 @@ public class Simulation implements Runnable, ObservableSimulation {
             result[i] = newAgent;
         }
         return result;
+    }
+
+    public void setThreshold(double threshold) {
+        this.threshold = threshold;
     }
 
     @Override
