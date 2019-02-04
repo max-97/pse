@@ -63,7 +63,7 @@ public interface AbstractMainView extends AbstractView {
      *
      * @return -1 wenn Abfrage abgebrochen wurde, sonst die Nutzereingabe
      */
-    int askForRepitionNumber();
+    int askForRepetitionNumber();
 
     /**
      * Fügt ein ActionListener zum Button Simulation starten hinzu.
@@ -156,5 +156,6 @@ public interface AbstractMainView extends AbstractView {
 
     Collection<VMResult> getResults();
 
+    void setSimulationStopped(String name);
 }
 
