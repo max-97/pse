@@ -56,19 +56,24 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void addNewGroupTab() {
-        GroupTab tab = new GroupTab(strategies);
+        GroupTab tab = new GroupTab();
+        tab.addStrategies(strategies);
         tab.setInitializationView(this);
 
+        tab.setID(groupTabbedPane.getTabCount());
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
-        GroupTab tab = new GroupTab(strategies);
+        GroupTab tab = new GroupTab();
+        tab.addStrategies(strategies);
 
         tab.setInitializationView(this);
+
         tab.setVMGroup(vmGroup, percentageAgentGroupRadioButton.isSelected());
 
+        tab.setID(groupTabbedPane.getTabCount());
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
@@ -139,6 +144,9 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
         this.vmInitialization = initialization;
         nameTextField.setText(vmInitialization.getName());
+        agentNumberTextField.setText(vmInitialization.getAgentCount() + "");
+
+        percentageAgentGroupRadioButton.setSelected(vmInitialization.hasRelativeDistribution());
 
         for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
             addSpecificGroupTab(vmInitialization.getGroups().get(i));
@@ -166,6 +174,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
         percentageAgentGroupRadioButton = new JRadioButton();
         buttonGroup.add(percentageAgentGroupRadioButton);
+
 
     }
 

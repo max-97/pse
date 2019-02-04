@@ -46,19 +46,20 @@ public class GroupTab {
     private JRadioButton percentageAgentCapitalRadioButton;
     private JFormattedTextField distributionTextField;
 
-    public GroupTab(List<String> allStrategies) {
+    public GroupTab() {
         this.vmGroup = new VMGroup();
-        this.allStrategies = allStrategies;
 
         strategyTabs = new ArrayList<InitialStrategyTab>();
+        allStrategies = new ArrayList<>();
         $$$setupUI$$$();
-        addStrategyTabs();
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
     }
 
 
-    private void addStrategyTabs() {
+    public void addStrategies(List<String> strategies) {
+        this.allStrategies.addAll(strategies);
+
         for (int i = 0; i < allStrategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
 
@@ -117,24 +118,25 @@ public class GroupTab {
     public void setVMGroup(VMGroup vmGroup, boolean hasRelativeDist) {
         this.vmGroup = vmGroup;
 
-        groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
 
-        //distributionTextField.setText(vmGroup.getAgents());
+        distributionTextField.setText(vmGroup.getAgentsString());
 
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
         percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
 
-        for (int i = 0; i < vmGroup.getStrategies().size(); i++) {
-            List<String> distribution = vmGroup.getStrategyDistributions().get(i);
-            //TODO: vm getter anpassen
-            //strategyTabs.get(i).setDistribution();
+        for (int i = 0; i < allStrategies.size(); i++) {
+
+
+            if (vmGroup.getStrategies().contains(allStrategies.get(i))) {
+                strategyTabs.get(i).setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
+            }
+
 
         }
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
-            //TODO: vm getter anpassen
-            //addSpecificCapital(vmGroup.getStartCapital().get(i), );
+            addSpecificCapital(vmGroup.getStartCapital().get(i), vmGroup.getStartCapitalDistributionsStrings().get(i));
         }
 
     }
@@ -146,6 +148,12 @@ public class GroupTab {
 
     public void setInitializationView(NewInitializationView initializationView) {
         this.initializationView = initializationView;
+    }
+
+    public void setID(int id) {
+        vmGroup.setId(id);
+        groupIDLabel.setText(vmGroup.getId() + "");
+
     }
 
     public void updateCapitalsTitle() {

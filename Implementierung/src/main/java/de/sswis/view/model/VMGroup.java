@@ -75,6 +75,9 @@ public class VMGroup {
 
     public List<String> getStrategyDistributionsStrings() { return this.strategyDistributions; }
 
+    public List<String> getStartCapitalDistributionsStrings() { return this.startCapitalDistributions; }
+
+
     public void addStrategy(String name, String distribution) {
         this.strategies.add(name);
         this.strategyDistributions.add(distribution);
