@@ -103,7 +103,8 @@ public class MixedSum implements AdaptationAlgorithm{
            newStrategy = newStrategies[0];
         } else {
             normalize(newProbabilities);
-            newStrategy = new MixedStrategy(agent.getStrategy().getName(), newStrategies, newProbabilities);
+            String newName = getNewName(strategy.getName());
+            newStrategy = new MixedStrategy(newName, newStrategies, newProbabilities);
         }
         agent.setStrategy(newStrategy);
     }
@@ -112,6 +113,16 @@ public class MixedSum implements AdaptationAlgorithm{
         double sum = 0;
         for(int i = 0; i < probabilities.length; i++) sum += probabilities[i];
         for(int i = 0; i < probabilities.length; i++) probabilities[i] *= 1/sum;
+    }
+
+    private String getNewName(String oldName) {
+        if(!oldName.contains("_")) {
+            return oldName + "_1";
+        } else {
+            int index = oldName.indexOf("_") + 1;
+            int adaptCount = Integer.parseInt(oldName.substring(index)) + 1;
+            return oldName.substring(0, index)  + adaptCount;
+        }
     }
 
     @Override
