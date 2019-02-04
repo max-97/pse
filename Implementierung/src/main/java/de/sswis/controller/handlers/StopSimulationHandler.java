@@ -34,5 +34,6 @@ public class StopSimulationHandler implements ActionListener {
 
         Configuration config = this.provider.getConfiguration(configurations.getName());
         config.getSimulation().abort();
+        mainView.setSimulationStopped(configurations.getName());
     }
 }

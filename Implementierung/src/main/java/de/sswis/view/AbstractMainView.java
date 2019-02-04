@@ -156,5 +156,6 @@ public interface AbstractMainView extends AbstractView {
 
     Collection<VMResult> getResults();
 
+    void setSimulationStopped(String name);
 }
 
