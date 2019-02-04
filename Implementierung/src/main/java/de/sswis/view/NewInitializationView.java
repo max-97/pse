@@ -58,18 +58,36 @@ public class NewInitializationView implements AbstractNewInitializationView {
     private void addNewGroupTab() {
         GroupTab tab = new GroupTab();
         tab.addStrategies(strategies);
-        tab.setInitializationView(this);
+        tab.setActionListener(this);
 
         tab.setID(groupTabbedPane.getTabCount());
         groupTabs.add(tab);
         groupTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
     }
 
+    public void removeGroupTab(GroupTab tab) {
+
+        groupTabbedPane.removeTabAt(groupTabs.indexOf(tab));
+        groupTabs.remove(tab);
+
+        for (int i = 0; i < groupTabs.size(); i++) {
+            groupTabs.get(i).setID(i);
+            groupTabbedPane.setTitleAt(i, groupTabs.get(i).getTitle());
+        }
+    }
+
+    public void updateGroupTabTitle() {
+        for (int i = 0; i < groupTabs.size(); i++) {
+            groupTabbedPane.setTitleAt(i, groupTabs.get(i).getTitle());
+
+        }
+    }
+
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab();
         tab.addStrategies(strategies);
 
-        tab.setInitializationView(this);
+        tab.setActionListener(this);
 
         tab.setVMGroup(vmGroup, percentageAgentGroupRadioButton.isSelected());
 
