@@ -154,6 +154,8 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     public void setConfiguration(VMConfiguration configuration) {
         this.vmConfiguration = configuration;
 
+        nameTextField.setText(vmConfiguration.getName());
+
         gameComboBox.setSelectedItem(vmConfiguration.getGame());
         initComboBox.setSelectedItem(vmConfiguration.getInit());
         pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());

@@ -43,11 +43,6 @@ public class EditConfigurationHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewConfigurationView newConfigurationView = this.factory.createNewConfigurationView();
         newConfigurationView.setParentView(this.manageConfigurationsView);
-        VMConfiguration selectedVM = this.manageConfigurationsView.getSelectedVM();
-        newConfigurationView.setConfiguration(selectedVM);
-        VMConfiguration editedConfiguration = new VMConfiguration();
-        editedConfiguration.setName(selectedVM.getName());
-        manageConfigurationsView.setEditedConfiguration(editedConfiguration);
         for (AdaptationAlgorithm a : this.serviceLoader.getAdaptAlgorithmList()) {
             newConfigurationView.addAdaptionAlgorithm(a.getName());
             HashMap<String, String[]> parameters = new HashMap<>();
@@ -72,6 +67,11 @@ public class EditConfigurationHandler implements ActionListener {
         for (VMGame g : this.fileManager.loadAllGames()) {
             newConfigurationView.addGame(g.getName());
         }
+        VMConfiguration selectedVM = this.manageConfigurationsView.getSelectedVM();
+        newConfigurationView.setConfiguration(selectedVM);
+        VMConfiguration editedConfiguration = new VMConfiguration();
+        editedConfiguration.setName(selectedVM.getName());
+        manageConfigurationsView.setEditedConfiguration(editedConfiguration);
         newConfigurationView.show();
     }
 }

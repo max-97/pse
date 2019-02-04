@@ -44,6 +44,7 @@ public class NewConfigurationHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewConfigurationView newConfigurationView = this.factory.createNewConfigurationView();
         newConfigurationView.setParentView(configurationsView);
+        configurationsView.setEditedConfiguration(null);
         newConfigurationView.setConfiguration(new VMConfiguration());
         for (AdaptationAlgorithm a : this.serviceLoader.getAdaptAlgorithmList()) {
             newConfigurationView.addAdaptionAlgorithm(a.getName());

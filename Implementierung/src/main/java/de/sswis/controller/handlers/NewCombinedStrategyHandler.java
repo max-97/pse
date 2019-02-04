@@ -39,6 +39,7 @@ public class NewCombinedStrategyHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractNewCombinedStrategyView newCombinedStrategyView = this.factory.createNewCombinedStrategyView();
         newCombinedStrategyView.setParentView(combinedStrategiesView);
+        combinedStrategiesView.setEditedCombinedStrategy(null);
         newCombinedStrategyView.setCombinedStrategy(new VMCombinedStrategy());
         for(Condition c : this.serviceLoader.getConditionList()) {
             newCombinedStrategyView.addCondition(c.getName());
