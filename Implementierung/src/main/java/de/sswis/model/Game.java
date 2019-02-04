@@ -31,7 +31,7 @@ public class Game {
      * @param a2 Aktion des zweiten Agenten
      * @return ein Paar von Payoffs
      */
-    private Tuple getPayoffs(Action a1, Action a2) {
+    public Tuple getPayoffs(Action a1, Action a2) {
         int i = 0;
         int j = 0;
 
