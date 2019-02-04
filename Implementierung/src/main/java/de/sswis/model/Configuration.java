@@ -44,10 +44,10 @@ public class Configuration {
         this.adaptationAlg = adaptation;
         this.pairingAlg = pairing;
         this.rankingAlg = ranking;
-        this.rounds = rounds;
+        this.rounds = rounds * cycles;
         this.cycles = cycles;
         this.adaptationProbability = adaptationProbability;
-        this.cycleRoundCount = rounds/cycles;
+        this.cycleRoundCount = rounds;
   }
 
     public String getName() {
