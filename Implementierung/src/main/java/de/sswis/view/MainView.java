@@ -128,7 +128,7 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public int askForRepitionNumber() {
+    public int askForRepetitionNumber() {
         JSpinner spinner = new JSpinner(new SpinnerNumberModel(1, 1, null, 1));
 
         String[] options = {"Abbrechen", "Ok"};
