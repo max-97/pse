@@ -37,19 +37,18 @@ public class Initialization {
         this.agentCount = agentCount;
         this.agents = new ArrayList<>();
         this.groups = new ArrayList<>();
-        this.groupAgentDistributions = new ArrayList();
-        this.strategyAgentDistributions = new ArrayList();
-        this.capitalAgentDistributions = new ArrayList();
-        this.strategies = new ArrayList();
-        this.capitals = new ArrayList();
-        this.groups1 = new ArrayList();
-        this.groups2 = new ArrayList();
-        this.groups3 = new ArrayList();
+        this.groupAgentDistributions = new ArrayList<>();
+        this.strategyAgentDistributions = new ArrayList<>();
+        this.capitalAgentDistributions = new ArrayList<>();
+        this.strategies = new ArrayList<>();
+        this.capitals = new ArrayList<>();
+        this.groups1 = new ArrayList<>();
+        this.groups2 = new ArrayList<>();
+        this.groups3 = new ArrayList<>();
         for (int i = 0; i < agentCount; i++) {
             Agent agent = new Agent(i, 0, null, null);
             agents.add(agent);
         }
-        this.agents = agents;
         this.initialScoreStrategiesOnly = false;
     }
 
