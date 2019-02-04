@@ -142,6 +142,8 @@ public class NewStrategyView implements AbstractNewStrategyView {
     @Override
     public void setStrategy(VMStrategy strategy) {
         this.vmStrategy = strategy;
+        this.nameTextField.setText(vmStrategy.getName());
+        this.descriptionTextPane.setText(vmStrategy.getDescription());
         for (int i = 0; i < vmStrategy.getCombinedStrategies().size(); i++) {
             addNewLine();
             //TODO: VM check for correct Order!
