@@ -61,7 +61,8 @@ public class ModelParser {
             Collection<VMAgentHistory> agentHistories = new ArrayList<>();
             for (Agent a : Arrays.asList(agents)) {
 
-                VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(), new ArrayList<>(), a.getHistory().getStrategies());
+                VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(),
+                        a.getHistory().getRanks(), a.getHistory().getStrategies());
                 agentHistories.add(vmAH);
             }
             result.setAgentHistories(agentHistories);
