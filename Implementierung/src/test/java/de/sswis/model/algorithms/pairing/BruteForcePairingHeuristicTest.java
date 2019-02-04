@@ -6,9 +6,9 @@ import de.sswis.model.Group;
 import de.sswis.model.Pair;
 import de.sswis.model.conditions.Always;
 import de.sswis.model.conditions.Condition;
+import de.sswis.model.conditions.OwnGroup;
 import de.sswis.model.strategies.AlwaysCooperate;
 import de.sswis.model.strategies.BaseStrategy;
-import de.sswis.model.strategies.NeverCooperate;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -20,7 +20,6 @@ public class BruteForcePairingHeuristicTest {
     private static Agent[] agents;
     private static BruteForcePairingHeuristic pairingAlgorithm;
     private static CombinedStrategy always;
-    private static CombinedStrategy never;
     private static Group group;
 
 
@@ -30,8 +29,6 @@ public class BruteForcePairingHeuristicTest {
         agents = new Agent[6];
         group = new Group(1, "1");
         always = new CombinedStrategy("Always", new BaseStrategy[]{new AlwaysCooperate()},
-                new Condition[]{new Always()});
-        never = new CombinedStrategy("Never", new BaseStrategy[]{new NeverCooperate()},
                 new Condition[]{new Always()});
     }
 
