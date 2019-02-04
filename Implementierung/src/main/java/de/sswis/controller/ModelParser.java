@@ -251,6 +251,7 @@ public class ModelParser {
         String name = vmInitialization.getName();
         int agentCount = vmInitialization.getAgentCount();
         List<VMGroup> groups = vmInitialization.getGroups();
+        boolean capitalToTotalPoints = vmInitialization.addCapitalToTotalPoints();
 
         HashMap<Group, VariableDistribution[]> groupDistribution = calculateGroupDistribution(groups);
 
@@ -269,6 +270,7 @@ public class ModelParser {
         if (VariableDistribution.getSize() == 1) {
             // Eine Initialization
             Initialization init = new Initialization(name, agentCount);
+            init.setInitialScoreStrategiesOnly(!capitalToTotalPoints);
             if (vmInitialization.hasRelativeDistribution()) {
                 for (Group g : groupDistribution.keySet()) {
                     int percent = groupDistribution.get(g)[0].getValue(0);
@@ -324,6 +326,7 @@ public class ModelParser {
             int numberOfInstances = VariableDistribution.getSize();
             for (int j = 0; j < numberOfInstances; j++) {
                 Initialization init = new Initialization(name + (j + 1), agentCount);
+                init.setInitialScoreStrategiesOnly(!capitalToTotalPoints);
 
                 if (vmInitialization.hasRelativeDistribution()) {
                     for (Group g : groupDistribution.keySet()) {
