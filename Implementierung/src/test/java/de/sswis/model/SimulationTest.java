@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class SimulationTest {
 
     @Test
-    public void test1() {
+    public void test() {
         CombinedStrategy strategy = new CombinedStrategy("Strategy", new BaseStrategy[]{new AlwaysCooperate()},
                 new Condition[]{new Always()});
         Group group = new Group(1,"Group");
@@ -49,11 +49,6 @@ public class SimulationTest {
             assertTrue(agent.getHistory().getAlwaysCooperated());
             assertTrue(agent.getHistory().groupCooperatedEveryTime(group));
             assertTrue(agent.getHistory().groupCooperatedEveryTime(group));
-            /*for(int i = 0; i < 5; i++) {
-                System.out.println(agent.getHistory().getScore(i + 1));
-                System.out.println(agent.getHistory().getRank(i + 1));
-                System.out.println(agent.getHistory().getStrategy(i + 1));
-            }*/
         }
     }
 }
