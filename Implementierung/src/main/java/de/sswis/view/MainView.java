@@ -110,13 +110,14 @@ public class MainView implements AbstractMainView {
     public void setSimulationFinished(String NameConfiguration) {
         simulatingConfigs.remove(NameConfiguration);
         updateButtons();
+        JOptionPane.showMessageDialog(frame, "Die Simulation von " + NameConfiguration + " ist beendet.");
     }
 
     @Override
     public void setSimulationStopped(String name) {
         simulatingConfigs.remove(name);
-        JOptionPane.showMessageDialog(frame, "Die Simulation " + name + " wurde abgebrochen!");
         updateButtons();
+        JOptionPane.showMessageDialog(frame, "Die Simulation " + name + " wurde abgebrochen!");
     }
 
     @Override
