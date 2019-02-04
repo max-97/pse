@@ -102,13 +102,6 @@ public class Simulation implements Runnable, ObservableSimulation {
     public Result getResults() { return this.result; }
 
     /**
-     * Startet die Simulation neu.
-     */
-    public void restart() {
-
-    }
-
-    /**
      * Bricht die Simulation ab.
      */
     public void abort() {
