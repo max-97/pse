@@ -5,6 +5,7 @@ import de.sswis.model.*;
 import de.sswis.model.algorithms.adaptation.*;
 import de.sswis.model.algorithms.pairing.*;
 import de.sswis.model.algorithms.ranking.*;
+import de.sswis.model.conditions.Always;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.util.AgentDistribution;
@@ -61,7 +62,8 @@ public class ModelParser {
             Collection<VMAgentHistory> agentHistories = new ArrayList<>();
             for (Agent a : Arrays.asList(agents)) {
 
-                VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(), new ArrayList<>(), a.getHistory().getStrategies());
+                VMAgentHistory vmAH = new VMAgentHistory(a.getId(), a.getGroup().getId(), a.getHistory().getScores(),
+                        a.getHistory().getRanks(), a.getHistory().getStrategies());
                 agentHistories.add(vmAH);
             }
             result.setAgentHistories(agentHistories);
@@ -80,15 +82,22 @@ public class ModelParser {
         String name = vmCombinedStrategy.getName();
         int strategySize = vmCombinedStrategy.getStrategies().size();
         int conditionSize = vmCombinedStrategy.getConditions().size();
-        BaseStrategy[] strategies = new BaseStrategy[strategySize];
-        Condition[] conditions = new Condition[conditionSize];
+        BaseStrategy[] strategies = new BaseStrategy[strategySize + 1];
+        Condition[] conditions = new Condition[conditionSize + 1];
 
         List<String> strategyNames = vmCombinedStrategy.getStrategies();
         for (int i = 0; i < strategySize; i++) {
+            String strategyName = strategyNames.get(i);
             for (BaseStrategy b : this.serviceLoader.getBaseStrategyList()) {
-                if (b.getName().equals(strategyNames.get(i))) {
+                if (b.getName().equals(strategyName)) {
                     strategies[i] = b;
                 }
+            }
+        }
+        for (BaseStrategy b : this.serviceLoader.getBaseStrategyList()) {
+            String defaultStrategy = vmCombinedStrategy.getDefaultStrategy();
+            if (b.getName().equals(defaultStrategy)) {
+                strategies[strategySize] = b;
             }
         }
 
@@ -102,6 +111,8 @@ public class ModelParser {
                 }
             }
         }
+
+        conditions[conditionSize] = new Always();
 
         return new CombinedStrategy(name, strategies, conditions);
     }
