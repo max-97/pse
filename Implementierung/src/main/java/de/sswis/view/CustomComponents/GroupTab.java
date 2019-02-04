@@ -19,9 +19,6 @@ import java.util.List;
  */
 public class GroupTab {
 
-    private NewInitializationView initializationView;
-
-
     private VMGroup vmGroup;
     private List<String> allStrategies;
     private List<InitialStrategyTab> strategyTabs;
@@ -45,20 +42,22 @@ public class GroupTab {
     private JRadioButton idAgentCapitalRadioButton;
     private JRadioButton percentageAgentCapitalRadioButton;
     private JFormattedTextField distributionTextField;
+    private JButton deleteButton;
 
-    public GroupTab(List<String> allStrategies) {
+    public GroupTab() {
         this.vmGroup = new VMGroup();
-        this.allStrategies = allStrategies;
 
         strategyTabs = new ArrayList<InitialStrategyTab>();
+        allStrategies = new ArrayList<>();
         $$$setupUI$$$();
-        addStrategyTabs();
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
     }
 
 
-    private void addStrategyTabs() {
+    public void addStrategies(List<String> strategies) {
+        this.allStrategies.addAll(strategies);
+
         for (int i = 0; i < allStrategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
 
@@ -85,6 +84,12 @@ public class GroupTab {
         capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
+    public void removeCapitalTab(StartCapitalTab tab) {
+        capitalsTabbedPane.removeTabAt(startCapitalTabs.indexOf(tab));
+        startCapitalTabs.remove(tab);
+    }
+
+
     public void updateVM() {
 
         vmGroup.setName(groupNameTextField.getText());
@@ -103,13 +108,7 @@ public class GroupTab {
 
 
     public String getTitle() {
-        String title = vmGroup.getId() + ": ";
-
-        if (vmGroup.getName() == null) {
-            title = title + "unbenannt";
-        } else {
-            title = title + vmGroup.getName();
-        }
+        String title = groupIDLabel.getText() + ": " + groupNameTextField.getText();
 
         return title;
     }
@@ -117,24 +116,25 @@ public class GroupTab {
     public void setVMGroup(VMGroup vmGroup, boolean hasRelativeDist) {
         this.vmGroup = vmGroup;
 
-        groupIDLabel.setText(vmGroup.getId() + "");
         groupNameTextField.setText(vmGroup.getName());
 
-        //distributionTextField.setText(vmGroup.getAgents());
+        distributionTextField.setText(vmGroup.getAgentsString());
 
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
         percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
 
-        for (int i = 0; i < vmGroup.getStrategies().size(); i++) {
-            List<String> distribution = vmGroup.getStrategyDistributions().get(i);
-            //TODO: vm getter anpassen
-            //strategyTabs.get(i).setDistribution();
+        for (int i = 0; i < allStrategies.size(); i++) {
+
+
+            if (vmGroup.getStrategies().contains(allStrategies.get(i))) {
+                strategyTabs.get(i).setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
+            }
+
 
         }
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
-            //TODO: vm getter anpassen
-            //addSpecificCapital(vmGroup.getStartCapital().get(i), );
+            addSpecificCapital(vmGroup.getStartCapital().get(i), vmGroup.getStartCapitalDistributionsStrings().get(i));
         }
 
     }
@@ -144,8 +144,15 @@ public class GroupTab {
         return vmGroup;
     }
 
-    public void setInitializationView(NewInitializationView initializationView) {
-        this.initializationView = initializationView;
+    public void setID(int id) {
+        vmGroup.setId(id);
+        groupIDLabel.setText(vmGroup.getId() + "");
+
+    }
+
+    public void setActionListener(NewInitializationView view) {
+        deleteButton.addActionListener(e -> view.removeGroupTab(this));
+        groupNameTextField.addActionListener(e -> view.updateGroupTabTitle());
     }
 
     public void updateCapitalsTitle() {
@@ -194,7 +201,7 @@ public class GroupTab {
         MainPanel = new JPanel();
         MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 2, new Insets(10, 10, 10, 10), -1, -1));
+        panel1.setLayout(new GridLayoutManager(4, 2, new Insets(10, 10, 10, 10), -1, -1));
         MainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         initGroupTabbedPane = new JTabbedPane();
         panel1.add(initGroupTabbedPane, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -250,6 +257,9 @@ public class GroupTab {
         panel1.add(groupNameTextField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         groupIDLabel.setText("Label");
         panel1.add(groupIDLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        deleteButton = new JButton();
+        deleteButton.setText("löschen");
+        panel1.add(deleteButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

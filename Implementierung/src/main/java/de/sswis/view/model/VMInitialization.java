@@ -17,6 +17,8 @@ public class VMInitialization {
     private int numberOfInstances;
     private boolean relativeDistribution;
 
+    private boolean CapitalToTotalPoints;
+
     public VMInitialization() {
         name = "";
         groups = new ArrayList<>();
@@ -72,6 +74,14 @@ public class VMInitialization {
 
     public boolean hasRelativeDistribution() {
         return this.relativeDistribution;
+    }
+
+    public boolean addCapitalToTotalPoints() {
+        return CapitalToTotalPoints;
+    }
+
+    public void setAddCapitalToTotalPoints(boolean capitalToTotalPoints) {
+        CapitalToTotalPoints = capitalToTotalPoints;
     }
 }
 
