@@ -3,6 +3,7 @@ package de.sswis.view.model;
 import de.sswis.model.Agent;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  *Ein Ergebnis zum Speichern von Daten von abgeschlossenen Simulationen.
@@ -17,6 +18,25 @@ public class VMResult {
     private Collection<Agent> agents; //TODO: falls möglich, löschen
     private Collection<VMAgentHistory> agentHistories;
 
+    private boolean reachedEquilibrium;
+
+    private int stepOfMultiConfig;
+
+    public int getStepOfMultiConfig() {
+        return stepOfMultiConfig;
+    }
+
+    public void setStepOfMultiConfig(int stepOfMultiConfig) {
+        this.stepOfMultiConfig = stepOfMultiConfig;
+    }
+
+    public boolean reachedEquilibrium() {
+        return reachedEquilibrium;
+    }
+
+    public void setReachedEquilibrium(boolean reachedEquilibrium) {
+        this.reachedEquilibrium = reachedEquilibrium;
+    }
 
     public String getName() {
         return name;
@@ -54,6 +74,16 @@ public class VMResult {
     public void setAgents(Collection<Agent> agents) {
         this.agents = agents;
     }
+
+    public List<VMAgentHistory> filterByGroupID (int[] ids) {return null; }//TODO: implement me
+
+    public List<VMAgentHistory> filterByAgentID (int[] ids) {return null; }//TODO: implement me
+
+    public List<VMAgentHistory> filterByRanking (int[] rankings) {return null; }//TODO: implement me
+
+    public List<VMAgentHistory> filterByTopPercent (int percent) {return null; }//TODO: implement me
+
+    public List<VMAgentHistory> filterByLastPercent (int percent) {return null; }//TODO: implement me
 
 
 }

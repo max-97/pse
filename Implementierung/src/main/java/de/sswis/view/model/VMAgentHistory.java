@@ -39,5 +39,10 @@ public class VMAgentHistory {
         return strategies;
     }
 
+    public int getLastRank() {return rank.get(rank.size() - 1);}
+
+    public String getLastStrategy() {return strategies.get(strategies.size() - 1);}
+
+    public int getLastScore() {return score.get(score.size() - 1);}
 
 }
