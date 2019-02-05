@@ -158,7 +158,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     @Override
-    public void addCombinedStrategy(String name) {
+    public void addStrategy(String name) {
         strategies.add(name);
     }
 

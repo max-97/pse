@@ -36,7 +36,7 @@ public class EditInitializationHandler implements ActionListener {
         AbstractNewInitializationView newInitializationView = this.factory.createNewInitializationView();
         newInitializationView.setParentView(this.manageInitializationsView);
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
-            newInitializationView.addCombinedStrategy(c.getName());
+            newInitializationView.addStrategy(c.getName());
         }
         VMInitialization selectedVM = this.manageInitializationsView.getSelectedVM();
         newInitializationView.setInitialization(selectedVM);

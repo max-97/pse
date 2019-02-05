@@ -33,5 +33,5 @@ public interface AbstractNewInitializationView extends AbstractView {
 
     void setInitialization(VMInitialization initialization);
 
-    void addCombinedStrategy(String name);
+    void addStrategy(String name);
 }
