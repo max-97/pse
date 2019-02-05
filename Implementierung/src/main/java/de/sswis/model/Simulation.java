@@ -14,6 +14,7 @@ import java.util.List;
 public class Simulation implements Runnable, ObservableSimulation {
     private Configuration config;
     private int repetitions;
+    private boolean stopSimulation;
     private Agent[] initialAgents;
     private HashMap<Agent, Integer> currentRanking;
     private Pair[] currentPairs;
@@ -32,6 +33,7 @@ public class Simulation implements Runnable, ObservableSimulation {
         this.result = new Result();
         this.initialAgents = config.getInit().calculateInitialAgentState();
         this.observers = new LinkedList<>();
+        this.stopSimulation = false;
     }
 
     /**
@@ -62,7 +64,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             agent.getHistory().setRank(currentRanking.get(agent));
         }
 
-        while(!equilibriumAchieved && round < maxRounds) {
+        while(!stopSimulation && !equilibriumAchieved && round < maxRounds) {
             currentPairs = config.getPairingAlg().getPairing(agents, game);
 
             for(Pair pair : currentPairs) {
@@ -102,17 +104,10 @@ public class Simulation implements Runnable, ObservableSimulation {
     public Result getResults() { return this.result; }
 
     /**
-     * Startet die Simulation neu.
-     */
-    public void restart() {
-
-    }
-
-    /**
      * Bricht die Simulation ab.
      */
     public void abort() {
-
+        this.stopSimulation = true;
     }
 
     /**
@@ -141,10 +136,12 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void run() {
-        for(int i = 0; i < repetitions; i++) {
+        for(int i = 0; i < repetitions && !stopSimulation; i++) {
             simulateRun(i + 1);
         }
-        notifyObservers();
+        if(!stopSimulation) {
+            notifyObservers();
+        }
     }
 
     @Override
