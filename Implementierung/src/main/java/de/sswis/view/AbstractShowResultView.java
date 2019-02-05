@@ -17,5 +17,5 @@ public interface AbstractShowResultView extends AbstractView {
 
     AbstractMainView getParentView();
 
-    void setVMResult(VMResult vmResult);
+    void addVMResult(VMResult vmResult);
 }
