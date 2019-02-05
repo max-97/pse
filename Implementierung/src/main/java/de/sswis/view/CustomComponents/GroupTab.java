@@ -116,7 +116,7 @@ public class GroupTab {
 
 
     public void updateVM() {
-
+        vmGroup = new VMGroup();
         vmGroup.setName(groupNameTextField.getText());
         vmGroup.setAgents(distributionTextField.getText());
 
