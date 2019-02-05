@@ -19,7 +19,7 @@ public class DataSetHelper {
      * @param data Die Strings mit dem ein Datenset erstellt wird
      * @return ein Dataset mit Datenpaaren aus Listeneinträgen und deren Häufigkeit in der Liste.
      */
-    public static KeyedValuesDataset getKeyedValuesDataSet(List<String> data) {
+    public static KeyedValuesDataset getKeyedValuesDataSet(List<String> data, int averageDivisor) {
         DefaultKeyedValuesDataset dataset = new DefaultKeyedValuesDataset();
         while (!data.isEmpty()) {
             int value = 0;
@@ -28,17 +28,17 @@ public class DataSetHelper {
                 value++;
             }
 
-            dataset.setValue(key, value);
+            dataset.setValue(key, (value/ averageDivisor));
         }
 
         return dataset;
     }
 
 
-    public static CategoryDataset getCategoryDataset(ArrayList<String> strategies, ArrayList<Integer> points, int range) {
+    public static CategoryDataset getCategoryRangeDataset(ArrayList<String> strategies, ArrayList<Integer> points, int averageDivisor) {
 
-        List<String> rowKeys = new ArrayList<>();
-        List<String> columnKeys = new ArrayList<>();
+        List<String> rowKeys = new ArrayList<String>();
+        List<String> columnKeys = new ArrayList<String>();
         int highest = 0;
 
         //create row keys
@@ -52,27 +52,32 @@ public class DataSetHelper {
         }
 
         //create column key
-        for (int i = 0; i < highest; i += range) {
-            columnKeys.add(i + " - " + (i + range));
+        for (int i = 0; i <= highest; i += 100) {
+            columnKeys.add(i + " - " + (i + 99));
         }
 
         //count data
         double[][] data = new double[rowKeys.size()][columnKeys.size()];
 
         for (int i = 0; i < strategies.size(); i++) {
-            data[rowKeys.indexOf(strategies.get(i))][(points.get(i)/range)] += 1.0;
+            data[rowKeys.indexOf(strategies.get(i))][(points.get(i)/100)] += 1.0;
         }
 
-        return  DatasetUtilities.createCategoryDataset((String[]) rowKeys.toArray(), (String[]) columnKeys.toArray(), data);
+        //calculate average
+        for(int x = 0; x < data.length; x++) {
+            for(int y = 0; y < data[x].length; y++) {
+                data[x][y] = data[x][y]/averageDivisor;
+            }
+        }
 
+        String[] rowKeysAr = rowKeys.toArray(new String[0]);
+        String[] columnKeysAr = columnKeys.toArray(new String[0]);
+
+
+        return  DatasetUtilities.createCategoryDataset(rowKeysAr, columnKeysAr, data);
     }
+    
 
 
 
-    public static int calculateNiceRange(List<Integer> values) {
-        Collections.sort(values);
-        int highest = values.get((values.size() - 1));
-        //TODO: implement me
-        return 10;
-    }
 }
