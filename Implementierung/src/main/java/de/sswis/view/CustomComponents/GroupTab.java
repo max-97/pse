@@ -7,11 +7,8 @@ import de.sswis.view.NewInitializationView;
 import de.sswis.view.model.VMGroup;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -44,16 +41,38 @@ public class GroupTab {
     private JFormattedTextField distributionTextField;
     private JButton deleteButton;
 
-    public GroupTab() {
+    public GroupTab(List<String> strategies) {
         this.vmGroup = new VMGroup();
 
         strategyTabs = new ArrayList<InitialStrategyTab>();
         allStrategies = new ArrayList<>();
+        allStrategies.addAll(strategies);
         $$$setupUI$$$();
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
-    }
 
+        JPanel pnlTab = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        pnlTab.setOpaque(false);
+
+        JButton addTabButton = new JButton("+");
+        addTabButton.setOpaque(false);
+        addTabButton.setBorder(null);
+        addTabButton.setContentAreaFilled(false);
+        addTabButton.setFocusPainted(false);
+        addTabButton.setFocusable(false);
+
+        pnlTab.add(addTabButton);
+        initialStrategiesTabbedPane.addTab("", null, new JScrollPane());
+        initialStrategiesTabbedPane.setTabComponentAt(0, pnlTab);
+
+        addTabButton.addActionListener(e -> {
+            String input = (String) JOptionPane.showInputDialog(null, "Bitte Strategie auswählen...",
+                    "Strategieauswahl", JOptionPane.QUESTION_MESSAGE, null, allStrategies.toArray(), allStrategies.get(0));
+            if (input == null)
+                return;
+            addStrategy(input);
+        });
+    }
 
     public void addStrategies(List<String> strategies) {
         this.allStrategies.addAll(strategies);
@@ -65,6 +84,14 @@ public class GroupTab {
 
             strategyTabs.add(tab);
         }
+    }
+
+    public void addStrategy(String strategy) {
+        InitialStrategyTab tab = new InitialStrategyTab(strategy);
+        initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
+                initialStrategiesTabbedPane.getTabCount() - 1);
+        initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
+        strategyTabs.add(tab);
     }
 
     private void addCapital() {
@@ -268,4 +295,5 @@ public class GroupTab {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

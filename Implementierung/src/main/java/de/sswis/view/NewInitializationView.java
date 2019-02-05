@@ -24,8 +24,6 @@ import java.util.List;
 public class NewInitializationView implements AbstractNewInitializationView {
 
     private JFrame frame = new JFrame();
-    ;
-
 
     private VMInitialization vmInitialization = new VMInitialization();
 
@@ -58,8 +56,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void addNewGroupTab() {
-        GroupTab tab = new GroupTab();
-        tab.addStrategies(strategies);
+        GroupTab tab = new GroupTab(strategies);
+        //tab.addStrategies(strategies);
         tab.setActionListener(this);
 
         tab.setID(groupTabbedPane.getTabCount());
@@ -86,7 +84,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
-        GroupTab tab = new GroupTab();
+        GroupTab tab = new GroupTab(strategies);
         tab.addStrategies(strategies);
 
         tab.setActionListener(this);
