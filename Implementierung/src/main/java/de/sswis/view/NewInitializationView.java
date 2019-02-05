@@ -111,6 +111,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
         vmInitialization.setName(nameTextField.getText());
         vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText()));
         vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
+        vmInitialization.setDescription(descriptionTextPane.getText());
+        vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
 
         for (int i = 0; i < groupTabs.size(); i++) {
             vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
