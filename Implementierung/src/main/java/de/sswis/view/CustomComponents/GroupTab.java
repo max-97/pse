@@ -79,9 +79,7 @@ public class GroupTab {
 
         for (int i = 0; i < allStrategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
-
             initialStrategiesTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
-
             strategyTabs.add(tab);
         }
     }
@@ -150,20 +148,19 @@ public class GroupTab {
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
         percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
 
-        for (int i = 0; i < allStrategies.size(); i++) {
-
-
-            if (vmGroup.getStrategies().contains(allStrategies.get(i))) {
-                strategyTabs.get(i).setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
-            }
-
-
+        List<String> strategies = this.vmGroup.getStrategies();
+        for (int i = 0; i < strategies.size(); i++) {
+            InitialStrategyTab tab = new InitialStrategyTab(strategies.get(i));
+            initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
+                    initialStrategiesTabbedPane.getTabCount() - 1);
+            initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
+            tab.setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
+            strategyTabs.add(tab);
         }
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
             addSpecificCapital(vmGroup.getStartCapital().get(i), vmGroup.getStartCapitalDistributionsStrings().get(i));
         }
-
     }
 
     public VMGroup getVmGroup() {

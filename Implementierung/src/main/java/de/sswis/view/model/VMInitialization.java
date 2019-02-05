@@ -93,6 +93,10 @@ public class VMInitialization {
     public void setRelativeDistribution(boolean distribution) {
         this.relativeDistribution = distribution;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
 }
 
 

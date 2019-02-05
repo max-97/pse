@@ -85,7 +85,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
         GroupTab tab = new GroupTab(strategies);
-        tab.addStrategies(strategies);
+        //tab.addStrategies(strategies);
 
         tab.setActionListener(this);
 
@@ -167,7 +167,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         nameTextField.setText(vmInitialization.getName());
         agentNumberTextField.setText(vmInitialization.getAgentCount() + "");
         useCapitalCheckBox.setSelected(!vmInitialization.addCapitalToTotalPoints());
-
+        descriptionTextPane.setText(initialization.getDescription());
         percentageAgentGroupRadioButton.setSelected(vmInitialization.hasRelativeDistribution());
 
         for (int i = 0; i < vmInitialization.getGroups().size(); i++) {
