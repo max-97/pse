@@ -51,7 +51,7 @@ public class GroupTab {
 
         startCapitalTabs = new ArrayList<StartCapitalTab>();
 
-        JPanel pnlTab = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+        JPanel pnlTab = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
         pnlTab.setOpaque(false);
 
         JButton addTabButton = new JButton("+");
@@ -62,7 +62,7 @@ public class GroupTab {
         addTabButton.setFocusable(false);
 
         pnlTab.add(addTabButton);
-        initialStrategiesTabbedPane.addTab("", null, new JScrollPane());
+        initialStrategiesTabbedPane.addTab("", null, new JPanel());
         initialStrategiesTabbedPane.setTabComponentAt(0, pnlTab);
 
         addTabButton.addActionListener(e -> {
