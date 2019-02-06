@@ -32,6 +32,14 @@ public class VMCombinedStrategy {
         this.conditionParameters = conditionParameters;
     }
 
+    public VMCombinedStrategy(String name, String description, String defaultStrategy, List<String> baseStrategies, List<String> conditions) {
+        this.name = name;
+        this.description = description;
+        this.defaultStrategy = defaultStrategy;
+        this.baseStrategies = baseStrategies;
+        this.conditions = conditions;
+    }
+
     public HashMap<String, Object> getConditionParameter(int index) {
         return this.conditionParameters.get(index);
     }
