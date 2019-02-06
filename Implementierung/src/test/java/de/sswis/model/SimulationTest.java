@@ -58,7 +58,7 @@ public class SimulationTest {
         init.setGroupDistribution(distribution, group);
         init.setStrategyDistribution(distribution, combinedStrategy1, group);
         Configuration config = new Configuration("Config", game, init, adaptationAlgorithm, pairingAlgorithm,
-                rankingAlgorithm, 100, 5, 1);
+                rankingAlgorithm, 100, 5, 1, 100, 0.2);
         Simulation sim = config.simulate();
         sim.run();
         Result result = sim.getResults();
@@ -79,7 +79,7 @@ public class SimulationTest {
         init.setGroupDistribution(distribution, group);
         init.setStrategyDistribution(distribution, mixedStrategy1, group);
         Configuration config = new Configuration("Config", game, init, adaptationAlgorithm, pairingAlgorithm,
-                rankingAlgorithm, 100, 5, 1);
+                rankingAlgorithm, 100, 5, 1, 100, 0.2);
         Simulation sim = config.simulate();
         sim.run();
     }
@@ -93,7 +93,7 @@ public class SimulationTest {
         init.setGroupDistribution(distribution, group);
         init.setStrategyDistribution(distribution, combinedStrategy1, group);
         Configuration config = new Configuration("Config", game, init, adaptationAlgorithm, pairingAlgorithm,
-                rankingAlgorithm, 100, 5, 1);
+                rankingAlgorithm, 100, 5, 1,100, 0.2);
         Simulation sim = config.simulate();
         sim.setRepetitions(10);
         sim.run();

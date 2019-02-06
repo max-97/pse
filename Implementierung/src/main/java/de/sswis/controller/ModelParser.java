@@ -139,7 +139,7 @@ public class ModelParser {
         ArrayList<Configuration> configurations = new ArrayList<>();
 
         String name = vmConfig.getName();
-        Game game = this.provider.getGame(vmConfig.getName());
+        Game game = this.provider.getGame(vmConfig.getGame());
         AdaptationAlgorithm adaptationAlgorithm = this.parseAdaptationAlgorithm(vmConfig.getAdaptationAlg(),
                 vmConfig.getAdaptationParameters());
         PairingAlgorithm pairingAlgorithm = this.parsePairingAlgorithm(vmConfig.getPairingAlg(),
@@ -149,6 +149,9 @@ public class ModelParser {
         int rounds = Integer.parseInt(vmConfig.getRounds());
         int cycles = Integer.parseInt(vmConfig.getCycles());
         double adaptationProbability = Double.parseDouble(vmConfig.getAdaptationProbability());
+
+        int equilibriumRounds = vmConfig.getEquilibriumRounds();
+        double threshold = vmConfig.getEquilibriumMaxChange() / 100.0;
 
         List<Strategy> strategies = new ArrayList<>();
         for (String strategyName : vmConfig.getStrategies()) {
@@ -171,7 +174,9 @@ public class ModelParser {
                         rankingAlgorithm,
                         rounds,
                         cycles,
-                        adaptationProbability
+                        adaptationProbability,
+                        equilibriumRounds,
+                        threshold
                 );
                 configurations.add(c);
             }
@@ -189,7 +194,9 @@ public class ModelParser {
                     rankingAlgorithm,
                     rounds,
                     cycles,
-                    adaptationProbability
+                    adaptationProbability,
+                    equilibriumRounds,
+                    threshold
             );
 
             configurations.add(c);

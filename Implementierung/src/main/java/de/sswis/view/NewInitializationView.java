@@ -24,8 +24,6 @@ import java.util.List;
 public class NewInitializationView implements AbstractNewInitializationView {
 
     private JFrame frame = new JFrame();
-    ;
-
 
     private VMInitialization vmInitialization = new VMInitialization();
 
@@ -58,8 +56,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void addNewGroupTab() {
-        GroupTab tab = new GroupTab();
-        tab.addStrategies(strategies);
+        GroupTab tab = new GroupTab(strategies);
+        //tab.addStrategies(strategies);
         tab.setActionListener(this);
 
         tab.setID(groupTabbedPane.getTabCount());
@@ -86,8 +84,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     private void addSpecificGroupTab(VMGroup vmGroup) {
-        GroupTab tab = new GroupTab();
-        tab.addStrategies(strategies);
+        GroupTab tab = new GroupTab(strategies);
+        //tab.addStrategies(strategies);
 
         tab.setActionListener(this);
 
@@ -111,6 +109,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
         vmInitialization.setName(nameTextField.getText());
         vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText()));
         vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
+        vmInitialization.setDescription(descriptionTextPane.getText());
+        vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
 
         for (int i = 0; i < groupTabs.size(); i++) {
             vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
@@ -156,7 +156,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     @Override
-    public void addCombinedStrategy(String name) {
+    public void addStrategy(String name) {
         strategies.add(name);
     }
 
@@ -167,7 +167,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         nameTextField.setText(vmInitialization.getName());
         agentNumberTextField.setText(vmInitialization.getAgentCount() + "");
         useCapitalCheckBox.setSelected(!vmInitialization.addCapitalToTotalPoints());
-
+        descriptionTextPane.setText(initialization.getDescription());
         percentageAgentGroupRadioButton.setSelected(vmInitialization.hasRelativeDistribution());
 
         for (int i = 0; i < vmInitialization.getGroups().size(); i++) {

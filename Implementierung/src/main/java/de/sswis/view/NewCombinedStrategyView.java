@@ -211,13 +211,12 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         this.vmCombinedStrategy = combinedStrategy;
         nameTextField.setText(vmCombinedStrategy.getName());
         descriptionTextPane.setText(vmCombinedStrategy.getDescription());
-        for (int i = 0; i < vmCombinedStrategy.getConditions().size() - 1; i++) {
+        for (int i = 0; i < vmCombinedStrategy.getConditions().size(); i++) {
             addNewLine();
-            //TODO: do for additional Parameters
-            //TODO: VM check for correct Order!
             conditionComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getConditions().get(i));
             strategyComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getStrategies().get(i));
         }
+        defaultStrategy.setSelectedItem(vmCombinedStrategy.getDefaultStrategy());
     }
 
     @Override

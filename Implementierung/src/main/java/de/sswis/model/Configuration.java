@@ -23,9 +23,9 @@ public class Configuration {
     private int cycles;
     private int cycleRoundCount;
     private double adaptationProbability;
+    private int equilibriumRounds;
+    private double threshold;
     private Simulation simulation;
-    private double equilibriumThreshold;
-    private int equilibriumWindow;
 
     /**
      * Erstellt eine Konfiguration.
@@ -39,7 +39,7 @@ public class Configuration {
      * @param adaptationProbability Wahrscheinlichkeit fuer die Anpassung der Strategien am Ende jedes Zyklus
      */
     public Configuration(String name, Game game, Initialization init, AdaptationAlgorithm adaptation, PairingAlgorithm pairing, RankingAlgorithm ranking,
-                         int rounds, int cycles, double adaptationProbability) {
+                         int rounds, int cycles, double adaptationProbability, int equilibriumRounds, double threshold) {
         this.name = name;
         this.game = game;
         this.init = init;
@@ -50,6 +50,8 @@ public class Configuration {
         this.cycles = cycles;
         this.adaptationProbability = adaptationProbability;
         this.cycleRoundCount = rounds;
+        this.equilibriumRounds = equilibriumRounds;
+        this.threshold = threshold;
   }
 
     public String getName() {
@@ -90,6 +92,14 @@ public class Configuration {
         return adaptationProbability;
     }
 
+    public int getEquilibriumRounds() {
+        return equilibriumRounds;
+    }
+
+    public double getThreshold() {
+        return threshold;
+    }
+
     /**
      * Gibt eine {@code Simulation} entsprechend dieser Konfiguration zurueck.
      * @return erzeugte Simulation
@@ -101,14 +111,6 @@ public class Configuration {
 
     public Simulation getSimulation() {
         return this.simulation;
-    }
-
-    public double getEquilibriumThreshold() {
-        return equilibriumThreshold;
-    }
-
-    public int getEquilibriumWindow() {
-        return equilibriumWindow;
     }
 
 }
