@@ -8,6 +8,7 @@ import de.sswis.view.model.VMGroup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,6 @@ public class GroupTab {
     private JTextField groupNameTextField;
     private JTabbedPane capitalsTabbedPane;
     private JLabel groupIDLabel;
-    private JButton addCapitalButton;
     private JLabel idLabel;
     private JRadioButton idAgentStrategyRadioButton;
     private JRadioButton percentageAgentStrategyRadioButton;
@@ -44,13 +44,27 @@ public class GroupTab {
     public GroupTab(List<String> strategies) {
         this.vmGroup = new VMGroup();
 
-        strategyTabs = new ArrayList<InitialStrategyTab>();
+        strategyTabs = new ArrayList<>();
         allStrategies = new ArrayList<>();
         allStrategies.addAll(strategies);
         $$$setupUI$$$();
 
-        startCapitalTabs = new ArrayList<StartCapitalTab>();
+        startCapitalTabs = new ArrayList<>();
 
+        ActionListener addStrategyListener = e -> {
+            String input = (String) JOptionPane.showInputDialog(null, "Bitte Strategie auswählen...",
+                    "Strategieauswahl", JOptionPane.QUESTION_MESSAGE, null, allStrategies.toArray(), allStrategies.get(0));
+            if (input == null)
+                return;
+            addStrategy(input);
+        };
+        ActionListener addCapitalListener = e -> addCapital();
+
+        this.setupPane(initialStrategiesTabbedPane, addStrategyListener);
+        this.setupPane(capitalsTabbedPane, addCapitalListener);
+    }
+
+    private void setupPane(JTabbedPane pane, ActionListener listener) {
         JPanel pnlTab = new JPanel(new BorderLayout());
         pnlTab.setOpaque(false);
 
@@ -62,16 +76,10 @@ public class GroupTab {
         addTabButton.setFocusable(false);
 
         pnlTab.add(addTabButton, BorderLayout.CENTER);
-        initialStrategiesTabbedPane.addTab("", null, new JPanel());
-        initialStrategiesTabbedPane.setTabComponentAt(0, pnlTab);
+        pane.addTab("", null, new JPanel());
+        pane.setTabComponentAt(0, pnlTab);
 
-        addTabButton.addActionListener(e -> {
-            String input = (String) JOptionPane.showInputDialog(null, "Bitte Strategie auswählen...",
-                    "Strategieauswahl", JOptionPane.QUESTION_MESSAGE, null, allStrategies.toArray(), allStrategies.get(0));
-            if (input == null)
-                return;
-            addStrategy(input);
-        });
+        addTabButton.addActionListener(listener);
     }
 
     public void addStrategies(List<String> strategies) {
@@ -87,6 +95,7 @@ public class GroupTab {
     public void addStrategy(String strategy) {
         InitialStrategyTab tab = new InitialStrategyTab(strategy);
         tab.setupDeleteButton(this);
+
         initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
                 initialStrategiesTabbedPane.getTabCount() - 1);
         initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
@@ -97,8 +106,10 @@ public class GroupTab {
         StartCapitalTab capitalTab = new StartCapitalTab();
         capitalTab.addTitleChangeListeners(this);
 
+        capitalsTabbedPane.insertTab(capitalTab.getTitle(), null, capitalTab.$$$getRootComponent$$$(), null,
+                capitalsTabbedPane.getTabCount() - 1);
+        capitalsTabbedPane.setSelectedIndex(capitalsTabbedPane.getTabCount() - 2);
         startCapitalTabs.add(capitalTab);
-        capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
     private void addSpecificCapital(String capital, String distribution) {
@@ -211,10 +222,6 @@ public class GroupTab {
 
         percentageAgentStrategyRadioButton = new JRadioButton();
         buttonGroupStrategy.add(percentageAgentStrategyRadioButton);
-
-        addCapitalButton = new JButton();
-        addCapitalButton.addActionListener(e -> addCapital());
-
     }
 
 
@@ -262,14 +269,12 @@ public class GroupTab {
         percentageAgentStrategyRadioButton.setText("Wähle Agenten nach prozentualem Anteil");
         panel3.add(percentageAgentStrategyRadioButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel4.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         initGroupTabbedPane.addTab("Startkapital", panel4);
         capitalsTabbedPane = new JTabbedPane();
         capitalsTabbedPane.setTabLayoutPolicy(1);
         capitalsTabbedPane.setTabPlacement(2);
         panel4.add(capitalsTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        addCapitalButton.setText("Neues Startkapital hinzufügen");
-        panel4.add(addCapitalButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         idAgentCapitalRadioButton.setSelected(true);
         idAgentCapitalRadioButton.setText("Wähle Agenten nach ihren IDs");
         panel4.add(idAgentCapitalRadioButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
