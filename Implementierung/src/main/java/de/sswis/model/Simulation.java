@@ -129,12 +129,12 @@ public class Simulation implements Runnable, ObservableSimulation {
     }
 
     private boolean isInEquilibrium(int[] adaptationCount, int cycle) {
-        if(cycle < config.getEquilibriumWindow()) {
+        if(cycle < config.getEquilibriumRounds()) {
             return false;
         } else {
             int sum = 0;
-            for(int i = cycle; i >  cycle - config.getEquilibriumWindow(); i--) sum += adaptationCount[i];
-            return (double)sum/config.getEquilibriumWindow() < config.getEquilibriumThreshold() * initialAgents.length;
+            for(int i = cycle; i >  cycle - config.getEquilibriumRounds(); i--) sum += adaptationCount[i - 1];
+            return (double)sum/config.getEquilibriumRounds() < config.getThreshold() * initialAgents.length;
         }
     }
 
