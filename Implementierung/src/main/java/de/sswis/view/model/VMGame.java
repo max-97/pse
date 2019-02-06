@@ -18,12 +18,6 @@ public class VMGame {
         payoffs = new int[2][4];
     }
 
-    public VMGame(String name, String description, int[][] payoffs) {
-        this.name = name;
-        this.description = description;
-        this.payoffs = payoffs;
-    }
-
     /**
      * Gibt eine String der wichtige Informationen des Stufenspiels zusammenfasst.
      * @return String enthält Kurzbeschreibung des Stufenspiels
@@ -79,7 +73,7 @@ public class VMGame {
      * Spieler1/Spieler2    K                       D
      *      K               int[0][0]/int[0][1]     int[0][2]/int[0][3]
      *      D               int[1][0]/int[1][1]     int[1][2]/int[1][3]
-     * @param payoffs die Payoffs
+     * @param payoffs
      */
     public void setPayoffs(int[][] payoffs) {
         this.payoffs = payoffs;
