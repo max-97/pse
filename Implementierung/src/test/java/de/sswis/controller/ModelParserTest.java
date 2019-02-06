@@ -95,11 +95,11 @@ public class ModelParserTest {
                 conditionParameters);
 
         parsedCombStrat1 = modelParser.parseVMCombinedStrategy(vmCombStrat1);
-        parsedCombStrat2 = modelParser.parseVMCombinedStrategy(vmCombStrat2);
-        parsedCombStrat3 = modelParser.parseVMCombinedStrategy(vmCombStrat3);
-        parsedCombStrat4 = modelParser.parseVMCombinedStrategy(vmCombStrat4);
-        parsedCombStrat5 = modelParser.parseVMCombinedStrategy(vmCombStrat5);
-        parsedCombStrat6 = modelParser.parseVMCombinedStrategy(vmCombStrat6);
+        //parsedCombStrat2 = modelParser.parseVMCombinedStrategy(vmCombStrat2);
+        //parsedCombStrat3 = modelParser.parseVMCombinedStrategy(vmCombStrat3);
+        //parsedCombStrat4 = modelParser.parseVMCombinedStrategy(vmCombStrat4);
+        //parsedCombStrat5 = modelParser.parseVMCombinedStrategy(vmCombStrat5);
+        //parsedCombStrat6 = modelParser.parseVMCombinedStrategy(vmCombStrat6);
 
         //1-4 aus CombinedStrategyTest
         targetCombStrat1 = new CombinedStrategy("AlwaysCooperate",
@@ -150,29 +150,34 @@ public class ModelParserTest {
     public void parseVMCombinedStrategyTest() {
 
         BaseStrategy[] targetStrats1 = targetCombStrat1.getStrategies();
-        BaseStrategy[] targetStrats2 = targetCombStrat2.getStrategies();
+        /*BaseStrategy[] targetStrats2 = targetCombStrat2.getStrategies();
         BaseStrategy[] targetStrats3 = targetCombStrat3.getStrategies();
         BaseStrategy[] targetStrats4 = targetCombStrat4.getStrategies();
         BaseStrategy[] targetStrats5 = targetCombStrat5.getStrategies();
-        BaseStrategy[] targetStrats6 = targetCombStrat6.getStrategies();
+        BaseStrategy[] targetStrats6 = targetCombStrat6.getStrategies();*/
         BaseStrategy[] parsedStrats1 = parsedCombStrat1.getStrategies();
-        BaseStrategy[] parsedStrats2 = parsedCombStrat2.getStrategies();
+        /*BaseStrategy[] parsedStrats2 = parsedCombStrat2.getStrategies();
         BaseStrategy[] parsedStrats3 = parsedCombStrat3.getStrategies();
         BaseStrategy[] parsedStrats4 = parsedCombStrat4.getStrategies();
         BaseStrategy[] parsedStrats5 = parsedCombStrat5.getStrategies();
-        BaseStrategy[] parsedStrats6 = parsedCombStrat6.getStrategies();
+        BaseStrategy[] parsedStrats6 = parsedCombStrat6.getStrategies();*/
         Condition[] targetConditions1 = targetCombStrat1.getConditions();
-        Condition[] targetConditions2 = targetCombStrat2.getConditions();
+        /*Condition[] targetConditions2 = targetCombStrat2.getConditions();
         Condition[] targetConditions3 = targetCombStrat3.getConditions();
         Condition[] targetConditions4 = targetCombStrat4.getConditions();
         Condition[] targetConditions5 = targetCombStrat5.getConditions();
-        Condition[] targetConditions6 = targetCombStrat6.getConditions();
+        Condition[] targetConditions6 = targetCombStrat6.getConditions();*/
         Condition[] parsedConditions1 = parsedCombStrat1.getConditions();
-        Condition[] parsedConditions2 = parsedCombStrat2.getConditions();
+        /*Condition[] parsedConditions2 = parsedCombStrat2.getConditions();
         Condition[] parsedConditions3 = parsedCombStrat3.getConditions();
         Condition[] parsedConditions4 = parsedCombStrat4.getConditions();
         Condition[] parsedConditions5 = parsedCombStrat5.getConditions();
-        Condition[] parsedConditions6 = parsedCombStrat6.getConditions();
+        Condition[] parsedConditions6 = parsedCombStrat6.getConditions();*/
+
+        //CombinedStrategyTest@calculateActionTest1()
+        assertEquals(targetCombStrat1.getName(), parsedCombStrat1.getName());
+        assertEquals(targetStrats1[0].getName(), parsedStrats1[0].getName());
+        assertEquals(targetConditions1[0].getName(), parsedConditions1[0].getName());
 
     }
 
