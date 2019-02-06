@@ -16,18 +16,14 @@ public class Simulation implements Runnable, ObservableSimulation {
     private int repetitions;
     private boolean stopSimulation;
     private Agent[] initialAgents;
-    private HashMap<Agent, Integer> currentRanking;
-    private Pair[] currentPairs;
     private List<SimulationObserver> observers;
     private Result result;
-    private double threshold;
 
     /**
      * Erstellt eine Simulation.
      * @param config zugrunde liegende Konfiguration
      */
     public Simulation(Configuration config) {
-        this.threshold = 0.10;
         this.repetitions = 1;
         this.config = config;
         this.result = new Result();
@@ -56,7 +52,9 @@ public class Simulation implements Runnable, ObservableSimulation {
         int cycle = 1;
         boolean equilibriumAchieved = false;
         config.getRankingAlg().setIgnoreInitialScore(config.getInit().getInitialScoreStrategiesOnly());
-        currentRanking = config.getRankingAlg().getRankings(agents);
+        HashMap<Agent, Integer> currentRanking = config.getRankingAlg().getRankings(agents);
+        Pair[] currentPairs;
+        int[] adaptationCount = new int[config.getCycles()];
 
         for(Agent agent : agents) {
             agent.getHistory().setScore(agent.getScore());
@@ -79,11 +77,11 @@ public class Simulation implements Runnable, ObservableSimulation {
             }
 
             if(round == (cycle * cycleRoundCount)) {
-                cycle++;
-                int adaptationCount = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
-                if(adaptationCount < threshold * agents.length) {
+                adaptationCount[cycle] = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
+                if(isInEquilibrium(adaptationCount, cycle)) {
                     equilibriumAchieved = true;
                 }
+                cycle++;
                 for(Agent agent : agents) {
                     agent.getHistory().increaseCycleCount();
                     agent.getHistory().setScore(agent.getScore());
@@ -130,8 +128,14 @@ public class Simulation implements Runnable, ObservableSimulation {
         return result;
     }
 
-    public void setThreshold(double threshold) {
-        this.threshold = threshold;
+    private boolean isInEquilibrium(int[] adaptationCount, int cycle) {
+        if(cycle < config.getEquilibriumWindow()) {
+            return false;
+        } else {
+            int sum = 0;
+            for(int i = cycle; i >  cycle - config.getEquilibriumWindow(); i--) sum += adaptationCount[i];
+            return (double)sum/config.getEquilibriumWindow() < config.getEquilibriumThreshold() * initialAgents.length;
+        }
     }
 
     @Override

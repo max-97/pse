@@ -24,6 +24,8 @@ public class Configuration {
     private int cycleRoundCount;
     private double adaptationProbability;
     private Simulation simulation;
+    private double equilibriumThreshold;
+    private int equilibriumWindow;
 
     /**
      * Erstellt eine Konfiguration.
@@ -101,7 +103,12 @@ public class Configuration {
         return this.simulation;
     }
 
+    public double getEquilibriumThreshold() {
+        return equilibriumThreshold;
+    }
 
-
+    public int getEquilibriumWindow() {
+        return equilibriumWindow;
+    }
 
 }
