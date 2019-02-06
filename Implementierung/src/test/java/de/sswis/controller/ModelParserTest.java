@@ -52,6 +52,10 @@ public class ModelParserTest {
 
         modelParser = new ModelParser();
 
+        vmCombStrat1 = new VMCombinedStrategy();
+        vmCombStrat1.setName();
+
+
         vmGame1 = new VMGame();
         vmGame1.setName("Gefangenendilemma");
         vmGame1.setDescription("Ich bin eine nichtleere Beschreibung!");

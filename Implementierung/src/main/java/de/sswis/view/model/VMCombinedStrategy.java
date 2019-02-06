@@ -20,6 +20,25 @@ public class VMCombinedStrategy {
     private List<String> conditions = new ArrayList<>();     // == conditions.length()
     private List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
 
+    public VMCombinedStrategy() {
+    }
+
+    public VMCombinedStrategy(String name, String description, String defaultStrategy, List<String> baseStrategies, List<String> conditions, List<HashMap<String, Object>> conditionParameters) {
+        this.name = name;
+        this.description = description;
+        this.defaultStrategy = defaultStrategy;
+        this.baseStrategies = baseStrategies;
+        this.conditions = conditions;
+        this.conditionParameters = conditionParameters;
+    }
+
+    public VMCombinedStrategy(String name, String description, String defaultStrategy, List<String> baseStrategies, List<String> conditions) {
+        this.name = name;
+        this.description = description;
+        this.defaultStrategy = defaultStrategy;
+        this.baseStrategies = baseStrategies;
+        this.conditions = conditions;
+    }
 
     public HashMap<String, Object> getConditionParameter(int index) {
         return this.conditionParameters.get(index);
