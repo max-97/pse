@@ -17,6 +17,10 @@ public class SpecificGroup implements Condition {
 
     public SpecificGroup() { groupId = 1; }
 
+    public SpecificGroup(int groupId) {
+        this.groupId = groupId;
+    }
+
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return agent2.getGroup().getId() == groupId;
