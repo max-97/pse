@@ -69,19 +69,19 @@ public class ModelParserTest {
 
         modelParser = new ModelParser();
 
-        vmCombStrat1 = new VMCombinedStrategy("AlwaysCooperate", "", "AlwaysCooperate",
+        vmCombStrat1 = new VMCombinedStrategy("AlwaysCooperate", "", AlwaysCooperate.NAME,
                 new ArrayList<>(), new ArrayList<>());
-        vmCombStrat2 = new VMCombinedStrategy("AlwaysCooperateSameGroup", "", /*dummy*/ "Random",
-                new ArrayList<>(Collections.singletonList("AlwaysCooperate")),
-                new ArrayList<>(Collections.singletonList("OwnGroup")));
-        vmCombStrat3 = new VMCombinedStrategy("CooperateWhenRicher", "", /*dummy*/ "Random",
-                new ArrayList<>(Collections.singletonList("AlwaysCooperate")),
-                new ArrayList<>(Collections.singletonList("Richer")));
-        vmCombStrat4 = new VMCombinedStrategy("TitForTatIndividual", "", "TitForTatIndividual",
+        vmCombStrat2 = new VMCombinedStrategy("AlwaysCooperateSameGroup", "", /*dummy*/ Random.NAME,
+                new ArrayList<>(Collections.singletonList(AlwaysCooperate.NAME)),
+                new ArrayList<>(Collections.singletonList(OwnGroup.NAME)));
+        vmCombStrat3 = new VMCombinedStrategy("CooperateWhenRicher", "", /*dummy*/ Random.NAME,
+                new ArrayList<>(Collections.singletonList(AlwaysCooperate.NAME)),
+                new ArrayList<>(Collections.singletonList(Richer.NAME)));
+        vmCombStrat4 = new VMCombinedStrategy("TitForTatIndividual", "", TitForTatIndividual.NAME,
                 new ArrayList<>(), new ArrayList<>());
-        vmCombStrat5 = new VMCombinedStrategy("SeveralStratsAndConditionsNoParams", "nichtleer", "GroupTitForTat",
-                new ArrayList<>(Arrays.asList("AlwaysCooperate", "GrimIndividual")),
-                new ArrayList<>(Arrays.asList("OwnGroup", "Richer")));
+        vmCombStrat5 = new VMCombinedStrategy("SeveralStratsAndConditionsNoParams", "nichtleer", GroupTitForTat.NAME,
+                new ArrayList<>(Arrays.asList(AlwaysCooperate.NAME, GrimIndividual.NAME)),
+                new ArrayList<>(Arrays.asList(OwnGroup.NAME, Richer.NAME)));
         HashMap<String, Object> cond1Param = new HashMap<>();
         cond1Param.put("DELTA", 3.14159265359d); //TODO: check param-names
         HashMap<String, Object> cond2Param = new HashMap<>();
@@ -89,9 +89,9 @@ public class ModelParserTest {
         List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
         conditionParameters.add(cond1Param);
         conditionParameters.add(cond2Param);
-        vmCombStrat6 =new VMCombinedStrategy("ConditionWithParam", "", "Random",
-                new ArrayList<>(Arrays.asList("NeverCooperate", "TitForTatIndividual")),
-                new ArrayList<>(Arrays.asList("Delta", "SpecificGroup")),
+        vmCombStrat6 =new VMCombinedStrategy("ConditionWithParam", "", Random.NAME,
+                new ArrayList<>(Arrays.asList(NeverCooperate.NAME, TitForTatIndividual.NAME)),
+                new ArrayList<>(Arrays.asList(Delta.NAME, SpecificGroup.NAME)),
                 conditionParameters);
 
         parsedCombStrat1 = modelParser.parseVMCombinedStrategy(vmCombStrat1);
@@ -147,7 +147,33 @@ public class ModelParserTest {
     }
 
     @Test
-    public void parseVMCombinedStrategy() {
+    public void parseVMCombinedStrategyTest() {
+
+        BaseStrategy[] targetStrats1 = targetCombStrat1.getStrategies();
+        BaseStrategy[] targetStrats2 = targetCombStrat2.getStrategies();
+        BaseStrategy[] targetStrats3 = targetCombStrat3.getStrategies();
+        BaseStrategy[] targetStrats4 = targetCombStrat4.getStrategies();
+        BaseStrategy[] targetStrats5 = targetCombStrat5.getStrategies();
+        BaseStrategy[] targetStrats6 = targetCombStrat6.getStrategies();
+        BaseStrategy[] parsedStrats1 = parsedCombStrat1.getStrategies();
+        BaseStrategy[] parsedStrats2 = parsedCombStrat2.getStrategies();
+        BaseStrategy[] parsedStrats3 = parsedCombStrat3.getStrategies();
+        BaseStrategy[] parsedStrats4 = parsedCombStrat4.getStrategies();
+        BaseStrategy[] parsedStrats5 = parsedCombStrat5.getStrategies();
+        BaseStrategy[] parsedStrats6 = parsedCombStrat6.getStrategies();
+        Condition[] targetConditions1 = targetCombStrat1.getConditions();
+        Condition[] targetConditions2 = targetCombStrat2.getConditions();
+        Condition[] targetConditions3 = targetCombStrat3.getConditions();
+        Condition[] targetConditions4 = targetCombStrat4.getConditions();
+        Condition[] targetConditions5 = targetCombStrat5.getConditions();
+        Condition[] targetConditions6 = targetCombStrat6.getConditions();
+        Condition[] parsedConditions1 = parsedCombStrat1.getConditions();
+        Condition[] parsedConditions2 = parsedCombStrat2.getConditions();
+        Condition[] parsedConditions3 = parsedCombStrat3.getConditions();
+        Condition[] parsedConditions4 = parsedCombStrat4.getConditions();
+        Condition[] parsedConditions5 = parsedCombStrat5.getConditions();
+        Condition[] parsedConditions6 = parsedCombStrat6.getConditions();
+
     }
 
     @Test
@@ -155,7 +181,7 @@ public class ModelParserTest {
     }
 
     @Test
-    public void parseVMGameMatchesTest() {
+    public void parseVMGameTest() {
 
         //Gefangenendilemma
         assertEquals(targetGame1.getName(), parsedGame1.getName());
