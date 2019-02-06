@@ -41,6 +41,9 @@ public class InitialStrategyTab {
         return title;
     }
 
+    public void setupDeleteButton(GroupTab groupTab) {
+        this.deleteStrategyButton.addActionListener(e -> groupTab.removeStrategyTab(this));
+    }
 
     private void createUIComponents() {
     }

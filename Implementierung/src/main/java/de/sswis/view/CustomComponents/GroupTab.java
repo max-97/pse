@@ -86,6 +86,7 @@ public class GroupTab {
 
     public void addStrategy(String strategy) {
         InitialStrategyTab tab = new InitialStrategyTab(strategy);
+        tab.setupDeleteButton(this);
         initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
                 initialStrategiesTabbedPane.getTabCount() - 1);
         initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
@@ -115,6 +116,11 @@ public class GroupTab {
     }
 
 
+    public void removeStrategyTab(InitialStrategyTab tab) {
+        initialStrategiesTabbedPane.removeTabAt(strategyTabs.indexOf(tab));
+        strategyTabs.remove(tab);
+    }
+
     public void updateVM() {
         vmGroup = new VMGroup();
         vmGroup.setName(groupNameTextField.getText());
@@ -130,7 +136,6 @@ public class GroupTab {
             vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(), startCapitalTabs.get(i).getAgentUserInput());
         }
     }
-
 
     public String getTitle() {
         String title = groupIDLabel.getText() + ": " + groupNameTextField.getText();
