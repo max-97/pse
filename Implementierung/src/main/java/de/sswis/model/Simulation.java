@@ -77,7 +77,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             }
 
             if(round == (cycle * cycleRoundCount)) {
-                adaptationCount[cycle] = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
+                adaptationCount[cycle - 1] = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
                 if(isInEquilibrium(adaptationCount, cycle)) {
                     equilibriumAchieved = true;
                 }
