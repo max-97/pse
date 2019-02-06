@@ -22,6 +22,8 @@ public class VMConfiguration {
     private String rounds;
     private String cycles;
     private String adaptationProbability;
+    private int equilibriumRounds;
+    private int equilibriumMaxChange;
     private List<String> strategies = new ArrayList<>();
 
     private HashMap<String, Object> pairingParameters;
@@ -159,6 +161,22 @@ public class VMConfiguration {
 
     public void setRankingParameters(HashMap<String, Object> rankingParameters) {
         this.rankingParameters = rankingParameters;
+    }
+
+    public int getEquilibriumRounds() {
+        return equilibriumRounds;
+    }
+
+    public void setEquilibriumRounds(int equilibriumRounds) {
+        this.equilibriumRounds = equilibriumRounds;
+    }
+
+    public int getEquilibriumMaxChange() {
+        return equilibriumMaxChange;
+    }
+
+    public void setEquilibriumMaxChange(int equilibriumMaxChange) {
+        this.equilibriumMaxChange = equilibriumMaxChange;
     }
 
     public HashMap<String, Object> getAdaptationParameters() {
