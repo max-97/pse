@@ -4,10 +4,14 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.model.VMConfiguration;
+import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,20 +24,39 @@ public class ShowCompareView implements AbstractShowCompareView {
     private JFrame frame;
 
 
-    private List<VMConfiguration> configurations;
+    //private List<VMConfiguration> configurations;
+
+    private ArrayList<ArrayList<VMResult>> results = new ArrayList<>();
+    private ArrayList<String> configuration = new ArrayList<>();
 
 
     private JTree configurationTree;
-    private JRadioButton waehleFuerAlleKonfigurationenRadioButton;
-    private JRadioButton zeigeDieKTeRadioButton;
-    private JFormattedTextField formattedTextField1;
-    private JTabbedPane tabbedPane1;
 
     private JPanel MainPanel;
-    private JList list1;
+    private JTable simulationTable;
+    private JComboBox comboBox1;
+    private JButton hinzufügenButton;
+    private JButton entfernenButton;
+    private JComboBox comboBox2;
 
     private AbstractMainView parentView;
 
+
+    private void updateconfigSelection() {
+        //TODO: implement me
+    }
+
+    private void updateSimSelection() {
+        //TODO: implement me
+    }
+
+    private void removeSimulation() {
+        //TODO: implement me
+    }
+
+    private void addSimulation() {
+        //TODO: implement me
+    }
 
     @Override
     public void update() {
@@ -64,7 +87,15 @@ public class ShowCompareView implements AbstractShowCompareView {
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+
+        String[] titles = {"Konfiguration", "Schritt", "Wiederholung"};
+        String[][] rowData = new String[0][3];
+        simulationTable = new JTable(rowData, titles);
+        simulationTable.setCellSelectionEnabled(false);
+        simulationTable.setColumnSelectionAllowed(false);
+        simulationTable.setRowSelectionAllowed(true);
+
+
     }
 
     @Override
