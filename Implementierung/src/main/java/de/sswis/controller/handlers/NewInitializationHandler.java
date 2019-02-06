@@ -6,6 +6,7 @@ import de.sswis.view.AbstractManageInitializationsView;
 import de.sswis.view.AbstractNewInitializationView;
 import de.sswis.view.model.VMCombinedStrategy;
 import de.sswis.view.model.VMInitialization;
+import de.sswis.view.model.VMStrategy;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,10 @@ public class NewInitializationHandler implements ActionListener {
         initializationsView.setEditedInitialization(null);
         newInitializationView.setInitialization(new VMInitialization());
         for (VMCombinedStrategy c : this.fileManager.loadAllCombinedStrategies()) {
-            newInitializationView.addCombinedStrategy(c.getName());
+            newInitializationView.addStrategy(c.getName());
+        }
+        for (VMStrategy s : this.fileManager.loadAllMixedStrategies()) {
+            newInitializationView.addStrategy(s.getName());
         }
         newInitializationView.show();
     }

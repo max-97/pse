@@ -139,7 +139,7 @@ public class ModelParser {
         ArrayList<Configuration> configurations = new ArrayList<>();
 
         String name = vmConfig.getName();
-        Game game = this.provider.getGame(vmConfig.getName());
+        Game game = this.provider.getGame(vmConfig.getGame());
         AdaptationAlgorithm adaptationAlgorithm = this.parseAdaptationAlgorithm(vmConfig.getAdaptationAlg(),
                 vmConfig.getAdaptationParameters());
         PairingAlgorithm pairingAlgorithm = this.parsePairingAlgorithm(vmConfig.getPairingAlg(),

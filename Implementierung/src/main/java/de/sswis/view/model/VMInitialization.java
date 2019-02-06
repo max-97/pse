@@ -12,6 +12,7 @@ import java.util.List;
 public class VMInitialization {
 
     private String name;
+    private String description;
     private List<VMGroup> groups;
     private int agentCount;
     private int numberOfInstances;
@@ -21,6 +22,7 @@ public class VMInitialization {
 
     public VMInitialization() {
         name = "";
+        description = "";
         groups = new ArrayList<>();
         agentCount = 0;
         relativeDistribution = false;
@@ -82,6 +84,18 @@ public class VMInitialization {
 
     public void setAddCapitalToTotalPoints(boolean capitalToTotalPoints) {
         CapitalToTotalPoints = capitalToTotalPoints;
+    }
+
+    public void setDescription(String text) {
+        this.description = text;
+    }
+
+    public void setRelativeDistribution(boolean distribution) {
+        this.relativeDistribution = distribution;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }
 
