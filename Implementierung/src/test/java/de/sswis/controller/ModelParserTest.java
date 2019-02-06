@@ -1,12 +1,15 @@
 package de.sswis.controller;
 
 import de.sswis.model.*;
+import de.sswis.model.conditions.*;
+import de.sswis.model.strategies.*;
+import de.sswis.model.strategies.Random;
 import de.sswis.view.model.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -21,8 +24,22 @@ public class ModelParserTest {
 
     private static VMCombinedStrategy vmCombStrat1;
     private static VMCombinedStrategy vmCombStrat2;
+    private static VMCombinedStrategy vmCombStrat3;
+    private static VMCombinedStrategy vmCombStrat4;
+    private static VMCombinedStrategy vmCombStrat5;
+    private static VMCombinedStrategy vmCombStrat6;
+    private static CombinedStrategy parsedCombStrat1;
+    private static CombinedStrategy parsedCombStrat2;
+    private static CombinedStrategy parsedCombStrat3;
+    private static CombinedStrategy parsedCombStrat4;
+    private static CombinedStrategy parsedCombStrat5;
+    private static CombinedStrategy parsedCombStrat6;
     private static CombinedStrategy targetCombStrat1;
     private static CombinedStrategy targetCombStrat2;
+    private static CombinedStrategy targetCombStrat3;
+    private static CombinedStrategy targetCombStrat4;
+    private static CombinedStrategy targetCombStrat5;
+    private static CombinedStrategy targetCombStrat6;
 
     private static VMConfiguration vmConfig1;
     private static VMConfiguration vmConfig2;
@@ -52,8 +69,55 @@ public class ModelParserTest {
 
         modelParser = new ModelParser();
 
-        vmCombStrat1 = new VMCombinedStrategy();
-        vmCombStrat1.setName();
+        vmCombStrat1 = new VMCombinedStrategy("AlwaysCooperate", "", "AlwaysCooperate",
+                new ArrayList<>(), new ArrayList<>());
+        vmCombStrat2 = new VMCombinedStrategy("AlwaysCooperateSameGroup", "", /*dummy*/ "Random",
+                new ArrayList<>(Collections.singletonList("AlwaysCooperate")),
+                new ArrayList<>(Collections.singletonList("OwnGroup")));
+        vmCombStrat3 = new VMCombinedStrategy("CooperateWhenRicher", "", /*dummy*/ "Random",
+                new ArrayList<>(Collections.singletonList("AlwaysCooperate")),
+                new ArrayList<>(Collections.singletonList("Richer")));
+        vmCombStrat4 = new VMCombinedStrategy("TitForTatIndividual", "", "TitForTatIndividual",
+                new ArrayList<>(), new ArrayList<>());
+        vmCombStrat5 = new VMCombinedStrategy("SeveralStratsAndConditionsNoParams", "nichtleer", "GroupTitForTat",
+                new ArrayList<>(Arrays.asList("AlwaysCooperate", "GrimIndividual")),
+                new ArrayList<>(Arrays.asList("OwnGroup", "Richer")));
+        HashMap<String, Object> cond1Param = new HashMap<>();
+        cond1Param.put("DELTA", 3.14159265359d); //TODO: check param-names
+        HashMap<String, Object> cond2Param = new HashMap<>();
+        cond2Param.put("GROUP_ID", 2); //TODO: check param-names
+        List<HashMap<String, Object>> conditionParameters = new ArrayList<>();
+        conditionParameters.add(cond1Param);
+        conditionParameters.add(cond2Param);
+        vmCombStrat6 =new VMCombinedStrategy("ConditionWithParam", "", "Random",
+                new ArrayList<>(Arrays.asList("NeverCooperate", "TitForTatIndividual")),
+                new ArrayList<>(Arrays.asList("Delta", "SpecificGroup")),
+                conditionParameters);
+
+        parsedCombStrat1 = modelParser.parseVMCombinedStrategy(vmCombStrat1);
+        parsedCombStrat2 = modelParser.parseVMCombinedStrategy(vmCombStrat2);
+        parsedCombStrat3 = modelParser.parseVMCombinedStrategy(vmCombStrat3);
+        parsedCombStrat4 = modelParser.parseVMCombinedStrategy(vmCombStrat4);
+        parsedCombStrat5 = modelParser.parseVMCombinedStrategy(vmCombStrat5);
+        parsedCombStrat6 = modelParser.parseVMCombinedStrategy(vmCombStrat6);
+
+        //1-4 aus CombinedStrategyTest
+        targetCombStrat1 = new CombinedStrategy("AlwaysCooperate",
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()});
+        targetCombStrat2 = new CombinedStrategy("AlwaysCooperateSameGroup",
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new OwnGroup()});
+        targetCombStrat3 = new CombinedStrategy("CooperateWhenRicher",
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Richer()});
+        targetCombStrat4 = new CombinedStrategy("TitForTatIndividual",
+                new BaseStrategy[]{new TitForTatIndividual()}, new Condition[]{new Always()});
+        //Mehrere Strategien und Bedingungen ohne Parameter; GroupTitForTat ist die Standard-Strategie
+        targetCombStrat5 = new CombinedStrategy("SeveralStratsAndConditionsNoParams",
+                new BaseStrategy[]{new AlwaysCooperate(), new GrimIndividual(), new GroupTitForTat()},
+                new Condition[]{new OwnGroup(), new Richer(), new Always()});
+        targetCombStrat6 = new CombinedStrategy("ConditionWithParam",
+                new BaseStrategy[]{new NeverCooperate(), new TitForTatIndividual(), new Random()},
+                new Condition[]{new Delta(3.14159265359), new SpecificGroup(2), new Always()});
+
 
 
         vmGame1 = new VMGame();
