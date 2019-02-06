@@ -150,6 +150,9 @@ public class ModelParser {
         int cycles = Integer.parseInt(vmConfig.getCycles());
         double adaptationProbability = Double.parseDouble(vmConfig.getAdaptationProbability());
 
+        int equilibriumRounds = vmConfig.getEquilibriumRounds();
+        double threshold = vmConfig.getEquilibriumMaxChange() / 100.0;
+
         List<Strategy> strategies = new ArrayList<>();
         for (String strategyName : vmConfig.getStrategies()) {
             strategies.add(this.provider.getStrategy(strategyName));
@@ -171,7 +174,9 @@ public class ModelParser {
                         rankingAlgorithm,
                         rounds,
                         cycles,
-                        adaptationProbability
+                        adaptationProbability,
+                        equilibriumRounds,
+                        threshold
                 );
                 configurations.add(c);
             }
@@ -189,7 +194,9 @@ public class ModelParser {
                     rankingAlgorithm,
                     rounds,
                     cycles,
-                    adaptationProbability
+                    adaptationProbability,
+                    equilibriumRounds,
+                    threshold
             );
 
             configurations.add(c);
