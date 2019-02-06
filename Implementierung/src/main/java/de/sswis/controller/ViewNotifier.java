@@ -2,8 +2,10 @@ package de.sswis.controller;
 
 import de.sswis.model.Simulation;
 import de.sswis.view.AbstractMainView;
+import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
+import java.util.Collection;
 
 /**
  * Benachrichtigt die View über beendete {@code Simulationen}. Wird eine Simulation beendet benachrichtigt dieser
@@ -26,6 +28,12 @@ public class ViewNotifier implements SimulationObserver {
 
     @Override
     public void update(Simulation sim) {
-        SwingUtilities.invokeLater(() -> mainView.setSimulationFinished(sim.getName()));
+        SwingUtilities.invokeLater(() -> {
+            String name = sim.getName();
+            mainView.setSimulationFinished(name);
+            ModelParser parser = new ModelParser();
+            Collection<VMResult> vmResults = parser.parseSimulationToVMResult(sim);
+            vmResults.forEach(r -> mainView.addResult(name, r));
+        });
     }
 }
