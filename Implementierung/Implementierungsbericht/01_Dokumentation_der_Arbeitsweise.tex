@@ -1,15 +1,27 @@
 \section{Dokumentation der Arbeitsweise}
 
-%TODO Text
+Nach Abschluss der Entwurfsphase ging es in der Implementierungsphase daran, die Ergebnisse der Planung als Software umzusetzen.\\
+Es erschien uns naheliegend, unsere bisherige Arbeitsweise weitestgehend beizubehalten. So beließen wir zunächst auch die Arbeitsaufteilung so, wie sie sich in der Entwurfsphase ergeben hatte. Mit fortlaufender Dauer der Implementierungsphase kristallisierte sich heraus, dass wir den Arbeitsaufwand der einzelnen Bereiche z.T. falsch eingeschätzt hatten, wodurch der Fortschritt nicht ganz synchron erfolgte. Daraufhin haben wir eine Anpassung der Arbeitsverteilung vorgenommen.
 
 \subsection{Arbeitsverteilung}
 
-Controller: Max Braun und Simon Hügel
+Die aus der Entwurfsphase übernommene Arbeitsverteilung:
 
-Model: Michel Bodé und Zezhong Tong
+Controller: Max Braun und Simon Hügel\\
+Model: Michel Bodé und Zezhong Tong\\
+View: Sophie Bräuniger\\
 
-View: Sophie Bräuniger
+Anpassung der Arbeitsverteilung nach etwa drei Wochen:
+
+Controller: Max Braun\\
+Model: Michel Bodé und Zezhong Tong\\
+View: Sophie Bräuniger und Simon Hügel\\
 
 \subsection{Probleme und Lösungen}
 
-Im Controller und Model hatten wir keine größen Probleme angetroffen, nur einige komplexen Methoden oder wichtigen Klassen musste man anpassen. Im ViewModel gab es ein Problem, dass Multiinitialisierungen nicht gut abgebildet waren, dazu mussten wir eine neue VariableDistribution Klasse einführen. Es war schwierig, dass die mit intelliJ GUI Forms designten Benutzeroberfläche modular machen und das Model oder die Nutzer anpassen, deshalb gab es einige Probleme. Für zusätzliche Parameter der Bedingungen von kimbinierten Strategien, sowohl bei Paarungs-, Bewertungs- und Anpassungsalgorithmus in der Konfiguration musste es je nach auswahl die Möglichjeit geben weitere Parameter anzugeben, dafür musste man ein weitere Klasse und GUI Form erstellt, und deren RootKomponente in einem Dialogfenster angezeigt wird. Bei den ganzen ManagerViews und in der NewInitializationView wurden Tabs in eigene Klassen(in Verbindung mit GUI Forms) ausgelagert. Dann konnte  nach dem Erstellen von Tabs aus VMObjekten oder durch den Nutzer einfach wieder auf diese und ihre Komponenten zugegeriffen werden.
+Im Controller und Model haben wir keine größeren Probleme angetroffen. Lediglich einige wenige Methoden und Klassen mussten anpassen werden. %TODO Controller und Model: jeweils ein Satz zu Problemen (oder Abwesenheit von Problemen)
+Im ViewModel gab es das Problem, dass Mehrfachinitialisierungen nicht ausreichend gut abgebildet wurden. Um dies zu beheben, mussten wir eine neue Klasse VariableDistribution einführen. \\
+Es war außerdem schwierig, die mit intelliJ-GUI-Forms gestaltete Benutzeroberfläche modular zu machen und das Model oder die Nutzer anzupassen, deshalb gab es einige Probleme. %TODO ich weiß nicht, was das bedeutet\\
+Für eventuell benötigte, zusätzliche Parameter der Bedingungen von kombinierten Strategien sowie bei Paarungs-, Bewertungs- und Anpassungsalgorithmen musste eine Eingabemöglichkeit hinzugefügt werden. Hierfür wurde eine weitere Klasse mit zugehöriger GUI-Form erstellt, die in einem Dialogfenster die Art des Parameters anzeigt und zur Eingabe auffordert.\\
+Alle Vorkommen von Tabs wurden von der beinhaltenden Klasse ausgelagert und werden nun als eigene Klasse samt GUI-Form dargestellt. Dies erleichtert das Erstellen von Tabs aus ViewModel-Objekten und Nutzereingaben.\\
+Das wohl schwerwiegendste Problem war, dass die genannten Punkte nicht immer frühzeitig erkannt wurden. Zwar konnte schließlich eine Lösung gefunden werden, jedoch nicht ohne eine gewisse Verzögerung.
