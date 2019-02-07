@@ -7,6 +7,7 @@ import org.jgrapht.alg.interfaces.MatchingAlgorithm;
 import org.jgrapht.alg.matching.blossom.v5.KolmogorovMinimumWeightPerfectMatching;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultUndirectedWeightedGraph;
+import org.jgrapht.util.SupplierUtil;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -42,7 +43,8 @@ public class MinimumWeightMatching implements PairingAlgorithm {
     }
 
     private Graph<Agent, DefaultEdge> agentsToGraph(Agent[] agents) {
-        Graph<Agent, DefaultEdge> agentGraph = new DefaultUndirectedWeightedGraph<>(null, null);
+        Graph<Agent, DefaultEdge> agentGraph = new DefaultUndirectedWeightedGraph<>(null,
+                SupplierUtil.createDefaultEdgeSupplier());
 
         for(int i = 0; i < agents.length; i++) {
             agentGraph.addVertex(agents[i]);

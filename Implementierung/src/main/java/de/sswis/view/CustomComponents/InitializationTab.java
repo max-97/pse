@@ -28,7 +28,7 @@ public class InitializationTab {
         this.vmInitialization = vmInitialization;
 
         nameInitializationLabel.setText(vmInitialization.getName());
-        descriptionTextArea.setText(vmInitialization.getToolTipText());
+        descriptionTextArea.setText(vmInitialization.getDescription());
 
     }
 

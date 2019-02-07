@@ -45,6 +45,8 @@ dependencies {
     umlDoclet "nl.talsmasoftware:umldoclet:2.0.0-rc.4"
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.jgrapht:jgrapht-core:1.3.0'
+    implementation 'org.jfree:jfreechart:1.0.19'
+    implementation 'org.jfree:jcommon:1.0.24'
     compile 'com.intellij:forms_rt:7.0.3'
 }
 

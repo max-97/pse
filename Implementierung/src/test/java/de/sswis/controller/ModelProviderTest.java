@@ -25,7 +25,7 @@ public class ModelProviderTest {
         modelProvider = ModelProvider.getInstance();
         game = new Game("testGame", "", null);
         configuration = new Configuration("testConfig", null, null, null,
-                null, null, 1, 1, 0);
+                null, null, 1, 1, 0, 100, 0.2);
         initialization = new Initialization("testInit", 0);
         strategy = new MixedStrategy("testStrategy", null, null);
         combinedStrategy = new CombinedStrategy("testCombStrat", null, null);
