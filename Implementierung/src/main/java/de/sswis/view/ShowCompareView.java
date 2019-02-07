@@ -3,12 +3,26 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.view.model.VMConfiguration;
+import de.sswis.util.DataSetHelper;
+import de.sswis.view.CustomComponents.ResultTabs.CompareTab;
+import de.sswis.view.CustomComponents.ResultTabs.SimpleResultTab;
+import de.sswis.view.model.VMAgentHistory;
+import de.sswis.view.model.VMResult;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DatasetUtilities;
+import org.jfree.data.general.DefaultKeyedValuesDataset;
+import org.jfree.data.general.KeyedValuesDataset;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Ein Fenster zum Vergleichen von Ergebnissen.
@@ -21,19 +35,248 @@ public class ShowCompareView implements AbstractShowCompareView {
     ;
 
 
-    private List<VMConfiguration> configurations;
+    //private List<VMConfiguration> configurations;
 
-
-    private JTree configurationTree;
-    private JRadioButton waehleFuerAlleKonfigurationenRadioButton;
-    private JRadioButton zeigeDieKTeRadioButton;
-    private JFormattedTextField formattedTextField1;
-    private JTabbedPane tabbedPane1;
+    private ArrayList<ArrayList<VMResult>> results = new ArrayList<>();
+    private ArrayList<String> resultNames = new ArrayList<>();
 
     private JPanel MainPanel;
-    private JList list1;
+    private JTable simulationTable;
+    private DefaultTableModel tableModel;
+    private JComboBox repititionComboBox;
+    private JButton addButton;
+    private JButton removeButton;
 
     private AbstractMainView parentView;
+    private JList configurationList;
+    private JButton applyButton;
+    private JTabbedPane resultTabbedPane;
+    private ArrayList<CompareTab> resultTabList;
+
+
+    private void updateconfigSelection() {
+        if(configurationList.isSelectionEmpty()) {
+            repititionComboBox.setEnabled(false);
+            addButton.setEnabled(false);
+        } else {
+            repititionComboBox.removeAllItems();
+            repititionComboBox.addItem("Durchschnitt");
+            int max = results.get(configurationList.getSelectedIndex()).size();
+            for (int i = 0; i < max; i++) {
+                repititionComboBox.addItem(i + ". Wdhl.");
+            }
+            repititionComboBox.setEnabled(true);
+            addButton.setEnabled(true);
+        }
+    }
+
+    private void updateSimSelection() {
+        removeButton.setEnabled(simulationTable.getSelectedRow() != 1);
+    }
+
+    private void removeSimulation() {
+        int index = simulationTable.getSelectedRow();
+        tableModel.removeRow(index);
+    }
+
+    private void addSimulation() {
+        Object[] data = { configurationList.getModel().getElementAt(configurationList.getSelectedIndex()),
+        repititionComboBox.getSelectedItem()};
+        tableModel.addRow(data);
+    }
+
+    private void createTabs() {
+        resultTabList = new ArrayList<>();
+
+        for(int i = 0; i < 4; i++) {
+            CompareTab tab = new CompareTab();
+            resultTabList.add(tab);
+        }
+
+        resultTabbedPane.addTab("Gleichgewicht", resultTabList.get(0).$$$getRootComponent$$$());
+        resultTabbedPane.addTab("Strategien", resultTabList.get(1).$$$getRootComponent$$$());
+        resultTabbedPane.addTab("Punkte", resultTabList.get(2).$$$getRootComponent$$$());
+        resultTabbedPane.addTab("Ränge", resultTabList.get(3).$$$getRootComponent$$$());
+
+
+    }
+
+    public void updateChart() {
+        KeyedValuesDataset dataset = getAverageEquilibriumChart();
+        resultTabList.get(0).setaverageChart(ChartFactory.createPieChart("Gleichgewicht erreicht?", dataset, true, true, false));
+        resultTabList.get(0).setDifferenceCharts(getDiffEquilibriumCharts(dataset));
+        resultTabList.get(1).setaverageChart(getAverageStrategiesChart());
+        //resultTabList.get(1).setDifferenceCharts(getDiffStrategiesCharts());
+        resultTabList.get(2).setaverageChart(getAveragePointRangeChart());
+        //resultTabList.get(2).setDifferenceCharts(getDiffPointRangeCharts());
+        resultTabList.get(3).setaverageChart(getAverageRankRangeChart());
+        //resultTabList.get(3).setDifferenceCharts(getDiffRankRangeCharts());
+    }
+
+
+    public KeyedValuesDataset getAverageEquilibriumChart() {
+        int yes = 0;
+        int no = 0;
+
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            String repitition = (String) simulationTable.getModel().getValueAt(index, 1);
+
+            if (repitition.equals("Durchschnitt")) {
+                for (int j = 0; j < results.get(index).size(); j++) {
+                    if (results.get(i).get(j).reachedEquilibrium()) {
+                        yes++;
+                    } else {
+                        no++;
+                    }
+                }
+            } else {
+                int r = Integer.parseInt(repitition);
+                if (results.get(i).get(r).reachedEquilibrium()) {
+                    yes++;
+                } else {
+                    no++;
+                }
+            }
+        }
+
+        DefaultKeyedValuesDataset dataset = new DefaultKeyedValuesDataset();
+        dataset.setValue("Ja", yes);
+        dataset.setValue("Nein", no);
+
+        return dataset;
+    }
+
+    public JFreeChart getDiffEquilibriumCharts(KeyedValuesDataset averageDataset) {
+        DefaultCategoryDataset diffData = new DefaultCategoryDataset();
+        ArrayList<String> rowKeys = new ArrayList<>();
+        double[][] data = new double[simulationTable.getRowCount()][2];
+
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int yes = 0;
+            int no = 0;
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            rowKeys.add(resultNames.get(index));
+            String repitition = (String) simulationTable.getModel().getValueAt(index, 1);
+
+            if (repitition.equals("Durchschnitt")) {
+                for (int j = 0; j < results.get(index).size(); j++) {
+                    if (results.get(i).get(j).reachedEquilibrium()) {
+                        yes++;
+                    } else {
+                        no++;
+                    }
+                }
+            } else {
+                int r = Integer.parseInt(repitition);
+                if (results.get(i).get(r).reachedEquilibrium()) {
+                    yes++;
+                } else {
+                    no++;
+                }
+            }
+            data[i][0] = yes - (int) averageDataset.getValue("Ja");
+            data[i][1] = no - (int) averageDataset.getValue("Nein");
+        }
+        String[] colKeys = {"Ja", "Nein"};
+        diffData = (DefaultCategoryDataset) DatasetUtilities.createCategoryDataset(rowKeys.toArray(new String[0]), colKeys, data);
+
+
+        JFreeChart barChart = ChartFactory.createBarChart("Gleichgewicht erreicht? Differenz vom Durchschnitt",
+                "Eregbnisse", "Differenz vom Durchschnitt", diffData);
+
+        return barChart;
+    }
+
+    public JFreeChart getAverageStrategiesChart() {
+        ArrayList<String> strategies = new ArrayList<>();
+
+        ArrayList<VMAgentHistory> agents = getAllAgents();
+        int divisor = 1;
+
+        for (int i = 0; i < agents.size(); i++) {
+            strategies.add(agents.get(i).getLastStrategy());
+        }
+
+        KeyedValuesDataset dataset = DataSetHelper.getKeyedValuesDataSet(strategies, divisor);
+
+        JFreeChart pieChart = ChartFactory.createPieChart("Strategien", dataset);
+
+        return pieChart;
+    }
+
+    //public JFreeChart getDiffStrategiesCharts() { }
+
+    public JFreeChart getAveragePointRangeChart() {
+        ArrayList<String> strategies = new ArrayList<>();
+        ArrayList<Integer> points = new ArrayList<>();
+
+        ArrayList<VMAgentHistory> agents = getAllAgents();
+        int divisor = 1;
+
+        for (int i = 0; i < agents.size(); i++) {
+            strategies.add(agents.get(i).getLastStrategy());
+            points.add(agents.get(i).getLastScore());
+        }
+
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor);
+
+        JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
+                "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", dataset);
+        return chart;
+    }
+
+    //public JFreeChart getDiffPointRangeCharts() { }
+
+    public JFreeChart getAverageRankRangeChart() {
+        ArrayList<String> strategies = new ArrayList<>();
+        ArrayList<Integer> ranks = new ArrayList<>();
+
+        ArrayList<VMAgentHistory> agents = getAllAgents();
+        int divisor = 1;
+
+        for (int i = 0; i < agents.size(); i++) {
+            strategies.add(agents.get(i).getLastStrategy());
+            ranks.add(agents.get(i).getLastRank());
+        }
+
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor);
+
+        JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
+                "Agentenzahl", "Rangbereich aufgeteilt in Strategien", dataset);
+        return chart;
+    }
+
+    //public JFreeChart getDiffRankRangeCharts() { }
+
+
+    private ArrayList<VMAgentHistory> getAllAgents() {
+
+        ArrayList<VMAgentHistory> agents = new ArrayList<>();
+
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            agents.addAll(getAgents(index));
+        }
+
+        return agents;
+    }
+
+    private ArrayList<VMAgentHistory> getAgents(int index) {
+        ArrayList<VMAgentHistory> agents = new ArrayList<>();
+
+        String repitition = (String) simulationTable.getModel().getValueAt(index, 1);
+        if (repitition.equals("Durchschnitt")) {
+            for (int j = 0; j < results.get(index).size(); j++) {
+                agents.addAll(results.get(index).get(j).getAgentHistories());
+            }
+        } else {
+            int r = Integer.parseInt(repitition);
+            agents.addAll(results.get(index).get(r).getAgentHistories());
+
+        }
+        return agents;
+    }
 
 
     @Override
@@ -44,6 +287,8 @@ public class ShowCompareView implements AbstractShowCompareView {
 
     @Override
     public void show() {
+        createConfigList();
+
         frame = new JFrame("Ergebnisse Vergleichen");
         frame.setContentPane(this.MainPanel);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,19 +303,58 @@ public class ShowCompareView implements AbstractShowCompareView {
         frame.dispose();
     }
 
-    @Override
-    public void addCompareButtonActionlistener(ActionListener listener) {
+    private void createConfigList() {
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (int i = 0; i < resultNames.size(); i++) {
+            model.add(i, resultNames.get(i));
+        }
 
+        configurationList.setModel(model);
     }
 
 
     private void createUIComponents() {
-        // TODO: place custom component creation code here
+
+        String[] titles = {"Konfiguration", "Wiederholung"};
+        tableModel = new DefaultTableModel(titles, 0);
+        simulationTable = new JTable(tableModel);
+        simulationTable.setCellSelectionEnabled(false);
+        simulationTable.setColumnSelectionAllowed(false);
+        simulationTable.setRowSelectionAllowed(true);
+
+        DefaultListSelectionModel selectionModel = new DefaultListSelectionModel();
+        selectionModel.addListSelectionListener(e -> updateSimSelection());
+        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        simulationTable.setSelectionModel(selectionModel);
+
+        configurationList = new JList();
+        configurationList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        configurationList.addListSelectionListener(e -> updateconfigSelection());
+
+        applyButton = new JButton();
+        applyButton.addActionListener(e -> updateChart());
+
+
     }
 
     @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public void addVMResult(VMResult vmResult) {
+        if (resultNames.contains(vmResult.getName())) {
+            results.get(resultNames.indexOf(vmResult.getName())).add(vmResult);
+        } else {
+            ArrayList<VMResult> list = new ArrayList<>();
+            list.add(vmResult);
+            resultNames.add(vmResult.getName());
+            results.add(list);
+
+        }
+
     }
 
     @Override
@@ -106,241 +390,34 @@ public class ShowCompareView implements AbstractShowCompareView {
         tabbedPane2.setTabPlacement(1);
         panel2.add(tabbedPane2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane2.addTab("Verteilung der Strategien", panel3);
-        final JScrollPane scrollPane1 = new JScrollPane();
-        panel3.add(scrollPane1, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel3.add(panel4, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        waehleFuerAlleKonfigurationenRadioButton = new JRadioButton();
-        waehleFuerAlleKonfigurationenRadioButton.setSelected(true);
-        waehleFuerAlleKonfigurationenRadioButton.setText("Wähle für alle Konfigurationen");
-        panel4.add(waehleFuerAlleKonfigurationenRadioButton, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        zeigeDieKTeRadioButton = new JRadioButton();
-        zeigeDieKTeRadioButton.setText("Zeige die k'te Wiederholung");
-        panel4.add(zeigeDieKTeRadioButton, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        label1.setEnabled(false);
-        label1.setText("k = ");
-        panel4.add(label1, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        formattedTextField1 = new JFormattedTextField();
-        formattedTextField1.setEnabled(false);
-        panel4.add(formattedTextField1, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel3.setLayout(new GridLayoutManager(5, 4, new Insets(0, 0, 0, 0), -1, -1));
+        MainPanel.add(panel3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        panel4.add(spacer1, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 100), null, null, 0, false));
-        final JRadioButton radioButton1 = new JRadioButton();
-        radioButton1.setSelected(true);
-        radioButton1.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel4.add(radioButton1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        panel4.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final JRadioButton radioButton2 = new JRadioButton();
-        radioButton2.setSelected(false);
-        radioButton2.setText("Wähle für einzelne Konfigurationen");
-        panel4.add(radioButton2, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        tabbedPane1 = new JTabbedPane();
-        tabbedPane1.setEnabled(false);
-        tabbedPane1.setTabPlacement(2);
-        panel4.add(tabbedPane1, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel5 = new JPanel();
-        panel5.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane1.addTab("Konfiguration1", panel5);
-        final JRadioButton radioButton3 = new JRadioButton();
-        radioButton3.setEnabled(false);
-        radioButton3.setSelected(true);
-        radioButton3.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel5.add(radioButton3, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer3 = new Spacer();
-        panel5.add(spacer3, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JRadioButton radioButton4 = new JRadioButton();
-        radioButton4.setEnabled(false);
-        radioButton4.setText("Zeige die k'te Wiederholung");
-        panel5.add(radioButton4, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        label2.setEnabled(false);
-        label2.setText("k = ");
-        panel5.add(label2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JFormattedTextField formattedTextField2 = new JFormattedTextField();
-        formattedTextField2.setEnabled(false);
-        panel5.add(formattedTextField2, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final JPanel panel6 = new JPanel();
-        panel6.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane1.addTab("Konfiguration2", panel6);
-        final Spacer spacer4 = new Spacer();
-        panel3.add(spacer4, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 400), null, null, 0, false));
-        final Spacer spacer5 = new Spacer();
-        panel3.add(spacer5, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(600, -1), null, null, 0, false));
-        final Spacer spacer6 = new Spacer();
-        panel3.add(spacer6, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(10, -1), null, null, 0, false));
-        final Spacer spacer7 = new Spacer();
-        panel3.add(spacer7, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
-        final JPanel panel7 = new JPanel();
-        panel7.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane2.addTab("Gleichgewicht", panel7);
-        final JPanel panel8 = new JPanel();
-        panel8.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
-        panel7.add(panel8, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JScrollPane scrollPane2 = new JScrollPane();
-        panel8.add(scrollPane2, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JPanel panel9 = new JPanel();
-        panel9.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel8.add(panel9, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JRadioButton radioButton5 = new JRadioButton();
-        radioButton5.setSelected(true);
-        radioButton5.setText("Wähle für alle Konfigurationen");
-        panel9.add(radioButton5, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JRadioButton radioButton6 = new JRadioButton();
-        radioButton6.setText("Zeige die k'te Wiederholung");
-        panel9.add(radioButton6, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label3 = new JLabel();
-        label3.setEnabled(false);
-        label3.setText("k = ");
-        panel9.add(label3, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JFormattedTextField formattedTextField3 = new JFormattedTextField();
-        formattedTextField3.setEnabled(false);
-        panel9.add(formattedTextField3, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final Spacer spacer8 = new Spacer();
-        panel9.add(spacer8, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 100), null, null, 0, false));
-        final JRadioButton radioButton7 = new JRadioButton();
-        radioButton7.setSelected(true);
-        radioButton7.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel9.add(radioButton7, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer9 = new Spacer();
-        panel9.add(spacer9, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final JRadioButton radioButton8 = new JRadioButton();
-        radioButton8.setSelected(false);
-        radioButton8.setText("Wähle für einzelne Konfigurationen");
-        panel9.add(radioButton8, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JTabbedPane tabbedPane3 = new JTabbedPane();
-        tabbedPane3.setEnabled(false);
-        tabbedPane3.setTabPlacement(2);
-        panel9.add(tabbedPane3, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel10 = new JPanel();
-        panel10.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane3.addTab("Konfiguration1", panel10);
-        final JRadioButton radioButton9 = new JRadioButton();
-        radioButton9.setEnabled(false);
-        radioButton9.setSelected(true);
-        radioButton9.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel10.add(radioButton9, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer10 = new Spacer();
-        panel10.add(spacer10, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JRadioButton radioButton10 = new JRadioButton();
-        radioButton10.setEnabled(false);
-        radioButton10.setText("Zeige die k'te Wiederholung");
-        panel10.add(radioButton10, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label4 = new JLabel();
-        label4.setEnabled(false);
-        label4.setText("k = ");
-        panel10.add(label4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JFormattedTextField formattedTextField4 = new JFormattedTextField();
-        formattedTextField4.setEnabled(false);
-        panel10.add(formattedTextField4, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final JPanel panel11 = new JPanel();
-        panel11.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane3.addTab("Konfiguration2", panel11);
-        final Spacer spacer11 = new Spacer();
-        panel8.add(spacer11, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 400), null, null, 0, false));
-        final Spacer spacer12 = new Spacer();
-        panel8.add(spacer12, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(600, -1), null, null, 0, false));
-        final Spacer spacer13 = new Spacer();
-        panel8.add(spacer13, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(10, -1), null, null, 0, false));
-        final Spacer spacer14 = new Spacer();
-        panel8.add(spacer14, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
-        final JPanel panel12 = new JPanel();
-        panel12.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane2.addTab("Punkteverteilung", panel12);
-        final JPanel panel13 = new JPanel();
-        panel13.setLayout(new GridLayoutManager(3, 4, new Insets(0, 0, 0, 0), -1, -1));
-        panel12.add(panel13, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JScrollPane scrollPane3 = new JScrollPane();
-        panel13.add(scrollPane3, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JPanel panel14 = new JPanel();
-        panel14.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel13.add(panel14, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final JRadioButton radioButton11 = new JRadioButton();
-        radioButton11.setSelected(true);
-        radioButton11.setText("Wähle für alle Konfigurationen");
-        panel14.add(radioButton11, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JRadioButton radioButton12 = new JRadioButton();
-        radioButton12.setText("Zeige die k'te Wiederholung");
-        panel14.add(radioButton12, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label5 = new JLabel();
-        label5.setEnabled(false);
-        label5.setText("k = ");
-        panel14.add(label5, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JFormattedTextField formattedTextField5 = new JFormattedTextField();
-        formattedTextField5.setEnabled(false);
-        panel14.add(formattedTextField5, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final Spacer spacer15 = new Spacer();
-        panel14.add(spacer15, new GridConstraints(6, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 100), null, null, 0, false));
-        final JRadioButton radioButton13 = new JRadioButton();
-        radioButton13.setSelected(true);
-        radioButton13.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel14.add(radioButton13, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer16 = new Spacer();
-        panel14.add(spacer16, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final JRadioButton radioButton14 = new JRadioButton();
-        radioButton14.setSelected(false);
-        radioButton14.setText("Wähle für einzelne Konfigurationen");
-        panel14.add(radioButton14, new GridConstraints(4, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JTabbedPane tabbedPane4 = new JTabbedPane();
-        tabbedPane4.setEnabled(false);
-        tabbedPane4.setTabPlacement(2);
-        panel14.add(tabbedPane4, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel15 = new JPanel();
-        panel15.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane4.addTab("Konfiguration1", panel15);
-        final JRadioButton radioButton15 = new JRadioButton();
-        radioButton15.setEnabled(false);
-        radioButton15.setSelected(true);
-        radioButton15.setText("Zeige Durchschnitt aller Wiederholungen");
-        panel15.add(radioButton15, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer17 = new Spacer();
-        panel15.add(spacer17, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JRadioButton radioButton16 = new JRadioButton();
-        radioButton16.setEnabled(false);
-        radioButton16.setText("Zeige die k'te Wiederholung");
-        panel15.add(radioButton16, new GridConstraints(1, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label6 = new JLabel();
-        label6.setEnabled(false);
-        label6.setText("k = ");
-        panel15.add(label6, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JFormattedTextField formattedTextField6 = new JFormattedTextField();
-        formattedTextField6.setEnabled(false);
-        panel15.add(formattedTextField6, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        final JPanel panel16 = new JPanel();
-        panel16.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane4.addTab("Konfiguration2", panel16);
-        final Spacer spacer18 = new Spacer();
-        panel13.add(spacer18, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 400), null, null, 0, false));
-        final Spacer spacer19 = new Spacer();
-        panel13.add(spacer19, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(600, -1), null, null, 0, false));
-        final Spacer spacer20 = new Spacer();
-        panel13.add(spacer20, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, new Dimension(10, -1), null, null, 0, false));
-        final Spacer spacer21 = new Spacer();
-        panel13.add(spacer21, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
-        final JPanel panel17 = new JPanel();
-        panel17.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
-        MainPanel.add(panel17, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        final Spacer spacer22 = new Spacer();
-        panel17.add(spacer22, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
+        panel3.add(spacer1, new GridConstraints(4, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), new Dimension(602, 14), null, 0, false));
         final JSeparator separator1 = new JSeparator();
-        panel17.add(separator1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JLabel label7 = new JLabel();
-        label7.setText("Wähle einfache Konfigurationen, die verglichen werden sollen...");
-        panel17.add(label7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JScrollPane scrollPane4 = new JScrollPane();
-        panel17.add(scrollPane4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        configurationTree.setEditable(true);
-        configurationTree.setLargeModel(true);
-        configurationTree.setRootVisible(true);
-        configurationTree.setShowsRootHandles(true);
-        configurationTree.putClientProperty("JTree.lineStyle", "");
-        scrollPane4.setViewportView(configurationTree);
-        list1 = new JList();
-        panel17.add(list1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        panel3.add(separator1, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(602, 2), null, 0, false));
+        final JLabel label1 = new JLabel();
+        label1.setText("Wähle einfache Konfigurationen, die verglichen werden sollen...");
+        panel3.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(602, 18), null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        panel3.add(scrollPane1, new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(602, 360), null, 0, false));
+        configurationList = new JList();
+        scrollPane1.setViewportView(configurationList);
+        repititionComboBox = new JComboBox();
+        panel3.add(repititionComboBox, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addButton = new JButton();
+        addButton.setText("hinzufügen");
+        panel3.add(addButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        removeButton = new JButton();
+        removeButton.setText("entfernen");
+        panel3.add(removeButton, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JScrollPane scrollPane2 = new JScrollPane();
+        scrollPane2.setVerticalScrollBarPolicy(21);
+        panel3.add(scrollPane2, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPane2.setViewportView(simulationTable);
+        final JLabel label2 = new JLabel();
+        label2.setText("zu vergleichende Simulationen");
+        panel3.add(label2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

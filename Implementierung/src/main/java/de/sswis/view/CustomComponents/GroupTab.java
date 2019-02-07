@@ -7,11 +7,9 @@ import de.sswis.view.NewInitializationView;
 import de.sswis.view.model.VMGroup;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -35,7 +33,6 @@ public class GroupTab {
     private JTextField groupNameTextField;
     private JTabbedPane capitalsTabbedPane;
     private JLabel groupIDLabel;
-    private JButton addCapitalButton;
     private JLabel idLabel;
     private JRadioButton idAgentStrategyRadioButton;
     private JRadioButton percentageAgentStrategyRadioButton;
@@ -44,35 +41,75 @@ public class GroupTab {
     private JFormattedTextField distributionTextField;
     private JButton deleteButton;
 
-    public GroupTab() {
+    public GroupTab(List<String> strategies) {
         this.vmGroup = new VMGroup();
 
-        strategyTabs = new ArrayList<InitialStrategyTab>();
+        strategyTabs = new ArrayList<>();
         allStrategies = new ArrayList<>();
+        allStrategies.addAll(strategies);
         $$$setupUI$$$();
 
-        startCapitalTabs = new ArrayList<StartCapitalTab>();
+        startCapitalTabs = new ArrayList<>();
+
+        ActionListener addStrategyListener = e -> {
+            String input = (String) JOptionPane.showInputDialog(null, "Bitte Strategie auswählen...",
+                    "Strategieauswahl", JOptionPane.QUESTION_MESSAGE, null, allStrategies.toArray(), allStrategies.get(0));
+            if (input == null)
+                return;
+            addStrategy(input);
+        };
+        ActionListener addCapitalListener = e -> addCapital();
+
+        this.setupPane(initialStrategiesTabbedPane, addStrategyListener);
+        this.setupPane(capitalsTabbedPane, addCapitalListener);
     }
 
+    private void setupPane(JTabbedPane pane, ActionListener listener) {
+        JPanel pnlTab = new JPanel(new BorderLayout());
+        pnlTab.setOpaque(false);
+
+        JButton addTabButton = new JButton("  +  ");
+        addTabButton.setOpaque(false);
+        addTabButton.setBorder(null);
+        addTabButton.setContentAreaFilled(true);
+        addTabButton.setFocusPainted(false);
+        addTabButton.setFocusable(false);
+
+        pnlTab.add(addTabButton, BorderLayout.CENTER);
+        pane.addTab("", null, new JPanel());
+        pane.setTabComponentAt(0, pnlTab);
+
+        addTabButton.addActionListener(listener);
+    }
 
     public void addStrategies(List<String> strategies) {
         this.allStrategies.addAll(strategies);
 
         for (int i = 0; i < allStrategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(allStrategies.get(i));
-
             initialStrategiesTabbedPane.addTab(tab.getTitle(), tab.$$$getRootComponent$$$());
-
             strategyTabs.add(tab);
         }
+    }
+
+    public void addStrategy(String strategy) {
+        InitialStrategyTab tab = new InitialStrategyTab(strategy);
+        tab.setupDeleteButton(this);
+
+        initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
+                initialStrategiesTabbedPane.getTabCount() - 1);
+        initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
+        strategyTabs.add(tab);
     }
 
     private void addCapital() {
         StartCapitalTab capitalTab = new StartCapitalTab();
         capitalTab.addTitleChangeListeners(this);
 
+        capitalsTabbedPane.insertTab(capitalTab.getTitle(), null, capitalTab.$$$getRootComponent$$$(), null,
+                capitalsTabbedPane.getTabCount() - 1);
+        capitalsTabbedPane.setSelectedIndex(capitalsTabbedPane.getTabCount() - 2);
         startCapitalTabs.add(capitalTab);
-        capitalsTabbedPane.addTab(capitalTab.getTitle(), capitalTab.$$$getRootComponent$$$());
     }
 
     private void addSpecificCapital(String capital, String distribution) {
@@ -90,8 +127,13 @@ public class GroupTab {
     }
 
 
-    public void updateVM() {
+    public void removeStrategyTab(InitialStrategyTab tab) {
+        initialStrategiesTabbedPane.removeTabAt(strategyTabs.indexOf(tab));
+        strategyTabs.remove(tab);
+    }
 
+    public void updateVM() {
+        vmGroup = new VMGroup();
         vmGroup.setName(groupNameTextField.getText());
         vmGroup.setAgents(distributionTextField.getText());
 
@@ -105,7 +147,6 @@ public class GroupTab {
             vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(), startCapitalTabs.get(i).getAgentUserInput());
         }
     }
-
 
     public String getTitle() {
         String title = groupIDLabel.getText() + ": " + groupNameTextField.getText();
@@ -123,20 +164,19 @@ public class GroupTab {
         percentageAgentStrategyRadioButton.setSelected(vmGroup.getRelativeStrategyDistributions());
         percentageAgentCapitalRadioButton.setSelected(vmGroup.getRelativeCapitalDistributions());
 
-        for (int i = 0; i < allStrategies.size(); i++) {
-
-
-            if (vmGroup.getStrategies().contains(allStrategies.get(i))) {
-                strategyTabs.get(i).setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
-            }
-
-
+        List<String> strategies = this.vmGroup.getStrategies();
+        for (int i = 0; i < strategies.size(); i++) {
+            InitialStrategyTab tab = new InitialStrategyTab(strategies.get(i));
+            initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
+                    initialStrategiesTabbedPane.getTabCount() - 1);
+            initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
+            tab.setDistribution(vmGroup.getStrategyDistributionsStrings().get(i));
+            strategyTabs.add(tab);
         }
 
         for (int i = 0; i < vmGroup.getStartCapital().size(); i++) {
             addSpecificCapital(vmGroup.getStartCapital().get(i), vmGroup.getStartCapitalDistributionsStrings().get(i));
         }
-
     }
 
     public VMGroup getVmGroup() {
@@ -182,10 +222,6 @@ public class GroupTab {
 
         percentageAgentStrategyRadioButton = new JRadioButton();
         buttonGroupStrategy.add(percentageAgentStrategyRadioButton);
-
-        addCapitalButton = new JButton();
-        addCapitalButton.addActionListener(e -> addCapital());
-
     }
 
 
@@ -233,14 +269,12 @@ public class GroupTab {
         percentageAgentStrategyRadioButton.setText("Wähle Agenten nach prozentualem Anteil");
         panel3.add(percentageAgentStrategyRadioButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel4.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         initGroupTabbedPane.addTab("Startkapital", panel4);
         capitalsTabbedPane = new JTabbedPane();
         capitalsTabbedPane.setTabLayoutPolicy(1);
         capitalsTabbedPane.setTabPlacement(2);
         panel4.add(capitalsTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        addCapitalButton.setText("Neues Startkapital hinzufügen");
-        panel4.add(addCapitalButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         idAgentCapitalRadioButton.setSelected(true);
         idAgentCapitalRadioButton.setText("Wähle Agenten nach ihren IDs");
         panel4.add(idAgentCapitalRadioButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -258,7 +292,7 @@ public class GroupTab {
         groupIDLabel.setText("Label");
         panel1.add(groupIDLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deleteButton = new JButton();
-        deleteButton.setText("löschen");
+        deleteButton.setText("Gruppe löschen");
         panel1.add(deleteButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
@@ -268,4 +302,5 @@ public class GroupTab {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }
