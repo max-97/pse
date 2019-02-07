@@ -134,7 +134,7 @@ public class Simulation implements Runnable, ObservableSimulation {
         } else {
             int sum = 0;
             for(int i = cycle; i >  cycle - config.getEquilibriumRounds(); i--) sum += adaptationCount[i - 1];
-            return (double)sum/config.getEquilibriumRounds() < config.getThreshold() * initialAgents.length;
+            return sum < config.getThreshold() * initialAgents.length;
         }
     }
 
