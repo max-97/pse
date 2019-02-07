@@ -16,12 +16,7 @@ import java.util.List;
 public interface AbstractShowCompareView extends AbstractView {
 
 
-    /**
-     * Fügt ein ActionListener zum Button Vergleichen mit hinzu.
-     * @param listener ActionListener
-     */
-    void addCompareButtonActionlistener (ActionListener listener);
-
+    void addVMResult(VMResult vmResult);
 
     AbstractMainView getParentView();
 }
