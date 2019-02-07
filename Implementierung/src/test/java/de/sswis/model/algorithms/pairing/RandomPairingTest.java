@@ -19,7 +19,7 @@ public class RandomPairingTest {
     }
 
     @Test
-    public void getPairingTest() {
+    public void pairingContainsEveryAgentOnce() {
         for(int i = 0; i < agents.length; i++) {
             agents[i] = new Agent(i, 0, null, null);
         }
