@@ -16,6 +16,7 @@ import org.jfree.data.general.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -239,6 +240,11 @@ public class ShowResultView implements AbstractShowResultView {
     @Override
     public void setParentView(AbstractView parentView) {
         this.parentView = (AbstractMainView) parentView;
+    }
+
+    @Override
+    public void addCompareButtonActionlistener(ActionListener listener) {
+        compareButton.addActionListener(listener);
     }
 
     @Override

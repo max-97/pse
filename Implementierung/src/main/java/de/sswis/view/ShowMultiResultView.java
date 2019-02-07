@@ -31,7 +31,8 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     private JFrame frame;
 
-    private HashMap<Integer, ArrayList<VMResult>> vmResults = new HashMap<>();
+    private HashMap<String, ArrayList<VMResult>> vmResults = new HashMap<>();
+    private ArrayList<String> resultNames = new ArrayList<>();
 
     private JPanel MainPanel;
     private JLabel configNameLabel;
@@ -111,8 +112,8 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     public JFreeChart getEquilibriumChart(int repitition, int step, String filter, String filterParam) {
         int yes = 0;
         int no = 0;
-        for (int i = 0; i < vmResults.get(step).size(); i++) {
-            if (vmResults.get(step).get(i).reachedEquilibrium()) {
+        for (int i = 0; i < vmResults.get(resultNames.get(step)).size(); i++) {
+            if (vmResults.get(resultNames.get(step)).get(i).reachedEquilibrium()) {
                 yes++;
             } else {
                 no++;
@@ -259,14 +260,17 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
         return this.parentView;
     }
 
-    @Override
-    public void addVMResult(VMResult vmResult, int stepCount) {
-        vmResults.get(stepCount).add(vmResult);
-    }
 
     @Override
     public void addVMResult(VMResult vmResult) {
-        vmResults.get(vmResult.getStepOfMultiConfig()).add(vmResult);
+        if (vmResults.containsKey(vmResult.getName())) {
+            vmResults.get(vmResult.getName()).add(vmResult);
+        } else {
+            ArrayList<VMResult> list = new ArrayList<>();
+            list.add(vmResult);
+            vmResults.put(vmResult.getName(), list);
+            resultNames.add(vmResult.getName());
+        }
 
     }
 

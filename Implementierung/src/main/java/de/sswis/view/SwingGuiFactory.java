@@ -50,7 +50,6 @@ public class SwingGuiFactory implements AbstractGuiFactory {
     public AbstractShowCompareView createCompareResultsView() {
         AbstractShowCompareView showCompareView = new ShowCompareView();
 
-        showCompareView.addCompareButtonActionlistener(new CompareResultsHandler(this));
 
         return showCompareView;
     }

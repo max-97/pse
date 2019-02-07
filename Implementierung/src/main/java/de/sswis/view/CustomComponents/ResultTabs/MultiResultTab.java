@@ -65,7 +65,6 @@ public class MultiResultTab {
     }
 
     public void setStepCount(int stepCount) {
-
         if (stepCount == 0)
             slider1.setMaximum(stepCount);
         else

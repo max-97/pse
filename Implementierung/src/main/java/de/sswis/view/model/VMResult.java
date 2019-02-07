@@ -20,15 +20,6 @@ public class VMResult {
 
     private boolean reachedEquilibrium;
 
-    private int stepOfMultiConfig;
-
-    public int getStepOfMultiConfig() {
-        return stepOfMultiConfig;
-    }
-
-    public void setStepOfMultiConfig(int stepOfMultiConfig) {
-        this.stepOfMultiConfig = stepOfMultiConfig;
-    }
 
     public boolean reachedEquilibrium() {
         return reachedEquilibrium;

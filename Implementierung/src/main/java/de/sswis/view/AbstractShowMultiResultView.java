@@ -22,7 +22,6 @@ public interface AbstractShowMultiResultView extends AbstractView {
 
     AbstractMainView getParentView();
 
-    void addVMResult(VMResult vmResult, int stepCount);
 
     void addVMResult(VMResult r);
 }
