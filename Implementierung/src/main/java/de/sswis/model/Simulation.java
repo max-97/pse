@@ -151,6 +151,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             threads[i] = new Thread(
                     () -> simulateRun(repetition + 1)
             );
+            threads[i].setPriority(1);
             threads[i].start();
         }
 

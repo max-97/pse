@@ -23,8 +23,8 @@ public class History {
     private HashMap<Agent, Boolean> cooperatedEveryTime;
     private HashMap<Group, Boolean> groupCooperatedLastTime;
     private HashMap<Group, Boolean> groupCooperatedEveryTime;
-    private final int INITIAL_CAPACITY_ROUNDS = 1000;
-    private final int INITIAL_CAPACITY_CYCLE = 100;
+    private final int INITIAL_CAPACITY_ROUNDS = 100;
+    private final int INITIAL_CAPACITY_CYCLE = 10;
 
     /**
      * Erstellt eine {@code History}.
