@@ -121,7 +121,6 @@ public class ManageGamesView implements AbstractManageGamesView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override

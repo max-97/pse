@@ -57,6 +57,7 @@ public class ModelParser {
 
             result.setVmConfig(configuration);
             result.setName(configuration.getName());
+            result.setReachedEquilibrium(simulation.getResults().getEquilibriums().get(i));
 
             Agent[] agents = simulation.getResults().getAgents().get(i);
             Collection<VMAgentHistory> agentHistories = new ArrayList<>();

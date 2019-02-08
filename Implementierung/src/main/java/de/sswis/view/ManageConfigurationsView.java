@@ -121,7 +121,6 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override

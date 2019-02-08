@@ -1,5 +1,8 @@
 package de.sswis.view.model;
 
+import de.sswis.controller.FileManager;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,17 @@ public class VMConfiguration {
      * Zeigt ob die Konfiguration variable Parameter enthält.
      * @return true wenn es genau einen variablen Parameter gibt, sonst false
      */
-    public boolean isMultiConfiguration() { return false; }
+    public boolean isMultiConfiguration() {
+        FileManager fileManager = new FileManager();
+        VMInitialization initialization;
+        try {
+            initialization = fileManager.loadInitialization(init);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return initialization.isMultiInitialisation();
+    }
 
     /**
      *Zeigt ob Ergebnisse einer Simulation vorliegen, die mit dieser Konfiguration ausgeführt wurde.

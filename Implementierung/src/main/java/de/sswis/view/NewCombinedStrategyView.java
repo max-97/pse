@@ -150,7 +150,6 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {

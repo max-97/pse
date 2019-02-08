@@ -35,7 +35,9 @@ class VariableDistribution {
 		int start = Integer.parseInt(parts[0]);
 		int end = Integer.parseInt(parts[1]);
 		int step = Integer.parseInt(parts[2]);
-		int[] values = new int[((end - start) / step) + 1];
+		int index = ((end - start) / step) + 1;
+		index = index < 0 ? index * (-1) : index;
+		int[] values = new int[index];
 		for (int i = start; i <= end; i += step) {
 			values[(i - start) / step] = i;
 		}

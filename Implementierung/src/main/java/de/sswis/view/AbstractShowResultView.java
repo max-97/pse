@@ -5,6 +5,7 @@ import de.sswis.view.model.VMResult;
 import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.EventListener;
+import java.util.List;
 
 /**
  *Ein Fenster zum Anzeigen von Ergebnissen einer Konfiguration.
@@ -23,4 +24,6 @@ public interface AbstractShowResultView extends AbstractView {
     AbstractMainView getParentView();
 
     void addVMResult(VMResult vmResult);
+
+    List<VMResult> getResults();
 }
