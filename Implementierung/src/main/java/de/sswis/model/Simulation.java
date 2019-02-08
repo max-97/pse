@@ -52,13 +52,17 @@ public class Simulation implements Runnable, ObservableSimulation {
         int cycle = 1;
         boolean equilibriumAchieved = false;
         config.getRankingAlg().setIgnoreInitialScore(config.getInit().getInitialScoreStrategiesOnly());
-        HashMap<Agent, Integer> currentRanking = config.getRankingAlg().getRankings(agents);
         Pair[] currentPairs;
         int[] adaptationCount = new int[config.getCycles()];
 
         for(Agent agent : agents) {
             agent.getHistory().setScore(agent.getScore());
             agent.getHistory().setStrategy(agent.getStrategy());
+        }
+
+        HashMap<Agent, Integer> currentRanking = config.getRankingAlg().getRankings(agents);
+
+        for(Agent agent : agents) {
             agent.getHistory().setRank(currentRanking.get(agent));
         }
 
