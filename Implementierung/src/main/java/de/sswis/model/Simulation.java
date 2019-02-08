@@ -94,6 +94,13 @@ public class Simulation implements Runnable, ObservableSimulation {
                 }
             }
         }
+
+        for(Agent agent : agents) {
+            if(agent.getStrategy() instanceof  MixedStrategy) {
+                MixedStrategy strategy = (MixedStrategy)agent.getStrategy();
+                strategy.setName(strategy.getName() + "_" + strategy.getAdaptationCount());
+            }
+        }
         result.getAgents().put(repetition, agents);
         result.getEquilibriums().put(repetition, equilibriumAchieved);
     }
