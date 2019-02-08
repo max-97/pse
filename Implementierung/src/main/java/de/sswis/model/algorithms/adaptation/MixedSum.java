@@ -49,7 +49,7 @@ public class MixedSum implements AdaptationAlgorithm{
         double[] oldProbabilities;
 
         if(agent.getStrategy() instanceof CombinedStrategy) {
-            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)strategy};
+            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)agent.getStrategy()};
             oldProbabilities = new double[]{1.0};
         } else {
             oldStrategies = ((MixedStrategy)agent.getStrategy()).getCombinedStrategies();

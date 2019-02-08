@@ -55,7 +55,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
         double[] oldProbabilities;
 
         if(agent1.getStrategy() instanceof CombinedStrategy) {
-            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)strategy};
+            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)agent1.getStrategy()};
             oldProbabilities = new double[]{1.0};
         } else {
             oldStrategies = ((MixedStrategy)agent1.getStrategy()).getCombinedStrategies();
