@@ -47,7 +47,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     }
 
     private void adaptStrategy(Agent agent1, Agent agent2) {
-        double adapt = (double)Math.max(agent2.getScore() - agent1.getScore(), 0)/highestScoreDifference;
+        double adapt = (double)Math.max(agent2.getScore() - agent1.getScore(), 0)/Math.max(highestScoreDifference, 1);
         Strategy strategy = agent2.getStrategy();
 
         CombinedStrategy[] oldStrategies;
@@ -92,16 +92,25 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
             }
         }
 
-        CombinedStrategy[] newStrategies = new CombinedStrategy[allStrategies.size()];
-        double[] newProbabilities = new double[allStrategies.size()];
+        int strategyCount = 0;
+        for(CombinedStrategy combinedStrategy : allStrategies) {
+            if(allProbabilities.get(combinedStrategy) != 0) {
+                strategyCount++;
+            }
+        }
+
+        CombinedStrategy[] newStrategies = new CombinedStrategy[strategyCount];
+        double[] newProbabilities = new double[strategyCount];
         Iterator<CombinedStrategy> it = allStrategies.iterator();
         int count = 0;
 
         while(it.hasNext()) {
             CombinedStrategy currentStrategy = it.next();
-            newStrategies[count] = currentStrategy;
-            newProbabilities[count] = allProbabilities.get(currentStrategy);
-            count++;
+            if(allProbabilities.get(currentStrategy) != 0) {
+                newStrategies[count] = currentStrategy;
+                newProbabilities[count] = allProbabilities.get(currentStrategy);
+                count++;
+            }
         }
 
         Strategy newStrategy;

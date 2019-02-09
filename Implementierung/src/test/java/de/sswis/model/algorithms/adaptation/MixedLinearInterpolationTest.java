@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class MixedLinearInterpolationTest {
@@ -61,5 +62,34 @@ public class MixedLinearInterpolationTest {
         }
         assertTrue((probability1 == 0.5 && probability2 == 0.5 && strat.getAdaptationCount() == 0) ||
                 (probability1 == 0.8 && probability2 == 0.2) && strat.getAdaptationCount() == 1);
+    }
+
+    @Test
+    public void combinedStrategyAndMixedStrategy() {
+        agents = new Agent[2];
+        agents[0] = new Agent(0, 0, group, strategy1.clone());
+        agents[1] = new Agent(1, 100, group, alwaysCooperate);
+        ranking.put(agents[0], 2);
+        ranking.put(agents[1], 1);
+        adaptationAlgorithm.adapt(agents, ranking, 1);
+        if(agents[0].getStrategy() instanceof CombinedStrategy) {
+            assertEquals("1", agents[0].getStrategy().getName());
+        } else {
+            MixedStrategy strat = (MixedStrategy)agents[0].getStrategy();
+            assertTrue(strat.getProbabilities()[0] == 0.5 && strat.getProbabilities()[1] == 0.5
+                    && strat.getAdaptationCount() == 0);
+        }
+    }
+
+    @Test
+    public void combinedStrategyOnly() {
+        agents = new Agent[2];
+        agents[0] = new Agent(0, 0, group, neverCooperate);
+        agents[1] = new Agent(1, 0, group, alwaysCooperate);
+        ranking.put(agents[0], 2);
+        ranking.put(agents[1], 1);
+        adaptationAlgorithm.adapt(agents, ranking, 1);
+        assertTrue(agents[0].getStrategy() instanceof CombinedStrategy);
+        assertTrue("1" == agents[0].getStrategy().getName() || "2" == agents[0].getStrategy().getName());
     }
 }
