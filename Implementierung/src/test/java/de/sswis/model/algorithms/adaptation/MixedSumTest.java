@@ -60,8 +60,41 @@ public class MixedSumTest {
             probability2 = strat.getProbabilities()[0];
             probability1 = strat.getProbabilities()[1];
         }
-        System.out.println(probability1 + " " + probability2);
         assertTrue((probability1 == 0.5 && probability2 == 0.5 && strat.getAdaptationCount() == 0) ||
                 (probability1 == 0.65 && probability2 == 0.35) && strat.getAdaptationCount() == 1);
+    }
+
+    @Test
+    public void combinedStrategyAndMixedStrategy() {
+        agents = new Agent[2];
+        agents[0] = new Agent(0, 0, group, strategy1.clone());
+        agents[1] = new Agent(1, 0, group, alwaysCooperate);
+        ranking.put(agents[0], 2);
+        ranking.put(agents[1], 1);
+        adaptationAlgorithm.adapt(agents, ranking, 1);
+        double probability1;
+        double probability2;
+        MixedStrategy strat = (MixedStrategy)agents[0].getStrategy();
+        if(((MixedStrategy)agents[0].getStrategy()).getCombinedStrategies()[0].getName() == "1") {
+            probability1 = strat.getProbabilities()[0];
+            probability2 = strat.getProbabilities()[1];
+        } else {
+            probability2 = strat.getProbabilities()[0];
+            probability1 = strat.getProbabilities()[1];
+        }
+        assertTrue((probability1 == 0.5 && probability2 == 0.5 && strat.getAdaptationCount() == 0) ||
+                (probability1 == 0.75 && probability2 == 0.25) && strat.getAdaptationCount() == 1);
+    }
+
+    @Test
+    public void combinedStrategyOnly() {
+        agents = new Agent[2];
+        agents[0] = new Agent(0, 0, group, alwaysCooperate);
+        agents[1] = new Agent(1, 0, group, alwaysCooperate);
+        ranking.put(agents[0], 2);
+        ranking.put(agents[1], 1);
+        adaptationAlgorithm.adapt(agents, ranking, 1);
+        assertTrue(agents[0].getStrategy() instanceof CombinedStrategy);
+        assertEquals("1", agents[0].getStrategy().getName());
     }
 }
