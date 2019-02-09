@@ -21,7 +21,6 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     public static final String NAME = "Mixed Linear Interpolation";
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {};
-    private Random rnd;
     private int highestScoreDifference;
 
     public MixedLinearInterpolation() {
@@ -31,7 +30,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;
-        rnd = new Random();
+        Random rnd = new Random();
         highestScoreDifference = getHighestScoreDifference(agents);
 
         for(int i = 0; i < agents.length; i++) {
