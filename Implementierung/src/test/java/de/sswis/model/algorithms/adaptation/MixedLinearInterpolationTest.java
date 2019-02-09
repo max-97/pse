@@ -85,7 +85,7 @@ public class MixedLinearInterpolationTest {
     public void combinedStrategyOnly() {
         agents = new Agent[2];
         agents[0] = new Agent(0, 0, group, neverCooperate);
-        agents[1] = new Agent(1, 0, group, alwaysCooperate);
+        agents[1] = new Agent(1, 100, group, alwaysCooperate);
         ranking.put(agents[0], 2);
         ranking.put(agents[1], 1);
         adaptationAlgorithm.adapt(agents, ranking, 1);
