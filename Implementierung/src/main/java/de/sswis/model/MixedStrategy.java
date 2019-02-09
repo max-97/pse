@@ -8,6 +8,7 @@ public class MixedStrategy implements Strategy {
     private String name;
     private CombinedStrategy[] combinedStrategies;
     private double[] probabilities;
+    private int adaptationCount;
 
     /**
      * Erstellt eine gemischte Strategie.
@@ -19,6 +20,7 @@ public class MixedStrategy implements Strategy {
         this.name = name;
         this.combinedStrategies = combinedStrategies;
         this.probabilities = probabilities;
+        this.adaptationCount = 0;
     }
 
     @Override
@@ -48,6 +50,20 @@ public class MixedStrategy implements Strategy {
     }
 
     public MixedStrategy clone() {
-        return new MixedStrategy(this.name, this.combinedStrategies.clone(), this.probabilities.clone());
+        MixedStrategy strategy = new MixedStrategy(this.name, this.combinedStrategies.clone(), this.probabilities.clone());
+        strategy.setAdaptationCount(adaptationCount);
+        return strategy;
+    }
+
+    public void setName(String newName) {
+        this.name = newName;
+    }
+
+    public int getAdaptationCount() {
+        return adaptationCount;
+    }
+
+    public void setAdaptationCount(int count) {
+        this.adaptationCount = count;
     }
 }

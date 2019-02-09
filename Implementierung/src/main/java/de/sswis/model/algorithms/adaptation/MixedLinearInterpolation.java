@@ -55,7 +55,7 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
         double[] oldProbabilities;
 
         if(agent1.getStrategy() instanceof CombinedStrategy) {
-            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)strategy};
+            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)agent1.getStrategy()};
             oldProbabilities = new double[]{1.0};
         } else {
             oldStrategies = ((MixedStrategy)agent1.getStrategy()).getCombinedStrategies();
@@ -111,8 +111,11 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
             newStrategy = newStrategies[0];
         } else {
             normalize(newProbabilities);
-            String newName = getNewName(strategy.getName());
-            newStrategy = new MixedStrategy(newName, newStrategies, newProbabilities);
+            newStrategy = new MixedStrategy(agent1.getStrategy().getName(), newStrategies, newProbabilities);
+            if(agent1.getStrategy() instanceof  MixedStrategy) {
+                ((MixedStrategy)newStrategy).setAdaptationCount(((MixedStrategy)agent1.getStrategy())
+                        .getAdaptationCount() + 1);
+            }
         }
         agent1.setStrategy(newStrategy);
     }
@@ -137,16 +140,6 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
         double sum = 0;
         for(int i = 0; i < probabilities.length; i++) sum += probabilities[i];
         for(int i = 0; i < probabilities.length; i++) probabilities[i] *= 1/sum;
-    }
-
-    private String getNewName(String oldName) {
-        if(!oldName.contains("_")) {
-            return oldName + "_1";
-        } else {
-            int index = oldName.indexOf("_") + 1;
-            int adaptCount = Integer.parseInt(oldName.substring(index)) + 1;
-            return oldName.substring(0, index)  + adaptCount;
-        }
     }
 
     @Override
