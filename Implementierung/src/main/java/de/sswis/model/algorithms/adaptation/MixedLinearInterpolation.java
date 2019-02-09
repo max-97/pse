@@ -109,7 +109,6 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
         if(newStrategies.length == 1) {
             newStrategy = newStrategies[0];
         } else {
-            normalize(newProbabilities);
             newStrategy = new MixedStrategy(agent1.getStrategy().getName(), newStrategies, newProbabilities);
             if(agent1.getStrategy() instanceof  MixedStrategy) {
                 ((MixedStrategy)newStrategy).setAdaptationCount(((MixedStrategy)agent1.getStrategy())
@@ -133,12 +132,6 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
             }
         }
         return max - min;
-    }
-
-    private void normalize(double[] probabilities) {
-        double sum = 0;
-        for(int i = 0; i < probabilities.length; i++) sum += probabilities[i];
-        for(int i = 0; i < probabilities.length; i++) probabilities[i] *= 1/sum;
     }
 
     @Override
