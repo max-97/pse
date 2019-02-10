@@ -68,7 +68,7 @@ Es könne Gruppen erstellt werden. Jede Gruppe erhält einen Namen und eine ID.
 Die Anzahl der Agenten kann festgelegt werden. Die Agenten werden automatisch nummeriert. Die Nummer erfüllt die Funktion einer ID.
 
 \textbf{/F0140/} 
-Der Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für die Verteilung der Strategien hat man die Optionen
+Die Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für die Verteilung der Strategien hat man die Optionen
 \begin{enumerate}
 \item Die Agenten mit der Strategie werden angegeben. Die Agenten werden dabei einzeln mit ihrer ID oder durch ein Intervall angegeben. Bei einem Intervall erhalten alle Agenten in dem Intervall die Strategie. Anfangs- und Endwerte des Intervalls sind inklusive. Intervalle und einzelne IDs können beliebig kombiniert werden, sie werden durch Kommas getrennt.
 \item Der Anteil einer Strategie in einer Gruppe wird prozentual angegeben. Welche Agenten in der Gruppe die Strategie erhalten ist zufällig. Gruppen werden über ihren Namen identifiziert. 
@@ -216,7 +216,7 @@ Der Durchschnittswert der Ergebnisse aller Wiederholungen lassen sich anzeigen.
 Ein Kuchendiagramm zeigt den Anteil der vorhandenen Strategien am Ende der Simulation an. Eine Legende beschreibt welche Farbe des Diagramms welcher Strategie entspricht. Im Kuchendiagramm werden die genauen Prozentwerte der jeweiligen Strategie angezeigt.
 
 \textbf{/F0940/}
-Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer kombinierten Strategie in diesem Punktebereich. Auf der x-Achse sind die Punktebereiche aufgetragen. Ein Punktebereich ist ein Intervall $[n \cdot 100, (n+1) \cdot 100)$ für $n \in \mathbb{Z}$. Auf der y-Achse ist die Anzahl der Agenten aufgetragen. Haben $x$ Prozent der Agenten in einem Punktebereich die kombinierte Strategie $A$, so wird $x$ Prozent der Säule in der Farbe von $A$ eingefärbt. Die Farben werden beim berechnen des Diagramms zufällig zugewiesen und können sich beim erneuten Anzeigen des Diagramms ändern. Eine Legen zeigt an welche Farbe welcher Strategie entspricht. Ein Tooltip zeigt die genauen prozentualen Werte einer kombinierten Strategie in einem Punktebereich an, wenn man den Mauszeiger über eine Säule bewegt.
+Ein gestapeltes Säulendiagramm zeigt an wie viele Agenten in einem Punktebereich liegen und den Anteil einer kombinierten Strategie in diesem Punktebereich. Auf der x-Achse sind die Punktebereiche aufgetragen. Ein Punktebereich ist ein Intervall $[n \cdot 100, (n+1) \cdot 100)$ für $n \in \mathbb{Z}$. Auf der y-Achse ist die Anzahl der Agenten aufgetragen. Haben $x$ Prozent der Agenten in einem Punktebereich die kombinierte Strategie $A$, so wird $x$ Prozent der Säule in der Farbe von $A$ eingefärbt. Die Farben werden beim berechnen des Diagramms zufällig zugewiesen und können sich beim erneuten Anzeigen des Diagramms ändern. Eine Legende zeigt an welche Farbe welcher Strategie entspricht. Ein Tooltip zeigt die genauen prozentualen Werte einer kombinierten Strategie in einem Punktebereich an, wenn man den Mauszeiger über eine Säule bewegt.
 
 \textbf{/F0941/}
 Ein gestapeltes Säulendiagramm wie in /F0940/. Anstatt des Punktebereichs wird ein Intervall von Rängen verwendet.
@@ -242,6 +242,12 @@ Das Ergebnis einer Simulation kann gespeichert werden.
 \textbf{/W0110/}
 Das Ergebnis einer Simulation kann geladen werden.
 
+\textbf{/W0130/}
+Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Informationen erhält man aus /W0500/. Es gibt die Optionen:
+\begin{itemize}
+\item Anteil der Strategien aller Agenten
+\end{itemize}
+
 \subsubsection{Anpassungsalgorithmus}
 
 \textbf{/W0300/}
@@ -256,8 +262,6 @@ Bei gemischten Strategien werden bei der Anpassung die Wahrscheinlichkeiten der 
 \textbf{/W0341/}
 Bei gemischten Strategien wird die Anpassung durch eine lineare Interpolation berechnet. Je größer der Unterschied der Gesamtpunktzahl, desto stärker ist die Anpassung.
 
-\textbf{/W0350/}
-Mit einer Wahrscheinlichkeit von $\delta\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. $\delta$ wird vom Benutzer bestimmt. Es kann nur eine in der Konfiguration festgelegt Strategie gewählt werden. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
 
 \subsubsection{Bewertungsalgorithmus}
 
@@ -299,12 +303,14 @@ Der Anteil der Strategien während der Simulation kann angezeigt werden. Die Inf
 \begin{itemize}
 \item Anteil der Strategien der besten $x\%$
 \item Anteil der Strategien der schlechtesten $x\%$
-\item Anteil der Strategien aller Agenten
 \item Anteil der Strategien ausgewählter Agenten
 \end{itemize}
 $x$ wird vom Benutzer bestimmt. Agenten können durch einzelne IDs, Intervalle  oder Gruppenzugehörigkeit ausgewählt werden. 
 
 \textbf{/W0140/}
 In /F0920/ bis /F0940/ können Agenten nach ihrer ID, Gruppenzugehörigkeit und Rang gefiltert werden. Die Ergebnisse werden nur für die ausgewählten Agenten angezeigt. IDs und Ränge können einzeln und in Intervallen angegeben werden.
+
+\textbf{/W0350/}
+Mit einer Wahrscheinlichkeit von $\delta\%$ ändert der Agent seine Strategie zu einer zufälligen anderen Strategie. $\delta$ wird vom Benutzer bestimmt. Es kann nur eine in der Konfiguration festgelegt Strategie gewählt werden. Bei gemischten Strategien wird die Wahrscheinlichkeit einer Strategie erhöht. Die Wahrscheinlichkeiten werden entsprechend normiert.
 
 Es findet keine Eingabekontrolle statt.
