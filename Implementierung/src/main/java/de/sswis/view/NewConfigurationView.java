@@ -92,9 +92,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void update() {
-
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {

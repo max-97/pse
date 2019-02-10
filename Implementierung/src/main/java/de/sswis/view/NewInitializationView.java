@@ -98,9 +98,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public void update() {
-
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {

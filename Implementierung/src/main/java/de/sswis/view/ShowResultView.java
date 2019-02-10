@@ -212,7 +212,6 @@ public class ShowResultView implements AbstractShowResultView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -258,6 +257,10 @@ public class ShowResultView implements AbstractShowResultView {
         vmResults.add(vmResult);
     }
 
+    @Override
+    public List<VMResult> getResults() {
+        return this.vmResults;
+    }
 
     private void createVMs() {
         //TODO: remove me

@@ -116,7 +116,6 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override

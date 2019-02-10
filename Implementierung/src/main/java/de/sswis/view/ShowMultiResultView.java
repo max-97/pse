@@ -223,9 +223,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void update() {
-
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -248,7 +246,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void addCompareButtonActionlistener(ActionListener listener) {
-
+        this.compareButton.addActionListener(listener);
     }
 
     @Override

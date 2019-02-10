@@ -72,6 +72,8 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {
+        if (configurations.contains(configuration))
+            return;
         configurations.add(configuration);
 
         ConfigurationTree.setModel(createConfigurationTree());
@@ -118,6 +120,11 @@ public class MainView implements AbstractMainView {
         simulatingConfigs.remove(name);
         updateButtons();
         JOptionPane.showMessageDialog(frame, "Die Simulation " + name + " wurde abgebrochen!");
+    }
+
+    @Override
+    public List<VMConfiguration> getVMConfigurations() {
+        return this.configurations;
     }
 
     @Override
@@ -237,7 +244,6 @@ public class MainView implements AbstractMainView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
 
