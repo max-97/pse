@@ -46,7 +46,6 @@ public class ShowResultView implements AbstractShowResultView {
     private JFrame frame = new JFrame();
 
 
-
     private VMConfiguration vmConfiguration;
 
 
@@ -104,15 +103,27 @@ public class ShowResultView implements AbstractShowResultView {
 
 
     private JFreeChart getEquilibriumChart(int repitition, String filter, String filterParam) {
+
         int yes = 0;
         int no = 0;
-        for (int i = 0; i < vmResults.size(); i++) {
-            if (vmResults.get(i).reachedEquilibrium()) {
+
+        if (repitition == -1) {
+            for (int i = 0; i < vmResults.size(); i++) {
+                if (vmResults.get(i).reachedEquilibrium()) {
+                    yes++;
+                } else {
+                    no++;
+                }
+            }
+
+        } else {
+            if (vmResults.get(repitition - 1).reachedEquilibrium()) {
                 yes++;
             } else {
                 no++;
             }
         }
+
         DefaultKeyedValuesDataset dataset = new DefaultKeyedValuesDataset();
         dataset.setValue("Ja", yes);
         dataset.setValue("Nein", no);
@@ -158,7 +169,7 @@ public class ShowResultView implements AbstractShowResultView {
             points.add(agents.get(i).getLastScore());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor, 100);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", dataset);
@@ -180,7 +191,7 @@ public class ShowResultView implements AbstractShowResultView {
             ranks.add(agents.get(i).getLastRank());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor, 10);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Agentenzahl", "Rangbereich aufgeteilt in Strategien", dataset);
@@ -201,14 +212,14 @@ public class ShowResultView implements AbstractShowResultView {
         if (repitition == -1)
             divisor = vmResults.size();
 
-        for(VMAgentHistory agent : agents) {
+        for (VMAgentHistory agent : agents) {
             int cycle = 0;
-            for(String strategy : agent.getStrategies()) {
-                if(strategiesCycleCounts.containsKey(strategy)) {
+            for (String strategy : agent.getStrategies()) {
+                if (strategiesCycleCounts.containsKey(strategy)) {
                     strategiesCycleCounts.get(strategy)[cycle]++;
                 } else {
                     Integer[] strategyCycleCounts = new Integer[cycleCount];
-                    for(int i = 0; i < strategyCycleCounts.length; i++) strategyCycleCounts[i] = 0;
+                    for (int i = 0; i < strategyCycleCounts.length; i++) strategyCycleCounts[i] = 0;
                     strategiesCycleCounts.put(strategy, strategyCycleCounts);
                     strategyCycleCounts[cycle]++;
                 }
@@ -218,10 +229,10 @@ public class ShowResultView implements AbstractShowResultView {
 
         XYSeriesCollection dataset = new XYSeriesCollection();
 
-        for(String strategy : strategiesCycleCounts.keySet()) {
+        for (String strategy : strategiesCycleCounts.keySet()) {
             XYSeries strategySeries = new XYSeries(strategy);
-            for(int i = 0; i < cycleCount; i++) {
-                strategySeries.add(i + 1, (double)strategiesCycleCounts.get(strategy)[i]/divisor);
+            for (int i = 0; i < cycleCount; i++) {
+                strategySeries.add(i + 1, (double) strategiesCycleCounts.get(strategy)[i] / divisor);
             }
             dataset.addSeries(strategySeries);
         }
@@ -291,6 +302,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void addVMResult(VMResult vmResult) {
+        configNameLabel.setText(vmResult.getName());
         vmResults.add(vmResult);
     }
 

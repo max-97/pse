@@ -113,8 +113,18 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     public JFreeChart getEquilibriumChart(int repitition, int step, String filter, String filterParam) {
         int yes = 0;
         int no = 0;
-        for (int i = 0; i < vmResults.get(resultNames.get(step)).size(); i++) {
-            if (vmResults.get(resultNames.get(step)).get(i).reachedEquilibrium()) {
+
+        if (repitition == -1) {
+
+            for (int i = 0; i < vmResults.get(resultNames.get(step)).size(); i++) {
+                if (vmResults.get(resultNames.get(step)).get(i).reachedEquilibrium()) {
+                    yes++;
+                } else {
+                    no++;
+                }
+            }
+        } else {
+            if (vmResults.get(resultNames.get(step)).get(repitition - 1).reachedEquilibrium()) {
                 yes++;
             } else {
                 no++;
@@ -165,7 +175,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
             points.add(agents.get(i).getLastScore());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor, 100);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", dataset);
@@ -187,7 +197,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
             ranks.add(agents.get(i).getLastRank());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor, 10);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Agentenzahl", "Rangbereich aufgeteilt in Strategien", dataset);
@@ -262,6 +272,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void addVMResult(VMResult vmResult) {
+        configNameLabel.setText(vmResult.getName().substring(0, vmResult.getName().length() - 1));
         if (vmResults.containsKey(vmResult.getName())) {
             vmResults.get(vmResult.getName()).add(vmResult);
         } else {
