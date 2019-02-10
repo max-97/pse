@@ -33,7 +33,7 @@ import java.util.HashMap;
 public class ShowCompareView implements AbstractShowCompareView {
 
     private JFrame frame = new JFrame();
-    ;
+
 
 
     //private List<VMConfiguration> configurations;
@@ -110,12 +110,18 @@ public class ShowCompareView implements AbstractShowCompareView {
         KeyedValuesDataset dataset = getAverageEquilibriumChart();
         resultTabList.get(0).setaverageChart(ChartFactory.createPieChart("Gleichgewicht erreicht?", dataset, true, true, false));
         resultTabList.get(0).setDifferenceCharts(getDiffEquilibriumCharts(dataset));
-        resultTabList.get(1).setaverageChart(getAverageStrategiesChart());
-        //resultTabList.get(1).setDifferenceCharts(getDiffStrategiesCharts());
-        resultTabList.get(2).setaverageChart(getAveragePointRangeChart());
-        //resultTabList.get(2).setDifferenceCharts(getDiffPointRangeCharts());
-        resultTabList.get(3).setaverageChart(getAverageRankRangeChart());
-        //resultTabList.get(3).setDifferenceCharts(getDiffRankRangeCharts());
+        dataset = getAverageStrategiesChart();
+        resultTabList.get(1).setaverageChart(ChartFactory.createPieChart("Strategien", dataset));
+        resultTabList.get(1).setDifferenceTable(getDiffStrategiesTable(dataset));
+
+        CategoryDataset categoryDataset = getAveragePointRangeChart();
+        resultTabList.get(2).setaverageChart(ChartFactory.createStackedBarChart("Punkteverteilung",
+                "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", categoryDataset));
+        resultTabList.get(2).setDifferenceTable(getDiffPointRangeCharts(categoryDataset));
+        categoryDataset = getAverageRankRangeChart();
+        resultTabList.get(3).setaverageChart(ChartFactory.createStackedBarChart("Punkteverteilung",
+                "Agentenzahl", "Rangbereich aufgeteilt in Strategien", categoryDataset));
+        resultTabList.get(3).setDifferenceTable(getDiffRankRangeCharts(categoryDataset));
     }
 
 
@@ -195,7 +201,7 @@ public class ShowCompareView implements AbstractShowCompareView {
         return barChart;
     }
 
-    public JFreeChart getAverageStrategiesChart() {
+    public KeyedValuesDataset getAverageStrategiesChart() {
         ArrayList<String> strategies = new ArrayList<>();
 
         ArrayList<VMAgentHistory> agents = getAllAgents();
@@ -207,14 +213,59 @@ public class ShowCompareView implements AbstractShowCompareView {
 
         KeyedValuesDataset dataset = DataSetHelper.getKeyedValuesDataSet(strategies, divisor);
 
-        JFreeChart pieChart = ChartFactory.createPieChart("Strategien", dataset);
 
-        return pieChart;
+        return dataset;
     }
 
-    //public JFreeChart getDiffStrategiesCharts() { }
+    public JTable getDiffStrategiesTable(KeyedValuesDataset dataset) {
 
-    public JFreeChart getAveragePointRangeChart() {
+        String[] titles = new String[dataset.getItemCount() + 1];
+        titles[0] = "Ergebnis - Wdhl.";
+        for (int i = 0; i < dataset.getItemCount(); i++) {
+            titles[i + 1] = (String) dataset.getKey(i);
+        }
+        tableModel = new DefaultTableModel(titles, 0);
+
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            String repitition = (String) simulationTable.getModel().getValueAt(i, 1);
+            int divisor = 1;
+
+            if (repitition.equals("Durchschnitt"))
+                divisor = results.get(index).size();
+
+            ArrayList<VMAgentHistory> agents = new ArrayList<>();
+            agents.addAll(getAgents(index, i));
+
+            ArrayList<String> strategies = new ArrayList<>();
+            for (int j = 0; j < agents.size(); j++) {
+                strategies.add(agents.get(j).getLastStrategy());
+            }
+
+            KeyedValuesDataset diffDataset = DataSetHelper.getKeyedValuesDataSet(strategies, divisor);
+
+            String[] data = new String[titles.length];
+            data[0] = (String) simulationTable.getModel().getValueAt(i, 0)
+                    + (String) simulationTable.getModel().getValueAt(i, 1);
+
+            for (int k = 0; k < dataset.getItemCount(); k++) {
+                String key = (String) dataset.getKey(k);
+                if (diffDataset.getKeys().contains(key))
+                    data[k + 1] = ((double) diffDataset.getValue(key) - (double) dataset.getValue(key)) + "";
+                else
+                    data[k + 1] = ((double) diffDataset.getValue(key) - 0.0) + "";
+            }
+
+            tableModel.addRow(data);
+
+
+        }
+        JTable table = new JTable(tableModel);
+
+        return table;
+    }
+
+    public CategoryDataset getAveragePointRangeChart() {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> points = new ArrayList<>();
 
@@ -228,14 +279,66 @@ public class ShowCompareView implements AbstractShowCompareView {
 
         CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor, 100);
 
-        JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
-                "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", dataset);
-        return chart;
+        return dataset;
     }
 
-    //public JFreeChart getDiffPointRangeCharts() { }
+    public JTable getDiffPointRangeCharts(CategoryDataset dataset) {
+        String[] titles = new String[dataset.getColumnCount() + 1];
+        titles[0] = "Ergebnis - Wdhl. - Strategie";
+        for (int i = 0; i < dataset.getColumnCount(); i++) {
+            titles[i + 1] = (String) dataset.getColumnKey(i);
+        }
+        tableModel = new DefaultTableModel(titles, 0);
 
-    public JFreeChart getAverageRankRangeChart() {
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            String repitition = (String) simulationTable.getModel().getValueAt(i, 1);
+            int divisor = 1;
+
+            if (repitition.equals("Durchschnitt"))
+                divisor = results.get(index).size();
+
+            ArrayList<VMAgentHistory> agents = new ArrayList<>();
+            agents.addAll(getAgents(index, i));
+
+            ArrayList<String> strategies = new ArrayList<>();
+            ArrayList<Integer> points = new ArrayList<>();
+            for (int j = 0; j < agents.size(); j++) {
+                strategies.add(agents.get(j).getLastStrategy());
+                points.add(agents.get(i).getLastScore());
+            }
+
+            CategoryDataset diffDataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor, 100);
+
+            for (int row = 0; row < dataset.getRowCount(); row++) {
+                String rowKey = (String) dataset.getRowKey(row);
+                String[] data = new String[titles.length];
+                data[0] = (String) simulationTable.getModel().getValueAt(i, 0)
+                        + (String) simulationTable.getModel().getValueAt(i, 1)
+                        + rowKey;
+
+                for (int col = 0; col < dataset.getColumnCount(); col++) {
+                    String colKey = (String) dataset.getColumnKey(col);
+                    if (diffDataset.getRowKeys().contains(rowKey) && diffDataset.getColumnKeys().contains(colKey))
+                        data[col + 1] = ((double) diffDataset.getValue(rowKey, colKey)
+                                - (double) dataset.getValue(rowKey, colKey)) + "";
+                    else
+                        data[col + 1] = (0.0 - (double) dataset.getValue(rowKey, colKey)) + "";
+                }
+
+                tableModel.addRow(data);
+
+            }
+
+
+
+        }
+        JTable table = new JTable(tableModel);
+
+        return table;
+    }
+
+    public CategoryDataset getAverageRankRangeChart() {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> ranks = new ArrayList<>();
 
@@ -249,12 +352,64 @@ public class ShowCompareView implements AbstractShowCompareView {
 
         CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor, 10);
 
-        JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
-                "Agentenzahl", "Rangbereich aufgeteilt in Strategien", dataset);
-        return chart;
+        return dataset;
     }
 
-    //public JFreeChart getDiffRankRangeCharts() { }
+    public JTable getDiffRankRangeCharts(CategoryDataset dataset) {
+        String[] titles = new String[dataset.getColumnCount() + 1];
+        titles[0] = "Ergebnis - Wdhl. - Strategie";
+        for (int i = 0; i < dataset.getColumnCount(); i++) {
+            titles[i + 1] = (String) dataset.getColumnKey(i);
+        }
+        tableModel = new DefaultTableModel(titles, 0);
+
+        for (int i = 0; i < simulationTable.getModel().getRowCount(); i++) {
+            int index = resultNames.indexOf(simulationTable.getModel().getValueAt(i, 0));
+            String repitition = (String) simulationTable.getModel().getValueAt(i, 1);
+            int divisor = 1;
+
+            if (repitition.equals("Durchschnitt"))
+                divisor = results.get(index).size();
+
+            ArrayList<VMAgentHistory> agents = new ArrayList<>();
+            agents.addAll(getAgents(index, i));
+
+            ArrayList<String> strategies = new ArrayList<>();
+            ArrayList<Integer> ranks = new ArrayList<>();
+            for (int j = 0; j < agents.size(); j++) {
+                strategies.add(agents.get(j).getLastStrategy());
+                ranks.add(agents.get(i).getLastRank());
+            }
+
+            CategoryDataset diffDataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor, 10);
+
+            for (int row = 0; row < dataset.getRowCount(); row++) {
+                String rowKey = (String) dataset.getRowKey(row);
+                String[] data = new String[titles.length];
+                data[0] = (String) simulationTable.getModel().getValueAt(i, 0)
+                        + (String) simulationTable.getModel().getValueAt(i, 1)
+                        + rowKey;
+
+                for (int col = 0; col < dataset.getColumnCount(); col++) {
+                    String colKey = (String) dataset.getColumnKey(col);
+                    if (diffDataset.getRowKeys().contains(rowKey) && diffDataset.getColumnKeys().contains(colKey))
+                        data[col + 1] = ((double) diffDataset.getValue(rowKey, colKey)
+                                - (double) dataset.getValue(rowKey, colKey)) + "";
+                    else
+                        data[col + 1] = (0.0 - (double) dataset.getValue(rowKey, colKey)) + "";
+                }
+
+                tableModel.addRow(data);
+
+            }
+
+
+
+        }
+        JTable table = new JTable(tableModel);
+
+        return table;
+    }
 
 
     private ArrayList<VMAgentHistory> getAllAgents() {
@@ -407,10 +562,10 @@ public class ShowCompareView implements AbstractShowCompareView {
         resultTabbedPane.setTabPlacement(1);
         panel3.add(resultTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 500), null, 0, false));
         final JPanel panel4 = new JPanel();
-        panel4.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel4.setLayout(new GridLayoutManager(7, 4, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
-        panel4.add(separator1, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(602, 2), null, 0, false));
+        panel4.add(separator1, new GridConstraints(3, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(602, 2), null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Wähle einfache Konfigurationen, die verglichen werden sollen...");
         panel4.add(label1, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(602, 18), null, 0, false));
@@ -422,22 +577,22 @@ public class ShowCompareView implements AbstractShowCompareView {
         addButton.setEnabled(false);
         addButton.setText("hinzufügen");
         panel4.add(addButton, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        removeButton.setEnabled(false);
-        removeButton.setText("entfernen");
-        panel4.add(removeButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane3 = new JScrollPane();
         scrollPane3.setVerticalScrollBarPolicy(21);
-        panel4.add(scrollPane3, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 100), null, 0, false));
+        panel4.add(scrollPane3, new GridConstraints(1, 2, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 100), null, 0, false));
         scrollPane3.setViewportView(simulationTable);
         final JLabel label2 = new JLabel();
         label2.setText("zu vergleichende Simulationen");
-        panel4.add(label2, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel4.add(label2, new GridConstraints(0, 2, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         applyButton.setText("Auswahl anwenden");
-        panel4.add(applyButton, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel4.add(applyButton, new GridConstraints(5, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel4.add(spacer1, new GridConstraints(6, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(602, 14), null, 0, false));
         final Spacer spacer2 = new Spacer();
         panel4.add(spacer2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 10), new Dimension(602, 14), null, 0, false));
+        removeButton.setEnabled(false);
+        removeButton.setText("entfernen");
+        panel4.add(removeButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
