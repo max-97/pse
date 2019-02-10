@@ -66,7 +66,6 @@ public class ParameterTable {
     }
 
     public HashMap<String, Object> getAllUserInputs() {
-        //TODO: Hashmap mit parameterNames zurückgeben? (getter setter VM anschauen)
         HashMap<String, Object> params = new HashMap<>();
 
         for (int i = 0; i < parameterTextFields.size(); i++) {
