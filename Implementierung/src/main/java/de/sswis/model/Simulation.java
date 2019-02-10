@@ -151,9 +151,26 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void run() {
-        for(int i = 0; i < repetitions && !stopSimulation; i++) {
-            simulateRun(i + 1);
+        Thread[] threads = new Thread[repetitions];
+
+        for(int i = 0; i < repetitions; i++) {
+            int repetition = i;
+            threads[i] = new Thread(
+                    () -> simulateRun(repetition + 1)
+            );
+            threads[i].setPriority(1);
+            threads[i].start();
         }
+
+        for(int i = 0; i < repetitions && !stopSimulation; i++) {
+            try{
+                threads[i].join();
+            }catch(InterruptedException e){
+                stopSimulation = true;
+                e.printStackTrace();
+            }
+        }
+
         if(!stopSimulation) {
             notifyObservers();
         }
