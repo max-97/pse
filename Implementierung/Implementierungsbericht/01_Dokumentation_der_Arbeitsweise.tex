@@ -1,7 +1,8 @@
 \section{Dokumentation der Arbeitsweise}
 
 Nach Abschluss der Entwurfsphase ging es in der Implementierungsphase daran, die Ergebnisse der Planung als Software umzusetzen.\\
-Es erschien uns naheliegend, unsere bisherige Arbeitsweise weitestgehend beizubehalten. So beließen wir zunächst auch die Arbeitsaufteilung so, wie sie sich in der Entwurfsphase ergeben hatte. Mit fortlaufender Dauer der Implementierungsphase kristallisierte sich heraus, dass wir den Arbeitsaufwand der einzelnen Bereiche z.T. falsch eingeschätzt hatten, wodurch der Fortschritt nicht ganz synchron erfolgte. Daraufhin haben wir eine Anpassung der Arbeitsverteilung vorgenommen.
+Es erschien uns naheliegend, unsere bisherige Arbeitsweise weitestgehend beizubehalten. So beließen wir zunächst auch die Arbeitsaufteilung so, wie sie sich in der Entwurfsphase ergeben hatte. Mit fortlaufender Dauer der Implementierungsphase kristallisierte sich heraus, dass wir den Arbeitsaufwand der einzelnen Bereiche z.T. falsch eingeschätzt hatten, wodurch der Fortschritt nicht ganz synchron erfolgte. Daraufhin haben wir eine Anpassung der Arbeitsverteilung vorgenommen.\\
+Zur proaktiven Qualitätskontrolle fand neben dem von uns bereits in den vergangenen Phasen praktizierten Vier-Augen-Prinzip (bzw. Mehraugenprinzip) nun auch ein Werkzeug zur kontinuierlichen Integration Anwendung. Dies geschah jeweils in der Form von sog. Pull-Requests bzw. dem Travis-CI-Plugin auf der Plattform GitHub statt.
 
 \subsection{Arbeitsverteilung}
 
@@ -19,9 +20,9 @@ View: Sophie Bräuniger und Simon Hügel\\
 
 \subsection{Probleme und Lösungen}
 
-Im Controller und Model haben wir keine größeren Probleme angetroffen. Lediglich einige wenige Methoden und Klassen mussten anpassen werden. %TODO Controller und Model: jeweils ein Satz zu Problemen (oder Abwesenheit von Problemen)
+Im Controller und Model haben wir keine größeren Probleme angetroffen. Lediglich einige wenige Methoden und Klassen wurden funktionserhaltend angepasst.
 Im ViewModel gab es das Problem, dass Mehrfachinitialisierungen nicht ausreichend gut abgebildet wurden. Um dies zu beheben, mussten wir eine neue Klasse VariableDistribution einführen. \\
-Es war außerdem schwierig, die mit intelliJ-GUI-Forms gestaltete Benutzeroberfläche modular zu machen und das Model oder die Nutzer anzupassen, deshalb gab es einige Probleme. %TODO ich weiß nicht, was das bedeutet\\
+Es war außerdem schwierig, die mit intelliJ-GUI-Forms gestaltete Benutzeroberfläche modular zu machen und das Model oder die Nutzer anzupassen, deshalb gab es einige Probleme. %TODO bitte von Eingeweihten verständlicher machen
 Für eventuell benötigte, zusätzliche Parameter der Bedingungen von kombinierten Strategien sowie bei Paarungs-, Bewertungs- und Anpassungsalgorithmen musste eine Eingabemöglichkeit hinzugefügt werden. Hierfür wurde eine weitere Klasse mit zugehöriger GUI-Form erstellt, die in einem Dialogfenster die Art des Parameters anzeigt und zur Eingabe auffordert.\\
 Alle Vorkommen von Tabs wurden von der beinhaltenden Klasse ausgelagert und werden nun als eigene Klasse samt GUI-Form dargestellt. Dies erleichtert das Erstellen von Tabs aus ViewModel-Objekten und Nutzereingaben.\\
-Das wohl schwerwiegendste Problem war, dass die genannten Punkte nicht immer frühzeitig erkannt wurden. Zwar konnte schließlich eine Lösung gefunden werden, jedoch nicht ohne eine gewisse Verzögerung.
+Das wohl schwerwiegendste Problem war, dass die genannten Punkte nicht immer frühzeitig erkannt wurden. Zwar konnte meistens eine Lösung gefunden werden, jedoch nicht ohne eine gewisse Verzögerung.
