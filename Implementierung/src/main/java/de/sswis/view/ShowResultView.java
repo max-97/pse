@@ -13,11 +13,15 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.*;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -89,17 +93,17 @@ public class ShowResultView implements AbstractShowResultView {
             case POINTHISTORY:
                 tab.setChart(getPointHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
+                */
             case STRATEGYHISTORY:
                 tab.setChart(getStrategyHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
-                */
             default:
                 break;
         }
     }
 
 
-    public JFreeChart getEquilibriumChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getEquilibriumChart(int repitition, String filter, String filterParam) {
         int yes = 0;
         int no = 0;
         for (int i = 0; i < vmResults.size(); i++) {
@@ -118,7 +122,7 @@ public class ShowResultView implements AbstractShowResultView {
         return pieChart;
     }
 
-    public JFreeChart getStrategiesChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getStrategiesChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
 
         ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
@@ -139,7 +143,7 @@ public class ShowResultView implements AbstractShowResultView {
         return pieChart;
     }
 
-    public JFreeChart getPointRangeChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getPointRangeChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> points = new ArrayList<>();
 
@@ -161,7 +165,7 @@ public class ShowResultView implements AbstractShowResultView {
         return chart;
     }
 
-    public JFreeChart getRankRangeChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getRankRangeChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> ranks = new ArrayList<>();
 
@@ -183,14 +187,47 @@ public class ShowResultView implements AbstractShowResultView {
         return chart;
     }
 
-    public JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
-        //TODO: implement me
+    private JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
         return null;
     }
 
-    public JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
-        //TODO: implement me
-        return null;
+    private JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
+        HashMap<String, Integer[]> strategiesCycleCounts = new HashMap<>();
+        ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
+        int cycleCount = agents.get(0).getStrategies().size();
+
+        int divisor = 1;
+
+        if (repitition == -1)
+            divisor = vmResults.size();
+
+        for(VMAgentHistory agent : agents) {
+            int cycle = 0;
+            for(String strategy : agent.getStrategies()) {
+                if(strategiesCycleCounts.containsKey(strategy)) {
+                    strategiesCycleCounts.get(strategy)[cycle]++;
+                } else {
+                    Integer[] strategyCycleCounts = new Integer[cycleCount];
+                    for(int i = 0; i < strategyCycleCounts.length; i++) strategyCycleCounts[i] = 0;
+                    strategiesCycleCounts.put(strategy, strategyCycleCounts);
+                    strategyCycleCounts[cycle]++;
+                }
+                cycle++;
+            }
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+
+        for(String strategy : strategiesCycleCounts.keySet()) {
+            XYSeries strategySeries = new XYSeries(strategy);
+            for(int i = 0; i < cycleCount; i++) {
+                strategySeries.add(i + 1, (double)strategiesCycleCounts.get(strategy)[i]/divisor);
+            }
+            dataset.addSeries(strategySeries);
+        }
+
+        return ChartFactory.createXYLineChart("Strategieverteilung per Zyklus", "Zyklus",
+                "Anzahl", dataset);
     }
 
     private ArrayList<VMAgentHistory> filterAgents(int repitition, String filter, String filterParam) {
