@@ -30,6 +30,8 @@ public interface AbstractMainView extends AbstractView {
      */
     void removeConfiguration(String configurationName);
 
+    void removeAll();
+
     /**
      * Fügt ein Ergebnis zu einer Konfiguration hinzu.
      * @param NameConfiguration Name der Konfiguration.

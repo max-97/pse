@@ -4,7 +4,6 @@ import java.util.List;
 
 public class VMAgentHistory {
 
-    //TODO: nach Bedarf ergänzen
     private int agentID;
     private int groupID;
     private List<Integer> score;

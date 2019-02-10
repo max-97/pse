@@ -73,7 +73,6 @@ public class Simulation implements Runnable, ObservableSimulation {
                 game.playGame(pair);
             }
 
-            currentRanking = config.getRankingAlg().getRankings(agents);
             round++;
 
             for(Agent agent : agents) {
@@ -81,6 +80,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             }
 
             if(round == (cycle * cycleRoundCount)) {
+                currentRanking = config.getRankingAlg().getRankings(agents);
                 adaptationCount[cycle - 1] = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
                 if(isInEquilibrium(adaptationCount, cycle)) {
                     equilibriumAchieved = true;

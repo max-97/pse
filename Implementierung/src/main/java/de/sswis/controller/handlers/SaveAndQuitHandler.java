@@ -33,6 +33,7 @@ public class SaveAndQuitHandler implements ActionListener {
             AbstractManageConfigurationsView mcView = (AbstractManageConfigurationsView) this.view;
             AbstractMainView mainView = mcView.getParentView();
             FileManager manager = new FileManager();
+            mainView.removeAll();
             for (VMConfiguration c : manager.loadAllConfigurations()) {
                 mainView.addConfiguration(c);
             }
