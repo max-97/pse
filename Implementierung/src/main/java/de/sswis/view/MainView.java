@@ -100,6 +100,7 @@ public class MainView implements AbstractMainView {
                 break;
             }
         }
+        updateButtons();
     }
 
     @Override
