@@ -89,11 +89,9 @@ public class ShowResultView implements AbstractShowResultView {
             case RANKRANGE:
                 tab.setChart(getRankRangeChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
-                /*
             case POINTHISTORY:
                 tab.setChart(getPointHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
-                */
             case STRATEGYHISTORY:
                 tab.setChart(getStrategyHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
@@ -188,7 +186,37 @@ public class ShowResultView implements AbstractShowResultView {
     }
 
     private JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
-        return null;
+        ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
+        int cycleCount = agents.get(0).getStrategies().size();
+
+        int[] averageScores = new int[cycleCount];
+        for(int i = 0; i < averageScores.length; i++) {
+            averageScores[i] = 0;
+        }
+
+        for(VMAgentHistory agent : agents) {
+            int cycle = 0;
+            for(Integer score : agent.getScore()) {
+                averageScores[cycle] += score;
+                cycle++;
+            }
+        }
+
+        for(int i = 0; i < averageScores.length; i++) {
+            averageScores[i] = Math.round((float)averageScores[i]/agents.size());
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries scoreSeries = new XYSeries("Durschnittliche Punktzahl");
+
+        for(int i = 0; i < cycleCount; i++) {
+            scoreSeries.add(i + 1, averageScores[i]);
+        }
+
+        dataset.addSeries(scoreSeries);
+
+        return ChartFactory.createXYLineChart("Durschnittspunktzahl per Zyklus", "Zyklus",
+                "Punktzahl", dataset);
     }
 
     private JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
