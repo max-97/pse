@@ -25,7 +25,6 @@ public class ResultTab {
         this.vmResult = vmResult;
 
         configurationNameLabel.setText(vmResult.getVmConfig().getName());
-        numberOfRepitionsLabel.setText(vmResult.getNumberOfRepititions() + "");
     }
 
     public void addDeleteButtonActionlistener(ActionListener listener) {

@@ -164,8 +164,6 @@ public class ShowCompareView implements AbstractShowCompareView {
 
             String repitition = (String) simulationTable.getModel().getValueAt(i, 1);
             rowKeys.add(resultNames.get(index) + repitition);
-            //TODO: remove me:
-            System.out.println(rowKeys.get(rowKeys.size() - 1));
 
 
             if (repitition.equals("Durchschnitt")) {
