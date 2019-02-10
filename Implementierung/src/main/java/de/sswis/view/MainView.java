@@ -92,6 +92,13 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public void removeAll() {
+        while (!configurations.isEmpty()) {
+            configurations.remove(configurations.size() - 1);
+        }
+    }
+
+    @Override
     public void addResult(String NameConfiguration, VMResult result) {
 
         for (int i = 0; i < configurations.size(); i++) {
@@ -263,6 +270,8 @@ public class MainView implements AbstractMainView {
                 showResultButton.setEnabled(true);
                 saveResultButton.setEnabled(true);
             } else {
+                showResultButton.setEnabled(false);
+                saveResultButton.setEnabled(false);
             }
 
         } else {
