@@ -236,7 +236,8 @@ public class MainView implements AbstractMainView {
     public Collection<VMResult> getResults() {
         Collection<VMResult> results = new ArrayList<>();
         for (VMConfiguration c : configurations) {
-            results.add(c.getResult());
+            if (c.hasResult())
+                results.add(c.getResult());
         }
         return results;
     }
