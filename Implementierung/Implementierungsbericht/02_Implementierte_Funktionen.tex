@@ -15,7 +15,7 @@ Es können Simulationen erstellt werden.
 Die Simulation kann gestartet werden.
 
 \textbf{/F0020/}
-Mehrere Simulationen können parallel simuliert werden. Jede Simulation läuft auf einem eigenen Thread. {\color{red} Dies gilt für die unterschiedlichen Wiederholungen einer Simulation.}
+Mehrere Simulationen können parallel simuliert werden. Jede Simulation läuft auf einem eigenen Thread. {\color{red} Dies gilt auch für die unterschiedlichen Wiederholungen einer Simulation.}
 
 \textbf{/F0030/} 
 Die Ergebnisse der Simulation können angezeigt werden.
@@ -27,7 +27,7 @@ die maximale Zyklenanzahl erreicht wird.
 \textbf{/F0050/}
 Menüpunkt zum Verwalten eigener Spiele. Ein Spiel kann erstellt und gespeichert werden. Jedes Spiel erhält einen Namen. Ein Spiel kann umbenannt werden. Ein bereits erstelltes Spiel kann gelöscht werden. Erstellte Spiele können bearbeitet und umbenannt werden.
 
-\textbf{/F0060}
+\textbf{/F0060/}
 Menüpunkt zum Verwalten von Strategien. Eine Strategie kann erstellt und gespeichert werden. Jede Strategie erhält einen Namen. Eine bereits erstellte Strategie kann gelöscht werden. Erstellte Strategien können bearbeitet und umbennant werden. {\color{red} Kombinierte und gemischte Strategien erhalten jeweils einen eigenen Menüpunkt.}
 
 \textbf{/F0070/}
@@ -65,7 +65,7 @@ Eine Initialisierung kann unabhängig von einer Konfiguration erstellt und gespe
 Es könne Gruppen erstellt werden. Jede Gruppe erhält einen Namen und eine ID. 
 
 \textbf{/F0130/} 
-Die Anzahl der Agenten kann festgelegt werden. Es werden nur gerade Zahlen zugelassen. Die Agenten werden automatisch nummeriert. Die Nummer erfüllt die Funktion einer ID.
+Die Anzahl der Agenten kann festgelegt werden. Die Agenten werden automatisch nummeriert. Die Nummer erfüllt die Funktion einer ID.
 
 \textbf{/F0140/} 
 Der Verteilung der initialen Strategien der Agenten kann festgelegt werden. Für die Verteilung der Strategien hat man die Optionen
@@ -83,7 +83,7 @@ Die Agenten können in Gruppen eingeteilt werden. Die Gruppen müssen \st{nicht}
 \end{enumerate}
 Die Optionen können nicht miteinander kombiniert werden.
 
-\textbf{/F0170*/} 
+\textbf{/F0170*/}
 Für die Parameter in der Initialisierung und die Parameter 5. - 7. in /F0100/ kann man mehrere Werte in der Form \emph{Startwert} - \emph{Endwert} - \emph{Schrittweite} angeben. Innerhalb der Verteilung von Strategien und Gruppen können mehrere Parameter variabel sein. Es können nicht /F0140/ und /F0150/ gleichzeitig variabel sein. Ansonsten kann immer nur ein Parameter variabel sein. Erstellt man eine Konfiguration mit variablen Parametern, wird für jeden möglichen Parameter eine eigene Simulation erstellt.
 
 \textbf{/F0180/}
@@ -125,19 +125,19 @@ Erstellen eines Spiels durch Eingabe der Payoffs.
 Eine der Strategien /F0410/ bis /F0450/ muss mit einer Bedingung aus /F0460/ bis /F0520/ kombiniert werden. Eine kombinierte Strategie besteht aus $k$ Paaren von Strategie und Bedingung. Ist die $i$-te Bedingung erfüllt, führt der Agent die $i$-te Strategie aus. Falls nicht wird die $i+1$-te Bedingung überprüft. Jede kombinierte Strategie erhält vom Benutzer eine ID. {\color{red}Es wird immer eine Strategie mit niedrigster Priorität und ohne Bedingung angegeben.}
 
 \textbf{/F0410/} 
-Strategie: Tit-for-Tat 1. Der Agent kooperiert, wenn der gleiche Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Tit-for-Tat individuell. Der Agent kooperiert, wenn der gleiche Agent das letzte Mal mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0411/}
-Strategie: Tit-for-Tat 2. Der Agent kooperiert, wenn der Agent aus der letzten Runde mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Tit-for-Tat mit jedem. Der Agent kooperiert, wenn der Agent aus der letzten Runde mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0412/}
 Strategie: Gruppen Tit-for-Tat. Der Agent in einer Gruppe $G$ kooperiert, wenn der andere Agent kooperiert hat, als er das letzte Mal gegen einen Agenten aus $G$ gespielt hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0420/} 
-Strategie: Grim 1. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Grim individuell. Der Agent kooperiert, wenn der andere Agent immer mit ihm kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0421/}
-Strategie: Grim 2. Der Agent kooperiert, wenn der andere Agent immer kooperiert hat. Beim ersten Mal kooperiert der Agent.
+Strategie: Grim mit jedem. Der Agent kooperiert, wenn der andere Agent immer kooperiert hat. Beim ersten Mal kooperiert der Agent.
 
 \textbf{/F0422/}
 Strategie: Gruppen Grim. Der Agent in einer Gruppe $G$ kooperiert, wenn der andere Agent immer mit Agenten aus $G$ kooperiert hat. Beim ersten Mal kooperiert der Agent.
@@ -167,7 +167,7 @@ Bedingung: Wähle die Strategie, wenn der andere Agent reicher ist.
 Bedingung: Wähle die Strategie, wenn der andere Agent ärmer ist.
 
 \textbf{/F0510/}
-Bedingung: Wähle die Strategie, wenn der andere Agent ungefähr gleich reich ist.
+Bedingung: Wähle die Strategie, wenn der andere Agent \emph{ungefähr gleich reich} ist. Zwei Agenten sind \emph{ungefähr gleich reich} wenn die Differenz ihrer Punkte maximal $\delta$ beträgt. $\delta$ wird vom Benutzer eingegeben. 
 
 \textbf{/F0520/}
 Bedingung: Wähle die Strategie immer.
@@ -277,9 +277,6 @@ Agenten besitzen gemischte Strategien. D.h. Agenten besitzen mehrere Strategien 
 
 \textbf{/W0520/}
 Die Simulation kann abgebrochen und wieder neu gestartet werden. Beim Neustart beginnt sie wieder in ihrem Anfangszustand. Beim Abbrechen werden keine Informationen gespeichert.
-
-\textbf{/W0530/}
-Die Begriffe \emph{reicher}, \emph{ärmer} und \emph{ungefähr so reich wie} werden durch die Ränge bestimmt. Bei der Initialisierung kann ausgewählt werden welche Definition verwendet wird. \emph{Ungefähr so reich wie} heißt $\pm x$ Punkte bzw. Ränge, $x$ wird vom Benutzer bestimmt. %TODO aktueller Stand?
 
 \subsection{Auslassungen}
 

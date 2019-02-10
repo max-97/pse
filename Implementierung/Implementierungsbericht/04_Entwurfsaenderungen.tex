@@ -5,16 +5,26 @@ Der grundlegende Entwurf hat sich seit der Entwurfsphase nicht geändert. Als im
 Die wichtigsten Änderungen sind hier aufgeführt:
 
 \begin{itemize}
-\item Einführung eines neuen Unterpakets von View namens CustomComponents, das die Klassen und GUI-Forms der nun ausgelagerten Tabs enthält
+\item Einführung eines neuen Unterpakets von View namens CustomComponents, das die Klassen und GUI-Forms der nun ausgelagerten Tabs enthält.
 
-\item Abbildung von Mehrfachinitialisierungen wurde angepasst
+\item Abbildung von Mehrfachinitialisierungen wurde angepasst.
 
-\item Views kennen ihre Parent-View, d.h. Fenster wissen, von welchem Fenster sie erstellt wurden
+\item Views kennen ihre Parent-View, d.h. Fenster wissen, von welchem Fenster sie erstellt wurden.
 
-\item Es findet keine strikte Unterscheidung zwischen kombinierten Strategien und gemischten Strategien statt. Stattdessen wird das Entwurfsmuster "Kompositum" verwendet.
+\item Es findet keine strikte Unterscheidung zwischen kombinierten Strategien und gemischten Strategien statt. Stattdessen wird das Entwurfsmuster \emph{Kompositum} verwendet.
 
-\item VMResult wurde um die Klasse AgentHistory ergänzt
+\item VMResult wurde um die Klasse VMAgentHistory ergänzt. VMAgentHistory beinhaltet Informationen über den Zustand eines Agenten während der Simulation. 
 
 \end{itemize}
 
-%TODO UML-Diagramme von Präsentation
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pse_update1.jpg}
+	\caption{Anpassung des GUI-Entwurfs. Die Änderungen gelten analog für alle anderen Klassen in der GUI.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{pse_update2.jpg}
+	\caption{Kompositum Entwurfsmuster für Strategien.}
+\end{figure}
