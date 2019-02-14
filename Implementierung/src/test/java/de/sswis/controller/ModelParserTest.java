@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 public class ModelParserTest {
 
     private static ModelParser modelParser;
+    private static ModelProvider modelProvider;
 
     private static VMCombinedStrategy combStrategy1;
     private static VMCombinedStrategy combStrategy2;
@@ -26,6 +27,8 @@ public class ModelParserTest {
     public static void setUp() {
 
         modelParser = new ModelParser();
+        modelProvider = ModelProvider.getInstance();
+
 
         HashMap<String, Object> empty = new HashMap<>();
         combStrategy1 = new VMCombinedStrategy("Always Cooperate", "Desc", AlwaysCooperate.NAME);
@@ -39,19 +42,16 @@ public class ModelParserTest {
         combStrategy3.addStrategy(AlwaysCooperate.NAME, Delta.NAME);
         combStrategy3.addConditionParameter(parameters3);
 
-
     }
 
 
     @Test
     public void parseVMCombinedStrategyTest() {
         VMCombinedStrategy[] vmCombinedStrategies = new VMCombinedStrategy[]{combStrategy1, combStrategy2, combStrategy3};
-        CombinedStrategy[] combinedStrategies = new CombinedStrategy[3];
-        for(int i = 0; i < vmCombinedStrategies.length; i++) {
-            combinedStrategies[i] = modelParser.parseVMCombinedStrategy(vmCombinedStrategies[i]);
-        }
+        CombinedStrategy[] combinedStrategies = new CombinedStrategy[vmCombinedStrategies.length];
 
         for(int i = 0; i < vmCombinedStrategies.length; i++) {
+            combinedStrategies[i] = modelParser.parseVMCombinedStrategy(vmCombinedStrategies[i]);
             assertEquals(vmCombinedStrategies[i].getName(), combinedStrategies[i].getName());
             for(int j = 0; j < vmCombinedStrategies[i].getStrategies().size(); j++) {
                 assertEquals(vmCombinedStrategies[i].getStrategies().get(j),
@@ -63,19 +63,34 @@ public class ModelParserTest {
     }
 
     @Test
-    public void parseVMConfiguration() {
+    public void parseVMStrategyTest() {
+        VMStrategy vmStrategy1 = new VMStrategy();
+        vmStrategy1.setName("100%");
+        vmStrategy1.addStrategy(combStrategy1.getName(), "1");
+        VMStrategy vmStrategy2 = new VMStrategy();
+        vmStrategy2.setName("60%/40%");
+        vmStrategy2.addStrategy(combStrategy1.getName(), "0.6");
+        vmStrategy2.addStrategy(combStrategy2.getName(), "0.4");
+
+        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy1.getName(),
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()}));
+        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy2.getName(),
+                new BaseStrategy[]{new AlwaysCooperate(), new NeverCooperate()},
+                new Condition[]{new OwnGroup(), new Always()}));
+
+        VMStrategy[] vmStrategies = new VMStrategy[]{vmStrategy1, vmStrategy2};
+        MixedStrategy[] mixedStrategies = new MixedStrategy[vmStrategies.length];
+
+        for(int i = 0; i < vmStrategies.length; i++) {
+            mixedStrategies[i] = modelParser.parseVMStrategy(vmStrategies[i]);
+            assertEquals(vmStrategies[i].getName(), mixedStrategies[i].getName());
+            for(int j = 0; j < vmStrategies[i].getCombinedStrategies().size(); j++) {
+                assertEquals(vmStrategies[i].getCombinedStrategies().get(j),
+                        mixedStrategies[i].getCombinedStrategies()[j].getName());
+                assertEquals(Double.parseDouble(vmStrategies[i].getProbabilities().get(j)),
+                        mixedStrategies[i].getProbabilities()[j], 0.0001);
+            }
+        }
     }
 
-    @Test
-    public void parseVMGameTest() {
-
-    }
-
-    @Test
-    public void parseVMInitialization() {
-    }
-
-    @Test
-    public void parseVMStrategy() {
-    }
 }
