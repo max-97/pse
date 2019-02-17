@@ -93,4 +93,47 @@ public class ModelParserTest {
         }
     }
 
+    @Test
+    public void parseSimpleVMConfigurationTest() {
+        HashMap<String, Object> empty = new HashMap<>();
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init");
+        modelProvider.addInitialization(new Initialization("Init", 100));
+        modelProvider.addGame(new Game("Game", "", null));
+
+        VMConfiguration vmConfig = new VMConfiguration();
+        vmConfig.setName("Config");
+        vmConfig.setRounds("100");
+        vmConfig.setCycles("10");
+        vmConfig.setGame("Game");
+        vmConfig.setAdaptationAlg("Replicator Dynamic Score");
+        vmConfig.setRankingAlg("Gesamtpunktzahl");
+        vmConfig.setPairingAlg("Zufällige Paarung");
+        vmConfig.setPairingParameters(empty);
+        vmConfig.setRankingParameters(empty);
+        vmConfig.setAdaptationParameters(empty);
+        vmConfig.setInit("Init");
+        vmConfig.setAdaptationProbability("1");
+        vmConfig.setEquilibriumRounds(15);
+        vmConfig.setEquilibriumMaxChange(10);
+
+        Configuration result = null;
+        for(Configuration config : modelParser.parseVMConfiguration(vmConfig)) {
+            result = config;
+        }
+
+        Object[] expecteds = new Object[]{"Config", 1000, 10, "Game", "Replicator Dynamic Score", "Gesamtpunktzahl",
+                "Zufällige Paarung", "Init", 1.0, 15, 0.1};
+        Object[] actuals = new Object[]{result.getName(), result.getRounds(), result.getCycles(),
+                result.getGame().getName(), result.getAdaptationAlg().getName(), result.getRankingAlg().getName(),
+                result.getPairingAlg().getName(), result.getInit().getName(), result.getAdaptationProbability(),
+                result.getEquilibriumRounds(), result.getThreshold()};
+        assertArrayEquals(expecteds, actuals);
+    }
+
+    @Test
+    public void parseSimpleVMInitialization() {
+
+    }
+
 }
