@@ -6,6 +6,7 @@ import com.google.gson.stream.JsonReader;
 import de.sswis.view.model.*;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,7 +25,8 @@ public class FileManager {
 
     private Gson gson;
 
-    private static final String BASE_PATH            = "src/main/resources/saves";
+    // Path is relative to resources directory
+    private static final String SAVES_PATH = "./saves";
 
     private static final String VM_CONFIGURATION     = "VMConfiguration";
     private static final String VM_INITIALIZATION    = "VMInitialization";
@@ -38,11 +40,15 @@ public class FileManager {
      * Standardkonstruktor
      */
     public FileManager() {
+        File saveDir = new File(FileManager.SAVES_PATH);
+        if (!saveDir.isDirectory()) {
+            saveDir.mkdir();
+        }
         this.gson = new GsonBuilder().create();
     }
 
     private File[] getFilesInSaves() {
-        File dir = new File(FileManager.BASE_PATH);
+        File dir = new File(FileManager.SAVES_PATH);
         return dir.listFiles();
     }
 
@@ -461,6 +467,6 @@ public class FileManager {
     }
 
     private String getFilePath(String objectType, String objectName) {
-        return FileManager.BASE_PATH + "/" + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
+        return FileManager.SAVES_PATH + "/" + objectType + "_" + objectName + FileManager.JSON_EXTENSION;
     }
 }
