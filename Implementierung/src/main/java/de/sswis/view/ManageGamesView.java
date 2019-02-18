@@ -56,6 +56,8 @@ public class ManageGamesView implements AbstractManageGamesView {
 
         gameTabs.add(tab);
         GamesPane.addTab(game.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
 
@@ -74,6 +76,8 @@ public class ManageGamesView implements AbstractManageGamesView {
         gameTabs.add(index, tab);
         GamesPane.remove(index);
         GamesPane.insertTab(newGame.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
     @Override
@@ -86,6 +90,8 @@ public class ManageGamesView implements AbstractManageGamesView {
                 break;
             }
         }
+
+        update();
     }
 
     @Override

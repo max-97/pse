@@ -53,6 +53,8 @@ public class ManageResultsView implements AbstractManageResultsView {
 
         resultTabs.add(tab);
         ResultsPane.addTab(vmResult.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
 
@@ -65,6 +67,8 @@ public class ManageResultsView implements AbstractManageResultsView {
                 break;
             }
         }
+
+        update();
     }
 
     @Override

@@ -54,6 +54,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
         initializationTabs.add(tab);
         InitsPane.addTab(vmInitialization.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
     @Override
@@ -71,6 +73,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
         initializationTabs.add(index, tab);
         InitsPane.remove(index);
         InitsPane.insertTab(newInitialization.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
     @Override
@@ -83,6 +87,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
             }
         }
 
+        update();
     }
 
     @Override
