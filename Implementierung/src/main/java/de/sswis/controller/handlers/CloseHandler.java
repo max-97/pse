@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  *
  * @author Max Braun
  */
-public class SaveAndQuitHandler implements ActionListener {
+public class CloseHandler implements ActionListener {
 
     private AbstractView view;
 
@@ -23,7 +23,7 @@ public class SaveAndQuitHandler implements ActionListener {
      *
      * @param view die zu schließende View
      */
-    public SaveAndQuitHandler(AbstractView view) {
+    public CloseHandler(AbstractView view) {
         this.view = view;
     }
 
