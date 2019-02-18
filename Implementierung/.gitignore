@@ -390,3 +390,5 @@ tex/
 .idea/modules/
 build/libs/
 !Abgabe/sswis-1.0.jar
+/saves/
+/saves/*
