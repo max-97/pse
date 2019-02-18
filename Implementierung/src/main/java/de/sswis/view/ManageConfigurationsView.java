@@ -56,6 +56,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
         tab.addEditButtonActionlistener(editListener);
         configTabs.add(tab);
         ConfigurationsPane.addTab(configuration.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
     @Override
@@ -73,6 +75,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
         configTabs.add(index, tab);
         ConfigurationsPane.remove(index);
         ConfigurationsPane.insertTab(newConfiguration.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
 
@@ -86,6 +90,8 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
                 break;
             }
         }
+
+        update();
     }
 
     @Override

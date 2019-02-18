@@ -58,9 +58,7 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
         strategyTabs.add(tab);
         StrategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
 
-
         update();
-
     }
 
     @Override
@@ -78,6 +76,8 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
         strategyTabs.add(index, tab);
         StrategiesPane.remove(index);
         StrategiesPane.insertTab(newCombinedStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
     @Override

@@ -53,6 +53,8 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
         strategyTabs.add(tab);
         strategiesPane.addTab(vmStrategy.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
     @Override
@@ -70,6 +72,8 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
         strategyTabs.add(index, tab);
         strategiesPane.remove(index);
         strategiesPane.insertTab(newStrategy.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
     @Override
@@ -81,6 +85,8 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
                 break;
             }
         }
+
+        update();
     }
 
     @Override
