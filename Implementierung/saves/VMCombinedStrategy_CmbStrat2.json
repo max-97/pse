@@ -1,1 +1,0 @@
-{"name":"CmbStrat2","description":"","defaultStrategy":"Grim mit jedem","baseStrategies":["Tit-for-Tat mit jedem"],"conditions":["Wahrscheinlichkeit"],"conditionParameters":[{"ALPHA":"0.4"}]}
