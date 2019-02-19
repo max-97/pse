@@ -139,7 +139,7 @@ public class GroupTab {
 
         vmGroup.setRelativeStrategyDistribution(percentageAgentStrategyRadioButton.isSelected());
         for (int i = 0; i < strategyTabs.size(); i++) {
-            vmGroup.addStrategy(allStrategies.get(i), strategyTabs.get(i).getUserInput());
+            vmGroup.addStrategy(strategyTabs.get(i).getTitle(), strategyTabs.get(i).getUserInput());
         }
 
         vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
@@ -167,6 +167,7 @@ public class GroupTab {
         List<String> strategies = this.vmGroup.getStrategies();
         for (int i = 0; i < strategies.size(); i++) {
             InitialStrategyTab tab = new InitialStrategyTab(strategies.get(i));
+            tab.setupDeleteButton(this);
             initialStrategiesTabbedPane.insertTab(tab.getTitle(), null, tab.$$$getRootComponent$$$(), null,
                     initialStrategiesTabbedPane.getTabCount() - 1);
             initialStrategiesTabbedPane.setSelectedIndex(initialStrategiesTabbedPane.getTabCount() - 2);
