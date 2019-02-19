@@ -160,8 +160,16 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         gameComboBox.setSelectedItem(vmConfiguration.getGame());
         initComboBox.setSelectedItem(vmConfiguration.getInit());
         pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
+        pairingParameterTable.setParameters(vmConfiguration.getPairingParameters().keySet().toArray(new String[0]));
+        pairingParameterTable.setParameterValues(vmConfiguration.getPairingParameters().values().toArray(new String[0]));
+
         rankingComboBox.setSelectedItem(vmConfiguration.getRankingAlg());
+        rankingParameterTable.setParameters(vmConfiguration.getRankingParameters().keySet().toArray(new String[0]));
+        rankingParameterTable.setParameterValues(vmConfiguration.getRankingParameters().values().toArray(new String[0]));
+
         adaptionComboBox.setSelectedItem(vmConfiguration.getAdaptationAlg());
+        adaptionParameterTable.setParameters(vmConfiguration.getAdaptationParameters().keySet().toArray(new String[0]));
+        adaptionParameterTable.setParameterValues(vmConfiguration.getAdaptationParameters().values().toArray(new String[0]));
 
         adaptionProbabilityTextField.setText(vmConfiguration.getAdaptationProbability());
         roundsTextField.setText(vmConfiguration.getRounds());
