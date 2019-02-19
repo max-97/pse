@@ -175,18 +175,27 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     public void addAdaptionAlgorithm(String name) {
         adaptationAlgs.add(name);
         adaptionComboBox.addItem(name);
+        if (adaptionComboBox.getItemCount() == 1) {
+            adaptionParameterTable.setParameters(algorithmParameters.get(adaptionComboBox.getSelectedItem()));
+        }
     }
 
     @Override
     public void addPairingAlgorithm(String name) {
         pairingAlgs.add(name);
         pairingComboBox.addItem(name);
+        if (pairingComboBox.getItemCount() == 1) {
+            pairingParameterTable.setParameters(algorithmParameters.get(pairingComboBox.getSelectedItem()));
+        }
     }
 
     @Override
     public void addRankingAlgorithm(String name) {
         rankingAlgs.add(name);
         rankingComboBox.addItem(name);
+        if (rankingComboBox.getItemCount() == 1) {
+            rankingParameterTable.setParameters(algorithmParameters.get(rankingComboBox.getSelectedItem()));
+        }
     }
 
     @Override
