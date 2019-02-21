@@ -81,3 +81,7 @@ task texdoc(group: "documentation", description: "Generates Javadoc as TeX docum
             '-sourcepath', 'src/main/java',
             '-subpackages', 'de.sswis'
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
