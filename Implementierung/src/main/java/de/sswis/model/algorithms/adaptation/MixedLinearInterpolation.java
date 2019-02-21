@@ -37,7 +37,8 @@ public class MixedLinearInterpolation implements AdaptationAlgorithm{
             double rndDouble = rnd.nextDouble();
             if(rndDouble <= adaptationProbability && rndDouble != 0) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
-                if(currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
+                if(currentRanking.get(randomAgent) < currentRanking.get(agents[i])
+                        && !randomAgent.getStrategy().getName().equals(agents[i].getStrategy().getName())) {
                     adaptStrategy(agents[i], randomAgent);
                     adaptationCount++;
                 }
