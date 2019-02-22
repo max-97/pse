@@ -161,7 +161,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         initComboBox.setSelectedItem(vmConfiguration.getInit());
 
         pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
-        if (vmConfiguration.getPairingParameters() != null){
+        if (vmConfiguration.getPairingParameters() != null) {
             pairingParameterTable.setParameters(vmConfiguration.getPairingParameters().keySet().toArray(new String[0]));
             pairingParameterTable.setParameterValues(vmConfiguration.getPairingParameters().values().toArray(new String[0]));
         }

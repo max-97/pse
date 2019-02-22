@@ -8,6 +8,8 @@ package de.sswis.util;
  */
 public class InputValidator {
 
+    public static String ILLEGAL_INPUT_MSG = "Bitte überprüfen Sie Ihre Eingabe!";
+
     /**
      * Prüft, ob der entgegengenommene String ein gültiger Name ist.
      * Gültig bedeutet, dass die Eingabe ausschließlich alphanumerische Zeichen beinhaltet und die maximale Länge für Namen nicht überschritten wurde.
