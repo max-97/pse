@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer gemischten Strategie.
  *
@@ -93,15 +95,25 @@ public class NewStrategyView implements AbstractNewStrategyView {
         frame.pack();
     }
 
-    private void updateVM() {
+    private boolean updateVM() {
         vmStrategy = new VMStrategy();
+        String name = nameTextField.getText();
+        String desc = descriptionTextPane.getText();
 
-        vmStrategy.setName(nameTextField.getText());
-        for (int i = 0; i < strategyComboBoxes.size(); i++) {
-            vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
-                    probabilityTextFields.get(i).getText());
+        if (isLegalName(name) && isLegalDescription(desc)) {
+            vmStrategy.setName(name);
+            for (int i = 0; i < strategyComboBoxes.size(); i++) { //TODO check size >(=) 1, probab syntax, strat selected
+                vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
+                        probabilityTextFields.get(i).getText());
+            }
+            vmStrategy.setDescription(desc);
+            return true;
         }
-        vmStrategy.setDescription(descriptionTextPane.getText());
+        else {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+
     }
 
     @Override
@@ -133,8 +145,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public VMStrategy getVMStrategy() {
-        updateVM();
-        return this.vmStrategy;
+        return updateVM() ? this.vmStrategy : null;
     }
 
     @Override

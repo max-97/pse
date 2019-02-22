@@ -38,34 +38,38 @@ public class SaveStrategiesHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMStrategy vmStrategy = this.strategyView.getVMStrategy();
-        try {
-            this.fileManager.saveMixedStrategy(vmStrategy);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        MixedStrategy mixedStrategy = this.parser.parseVMStrategy(vmStrategy);
-        ModelProvider.getInstance().addMixedStrategy(mixedStrategy);
 
-        AbstractManageStrategiesView parentView = this.strategyView.getParentView();
-        this.strategyView.close();
-        if (parentView == null) {
-            return;
-        }
-        VMStrategy editedStrategy = parentView.getEditedStrategy();
-        if (editedStrategy == null) {
-            parentView.addStrategy(vmStrategy);
-        } else {
-            parentView.replaceStrategy(vmStrategy);
-            if (!editedStrategy.getName().equals(vmStrategy.getName())) {
-                ModelProvider.getInstance().deleteMixedStrategy(editedStrategy.getName());
-                try {
-                    this.fileManager.deleteMixedStrategy(editedStrategy.getName());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+        if (vmStrategy != null) {
+            try {
+                this.fileManager.saveMixedStrategy(vmStrategy);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
             }
-            parentView.setEditedStrategy(null);
+            MixedStrategy mixedStrategy = this.parser.parseVMStrategy(vmStrategy);
+            ModelProvider.getInstance().addMixedStrategy(mixedStrategy);
+
+            AbstractManageStrategiesView parentView = this.strategyView.getParentView();
+            this.strategyView.close();
+            if (parentView == null) {
+                return;
+            }
+            VMStrategy editedStrategy = parentView.getEditedStrategy();
+            if (editedStrategy == null) {
+                parentView.addStrategy(vmStrategy);
+            } else {
+                parentView.replaceStrategy(vmStrategy);
+                if (!editedStrategy.getName().equals(vmStrategy.getName())) {
+                    ModelProvider.getInstance().deleteMixedStrategy(editedStrategy.getName());
+                    try {
+                        this.fileManager.deleteMixedStrategy(editedStrategy.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                parentView.setEditedStrategy(null);
+            }
         }
+
     }
 }
