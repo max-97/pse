@@ -1,0 +1,43 @@
+\documentclass[parskip=full]{scrartcl}
+
+\usepackage[utf8]{inputenc} % use utf8 file encoding for TeX sources
+\usepackage[T1]{fontenc} % avoid garbled Unicode text in pdf
+\usepackage[german]{babel} % german hyphenation, quotes, etc
+\usepackage{hyperref} % detailed hyperlink/pdf configuration
+\usepackage{mathptmx} %Schriftart Times
+\usepackage[scaled]{helvet} %
+\usepackage{graphicx}
+\usepackage{multirow,array}
+\usepackage{float}
+\usepackage{soul,xcolor}
+\usepackage{amssymb}
+\usepackage[justification=centering]{caption}
+\hypersetup{ % ‘texdoc hyperref‘ for options
+pdftitle={Implementierungsbericht},
+bookmarks=true,
+}
+\usepackage{csquotes} % provides \enquote{} macro for "quotes"
+
+\setstcolor{red}
+
+{
+\title{\fontsize{40}{48} \selectfont \textsc{Implementierungsbericht}\\
+{\fontsize{18}{18} \selectfont Simulator für wiederholte Spiele}}
+}
+
+\author {Michel Bodé, Max Braun, Sophie Bräuniger, Simon Hügel, Zezhong Tong}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\newpage
+\tableofcontents
+
+\include{01_Dokumentation_der_Arbeitsweise}
+
+\include{02_Implementierte_Funktionen}
+
+\include{03_Bekannte_Fehler}
+
+\include{04_Entwurfsaenderungen}
+
+\end{document}

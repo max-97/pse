@@ -91,8 +91,6 @@ public class NewStrategyView implements AbstractNewStrategyView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
-
     }
 
     private void updateVM() {
@@ -146,7 +144,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
         this.descriptionTextPane.setText(vmStrategy.getDescription());
         for (int i = 0; i < vmStrategy.getCombinedStrategies().size(); i++) {
             addNewLine();
-            //TODO: VM check for correct Order!
+
             probabilityTextFields.get(i).setText(vmStrategy.getProbabilities().get(i));
             strategyComboBoxes.get(i).setSelectedItem(vmStrategy.getCombinedStrategies().get(i));
         }

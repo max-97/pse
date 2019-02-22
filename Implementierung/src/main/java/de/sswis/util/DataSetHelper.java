@@ -35,11 +35,12 @@ public class DataSetHelper {
     }
 
 
-    public static CategoryDataset getCategoryRangeDataset(ArrayList<String> strategies, ArrayList<Integer> points, int averageDivisor) {
+    public static CategoryDataset getCategoryRangeDataset(ArrayList<String> strategies, ArrayList<Integer> points, int averageDivisor, int range) {
 
         List<String> rowKeys = new ArrayList<String>();
         List<String> columnKeys = new ArrayList<String>();
         int highest = 0;
+        int lowest = 0;
 
         //create row keys
         for (int i = 0; i < strategies.size(); i++) {
@@ -48,19 +49,25 @@ public class DataSetHelper {
             }
             if (highest < points.get(i)) {
                 highest = points.get(i);
+            } else if (lowest > points.get(i)) {
+                lowest = points.get(i);
             }
         }
+        int mod = Math.floorMod(lowest, range);
+        int minimumX = lowest - mod;
 
         //create column key
-        for (int i = 0; i <= highest; i += 100) {
-            columnKeys.add(i + " - " + (i + 99));
+
+
+        for (int i = minimumX; i <= highest; i += range) {
+            columnKeys.add(i + " - " + (i + range - 1));
         }
 
         //count data
         double[][] data = new double[rowKeys.size()][columnKeys.size()];
 
         for (int i = 0; i < strategies.size(); i++) {
-            data[rowKeys.indexOf(strategies.get(i))][(points.get(i)/100)] += 1.0;
+            data[rowKeys.indexOf(strategies.get(i))][((points.get(i) - minimumX)/range)] += 1.0;
         }
 
         //calculate average

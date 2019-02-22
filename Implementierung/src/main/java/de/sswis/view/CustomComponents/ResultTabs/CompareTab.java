@@ -23,7 +23,11 @@ public class CompareTab {
 
     public void setDifferenceCharts(JFreeChart chart) {
         ChartPanel chartPanel = new ChartPanel(chart);
-        averageScrollPane.setViewportView(chartPanel);
+        differenceScrollPane.setViewportView(chartPanel);
+    }
+
+    public void setDifferenceTable(JTable table) {
+        differenceScrollPane.setViewportView(table);
     }
 
     {

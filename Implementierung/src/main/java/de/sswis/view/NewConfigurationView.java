@@ -92,9 +92,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public void update() {
-
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {
@@ -161,9 +159,24 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
         gameComboBox.setSelectedItem(vmConfiguration.getGame());
         initComboBox.setSelectedItem(vmConfiguration.getInit());
+
         pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
+        if (vmConfiguration.getPairingParameters() != null){
+            pairingParameterTable.setParameters(vmConfiguration.getPairingParameters().keySet().toArray(new String[0]));
+            pairingParameterTable.setParameterValues(vmConfiguration.getPairingParameters().values().toArray(new String[0]));
+        }
+
         rankingComboBox.setSelectedItem(vmConfiguration.getRankingAlg());
+        if (vmConfiguration.getRankingParameters() != null) {
+            rankingParameterTable.setParameters(vmConfiguration.getRankingParameters().keySet().toArray(new String[0]));
+            rankingParameterTable.setParameterValues(vmConfiguration.getRankingParameters().values().toArray(new String[0]));
+        }
+
         adaptionComboBox.setSelectedItem(vmConfiguration.getAdaptationAlg());
+        if (vmConfiguration.getAdaptationParameters() != null) {
+            adaptionParameterTable.setParameters(vmConfiguration.getAdaptationParameters().keySet().toArray(new String[0]));
+            adaptionParameterTable.setParameterValues(vmConfiguration.getAdaptationParameters().values().toArray(new String[0]));
+        }
 
         adaptionProbabilityTextField.setText(vmConfiguration.getAdaptationProbability());
         roundsTextField.setText(vmConfiguration.getRounds());
@@ -177,18 +190,27 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     public void addAdaptionAlgorithm(String name) {
         adaptationAlgs.add(name);
         adaptionComboBox.addItem(name);
+        if (adaptionComboBox.getItemCount() == 1) {
+            adaptionParameterTable.setParameters(algorithmParameters.get(adaptionComboBox.getSelectedItem()));
+        }
     }
 
     @Override
     public void addPairingAlgorithm(String name) {
         pairingAlgs.add(name);
         pairingComboBox.addItem(name);
+        if (pairingComboBox.getItemCount() == 1) {
+            pairingParameterTable.setParameters(algorithmParameters.get(pairingComboBox.getSelectedItem()));
+        }
     }
 
     @Override
     public void addRankingAlgorithm(String name) {
         rankingAlgs.add(name);
         rankingComboBox.addItem(name);
+        if (rankingComboBox.getItemCount() == 1) {
+            rankingParameterTable.setParameters(algorithmParameters.get(rankingComboBox.getSelectedItem()));
+        }
     }
 
     @Override

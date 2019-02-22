@@ -43,16 +43,10 @@ public interface AbstractManageConfigurationsView extends AbstractView {
     void addDeleteConfigurationButtonActionlistener(ActionListener listener);
 
     /**
-     * Fügt ein ActionListener zum Button Abbrechen hinzu.
-     * @param listener ActionListener
-     */
-    void addCancelButtonActionlistener(ActionListener listener);
-
-    /**
      * Fügt ein ActionListener zum Button Änderungen speichern und schließen hinzu.
      * @param listener ActionListener
      */
-    void addSaveQuitButtonActionlistener(ActionListener listener);
+    void addCloseActionListener(ActionListener listener);
 
     VMConfiguration getSelectedVM();
 

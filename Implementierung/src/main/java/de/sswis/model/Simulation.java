@@ -52,13 +52,17 @@ public class Simulation implements Runnable, ObservableSimulation {
         int cycle = 1;
         boolean equilibriumAchieved = false;
         config.getRankingAlg().setIgnoreInitialScore(config.getInit().getInitialScoreStrategiesOnly());
-        HashMap<Agent, Integer> currentRanking = config.getRankingAlg().getRankings(agents);
         Pair[] currentPairs;
         int[] adaptationCount = new int[config.getCycles()];
 
         for(Agent agent : agents) {
             agent.getHistory().setScore(agent.getScore());
             agent.getHistory().setStrategy(agent.getStrategy());
+        }
+
+        HashMap<Agent, Integer> currentRanking = config.getRankingAlg().getRankings(agents);
+
+        for(Agent agent : agents) {
             agent.getHistory().setRank(currentRanking.get(agent));
         }
 
@@ -69,7 +73,6 @@ public class Simulation implements Runnable, ObservableSimulation {
                 game.playGame(pair);
             }
 
-            currentRanking = config.getRankingAlg().getRankings(agents);
             round++;
 
             for(Agent agent : agents) {
@@ -77,6 +80,7 @@ public class Simulation implements Runnable, ObservableSimulation {
             }
 
             if(round == (cycle * cycleRoundCount)) {
+                currentRanking = config.getRankingAlg().getRankings(agents);
                 adaptationCount[cycle - 1] = config.getAdaptationAlg().adapt(agents, currentRanking, config.getAdaptationProbability());
                 if(isInEquilibrium(adaptationCount, cycle)) {
                     equilibriumAchieved = true;
@@ -88,6 +92,13 @@ public class Simulation implements Runnable, ObservableSimulation {
                     agent.getHistory().setStrategy(agent.getStrategy());
                     agent.getHistory().setRank(currentRanking.get(agent));
                 }
+            }
+        }
+
+        for(Agent agent : agents) {
+            if(agent.getStrategy() instanceof  MixedStrategy) {
+                MixedStrategy strategy = (MixedStrategy)agent.getStrategy();
+                strategy.setName(strategy.getName() + "_" + strategy.getAdaptationCount());
             }
         }
         result.getAgents().put(repetition, agents);
@@ -140,9 +151,26 @@ public class Simulation implements Runnable, ObservableSimulation {
 
     @Override
     public void run() {
-        for(int i = 0; i < repetitions && !stopSimulation; i++) {
-            simulateRun(i + 1);
+        Thread[] threads = new Thread[repetitions];
+
+        for(int i = 0; i < repetitions; i++) {
+            int repetition = i;
+            threads[i] = new Thread(
+                    () -> simulateRun(repetition + 1)
+            );
+            threads[i].setPriority(1);
+            threads[i].start();
         }
+
+        for(int i = 0; i < repetitions && !stopSimulation; i++) {
+            try{
+                threads[i].join();
+            }catch(InterruptedException e){
+                stopSimulation = true;
+                e.printStackTrace();
+            }
+        }
+
         if(!stopSimulation) {
             notifyObservers();
         }

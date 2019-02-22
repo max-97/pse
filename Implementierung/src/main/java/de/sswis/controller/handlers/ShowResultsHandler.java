@@ -65,6 +65,7 @@ public class ShowResultsHandler implements ActionListener {
             }
         } else {
             AbstractShowResultView resultView = this.factory.createShowResultView();
+            resultView.setParentView(mainView);
             Configuration c = ModelProvider.getInstance().getConfiguration(selected.getName());
             Collection<VMResult> vmResults = this.parser.parseSimulationToVMResult(c.getSimulation());
             for (VMResult r : vmResults) {

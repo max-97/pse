@@ -7,6 +7,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.EventListener;
+import java.util.List;
 
 
 /**
@@ -28,6 +29,8 @@ public interface AbstractMainView extends AbstractView {
      * @param configurationName Name der Konfiguration
      */
     void removeConfiguration(String configurationName);
+
+    void removeAll();
 
     /**
      * Fügt ein Ergebnis zu einer Konfiguration hinzu.
@@ -157,5 +160,7 @@ public interface AbstractMainView extends AbstractView {
     Collection<VMResult> getResults();
 
     void setSimulationStopped(String name);
+
+    List<VMConfiguration> getVMConfigurations();
 }
 

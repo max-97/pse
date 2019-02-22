@@ -31,7 +31,6 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     private JPanel ButtonPanel;
     private JButton saveAndQuitButton;
-    private JButton cancelButton;
     private JTabbedPane InitsPane;
     private JButton newInitButton;
     private JPanel MainPanel;
@@ -54,6 +53,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
         initializationTabs.add(tab);
         InitsPane.addTab(vmInitialization.getName(), tab.$$$getRootComponent$$$());
+
+        update();
     }
 
     @Override
@@ -71,6 +72,8 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
         initializationTabs.add(index, tab);
         InitsPane.remove(index);
         InitsPane.insertTab(newInitialization.getName(), null, tab.$$$getRootComponent$$$(), null, index);
+
+        update();
     }
 
     @Override
@@ -83,6 +86,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
             }
         }
 
+        update();
     }
 
     @Override
@@ -101,12 +105,7 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     }
 
     @Override
-    public void addCancelButtonActionlistener(ActionListener listener) {
-        cancelButton.addActionListener(listener);
-    }
-
-    @Override
-    public void addSaveQuitButtonActionlistener(ActionListener listener) {
+    public void addCloseActionListener(ActionListener listener) {
         saveAndQuitButton.addActionListener(listener);
     }
 
@@ -118,7 +117,6 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -179,14 +177,11 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
         panel1.setLayout(new GridLayoutManager(5, 2, new Insets(5, 5, 5, 5), -1, -1));
         MainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         ButtonPanel = new JPanel();
-        ButtonPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        ButtonPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(ButtonPanel, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         saveAndQuitButton = new JButton();
-        saveAndQuitButton.setText("Änderungen speichern und schließen");
-        ButtonPanel.add(saveAndQuitButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        cancelButton = new JButton();
-        cancelButton.setText("Abbrechen");
-        ButtonPanel.add(cancelButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        saveAndQuitButton.setText("Schließen");
+        ButtonPanel.add(saveAndQuitButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel1.add(separator1, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         InitsPane = new JTabbedPane();
@@ -205,4 +200,5 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

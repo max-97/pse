@@ -72,6 +72,8 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {
+        if (configurations.contains(configuration))
+            return;
         configurations.add(configuration);
 
         ConfigurationTree.setModel(createConfigurationTree());
@@ -90,6 +92,13 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
+    public void removeAll() {
+        while (!configurations.isEmpty()) {
+            configurations.remove(configurations.size() - 1);
+        }
+    }
+
+    @Override
     public void addResult(String NameConfiguration, VMResult result) {
 
         for (int i = 0; i < configurations.size(); i++) {
@@ -98,6 +107,7 @@ public class MainView implements AbstractMainView {
                 break;
             }
         }
+        updateButtons();
     }
 
     @Override
@@ -118,6 +128,11 @@ public class MainView implements AbstractMainView {
         simulatingConfigs.remove(name);
         updateButtons();
         JOptionPane.showMessageDialog(frame, "Die Simulation " + name + " wurde abgebrochen!");
+    }
+
+    @Override
+    public List<VMConfiguration> getVMConfigurations() {
+        return this.configurations;
     }
 
     @Override
@@ -229,7 +244,8 @@ public class MainView implements AbstractMainView {
     public Collection<VMResult> getResults() {
         Collection<VMResult> results = new ArrayList<>();
         for (VMConfiguration c : configurations) {
-            results.add(c.getResult());
+            if (c.hasResult())
+                results.add(c.getResult());
         }
         return results;
     }
@@ -237,7 +253,6 @@ public class MainView implements AbstractMainView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
 
@@ -255,6 +270,8 @@ public class MainView implements AbstractMainView {
                 showResultButton.setEnabled(true);
                 saveResultButton.setEnabled(true);
             } else {
+                showResultButton.setEnabled(false);
+                saveResultButton.setEnabled(false);
             }
 
         } else {

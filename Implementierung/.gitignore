@@ -386,3 +386,9 @@ src/test/java/de/sswis/controller/ModelServiceLoaderTest.java
 tex/
 
 !gradle/wrapper/gradle-wrapper.jar
+.idea/compiler.xml
+.idea/modules/
+build/libs/
+!Abgabe/sswis-1.0.jar
+/saves/
+/saves/*

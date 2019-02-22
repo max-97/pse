@@ -150,7 +150,6 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     private void updateVM() {
@@ -214,6 +213,8 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         for (int i = 0; i < vmCombinedStrategy.getConditions().size(); i++) {
             addNewLine();
             conditionComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getConditions().get(i));
+            additionalParameterLists.get(i).setParameters(vmCombinedStrategy.getConditionParameter(i).keySet().toArray(new String[0]));
+            additionalParameterLists.get(i).setParameterValues(vmCombinedStrategy.getConditionParameter(i).values().toArray(new String[0]));
             strategyComboBoxes.get(i).setSelectedItem(vmCombinedStrategy.getStrategies().get(i));
         }
         defaultStrategy.setSelectedItem(vmCombinedStrategy.getDefaultStrategy());

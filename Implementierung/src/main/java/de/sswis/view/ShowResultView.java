@@ -13,11 +13,15 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.*;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -40,7 +44,6 @@ public class ShowResultView implements AbstractShowResultView {
     private AbstractMainView parentView;
 
     private JFrame frame = new JFrame();
-
 
 
     private VMConfiguration vmConfiguration;
@@ -85,30 +88,40 @@ public class ShowResultView implements AbstractShowResultView {
             case RANKRANGE:
                 tab.setChart(getRankRangeChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
-                /*
             case POINTHISTORY:
                 tab.setChart(getPointHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
             case STRATEGYHISTORY:
                 tab.setChart(getStrategyHistoryChart(tab.getRepititionNumber(), tab.getFilter(), tab.getFilterParameter()));
                 break;
-                */
             default:
                 break;
         }
     }
 
 
-    public JFreeChart getEquilibriumChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getEquilibriumChart(int repitition, String filter, String filterParam) {
+
         int yes = 0;
         int no = 0;
-        for (int i = 0; i < vmResults.size(); i++) {
-            if (vmResults.get(i).reachedEquilibrium()) {
+
+        if (repitition == -1) {
+            for (int i = 0; i < vmResults.size(); i++) {
+                if (vmResults.get(i).reachedEquilibrium()) {
+                    yes++;
+                } else {
+                    no++;
+                }
+            }
+
+        } else {
+            if (vmResults.get(repitition - 1).reachedEquilibrium()) {
                 yes++;
             } else {
                 no++;
             }
         }
+
         DefaultKeyedValuesDataset dataset = new DefaultKeyedValuesDataset();
         dataset.setValue("Ja", yes);
         dataset.setValue("Nein", no);
@@ -118,7 +131,7 @@ public class ShowResultView implements AbstractShowResultView {
         return pieChart;
     }
 
-    public JFreeChart getStrategiesChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getStrategiesChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
 
         ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
@@ -139,7 +152,7 @@ public class ShowResultView implements AbstractShowResultView {
         return pieChart;
     }
 
-    public JFreeChart getPointRangeChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getPointRangeChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> points = new ArrayList<>();
 
@@ -154,14 +167,14 @@ public class ShowResultView implements AbstractShowResultView {
             points.add(agents.get(i).getLastScore());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, points, divisor, 100);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Punkte", "Anzahl der Agenten aufgeteilt in Strategien", dataset);
         return chart;
     }
 
-    public JFreeChart getRankRangeChart(int repitition, String filter, String filterParam) {
+    private JFreeChart getRankRangeChart(int repitition, String filter, String filterParam) {
         ArrayList<String> strategies = new ArrayList<>();
         ArrayList<Integer> ranks = new ArrayList<>();
 
@@ -176,21 +189,84 @@ public class ShowResultView implements AbstractShowResultView {
             ranks.add(agents.get(i).getLastRank());
         }
 
-        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor);
+        CategoryDataset dataset = DataSetHelper.getCategoryRangeDataset(strategies, ranks, divisor, 10);
 
         JFreeChart chart = ChartFactory.createStackedBarChart("Punkteverteilung",
                 "Agentenzahl", "Rangbereich aufgeteilt in Strategien", dataset);
         return chart;
     }
 
-    public JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
-        //TODO: implement me
-        return null;
+    private JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
+        ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
+        int cycleCount = agents.get(0).getStrategies().size();
+
+        int[] averageScores = new int[cycleCount];
+        for (int i = 0; i < averageScores.length; i++) {
+            averageScores[i] = 0;
+        }
+
+        for (VMAgentHistory agent : agents) {
+            int cycle = 0;
+            for (Integer score : agent.getScore()) {
+                averageScores[cycle] += score;
+                cycle++;
+            }
+        }
+
+        for (int i = 0; i < averageScores.length; i++) {
+            averageScores[i] = Math.round((float) averageScores[i] / agents.size());
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        XYSeries scoreSeries = new XYSeries("Durschnittliche Punktzahl");
+
+        for (int i = 0; i < cycleCount; i++) {
+            scoreSeries.add(i + 1, averageScores[i]);
+        }
+
+        dataset.addSeries(scoreSeries);
+
+        return ChartFactory.createXYLineChart("Durschnittspunktzahl per Zyklus", "Zyklus",
+                "Punktzahl", dataset);
     }
 
-    public JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
-        //TODO: implement me
-        return null;
+    private JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
+        HashMap<String, Integer[]> strategiesCycleCounts = new HashMap<>();
+        ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
+        int cycleCount = agents.get(0).getStrategies().size();
+
+        int divisor = 1;
+
+        if (repitition == -1)
+            divisor = vmResults.size();
+
+        for (VMAgentHistory agent : agents) {
+            int cycle = 0;
+            for (String strategy : agent.getStrategies()) {
+                if (strategiesCycleCounts.containsKey(strategy)) {
+                    strategiesCycleCounts.get(strategy)[cycle]++;
+                } else {
+                    Integer[] strategyCycleCounts = new Integer[cycleCount];
+                    for (int i = 0; i < strategyCycleCounts.length; i++) strategyCycleCounts[i] = 0;
+                    strategiesCycleCounts.put(strategy, strategyCycleCounts);
+                    strategyCycleCounts[cycle]++;
+                }
+                cycle++;
+            }
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection();
+
+        for (String strategy : strategiesCycleCounts.keySet()) {
+            XYSeries strategySeries = new XYSeries(strategy);
+            for (int i = 0; i < cycleCount; i++) {
+                strategySeries.add(i + 1, (double) strategiesCycleCounts.get(strategy)[i] / divisor);
+            }
+            dataset.addSeries(strategySeries);
+        }
+
+        return ChartFactory.createXYLineChart("Strategieverteilung per Zyklus", "Zyklus",
+                "Anzahl", dataset);
     }
 
     private ArrayList<VMAgentHistory> filterAgents(int repitition, String filter, String filterParam) {
@@ -212,7 +288,6 @@ public class ShowResultView implements AbstractShowResultView {
     @Override
     public void update() {
         frame.pack();
-        frame.setLocationRelativeTo(null);
     }
 
     @Override
@@ -255,83 +330,15 @@ public class ShowResultView implements AbstractShowResultView {
 
     @Override
     public void addVMResult(VMResult vmResult) {
+        configNameLabel.setText(vmResult.getName());
         vmResults.add(vmResult);
     }
 
-
-    private void createVMs() {
-        //TODO: remove me
-
-        ArrayList<VMAgentHistory> agents = new ArrayList<>();
-
-        ArrayList<Integer> scores1 = new ArrayList<>();
-        scores1.add(50);
-        ArrayList<Integer> ranks1 = new ArrayList<>();
-        ranks1.add(1);
-        ArrayList<String> strategies1 = new ArrayList<>();
-        strategies1.add("TitForTat100");
-        agents.add(new VMAgentHistory(1, 1, scores1, ranks1, strategies1));
-
-
-        ArrayList<Integer> scores2 = new ArrayList<>();
-        scores2.add(99);
-        ArrayList<Integer> ranks2 = new ArrayList<>();
-        ranks2.add(2);
-        ArrayList<String> strategies2 = new ArrayList<>();
-        strategies2.add("TitForTat1");
-        agents.add(new VMAgentHistory(2, 1, scores2, ranks2, strategies2));
-
-
-        ArrayList<Integer> scores3 = new ArrayList<>();
-        scores3.add(200);
-        ArrayList<Integer> ranks3 = new ArrayList<>();
-        ranks3.add(3);
-        ArrayList<String> strategies3 = new ArrayList<>();
-        strategies3.add("grimmigerGrim");
-        agents.add(new VMAgentHistory(3, 1, scores3, ranks3, strategies3));
-
-        VMResult vmResult1 = new VMResult();
-        vmResult1.setReachedEquilibrium(true);
-        vmResult1.setAgentHistories(agents);
-
-
-        this.addVMResult(vmResult1);
-        VMResult vmResult2 = new VMResult();
-        vmResult2.setReachedEquilibrium(false);
-        vmResult2.setAgentHistories(agents);
-
-        this.addVMResult(vmResult2);
-        VMResult vmResult3 = new VMResult();
-        vmResult3.setReachedEquilibrium(true);
-        vmResult3.setAgentHistories(agents);
-
-        this.addVMResult(vmResult3);
-        VMResult vmResult4 = new VMResult();
-        vmResult4.setReachedEquilibrium(true);
-        vmResult4.setAgentHistories(agents);
-
-        this.addVMResult(vmResult4);
-        VMResult vmResult5 = new VMResult();
-        vmResult5.setReachedEquilibrium(false);
-        vmResult5.setAgentHistories(agents);
-
-        this.addVMResult(vmResult5);
-        VMResult vmResult6 = new VMResult();
-        vmResult6.setReachedEquilibrium(true);
-        vmResult6.setAgentHistories(agents);
-
-        this.addVMResult(vmResult6);
-        VMResult vmResult7 = new VMResult();
-        vmResult7.setReachedEquilibrium(true);
-        vmResult7.setAgentHistories(agents);
-
-        this.addVMResult(vmResult7);
-
-
-        //JFreeChart pieChart = ChartFactory.createPieChart("Verteilung der Strategien",
-        //        DataSetHelper.getKeyedValuesDataSet(strategies));
-
+    @Override
+    public List<VMResult> getResults() {
+        return this.vmResults;
     }
+
 
     {
 // GUI initializer generated by IntelliJ IDEA GUI Designer
@@ -399,4 +406,5 @@ public class ShowResultView implements AbstractShowResultView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

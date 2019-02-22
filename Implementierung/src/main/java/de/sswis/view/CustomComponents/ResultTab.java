@@ -19,18 +19,12 @@ public class ResultTab {
     private JPanel MainPanel;
     private JLabel configurationNameLabel;
     private JLabel numberOfRepitionsLabel;
-    private JButton showButton;
     private JButton deleteButton;
 
     public void setVmResult(VMResult vmResult) {
         this.vmResult = vmResult;
 
         configurationNameLabel.setText(vmResult.getVmConfig().getName());
-        numberOfRepitionsLabel.setText(vmResult.getNumberOfRepititions() + "");
-    }
-
-    public void addShowButtonActionlistener(ActionListener listener) {
-        showButton.addActionListener(listener);
     }
 
     public void addDeleteButtonActionlistener(ActionListener listener) {
@@ -78,9 +72,6 @@ public class ResultTab {
         configurationNameLabel = new JLabel();
         configurationNameLabel.setText("Label");
         panel1.add(configurationNameLabel, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        showButton = new JButton();
-        showButton.setText("Ergebnisse anzeigen");
-        panel1.add(showButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         deleteButton = new JButton();
         deleteButton.setText("Ergebnisse löschen");
         panel1.add(deleteButton, new GridConstraints(3, 1, 1, 2, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

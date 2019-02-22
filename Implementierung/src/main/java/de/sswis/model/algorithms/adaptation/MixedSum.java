@@ -22,17 +22,16 @@ public class MixedSum implements AdaptationAlgorithm{
     public static final String NAME = "Mixed Sum";
     public static final String DESCRIPTION = "";
     private static final String[] PARAMETER_NAMES = {};
-    private Random rnd;
 
     public MixedSum() {}
 
     @Override
     public int adapt(Agent[] agents, HashMap<Agent, Integer> currentRanking, double adaptationProbability) {
         int adaptationCount = 0;
-        rnd = new Random();
+        Random rnd = new Random();
         for(int i = 0; i < agents.length; i++) {
             double rndDouble = rnd.nextDouble();
-            if(rndDouble < adaptationProbability) {
+            if(rndDouble <= adaptationProbability && rndDouble != 0) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 if(currentRanking.get(randomAgent) < currentRanking.get(agents[i])) {
                     adaptStrategy(agents[i], randomAgent.getStrategy());
@@ -49,7 +48,7 @@ public class MixedSum implements AdaptationAlgorithm{
         double[] oldProbabilities;
 
         if(agent.getStrategy() instanceof CombinedStrategy) {
-            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)strategy};
+            oldStrategies = new CombinedStrategy[]{(CombinedStrategy)agent.getStrategy()};
             oldProbabilities = new double[]{1.0};
         } else {
             oldStrategies = ((MixedStrategy)agent.getStrategy()).getCombinedStrategies();
@@ -102,27 +101,14 @@ public class MixedSum implements AdaptationAlgorithm{
         if(newStrategies.length == 1) {
            newStrategy = newStrategies[0];
         } else {
-            normalize(newProbabilities);
-            String newName = getNewName(strategy.getName());
-            newStrategy = new MixedStrategy(newName, newStrategies, newProbabilities);
+            for(int i = 0; i < newProbabilities.length; i++) newProbabilities[i] /= 2;
+            newStrategy = new MixedStrategy(agent.getStrategy().getName(), newStrategies, newProbabilities);
+            if(agent.getStrategy() instanceof  MixedStrategy) {
+                ((MixedStrategy) newStrategy).setAdaptationCount(((MixedStrategy)agent.getStrategy())
+                        .getAdaptationCount() + 1);
+            }
         }
         agent.setStrategy(newStrategy);
-    }
-
-    private void normalize(double[] probabilities) {
-        double sum = 0;
-        for(int i = 0; i < probabilities.length; i++) sum += probabilities[i];
-        for(int i = 0; i < probabilities.length; i++) probabilities[i] *= 1/sum;
-    }
-
-    private String getNewName(String oldName) {
-        if(!oldName.contains("_")) {
-            return oldName + "_1";
-        } else {
-            int index = oldName.indexOf("_") + 1;
-            int adaptCount = Integer.parseInt(oldName.substring(index)) + 1;
-            return oldName.substring(0, index)  + adaptCount;
-        }
     }
 
     @Override
