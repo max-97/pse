@@ -38,35 +38,39 @@ public class SaveInitializationsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMInitialization vmInitialization = this.initializationView.getVMInitialization();
-        try {
-            this.fileManager.saveInitialization(vmInitialization);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        Collection<Initialization> initializations = this.parser.parseVMInitialization(vmInitialization);
-        for (Initialization i : initializations) {
-            ModelProvider.getInstance().addInitialization(i);
-        }
-        AbstractManageInitializationsView parentView = this.initializationView.getParentView();
-        this.initializationView.close();
-        if (parentView == null) {
-            return;
-        }
-        VMInitialization editedInitialization = parentView.getEditedInitialization();
-        if (editedInitialization == null) {
-            parentView.addInit(vmInitialization);
-        } else {
-            parentView.replaceInitialization(vmInitialization);
-            if (!editedInitialization.getName().equals(vmInitialization.getName())) {
-                ModelProvider.getInstance().deleteInitialization(editedInitialization.getName());
-                try {
-                    this.fileManager.deleteInitialization(editedInitialization.getName());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+
+        if (vmInitialization != null) {
+            try {
+                this.fileManager.saveInitialization(vmInitialization);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
             }
-            parentView.setEditedInitialization(null);
+            Collection<Initialization> initializations = this.parser.parseVMInitialization(vmInitialization);
+            for (Initialization i : initializations) {
+                ModelProvider.getInstance().addInitialization(i);
+            }
+            AbstractManageInitializationsView parentView = this.initializationView.getParentView();
+            this.initializationView.close();
+            if (parentView == null) {
+                return;
+            }
+            VMInitialization editedInitialization = parentView.getEditedInitialization();
+            if (editedInitialization == null) {
+                parentView.addInit(vmInitialization);
+            } else {
+                parentView.replaceInitialization(vmInitialization);
+                if (!editedInitialization.getName().equals(vmInitialization.getName())) {
+                    ModelProvider.getInstance().deleteInitialization(editedInitialization.getName());
+                    try {
+                        this.fileManager.deleteInitialization(editedInitialization.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                parentView.setEditedInitialization(null);
+            }
         }
+
     }
 }

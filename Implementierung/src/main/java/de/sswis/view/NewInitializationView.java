@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
  *
@@ -101,18 +103,28 @@ public class NewInitializationView implements AbstractNewInitializationView {
         frame.pack();
     }
 
-    private void updateVM() {
+    private boolean updateVM() {
         vmInitialization = new VMInitialization();
+        String name = nameTextField.getText();
+        String desc = descriptionTextPane.getText();
 
-        vmInitialization.setName(nameTextField.getText());
-        vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText()));
-        vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
-        vmInitialization.setDescription(descriptionTextPane.getText());
-        vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
+        if (isLegalName(name) && isLegalDescription(desc)) {
+            vmInitialization.setName(name);
+            vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText())); //TODO: variable?
+            vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
+            vmInitialization.setDescription(desc);
+            vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
 
-        for (int i = 0; i < groupTabs.size(); i++) {
-            vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
+            for (int i = 0; i < groupTabs.size(); i++) {
+                vmInitialization.addGroup(groupTabs.get(i).getVmGroup()); //TODO: Groups in CustomComponents
+            }
+            return true;
         }
+        else {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+
     }
 
     public boolean isIDAgentDistributionSelected() {
@@ -149,8 +161,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public VMInitialization getVMInitialization() {
-        updateVM();
-        return this.vmInitialization;
+
+        return updateVM() ? this.vmInitialization : null;
     }
 
     @Override
