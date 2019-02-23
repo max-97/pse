@@ -385,13 +385,13 @@ public class ModelParser {
                                 init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                             }
                         } else {
-                            for (int j = 0; j < group.getStrategies().size(); j++) {
-                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            for (int j = 0; j < group.getStartCapital().size(); j++) {
+                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
                                 init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                             }
                         }
-                        for (int j = 0; j < group.getStartCapital().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                        for (int j = 0; j < group.getStrategies().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
                             init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                         }
                     }

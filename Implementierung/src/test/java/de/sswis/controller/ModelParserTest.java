@@ -349,7 +349,52 @@ public class ModelParserTest {
 
     @Test
     public void parseVMInitializationWithVariableCapitalDistribution() {
+        VMGroup group1 = new VMGroup();
+        group1.setId(1);
+        group1.setName("1");
+        group1.setAgents("60");
+        group1.setRelativeStrategyDistribution(true);
+        group1.addStrategy("Always Cooperate", "70");
+        group1.addStrategy("Cooperate with same group", "30");
+        group1.setRelativeCapitalDistributions(true);
+        group1.addStartCapital("100", "100");
+        VMGroup group2 = new VMGroup();
+        group2.setId(2);
+        group2.setName("2");
+        group2.setAgents("40");
+        group2.setRelativeStrategyDistribution(true);
+        group2.addStrategy("Always Cooperate", "100");
+        group2.setRelativeCapitalDistributions(true);
+        group2.addStartCapital("150", "0-50-10");
+        group2.addStartCapital("200", "100-50-10");
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test6");
+        vmInit.setAddCapitalToTotalPoints(true);
+        vmInit.setRelativeDistribution(true);
+        vmInit.setAgentCount(100);
+        vmInit.addGroup(group1);
+        vmInit.addGroup(group2);
 
+        Initialization[] result = modelParser.parseVMInitialization(vmInit).toArray(Initialization[]::new);
+
+        for(int i = 0; i < result.length; i++) {
+            Initialization current = result[i];
+            List<AgentDistribution> groupDistribution = current.getGroupAgentDistributions();
+            List<Strategy> strategies = current.getStrategies();
+            List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
+            List<Integer> capitals = current.getCapitals();
+            List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
+            Object[] expecteds = new Object[]{"Init_Test6" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 10*i,
+                    100 - 10*i, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
+            Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
+                    groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
+                    strategyDistribution.get(0).getPercentage(), strategyDistribution.get(1).getPercentage(),
+                    strategyDistribution.get(2).getPercentage(), capitalDistribution.get(0).getPercentage(),
+                    capitalDistribution.get(1).getPercentage(), capitalDistribution.get(2).getPercentage(),
+                    strategies.get(0).getName(), strategies.get(1).getName(), strategies.get(2).getName(),
+                    capitals.get(0), capitals.get(1), capitals.get(2)};
+            assertArrayEquals(expecteds, actuals);
+        }
     }
 
     @Test
