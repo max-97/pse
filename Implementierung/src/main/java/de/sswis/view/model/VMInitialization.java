@@ -35,10 +35,10 @@ public class VMInitialization {
     public boolean isMultiInitialisation() {
         for (VMGroup g : groups) {
             if (g.hasMultiComponent()) return true;
+            if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
         }
         return false;
     }
-
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser Initialisierung zusammenfasst.
@@ -96,6 +96,17 @@ public class VMInitialization {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public boolean hasVariableGroupDistribtuion() {
+        if(!relativeDistribution) {
+            return false;
+        } else {
+            for (VMGroup g : groups) {
+                if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
+            }
+        }
+        return false;
     }
 }
 
