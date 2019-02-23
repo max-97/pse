@@ -191,10 +191,53 @@ public class ModelParserTest {
 
     @Test
     public void parseSimpleVMInitializationWithRelativeDistribution() {
+        VMGroup group1 = new VMGroup();
+        group1.setId(1);
+        group1.setName("1");
+        group1.setAgents("60");
+        group1.setRelativeStrategyDistribution(true);
+        group1.addStrategy("Always Cooperate", "70");
+        group1.addStrategy("Cooperate with same group", "30");
+        group1.setRelativeCapitalDistributions(true);
+        group1.addStartCapital("100", "100");
+        VMGroup group2 = new VMGroup();
+        group2.setId(2);
+        group2.setName("2");
+        group2.setAgents("40");
+        group2.setRelativeStrategyDistribution(true);
+        group2.addStrategy("Always Cooperate", "100");
+        group2.setRelativeCapitalDistributions(true);
+        group2.addStartCapital("150", "50");
+        group2.addStartCapital("200", "50");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test3");
-        vmInit.setAddCapitalToTotalPoints(false);
+        vmInit.setAddCapitalToTotalPoints(true);
         vmInit.setRelativeDistribution(true);
+        vmInit.setAgentCount(100);
+        vmInit.addGroup(group1);
+        vmInit.addGroup(group2);
+
+        Initialization result = null;
+        for(Initialization init : modelParser.parseVMInitialization(vmInit)) {
+            result = init;
+        }
+
+        List<AgentDistribution> groupDistribution = result.getGroupAgentDistributions();
+        List<Strategy> strategies = result.getStrategies();
+        List<AgentDistribution> strategyDistribution = result.getStrategyAgentDistributions();
+        List<Integer> capitals = result.getCapitals();
+        List<AgentDistribution> capitalDistribution = result.getCapitalAgentDistributions();
+
+        Object[] expecteds = new Object[]{"Init_Test3", 100, false, 60, 40, 70, 30, 100, 100, 50, 50,
+                "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
+        Object[] actuals = new Object[]{result.getName(), result.getAgentCount(), result.getInitialScoreStrategiesOnly(),
+                groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
+                strategyDistribution.get(0).getPercentage(), strategyDistribution.get(1).getPercentage(),
+                strategyDistribution.get(2).getPercentage(), capitalDistribution.get(0).getPercentage(),
+                capitalDistribution.get(1).getPercentage(), capitalDistribution.get(2).getPercentage(),
+                strategies.get(0).getName(), strategies.get(1).getName(), strategies.get(2).getName(),
+                capitals.get(0), capitals.get(1), capitals.get(2)};
+        assertArrayEquals(expecteds, actuals);
     }
 
     @Test
