@@ -254,7 +254,17 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         addConditionButton.addActionListener(e -> addNewLine());
 
         removeLastButton = new JButton();
-        removeLastButton.addActionListener(e -> removeLastLine());
+        removeLastButton.addActionListener(e -> {
+            UIManager.put("OptionPane.yesButtonText", "Ja");
+            UIManager.put("OptionPane.noButtonText", "Nein");
+            int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Bedingung löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
+
+            if (n == JOptionPane.YES_OPTION) {
+                removeLastLine();
+            } else if (n == JOptionPane.NO_OPTION) {
+                close();
+            }
+        });
 
         defaultStrategy = new JComboBox(baseStrategies.toArray());
 

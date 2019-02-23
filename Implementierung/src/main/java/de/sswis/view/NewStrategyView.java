@@ -172,7 +172,17 @@ public class NewStrategyView implements AbstractNewStrategyView {
         addStrategyButton.addActionListener(e -> addNewLine());
 
         removeLastLineButton = new JButton();
-        removeLastLineButton.addActionListener(e -> removeLastLine());
+        removeLastLineButton.addActionListener(e -> {
+            UIManager.put("OptionPane.yesButtonText", "Ja");
+            UIManager.put("OptionPane.noButtonText", "Nein");
+            int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Strategie löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
+
+            if (n == JOptionPane.YES_OPTION) {
+                removeLastLine();
+            } else if (n == JOptionPane.NO_OPTION) {
+                close();
+            }
+        });
     }
 
     {
