@@ -432,7 +432,7 @@ public class ModelParser {
 
                         for (int j = 0; j < group.getStrategies().size(); j++) {
                             AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
-                            init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
+                            init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                         }
                     }
                     initializations.add(init);
