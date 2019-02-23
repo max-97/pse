@@ -44,6 +44,12 @@ public class ModelParserTest {
         combStrategy3.addStrategy(AlwaysCooperate.NAME, Delta.NAME);
         combStrategy3.addConditionParameter(parameters3);
 
+        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy1.getName(),
+                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()}));
+        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy2.getName(),
+                new BaseStrategy[]{new AlwaysCooperate(), new NeverCooperate()},
+                new Condition[]{new OwnGroup(), new Always()}));
+
     }
 
 
@@ -73,12 +79,6 @@ public class ModelParserTest {
         vmStrategy2.setName("60%/40%");
         vmStrategy2.addStrategy(combStrategy1.getName(), "0.6");
         vmStrategy2.addStrategy(combStrategy2.getName(), "0.4");
-
-        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy1.getName(),
-                new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()}));
-        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy2.getName(),
-                new BaseStrategy[]{new AlwaysCooperate(), new NeverCooperate()},
-                new Condition[]{new OwnGroup(), new Always()}));
 
         VMStrategy[] vmStrategies = new VMStrategy[]{vmStrategy1, vmStrategy2};
         MixedStrategy[] mixedStrategies = new MixedStrategy[vmStrategies.length];
@@ -145,7 +145,7 @@ public class ModelParserTest {
         group1.setAgents("0-4,6");
         group1.setRelativeStrategyDistribution(false);
         group1.addStrategy("Always Cooperate", "0-4");
-        group1.addStrategy("Delta 10", "6");
+        group1.addStrategy("Cooperate with same group", "6");
         group1.setRelativeCapitalDistributions(false);
         group1.addStartCapital("100", "4,3,2,1,0,6");
         VMGroup group2 = new VMGroup();
@@ -171,17 +171,21 @@ public class ModelParserTest {
         }
 
         List<AgentDistribution> groupDistribution = result.getGroupAgentDistributions();
+        List<Strategy> strategies = result.getStrategies();
         List<AgentDistribution> strategyDistribution = result.getStrategyAgentDistributions();
+        List<Integer> capitals = result.getCapitals();
         List<AgentDistribution> capitalDistribution = result.getCapitalAgentDistributions();
 
         Object[] expecteds = new Object[]{"Init_Test2", 10, true, new int[]{0, 1, 2, 3, 4, 6}, new int[]{5, 7, 8, 9},
                 new int[]{0, 1, 2, 3, 4}, new int[]{6}, new int[]{5, 7, 8, 9}, new int[]{0, 1, 2, 3, 4, 6},
-                new int[]{7, 8}, new int[]{5, 9}};
+                new int[]{7, 8}, new int[]{5, 9}, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
         Object[] actuals = new Object[]{result.getName(), result.getAgentCount(), result.getInitialScoreStrategiesOnly(),
                 groupDistribution.get(0).getAgentIDs(), groupDistribution.get(1).getAgentIDs(),
                 strategyDistribution.get(0).getAgentIDs(), strategyDistribution.get(1).getAgentIDs(),
                 strategyDistribution.get(2).getAgentIDs(), capitalDistribution.get(0).getAgentIDs(),
-                capitalDistribution.get(1).getAgentIDs(), capitalDistribution.get(2).getAgentIDs()};
+                capitalDistribution.get(1).getAgentIDs(), capitalDistribution.get(2).getAgentIDs(),
+                strategies.get(0).getName(), strategies.get(1).getName(), strategies.get(2).getName(),
+                capitals.get(0), capitals.get(1), capitals.get(2)};
         assertArrayEquals(expecteds, actuals);
     }
 

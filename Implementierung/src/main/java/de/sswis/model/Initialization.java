@@ -283,17 +283,14 @@ public class Initialization {
         this.initialScoreStrategiesOnly = initialScoreStrategiesOnly;
     }
 
-    public List<Group> getGroups1() {
-        return groups1;
+    public List<Strategy> getStrategies() {
+        return strategies;
     }
 
-    public List<Group> getGroups2() {
-        return groups2;
+    public List<Integer> getCapitals() {
+        return capitals;
     }
 
-    public List<Group> getGroups3() {
-        return groups3;
-    }
 
     public List<AgentDistribution> getGroupAgentDistributions() {
         return  groupAgentDistributions;
