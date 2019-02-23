@@ -107,23 +107,40 @@ public class NewInitializationView implements AbstractNewInitializationView {
         vmInitialization = new VMInitialization();
         String name = nameTextField.getText();
         String desc = descriptionTextPane.getText();
+        boolean relDistr = percentageAgentGroupRadioButton.isSelected();
+        double percentageSum = 0.0;
 
-        if (isLegalName(name) && isLegalDescription(desc)) {
+        boolean illegalInput = false;
+
+        if (isLegalAgentCount(agentNumberTextField.getText()) && (groupTabs.size() > 0) && isLegalName(name) && isLegalDescription(desc)) {
             vmInitialization.setName(name);
             vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText())); //TODO: variable?
             vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
             vmInitialization.setDescription(desc);
-            vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
+            vmInitialization.setRelativeDistribution(relDistr);
 
             for (int i = 0; i < groupTabs.size(); i++) {
-                vmInitialization.addGroup(groupTabs.get(i).getVmGroup()); //TODO: Groups in CustomComponents
+                VMGroup currentGroup = groupTabs.get(i).getVmGroup();
+
+                if (currentGroup != null &&
+                        ((relDistr && isDouble(currentGroup.getAgentsString()))
+                                || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())))) {
+                    vmInitialization.addGroup(currentGroup);
+                    if (relDistr) percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                } else {
+                    illegalInput = true;
+                    break;
+                }
             }
-            return true;
+            if (relDistr && percentageSum != 1.0) illegalInput = true;
         }
-        else {
+        else illegalInput = true;
+
+        if (illegalInput) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
+        return true;
 
     }
 

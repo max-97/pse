@@ -31,7 +31,7 @@ public class InputValidator {
      */
     public static boolean isLegalDescription(String str) {
 
-        return (str.length() <= 200);
+        return (str.length() <= 140);
     }
 
     /**
@@ -64,13 +64,8 @@ public class InputValidator {
 
         String[] parts = str.split("-");
 
-        if (!(parts.length == 2
-                && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim()))) return false;
-
-        int start = Integer.parseInt(parts[0].trim());
-        int end = Integer.parseInt(parts[1].trim());
-
-        return (start < end);
+        return parts.length == 2
+                && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim());
     }
 
     public static boolean isIntervalPlusSingleValues(String str) {
@@ -81,6 +76,11 @@ public class InputValidator {
             if (!(isSingleValue(part.trim()) || isInterval(part.trim()))) return false;
         }
         return true;
+    }
+
+    public static boolean isLegalAgentCount(String str) {
+        return isSingleValue(str) ? (Integer.parseInt(str) % 2 == 0) && (Integer.parseInt(str) > 0) :
+                isFamilyOfValues(str);
     }
 
     /**
