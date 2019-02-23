@@ -4,6 +4,7 @@ import de.sswis.model.*;
 import de.sswis.model.conditions.*;
 import de.sswis.model.strategies.*;
 import de.sswis.model.strategies.Random;
+import de.sswis.util.AgentDistribution;
 import de.sswis.view.model.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
 
 public class ModelParserTest {
 
+    private static FileManager fileManager;
     private static ModelParser modelParser;
     private static ModelProvider modelProvider;
 
@@ -25,7 +27,7 @@ public class ModelParserTest {
 
     @BeforeClass
     public static void setUp() {
-
+        fileManager = new FileManager();
         modelParser = new ModelParser();
         modelProvider = ModelProvider.getInstance();
 
@@ -97,10 +99,14 @@ public class ModelParserTest {
     public void parseSimpleVMConfigurationTest() {
         HashMap<String, Object> empty = new HashMap<>();
         VMInitialization vmInit = new VMInitialization();
-        vmInit.setName("Init");
-        modelProvider.addInitialization(new Initialization("Init", 100));
+        vmInit.setName("Init_Test1");
+        try {
+            fileManager.saveInitialization(vmInit);
+        } catch( Exception e) {
+            e.printStackTrace();
+        }
+        modelProvider.addInitialization(new Initialization("Init_Test1", 100));
         modelProvider.addGame(new Game("Game", "", null));
-
         VMConfiguration vmConfig = new VMConfiguration();
         vmConfig.setName("Config");
         vmConfig.setRounds("100");
@@ -112,7 +118,7 @@ public class ModelParserTest {
         vmConfig.setPairingParameters(empty);
         vmConfig.setRankingParameters(empty);
         vmConfig.setAdaptationParameters(empty);
-        vmConfig.setInit("Init");
+        vmConfig.setInit("Init_Test1");
         vmConfig.setAdaptationProbability("1");
         vmConfig.setEquilibriumRounds(15);
         vmConfig.setEquilibriumMaxChange(10);
@@ -123,7 +129,7 @@ public class ModelParserTest {
         }
 
         Object[] expecteds = new Object[]{"Config", 1000, 10, "Game", "Replicator Dynamic Score", "Gesamtpunktzahl",
-                "Zufällige Paarung", "Init", 1.0, 15, 0.1};
+                "Zufällige Paarung", "Init_Test1", 1.0, 15, 0.1};
         Object[] actuals = new Object[]{result.getName(), result.getRounds(), result.getCycles(),
                 result.getGame().getName(), result.getAdaptationAlg().getName(), result.getRankingAlg().getName(),
                 result.getPairingAlg().getName(), result.getInit().getName(), result.getAdaptationProbability(),
@@ -132,8 +138,78 @@ public class ModelParserTest {
     }
 
     @Test
-    public void parseSimpleVMInitialization() {
+    public void parseSimpleVMInitializationWithIDs() {
+        VMGroup group1 = new VMGroup();
+        group1.setId(1);
+        group1.setName("1");
+        group1.setAgents("0-4,6");
+        group1.setRelativeStrategyDistribution(false);
+        group1.addStrategy("Always Cooperate", "0-4");
+        group1.addStrategy("Delta 10", "6");
+        group1.setRelativeCapitalDistributions(false);
+        group1.addStartCapital("100", "4,3,2,1,0,6");
+        VMGroup group2 = new VMGroup();
+        group2.setId(2);
+        group2.setName("2");
+        group2.setAgents("5,7-9");
+        group2.setRelativeStrategyDistribution(false);
+        group2.addStrategy("Always Cooperate", "7-9,5");
+        group2.setRelativeCapitalDistributions(false);
+        group2.addStartCapital("150", "7-8");
+        group2.addStartCapital("200", "9,5");
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test2");
+        vmInit.setAgentCount(10);
+        vmInit.addGroup(group1);
+        vmInit.addGroup(group2);
+        vmInit.setAddCapitalToTotalPoints(false);
+        vmInit.setRelativeDistribution(false);
+
+        Initialization result = null;
+        for(Initialization init : modelParser.parseVMInitialization(vmInit)) {
+            result = init;
+        }
+
+        List<AgentDistribution> groupDistribution = result.getGroupAgentDistributions();
+        List<AgentDistribution> strategyDistribution = result.getStrategyAgentDistributions();
+        List<AgentDistribution> capitalDistribution = result.getCapitalAgentDistributions();
+
+        Object[] expecteds = new Object[]{"Init_Test2", 10, true, new int[]{0, 1, 2, 3, 4, 6}, new int[]{5, 7, 8, 9},
+                new int[]{0, 1, 2, 3, 4}, new int[]{6}, new int[]{5, 7, 8, 9}, new int[]{0, 1, 2, 3, 4, 6},
+                new int[]{7, 8}, new int[]{5, 9}};
+        Object[] actuals = new Object[]{result.getName(), result.getAgentCount(), result.getInitialScoreStrategiesOnly(),
+                groupDistribution.get(0).getAgentIDs(), groupDistribution.get(1).getAgentIDs(),
+                strategyDistribution.get(0).getAgentIDs(), strategyDistribution.get(1).getAgentIDs(),
+                strategyDistribution.get(2).getAgentIDs(), capitalDistribution.get(0).getAgentIDs(),
+                capitalDistribution.get(1).getAgentIDs(), capitalDistribution.get(2).getAgentIDs()};
+        assertArrayEquals(expecteds, actuals);
+    }
+
+    @Test
+    public void parseSimpleVMInitializationWithRelativeDistribution() {
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test3");
+        vmInit.setAddCapitalToTotalPoints(false);
+        vmInit.setRelativeDistribution(true);
+    }
+
+    @Test
+    public void parseVMInitializationWithVariableGroupDistribution() {
 
     }
 
+    @Test
+    public void parseVMInitializationWithVariableStrategyDistribution() {
+
+    }
+
+    @Test
+    public void parseVMInitializationWithVariableCapitalDistribution() {
+
+    }
+
+    @Test
+    public void parseVMInitializationWithVariableCapital() {
+
+    }
 }

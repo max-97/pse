@@ -46,9 +46,7 @@ public class VMInitialization {
      */
     public String getToolTipText() {    return ""; }
 
-    public void addGroup(VMGroup group) {
-        this.groups.add(group);
-    }
+    public void addGroup(VMGroup group) { this.groups.add(group); }
 
     public List<VMGroup> getGroups() {
         return this.groups;

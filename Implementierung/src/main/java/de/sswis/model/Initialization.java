@@ -126,7 +126,7 @@ public class Initialization {
         return agentCount;
     }
 
-    public void distributeAgent() {
+    private void distributeAgent() {
         for (int a = 0; a < groups1.size(); a++) {
             List<Agent> members = ((groups1.get(a).getMembers() == null)? new ArrayList():groups1.get(a).getMembers());
             if (groupAgentDistributions.get(a).usesIDS()) {
@@ -167,7 +167,7 @@ public class Initialization {
         }
     }
 
-    public void distributeStrategy() {
+    private void distributeStrategy() {
         for (int a = 0; a < groups2.size(); a++) {
             List<Agent> members = groups2.get(a).getMembers();
             if (strategyAgentDistributions.get(a).usesIDS()) {
@@ -211,7 +211,7 @@ public class Initialization {
         }
     }
 
-    public void distributeCapital() {
+    private void distributeCapital() {
         for (int a = 0; a < groups3.size(); a++) {
             List<Agent> members = groups3.get(a).getMembers();
             if (capitalAgentDistributions.get(a).usesIDS()) {
@@ -283,4 +283,27 @@ public class Initialization {
         this.initialScoreStrategiesOnly = initialScoreStrategiesOnly;
     }
 
+    public List<Group> getGroups1() {
+        return groups1;
+    }
+
+    public List<Group> getGroups2() {
+        return groups2;
+    }
+
+    public List<Group> getGroups3() {
+        return groups3;
+    }
+
+    public List<AgentDistribution> getGroupAgentDistributions() {
+        return  groupAgentDistributions;
+    }
+
+    public List<AgentDistribution> getStrategyAgentDistributions() {
+        return  strategyAgentDistributions;
+    }
+
+    public List<AgentDistribution> getCapitalAgentDistributions() {
+        return  capitalAgentDistributions;
+    }
 }
