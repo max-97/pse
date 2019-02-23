@@ -98,13 +98,27 @@ public class VMInitialization {
         return this.description;
     }
 
-    public boolean hasVariableGroupDistribtuion() {
+    public boolean hasVariableGroupDistribution() {
         if(!relativeDistribution) {
             return false;
         } else {
             for (VMGroup g : groups) {
                 if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
             }
+        }
+        return false;
+    }
+
+    public boolean hasVariableCapitalDistribution() {
+        for (VMGroup g : groups) {
+            if (g.hasVariableCapitalDistribution()) return true;
+        }
+        return false;
+    }
+
+    public boolean hasVariableStrategyDistribution() {
+        for (VMGroup g : groups) {
+            if (g.hasVariableStrategyDistribution()) return true;
         }
         return false;
     }
