@@ -23,6 +23,7 @@ public class ModelParserTest {
     private static VMCombinedStrategy combStrategy1;
     private static VMCombinedStrategy combStrategy2;
     private static VMCombinedStrategy combStrategy3;
+    private static VMCombinedStrategy combStrategy4;
 
 
     @BeforeClass
@@ -43,12 +44,16 @@ public class ModelParserTest {
         combStrategy3 = new VMCombinedStrategy("Delta 10", "Desc", NeverCooperate.NAME);
         combStrategy3.addStrategy(AlwaysCooperate.NAME, Delta.NAME);
         combStrategy3.addConditionParameter(parameters3);
+        combStrategy4 = new VMCombinedStrategy("Never Cooperate", "Desc", NeverCooperate.NAME);
+        combStrategy4.addConditionParameter(empty);
 
         modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy1.getName(),
                 new BaseStrategy[]{new AlwaysCooperate()}, new Condition[]{new Always()}));
         modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy2.getName(),
                 new BaseStrategy[]{new AlwaysCooperate(), new NeverCooperate()},
                 new Condition[]{new OwnGroup(), new Always()}));
+        modelProvider.addCombinedStrategy(new CombinedStrategy(combStrategy4.getName(),
+                new BaseStrategy[]{new NeverCooperate()}, new Condition[]{new Always()}));
 
     }
 
@@ -292,7 +297,54 @@ public class ModelParserTest {
 
     @Test
     public void parseVMInitializationWithVariableStrategyDistribution() {
+        VMGroup group1 = new VMGroup();
+        group1.setId(1);
+        group1.setName("1");
+        group1.setAgents("60");
+        group1.setRelativeStrategyDistribution(true);
+        group1.addStrategy("Always Cooperate", "30-40-5");
+        group1.addStrategy("Cooperate with same group", "40-20-10");
+        group1.addStrategy("Never Cooperate", "30-40-5");
+        group1.setRelativeCapitalDistributions(true);
+        group1.addStartCapital("100", "100");
+        VMGroup group2 = new VMGroup();
+        group2.setId(2);
+        group2.setName("2");
+        group2.setAgents("40");
+        group2.setRelativeStrategyDistribution(true);
+        group2.addStrategy("Always Cooperate", "100");
+        group2.setRelativeCapitalDistributions(true);
+        group2.addStartCapital("150", "50");
+        group2.addStartCapital("200", "50");
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test5");
+        vmInit.setAddCapitalToTotalPoints(true);
+        vmInit.setRelativeDistribution(true);
+        vmInit.setAgentCount(100);
+        vmInit.addGroup(group1);
+        vmInit.addGroup(group2);
 
+        Initialization[] result = modelParser.parseVMInitialization(vmInit).toArray(Initialization[]::new);
+
+        for(int i = 0; i < result.length; i++) {
+            Initialization current = result[i];
+            List<AgentDistribution> groupDistribution = current.getGroupAgentDistributions();
+            List<Strategy> strategies = current.getStrategies();
+            List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
+            List<Integer> capitals = current.getCapitals();
+            List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
+            Object[] expecteds = new Object[]{"Init_Test5" + (i + 1), 100, false, 60, 40, 30 + i*5, 40 - i*10, 30 + i*5,
+                    100, 100, 50, 50, "Always Cooperate", "Cooperate with same group", "Never Cooperate",
+                    "Always Cooperate", 100, 150, 200};
+            Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
+                    groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
+                    strategyDistribution.get(0).getPercentage(), strategyDistribution.get(1).getPercentage(),
+                    strategyDistribution.get(2).getPercentage(), strategyDistribution.get(3).getPercentage(),
+                    capitalDistribution.get(0).getPercentage(), capitalDistribution.get(1).getPercentage(),
+                    capitalDistribution.get(2).getPercentage(), strategies.get(0).getName(), strategies.get(1).getName(),
+                    strategies.get(2).getName(), strategies.get(3).getName(), capitals.get(0), capitals.get(1), capitals.get(2)};
+            assertArrayEquals(expecteds, actuals);
+        }
     }
 
     @Test
