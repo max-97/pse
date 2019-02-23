@@ -445,9 +445,18 @@ public class ModelParser {
     private int[] getValues(String input) {
         String[] parts = input.split("-");
         List<Integer> values = new ArrayList<>();
+        int start = Integer.parseInt(parts[0]);
+        int end = Integer.parseInt(parts[1]);
+        int step = Integer.parseInt(parts[2]);
 
-        for(int i = Integer.parseInt(parts[0]); i <= Integer.parseInt(parts[1]); i += Integer.parseInt(parts[2])) {
-            values.add(i);
+        if(start < end) {
+            for(int i = start; i <= end; i += step) {
+                values.add(i);
+            }
+        } else {
+            for(int i = start; i >= end; i-= step) {
+                values.add(i);
+            }
         }
 
         int[] result = new int[values.size()];
