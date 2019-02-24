@@ -81,20 +81,37 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void removeConfiguration(String configurationName) {
-        for (int i = 0; i < configurations.size(); i++) {
-            if (configurations.get(i).getName().equals(configurationName)) {
-                configurations.remove(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Konfiguration löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        ConfigurationTree.setModel(createConfigurationTree());
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < configurations.size(); i++) {
+                if (configurations.get(i).getName().equals(configurationName)) {
+                    configurations.remove(i);
+                    break;
+                }
+            }
+
+            ConfigurationTree.setModel(createConfigurationTree());
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override
     public void removeAll() {
-        while (!configurations.isEmpty()) {
-            configurations.remove(configurations.size() - 1);
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie alle Konfigurationen löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
+
+        if (n == JOptionPane.YES_OPTION) {
+
+            while (!configurations.isEmpty()) {
+                configurations.remove(configurations.size() - 1);
+            }
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
         }
     }
 

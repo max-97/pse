@@ -78,15 +78,23 @@ public class ManageInitializationsView implements AbstractManageInitializationsV
 
     @Override
     public void removeInit(String initName) {
-        for (int i = 0; i < vmInits.size(); i++) {
-            if (vmInits.get(i).getName().equals(initName)) {
-                vmInits.remove(i);
-                InitsPane.removeTabAt(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Initialisierung löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < vmInits.size(); i++) {
+                if (vmInits.get(i).getName().equals(initName)) {
+                    vmInits.remove(i);
+                    InitsPane.removeTabAt(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override

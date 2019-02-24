@@ -59,15 +59,24 @@ public class ManageResultsView implements AbstractManageResultsView {
 
     @Override
     public void removeResult(String resultName) {
-        for (int i = 0; i < vmResults.size(); i++) {
-            if (vmResults.get(i).getName().equals(resultName)) {
-                vmResults.remove(i);
-                ResultsPane.removeTabAt(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie das Ergebnis löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+
+            for (int i = 0; i < vmResults.size(); i++) {
+                if (vmResults.get(i).getName().equals(resultName)) {
+                    vmResults.remove(i);
+                    ResultsPane.removeTabAt(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override
