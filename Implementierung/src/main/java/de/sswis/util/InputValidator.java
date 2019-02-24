@@ -144,4 +144,7 @@ public class InputValidator {
         return false;
     }
 
+    public static boolean isCorrectParameterInput(String label, Object input) {
+        return true; //TODO: implementation
+    }
 }
