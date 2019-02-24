@@ -99,21 +99,32 @@ public class NewStrategyView implements AbstractNewStrategyView {
         vmStrategy = new VMStrategy();
         String name = nameTextField.getText();
         String desc = descriptionTextPane.getText();
+        double percentageSum = 0.0;
 
-        if (isLegalName(name) && isLegalDescription(desc)) {
+        boolean illegalInput = false;
+
+        if (isLegalName(name) && isLegalDescription(desc) && strategyComboBoxes.size() > 0) {
             vmStrategy.setName(name);
-            for (int i = 0; i < strategyComboBoxes.size(); i++) { //TODO check size >(=) 1, probab syntax, strat selected
-                vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
-                        probabilityTextFields.get(i).getText());
+            for (int i = 0; i < strategyComboBoxes.size(); i++) {
+                String currentStrategy = (String) strategyComboBoxes.get(i).getSelectedItem();
+                String currentPercentage = probabilityTextFields.get(i).getText();
+                vmStrategy.addStrategy(currentStrategy,
+                        currentPercentage);
+                if (!isDouble(currentPercentage) || currentStrategy == null) {
+                    illegalInput = true;
+                    break;
+                }
+                percentageSum += Double.parseDouble(currentPercentage);
             }
             vmStrategy.setDescription(desc);
-            return true;
         }
-        else {
+        else illegalInput = true;
+
+        if (illegalInput || percentageSum != 1.0) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
-
+        return true;
     }
 
     @Override
