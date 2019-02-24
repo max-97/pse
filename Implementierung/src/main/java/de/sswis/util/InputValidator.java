@@ -145,6 +145,6 @@ public class InputValidator {
     }
 
     public static boolean isCorrectParameterInput(String label, Object input) {
-        return true; //TODO: implementation
+        return !((String) input).trim().matches(""); //TODO: implementation
     }
 }

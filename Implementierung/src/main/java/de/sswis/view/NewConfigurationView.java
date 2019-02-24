@@ -103,18 +103,29 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         String rounds = roundsTextField.getText();
         String cycles = cyclesTextField.getText();
 
-        if (isLegalName(name)) { //TODO: check non-empty, params, adaptProb, rounds, cycles
+        if (!(isSingleValue(rounds) && Integer.parseInt(rounds) > 0) ||
+                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isInPercentageRange(adaptProb))) {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+
+        if (isLegalName(name) &&
+                !(gameComboBox.getSelectedItem() == null || initComboBox.getSelectedItem() == null)) {
             vmConfiguration.setName(name);
             vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
             vmConfiguration.setInit((String) initComboBox.getSelectedItem());
+
             vmConfiguration.setPairingAlg((String) pairingComboBox.getSelectedItem());
-            vmConfiguration.setPairingParameters(pairingParameterTable.getAllUserInputs()); //TODO: check params
+            if (!legalParams(pairingParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setPairingParameters(pairingParameterTable.getAllUserInputs());
 
             vmConfiguration.setRankingAlg((String) rankingComboBox.getSelectedItem());
-            vmConfiguration.setRankingParameters(rankingParameterTable.getAllUserInputs()); //TODO: check params
+            if (!legalParams(rankingParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setRankingParameters(rankingParameterTable.getAllUserInputs());
 
             vmConfiguration.setAdaptationAlg((String) adaptionComboBox.getSelectedItem());
-            vmConfiguration.setAdaptationParameters(adaptionParameterTable.getAllUserInputs()); //TODO: check params
+            if (!legalParams(adaptionParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setAdaptationParameters(adaptionParameterTable.getAllUserInputs());
 
             vmConfiguration.setAdaptationProbability(adaptProb);
             vmConfiguration.setRounds(rounds);
@@ -127,6 +138,17 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
+    }
+
+    private boolean legalParams(HashMap<String, Object> params) {
+        List<String> keys = new ArrayList<>(params.keySet());
+        for (String paramLabel : keys) {
+            if (!isCorrectParameterInput(paramLabel, params.get(paramLabel))) {
+                JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
