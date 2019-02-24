@@ -31,7 +31,8 @@ public class ReplicatorDynamicScore implements AdaptationAlgorithm {
             if (rndDouble <= adaptationProbability && rndDouble != 0) {
                 Agent randomAgent = agents[rnd.nextInt(agents.length)];
                 int delta = Math.min(randomAgent.getScore() - agents[i].getScore(), 0);
-                if (currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndDouble < delta * beta) {
+                if (currentRanking.get(randomAgent) < currentRanking.get(agents[i]) && rndDouble < delta * beta
+                        && !randomAgent.getStrategy().getName().equals(agents[i].getStrategy().getName())) {
                     agents[i].setStrategy(randomAgent.getStrategy().clone());
                     adaptationCount++;
                 }
