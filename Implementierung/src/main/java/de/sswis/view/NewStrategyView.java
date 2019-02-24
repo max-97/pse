@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer gemischten Strategie.
  *
@@ -93,15 +95,36 @@ public class NewStrategyView implements AbstractNewStrategyView {
         frame.pack();
     }
 
-    private void updateVM() {
+    private boolean updateVM() {
         vmStrategy = new VMStrategy();
+        String name = nameTextField.getText();
+        String desc = descriptionTextPane.getText();
+        double percentageSum = 0.0;
 
-        vmStrategy.setName(nameTextField.getText());
-        for (int i = 0; i < strategyComboBoxes.size(); i++) {
-            vmStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
-                    probabilityTextFields.get(i).getText());
+        boolean illegalInput = false;
+
+        if (isLegalName(name) && isLegalDescription(desc) && strategyComboBoxes.size() > 0) {
+            vmStrategy.setName(name);
+            for (int i = 0; i < strategyComboBoxes.size(); i++) {
+                String currentStrategy = (String) strategyComboBoxes.get(i).getSelectedItem();
+                String currentPercentage = probabilityTextFields.get(i).getText();
+                vmStrategy.addStrategy(currentStrategy,
+                        currentPercentage);
+                if (!isDouble(currentPercentage) || currentStrategy == null) {
+                    illegalInput = true;
+                    break;
+                }
+                percentageSum += Double.parseDouble(currentPercentage);
+            }
+            vmStrategy.setDescription(desc);
         }
-        vmStrategy.setDescription(descriptionTextPane.getText());
+        else illegalInput = true;
+
+        if (illegalInput || percentageSum != 1.0) {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -133,8 +156,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     @Override
     public VMStrategy getVMStrategy() {
-        updateVM();
-        return this.vmStrategy;
+        return updateVM() ? this.vmStrategy : null;
     }
 
     @Override

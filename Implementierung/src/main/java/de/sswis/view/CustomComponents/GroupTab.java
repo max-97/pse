@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Tab fuer eine Gruppe, der in der NewInitializationView angezeigt wird.
  */
@@ -132,20 +134,42 @@ public class GroupTab {
         strategyTabs.remove(tab);
     }
 
-    public void updateVM() {
+    public boolean updateVM() {
         vmGroup = new VMGroup();
+
+        boolean relStrat = percentageAgentStrategyRadioButton.isSelected();
+        double stratPercentageSum = 0.0;
+        boolean relCapital = percentageAgentCapitalRadioButton.isSelected();
+        double capitalPercentageSum = 0.0;
+
+        if (strategyTabs.size() == 0 || startCapitalTabs.size() == 0) return false;
+
         vmGroup.setName(groupNameTextField.getText());
         vmGroup.setAgents(distributionTextField.getText());
 
-        vmGroup.setRelativeStrategyDistribution(percentageAgentStrategyRadioButton.isSelected());
+        vmGroup.setRelativeStrategyDistribution(relStrat);
         for (int i = 0; i < strategyTabs.size(); i++) {
-            vmGroup.addStrategy(strategyTabs.get(i).getTitle(), strategyTabs.get(i).getUserInput());
+            String distr = strategyTabs.get(i).getUserInput();
+            if ((relStrat && isDouble(distr)) || (!relStrat && isIntervalPlusSingleValues(distr))) {
+                vmGroup.addStrategy(strategyTabs.get(i).getTitle(), distr);
+                if (relStrat) stratPercentageSum += Double.parseDouble(distr);
+            }
+            else return false;
         }
 
-        vmGroup.setRelativeCapitalDistributions(percentageAgentCapitalRadioButton.isSelected());
+        vmGroup.setRelativeCapitalDistributions(relCapital);
         for (int i = 0; i < startCapitalTabs.size(); i++) {
-            vmGroup.addStartCapital(startCapitalTabs.get(i).getStartCapital(), startCapitalTabs.get(i).getAgentUserInput());
+            String capital = startCapitalTabs.get(i).getStartCapital();
+            String distr = startCapitalTabs.get(i).getAgentUserInput();
+            if (isSingleValue(capital) &&
+                    ((relCapital && isDouble(distr)) || (!relCapital && isIntervalPlusSingleValues(distr)))) {
+                vmGroup.addStartCapital(capital, distr);
+                if (relCapital) capitalPercentageSum += Double.parseDouble(distr);
+            }
+            else return false;
         }
+
+        return (!relStrat || (stratPercentageSum == 1.0)) && (!relCapital || (capitalPercentageSum == 1.0));
     }
 
     public String getTitle() {
@@ -181,8 +205,8 @@ public class GroupTab {
     }
 
     public VMGroup getVmGroup() {
-        updateVM();
-        return vmGroup;
+
+        return updateVM() ? vmGroup : null;
     }
 
     public void setID(int id) {

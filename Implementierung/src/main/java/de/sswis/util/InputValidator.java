@@ -8,6 +8,8 @@ package de.sswis.util;
  */
 public class InputValidator {
 
+    public static String ILLEGAL_INPUT_MSG = "Bitte überprüfen Sie Ihre Eingabe!";
+
     /**
      * Prüft, ob der entgegengenommene String ein gültiger Name ist.
      * Gültig bedeutet, dass die Eingabe ausschließlich alphanumerische Zeichen beinhaltet und die maximale Länge für Namen nicht überschritten wurde.
@@ -29,7 +31,7 @@ public class InputValidator {
      */
     public static boolean isLegalDescription(String str) {
 
-        return (str.length() <= 200);
+        return (str.length() <= 140);
     }
 
     /**
@@ -62,13 +64,8 @@ public class InputValidator {
 
         String[] parts = str.split("-");
 
-        if (!(parts.length == 2
-                && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim()))) return false;
-
-        int start = Integer.parseInt(parts[0].trim());
-        int end = Integer.parseInt(parts[1].trim());
-
-        return (start < end);
+        return parts.length == 2
+                && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim());
     }
 
     public static boolean isIntervalPlusSingleValues(String str) {
@@ -79,6 +76,11 @@ public class InputValidator {
             if (!(isSingleValue(part.trim()) || isInterval(part.trim()))) return false;
         }
         return true;
+    }
+
+    public static boolean isLegalAgentCount(String str) {
+        return isSingleValue(str) ? (Integer.parseInt(str) % 2 == 0) && (Integer.parseInt(str) > 0) :
+                isFamilyOfValues(str);
     }
 
     /**
@@ -142,4 +144,7 @@ public class InputValidator {
         return false;
     }
 
+    public static boolean isCorrectParameterInput(String label, Object input) {
+        return !((String) input).trim().matches(""); //TODO: implementation
+    }
 }

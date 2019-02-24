@@ -13,6 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.EventListener;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten eines Stufenspiels.
  *
@@ -57,13 +59,22 @@ public class NewGameView implements AbstractNewGameView {
         frame.pack();
     }
 
-    private void updateVM() {
-        vmGame.setName(nameTextField.getText());
+    private boolean updateVM() {
+        String name = nameTextField.getText();
+        String desc = descriptionPane.getText();
 
-        int[][] payOffs = {{(int) spinner1.getValue(), (int) spinner2.getValue(), (int) spinner3.getValue(), (int) spinner4.getValue()},
-                {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
-        vmGame.setPayoffs(payOffs);
-        vmGame.setDescription(descriptionPane.getText());
+        if (isLegalName(name) && isLegalDescription(desc)) {
+            vmGame.setName(name);
+            int[][] payOffs = {{(int) spinner1.getValue(), (int) spinner2.getValue(), (int) spinner3.getValue(), (int) spinner4.getValue()},
+                    {(int) spinner5.getValue(), (int) spinner6.getValue(), (int) spinner7.getValue(), (int) spinner8.getValue()}};
+            vmGame.setPayoffs(payOffs);
+            vmGame.setDescription(desc);
+            return true;
+        }
+        else {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
     }
 
     @Override
@@ -95,8 +106,7 @@ public class NewGameView implements AbstractNewGameView {
 
     @Override
     public VMGame getVMGame() {
-        updateVM();
-        return this.vmGame;
+        return updateVM() ? this.vmGame : null;
     }
 
     @Override

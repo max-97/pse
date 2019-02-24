@@ -12,10 +12,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
+
+import static de.sswis.util.InputValidator.*;
 
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer kombinierten Strategie.
@@ -152,21 +152,39 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         frame.pack();
     }
 
-    private void updateVM() {
+    private boolean updateVM() {
         vmCombinedStrategy = new VMCombinedStrategy();
+        String name = nameTextField.getText();
+        String desc = descriptionTextPane.getText();
 
-        vmCombinedStrategy.setName(nameTextField.getText());
+        if (isLegalName(name) && isLegalDescription(desc)) {
+            vmCombinedStrategy.setName(name);
 
-        for (int i = 0; i < conditionComboBoxes.size(); i++) {
-            vmCombinedStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
-                    (String) conditionComboBoxes.get(i).getSelectedItem());
+            for (int i = 0; i < conditionComboBoxes.size(); i++) {
+                vmCombinedStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
+                        (String) conditionComboBoxes.get(i).getSelectedItem());
 
-            vmCombinedStrategy.addConditionParameter(additionalParameterLists.get(i).getAllUserInputs());
+                HashMap<String, Object> currentParams = additionalParameterLists.get(i).getAllUserInputs();
+                List<String> currentKeys = new ArrayList<>(currentParams.keySet());
+                for (String paramLabel : currentKeys) {
+                    if (!isCorrectParameterInput(paramLabel, currentParams.get(paramLabel))) {
+                        JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+                        return false;
+                    }
+                }
+                vmCombinedStrategy.addConditionParameter(additionalParameterLists.get(i).getAllUserInputs());
+            }
+
+            vmCombinedStrategy.setDefaultStrategy((String) defaultStrategy.getSelectedItem());
+
+            vmCombinedStrategy.setDescription(desc);
+            return true;
+        }
+        else {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
         }
 
-        vmCombinedStrategy.setDefaultStrategy((String) defaultStrategy.getSelectedItem());
-
-        vmCombinedStrategy.setDescription(descriptionTextPane.getText());
     }
 
     @Override
@@ -200,8 +218,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
     @Override
     public VMCombinedStrategy getCombinedStrategy() {
-        updateVM();
-        return this.vmCombinedStrategy;
+        return updateVM() ? this.vmCombinedStrategy : null;
     }
 
     @Override

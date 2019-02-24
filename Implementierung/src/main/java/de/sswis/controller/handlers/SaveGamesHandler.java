@@ -37,33 +37,37 @@ public class SaveGamesHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMGame vmGame = this.gameView.getVMGame();
-        try {
-            this.fileManager.saveGame(vmGame);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        Game game = this.parser.parseVMGame(vmGame);
-        ModelProvider.getInstance().addGame(game);
-        AbstractManageGamesView parentView = this.gameView.getParentView();
-        this.gameView.close();
-        if (parentView == null) {
-            return;
-        }
-        VMGame editedGame = parentView.getEditedGame();
-        if (editedGame == null) {
-            parentView.addGame(vmGame);
-        } else {
-            parentView.replaceGame(vmGame);
-            if (!editedGame.getName().equals(vmGame.getName())) {
-                ModelProvider.getInstance().deleteGame(editedGame.getName());
-                try {
-                    this.fileManager.deleteGame(editedGame.getName());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+
+        if (vmGame != null) {
+            try {
+                this.fileManager.saveGame(vmGame);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
             }
-            parentView.setEditedGame(null);
+            Game game = this.parser.parseVMGame(vmGame);
+            ModelProvider.getInstance().addGame(game);
+            AbstractManageGamesView parentView = this.gameView.getParentView();
+            this.gameView.close();
+            if (parentView == null) {
+                return;
+            }
+            VMGame editedGame = parentView.getEditedGame();
+            if (editedGame == null) {
+                parentView.addGame(vmGame);
+            } else {
+                parentView.replaceGame(vmGame);
+                if (!editedGame.getName().equals(vmGame.getName())) {
+                    ModelProvider.getInstance().deleteGame(editedGame.getName());
+                    try {
+                        this.fileManager.deleteGame(editedGame.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                parentView.setEditedGame(null);
+            }
         }
+
     }
 }

@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer Initialisierung.
  *
@@ -101,18 +103,45 @@ public class NewInitializationView implements AbstractNewInitializationView {
         frame.pack();
     }
 
-    private void updateVM() {
+    private boolean updateVM() {
         vmInitialization = new VMInitialization();
+        String name = nameTextField.getText();
+        String desc = descriptionTextPane.getText();
+        boolean relDistr = percentageAgentGroupRadioButton.isSelected();
+        double percentageSum = 0.0;
 
-        vmInitialization.setName(nameTextField.getText());
-        vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText()));
-        vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
-        vmInitialization.setDescription(descriptionTextPane.getText());
-        vmInitialization.setRelativeDistribution(percentageAgentGroupRadioButton.isSelected());
+        boolean illegalInput = false;
 
-        for (int i = 0; i < groupTabs.size(); i++) {
-            vmInitialization.addGroup(groupTabs.get(i).getVmGroup());
+        if (isLegalAgentCount(agentNumberTextField.getText()) && (groupTabs.size() > 0) && isLegalName(name) && isLegalDescription(desc)) {
+            vmInitialization.setName(name);
+            vmInitialization.setAgentCount(Integer.parseInt(agentNumberTextField.getText())); //TODO: variable?
+            vmInitialization.setAddCapitalToTotalPoints(!useCapitalCheckBox.isSelected());
+            vmInitialization.setDescription(desc);
+            vmInitialization.setRelativeDistribution(relDistr);
+
+            for (int i = 0; i < groupTabs.size(); i++) {
+                VMGroup currentGroup = groupTabs.get(i).getVmGroup();
+
+                if (currentGroup != null &&
+                        ((relDistr && isDouble(currentGroup.getAgentsString()))
+                                || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())))) {
+                    vmInitialization.addGroup(currentGroup);
+                    if (relDistr) percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                } else {
+                    illegalInput = true;
+                    break;
+                }
+            }
+            if (relDistr && percentageSum != 1.0) illegalInput = true;
         }
+        else illegalInput = true;
+
+        if (illegalInput) {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+        return true;
+
     }
 
     public boolean isIDAgentDistributionSelected() {
@@ -149,8 +178,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
 
     @Override
     public VMInitialization getVMInitialization() {
-        updateVM();
-        return this.vmInitialization;
+
+        return updateVM() ? this.vmInitialization : null;
     }
 
     @Override

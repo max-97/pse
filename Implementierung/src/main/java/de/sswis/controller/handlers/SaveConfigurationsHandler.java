@@ -38,35 +38,39 @@ public class SaveConfigurationsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMConfiguration vmConfiguration = this.configurationView.getVMConfiguration();
-        try {
-            this.fileManager.saveConfiguration(vmConfiguration);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        Collection<Configuration> configurations = this.parser.parseVMConfiguration(vmConfiguration);
-        for (Configuration c : configurations) {
-            ModelProvider.getInstance().addConfiguration(c);
-        }
-        AbstractManageConfigurationsView parentView = this.configurationView.getParentView();
-        this.configurationView.close();
-        if (parentView == null) {
-            return;
-        }
-        VMConfiguration editedConfiguration = parentView.getEditedConfiguration();
-        if (editedConfiguration == null) {
-            parentView.addConfiguration(vmConfiguration);
-        } else {
-            parentView.replaceConfiguration(vmConfiguration);
-            if (!editedConfiguration.getName().equals(vmConfiguration.getName())) {
-                ModelProvider.getInstance().deleteConfiguration(editedConfiguration.getName());
-                try {
-                    this.fileManager.deleteConfiguration(editedConfiguration.getName());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+
+        if (vmConfiguration != null) {
+            try {
+                this.fileManager.saveConfiguration(vmConfiguration);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
             }
-            parentView.setEditedConfiguration(null);
+            Collection<Configuration> configurations = this.parser.parseVMConfiguration(vmConfiguration);
+            for (Configuration c : configurations) {
+                ModelProvider.getInstance().addConfiguration(c);
+            }
+            AbstractManageConfigurationsView parentView = this.configurationView.getParentView();
+            this.configurationView.close();
+            if (parentView == null) {
+                return;
+            }
+            VMConfiguration editedConfiguration = parentView.getEditedConfiguration();
+            if (editedConfiguration == null) {
+                parentView.addConfiguration(vmConfiguration);
+            } else {
+                parentView.replaceConfiguration(vmConfiguration);
+                if (!editedConfiguration.getName().equals(vmConfiguration.getName())) {
+                    ModelProvider.getInstance().deleteConfiguration(editedConfiguration.getName());
+                    try {
+                        this.fileManager.deleteConfiguration(editedConfiguration.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                parentView.setEditedConfiguration(null);
+            }
         }
+
     }
 }

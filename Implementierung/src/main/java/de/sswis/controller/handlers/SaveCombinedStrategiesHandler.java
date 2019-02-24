@@ -39,33 +39,37 @@ public class SaveCombinedStrategiesHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMCombinedStrategy combinedStrategy = this.combinedStrategyView.getCombinedStrategy();
-        try {
-            this.fileManager.saveCombinedStrategy(combinedStrategy);
-        } catch (IOException e1) {
-            e1.printStackTrace();
-            return;
-        }
-        CombinedStrategy cs = this.parser.parseVMCombinedStrategy(combinedStrategy);
-        ModelProvider.getInstance().addCombinedStrategy(cs);
-        AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
-        this.combinedStrategyView.close();
-        if (parentView == null) {
-            return;
-        }
-        VMCombinedStrategy editedCombinedStrategy = parentView.getEditedCombinedStrategy();
-        if (editedCombinedStrategy == null) {
-            parentView.addStrategy(combinedStrategy);
-        } else {
-            parentView.replaceCombinedStrategy(combinedStrategy);
-            if (!editedCombinedStrategy.getName().equals(combinedStrategy.getName())) {
-                ModelProvider.getInstance().deleteCombinedStrategy(editedCombinedStrategy.getName());
-                try {
-                    this.fileManager.deleteCombinedStrategy(editedCombinedStrategy.getName());
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+
+        if (combinedStrategy != null) {
+            try {
+                this.fileManager.saveCombinedStrategy(combinedStrategy);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+                return;
             }
-            parentView.setEditedCombinedStrategy(null);
+            CombinedStrategy cs = this.parser.parseVMCombinedStrategy(combinedStrategy);
+            ModelProvider.getInstance().addCombinedStrategy(cs);
+            AbstractManageCombinedStrategiesView parentView = this.combinedStrategyView.getParentView();
+            this.combinedStrategyView.close();
+            if (parentView == null) {
+                return;
+            }
+            VMCombinedStrategy editedCombinedStrategy = parentView.getEditedCombinedStrategy();
+            if (editedCombinedStrategy == null) {
+                parentView.addStrategy(combinedStrategy);
+            } else {
+                parentView.replaceCombinedStrategy(combinedStrategy);
+                if (!editedCombinedStrategy.getName().equals(combinedStrategy.getName())) {
+                    ModelProvider.getInstance().deleteCombinedStrategy(editedCombinedStrategy.getName());
+                    try {
+                        this.fileManager.deleteCombinedStrategy(editedCombinedStrategy.getName());
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+                parentView.setEditedCombinedStrategy(null);
+            }
         }
     }
+
 }

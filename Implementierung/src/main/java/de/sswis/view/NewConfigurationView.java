@@ -14,6 +14,8 @@ import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 
+import static de.sswis.util.InputValidator.*;
+
 /**
  * Ein Fenster zum Erstellen oder Bearbeiten einer Konfiguration.
  *
@@ -95,24 +97,58 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         frame.pack();
     }
 
-    private void updateVM() {
-        vmConfiguration.setName(nameTextField.getText());
-        vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
-        vmConfiguration.setInit((String) initComboBox.getSelectedItem());
-        vmConfiguration.setPairingAlg((String) pairingComboBox.getSelectedItem());
-        vmConfiguration.setPairingParameters(pairingParameterTable.getAllUserInputs());
+    private boolean updateVM() {
+        String name = nameTextField.getText();
+        String adaptProb = adaptionProbabilityTextField.getText();
+        String rounds = roundsTextField.getText();
+        String cycles = cyclesTextField.getText();
 
-        vmConfiguration.setRankingAlg((String) rankingComboBox.getSelectedItem());
-        vmConfiguration.setRankingParameters(rankingParameterTable.getAllUserInputs());
+        if (!(isSingleValue(rounds) && Integer.parseInt(rounds) > 0) ||
+                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isInPercentageRange(adaptProb))) {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
 
-        vmConfiguration.setAdaptationAlg((String) adaptionComboBox.getSelectedItem());
-        vmConfiguration.setAdaptationParameters(adaptionParameterTable.getAllUserInputs());
+        if (isLegalName(name) &&
+                !(gameComboBox.getSelectedItem() == null || initComboBox.getSelectedItem() == null)) {
+            vmConfiguration.setName(name);
+            vmConfiguration.setGame((String) gameComboBox.getSelectedItem());
+            vmConfiguration.setInit((String) initComboBox.getSelectedItem());
 
-        vmConfiguration.setAdaptationProbability(adaptionProbabilityTextField.getText());
-        vmConfiguration.setRounds(roundsTextField.getText());
-        vmConfiguration.setCycles(cyclesTextField.getText());
-        vmConfiguration.setEquilibriumRounds((Integer) equilibriumRounds.getValue());
-        vmConfiguration.setEquilibriumMaxChange((Integer) equilibriumMaxChange.getValue());
+            vmConfiguration.setPairingAlg((String) pairingComboBox.getSelectedItem());
+            if (!legalParams(pairingParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setPairingParameters(pairingParameterTable.getAllUserInputs());
+
+            vmConfiguration.setRankingAlg((String) rankingComboBox.getSelectedItem());
+            if (!legalParams(rankingParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setRankingParameters(rankingParameterTable.getAllUserInputs());
+
+            vmConfiguration.setAdaptationAlg((String) adaptionComboBox.getSelectedItem());
+            if (!legalParams(adaptionParameterTable.getAllUserInputs())) return false;
+            vmConfiguration.setAdaptationParameters(adaptionParameterTable.getAllUserInputs());
+
+            vmConfiguration.setAdaptationProbability(adaptProb);
+            vmConfiguration.setRounds(rounds);
+            vmConfiguration.setCycles(cycles);
+            vmConfiguration.setEquilibriumRounds((Integer) equilibriumRounds.getValue());
+            vmConfiguration.setEquilibriumMaxChange((Integer) equilibriumMaxChange.getValue());
+            return true;
+        }
+        else {
+            JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+            return false;
+        }
+    }
+
+    private boolean legalParams(HashMap<String, Object> params) {
+        List<String> keys = new ArrayList<>(params.keySet());
+        for (String paramLabel : keys) {
+            if (!isCorrectParameterInput(paramLabel, params.get(paramLabel))) {
+                JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -147,8 +183,8 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
 
     @Override
     public VMConfiguration getVMConfiguration() {
-        updateVM();
-        return this.vmConfiguration;
+
+        return updateVM() ? this.vmConfiguration : null;
     }
 
     @Override
@@ -161,7 +197,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         initComboBox.setSelectedItem(vmConfiguration.getInit());
 
         pairingComboBox.setSelectedItem(vmConfiguration.getPairingAlg());
-        if (vmConfiguration.getPairingParameters() != null){
+        if (vmConfiguration.getPairingParameters() != null) {
             pairingParameterTable.setParameters(vmConfiguration.getPairingParameters().keySet().toArray(new String[0]));
             pairingParameterTable.setParameterValues(vmConfiguration.getPairingParameters().values().toArray(new String[0]));
         }
