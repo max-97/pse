@@ -29,15 +29,6 @@ public class CloseHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (this.view instanceof AbstractManageConfigurationsView) {
-            AbstractManageConfigurationsView mcView = (AbstractManageConfigurationsView) this.view;
-            AbstractMainView mainView = mcView.getParentView();
-            FileManager manager = new FileManager();
-            mainView.removeAll();
-            for (VMConfiguration c : manager.loadAllConfigurations()) {
-                mainView.addConfiguration(c);
-            }
-        }
         this.view.close();
     }
 }

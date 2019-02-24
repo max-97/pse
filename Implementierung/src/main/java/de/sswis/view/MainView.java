@@ -3,18 +3,16 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,10 +25,8 @@ import java.util.List;
  */
 public class MainView implements AbstractMainView {
 
-    private JFrame frame = new JFrame();
-
-
     private List<VMConfiguration> configurations;
+    private JFrame frame = new JFrame();
     private List<String> simulatingConfigs;
     private JMenuBar menuBar;
 
@@ -72,8 +68,6 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void addConfiguration(VMConfiguration configuration) {
-        if (configurations.contains(configuration))
-            return;
         configurations.add(configuration);
 
         ConfigurationTree.setModel(createConfigurationTree());
@@ -165,7 +159,11 @@ public class MainView implements AbstractMainView {
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
         startButton.addActionListener(listener);
+    }
 
+    @Override
+    public void addFocusListener(FocusListener listener) {
+        this.frame.addFocusListener(listener);
     }
 
     @Override
