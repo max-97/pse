@@ -12,9 +12,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
 
 import static de.sswis.util.InputValidator.*;
@@ -159,13 +157,21 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
         String name = nameTextField.getText();
         String desc = descriptionTextPane.getText();
 
-        if (isLegalName(name) && isLegalDescription(desc)) { //TODO: check params
+        if (isLegalName(name) && isLegalDescription(desc)) {
             vmCombinedStrategy.setName(name);
 
             for (int i = 0; i < conditionComboBoxes.size(); i++) {
                 vmCombinedStrategy.addStrategy((String) strategyComboBoxes.get(i).getSelectedItem(),
                         (String) conditionComboBoxes.get(i).getSelectedItem());
 
+                HashMap<String, Object> currentParams = additionalParameterLists.get(i).getAllUserInputs();
+                List<String> currentKeys = new ArrayList<>(currentParams.keySet());
+                for (String paramLabel : currentKeys) {
+                    if (!isCorrectParameterInput(paramLabel, currentParams.get(paramLabel))) {
+                        JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
+                        return false;
+                    }
+                }
                 vmCombinedStrategy.addConditionParameter(additionalParameterLists.get(i).getAllUserInputs());
             }
 
