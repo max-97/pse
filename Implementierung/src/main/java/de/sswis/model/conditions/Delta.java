@@ -21,10 +21,6 @@ public class Delta implements Condition{
         delta = 0.5;
     }
 
-    public Delta(double delta) {
-        this.delta = delta;
-    }
-
     @Override
     public boolean fulfillsCondition(Agent agent1, Agent agent2) {
         return Math.abs(agent1.getScore() - agent2.getScore()) <= delta;

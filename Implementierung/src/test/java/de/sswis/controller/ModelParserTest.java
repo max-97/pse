@@ -41,7 +41,7 @@ public class ModelParserTest {
         combStrategy2.addConditionParameter(empty);
         HashMap<String, Object> parameters3 = new HashMap<>();
         parameters3.put("DELTA", "5");
-        combStrategy3 = new VMCombinedStrategy("Delta 10", "Desc", NeverCooperate.NAME);
+        combStrategy3 = new VMCombinedStrategy("Delta 5", "Desc", NeverCooperate.NAME);
         combStrategy3.addStrategy(AlwaysCooperate.NAME, Delta.NAME);
         combStrategy3.addConditionParameter(parameters3);
         combStrategy4 = new VMCombinedStrategy("Never Cooperate", "Desc", NeverCooperate.NAME);
