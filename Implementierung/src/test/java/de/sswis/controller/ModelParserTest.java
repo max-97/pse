@@ -143,6 +143,60 @@ public class ModelParserTest {
     }
 
     @Test
+    public void parseVMConfigurationWithMultiInit() {
+        HashMap<String, Object> empty = new HashMap<>();
+        VMGroup group1 = new VMGroup();
+        group1.setId(1);
+        group1.setName("1");
+        group1.setAgents("0-100-10");
+        group1.setRelativeStrategyDistribution(true);
+        group1.addStrategy("Always Cooperate", "100");
+        group1.setRelativeCapitalDistributions(true);
+        group1.addStartCapital("100", "100");
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test8");
+        vmInit.addGroup(group1);
+        try {
+            fileManager.saveInitialization(vmInit);
+        } catch( Exception e) {
+            e.printStackTrace();
+        }
+
+        for(int i = 1; i < 6; i++) {
+            modelProvider.addInitialization(new Initialization("Init_Test8" + i, 100));
+        }
+
+        modelProvider.addGame(new Game("Game", "", null));
+        VMConfiguration vmConfig = new VMConfiguration();
+        vmConfig.setName("Config");
+        vmConfig.setRounds("100");
+        vmConfig.setCycles("10");
+        vmConfig.setGame("Game");
+        vmConfig.setAdaptationAlg("Replicator Dynamic Score");
+        vmConfig.setRankingAlg("Gesamtpunktzahl");
+        vmConfig.setPairingAlg("Zufällige Paarung");
+        vmConfig.setPairingParameters(empty);
+        vmConfig.setRankingParameters(empty);
+        vmConfig.setAdaptationParameters(empty);
+        vmConfig.setInit("Init_Test8");
+        vmConfig.setAdaptationProbability("1");
+        vmConfig.setEquilibriumRounds(15);
+        vmConfig.setEquilibriumMaxChange(10);
+
+        Configuration[] result = modelParser.parseVMConfiguration(vmConfig).toArray(Configuration[]::new);
+
+        for(int i = 0; i < result.length; i++) {
+            Object[] expecteds = new Object[]{"Config" + (i+1), 1000, 10, "Game", "Replicator Dynamic Score", "Gesamtpunktzahl",
+                    "Zufällige Paarung", "Init_Test8" + (i+1), 1.0, 15, 0.1};
+            Object[] actuals = new Object[]{result[i].getName(), result[i].getRounds(), result[i].getCycles(),
+                    result[i].getGame().getName(), result[i].getAdaptationAlg().getName(), result[i].getRankingAlg().getName(),
+                    result[i].getPairingAlg().getName(), result[i].getInit().getName(), result[i].getAdaptationProbability(),
+                    result[i].getEquilibriumRounds(), result[i].getThreshold()};
+            assertArrayEquals(expecteds, actuals);
+        }
+    }
+
+    @Test
     public void parseSimpleVMInitializationWithIDs() {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
