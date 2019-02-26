@@ -12,7 +12,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -90,6 +90,7 @@ public class MainView implements AbstractMainView {
         while (!configurations.isEmpty()) {
             configurations.remove(configurations.size() - 1);
         }
+        ConfigurationTree.setModel(createConfigurationTree());
     }
 
     @Override
@@ -159,11 +160,6 @@ public class MainView implements AbstractMainView {
     @Override
     public void addStartButtonActionlistener(ActionListener listener) {
         startButton.addActionListener(listener);
-    }
-
-    @Override
-    public void addFocusListener(FocusListener listener) {
-        this.frame.addFocusListener(listener);
     }
 
     @Override
@@ -390,7 +386,7 @@ public class MainView implements AbstractMainView {
         TitleLabel = new JLabel();
         Font TitleLabelFont = this.$$$getFont$$$(null, -1, 22, TitleLabel.getFont());
         if (TitleLabelFont != null) TitleLabel.setFont(TitleLabelFont);
-        TitleLabel.setText("SSWIS Simuliert WIederholte Spiele");
+        TitleLabel.setText("SSWIS Simuliert Wiederholte Spiele");
         TitelPanel.add(TitleLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         TitelPanel.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -457,4 +453,5 @@ public class MainView implements AbstractMainView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

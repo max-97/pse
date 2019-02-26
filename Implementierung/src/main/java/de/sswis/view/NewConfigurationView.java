@@ -62,6 +62,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     private JButton setAdaptionParamsButton;
     private JSpinner equilibriumRounds;
     private JSpinner equilibriumMaxChange;
+    private AbstractMainView mainView;
 
     public NewConfigurationView() {
 
@@ -172,7 +173,6 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void addCancelButtonActionlistener(ActionListener listener) {
         cancelButton.addActionListener(listener);
-
     }
 
     @Override
@@ -264,6 +264,15 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
     @Override
     public void addParameters(HashMap<String, String[]> parameters) {
         this.algorithmParameters.putAll(parameters);
+    }
+
+    @Override
+    public void setMainView(AbstractMainView mainView) {
+        this.mainView = mainView;
+    }
+
+    public AbstractMainView getMainView() {
+        return this.mainView;
     }
 
     @Override
