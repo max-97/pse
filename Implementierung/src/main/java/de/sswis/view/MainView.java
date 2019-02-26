@@ -101,18 +101,7 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void removeAll() {
-        UIManager.put("OptionPane.yesButtonText", "Ja");
-        UIManager.put("OptionPane.noButtonText", "Nein");
-        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie alle Konfigurationen löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
-
-        if (n == JOptionPane.YES_OPTION) {
-
-            while (!configurations.isEmpty()) {
-                configurations.remove(configurations.size() - 1);
-            }
-        } else if (n == JOptionPane.NO_OPTION) {
-            close();
-        }
+        this.configurations.clear();
     }
 
     @Override
