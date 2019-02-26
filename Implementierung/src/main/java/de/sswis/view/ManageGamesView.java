@@ -81,16 +81,24 @@ public class ManageGamesView implements AbstractManageGamesView {
 
     @Override
     public void removeGame(String gameName) {
-        for (int i = 0; i < vmGames.size(); i++) {
-            if (vmGames.get(i).getName().equals(gameName)) {
-                vmGames.remove(i);
-                gameTabs.remove(i);
-                GamesPane.removeTabAt(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie das Spiel löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < vmGames.size(); i++) {
+                if (vmGames.get(i).getName().equals(gameName)) {
+                    vmGames.remove(i);
+                    gameTabs.remove(i);
+                    GamesPane.removeTabAt(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override

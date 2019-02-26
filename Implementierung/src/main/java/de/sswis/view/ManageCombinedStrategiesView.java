@@ -80,16 +80,24 @@ public class ManageCombinedStrategiesView implements AbstractManageCombinedStrat
 
     @Override
     public void removeStrategy(String strategyName) {
-        for (int i = 0; i < vmCombinedStrategies.size(); i++) {
-            if (vmCombinedStrategies.get(i).getName().equals(strategyName)) {
-                vmCombinedStrategies.remove(i);
-                StrategiesPane.removeTabAt(i);
-                strategyTabs.remove(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die kombinierte Strategie löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < vmCombinedStrategies.size(); i++) {
+                if (vmCombinedStrategies.get(i).getName().equals(strategyName)) {
+                    vmCombinedStrategies.remove(i);
+                    StrategiesPane.removeTabAt(i);
+                    strategyTabs.remove(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override

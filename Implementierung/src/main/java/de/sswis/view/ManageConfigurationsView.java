@@ -81,16 +81,24 @@ public class ManageConfigurationsView implements AbstractManageConfigurationsVie
 
     @Override
     public void removeConfiguration(String configName) {
-        for (int i = 0; i < vmConfigurations.size(); i++) {
-            if (vmConfigurations.get(i).getName().equals(configName)) {
-                vmConfigurations.remove(i);
-                configTabs.get(i);
-                ConfigurationsPane.removeTabAt(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Konfiguration löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < vmConfigurations.size(); i++) {
+                if (vmConfigurations.get(i).getName().equals(configName)) {
+                    vmConfigurations.remove(i);
+                    configTabs.get(i);
+                    ConfigurationsPane.removeTabAt(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override

@@ -68,13 +68,20 @@ public class NewInitializationView implements AbstractNewInitializationView {
     }
 
     public void removeGroupTab(GroupTab tab) {
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Gruppe löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        groupTabbedPane.removeTabAt(groupTabs.indexOf(tab));
-        groupTabs.remove(tab);
+        if (n == JOptionPane.YES_OPTION) {
+            groupTabbedPane.removeTabAt(groupTabs.indexOf(tab));
+            groupTabs.remove(tab);
 
-        for (int i = 0; i < groupTabs.size(); i++) {
-            groupTabs.get(i).setID(i);
-            groupTabbedPane.setTitleAt(i, groupTabs.get(i).getTitle());
+            for (int i = 0; i < groupTabs.size(); i++) {
+                groupTabs.get(i).setID(i);
+                groupTabbedPane.setTitleAt(i, groupTabs.get(i).getTitle());
+            }
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
         }
     }
 
