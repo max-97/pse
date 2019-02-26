@@ -10,7 +10,6 @@ import de.sswis.model.conditions.Condition;
 import de.sswis.model.strategies.BaseStrategy;
 import de.sswis.util.AgentDistribution;
 import de.sswis.view.model.*;
-import org.jgrapht.alg.util.Pair;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -154,11 +153,6 @@ public class ModelParser {
         int equilibriumRounds = vmConfig.getEquilibriumRounds();
         double threshold = vmConfig.getEquilibriumMaxChange() / 100.0;
 
-        List<Strategy> strategies = new ArrayList<>();
-        for (String strategyName : vmConfig.getStrategies()) {
-            strategies.add(this.provider.getStrategy(strategyName));
-        }
-
         if (vmInitialization.isMultiInitialisation()) {
             String initName = vmInitialization.getName();
 
@@ -237,231 +231,268 @@ public class ModelParser {
     }
 
     /**
-     * Übersetzt ein {@code VMGroup}-Objekt in ein {@code Group}-Objekt.
-     *
-     * @param vmGroup die zu übersetzende {@code VMGroup}
-     * @return die übersetzte {@code Group}
-     */
-    public Group parseVMGroupToGroup(VMGroup vmGroup) {
-        return null;
-    }
-
-    /**
      * Übersetzt ein {@code VMInitialization}-Objekt in eine Sammlung an {@code Initialization}-Objekten.
      * Im Falle einer Mehrfachinitialisierung enthält die zurückgegebene Sammlung die {@code n} Einzelinitialisierungen.
      *
      * @param vmInitialization die zu übersetzende {@code VMInitialization}
      * @return die übersetzte {@code Collection<Initialization>}
      */
-    public Collection<Initialization> parseVMInitialization(VMInitialization vmInitialization) {
+    public Collection<Initialization> parseVMInitialization(VMInitialization vmInitialization){
         Collection<Initialization> initializations = new ArrayList<>();
-
         String name = vmInitialization.getName();
         int agentCount = vmInitialization.getAgentCount();
-        List<VMGroup> groups = vmInitialization.getGroups();
-        boolean capitalToTotalPoints = vmInitialization.addCapitalToTotalPoints();
 
-        HashMap<Group, VariableDistribution[]> groupDistribution = calculateGroupDistribution(groups);
-
-        HashMap<Pair<Group, Strategy>, VariableDistribution[]> strategyDistributionID =
-                calculateStrategyDistribution(groups, groupDistribution.keySet(), false);
-
-        HashMap<Pair<Group, Strategy>, VariableDistribution[]> strategyDistributionRelative =
-                calculateStrategyDistribution(groups, groupDistribution.keySet(), true);
-
-        HashMap<Pair<Group, Integer>, VariableDistribution[]> capitalDistributionID =
-                calculateCapitalDistribution(groups, groupDistribution.keySet(), false);
-
-        HashMap<Pair<Group, Integer>, VariableDistribution[]> capitalDistributionRelative =
-                calculateCapitalDistribution(groups, groupDistribution.keySet(), true);
-
-        if (VariableDistribution.getSize() == 1) {
-            // Eine Initialization
+        if(!vmInitialization.isMultiInitialisation()) {
+            //Simple Initialization
             Initialization init = new Initialization(name, agentCount);
-            init.setInitialScoreStrategiesOnly(!capitalToTotalPoints);
-            if (vmInitialization.hasRelativeDistribution()) {
-                for (Group g : groupDistribution.keySet()) {
-                    int percent = groupDistribution.get(g)[0].getValue(0);
-                    AgentDistribution ad = new AgentDistribution(percent);
+            init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
+
+            for(VMGroup group : vmInitialization.getGroups()) {
+                Group g = new Group(group.getId(), group.getName());
+
+                if(vmInitialization.hasRelativeDistribution()) {
+                    AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                    init.setGroupDistribution(ad, g);
+                } else {
+                    AgentDistribution ad = new AgentDistribution(getIDs(group.getAgentsString()));
                     init.setGroupDistribution(ad, g);
                 }
-            } else {
-                for (Group g : groupDistribution.keySet()) {
-                    VariableDistribution[] varDist = groupDistribution.get(g);
-                    for (int i = 0; i < varDist.length; i++) {
-                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                        init.setGroupDistribution(ad, g);
+
+                if(group.getRelativeStrategyDistributions()) {
+                    for(int i = 0; i < group.getStrategies().size(); i++) {
+                        AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(i)));
+                        init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(i)), g);
+                    }
+                } else {
+                    for(int i = 0; i < group.getStrategies().size(); i++) {
+                        AgentDistribution ad = new AgentDistribution(getIDs(group.getStrategyDistributionsStrings().get(i)));
+                        init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(i)), g);
                     }
                 }
-            }
 
-            for (Pair<Group, Strategy> p : strategyDistributionID.keySet()) {
-                VariableDistribution[] varDist = strategyDistributionID.get(p);
-                for (int i = 0; i < varDist.length; i++) {
-                    AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                    init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
-                }
-            }
-
-            for (Pair<Group, Strategy> p : strategyDistributionRelative.keySet()) {
-                VariableDistribution[] varDist = strategyDistributionRelative.get(p);
-                for (int i = 0; i < varDist.length; i++) {
-                    AgentDistribution ad = new AgentDistribution(varDist[i].getValue(0));
-                    init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
-                }
-            }
-
-            for (Pair<Group, Integer> p : capitalDistributionID.keySet()) {
-                VariableDistribution[] varDist = capitalDistributionID.get(p);
-                for (int i = 0; i < varDist.length; i++) {
-                    AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                    init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
-                }
-            }
-
-            for (Pair<Group, Integer> p : capitalDistributionRelative.keySet()) {
-                VariableDistribution[] varDist = capitalDistributionRelative.get(p);
-                for (int i = 0; i < varDist.length; i++) {
-                    AgentDistribution ad = new AgentDistribution(varDist[i].getValue(0));
-                    init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                if(group.getRelativeCapitalDistributions()) {
+                    for(int i = 0; i < group.getStartCapital().size(); i++) {
+                        AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(i)));
+                        init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(i)), g);
+                    }
+                } else {
+                    for(int i = 0; i < group.getStartCapital().size(); i++) {
+                        AgentDistribution ad = new AgentDistribution(getIDs(group.getStartCapitalDistributionsStrings().get(i)));
+                        init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(i)), g);
+                    }
                 }
             }
 
             initializations.add(init);
-
         } else {
-            // Multi Initialization
-            int numberOfInstances = VariableDistribution.getSize();
-            for (int j = 0; j < numberOfInstances; j++) {
-                Initialization init = new Initialization(name + (j + 1), agentCount);
-                init.setInitialScoreStrategiesOnly(!capitalToTotalPoints);
+            //Multi Initialization
+            if(vmInitialization.hasVariableGroupDistribution()) {
+                //group distribution is variable
+                int size = getValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
 
-                if (vmInitialization.hasRelativeDistribution()) {
-                    for (Group g : groupDistribution.keySet()) {
-                        int percent = groupDistribution.get(g)[0].getValue(j);
-                        AgentDistribution ad = new AgentDistribution(percent);
-                        init.setGroupDistribution(ad, g);
-                    }
-                } else {
-                    for (Group g : groupDistribution.keySet()) {
-                        VariableDistribution[] varDist = groupDistribution.get(g);
-                        for (int i = 0; i < varDist.length; i++) {
-                            AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                            init.setGroupDistribution(ad, g);
+                for(int i = 0; i < size; i++) {
+                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
+
+                    for(VMGroup group : vmInitialization.getGroups()) {
+                        Group g = new Group(group.getId(), group.getName());
+                        int[] values = getValues(group.getAgentsString());
+                        AgentDistribution groupDistribution = new AgentDistribution(values[i]);
+                        init.setGroupDistribution(groupDistribution, g);
+
+                        for (int j = 0; j < group.getStrategies().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
+                        }
+
+                        for (int j = 0; j < group.getStartCapital().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                         }
                     }
+                    initializations.add(init);
+                }
+            } else if(vmInitialization.hasVariableStrategyDistribution()) {
+                //strategy distribution in a group is variable
+                VMGroup variableGroup = null;
+
+                for(VMGroup group : vmInitialization.getGroups()) {
+                    if(group.hasVariableStrategyDistribution()) variableGroup = group;
                 }
 
-                for (Pair<Group, Strategy> p : strategyDistributionID.keySet()) {
-                    VariableDistribution[] varDist = strategyDistributionID.get(p);
-                    for (int i = 0; i < varDist.length; i++) {
-                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                        init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+                List<String> strategyDistribution = variableGroup.getStrategyDistributionsStrings();
+                int[][] values = new int[strategyDistribution.size()][getValues(strategyDistribution.get(0)).length];
+
+                for(int i = 0; i < strategyDistribution.size(); i++ ) {
+                    values[i] = getValues(variableGroup.getStrategyDistributionsStrings().get(i));
+                }
+
+                for(int i = 0; i < values[0].length; i++) {
+                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
+
+                    for(VMGroup group : vmInitialization.getGroups()) {
+                        Group g = new Group(group.getId(), group.getName());
+                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        init.setGroupDistribution(groupDistribution, g);
+
+                        if(group.getId() == variableGroup.getId()) {
+                            for (int j = 0; j < group.getStrategies().size(); j++) {
+                                AgentDistribution ad = new AgentDistribution(values[j][i]);
+                                init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
+                            }
+                        } else {
+                            for (int j = 0; j < group.getStrategies().size(); j++) {
+                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                                init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
+                            }
+                        }
+                        for (int j = 0; j < group.getStartCapital().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
+                        }
                     }
+                    initializations.add(init);
                 }
 
-                for (Pair<Group, Strategy> p : strategyDistributionRelative.keySet()) {
-                    VariableDistribution[] varDist = strategyDistributionRelative.get(p);
-                    for (int i = 0; i < varDist.length; i++) {
-                        AgentDistribution ad = new AgentDistribution(varDist[i].getValue(j));
-                        init.setStrategyDistribution(ad, p.getSecond(), p.getFirst());
+            } else if(vmInitialization.hasVariableCapitalDistribution()){
+                //capital distribution in a group is variable
+                VMGroup variableGroup = null;
+
+                for(VMGroup group : vmInitialization.getGroups()) {
+                    if(group.hasVariableCapitalDistribution()) variableGroup = group;
+                }
+
+                List<String> capitalDistribution = variableGroup.getStartCapitalDistributionsStrings();
+                int[][] values = new int[capitalDistribution.size()][getValues(capitalDistribution.get(0)).length];
+
+                for(int i = 0; i < capitalDistribution.size(); i++ ) {
+                    values[i] = getValues(variableGroup.getStartCapitalDistributionsStrings().get(i));
+                }
+
+                for(int i = 0; i < values[0].length; i++) {
+                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
+
+                    for(VMGroup group : vmInitialization.getGroups()) {
+                        Group g = new Group(group.getId(), group.getName());
+                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        init.setGroupDistribution(groupDistribution, g);
+
+                        if(group.getId() == variableGroup.getId()) {
+                            for (int j = 0; j < group.getStartCapital().size(); j++) {
+                                AgentDistribution ad = new AgentDistribution(values[j][i]);
+                                init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
+                            }
+                        } else {
+                            for (int j = 0; j < group.getStartCapital().size(); j++) {
+                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                                init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
+                            }
+                        }
+                        for (int j = 0; j < group.getStrategies().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
+                        }
                     }
+                    initializations.add(init);
+                }
+            } else {
+                //capital in a group is variable
+                VMGroup variableGroup = null;
+                int variableCapitalIndex = 0;
+
+                for(VMGroup group : vmInitialization.getGroups()) {
+                    if(group.hasVariableCapital()) variableGroup = group;
                 }
 
-                for (Pair<Group, Integer> p : capitalDistributionID.keySet()) {
-                    VariableDistribution[] varDist = capitalDistributionID.get(p);
-                    for (int i = 0; i < varDist.length; i++) {
-                        AgentDistribution ad = new AgentDistribution(varDist[i].getValues());
-                        init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
+                for(String s : variableGroup.getStartCapital()) {
+                    if(s.matches("\\d+-\\d+-\\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
+                }
+
+                int[] values = getValues(variableGroup.getStartCapital().get(variableCapitalIndex));
+
+                for(int i = 0; i < values.length; i++) {
+                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
+
+                    for(VMGroup group : vmInitialization.getGroups()) {
+                        Group g = new Group(group.getId(), group.getName());
+                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        init.setGroupDistribution(groupDistribution, g);
+
+                        for (int j = 0; j < group.getStartCapital().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            if(group.getId() == variableGroup.getId() && variableCapitalIndex == j) {
+                                init.setCapitalDistribution(ad, values[i], g);
+                            } else {
+                                init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
+                            }
+                        }
+
+                        for (int j = 0; j < group.getStrategies().size(); j++) {
+                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
+                        }
                     }
+                    initializations.add(init);
                 }
-
-                for (Pair<Group, Integer> p : capitalDistributionRelative.keySet()) {
-                    VariableDistribution[] varDist = capitalDistributionRelative.get(p);
-                    for (int i = 0; i < varDist.length; i++) {
-                        AgentDistribution ad = new AgentDistribution(varDist[i].getValue(j));
-                        init.setCapitalDistribution(ad, p.getSecond(), p.getFirst());
-                    }
-                }
-
-                initializations.add(init);
             }
         }
-
         return initializations;
     }
 
-    private HashMap<Pair<Group, Integer>, VariableDistribution[]> calculateCapitalDistribution(
-            List<VMGroup> groups, Set<Group> groupSet, boolean useRelative) {
+    private int[] getValues(String input) {
+        String[] parts = input.split("-");
+        List<Integer> values = new ArrayList<>();
+        int start = Integer.parseInt(parts[0]);
+        int end = Integer.parseInt(parts[1]);
+        int step = Integer.parseInt(parts[2]);
 
-        HashMap<Pair<Group, Integer>, VariableDistribution[]> distribution = new HashMap<>();
-
-        for (Group g : groupSet) {
-            for (VMGroup vmG : groups) {
-                if ( (g.getId() == vmG.getId()) && (vmG.getRelativeCapitalDistributions() == useRelative) ) {
-
-                    List<String> startCapital = vmG.getStartCapital();
-                    List<List<String>> startCapitalDistributions = vmG.getStartCapitalDistributions();
-
-                    for (int i = 0; i < startCapital.size(); i++) {
-                        int capital = Integer.parseInt(startCapital.get(i).trim());
-                        VariableDistribution[] varDist = calculateVariables(startCapitalDistributions.get(i));
-                        distribution.put(new Pair<Group, Integer>(g, capital), varDist);
-                    }
-                }
+        if(start < end) {
+            for(int i = start; i <= end; i += step) {
+                values.add(i);
+            }
+        } else {
+            for(int i = start; i >= end; i-= step) {
+                values.add(i);
             }
         }
 
-        return distribution;
-    }
+        int[] result = new int[values.size()];
+        int i = 0;
 
-    private VariableDistribution[] calculateVariables(List<String> values) {
-        VariableDistribution[] varDist = new VariableDistribution[values.size()];
-        for (int j = 0; j < varDist.length; j++) {
-            varDist[j] = new VariableDistribution(values.get(j));
+        for(Integer id : values) {
+            result[i] = id;
+            i++;
         }
-        return varDist;
+
+        return result;
     }
 
-    private HashMap<Pair<Group, Strategy>, VariableDistribution[]> calculateStrategyDistribution(
-            List<VMGroup> groups, Set<Group> groupSet, boolean useRelative) {
+    private int[] getIDs(String input) {
+        String[] parts = input.split(",");
+        List<Integer> ids = new ArrayList<>();
 
-        HashMap<Pair<Group, Strategy>, VariableDistribution[]> distribution = new HashMap<>();
-
-        ModelProvider provider = ModelProvider.getInstance();
-
-        for(Group g : groupSet){
-            for (VMGroup vmG : groups) {
-                if ( (g.getId() == vmG.getId()) && (vmG.getRelativeStrategyDistributions() == useRelative) ) {
-
-                    List<String> strategies = vmG.getStrategies();
-                    List<List<String>> strategyDistributions = vmG.getStrategyDistributions();
-
-                    for (int i = 0; i < strategies.size(); i++) {
-                        Strategy strategy = provider.getStrategy(strategies.get(i));
-                        VariableDistribution[] varDist = calculateVariables(strategyDistributions.get(i));
-                        distribution.put(new Pair<Group, Strategy>(g, strategy), varDist);
-                    }
-                }
+        for(String s : parts) {
+            if(s.matches("\\d+-\\d+")) {
+                String[] interval = s.split("-");
+                for(int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) ids.add(i);
+            } else {
+                ids.add(Integer.parseInt(s));
             }
         }
 
-        return distribution;
-    }
+        Collections.sort(ids);
+        int[] result = new int[ids.size()];
+        int i = 0;
 
-    private HashMap<Group, VariableDistribution[]> calculateGroupDistribution(List<VMGroup> groups) {
-        HashMap<Group, VariableDistribution[]> distribution = new HashMap<>();
-
-        for (VMGroup g: groups) {
-            Group group = new Group(g.getId(), g.getName());
-            VariableDistribution[] varDist = new VariableDistribution[g.getAgents().size()];
-            List<String> agents = g.getAgents();
-            for (int i = 0; i < varDist.length; i++) {
-                varDist[i] = new VariableDistribution(agents.get(i));
-            }
-            distribution.put(group, varDist);
+        for(Integer id : ids) {
+            result[i] = id;
+            i++;
         }
-        return distribution;
+
+        return result;
     }
 
     /**

@@ -30,6 +30,14 @@ public class CombinedStrategy implements Strategy{
         return name;
     }
 
+    public BaseStrategy[] getStrategies() {
+        return strategies;
+    }
+
+    public Condition[] getConditions() {
+        return conditions;
+    }
+
     @Override
     public Action calculateAction(Agent agent1, Agent agent2) {
         for(int i = 0; i < conditions.length; i++) {
