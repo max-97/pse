@@ -148,7 +148,10 @@ public class ModelParser {
                 vmConfig.getRankingParameters());
         int rounds = Integer.parseInt(vmConfig.getRounds());
         int cycles = Integer.parseInt(vmConfig.getCycles());
-        double adaptationProbability = Double.parseDouble(vmConfig.getAdaptationProbability());
+        double adaptationProbability = 0;
+        if(!vmConfig.hasVariableComponent()) {
+            adaptationProbability = Double.parseDouble(vmConfig.getAdaptationProbability());
+        }
 
         int equilibriumRounds = vmConfig.getEquilibriumRounds();
         double threshold = vmConfig.getEquilibriumMaxChange() / 100.0;
@@ -176,8 +179,30 @@ public class ModelParser {
                 configurations.add(c);
             }
 
-        } else {
+        } else if(vmConfig.hasVariableComponent()){
+            Initialization initialization = this.provider.getInitialization(vmInitialization.getName());
 
+            double[] adaptationProbabilities = getDoubleValues(vmConfig.getAdaptationProbability());
+
+            for (int i = 0; i < adaptationProbabilities.length; i++) {
+
+                Configuration c = new Configuration(
+                        name + (i + 1),
+                        game,
+                        initialization,
+                        adaptationAlgorithm,
+                        pairingAlgorithm,
+                        rankingAlgorithm,
+                        rounds,
+                        cycles,
+                        adaptationProbabilities[i],
+                        equilibriumRounds,
+                        threshold
+                );
+                configurations.add(c);
+            }
+
+        } else {
             Initialization initialization = this.provider.getInitialization(vmInitialization.getName());
 
             Configuration c = new Configuration(
@@ -197,6 +222,33 @@ public class ModelParser {
             configurations.add(c);
         }
         return configurations;
+    }
+
+    private double[] getDoubleValues(String input) {
+        String[] parts = input.split("-");
+        List<Double> values = new ArrayList<>();
+        double start = Double.parseDouble(parts[0]);
+        double end = Double.parseDouble(parts[1]);
+        double step = Double.parseDouble(parts[2]);
+
+        if(start < end) {
+            for(int i = 0; start + i * step <= end; i++) {
+                values.add(start + i * step);
+            }
+        } else {
+            for(int i = 0; start - i * step >= end; i++) {
+                values.add(start - i * step);
+            }
+        }
+
+        double[] result = new double[values.size()];
+        int i = 0;
+
+        for(Double  value: values) {
+            result[i] = value;
+            i++;
+        }
+        return result;
     }
 
 
@@ -288,7 +340,7 @@ public class ModelParser {
             //Multi Initialization
             if(vmInitialization.hasVariableGroupDistribution()) {
                 //group distribution is variable
-                int size = getValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
+                int size = getIntValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
 
                 for(int i = 0; i < size; i++) {
                     Initialization init = new Initialization(name + (i + 1), agentCount);
@@ -296,7 +348,7 @@ public class ModelParser {
 
                     for(VMGroup group : vmInitialization.getGroups()) {
                         Group g = new Group(group.getId(), group.getName());
-                        int[] values = getValues(group.getAgentsString());
+                        int[] values = getIntValues(group.getAgentsString());
                         AgentDistribution groupDistribution = new AgentDistribution(values[i]);
                         init.setGroupDistribution(groupDistribution, g);
 
@@ -321,10 +373,10 @@ public class ModelParser {
                 }
 
                 List<String> strategyDistribution = variableGroup.getStrategyDistributionsStrings();
-                int[][] values = new int[strategyDistribution.size()][getValues(strategyDistribution.get(0)).length];
+                int[][] values = new int[strategyDistribution.size()][getIntValues(strategyDistribution.get(0)).length];
 
                 for(int i = 0; i < strategyDistribution.size(); i++ ) {
-                    values[i] = getValues(variableGroup.getStrategyDistributionsStrings().get(i));
+                    values[i] = getIntValues(variableGroup.getStrategyDistributionsStrings().get(i));
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
@@ -364,10 +416,10 @@ public class ModelParser {
                 }
 
                 List<String> capitalDistribution = variableGroup.getStartCapitalDistributionsStrings();
-                int[][] values = new int[capitalDistribution.size()][getValues(capitalDistribution.get(0)).length];
+                int[][] values = new int[capitalDistribution.size()][getIntValues(capitalDistribution.get(0)).length];
 
                 for(int i = 0; i < capitalDistribution.size(); i++ ) {
-                    values[i] = getValues(variableGroup.getStartCapitalDistributionsStrings().get(i));
+                    values[i] = getIntValues(variableGroup.getStartCapitalDistributionsStrings().get(i));
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
@@ -410,7 +462,7 @@ public class ModelParser {
                     if(s.matches("\\d+-\\d+-\\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
                 }
 
-                int[] values = getValues(variableGroup.getStartCapital().get(variableCapitalIndex));
+                int[] values = getIntValues(variableGroup.getStartCapital().get(variableCapitalIndex));
 
                 for(int i = 0; i < values.length; i++) {
                     Initialization init = new Initialization(name + (i + 1), agentCount);
@@ -442,7 +494,7 @@ public class ModelParser {
         return initializations;
     }
 
-    private int[] getValues(String input) {
+    private int[] getIntValues(String input) {
         String[] parts = input.split("-");
         List<Integer> values = new ArrayList<>();
         int start = Integer.parseInt(parts[0]);

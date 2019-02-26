@@ -49,7 +49,7 @@ public class VMConfiguration {
             e.printStackTrace();
             return false;
         }
-        return initialization.isMultiInitialisation();
+        return initialization.isMultiInitialisation() || hasVariableComponent();
     }
 
     /**
@@ -202,5 +202,9 @@ public class VMConfiguration {
 
     public HashMap<String, Object> getRankingParameters() {
         return this.rankingParameters;
+    }
+
+    public boolean hasVariableComponent() {
+        return adaptationProbability.matches("\\d+.\\d+-\\d+.\\d+-\\d+.\\d+");
     }
 }
