@@ -38,6 +38,7 @@ public class SaveConfigurationsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMConfiguration vmConfiguration = this.configurationView.getVMConfiguration();
+        this.configurationView.close();
 
         if (vmConfiguration != null) {
             try {
@@ -46,13 +47,15 @@ public class SaveConfigurationsHandler implements ActionListener {
                 e1.printStackTrace();
                 return;
             }
+
             Collection<Configuration> configurations = this.parser.parseVMConfiguration(vmConfiguration);
             for (Configuration c : configurations) {
                 ModelProvider.getInstance().addConfiguration(c);
             }
+
             AbstractManageConfigurationsView parentView = this.configurationView.getParentView();
-            this.configurationView.close();
             if (parentView == null) {
+                configurationView.getMainView().addConfiguration(configurationView.getVMConfiguration());
                 return;
             }
             VMConfiguration editedConfiguration = parentView.getEditedConfiguration();
@@ -71,6 +74,5 @@ public class SaveConfigurationsHandler implements ActionListener {
                 parentView.setEditedConfiguration(null);
             }
         }
-
     }
 }

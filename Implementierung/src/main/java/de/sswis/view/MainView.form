@@ -22,7 +22,7 @@
             </constraints>
             <properties>
               <font size="22"/>
-              <text value="SSWIS Simuliert WIederholte Spiele"/>
+              <text value="SSWIS Simuliert Wiederholte Spiele"/>
             </properties>
           </component>
           <vspacer id="2f4ab">

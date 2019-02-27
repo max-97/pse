@@ -3,10 +3,9 @@ package de.sswis.view;
 import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
-import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.util.Collection;
-import java.util.EventListener;
 import java.util.List;
 
 
@@ -37,7 +36,7 @@ public interface AbstractMainView extends AbstractView {
      * @param NameConfiguration Name der Konfiguration.
      * @param result Ergebnis
      */
-    void  addResult(String NameConfiguration, VMResult result);
+    void addResult(String NameConfiguration, VMResult result);
 
     /**
      * Wird aufgerufen wenn eine Simulation beendet wurde.
@@ -91,8 +90,6 @@ public interface AbstractMainView extends AbstractView {
      * @param listener ActionListener
      */
     void addSaveButtonActionlistener(ActionListener listener);
-
-
 
     /**
      * Fügt ein ActionListener zum Menüpunkt neues Stufenspiel hinzu.
