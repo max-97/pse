@@ -43,6 +43,7 @@ public class ShowResultsHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         VMConfiguration selected = mainView.getSelected();
+
         if (selected.isMultiConfiguration()) {
             AbstractShowMultiResultView multiResultsView = this.factory.createMultiResultsView();
             multiResultsView.setParentView(mainView);
@@ -66,9 +67,8 @@ public class ShowResultsHandler implements ActionListener {
         } else {
             AbstractShowResultView resultView = this.factory.createShowResultView();
             resultView.setParentView(mainView);
-            Configuration c = ModelProvider.getInstance().getConfiguration(selected.getName());
-            Collection<VMResult> vmResults = this.parser.parseSimulationToVMResult(c.getSimulation());
-            for (VMResult r : vmResults) {
+            Collection<VMResult> results = selected.getResults();
+            for (VMResult r : results) {
                 resultView.addVMResult(r);
             }
             resultView.show();

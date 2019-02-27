@@ -37,7 +37,9 @@ public interface AbstractMainView extends AbstractView {
      * @param NameConfiguration Name der Konfiguration.
      * @param result Ergebnis
      */
-    void  addResult(String NameConfiguration, VMResult result);
+    void addResult(String NameConfiguration, VMResult result);
+
+    void setResults(String configurationName, Collection<VMResult> results);
 
     /**
      * Wird aufgerufen wenn eine Simulation beendet wurde.
@@ -156,11 +158,12 @@ public interface AbstractMainView extends AbstractView {
 
     void addManageResultMenuActionListener(ActionListener listener);
 
-
-    Collection<VMResult> getResults();
-
     void setSimulationStopped(String name);
 
     List<VMConfiguration> getVMConfigurations();
+
+    Collection<VMResult> getResults(String configurationName);
+
+    Collection<Collection<VMResult>> getAllResults();
 }
 

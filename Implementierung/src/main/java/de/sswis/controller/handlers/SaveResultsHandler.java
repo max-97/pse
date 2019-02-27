@@ -2,12 +2,14 @@ package de.sswis.controller.handlers;
 
 import de.sswis.controller.FileManager;
 import de.sswis.view.AbstractMainView;
+import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Speichert die erstellten {@code Ergebnisse}. Die View, die diesen {@code ActionListener} verwendet muss
@@ -31,9 +33,15 @@ public class SaveResultsHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (VMResult r : this.mainView.getResults()) {
+        List<VMConfiguration> vmConfigurations = this.mainView.getVMConfigurations();
+
+        for (VMConfiguration c : vmConfigurations) {
+            if (!c.hasResult())
+                continue;
+
+            Collection<VMResult> results = c.getResults();
             try {
-                this.fileManager.saveResult(r);
+                this.fileManager.saveResults(results);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }

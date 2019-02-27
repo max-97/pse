@@ -52,9 +52,10 @@ public class Sswis {
             }
         }
 
-        Collection<VMResult> vmResults = fileManager.loadAllResults();
-        for (VMResult r : vmResults) {
-            mainView.addResult(r.getVmConfig().getName(), r);
+        Collection<Collection<VMResult>> vmResults = fileManager.loadAllResults();
+        for (Collection<VMResult> r : vmResults) {
+            VMResult first = r.iterator().next();
+            mainView.setResults(first.getName(), r);
         }
         mainView.show();
     }

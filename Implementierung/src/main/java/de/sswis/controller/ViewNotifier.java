@@ -33,7 +33,7 @@ public class ViewNotifier implements SimulationObserver {
             mainView.setSimulationFinished(name);
             ModelParser parser = new ModelParser();
             Collection<VMResult> vmResults = parser.parseSimulationToVMResult(sim);
-            vmResults.forEach(r -> mainView.addResult(name, r));
+            mainView.setResults(name, vmResults);
         });
     }
 }

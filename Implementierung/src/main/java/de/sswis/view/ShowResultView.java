@@ -45,9 +45,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     private JFrame frame = new JFrame();
 
-
     private VMConfiguration vmConfiguration;
-
 
     private JButton compareButton;
     private JPanel MainPanel;
