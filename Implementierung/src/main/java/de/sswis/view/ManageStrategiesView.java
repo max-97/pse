@@ -77,15 +77,23 @@ public class ManageStrategiesView implements AbstractManageStrategiesView {
 
     @Override
     public void removeStrategy(String strategyName) {
-        for (int i = 0; i < vmStrategies.size(); i++) {
-            if (vmStrategies.get(i).getName().equals(strategyName)) {
-                vmStrategies.remove(i);
-                strategiesPane.removeTabAt(i);
-                break;
-            }
-        }
+        UIManager.put("OptionPane.yesButtonText", "Ja");
+        UIManager.put("OptionPane.noButtonText", "Nein");
+        int n = JOptionPane.showConfirmDialog(null, "Wollen Sie die Strategie löschen?", "Bestätigung", JOptionPane.YES_NO_OPTION);
 
-        update();
+        if (n == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < vmStrategies.size(); i++) {
+                if (vmStrategies.get(i).getName().equals(strategyName)) {
+                    vmStrategies.remove(i);
+                    strategiesPane.removeTabAt(i);
+                    break;
+                }
+            }
+
+            update();
+        } else if (n == JOptionPane.NO_OPTION) {
+            close();
+        }
     }
 
     @Override

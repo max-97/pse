@@ -35,10 +35,10 @@ public class VMInitialization {
     public boolean isMultiInitialisation() {
         for (VMGroup g : groups) {
             if (g.hasMultiComponent()) return true;
+            if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
         }
         return false;
     }
-
 
     /**
      * Gibt eine String der wichtige Informationen zu dieser Initialisierung zusammenfasst.
@@ -46,9 +46,7 @@ public class VMInitialization {
      */
     public String getToolTipText() {    return ""; }
 
-    public void addGroup(VMGroup group) {
-        this.groups.add(group);
-    }
+    public void addGroup(VMGroup group) { this.groups.add(group); }
 
     public List<VMGroup> getGroups() {
         return this.groups;
@@ -96,6 +94,31 @@ public class VMInitialization {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public boolean hasVariableGroupDistribution() {
+        if(!relativeDistribution) {
+            return false;
+        } else {
+            for (VMGroup g : groups) {
+                if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasVariableCapitalDistribution() {
+        for (VMGroup g : groups) {
+            if (g.hasVariableCapitalDistribution()) return true;
+        }
+        return false;
+    }
+
+    public boolean hasVariableStrategyDistribution() {
+        for (VMGroup g : groups) {
+            if (g.hasVariableStrategyDistribution()) return true;
+        }
+        return false;
     }
 }
 
