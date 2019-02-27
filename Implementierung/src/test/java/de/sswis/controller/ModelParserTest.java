@@ -197,6 +197,47 @@ public class ModelParserTest {
     }
 
     @Test
+    public void parseVMConfigurationWithVariableAdaptationProbability() {
+        HashMap<String, Object> empty = new HashMap<>();
+        VMInitialization vmInit = new VMInitialization();
+        vmInit.setName("Init_Test9");
+        try {
+            fileManager.saveInitialization(vmInit);
+        } catch( Exception e) {
+            e.printStackTrace();
+        }
+        modelProvider.addInitialization(new Initialization("Init_Test9", 100));
+        modelProvider.addGame(new Game("Game", "", null));
+        VMConfiguration vmConfig = new VMConfiguration();
+        vmConfig.setName("Config");
+        vmConfig.setRounds("100");
+        vmConfig.setCycles("10");
+        vmConfig.setGame("Game");
+        vmConfig.setAdaptationAlg("Replicator Dynamic Score");
+        vmConfig.setRankingAlg("Gesamtpunktzahl");
+        vmConfig.setPairingAlg("Zufällige Paarung");
+        vmConfig.setPairingParameters(empty);
+        vmConfig.setRankingParameters(empty);
+        vmConfig.setAdaptationParameters(empty);
+        vmConfig.setInit("Init_Test9");
+        vmConfig.setAdaptationProbability("0.10-0.90-0.05");
+        vmConfig.setEquilibriumRounds(15);
+        vmConfig.setEquilibriumMaxChange(10);
+
+        Configuration[] result = modelParser.parseVMConfiguration(vmConfig).toArray(Configuration[]::new);
+
+        for(int i = 0; i < result.length; i++) {
+            Object[] expecteds = new Object[]{"Config" + (i+1), 1000, 10, "Game", "Replicator Dynamic Score", "Gesamtpunktzahl",
+                    "Zufällige Paarung", "Init_Test9", 0.10 + i*0.05, 15, 0.1};
+            Object[] actuals = new Object[]{result[i].getName(), result[i].getRounds(), result[i].getCycles(),
+                    result[i].getGame().getName(), result[i].getAdaptationAlg().getName(), result[i].getRankingAlg().getName(),
+                    result[i].getPairingAlg().getName(), result[i].getInit().getName(), result[i].getAdaptationProbability(),
+                    result[i].getEquilibriumRounds(), result[i].getThreshold()};
+            assertArrayEquals(expecteds, actuals);
+        }
+    }
+
+    @Test
     public void parseSimpleVMInitializationWithIDs() {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
