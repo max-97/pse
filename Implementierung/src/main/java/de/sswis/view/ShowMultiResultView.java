@@ -272,7 +272,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     @Override
     public void addVMResult(VMResult vmResult) {
-        configNameLabel.setText(vmResult.getName().substring(0, vmResult.getName().length() - 1));
+        configNameLabel.setText(vmResult.getName().replaceFirst("_\\d+", ""));
         if (vmResults.containsKey(vmResult.getName())) {
             vmResults.get(vmResult.getName()).add(vmResult);
         } else {

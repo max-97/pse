@@ -28,6 +28,7 @@ public class ShowResultsHandler implements ActionListener {
     private AbstractGuiFactory factory;
     private AbstractMainView mainView;
     private ModelParser parser;
+    private ModelProvider provider;
 
     /**
      *
@@ -38,6 +39,7 @@ public class ShowResultsHandler implements ActionListener {
         this.factory = factory;
         this.mainView = mainView;
         this.parser = new ModelParser();
+        this.provider = ModelProvider.getInstance();
     }
 
     @Override
@@ -47,23 +49,11 @@ public class ShowResultsHandler implements ActionListener {
         if (selected.isMultiConfiguration()) {
             AbstractShowMultiResultView multiResultsView = this.factory.createMultiResultsView();
             multiResultsView.setParentView(mainView);
-            String init = selected.getInit();
-            FileManager fileManager = new FileManager();
-            VMInitialization initialization;
-            try {
-                initialization = fileManager.loadInitialization(init);
-            } catch (FileNotFoundException e1) {
-                return;
+            Collection<VMResult> results = selected.getResults();
+            for (VMResult r : results) {
+                multiResultsView.addVMResult(r);
             }
-            int numberOfInstances = initialization.getNumberOfInstances();
-            for (int i = 1; i <= numberOfInstances; i++) {
-                Configuration c = ModelProvider.getInstance().getConfiguration(selected.getName() + i);
-                Collection<VMResult> vmResults = this.parser.parseSimulationToVMResult(c.getSimulation());
-                for (VMResult r : vmResults) {
-                    multiResultsView.addVMResult(r);
-                }
-                multiResultsView.show();
-            }
+            multiResultsView.show();
         } else {
             AbstractShowResultView resultView = this.factory.createShowResultView();
             resultView.setParentView(mainView);

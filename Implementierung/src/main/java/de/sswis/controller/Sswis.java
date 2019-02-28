@@ -55,7 +55,7 @@ public class Sswis {
         Collection<Collection<VMResult>> vmResults = fileManager.loadAllResults();
         for (Collection<VMResult> r : vmResults) {
             VMResult first = r.iterator().next();
-            mainView.setResults(first.getName(), r);
+            mainView.setResults(first.getName().replaceFirst("_\\d+", ""), r);
         }
         mainView.show();
     }

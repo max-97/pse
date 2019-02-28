@@ -27,7 +27,7 @@ public class ViewNotifier implements SimulationObserver {
     }
 
     @Override
-    public void update(Simulation sim) {
+    public synchronized void update(Simulation sim) {
         SwingUtilities.invokeLater(() -> {
             String name = sim.getName();
             mainView.setSimulationFinished(name);

@@ -44,12 +44,7 @@ public class ModelParser {
         ArrayList<VMResult> results = new ArrayList<>();
 
         VMConfiguration configuration;
-        try {
-            configuration = this.fileManager.loadConfiguration(simulation.getName());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+        configuration = this.fileManager.loadConfiguration(simulation.getName());
 
         for (Integer i : simulation.getResults().getAgents().keySet()) {
             VMResult result = new VMResult();
@@ -129,12 +124,7 @@ public class ModelParser {
         String init = vmConfig.getInit();
         VMInitialization vmInitialization;
 
-        try{
-            vmInitialization = this.fileManager.loadInitialization(init);
-        } catch(FileNotFoundException e){
-            e.printStackTrace();
-            return null;
-        }
+        vmInitialization = this.fileManager.loadInitialization(init);
 
         ArrayList<Configuration> configurations = new ArrayList<>();
 
@@ -156,12 +146,12 @@ public class ModelParser {
         if (vmInitialization.isMultiInitialisation()) {
             String initName = vmInitialization.getName();
 
-            for (int i = 1; this.provider.getInitialization(initName + i) != null; i++) {
+            for (int i = 1; this.provider.getInitialization(initName + "_" + i) != null; i++) {
 
-                Initialization initialization = this.provider.getInitialization(initName + i);
+                Initialization initialization = this.provider.getInitialization(initName + "_" + i);
 
                 Configuration c = new Configuration(
-                        name + i,
+                        name + "_" + i,
                         game,
                         initialization,
                         adaptationAlgorithm,
@@ -291,7 +281,7 @@ public class ModelParser {
                 int size = getValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
 
                 for(int i = 0; i < size; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
@@ -328,7 +318,7 @@ public class ModelParser {
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
@@ -371,7 +361,7 @@ public class ModelParser {
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
@@ -413,7 +403,7 @@ public class ModelParser {
                 int[] values = getValues(variableGroup.getStartCapital().get(variableCapitalIndex));
 
                 for(int i = 0; i < values.length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {

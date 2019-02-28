@@ -285,7 +285,7 @@ public class FileManager {
      * @param name der Name der {@code VMConfiguration}
      * @return die {@code VMConfiguration} mit dem angegebenen Namen
      */
-    public VMConfiguration loadConfiguration(String name) throws FileNotFoundException {
+    public VMConfiguration loadConfiguration(String name) {
         String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadConfiguration(jsonReader);
@@ -306,7 +306,7 @@ public class FileManager {
      * @param name der Name des {@code VMGame}
      * @return das {@code VMGame} mit dem angegebenen Namen
      */
-    public VMGame loadGame(String name) throws FileNotFoundException {
+    public VMGame loadGame(String name) {
         String filePath = this.getFilePath(FileManager.VM_GAME, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadGame(jsonReader);
@@ -327,7 +327,7 @@ public class FileManager {
      * @param name der Name der {@code VMInitialization}
      * @return die {@code VMInitialization} mit dem angegebenen Namen
      */
-    public VMInitialization loadInitialization(String name) throws FileNotFoundException {
+    public VMInitialization loadInitialization(String name) {
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadInitialization(jsonReader);
@@ -348,7 +348,7 @@ public class FileManager {
      * @param name der Name der {@code VMCombinedStrategy}
      * @return die {@code VMCombinedStrategy} mit dem angegebenen Namen
      */
-    public VMCombinedStrategy loadCombinedStrategy(String name) throws FileNotFoundException {
+    public VMCombinedStrategy loadCombinedStrategy(String name) {
         String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadCombinedStrategy(jsonReader);
@@ -369,7 +369,7 @@ public class FileManager {
      * @param name der Name der {@code VMStrategy}
      * @return die {@code VMStrategy} mit dem angegebenen Namen
      */
-    public VMStrategy loadMixedStrategy(String name) throws FileNotFoundException {
+    public VMStrategy loadMixedStrategy(String name) {
         String filePath = this.getFilePath(FileManager.VM_STRATEGY, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadMixedStrategy(jsonReader);
@@ -390,7 +390,7 @@ public class FileManager {
      * @param name der Name des {@code VMResult}
      * @return das {@code VMResult} mit dem angegebenen Namen
      */
-    public Collection<VMResult> loadResults(String name) throws FileNotFoundException {
+    public Collection<VMResult> loadResults(String name) {
         String filePath = this.getFilePath(FileManager.VM_RESULT, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadResults(jsonReader);
