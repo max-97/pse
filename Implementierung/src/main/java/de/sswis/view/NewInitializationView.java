@@ -115,7 +115,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         String name = nameTextField.getText();
         String desc = descriptionTextPane.getText();
         boolean relDistr = percentageAgentGroupRadioButton.isSelected();
-        double percentageSum = 0.0;
+        double percentageSum = 1.0;
 
         boolean illegalInput = false;
 
@@ -129,19 +129,26 @@ public class NewInitializationView implements AbstractNewInitializationView {
             for (int i = 0; i < groupTabs.size(); i++) {
                 VMGroup currentGroup = groupTabs.get(i).getVmGroup();
 
-                if (currentGroup != null &&
-                        ((relDistr && isDouble(currentGroup.getAgentsString()))
-                                || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())))) {
+                if (currentGroup != null
+                        && ( (relDistr && isSingelOrMultiplePercantage(currentGroup.getAgentsString()))
+                            || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())) )
+                ) {
                     vmInitialization.addGroup(currentGroup);
-                    if (relDistr) percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                    // Funktioniert so nicht für variable Parameter
+                    // if (relDistr) {
+                    //    percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                    // }
                 } else {
                     illegalInput = true;
                     break;
                 }
             }
-            if (relDistr && percentageSum != 1.0) illegalInput = true;
+            if (relDistr && percentageSum != 1.0) {
+                illegalInput = true;
+            }
+        } else {
+            illegalInput = true;
         }
-        else illegalInput = true;
 
         if (illegalInput) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
