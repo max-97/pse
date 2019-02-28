@@ -142,7 +142,7 @@ public class GroupTab {
         boolean relCapital = percentageAgentCapitalRadioButton.isSelected();
         double capitalPercentageSum = 0.0;
 
-        if (strategyTabs.size() == 0 || startCapitalTabs.size() == 0) return false;
+        if (strategyTabs.size() == 0) return false;
 
         vmGroup.setName(groupNameTextField.getText());
         vmGroup.setAgents(distributionTextField.getText());
