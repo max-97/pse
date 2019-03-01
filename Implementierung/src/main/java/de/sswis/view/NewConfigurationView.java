@@ -134,8 +134,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
             vmConfiguration.setEquilibriumRounds((Integer) equilibriumRounds.getValue());
             vmConfiguration.setEquilibriumMaxChange((Integer) equilibriumMaxChange.getValue());
             return true;
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
@@ -384,6 +383,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         panel1.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(212, 18), null, 0, false));
         nameTextField = new JFormattedTextField();
         nameTextField.setText("");
+        nameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'");
         panel1.add(nameTextField, new GridConstraints(0, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final Spacer spacer1 = new Spacer();
         panel1.add(spacer1, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), new Dimension(212, 14), null, 0, false));
@@ -394,6 +394,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         final Spacer spacer4 = new Spacer();
         panel1.add(spacer4, new GridConstraints(11, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 30), new Dimension(212, 14), null, 0, false));
         adaptionProbabilityTextField = new JTextField();
+        adaptionProbabilityTextField.setToolTipText("Werte zwischen 1 und 0, Beispiele: '0.5', '1.0', '1'.");
         panel1.add(adaptionProbabilityTextField, new GridConstraints(14, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         setPairingParamsButton = new JButton();
         setPairingParamsButton.setText("Parameter setzen");
@@ -407,7 +408,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         final JSeparator separator3 = new JSeparator();
         panel1.add(separator3, new GridConstraints(18, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JLabel label10 = new JLabel();
-        label10.setText("Runden für Gleichgewichtszustand");
+        label10.setText("Zyklen für Gleichgewichtszustand");
         label10.setToolTipText("Wenn in den letzten w Zyklen maximal x% der Agenten ihre Strategie angepasst haben, ist ein Gleichgewichtszustand erreicht. ");
         panel1.add(label10, new GridConstraints(19, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label11 = new JLabel();

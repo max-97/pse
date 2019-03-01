@@ -70,8 +70,7 @@ public class NewGameView implements AbstractNewGameView {
             vmGame.setPayoffs(payOffs);
             vmGame.setDescription(desc);
             return true;
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
@@ -207,6 +206,7 @@ public class NewGameView implements AbstractNewGameView {
         descriptionLabel.setText("Beschreibung:");
         panel1.add(descriptionLabel, new GridConstraints(8, 0, 1, 10, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         descriptionPane = new JTextPane();
+        descriptionPane.setToolTipText("optional, kann leer gelassen werden (max 300 Zeichen)");
         panel1.add(descriptionPane, new GridConstraints(9, 0, 1, 10, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         nameLabel.setText("Name: ");
         panel1.add(nameLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -235,6 +235,7 @@ public class NewGameView implements AbstractNewGameView {
         spinner8 = new JSpinner();
         panel1.add(spinner8, new GridConstraints(6, 9, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nameTextField = new JFormattedTextField();
+        nameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'");
         panel1.add(nameTextField, new GridConstraints(0, 1, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
@@ -255,4 +256,5 @@ public class NewGameView implements AbstractNewGameView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="809" height="823"/>
+      <xy x="20" y="20" width="939" height="827"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -12,7 +12,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <horizontalScrollBarPolicy value="30"/>
+        </properties>
         <border type="none"/>
         <children>
           <grid id="de80" layout-manager="GridLayoutManager" row-count="16" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -23,7 +25,7 @@
             <children>
               <component id="cd0cc" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Name :   "/>
@@ -31,7 +33,7 @@
               </component>
               <component id="5873c" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Anzahl der Agenten:"/>
@@ -59,11 +61,11 @@
               </vspacer>
               <component id="17d8f" class="javax.swing.JTextField" binding="agentNumberTextField">
                 <constraints>
-                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="&lt;html&gt; Erlaubt sind positive, ganze, gerade Zahlenwerte (Beispiele: '12', '16', '100') &lt;br&gt; und variable Eingaben der Form Startwert - Endwert - Schrittweite (Beispiele: '20 - 100 - 10', '2-10-2', '60-20-10' &lt;html&gt;"/>
+                </properties>
               </component>
               <component id="e1af3" class="javax.swing.JSeparator">
                 <constraints>
@@ -81,7 +83,7 @@
               <tabbedpane id="25746" binding="groupTabbedPane">
                 <constraints>
                   <grid row="14" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="200" height="200"/>
+                    <preferred-size width="600" height="200"/>
                   </grid>
                 </constraints>
                 <properties/>
@@ -90,7 +92,7 @@
               </tabbedpane>
               <component id="7c7f3" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font size="16"/>
@@ -106,19 +108,22 @@
               </vspacer>
               <component id="a87e9" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="7" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Beschreibung (Dient nur zur Wiedererkennung und kann leer gelassen werden.) :"/>
+                  <text value="Beschreibung: "/>
+                  <toolTipText value="optional, kann leer gelassen werden (max 300 Zeichen)"/>
                 </properties>
               </component>
               <component id="5bf88" class="javax.swing.JTextPane" binding="descriptionTextPane">
                 <constraints>
-                  <grid row="8" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="50"/>
+                  <grid row="8" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="-1" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="optional, kann leer gelassen werden (max 300 Zeichen)"/>
+                </properties>
               </component>
               <vspacer id="e4cea">
                 <constraints>
@@ -137,15 +142,15 @@
               </component>
               <component id="95378" class="javax.swing.JFormattedTextField" binding="nameTextField">
                 <constraints>
-                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'"/>
+                </properties>
               </component>
               <component id="806b" class="javax.swing.JRadioButton" binding="idAgentGroupRadioButton" custom-create="true">
                 <constraints>
-                  <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="12" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <selected value="true"/>
@@ -154,7 +159,7 @@
               </component>
               <component id="4a6cc" class="javax.swing.JRadioButton" binding="percentageAgentGroupRadioButton" custom-create="true">
                 <constraints>
-                  <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="13" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <text value="Wähle Agenten nach prozentualem Anteil"/>

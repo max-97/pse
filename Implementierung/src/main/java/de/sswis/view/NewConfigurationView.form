@@ -177,6 +177,7 @@
                 </constraints>
                 <properties>
                   <text value=""/>
+                  <toolTipText value="Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'"/>
                 </properties>
               </component>
               <vspacer id="34a99">
@@ -217,7 +218,9 @@
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <toolTipText value="Werte zwischen 1 und 0, Beispiele: '0.5', '1.0', '1'."/>
+                </properties>
               </component>
               <component id="d9ff5" class="javax.swing.JButton" binding="setPairingParamsButton">
                 <constraints>
@@ -254,7 +257,7 @@
                   <grid row="19" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Runden für Gleichgewichtszustand"/>
+                  <text value="Zyklen für Gleichgewichtszustand"/>
                   <toolTipText value="Wenn in den letzten w Zyklen maximal x% der Agenten ihre Strategie angepasst haben, ist ein Gleichgewichtszustand erreicht. "/>
                 </properties>
               </component>

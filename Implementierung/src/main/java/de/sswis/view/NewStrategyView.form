@@ -59,7 +59,9 @@
                         <preferred-size width="150" height="50"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <toolTipText value="optional, kann leer gelassen werden (max 300 Zeichen)"/>
+                    </properties>
                   </component>
                   <component id="92e1" class="javax.swing.JSeparator">
                     <constraints>
@@ -81,7 +83,9 @@
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <toolTipText value="Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'"/>
+                    </properties>
                   </component>
                   <component id="4c0cd" class="javax.swing.JButton" binding="addStrategyButton" custom-create="true">
                     <constraints>
@@ -115,6 +119,7 @@
                         <properties>
                           <font style="1"/>
                           <text value="Wahrscheinlichkeit"/>
+                          <toolTipText value="Summe muss 1 ergeben."/>
                         </properties>
                       </component>
                       <component id="98e58" class="javax.swing.JLabel">
