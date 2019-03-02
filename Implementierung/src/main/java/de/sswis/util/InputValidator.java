@@ -18,7 +18,7 @@ public class InputValidator {
      * @return {@code true}, wenn str ein gültiger Name ist, {@code false} sonst
      */
     public static boolean isLegalName(String str) {
-        return str.matches("[a-zA-Z][a-zA-Z0-9]{0,34}");
+        return str.matches("^(?! )[a-zA-Z0-9 ]{1,35}(?<! )$");
     }
 
     /**
