@@ -44,12 +44,7 @@ public class VMConfiguration {
     public boolean isMultiConfiguration() {
         FileManager fileManager = new FileManager();
         VMInitialization initialization;
-        try {
-            initialization = fileManager.loadInitialization(init);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
+        initialization = fileManager.loadInitialization(init);
         return initialization.isMultiInitialisation();
     }
 

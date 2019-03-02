@@ -336,7 +336,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test4" + (i + 1), 100, false, i*10, 100 - i*10, 70, 30, 100, 100, 50, 50,
+            Object[] expecteds = new Object[]{"Init_Test4_" + (i + 1), 100, false, i*10, 100 - i*10, 70, 30, 100, 100, 50, 50,
                     "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
@@ -387,7 +387,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test5" + (i + 1), 100, false, 60, 40, 30 + i*5, 40 - i*10, 30 + i*5,
+            Object[] expecteds = new Object[]{"Init_Test5_" + (i + 1), 100, false, 60, 40, 30 + i*5, 40 - i*10, 30 + i*5,
                     100, 100, 50, 50, "Always Cooperate", "Cooperate with same group", "Never Cooperate",
                     "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
@@ -438,7 +438,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test6" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 10*i,
+            Object[] expecteds = new Object[]{"Init_Test6_" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 10*i,
                     100 - 10*i, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
@@ -488,7 +488,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test7" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 50,
+            Object[] expecteds = new Object[]{"Init_Test7_" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 50,
                     50, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200 + 20*i};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
