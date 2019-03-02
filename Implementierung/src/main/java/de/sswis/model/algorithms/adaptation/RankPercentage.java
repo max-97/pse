@@ -32,7 +32,10 @@ public class RankPercentage implements AdaptationAlgorithm {
         for(int i = 0; i < agents.length; i++) {
             double rndDouble = rnd.nextDouble();
             if(rndDouble <= adaptationProbability && rndDouble != 0) {
-                Agent randomAgent = agents[rnd.nextInt(agents.length)];
+                Agent randomAgent;
+                do {
+                    randomAgent = agents[rnd.nextInt(agents.length)];
+                } while(randomAgent.getId() == agents[i].getId());
                 if(currentRanking.get(randomAgent) < cutOff
                         && currentRanking.get(randomAgent) < currentRanking.get(agents[i])
                         && !randomAgent.getStrategy().getName().equals(agents[i].getStrategy().getName())) {
