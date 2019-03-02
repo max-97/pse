@@ -1,4 +1,4 @@
-package de.sswis.model.algorithms;
+package de.sswis.model;
 
 import de.sswis.model.Agent;
 import de.sswis.model.Group;
