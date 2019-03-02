@@ -4,13 +4,12 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.CustomComponents.ParameterTable;
-import de.sswis.view.model.*;
+import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 
@@ -105,7 +104,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         String cycles = cyclesTextField.getText();
 
         if (!(isSingleValue(rounds) && Integer.parseInt(rounds) > 0) ||
-                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isInPercentageRange(adaptProb))) {
+                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isProbability(adaptProb))) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }

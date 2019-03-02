@@ -179,8 +179,7 @@ public class NewCombinedStrategyView implements AbstractNewCombinedStrategyView 
 
             vmCombinedStrategy.setDescription(desc);
             return true;
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
