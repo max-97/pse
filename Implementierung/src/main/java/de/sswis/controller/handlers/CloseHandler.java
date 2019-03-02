@@ -4,6 +4,7 @@ import de.sswis.controller.FileManager;
 import de.sswis.controller.ModelParser;
 import de.sswis.view.AbstractMainView;
 import de.sswis.view.AbstractManageConfigurationsView;
+import de.sswis.view.AbstractNewConfigurationView;
 import de.sswis.view.AbstractView;
 import de.sswis.view.model.VMConfiguration;
 

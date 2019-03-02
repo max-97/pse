@@ -107,6 +107,7 @@
                 </constraints>
                 <properties>
                   <text value="Anzahl der Runden"/>
+                  <toolTipText value="Eine ganze Zahl größer als 0."/>
                 </properties>
               </component>
               <component id="3d6f7" class="javax.swing.JLabel">
@@ -117,6 +118,7 @@
                 </constraints>
                 <properties>
                   <text value="Maximale Anzahl der Zyklen"/>
+                  <toolTipText value="Eine ganze Zahl größer als 0."/>
                 </properties>
               </component>
               <component id="93935" class="javax.swing.JTextField" binding="roundsTextField">
@@ -167,6 +169,7 @@
                 </constraints>
                 <properties>
                   <text value="Name"/>
+                  <toolTipText value="Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein."/>
                 </properties>
               </component>
               <component id="1d734" class="javax.swing.JFormattedTextField" binding="nameTextField">

@@ -18,8 +18,7 @@ public class InputValidator {
      * @return {@code true}, wenn str ein gültiger Name ist, {@code false} sonst
      */
     public static boolean isLegalName(String str) {
-
-        return (str.matches("\\w{1,35}"));
+        return str.matches("^(?! )[a-zA-Z0-9 ]{1,35}(?<! )$");
     }
 
     /**
@@ -31,7 +30,7 @@ public class InputValidator {
      */
     public static boolean isLegalDescription(String str) {
 
-        return (str.length() <= 140);
+        return (str.length() <= 300);
     }
 
     /**
@@ -117,6 +116,27 @@ public class InputValidator {
         return start != end;
     }
 
+    public static boolean isSingelOrMultiplePercantage(String input) {
+        if (input.contains("-")) {
+            // Variabler Parameter
+            String[] parts = input.split(" - ");
+            if (!(parts.length == 3))
+                return false;
+            if ( !(isSingleValue(parts[0]) && isSingleValue(parts[1]) && isSingleValue(parts[2])) )
+                return false;
+            int start = Integer.parseInt(parts[0]);
+            int end = Integer.parseInt(parts[1]);
+            int step = Integer.parseInt(parts[2]);
+
+            return start != end && start >= 0 && end >= 0 && start <= 100 && end <= 100 && step > 0 && step <= 100;
+        } else {
+            // Einfacher Parameter
+            if (!isSingleValue(input)) return false;
+            int percentage = Integer.parseInt(input);
+            return percentage >= 0 && percentage <= 100;
+        }
+    }
+
     public static boolean isPercentage(String str) {
 
         if (!(str.contains("%"))) return false;
@@ -131,6 +151,13 @@ public class InputValidator {
         int percentage = Integer.parseInt(str.trim());
 
         return (percentage > 0) && (percentage < 101);
+    }
+
+    public static boolean isProbability(String input) {
+        if (!isDouble(input))
+            return false;
+        double value = Double.parseDouble(input);
+        return 0 <= value && value <= 1;
     }
 
     public static boolean containsFamilyOfValues(String str) {
