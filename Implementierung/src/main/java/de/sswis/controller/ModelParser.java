@@ -459,7 +459,7 @@ public class ModelParser {
                 }
 
                 for(String s : variableGroup.getStartCapital()) {
-                    if(s.matches("\\d+-\\d+-\\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
+                    if(s.matches("\\d+ - \\d+ - \\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
                 }
 
                 int[] values = getIntValues(variableGroup.getStartCapital().get(variableCapitalIndex));
@@ -527,7 +527,7 @@ public class ModelParser {
         List<Integer> ids = new ArrayList<>();
 
         for(String s : parts) {
-            if(s.matches("\\d+-\\d+")) {
+            if(s.matches("\\d+ - \\d+")) {
                 String[] interval = s.split("-");
                 for(int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) ids.add(i);
             } else {

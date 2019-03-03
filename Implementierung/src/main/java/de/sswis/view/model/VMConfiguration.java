@@ -205,6 +205,6 @@ public class VMConfiguration {
     }
 
     public boolean hasVariableComponent() {
-        return adaptationProbability.matches("\\d+.\\d+-\\d+.\\d+-\\d+.\\d+");
+        return adaptationProbability.matches("\\d+.\\d+ - \\d+.\\d+ - \\d+.\\d+");
     }
 }
