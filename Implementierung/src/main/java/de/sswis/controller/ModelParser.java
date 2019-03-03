@@ -44,18 +44,13 @@ public class ModelParser {
         ArrayList<VMResult> results = new ArrayList<>();
 
         VMConfiguration configuration;
-        try {
-            configuration = this.fileManager.loadConfiguration(simulation.getName());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+        configuration = this.fileManager.loadConfiguration(simulation.getName().replaceAll("_\\d+", ""));
 
         for (Integer i : simulation.getResults().getAgents().keySet()) {
             VMResult result = new VMResult();
 
             result.setVmConfig(configuration);
-            result.setName(configuration.getName());
+            result.setName(simulation.getName());
             result.setReachedEquilibrium(simulation.getResults().getEquilibriums().get(i));
 
             Agent[] agents = simulation.getResults().getAgents().get(i);
@@ -129,12 +124,7 @@ public class ModelParser {
         String init = vmConfig.getInit();
         VMInitialization vmInitialization;
 
-        try{
-            vmInitialization = this.fileManager.loadInitialization(init);
-        } catch(FileNotFoundException e){
-            e.printStackTrace();
-            return null;
-        }
+        vmInitialization = this.fileManager.loadInitialization(init);
 
         ArrayList<Configuration> configurations = new ArrayList<>();
 
@@ -159,12 +149,12 @@ public class ModelParser {
         if (vmInitialization.isMultiInitialisation()) {
             String initName = vmInitialization.getName();
 
-            for (int i = 1; this.provider.getInitialization(initName + i) != null; i++) {
+            for (int i = 1; this.provider.getInitialization(initName + "_" + i) != null; i++) {
 
-                Initialization initialization = this.provider.getInitialization(initName + i);
+                Initialization initialization = this.provider.getInitialization(initName + "_" + i);
 
                 Configuration c = new Configuration(
-                        name + i,
+                        name + "_" + i,
                         game,
                         initialization,
                         adaptationAlgorithm,
@@ -225,7 +215,7 @@ public class ModelParser {
     }
 
     private double[] getDoubleValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.split(" - ");
         List<Double> values = new ArrayList<>();
         double start = Double.parseDouble(parts[0]);
         double end = Double.parseDouble(parts[1]);
@@ -303,7 +293,7 @@ public class ModelParser {
                 Group g = new Group(group.getId(), group.getName());
 
                 if(vmInitialization.hasRelativeDistribution()) {
-                    AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                    AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getAgentsString())*100));
                     init.setGroupDistribution(ad, g);
                 } else {
                     AgentDistribution ad = new AgentDistribution(getIDs(group.getAgentsString()));
@@ -312,7 +302,7 @@ public class ModelParser {
 
                 if(group.getRelativeStrategyDistributions()) {
                     for(int i = 0; i < group.getStrategies().size(); i++) {
-                        AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(i)));
+                        AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStrategyDistributionsStrings().get(i))*100));
                         init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(i)), g);
                     }
                 } else {
@@ -324,7 +314,7 @@ public class ModelParser {
 
                 if(group.getRelativeCapitalDistributions()) {
                     for(int i = 0; i < group.getStartCapital().size(); i++) {
-                        AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(i)));
+                        AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStartCapitalDistributionsStrings().get(i))*100));
                         init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(i)), g);
                     }
                 } else {
@@ -340,25 +330,25 @@ public class ModelParser {
             //Multi Initialization
             if(vmInitialization.hasVariableGroupDistribution()) {
                 //group distribution is variable
-                int size = getIntValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
+                int size = getDoubleValues(vmInitialization.getGroups().get(0).getAgentsString()).length;
 
                 for(int i = 0; i < size; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
                         Group g = new Group(group.getId(), group.getName());
-                        int[] values = getIntValues(group.getAgentsString());
-                        AgentDistribution groupDistribution = new AgentDistribution(values[i]);
+                        double[] values = getDoubleValues(group.getAgentsString());
+                        AgentDistribution groupDistribution = new AgentDistribution((int)Math.round(values[i]*100));
                         init.setGroupDistribution(groupDistribution, g);
 
                         for (int j = 0; j < group.getStrategies().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStrategyDistributionsStrings().get(j))*100));
                             init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                         }
 
                         for (int j = 0; j < group.getStartCapital().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStartCapitalDistributionsStrings().get(j))*100));
                             init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                         }
                     }
@@ -373,41 +363,41 @@ public class ModelParser {
                 }
 
                 List<String> strategyDistribution = variableGroup.getStrategyDistributionsStrings();
-                int[][] values = new int[strategyDistribution.size()][getIntValues(strategyDistribution.get(0)).length];
+                double[][] values = new double[strategyDistribution.size()][getDoubleValues(strategyDistribution.get(0)).length];
 
                 for(int i = 0; i < strategyDistribution.size(); i++ ) {
-                    values[i] = getIntValues(variableGroup.getStrategyDistributionsStrings().get(i));
+                    values[i] = getDoubleValues(variableGroup.getStrategyDistributionsStrings().get(i));
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
                         Group g = new Group(group.getId(), group.getName());
-                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        AgentDistribution groupDistribution = new AgentDistribution((int)Math.round(Double.parseDouble(group.getAgentsString())*100));
                         init.setGroupDistribution(groupDistribution, g);
 
                         if(group.getId() == variableGroup.getId()) {
                             for (int j = 0; j < group.getStrategies().size(); j++) {
-                                AgentDistribution ad = new AgentDistribution(values[j][i]);
+                                AgentDistribution ad = new AgentDistribution((int)Math.round(values[j][i]*100));
                                 init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                             }
                         } else {
                             for (int j = 0; j < group.getStrategies().size(); j++) {
-                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                                AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStrategyDistributionsStrings().get(j))*100));
                                 init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                             }
                         }
                         for (int j = 0; j < group.getStartCapital().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStartCapitalDistributionsStrings().get(j))*100));
                             init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                         }
                     }
                     initializations.add(init);
                 }
 
-            } else if(vmInitialization.hasVariableCapitalDistribution()){
+            } else if(vmInitialization.hasVariableCapitalDistribution()) {
                 //capital distribution in a group is variable
                 VMGroup variableGroup = null;
 
@@ -416,34 +406,34 @@ public class ModelParser {
                 }
 
                 List<String> capitalDistribution = variableGroup.getStartCapitalDistributionsStrings();
-                int[][] values = new int[capitalDistribution.size()][getIntValues(capitalDistribution.get(0)).length];
+                double[][] values = new double[capitalDistribution.size()][getDoubleValues(capitalDistribution.get(0)).length];
 
                 for(int i = 0; i < capitalDistribution.size(); i++ ) {
-                    values[i] = getIntValues(variableGroup.getStartCapitalDistributionsStrings().get(i));
+                    values[i] = getDoubleValues(variableGroup.getStartCapitalDistributionsStrings().get(i));
                 }
 
                 for(int i = 0; i < values[0].length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
                         Group g = new Group(group.getId(), group.getName());
-                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        AgentDistribution groupDistribution = new AgentDistribution((int)Math.round(Double.parseDouble(group.getAgentsString())*100));
                         init.setGroupDistribution(groupDistribution, g);
 
                         if(group.getId() == variableGroup.getId()) {
                             for (int j = 0; j < group.getStartCapital().size(); j++) {
-                                AgentDistribution ad = new AgentDistribution(values[j][i]);
+                                AgentDistribution ad = new AgentDistribution((int)Math.round(values[j][i]*100));
                                 init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                             }
                         } else {
                             for (int j = 0; j < group.getStartCapital().size(); j++) {
-                                AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                                AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStartCapitalDistributionsStrings().get(j))*100));
                                 init.setCapitalDistribution(ad, Integer.parseInt(group.getStartCapital().get(j)), g);
                             }
                         }
                         for (int j = 0; j < group.getStrategies().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStrategyDistributionsStrings().get(j))*100));
                             init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                         }
                     }
@@ -459,22 +449,22 @@ public class ModelParser {
                 }
 
                 for(String s : variableGroup.getStartCapital()) {
-                    if(s.matches("\\d+-\\d+-\\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
+                    if(s.matches("\\d+ - \\d+ - \\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
                 }
 
                 int[] values = getIntValues(variableGroup.getStartCapital().get(variableCapitalIndex));
 
                 for(int i = 0; i < values.length; i++) {
-                    Initialization init = new Initialization(name + (i + 1), agentCount);
+                    Initialization init = new Initialization(name + "_" + (i + 1), agentCount);
                     init.setInitialScoreStrategiesOnly(!vmInitialization.addCapitalToTotalPoints());
 
                     for(VMGroup group : vmInitialization.getGroups()) {
                         Group g = new Group(group.getId(), group.getName());
-                        AgentDistribution groupDistribution = new AgentDistribution(Integer.parseInt(group.getAgentsString()));
+                        AgentDistribution groupDistribution = new AgentDistribution((int)Math.round(Double.parseDouble(group.getAgentsString())*100));
                         init.setGroupDistribution(groupDistribution, g);
 
                         for (int j = 0; j < group.getStartCapital().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStartCapitalDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStartCapitalDistributionsStrings().get(j))*100));
                             if(group.getId() == variableGroup.getId() && variableCapitalIndex == j) {
                                 init.setCapitalDistribution(ad, values[i], g);
                             } else {
@@ -483,7 +473,7 @@ public class ModelParser {
                         }
 
                         for (int j = 0; j < group.getStrategies().size(); j++) {
-                            AgentDistribution ad = new AgentDistribution(Integer.parseInt(group.getStrategyDistributionsStrings().get(j)));
+                            AgentDistribution ad = new AgentDistribution((int)Math.round(Double.parseDouble(group.getStrategyDistributionsStrings().get(j))*100));
                             init.setStrategyDistribution(ad, provider.getStrategy(group.getStrategies().get(j)), g);
                         }
                     }
@@ -495,7 +485,7 @@ public class ModelParser {
     }
 
     private int[] getIntValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.split(" - ");
         List<Integer> values = new ArrayList<>();
         int start = Integer.parseInt(parts[0]);
         int end = Integer.parseInt(parts[1]);
@@ -527,8 +517,8 @@ public class ModelParser {
         List<Integer> ids = new ArrayList<>();
 
         for(String s : parts) {
-            if(s.matches("\\d+-\\d+")) {
-                String[] interval = s.split("-");
+            if(s.matches("\\d+ - \\d+")) {
+                String[] interval = s.split(" - ");
                 for(int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) ids.add(i);
             } else {
                 ids.add(Integer.parseInt(s));

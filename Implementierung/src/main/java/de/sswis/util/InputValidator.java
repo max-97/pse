@@ -18,8 +18,7 @@ public class InputValidator {
      * @return {@code true}, wenn str ein gültiger Name ist, {@code false} sonst
      */
     public static boolean isLegalName(String str) {
-
-        return (str.matches("\\w{1,35}"));
+        return str.matches("^(?! )[a-zA-Z0-9 ]{1,35}(?<! )$");
     }
 
     /**
@@ -31,7 +30,7 @@ public class InputValidator {
      */
     public static boolean isLegalDescription(String str) {
 
-        return (str.length() <= 140);
+        return (str.length() <= 300);
     }
 
     /**
@@ -62,7 +61,7 @@ public class InputValidator {
 
     public static boolean isInterval(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         return parts.length == 2
                 && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim());
@@ -92,7 +91,7 @@ public class InputValidator {
      */
     public static boolean isFamilyOfValues(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         if (!(parts.length == 3 && isSingleValue(parts[0].trim())
                 && isSingleValue(parts[1].trim()) && isSingleValue(parts[2].trim()))) return false;
@@ -106,7 +105,7 @@ public class InputValidator {
 
     public static boolean isFamilyOfPercentages(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         if (!(parts.length == 3 && isPercentage(parts[0].trim())
                 && isPercentage(parts[1].trim()) && isPercentage(parts[2].trim()))) return false;
@@ -115,6 +114,27 @@ public class InputValidator {
         int end = Integer.parseInt(parts[1].replace("%","").trim());
 
         return start != end;
+    }
+
+    public static boolean isSingleOrMultiplePercentage(String input) {
+        if (input.contains(" - ")) {
+            // Variabler Parameter
+            String[] parts = input.split(" - ");
+            if (!(parts.length == 3))
+                return false;
+            if ( !(isSingleValue(parts[0]) && isSingleValue(parts[1]) && isSingleValue(parts[2])) )
+                return false;
+            int start = Integer.parseInt(parts[0]);
+            int end = Integer.parseInt(parts[1]);
+            int step = Integer.parseInt(parts[2]);
+
+            return start != end && start >= 0 && end >= 0 && start <= 100 && end <= 100 && step > 0 && step <= 100;
+        } else {
+            // Einfacher Parameter
+            if (!isSingleValue(input)) return false;
+            int percentage = Integer.parseInt(input);
+            return percentage >= 0 && percentage <= 100;
+        }
     }
 
     public static boolean isPercentage(String str) {
@@ -131,6 +151,29 @@ public class InputValidator {
         int percentage = Integer.parseInt(str.trim());
 
         return (percentage > 0) && (percentage < 101);
+    }
+
+    public static boolean isProbability(String input) {
+        if (!isDouble(input))
+            return false;
+        double value = Double.parseDouble(input);
+        return 0 <= value && value <= 1;
+    }
+
+    public static boolean isVariableProbability(String input) {
+        String[] parts = input.split("-");
+        if(parts.length != 3) return false;
+        double start;
+        double end;
+        double step;
+        try {
+            start = Double.parseDouble(parts[0].trim());
+            end = Double.parseDouble(parts[1].trim());
+            step = Double.parseDouble(parts[2].trim());
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return start != end && start >= 0 && start <= 1 && end >= 0 && end <= 1 && step > 0 && step <= 1;
     }
 
     public static boolean containsFamilyOfValues(String str) {

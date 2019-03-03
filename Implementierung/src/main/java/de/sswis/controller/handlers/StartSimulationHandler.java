@@ -1,6 +1,7 @@
 package de.sswis.controller.handlers;
 
 import de.sswis.controller.ModelProvider;
+import de.sswis.controller.MultiViewNotifier;
 import de.sswis.controller.ViewNotifier;
 import de.sswis.model.Configuration;
 import de.sswis.model.Simulation;
@@ -9,6 +10,7 @@ import de.sswis.view.model.VMConfiguration;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -38,11 +40,27 @@ public class StartSimulationHandler implements ActionListener {
             return;
 
         VMConfiguration selected = mainView.getSelected();
-        Configuration config = this.provider.getConfiguration(selected.getName());
-        Simulation sim = config.simulate();
-        sim.setRepetitions(repetitions);
-        sim.addObserver(new ViewNotifier(this.mainView));
-        new Thread(sim).start();
+        if (!selected.isMultiConfiguration()) {
+            Configuration config = this.provider.getConfiguration(selected.getName());
+            Simulation sim = config.simulate();
+            sim.setRepetitions(repetitions);
+            sim.addObserver(new ViewNotifier(this.mainView));
+            new Thread(sim).start();
+        } else {
+            Collection<Configuration> configurations = new ArrayList<>();
+            String name = selected.getName();
+            for (int i = 1; this.provider.getConfiguration(name + "_" + i) != null; i++) {
+                configurations.add(this.provider.getConfiguration(name + "_" + i));
+            }
+
+            MultiViewNotifier mvn = new MultiViewNotifier(mainView, configurations.size());
+            for (Configuration c : configurations) {
+                Simulation sim = c.simulate();
+                sim.setRepetitions(repetitions);
+                sim.addObserver(mvn);
+                new Thread(sim).start();
+            }
+        }
         mainView.setSimulationStarted(selected.getName());
     }
 }

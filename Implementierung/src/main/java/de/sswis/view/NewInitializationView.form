@@ -29,6 +29,7 @@
                 </constraints>
                 <properties>
                   <text value="Name :   "/>
+                  <toolTipText value="Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein."/>
                 </properties>
               </component>
               <component id="5873c" class="javax.swing.JLabel">
@@ -37,6 +38,7 @@
                 </constraints>
                 <properties>
                   <text value="Anzahl der Agenten:"/>
+                  <toolTipText value="Eine gerade ganze Zahl größer als 0."/>
                 </properties>
               </component>
               <component id="38b64" class="javax.swing.JSeparator">

@@ -219,7 +219,7 @@ public class Initialization {
                 for (int i = 0; i < capitalAgentDistributions.get(a).getAgentIDs().length; i++) {
                     for (int j = 0; j < members.size(); j++) {
                         if (ids[i] == members.get(j).getId() && members.get(j).getScore() == 0) {
-                            members.get(j).setScore(capitals.get(a));
+                            members.get(j).setInitialScore(capitals.get(a));
                         }
                     }
                 }
@@ -237,7 +237,7 @@ public class Initialization {
                 for (int x = 0; x < members.size(); x++) {
                     boolean isAll = true;
                     if (members.get(x).getScore() == 0) {
-                        members.get(x).setScore(capitals.get(b));
+                        members.get(x).setInitialScore(capitals.get(b));
                         agentNumber++;
                     }
                     float result = (float) capitalAgentDistributions.get(b).getPercentage() / 100 * (float) members.size();

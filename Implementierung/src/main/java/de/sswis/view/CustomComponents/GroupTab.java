@@ -138,11 +138,11 @@ public class GroupTab {
         vmGroup = new VMGroup();
 
         boolean relStrat = percentageAgentStrategyRadioButton.isSelected();
-        double stratPercentageSum = 0.0;
+        double stratPercentageSum = 1.0;
         boolean relCapital = percentageAgentCapitalRadioButton.isSelected();
-        double capitalPercentageSum = 0.0;
+        double capitalPercentageSum = 1.0;
 
-        if (strategyTabs.size() == 0 || startCapitalTabs.size() == 0) return false;
+        if (strategyTabs.size() == 0) return false;
 
         vmGroup.setName(groupNameTextField.getText());
         vmGroup.setAgents(distributionTextField.getText());
@@ -150,21 +150,32 @@ public class GroupTab {
         vmGroup.setRelativeStrategyDistribution(relStrat);
         for (int i = 0; i < strategyTabs.size(); i++) {
             String distr = strategyTabs.get(i).getUserInput();
-            if ((relStrat && isDouble(distr)) || (!relStrat && isIntervalPlusSingleValues(distr))) {
+          
+            if ((relStrat && (isProbability(distr)) || isVariableProbability(distr))
+                    || (!relStrat && isIntervalPlusSingleValues(distr))) {
                 vmGroup.addStrategy(strategyTabs.get(i).getTitle(), distr);
-                if (relStrat) stratPercentageSum += Double.parseDouble(distr);
-            } else return false;
+
+                // Funktioniert nicht für variable Parameter
+                //if (relStrat) stratPercentageSum += Double.parseDouble(distr);
+            }
+            else return false;
+
         }
 
         vmGroup.setRelativeCapitalDistributions(relCapital);
         for (int i = 0; i < startCapitalTabs.size(); i++) {
             String capital = startCapitalTabs.get(i).getStartCapital();
             String distr = startCapitalTabs.get(i).getAgentUserInput();
-            if (isSingleValue(capital) &&
-                    ((relCapital && isDouble(distr)) || (!relCapital && isIntervalPlusSingleValues(distr)))) {
+          
+            if ((isSingleValue(capital) || isFamilyOfValues(capital)) &&
+                    ((relCapital && ((isProbability(distr)) || isVariableProbability(distr)))
+                    || (!relCapital && isIntervalPlusSingleValues(distr)))) {
                 vmGroup.addStartCapital(capital, distr);
-                if (relCapital) capitalPercentageSum += Double.parseDouble(distr);
-            } else return false;
+
+                // Funktioniert nicht für variable Parameter
+                //if (relCapital) capitalPercentageSum += Double.parseDouble(distr);
+            }
+            else return false;
         }
 
         return (!relStrat || (stratPercentageSum == 1.0)) && (!relCapital || (capitalPercentageSum == 1.0));

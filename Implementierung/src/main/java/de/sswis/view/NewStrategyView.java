@@ -113,7 +113,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
                 String currentPercentage = probabilityTextFields.get(i).getText();
                 vmStrategy.addStrategy(currentStrategy,
                         currentPercentage);
-                if (!isDouble(currentPercentage) || currentStrategy == null) {
+                if (!isProbability(currentPercentage) || currentStrategy == null) {
                     illegalInput = true;
                     break;
                 }

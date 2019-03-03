@@ -4,6 +4,7 @@ import de.sswis.controller.FileManager;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class VMConfiguration {
     private HashMap<String, Object> adaptationParameters;
     private HashMap<String, Object> rankingParameters;
 
-    private VMResult result;
+    private Collection<VMResult> results = new ArrayList<>();
     private boolean hasResult = false;
 
     /**
@@ -43,12 +44,7 @@ public class VMConfiguration {
     public boolean isMultiConfiguration() {
         FileManager fileManager = new FileManager();
         VMInitialization initialization;
-        try {
-            initialization = fileManager.loadInitialization(init);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return false;
-        }
+        initialization = fileManager.loadInitialization(init);
         return initialization.isMultiInitialisation() || hasVariableComponent();
     }
 
@@ -155,12 +151,17 @@ public class VMConfiguration {
         this.strategies.remove(strategy);
     }
 
-    public VMResult getResult() {
-        return result;
+    public Collection<VMResult> getResults() {
+        return results;
     }
 
-    public void setResult(VMResult result) {
-        this.result = result;
+    public void setResults(Collection<VMResult> results) {
+        this.results = results;
+        this.hasResult = true;
+    }
+
+    public void addResult(VMResult result) {
+        this.results.add(result);
         this.hasResult = true;
     }
 
@@ -205,6 +206,6 @@ public class VMConfiguration {
     }
 
     public boolean hasVariableComponent() {
-        return adaptationProbability.matches("\\d+.\\d+-\\d+.\\d+-\\d+.\\d+");
+        return adaptationProbability.matches("\\d+.?\\d* - \\d+.?\\d* - \\d+.?\\d*");
     }
 }

@@ -128,6 +128,7 @@
             </constraints>
             <properties>
               <text value="Beschreibung:"/>
+              <toolTipText value="Die Beschreibung darf maximal 300 Zeichen lang sein."/>
             </properties>
           </component>
           <component id="1234" class="javax.swing.JTextPane" binding="descriptionPane">
@@ -146,6 +147,7 @@
             </constraints>
             <properties>
               <text value="Name: "/>
+              <toolTipText value="Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein."/>
             </properties>
           </component>
           <component id="acf37" class="javax.swing.JLabel" binding="upRightPayOffLabel" custom-create="true">

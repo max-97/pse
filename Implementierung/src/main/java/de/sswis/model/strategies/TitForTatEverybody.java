@@ -11,7 +11,6 @@ import de.sswis.model.Agent;
 public class TitForTatEverybody implements BaseStrategy {
     public final static String NAME = "Tit-for-Tat mit jedem";
     public final static String DESCRIPTION = "";
-    public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
     @Override

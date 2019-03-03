@@ -8,6 +8,7 @@ import de.sswis.view.model.VMResult;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
 
 /**
  * Öffnet die View zum Verwalten der {@code Ergebnisse}.
@@ -31,8 +32,8 @@ public class ManageResultsHandler implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         AbstractManageResultsView manageResultsView = this.factory.createManageResultsView();
         manageResultsView.setParentView(mainView);
-        for(VMResult r : mainView.getResults()) {
-            manageResultsView.addResult(r);
+        for(Collection<VMResult> c : mainView.getAllResults()) {
+            c.forEach(r -> manageResultsView.addResult(r));
         }
         manageResultsView.show();
     }

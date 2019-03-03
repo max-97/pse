@@ -61,10 +61,6 @@ public class ParameterTable {
 
     }
 
-    public Object returnString() {
-        return "Hallo";
-    }
-
     public HashMap<String, Object> getAllUserInputs() {
         HashMap<String, Object> params = new HashMap<>();
 

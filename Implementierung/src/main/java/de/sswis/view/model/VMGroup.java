@@ -1,12 +1,8 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-import static de.sswis.util.InputValidator.containsFamilyOfValues;
-import static de.sswis.util.InputValidator.isFamilyOfPercentages;
 
 /**
  * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer {@code Group} enthält.
@@ -101,7 +97,7 @@ public class VMGroup {
             return false;
         } else {
             for(String distribution : strategyDistributions) {
-                if(distribution.matches("\\d+-\\d+-\\d+")) {
+                if(distribution.matches("\\d+.?\\d* - \\d+.?\\d* - \\d+.?\\d*")) {
                     return true;
                 }
             }
@@ -114,7 +110,7 @@ public class VMGroup {
             return false;
         } else {
             for(String distribution : startCapitalDistributions) {
-                if(distribution.matches("\\d+-\\d+-\\d+")) {
+                if(distribution.matches("\\d+.?\\d* - \\d+.?\\d* - \\d+.?\\d*")) {
                     return true;
                 }
             }
@@ -124,7 +120,7 @@ public class VMGroup {
 
     public boolean hasVariableCapital() {
         for(String distribution : startCapitals) {
-            if(distribution.matches("\\d+-\\d+-\\d+")) {
+            if(distribution.matches("\\d+ - \\d+ - \\d+")) {
                 return true;
             }
         }

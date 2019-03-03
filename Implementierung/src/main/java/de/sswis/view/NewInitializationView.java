@@ -3,17 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.model.Action;
 import de.sswis.view.CustomComponents.GroupTab;
 import de.sswis.view.model.VMGroup;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 import static de.sswis.util.InputValidator.*;
@@ -115,7 +112,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         String name = nameTextField.getText();
         String desc = descriptionTextPane.getText();
         boolean relDistr = percentageAgentGroupRadioButton.isSelected();
-        double percentageSum = 0.0;
+        double percentageSum = 1.0;
 
         boolean illegalInput = false;
 
@@ -129,18 +126,29 @@ public class NewInitializationView implements AbstractNewInitializationView {
             for (int i = 0; i < groupTabs.size(); i++) {
                 VMGroup currentGroup = groupTabs.get(i).getVmGroup();
 
-                if (currentGroup != null &&
-                        ((relDistr && isDouble(currentGroup.getAgentsString()))
-                                || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())))) {
+                if (currentGroup != null
+                        && ( (relDistr && (isProbability(currentGroup.getAgentsString())
+                            || isVariableProbability(currentGroup.getAgentsString())))
+                            || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())) )
+                ) {
                     vmInitialization.addGroup(currentGroup);
-                    if (relDistr) percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                    // Funktioniert so nicht für variable Parameter
+                    // if (relDistr) {
+                    //    percentageSum += Double.parseDouble(currentGroup.getAgentsString());
+                    // }
                 } else {
                     illegalInput = true;
                     break;
                 }
             }
-            if (relDistr && percentageSum != 1.0) illegalInput = true;
-        } else illegalInput = true;
+
+            if (relDistr && percentageSum != 1.0) {
+                illegalInput = true;
+            }
+        } else {
+            illegalInput = true;
+        }
+
 
         if (illegalInput) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
@@ -259,10 +267,12 @@ public class NewInitializationView implements AbstractNewInitializationView {
         scrollPane1.setViewportView(panel2);
         final JLabel label1 = new JLabel();
         label1.setText("Name :   ");
+
         panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Anzahl der Agenten:");
         panel2.add(label2, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
         final JSeparator separator1 = new JSeparator();
         panel2.add(separator1, new GridConstraints(10, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
@@ -286,9 +296,11 @@ public class NewInitializationView implements AbstractNewInitializationView {
         final Spacer spacer4 = new Spacer();
         panel2.add(spacer4, new GridConstraints(14, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 300), null, null, 0, false));
         final JLabel label4 = new JLabel();
+
         label4.setText("Beschreibung: ");
         label4.setToolTipText("optional, kann leer gelassen werden (max 300 Zeichen)");
         panel2.add(label4, new GridConstraints(7, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+
         descriptionTextPane = new JTextPane();
         descriptionTextPane.setToolTipText("optional, kann leer gelassen werden (max 300 Zeichen)");
         panel2.add(descriptionTextPane, new GridConstraints(8, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(-1, 50), null, 0, false));

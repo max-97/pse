@@ -4,13 +4,12 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.CustomComponents.ParameterTable;
-import de.sswis.view.model.*;
+import de.sswis.view.model.VMConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 
@@ -105,7 +104,8 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         String cycles = cyclesTextField.getText();
 
         if (!(isSingleValue(rounds) && Integer.parseInt(rounds) > 0) ||
-                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isInPercentageRange(adaptProb))) {
+                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isProbability(adaptProb)
+                || isVariableProbability(adaptProb))) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
@@ -364,9 +364,11 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         panel1.add(label6, new GridConstraints(14, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label7 = new JLabel();
         label7.setText("Anzahl der Runden");
+        label7.setToolTipText("Eine ganze Zahl größer als 0.");
         panel1.add(label7, new GridConstraints(16, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(212, 18), null, 0, false));
         final JLabel label8 = new JLabel();
         label8.setText("Maximale Anzahl der Zyklen");
+        label8.setToolTipText("Eine ganze Zahl größer als 0.");
         panel1.add(label8, new GridConstraints(17, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(212, 18), null, 0, false));
         roundsTextField = new JTextField();
         panel1.add(roundsTextField, new GridConstraints(16, 3, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -380,6 +382,7 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         panel1.add(initComboBox, new GridConstraints(4, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label9 = new JLabel();
         label9.setText("Name");
+        label9.setToolTipText("Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein.");
         panel1.add(label9, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, 1, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(212, 18), null, 0, false));
         nameTextField = new JFormattedTextField();
         nameTextField.setText("");

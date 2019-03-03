@@ -30,10 +30,17 @@ public class StopSimulationHandler implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        VMConfiguration configurations = mainView.getSelected();
+        VMConfiguration configuration = mainView.getSelected();
 
-        Configuration config = this.provider.getConfiguration(configurations.getName());
-        config.getSimulation().abort();
-        mainView.setSimulationStopped(configurations.getName());
+        if (!configuration.isMultiConfiguration()) {
+            Configuration config = this.provider.getConfiguration(configuration.getName());
+            config.getSimulation().abort();
+        } else {
+            for (int i = 1; this.provider.getConfiguration(configuration.getName() + "_" + i) != null; i++) {
+                Configuration config = this.provider.getConfiguration(configuration.getName() + "_" + 1);
+                config.getSimulation().abort();
+            }
+        }
+        mainView.setSimulationStopped(configuration.getName());
     }
 }

@@ -58,7 +58,7 @@ public class MainView implements AbstractMainView {
 
     public MainView() {
 
-        configurations = new ArrayList<VMConfiguration>();
+        configurations = new ArrayList<>();
         simulatingConfigs = new ArrayList<>();
 
         $$$setupUI$$$();
@@ -100,11 +100,21 @@ public class MainView implements AbstractMainView {
     }
 
     @Override
-    public void addResult(String NameConfiguration, VMResult result) {
+    public void addResult(String configurationName, VMResult result) {
+        for (VMConfiguration configuration : configurations) {
+            if (configuration.getName().equals(configurationName)) {
+                configuration.addResult(result);
+                break;
+            }
+        }
+        updateButtons();
+    }
 
-        for (int i = 0; i < configurations.size(); i++) {
-            if (configurations.get(i).getName().equals(NameConfiguration)) {
-                configurations.get(i).setResult(result);
+    @Override
+    public void setResults(String configurationName, Collection<VMResult> results) {
+        for (VMConfiguration configuration : configurations) {
+            if (configuration.getName().equals(configurationName)) {
+                configuration.setResults(results);
                 break;
             }
         }
@@ -140,9 +150,9 @@ public class MainView implements AbstractMainView {
     public VMConfiguration getSelected() {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) ConfigurationTree.getLastSelectedPathComponent();
         if (node != null && node.isLeaf()) {
-            for (int i = 0; i < configurations.size(); i++) {
-                if (configurations.get(i).getName().equals(node.getUserObject())) {
-                    return configurations.get(i);
+            for (VMConfiguration configuration : configurations) {
+                if (configuration.getName().equals(node.getUserObject())) {
+                    return configuration;
                 }
             }
         }
@@ -241,13 +251,26 @@ public class MainView implements AbstractMainView {
 
 
     @Override
-    public Collection<VMResult> getResults() {
-        Collection<VMResult> results = new ArrayList<>();
+    public Collection<VMResult> getResults(String configurationName) {
+        Collection<VMResult> results = null;
         for (VMConfiguration c : configurations) {
-            if (c.hasResult())
-                results.add(c.getResult());
+            if (c.getName().equals(configurationName)) {
+                if (c.hasResult()) {
+                    results = c.getResults();
+                }
+                break;
+            }
         }
         return results;
+    }
+
+    @Override
+    public Collection<Collection<VMResult>> getAllResults() {
+        Collection<Collection<VMResult>> allResults = new ArrayList<>();
+        for (VMConfiguration configuration : configurations) {
+            allResults.add(configuration.getResults());
+        }
+        return allResults;
     }
 
     @Override
@@ -286,7 +309,6 @@ public class MainView implements AbstractMainView {
 
     @Override
     public void show() {
-
         frame = new JFrame("SSWIS");
         frame.setContentPane(this.MainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -295,7 +317,6 @@ public class MainView implements AbstractMainView {
         // Das muss immer nach pack() stehen
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
     }
 
     @Override
@@ -349,9 +370,9 @@ public class MainView implements AbstractMainView {
 
 
         DefaultMutableTreeNode config;
-        for (int i = 0; i < configurations.size(); i++) {
-            config = new DefaultMutableTreeNode(configurations.get(i).getName());
-            if (configurations.get(i).isMultiConfiguration()) {
+        for (VMConfiguration configuration : configurations) {
+            config = new DefaultMutableTreeNode(configuration.getName());
+            if (configuration.isMultiConfiguration()) {
                 multi.add(config);
             } else {
                 simple.add(config);
@@ -361,9 +382,7 @@ public class MainView implements AbstractMainView {
         root.add(simple);
         root.add(multi);
 
-        TreeModel configTreeModel = new DefaultTreeModel(root);
-
-        return configTreeModel;
+        return new DefaultTreeModel(root);
     }
 
     private void createUIComponents() {
