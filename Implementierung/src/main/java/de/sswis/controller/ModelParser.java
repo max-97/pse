@@ -225,7 +225,7 @@ public class ModelParser {
     }
 
     private double[] getDoubleValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.replaceAll("\\s+","").split("-");
         List<Double> values = new ArrayList<>();
         double start = Double.parseDouble(parts[0]);
         double end = Double.parseDouble(parts[1]);
@@ -495,7 +495,7 @@ public class ModelParser {
     }
 
     private int[] getIntValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.replaceAll("\\s+","").split("-");
         List<Integer> values = new ArrayList<>();
         int start = Integer.parseInt(parts[0]);
         int end = Integer.parseInt(parts[1]);
@@ -523,11 +523,11 @@ public class ModelParser {
     }
 
     private int[] getIDs(String input) {
-        String[] parts = input.split(",");
+        String[] parts = input.replaceAll("\\s+","").split(",");
         List<Integer> ids = new ArrayList<>();
 
         for(String s : parts) {
-            if(s.matches("\\d+ - \\d+")) {
+            if(s.matches("\\d+-\\d+")) {
                 String[] interval = s.split("-");
                 for(int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) ids.add(i);
             } else {

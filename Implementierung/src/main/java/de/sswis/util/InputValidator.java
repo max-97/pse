@@ -167,9 +167,9 @@ public class InputValidator {
         double end;
         double step;
         try {
-            start = Double.parseDouble(parts[0]);
-            end = Double.parseDouble(parts[1]);
-            step = Double.parseDouble(parts[2]);
+            start = Double.parseDouble(parts[0].trim());
+            end = Double.parseDouble(parts[1].trim());
+            step = Double.parseDouble(parts[2].trim());
         } catch (NumberFormatException e) {
             return false;
         }
