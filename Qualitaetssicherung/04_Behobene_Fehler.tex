@@ -2,51 +2,51 @@
 
 \subsection{Zuvor gespeicherte Ergebnisse nicht sichtbar}
 
-\textbf{Ursache} ShowResultsHandler versucht das Ergebnis aus der Simulation zu parsen und nicht das gespeicherte Ergebnis zu öffnen\\
-\textbf{Lösung} ShowResultView lädt VMResult aus VMConfiguration-Objekten
+\textbf{Ursache} ShowResultsHandler versucht das Ergebnis aus der Simulation zu parsen und nicht das gespeicherte Ergebnis zu öffnen.\\
+\textbf{Lösung} ShowResultView lädt VMResult aus VMConfiguration-Objekten.
 
 \subsection{Ausnahme bei Simulation von Mehrfachkonfiguration}
 
-\textbf{Ursache} \emph{NullPointerException} beim Parsen von Mehrfachkonfigurationen\\
-\textbf{Lösung} Anpassen des ModelParser, sodass die Ausnahme vermieden wird
+\textbf{Ursache} \emph{NullPointerException} beim Parsen von Mehrfachkonfigurationen.\\
+\textbf{Lösung} Anpassen des ModelParser, sodass die Ausnahme vermieden wird.
 
 \subsection{Ausnahme bei negativen Punktzahlen}
 
-\textbf{Ursache} Ergebnisdarstellung erwartet ausschließlich positive Punktzahlen\\
-\textbf{Lösung} Darstellung von negativen Punktzahlen ermöglicht
+\textbf{Ursache} Ergebnisdarstellung erwartet ausschließlich positive Punktzahlen.\\
+\textbf{Lösung} Darstellung von negativen Punktzahlen ermöglicht.
 
 \subsection{Ausnahme bei Bewertung mittels Durchschnittsrang}
 
-\textbf{Ursache} Beim Parsen wird der Parameter \emph{windowsize} nicht übergeben\\
-\textbf{Lösung} Anpassen in View und Handlers
+\textbf{Ursache} Beim Parsen wird der Parameter \emph{windowsize} nicht übergeben.\\
+\textbf{Lösung} Anpassungen in View und Handlers.
 
 \subsection{Ausnahme bei der Angabe von Anteilen}
 
-\textbf{Ursache} InputValidator und ModelParser hat nutzen verschiedene Formate für die Repräsentation von Anteilen\\
-\textbf{Lösung} Vereinheitlichung der beiden Formate
+\textbf{Ursache} InputValidator und ModelParser hat nutzen verschiedene Formate für die Repräsentation von Anteilen.\\
+\textbf{Lösung} Vereinheitlichung der beiden Formate.
 
 \subsection{Verzögerte Darstellung von erstellten Konfigurationen}
 
-\textbf{Ursache} Nach Erstellen einer Konfiguration wird die Anzeige nicht aktualisiert\\
-\textbf{Lösung} Aktualisieren der Anzeige nach jedem Erstellen einer Konfiguration
+\textbf{Ursache} Nach Erstellen einer Konfiguration über \emph{Neu $>$ Konfiguration} wird die Konfiguration nicht im Hauptfenster angezeigt.\\
+\textbf{Lösung} Aktualisieren des Hauptfenster nach jedem Erstellen einer Konfiguration.
 
 \subsection{Speichern falscher Strategienamen}
 
-\textbf{Ursache} In VMGroup wird unter gewissen Umständen ein falscher Name gesetzt\\
-\textbf{Lösung} Richtiges Setzen des Strategienamen erzwungen
+\textbf{Ursache} In VMGroup wird unter gewissen Umständen ein falscher Name gesetzt.\\
+\textbf{Lösung} Richtiges Setzen des Strategienamen erzwungen.
 
 \subsection{Fehlerhafte Darstellung von Umlauten}
 
 \textbf{Ursache} Falsches Encodieren des Java-Compilers\\
 \textbf{Lösung} Encodieren mittels UTF-8-Standard
 
-\subsection{Fehlerhafter Dateipfad}
-
-\textbf{Ursache} Annahme eines festen Dateipfads\\
-\textbf{Lösung} Speichern im Ordner \emph{./saves} relativ zur JAR-Datei
+\subsection{Speichern der Dateien in der Jar-Datei}
+Ursprünglich war es geplant die Json-Dateien innerhalb der Jar-Datei zu speichern.\\
+\textbf{Ursache} Dateien und Verzeichnisse innerhalb einer Jar-Datei können nicht als File Objekt dargestellt werden.\\
+\textbf{Lösung} Speichern im Ordner \emph{./saves} relativ zur JAR-Datei. Das Speichern der Dateien innerhalb der Jar-Datei ist nicht möglich. Beim Starten des Programms muss das Speicherverzeichnis nach allen vorhandenen Dateien durchsucht werden. Dies ist mit der Methode \emph{Files.listFiles()} möglich. Verzeichnisse in der Jar-Datei lassen sich aber nicht als File Objekt darstellen und es gibt keine andere Möglichkeit sämtliche Dateien in einer Jar aufgelistet zu bekommen.
 
 \subsection{Ungünstige Fenstergröße}
 
-\textbf{Ursache} Einige Fenster erlauben das Hinzufügen von variablen Elementen, die nicht vollständig angezeigt werden können\\
-\textbf{Lösung} Anpassen der GUI-Forms
+\textbf{Ursache} Einige Fenster erlauben das Hinzufügen von variablen Elementen, die nicht vollständig angezeigt werden.\\
+\textbf{Lösung} Anpassen der GUI-Größe nachdem neue GUI-Komponenten hinzugefügt wurden.
 
