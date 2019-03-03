@@ -160,6 +160,22 @@ public class InputValidator {
         return 0 <= value && value <= 1;
     }
 
+    public static boolean isVariableProbability(String input) {
+        String[] parts = input.split("-");
+        if(parts.length != 3) return false;
+        double start;
+        double end;
+        double step;
+        try {
+            start = Double.parseDouble(parts[0]);
+            end = Double.parseDouble(parts[1]);
+            step = Double.parseDouble(parts[2]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return start != end && start >= 0 && start <= 1 && end >= 0 && end <= 1 && step > 0 && step <= 1;
+    }
+
     public static boolean containsFamilyOfValues(String str) {
 
         String[] parts = str.split(",");

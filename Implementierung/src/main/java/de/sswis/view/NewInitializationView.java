@@ -130,7 +130,8 @@ public class NewInitializationView implements AbstractNewInitializationView {
                 VMGroup currentGroup = groupTabs.get(i).getVmGroup();
 
                 if (currentGroup != null
-                        && ( (relDistr && isSingelOrMultiplePercantage(currentGroup.getAgentsString()))
+                        && ( (relDistr && (isProbability(currentGroup.getAgentsString())
+                            || isVariableProbability(currentGroup.getAgentsString())))
                             || (!relDistr && isIntervalPlusSingleValues(currentGroup.getAgentsString())) )
                 ) {
                     vmInitialization.addGroup(currentGroup);

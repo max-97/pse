@@ -1,12 +1,8 @@
 package de.sswis.view.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
-import static de.sswis.util.InputValidator.containsFamilyOfValues;
-import static de.sswis.util.InputValidator.isFamilyOfPercentages;
 
 /**
  * Gruppen Daten, die alle nötigen Parameter zum Erzeugen einer {@code Group} enthält.
