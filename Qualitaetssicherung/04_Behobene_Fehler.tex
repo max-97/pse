@@ -7,8 +7,8 @@
 
 \subsection{Zuvor gespeicherte Ergebnisse nicht sichtbar}
 
-\textbf{Ursache}\\
-\textbf{Lösung}
+\textbf{Ursache} Der ShowResultsHandler versucht das Ergebnis aus der Simulation zu parsen und nicht das gespeicherte Ergebnis zu öffnen.\\
+\textbf{Lösung} ShowResultView lädt VMResult aus VMConfiguration Objekten
 
 \subsection{Ausnahme bei Simulation von Mehrfachkonfiguration}
 
@@ -22,8 +22,8 @@
 
 \subsection{Ausnahme bei Bewertung mittels Durchschnittsrang}
 
-\textbf{Ursache}\\
-\textbf{Lösung}
+\textbf{Ursache} Beim Parsen wird beim Durchschnittsrang der Parameter windowsize übergeben\\
+\textbf{Lösung} Anpassen in View und Handlers
 
 \subsection{Ausnahme bei der Angabe von Anteilen}
 
@@ -37,8 +37,8 @@
 
 \subsection{Speichern falscher Strategienamen}
 
-\textbf{Ursache}\\
-\textbf{Lösung}
+\textbf{Ursache} Im VMGroup wird die nicht richtige Name gesetzt\\
+\textbf{Lösung} Die richtige Name von Strategie wird gesetzt
 
 \subsection{Fehlerhafte Darstellung von Umlauten}
 
