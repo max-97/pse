@@ -44,13 +44,13 @@ public class ModelParser {
         ArrayList<VMResult> results = new ArrayList<>();
 
         VMConfiguration configuration;
-        configuration = this.fileManager.loadConfiguration(simulation.getName());
+        configuration = this.fileManager.loadConfiguration(simulation.getName().replaceAll("_\\d+", ""));
 
         for (Integer i : simulation.getResults().getAgents().keySet()) {
             VMResult result = new VMResult();
 
             result.setVmConfig(configuration);
-            result.setName(configuration.getName());
+            result.setName(simulation.getName());
             result.setReachedEquilibrium(simulation.getResults().getEquilibriums().get(i));
 
             Agent[] agents = simulation.getResults().getAgents().get(i);
@@ -215,7 +215,7 @@ public class ModelParser {
     }
 
     private double[] getDoubleValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.split(" - ");
         List<Double> values = new ArrayList<>();
         double start = Double.parseDouble(parts[0]);
         double end = Double.parseDouble(parts[1]);
@@ -449,7 +449,7 @@ public class ModelParser {
                 }
 
                 for(String s : variableGroup.getStartCapital()) {
-                    if(s.matches("\\d+-\\d+-\\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
+                    if(s.matches("\\d+ - \\d+ - \\d+")) variableCapitalIndex = variableGroup.getStartCapital().indexOf(s);
                 }
 
                 int[] values = getIntValues(variableGroup.getStartCapital().get(variableCapitalIndex));
@@ -485,7 +485,7 @@ public class ModelParser {
     }
 
     private int[] getIntValues(String input) {
-        String[] parts = input.split("-");
+        String[] parts = input.split(" - ");
         List<Integer> values = new ArrayList<>();
         int start = Integer.parseInt(parts[0]);
         int end = Integer.parseInt(parts[1]);
@@ -517,8 +517,8 @@ public class ModelParser {
         List<Integer> ids = new ArrayList<>();
 
         for(String s : parts) {
-            if(s.matches("\\d+-\\d+")) {
-                String[] interval = s.split("-");
+            if(s.matches("\\d+ - \\d+")) {
+                String[] interval = s.split(" - ");
                 for(int i = Integer.parseInt(interval[0]); i <= Integer.parseInt(interval[1]); i++) ids.add(i);
             } else {
                 ids.add(Integer.parseInt(s));

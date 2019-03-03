@@ -5,7 +5,6 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.view.CustomComponents.ParameterTable;
 import de.sswis.view.ShowMultiResultView;
-import de.sswis.view.ShowResultView;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 
@@ -48,16 +47,16 @@ public class MultiResultTab {
 
     public void setListener(ShowMultiResultView view, int tabIndex) {
         applyButton.addActionListener(e -> view.updateChart(this, tabIndex));
-        repititionRadioButton.addChangeListener(e -> uptdateButtonGroup());
+        repititionRadioButton.addChangeListener(e -> updateButtonGroup());
 
     }
 
-    private void uptdateButtonGroup() {
+    private void updateButtonGroup() {
         kLabel.setEnabled(repititionRadioButton.isSelected());
         kSpinner.setEnabled(repititionRadioButton.isSelected());
     }
 
-    public void setMaxReptition(int max) {
+    public void setMaxRepetition(int max) {
         if (max == 0)
             kSpinner.setModel(new SpinnerNumberModel(0, 0, 0, 1));
         else

@@ -2,12 +2,9 @@ package de.sswis.view;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import de.sswis.util.DataSetHelper;
 import de.sswis.view.CustomComponents.ResultTabs.MultiResultTab;
-import de.sswis.view.CustomComponents.ResultTabs.SimpleResultTab;
 import de.sswis.view.model.VMAgentHistory;
-import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -30,7 +27,6 @@ import java.util.List;
 public class ShowMultiResultView implements AbstractShowMultiResultView {
 
     private JFrame frame = new JFrame();
-    ;
 
     private HashMap<String, ArrayList<VMResult>> vmResults = new HashMap<>();
     private ArrayList<String> resultNames = new ArrayList<>();
@@ -61,10 +57,11 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
         for (int i = 0; i < 6; i++) {
             MultiResultTab tab = new MultiResultTab();
 
-            if (vmResults.size() == 0)
-                tab.setMaxReptition(0);
-            else
-                tab.setMaxReptition(vmResults.get(0).size());
+            if (vmResults.size() == 0) {
+                tab.setMaxRepetition(0);
+            } else {
+                tab.setMaxRepetition(vmResults.get(resultNames.get(0)).size());
+            }
 
             tab.setStepCount(vmResults.size());
 
@@ -110,11 +107,11 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
     }
 
 
-    public JFreeChart getEquilibriumChart(int repitition, int step, String filter, String filterParam) {
+    public JFreeChart getEquilibriumChart(int repetition, int step, String filter, String filterParam) {
         int yes = 0;
         int no = 0;
 
-        if (repitition == -1) {
+        if (repetition == -1) {
 
             for (int i = 0; i < vmResults.get(resultNames.get(step)).size(); i++) {
                 if (vmResults.get(resultNames.get(step)).get(i).reachedEquilibrium()) {
@@ -124,7 +121,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
                 }
             }
         } else {
-            if (vmResults.get(resultNames.get(step)).get(repitition - 1).reachedEquilibrium()) {
+            if (vmResults.get(resultNames.get(step)).get(repetition - 1).reachedEquilibrium()) {
                 yes++;
             } else {
                 no++;
@@ -220,11 +217,10 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
 
         if (repitition == -1) {
             for (int i = 0; i < vmResults.size(); i++) {
-                agents.addAll(vmResults.get(step).get(i).getAgentHistories());
+                agents.addAll(vmResults.get(resultNames.get(step)).get(i).getAgentHistories());
             }
         } else {
-            agents.addAll(vmResults.get(step).get(repitition - 1).getAgentHistories());
-
+            agents.addAll(vmResults.get(resultNames.get(step)).get(repitition - 1).getAgentHistories());
         }
 
         return agents;

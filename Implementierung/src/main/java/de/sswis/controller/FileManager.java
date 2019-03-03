@@ -271,7 +271,7 @@ public class FileManager {
             return;
         VMResult first = results.iterator().next();
         deleteResult(first.getName());
-        String filePath = this.getFilePath(FileManager.VM_RESULT, first.getName());
+        String filePath = this.getFilePath(FileManager.VM_RESULT, first.getName().replaceAll("_\\d+", ""));
         try (Writer writer = new FileWriter(filePath)) {
             Type type = new TypeToken<Collection<VMResult>>() {}.getType();
             this.gson.toJson(results, type, writer);
