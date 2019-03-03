@@ -70,8 +70,7 @@ public class NewGameView implements AbstractNewGameView {
             vmGame.setPayoffs(payOffs);
             vmGame.setDescription(desc);
             return true;
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
@@ -205,10 +204,12 @@ public class NewGameView implements AbstractNewGameView {
         panel1.add(spacer4, new GridConstraints(7, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 30), null, null, 0, false));
         descriptionLabel = new JLabel();
         descriptionLabel.setText("Beschreibung:");
+        descriptionLabel.setToolTipText("Die Beschreibung darf maximal 300 Zeichen lang sein.");
         panel1.add(descriptionLabel, new GridConstraints(8, 0, 1, 10, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         descriptionPane = new JTextPane();
         panel1.add(descriptionPane, new GridConstraints(9, 0, 1, 10, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         nameLabel.setText("Name: ");
+        nameLabel.setToolTipText("Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein.");
         panel1.add(nameLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         upRightPayOffLabel.setText(" / ");
         panel1.add(upRightPayOffLabel, new GridConstraints(4, 8, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -255,4 +256,5 @@ public class NewGameView implements AbstractNewGameView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

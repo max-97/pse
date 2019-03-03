@@ -148,7 +148,7 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-100-10");
+        group1.setAgents("0 - 100 - 10");
         group1.setRelativeStrategyDistribution(true);
         group1.addStrategy("Always Cooperate", "100");
         group1.setRelativeCapitalDistributions(true);
@@ -220,7 +220,7 @@ public class ModelParserTest {
         vmConfig.setRankingParameters(empty);
         vmConfig.setAdaptationParameters(empty);
         vmConfig.setInit("Init_Test9");
-        vmConfig.setAdaptationProbability("0.10-0.90-0.05");
+        vmConfig.setAdaptationProbability("0.10 - 0.90 - 0.05");
         vmConfig.setEquilibriumRounds(15);
         vmConfig.setEquilibriumMaxChange(10);
 
@@ -242,20 +242,20 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-4,6");
+        group1.setAgents("0 - 4,6");
         group1.setRelativeStrategyDistribution(false);
-        group1.addStrategy("Always Cooperate", "0-4");
+        group1.addStrategy("Always Cooperate", "0 - 4");
         group1.addStrategy("Cooperate with same group", "6");
         group1.setRelativeCapitalDistributions(false);
         group1.addStartCapital("100", "4,3,2,1,0,6");
         VMGroup group2 = new VMGroup();
         group2.setId(2);
         group2.setName("2");
-        group2.setAgents("5,7-9");
+        group2.setAgents("5,7 - 9");
         group2.setRelativeStrategyDistribution(false);
-        group2.addStrategy("Always Cooperate", "7-9,5");
+        group2.addStrategy("Always Cooperate", "7 - 9,5");
         group2.setRelativeCapitalDistributions(false);
-        group2.addStartCapital("150", "7-8");
+        group2.addStartCapital("150", "7 - 8");
         group2.addStartCapital("200", "9,5");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test2");
@@ -345,7 +345,7 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-100-10");
+        group1.setAgents("0 - 100 - 10");
         group1.setRelativeStrategyDistribution(true);
         group1.addStrategy("Always Cooperate", "70");
         group1.addStrategy("Cooperate with same group", "30");
@@ -354,7 +354,7 @@ public class ModelParserTest {
         VMGroup group2 = new VMGroup();
         group2.setId(2);
         group2.setName("2");
-        group2.setAgents("100-0-10");
+        group2.setAgents("100 - 0 - 10");
         group2.setRelativeStrategyDistribution(true);
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
@@ -377,7 +377,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test4" + (i + 1), 100, false, i*10, 100 - i*10, 70, 30, 100, 100, 50, 50,
+            Object[] expecteds = new Object[]{"Init_Test4_" + (i + 1), 100, false, i*10, 100 - i*10, 70, 30, 100, 100, 50, 50,
                     "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
@@ -397,9 +397,9 @@ public class ModelParserTest {
         group1.setName("1");
         group1.setAgents("60");
         group1.setRelativeStrategyDistribution(true);
-        group1.addStrategy("Always Cooperate", "30-40-5");
-        group1.addStrategy("Cooperate with same group", "40-20-10");
-        group1.addStrategy("Never Cooperate", "30-40-5");
+        group1.addStrategy("Always Cooperate", "30 - 40 - 5");
+        group1.addStrategy("Cooperate with same group", "40 - 20 - 10");
+        group1.addStrategy("Never Cooperate", "30 - 40 - 5");
         group1.setRelativeCapitalDistributions(true);
         group1.addStartCapital("100", "100");
         VMGroup group2 = new VMGroup();
@@ -428,7 +428,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test5" + (i + 1), 100, false, 60, 40, 30 + i*5, 40 - i*10, 30 + i*5,
+            Object[] expecteds = new Object[]{"Init_Test5_" + (i + 1), 100, false, 60, 40, 30 + i*5, 40 - i*10, 30 + i*5,
                     100, 100, 50, 50, "Always Cooperate", "Cooperate with same group", "Never Cooperate",
                     "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
@@ -460,8 +460,8 @@ public class ModelParserTest {
         group2.setRelativeStrategyDistribution(true);
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
-        group2.addStartCapital("150", "0-50-10");
-        group2.addStartCapital("200", "100-50-10");
+        group2.addStartCapital("150", "0 - 50 - 10");
+        group2.addStartCapital("200", "100 - 50 - 10");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test6");
         vmInit.setAddCapitalToTotalPoints(true);
@@ -479,7 +479,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test6" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 10*i,
+            Object[] expecteds = new Object[]{"Init_Test6_" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 10*i,
                     100 - 10*i, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),
@@ -511,7 +511,7 @@ public class ModelParserTest {
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
         group2.addStartCapital("150", "50");
-        group2.addStartCapital("200-400-20", "50");
+        group2.addStartCapital("200 - 400 - 20", "50");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test7");
         vmInit.setAddCapitalToTotalPoints(true);
@@ -529,7 +529,7 @@ public class ModelParserTest {
             List<AgentDistribution> strategyDistribution = current.getStrategyAgentDistributions();
             List<Integer> capitals = current.getCapitals();
             List<AgentDistribution> capitalDistribution = current.getCapitalAgentDistributions();
-            Object[] expecteds = new Object[]{"Init_Test7" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 50,
+            Object[] expecteds = new Object[]{"Init_Test7_" + (i + 1), 100, false, 60, 40, 70, 30, 100, 100, 50,
                     50, "Always Cooperate", "Cooperate with same group", "Always Cooperate", 100, 150, 200 + 20*i};
             Object[] actuals = new Object[]{current.getName(), current.getAgentCount(), current.getInitialScoreStrategiesOnly(),
                     groupDistribution.get(0).getPercentage(), groupDistribution.get(1).getPercentage(),

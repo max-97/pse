@@ -2,11 +2,12 @@ package de.sswis.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import de.sswis.view.model.*;
 
 import java.io.*;
-import java.net.URISyntaxException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -177,17 +178,16 @@ public class FileManager {
      *
      * @return eine {@code Collection} von {@code VMResult}
      */
-    public Collection<VMResult> loadAllResults() {
+    public Collection<Collection<VMResult>> loadAllResults() {
         File[] filesInDir = this.getFilesInSaves();
         assert filesInDir != null;
-
-        ArrayList<VMResult> results = new ArrayList<>();
+        Collection<Collection<VMResult>> results = new ArrayList<>();
         for (File file : filesInDir) {
             if (file.isDirectory())
                 continue;
             if (file.getName().startsWith(FileManager.VM_RESULT)) {
                 try (JsonReader reader = new JsonReader(new FileReader(file))) {
-                    results.add(this.loadResult(reader));
+                    results.add(this.loadResults(reader));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -264,13 +264,17 @@ public class FileManager {
     /**
      * Speichert das gegebende {@code VMResult} in einer Datei.
      *
-     * @param result das zu speichernde {@code VMResult}
+     * @param results das zu speichernde {@code VMResult}
      */
-    public void saveResult(VMResult result) throws IOException {
-        deleteResult(result.getName());
-        String filePath = this.getFilePath(FileManager.VM_RESULT, result.getName());
+    public void saveResults(Collection<VMResult> results) throws IOException {
+        if (results.isEmpty())
+            return;
+        VMResult first = results.iterator().next();
+        deleteResult(first.getName());
+        String filePath = this.getFilePath(FileManager.VM_RESULT, first.getName().replaceAll("_\\d+", ""));
         try (Writer writer = new FileWriter(filePath)) {
-            this.gson.toJson(result, writer);
+            Type type = new TypeToken<Collection<VMResult>>() {}.getType();
+            this.gson.toJson(results, type, writer);
         }
     }
 
@@ -281,7 +285,7 @@ public class FileManager {
      * @param name der Name der {@code VMConfiguration}
      * @return die {@code VMConfiguration} mit dem angegebenen Namen
      */
-    public VMConfiguration loadConfiguration(String name) throws FileNotFoundException {
+    public VMConfiguration loadConfiguration(String name) {
         String filePath = this.getFilePath(FileManager.VM_CONFIGURATION, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadConfiguration(jsonReader);
@@ -302,7 +306,7 @@ public class FileManager {
      * @param name der Name des {@code VMGame}
      * @return das {@code VMGame} mit dem angegebenen Namen
      */
-    public VMGame loadGame(String name) throws FileNotFoundException {
+    public VMGame loadGame(String name) {
         String filePath = this.getFilePath(FileManager.VM_GAME, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadGame(jsonReader);
@@ -323,7 +327,7 @@ public class FileManager {
      * @param name der Name der {@code VMInitialization}
      * @return die {@code VMInitialization} mit dem angegebenen Namen
      */
-    public VMInitialization loadInitialization(String name) throws FileNotFoundException {
+    public VMInitialization loadInitialization(String name) {
         String filePath = this.getFilePath(FileManager.VM_INITIALIZATION, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadInitialization(jsonReader);
@@ -344,7 +348,7 @@ public class FileManager {
      * @param name der Name der {@code VMCombinedStrategy}
      * @return die {@code VMCombinedStrategy} mit dem angegebenen Namen
      */
-    public VMCombinedStrategy loadCombinedStrategy(String name) throws FileNotFoundException {
+    public VMCombinedStrategy loadCombinedStrategy(String name) {
         String filePath = this.getFilePath(FileManager.VM_COMBINED_STRATEGY, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadCombinedStrategy(jsonReader);
@@ -365,7 +369,7 @@ public class FileManager {
      * @param name der Name der {@code VMStrategy}
      * @return die {@code VMStrategy} mit dem angegebenen Namen
      */
-    public VMStrategy loadMixedStrategy(String name) throws FileNotFoundException {
+    public VMStrategy loadMixedStrategy(String name) {
         String filePath = this.getFilePath(FileManager.VM_STRATEGY, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
             return this.loadMixedStrategy(jsonReader);
@@ -386,18 +390,19 @@ public class FileManager {
      * @param name der Name des {@code VMResult}
      * @return das {@code VMResult} mit dem angegebenen Namen
      */
-    public VMResult loadResult(String name) throws FileNotFoundException {
+    public Collection<VMResult> loadResults(String name) {
         String filePath = this.getFilePath(FileManager.VM_RESULT, name);
         try (JsonReader jsonReader = new JsonReader(new FileReader(filePath))) {
-            return this.loadResult(jsonReader);
+            return this.loadResults(jsonReader);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    private VMResult loadResult(JsonReader reader) {
-        return this.gson.fromJson(reader, VMResult.class);
+    private Collection<VMResult> loadResults(JsonReader reader) {
+        Type type = new TypeToken<Collection<VMResult>>() {}.getType();
+        return this.gson.fromJson(reader, type);
     }
 
     /**

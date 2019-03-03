@@ -27,13 +27,13 @@ public class ViewNotifier implements SimulationObserver {
     }
 
     @Override
-    public void update(Simulation sim) {
+    public synchronized void update(Simulation sim) {
         SwingUtilities.invokeLater(() -> {
             String name = sim.getName();
             mainView.setSimulationFinished(name);
             ModelParser parser = new ModelParser();
             Collection<VMResult> vmResults = parser.parseSimulationToVMResult(sim);
-            vmResults.forEach(r -> mainView.addResult(name, r));
+            mainView.setResults(name, vmResults);
         });
     }
 }
