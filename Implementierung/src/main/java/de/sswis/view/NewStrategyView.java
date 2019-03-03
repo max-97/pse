@@ -9,6 +9,7 @@ import de.sswis.view.model.VMStrategy;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +56,9 @@ public class NewStrategyView implements AbstractNewStrategyView {
 
     private void addNewLine() {
 
-        probabilityTextFields.add(new JFormattedTextField());
+        JFormattedTextField textField = new JFormattedTextField();
+        textField.setToolTipText("Werte zwischen1 und 0, Beispiele: '0.5', '1.0', '1'.");
+        probabilityTextFields.add(textField);
 
         JComboBox strategy = new JComboBox(combinedStrategies.toArray());
         strategyComboBoxes.add(strategy);
@@ -117,8 +120,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
                 percentageSum += Double.parseDouble(currentPercentage);
             }
             vmStrategy.setDescription(desc);
-        }
-        else illegalInput = true;
+        } else illegalInput = true;
 
         if (illegalInput || percentageSum != 1.0) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
@@ -241,6 +243,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
         label1.setText("Beschreibung:");
         panel1.add(label1, new GridConstraints(7, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         descriptionTextPane = new JTextPane();
+        descriptionTextPane.setToolTipText("optional, kann leer gelassen werden (max 300 Zeichen)");
         panel1.add(descriptionTextPane, new GridConstraints(8, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel1.add(separator1, new GridConstraints(5, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -248,7 +251,8 @@ public class NewStrategyView implements AbstractNewStrategyView {
         label2.setText("Name: ");
         panel1.add(label2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nameTextField = new JFormattedTextField();
-        panel1.add(nameTextField, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        nameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen.");
+        panel1.add(nameTextField, new GridConstraints(0, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, -1), null, 0, false));
         addStrategyButton.setText("Kombinierte Strategie hinzufügen");
         panel1.add(addStrategyButton, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         removeLastLineButton.setEnabled(false);
@@ -261,6 +265,7 @@ public class NewStrategyView implements AbstractNewStrategyView {
         Font label3Font = this.$$$getFont$$$(null, Font.BOLD, -1, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
         label3.setText("Wahrscheinlichkeit");
+        label3.setToolTipText("Summe muss 1 ergeben!");
         strategiesPanel.add(label3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         Font label4Font = this.$$$getFont$$$(null, Font.BOLD, -1, label4.getFont());
@@ -307,4 +312,5 @@ public class NewStrategyView implements AbstractNewStrategyView {
     public JComponent $$$getRootComponent$$$() {
         return MainPanel;
     }
+
 }

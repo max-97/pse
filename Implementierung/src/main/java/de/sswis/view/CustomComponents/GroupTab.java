@@ -154,10 +154,12 @@ public class GroupTab {
             if ((relStrat && (isProbability(distr)) || isVariableProbability(distr))
                     || (!relStrat && isIntervalPlusSingleValues(distr))) {
                 vmGroup.addStrategy(strategyTabs.get(i).getTitle(), distr);
+
                 // Funktioniert nicht für variable Parameter
                 //if (relStrat) stratPercentageSum += Double.parseDouble(distr);
             }
             else return false;
+
         }
 
         vmGroup.setRelativeCapitalDistributions(relCapital);
@@ -169,6 +171,7 @@ public class GroupTab {
                     ((relCapital && ((isProbability(distr)) || isVariableProbability(distr)))
                     || (!relCapital && isIntervalPlusSingleValues(distr)))) {
                 vmGroup.addStartCapital(capital, distr);
+
                 // Funktioniert nicht für variable Parameter
                 //if (relCapital) capitalPercentageSum += Double.parseDouble(distr);
             }
@@ -269,30 +272,31 @@ public class GroupTab {
         MainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(4, 2, new Insets(10, 10, 10, 10), -1, -1));
-        MainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        MainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         initGroupTabbedPane = new JTabbedPane();
-        panel1.add(initGroupTabbedPane, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.add(initGroupTabbedPane, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(230, -1), null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(4, 4, new Insets(10, 10, 10, 10), -1, -1));
+        panel2.setLayout(new GridLayoutManager(4, 3, new Insets(10, 10, 10, 10), -1, -1));
         initGroupTabbedPane.addTab("Agenten", panel2);
         final Spacer spacer1 = new Spacer();
-        panel2.add(spacer1, new GridConstraints(1, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel2.add(spacer1, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        panel2.add(spacer2, new GridConstraints(3, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel2.add(spacer2, new GridConstraints(3, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         idLabel = new JLabel();
         idLabel.setText("IDs/ Anteil:");
         panel2.add(idLabel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         distributionTextField = new JFormattedTextField();
-        panel2.add(distributionTextField, new GridConstraints(2, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        distributionTextField.setToolTipText("<html> IDs: Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  <br> Anteil: Werte zwischen 1 und 0, Beispiele: '0.5', '1.0', '1'. <html>");
+        panel2.add(distributionTextField, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Bestimme die Agenten, die dieser Gruppe angehören sollen...");
-        panel2.add(label1, new GridConstraints(0, 0, 1, 4, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel2.add(label1, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         initGroupTabbedPane.addTab("Initiale Strategien", panel3);
         initialStrategiesTabbedPane = new JTabbedPane();
         initialStrategiesTabbedPane.setTabLayoutPolicy(1);
-        initialStrategiesTabbedPane.setTabPlacement(2);
+        initialStrategiesTabbedPane.setTabPlacement(1);
         panel3.add(initialStrategiesTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         idAgentStrategyRadioButton.setSelected(true);
         idAgentStrategyRadioButton.setText("Wähle Agenten nach ihren IDs");
@@ -304,7 +308,7 @@ public class GroupTab {
         initGroupTabbedPane.addTab("Startkapital", panel4);
         capitalsTabbedPane = new JTabbedPane();
         capitalsTabbedPane.setTabLayoutPolicy(1);
-        capitalsTabbedPane.setTabPlacement(2);
+        capitalsTabbedPane.setTabPlacement(1);
         panel4.add(capitalsTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         idAgentCapitalRadioButton.setSelected(true);
         idAgentCapitalRadioButton.setText("Wähle Agenten nach ihren IDs");
@@ -319,6 +323,7 @@ public class GroupTab {
         panel1.add(label3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         groupNameTextField = new JTextField();
         groupNameTextField.setText("");
+        groupNameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen.");
         panel1.add(groupNameTextField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         groupIDLabel.setText("Label");
         panel1.add(groupIDLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
