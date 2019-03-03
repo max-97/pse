@@ -19,7 +19,7 @@ Die Klassen der Pakete Model und Controller wurden mittels Modultests über das 
 Aufgrund des naturgemäß hohen Grades an Benutzerinteraktion im Paket View, waren an dieser Stelle Modultests nicht zielführend. Stattdessen wurde das Programm vom QA-Team manuell auf Fehler untersucht, indem zum einen naheliegende Anwendungsfälle durchgespielt wurden, zum anderen aber auch versucht wurde, Fehlverhalten, das durch ungewöhnliches Nutzerverhalten hervorgerufen werden könnte, offenzulegen.
 
 Hat ein Teammitglied einen Fehler entdeckt, so wurde dieser auf der Plattform GitHub als sog. Issue festgehalten. Diesem Issue wurde anschließend ein Zuständiger zugeteilt. Sobald der Zuständige das Problem beheben konnte, wurde der Issue geschlossen.\\
-Die hierfür notwendigen Änderungen am Programm wurden auf einem neuen Entwicklungszweig vorgenommen und vor dem Verschmelzen mit dem Hauptzweig von mindestens einem weiteren Teammitglied gesichtet (Code-Review).
+Die hierfür notwendigen Änderungen am Programm wurden auf einem neuen Entwicklungszweig vorgenommen. Durch Travis-CI wurde dabei sichergestellt, dass auch nach den Änderungen alle Testfälle erfolgreich durchlaufen werden. Vor dem Verschmelzen mit dem Hauptzweig wurde die Änderung von mindestens einem weiteren Teammitglied gesichtet (Code-Review).
 
 \begin{figure}[H]
 	\centering
