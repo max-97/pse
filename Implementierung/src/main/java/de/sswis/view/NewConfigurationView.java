@@ -104,7 +104,8 @@ public class NewConfigurationView implements AbstractNewConfigurationView {
         String cycles = cyclesTextField.getText();
 
         if (!(isSingleValue(rounds) && Integer.parseInt(rounds) > 0) ||
-                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isProbability(adaptProb))) {
+                !(isSingleValue(cycles) && Integer.parseInt(cycles) > 0) || !(isProbability(adaptProb)
+                || isVariableProbability(adaptProb))) {
             JOptionPane.showMessageDialog(frame, ILLEGAL_INPUT_MSG);
             return false;
         }
