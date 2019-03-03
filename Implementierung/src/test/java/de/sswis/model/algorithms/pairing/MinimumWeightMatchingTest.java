@@ -1,9 +1,6 @@
 package de.sswis.model.algorithms.pairing;
 
-import de.sswis.model.Agent;
-import de.sswis.model.CombinedStrategy;
-import de.sswis.model.Group;
-import de.sswis.model.Pair;
+import de.sswis.model.*;
 import de.sswis.model.conditions.Always;
 import de.sswis.model.conditions.Condition;
 import de.sswis.model.conditions.OwnGroup;
@@ -27,7 +24,6 @@ public class MinimumWeightMatchingTest {
     @BeforeClass
     public static void init() {
         pairingAlgorithm = new MinimumWeightMatching();
-        agents = new Agent[6];
         group1 = new Group(1, "1");
         group2 = new Group(2, "2");
         always = new CombinedStrategy("Always", new BaseStrategy[]{new AlwaysCooperate()},
@@ -56,6 +52,21 @@ public class MinimumWeightMatchingTest {
         agents[1] = new Agent(1, 0, group1, sameGroup);
         agents[2] = new Agent(2, 0, group2, always);
         agents[3] = new Agent(3, 0, group2, sameGroup);
+        Pair[] pairs = pairingAlgorithm.getPairing(agents, null);
+        assertTrue(containsPair(pairs, agents[0], agents[1]));
+        assertTrue(containsPair(pairs, agents[2], agents[3]));
+    }
+
+    @Test
+    public void pairingIsOptimalMixedStrategies() {
+        agents = new Agent[4];
+        agents[0] = new Agent(0, 0, group1, new MixedStrategy("50/50",
+                new CombinedStrategy[]{always, sameGroup}, new double[]{0.5, 0.5}));
+        agents[1] = new Agent(1, 0, group1, new MixedStrategy("10/90",
+                new CombinedStrategy[]{always, sameGroup}, new double[]{0.1, 0.9}));
+        agents[2] = new Agent(2, 0, group2, always);
+        agents[3] = new Agent(3, 0, group2, new MixedStrategy("50/50",
+                new CombinedStrategy[]{always, sameGroup}, new double[]{0.5, 0.5}));
         Pair[] pairs = pairingAlgorithm.getPairing(agents, null);
         assertTrue(containsPair(pairs, agents[0], agents[1]));
         assertTrue(containsPair(pairs, agents[2], agents[3]));

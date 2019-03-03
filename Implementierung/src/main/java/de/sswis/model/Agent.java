@@ -66,4 +66,9 @@ public class Agent {
         this.group = group;
     }
 
+    public void setInitialScore(int score) {
+        this.initialScore = score;
+        this.score = score;
+    }
+
 }

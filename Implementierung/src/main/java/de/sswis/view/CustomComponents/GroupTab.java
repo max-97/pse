@@ -150,6 +150,7 @@ public class GroupTab {
         vmGroup.setRelativeStrategyDistribution(relStrat);
         for (int i = 0; i < strategyTabs.size(); i++) {
             String distr = strategyTabs.get(i).getUserInput();
+          
             if ((relStrat && (isProbability(distr)) || isVariableProbability(distr))
                     || (!relStrat && isIntervalPlusSingleValues(distr))) {
                 vmGroup.addStrategy(strategyTabs.get(i).getTitle(), distr);
@@ -163,6 +164,7 @@ public class GroupTab {
         for (int i = 0; i < startCapitalTabs.size(); i++) {
             String capital = startCapitalTabs.get(i).getStartCapital();
             String distr = startCapitalTabs.get(i).getAgentUserInput();
+          
             if ((isSingleValue(capital) || isFamilyOfValues(capital)) &&
                     ((relCapital && ((isProbability(distr)) || isVariableProbability(distr)))
                     || (!relCapital && isIntervalPlusSingleValues(distr)))) {

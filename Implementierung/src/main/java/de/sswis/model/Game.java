@@ -70,7 +70,7 @@ public class Game {
         agent1.getHistory().setGroupCooperatedEveryTime(agent2.getGroup(), action1.equals(Action.COOPERATION) &&
                 agent1.getHistory().groupCooperatedEveryTime(agent2.getGroup()));
         agent1.getHistory().setOpponent(agent2);
-        agent1.getHistory().setCooperated(action2 == Action.COOPERATION);
+        agent1.getHistory().setOpponentCooperated(action2 == Action.COOPERATION);
         if (action1.equals(Action.COOPERATION) && agent1.getHistory().getAlwaysCooperated()) {
             agent1.getHistory().setAlwaysCooperated(true);
         } else {

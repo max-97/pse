@@ -57,21 +57,26 @@ public class AverageRank implements RankingAlgorithm {
         Iterator<Agent> it = agentList.iterator();
 
         int count = 1;
-        int previousScore = 0;
         boolean first = true;
+        Agent last = null;
+
         while(it.hasNext()) {
             Agent current = it.next();
             if(ignoreInitialScore) {
-                if(!first && previousScore != current.getScore() - current.getInitialScore()) {
+                if(!first && (averageRanks.get(last).intValue() != averageRanks.get(current).intValue() ?
+                        averageRanks.get(current) > averageRanks.get(last) ? 1 : -1 :
+                        Integer.compare(last.getScore() - last.getInitialScore(),
+                                current.getScore() - current.getInitialScore())) != 0) {
                     count++;
                 }
-                previousScore = current.getScore() - current.getInitialScore();
             } else {
-                if (!first && previousScore != current.getScore()) {
+                if (!first && (averageRanks.get(last).intValue() != averageRanks.get(current).intValue() ?
+                        averageRanks.get(current) > averageRanks.get(last) ? 1 : -1 :
+                        Integer.compare(last.getScore(), current.getScore()))  != 0) {
                     count++;
                 }
-                previousScore = current.getScore();
             }
+            last = current;
             result.put(current, count);
             first = false;
         }

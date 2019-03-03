@@ -18,7 +18,6 @@ import java.util.HashMap;
 public class RandomPairing implements PairingAlgorithm {
 
     public static final String NAME = "Zufällige Paarung";
-    public static final int PARAMETER_COUNT = 0;
     public static final String[] PARAMETER_NAMES = {};
 
     public RandomPairing() {}

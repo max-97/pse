@@ -61,7 +61,7 @@ public class InputValidator {
 
     public static boolean isInterval(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         return parts.length == 2
                 && isSingleValue(parts[0].trim()) && isSingleValue(parts[1].trim());
@@ -91,7 +91,7 @@ public class InputValidator {
      */
     public static boolean isFamilyOfValues(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         if (!(parts.length == 3 && isSingleValue(parts[0].trim())
                 && isSingleValue(parts[1].trim()) && isSingleValue(parts[2].trim()))) return false;
@@ -105,7 +105,7 @@ public class InputValidator {
 
     public static boolean isFamilyOfPercentages(String str) {
 
-        String[] parts = str.split("-");
+        String[] parts = str.split(" - ");
 
         if (!(parts.length == 3 && isPercentage(parts[0].trim())
                 && isPercentage(parts[1].trim()) && isPercentage(parts[2].trim()))) return false;
@@ -116,8 +116,8 @@ public class InputValidator {
         return start != end;
     }
 
-    public static boolean isSingelOrMultiplePercantage(String input) {
-        if (input.contains("-")) {
+    public static boolean isSingleOrMultiplePercentage(String input) {
+        if (input.contains(" - ")) {
             // Variabler Parameter
             String[] parts = input.split(" - ");
             if (!(parts.length == 3))

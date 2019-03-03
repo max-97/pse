@@ -3,17 +3,14 @@ package de.sswis.view;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import de.sswis.model.Action;
 import de.sswis.view.CustomComponents.GroupTab;
 import de.sswis.view.model.VMGroup;
 import de.sswis.view.model.VMInitialization;
 
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 import static de.sswis.util.InputValidator.*;
@@ -267,9 +264,11 @@ public class NewInitializationView implements AbstractNewInitializationView {
         scrollPane1.setViewportView(panel2);
         final JLabel label1 = new JLabel();
         label1.setText("Name :   ");
+        label1.setToolTipText("Der Name muss mit einem Buchstaben beginnen, darf nur alphanumerische Zeichen beinhalten und maximal 35 Zeichen lang sein.");
         panel2.add(label1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setText("Anzahl der Agenten:");
+        label2.setToolTipText("Eine gerade ganze Zahl größer als 0.");
         panel2.add(label2, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator1 = new JSeparator();
         panel2.add(separator1, new GridConstraints(10, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -294,6 +293,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         panel2.add(spacer4, new GridConstraints(14, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 300), null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("Beschreibung (Dient nur zur Wiedererkennung und kann leer gelassen werden.) :");
+        label4.setToolTipText("Die Beschreibung darf maximal 300 Zeichen lang sein.");
         panel2.add(label4, new GridConstraints(7, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         descriptionTextPane = new JTextPane();
         panel2.add(descriptionTextPane, new GridConstraints(8, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
@@ -351,4 +351,5 @@ public class NewInitializationView implements AbstractNewInitializationView {
     public JComponent $$$getRootComponent$$$() {
         return panel1;
     }
+
 }

@@ -85,7 +85,7 @@ public class History {
     public boolean getOpponentCooperated() {
         // Standardwert für erste Runde
         if (currentRound == 0) return true;
-        return opponentCooperated.get(currentRound - 1);
+        return opponentCooperated.get(currentRound);
     }
   
     /**
@@ -139,7 +139,7 @@ public class History {
      * Speichert ob der Gegenspieler in der aktuellen Runde kooperiert hat.
      * @param cooperated ob der Gegenspieler kooperiert hat
      */
-    public void setCooperated(boolean cooperated) {
+    public void setOpponentCooperated(boolean cooperated) {
         this.opponentCooperated.add(currentRound, cooperated);
     }
 
