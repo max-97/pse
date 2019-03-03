@@ -41,7 +41,8 @@ public class StrategiesTest {
     @Test
     public void randomTest() {
         BaseStrategy  s = new Random();
-        assertTrue(s.calculateAction(null, null) == c || s.calculateAction(null, null) == d);
+        Action action = s.calculateAction(null, null);
+        assertTrue(action == c || action == d);
     }
 
     @Test

@@ -101,4 +101,21 @@ public class SimulationTest {
         assertEquals(10, result.getAgents().size());
         assertEquals(10, result.getEquilibriums().size());
     }
+
+    @Test
+    public void equilibriumTest() {
+        Group group = new Group(1,"Group");
+        AgentDistribution distribution = new AgentDistribution(100);
+        Initialization init = new Initialization("Init", 10);
+        init.addGroup(group);
+        init.setGroupDistribution(distribution, group);
+        init.setStrategyDistribution(distribution, combinedStrategy1, group);
+        Configuration config = new Configuration("Config", game, init, adaptationAlgorithm, pairingAlgorithm,
+                rankingAlgorithm, 100, 5, 0, 2, 0.2);
+        Simulation sim = config.simulate();
+        sim.run();
+        Result result = sim.getResults();
+
+        assertTrue(result.getEquilibriums().get(1));
+    }
 }
