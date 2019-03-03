@@ -148,7 +148,7 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-100-10");
+        group1.setAgents("0 - 100 - 10");
         group1.setRelativeStrategyDistribution(true);
         group1.addStrategy("Always Cooperate", "100");
         group1.setRelativeCapitalDistributions(true);
@@ -220,7 +220,7 @@ public class ModelParserTest {
         vmConfig.setRankingParameters(empty);
         vmConfig.setAdaptationParameters(empty);
         vmConfig.setInit("Init_Test9");
-        vmConfig.setAdaptationProbability("0.10-0.90-0.05");
+        vmConfig.setAdaptationProbability("0.10 - 0.90 - 0.05");
         vmConfig.setEquilibriumRounds(15);
         vmConfig.setEquilibriumMaxChange(10);
 
@@ -242,20 +242,20 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-4,6");
+        group1.setAgents("0 - 4,6");
         group1.setRelativeStrategyDistribution(false);
-        group1.addStrategy("Always Cooperate", "0-4");
+        group1.addStrategy("Always Cooperate", "0 - 4");
         group1.addStrategy("Cooperate with same group", "6");
         group1.setRelativeCapitalDistributions(false);
         group1.addStartCapital("100", "4,3,2,1,0,6");
         VMGroup group2 = new VMGroup();
         group2.setId(2);
         group2.setName("2");
-        group2.setAgents("5,7-9");
+        group2.setAgents("5,7 - 9");
         group2.setRelativeStrategyDistribution(false);
-        group2.addStrategy("Always Cooperate", "7-9,5");
+        group2.addStrategy("Always Cooperate", "7 - 9,5");
         group2.setRelativeCapitalDistributions(false);
-        group2.addStartCapital("150", "7-8");
+        group2.addStartCapital("150", "7 - 8");
         group2.addStartCapital("200", "9,5");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test2");
@@ -345,7 +345,7 @@ public class ModelParserTest {
         VMGroup group1 = new VMGroup();
         group1.setId(1);
         group1.setName("1");
-        group1.setAgents("0-100-10");
+        group1.setAgents("0 - 100 - 10");
         group1.setRelativeStrategyDistribution(true);
         group1.addStrategy("Always Cooperate", "70");
         group1.addStrategy("Cooperate with same group", "30");
@@ -354,7 +354,7 @@ public class ModelParserTest {
         VMGroup group2 = new VMGroup();
         group2.setId(2);
         group2.setName("2");
-        group2.setAgents("100-0-10");
+        group2.setAgents("100 - 0 - 10");
         group2.setRelativeStrategyDistribution(true);
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
@@ -397,9 +397,9 @@ public class ModelParserTest {
         group1.setName("1");
         group1.setAgents("60");
         group1.setRelativeStrategyDistribution(true);
-        group1.addStrategy("Always Cooperate", "30-40-5");
-        group1.addStrategy("Cooperate with same group", "40-20-10");
-        group1.addStrategy("Never Cooperate", "30-40-5");
+        group1.addStrategy("Always Cooperate", "30 - 40 - 5");
+        group1.addStrategy("Cooperate with same group", "40 - 20 - 10");
+        group1.addStrategy("Never Cooperate", "30 - 40 - 5");
         group1.setRelativeCapitalDistributions(true);
         group1.addStartCapital("100", "100");
         VMGroup group2 = new VMGroup();
@@ -460,8 +460,8 @@ public class ModelParserTest {
         group2.setRelativeStrategyDistribution(true);
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
-        group2.addStartCapital("150", "0-50-10");
-        group2.addStartCapital("200", "100-50-10");
+        group2.addStartCapital("150", "0 - 50 - 10");
+        group2.addStartCapital("200", "100 - 50 - 10");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test6");
         vmInit.setAddCapitalToTotalPoints(true);
@@ -511,7 +511,7 @@ public class ModelParserTest {
         group2.addStrategy("Always Cooperate", "100");
         group2.setRelativeCapitalDistributions(true);
         group2.addStartCapital("150", "50");
-        group2.addStartCapital("200-400-20", "50");
+        group2.addStartCapital("200 - 400 - 20", "50");
         VMInitialization vmInit = new VMInitialization();
         vmInit.setName("Init_Test7");
         vmInit.setAddCapitalToTotalPoints(true);

@@ -397,7 +397,7 @@ public class ModelParser {
                     initializations.add(init);
                 }
 
-            } else if(vmInitialization.hasVariableCapitalDistribution()){
+            } else if(vmInitialization.hasVariableCapitalDistribution()) {
                 //capital distribution in a group is variable
                 VMGroup variableGroup = null;
 
