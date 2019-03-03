@@ -285,7 +285,7 @@ public class GroupTab {
         initGroupTabbedPane.addTab("Initiale Strategien", panel3);
         initialStrategiesTabbedPane = new JTabbedPane();
         initialStrategiesTabbedPane.setTabLayoutPolicy(1);
-        initialStrategiesTabbedPane.setTabPlacement(2);
+        initialStrategiesTabbedPane.setTabPlacement(1);
         panel3.add(initialStrategiesTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         idAgentStrategyRadioButton.setSelected(true);
         idAgentStrategyRadioButton.setText("Wähle Agenten nach ihren IDs");
@@ -297,7 +297,7 @@ public class GroupTab {
         initGroupTabbedPane.addTab("Startkapital", panel4);
         capitalsTabbedPane = new JTabbedPane();
         capitalsTabbedPane.setTabLayoutPolicy(1);
-        capitalsTabbedPane.setTabPlacement(2);
+        capitalsTabbedPane.setTabPlacement(1);
         panel4.add(capitalsTabbedPane, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         idAgentCapitalRadioButton.setSelected(true);
         idAgentCapitalRadioButton.setText("Wähle Agenten nach ihren IDs");
@@ -312,7 +312,7 @@ public class GroupTab {
         panel1.add(label3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         groupNameTextField = new JTextField();
         groupNameTextField.setText("");
-        groupNameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'");
+        groupNameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen.");
         panel1.add(groupNameTextField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         groupIDLabel.setText("Label");
         panel1.add(groupIDLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

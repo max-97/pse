@@ -270,14 +270,14 @@ public class NewInitializationView implements AbstractNewInitializationView {
         final Spacer spacer2 = new Spacer();
         panel2.add(spacer2, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), null, null, 0, false));
         agentNumberTextField = new JTextField();
-        agentNumberTextField.setToolTipText("<html> Erlaubt sind positive, ganze, gerade Zahlenwerte (Beispiele: '12', '16', '100') <br> und variable Eingaben der Form Startwert - Endwert - Schrittweite (Beispiele: '20 - 100 - 10', '2-10-2', '60-20-10' <html>");
+        agentNumberTextField.setToolTipText("<html> Erlaubt sind positive, ganze, gerade Zahlenwerte (Beispiele: '12', '16', '100') <br> und variable Eingaben der Form Startwert - Endwert - Schrittweite  <html>");
         panel2.add(agentNumberTextField, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JSeparator separator2 = new JSeparator();
         panel2.add(separator2, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
         panel2.add(spacer3, new GridConstraints(15, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 20), null, null, 0, false));
         groupTabbedPane = new JTabbedPane();
-        panel2.add(groupTabbedPane, new GridConstraints(14, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(600, 200), null, 0, false));
+        panel2.add(groupTabbedPane, new GridConstraints(14, 1, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(650, 200), null, 0, false));
         final JLabel label3 = new JLabel();
         Font label3Font = this.$$$getFont$$$(null, -1, 16, label3.getFont());
         if (label3Font != null) label3.setFont(label3Font);
@@ -297,7 +297,7 @@ public class NewInitializationView implements AbstractNewInitializationView {
         addGroupButton.setText("Gruppe hinzufügen");
         panel2.add(addGroupButton, new GridConstraints(11, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         nameTextField = new JFormattedTextField();
-        nameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen, Beispiele: 'Gefangenendilemma', 'MeinSpiel'");
+        nameTextField.setToolTipText("Erlaubt sind Groß-, Kleinbuchstaben und Zahlen.");
         panel2.add(nameTextField, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         idAgentGroupRadioButton.setSelected(true);
         idAgentGroupRadioButton.setText("Wähle Agenten nach ihren IDs");

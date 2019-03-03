@@ -11,7 +11,7 @@
       <grid id="9381a" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="10" bottom="10" right="10"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
@@ -45,7 +45,7 @@
             </constraints>
             <properties>
               <text value=""/>
-              <toolTipText value="&lt;html&gt; IDs: Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  &lt;br&gt; Anteil: Werte zwischen 1 und 0 und variable Werte der Form Startwert - Endwert - Schrittweite, &lt;br&gt;       Beispiele: '0.5', '0.2 - 1.0 - 0.1', '1'. &lt;html&gt;"/>
+              <toolTipText value="&lt;html&gt; IDs: Einzalne oder Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  &lt;br&gt; Anteil: Werte zwischen 1 und 0 und variable Werte der Form Startwert - Endwert - Schrittweite, &lt;br&gt;       Beispiele: '0.5', '0.2 - 1.0 - 0.1', '1'. &lt;html&gt;"/>
             </properties>
           </component>
           <component id="1229a" class="javax.swing.JButton" binding="deleteStrategyButton">
