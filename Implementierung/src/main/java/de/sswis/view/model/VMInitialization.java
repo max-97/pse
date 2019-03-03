@@ -35,7 +35,7 @@ public class VMInitialization {
     public boolean isMultiInitialisation() {
         for (VMGroup g : groups) {
             if (g.hasMultiComponent()) return true;
-            if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
+            if (g.getAgentsString().matches("\\d+.?\\d*-\\d+.?\\d*-\\d+.?\\d*")) return true;
         }
         return false;
     }
@@ -101,7 +101,7 @@ public class VMInitialization {
             return false;
         } else {
             for (VMGroup g : groups) {
-                if (g.getAgentsString().matches("\\d+-\\d+-\\d+")) return true;
+                if (g.getAgentsString().matches("\\d+.?\\d*-\\d+.?\\d*-\\d+.?\\d*")) return true;
             }
         }
         return false;
