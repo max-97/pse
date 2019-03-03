@@ -33,8 +33,8 @@ public class ReplicatorDynamicScoreTest {
         ranking.put(agents[1], 2);
         adaptationAlgorithm.adapt(agents, ranking, 1);
         //agents[1] should always adapt to agents[0]
-        assertTrue(Integer.parseInt(agents[0].getStrategy().getName()) == 1);
-        assertTrue(Integer.parseInt(agents[0].getStrategy().getName()) == 1);
+        assertEquals("1", agents[0].getStrategy().getName());
+        assertEquals("1", agents[1].getStrategy().getName());
     }
 
     @Test
