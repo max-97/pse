@@ -1,5 +1,6 @@
 package de.sswis.controller.handlers;
 
+import de.sswis.controller.FileManager;
 import de.sswis.controller.ModelParser;
 import de.sswis.controller.ModelProvider;
 import de.sswis.model.Configuration;
@@ -42,14 +43,12 @@ public class CompareResultsHandler implements ActionListener {
         AbstractMainView mainView = showResultView.getParentView();
 
         List<VMConfiguration> vmConfigurations = mainView.getVMConfigurations();
-        ModelProvider provider = ModelProvider.getInstance();
-        ModelParser parser = new ModelParser();
+        FileManager fileManager = new FileManager();
         for (VMConfiguration c : vmConfigurations) {
             if (!c.hasResult()) {
                 continue;
             }
-            Configuration configuration = provider.getConfiguration(c.getName());
-            Collection<VMResult> vmResults = parser.parseSimulationToVMResult(configuration.getSimulation());
+            Collection<VMResult> vmResults = fileManager.loadResults(c.getName());
             ArrayList<VMResult> resultsCopy = new ArrayList<>();
             resultsCopy.addAll(vmResults);
             compareResultsView.addVMResultList(c.getName(), resultsCopy);

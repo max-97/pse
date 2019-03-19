@@ -85,7 +85,7 @@ public class History {
     public boolean getOpponentCooperated() {
         // Standardwert für erste Runde
         if (currentRound == 0) return true;
-        return opponentCooperated.get(currentRound);
+        return opponentCooperated.get(currentRound - 1);
     }
   
     /**

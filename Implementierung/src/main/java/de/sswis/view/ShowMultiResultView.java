@@ -216,7 +216,7 @@ public class ShowMultiResultView implements AbstractShowMultiResultView {
         ArrayList<VMAgentHistory> agents = new ArrayList<>();
 
         if (repitition == -1) {
-            for (int i = 0; i < vmResults.size(); i++) {
+            for (int i = 0; i < vmResults.get(resultNames.get(0)).size(); i++) {
                 agents.addAll(vmResults.get(resultNames.get(step)).get(i).getAgentHistories());
             }
         } else {

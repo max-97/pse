@@ -2,9 +2,7 @@ package de.sswis.view;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 
-import de.sswis.model.Strategy;
 import de.sswis.util.DataSetHelper;
 import de.sswis.view.CustomComponents.ResultTabs.SimpleResultTab;
 import de.sswis.view.model.VMAgentHistory;
@@ -13,7 +11,6 @@ import de.sswis.view.model.VMConfiguration;
 import de.sswis.view.model.VMResult;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.*;
-import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -196,7 +193,7 @@ public class ShowResultView implements AbstractShowResultView {
 
     private JFreeChart getPointHistoryChart(int repitition, String filter, String filterParam) {
         ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
-        int cycleCount = agents.get(0).getStrategies().size();
+        int cycleCount = getMinCycles(agents);
 
         int[] averageScores = new int[cycleCount];
         for (int i = 0; i < averageScores.length; i++) {
@@ -206,6 +203,9 @@ public class ShowResultView implements AbstractShowResultView {
         for (VMAgentHistory agent : agents) {
             int cycle = 0;
             for (Integer score : agent.getScore()) {
+                if (averageScores.length <= cycle) {
+                    break;
+                }
                 averageScores[cycle] += score;
                 cycle++;
             }
@@ -228,10 +228,21 @@ public class ShowResultView implements AbstractShowResultView {
                 "Punktzahl", dataset);
     }
 
+    private int getMinCycles(ArrayList<VMAgentHistory> agents) {
+        int min = Integer.MAX_VALUE;
+        for (VMAgentHistory history : agents) {
+            int size = history.getRank().size();
+            if (size < min) {
+                min = size;
+            }
+        }
+        return min;
+    }
+
     private JFreeChart getStrategyHistoryChart(int repitition, String filter, String filterParam) {
         HashMap<String, Integer[]> strategiesCycleCounts = new HashMap<>();
         ArrayList<VMAgentHistory> agents = filterAgents(repitition, filter, filterParam);
-        int cycleCount = agents.get(0).getStrategies().size();
+        int cycleCount = getMinCycles(agents);
 
         int divisor = 1;
 
@@ -241,6 +252,9 @@ public class ShowResultView implements AbstractShowResultView {
         for (VMAgentHistory agent : agents) {
             int cycle = 0;
             for (String strategy : agent.getStrategies()) {
+                if (cycleCount <= cycle) {
+                    break;
+                }
                 if (strategiesCycleCounts.containsKey(strategy)) {
                     strategiesCycleCounts.get(strategy)[cycle]++;
                 } else {
