@@ -1,0 +1,1 @@
+{"name":"ComStrat1","description":"","defaultStrategy":"Nie kooperieren","baseStrategies":["Immer kooperieren"],"conditions":["Wahrscheinlichkeit"],"conditionParameters":[{"ALPHA":"0.5"}]}
