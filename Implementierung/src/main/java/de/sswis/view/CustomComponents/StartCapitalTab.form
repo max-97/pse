@@ -59,7 +59,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <toolTipText value="ganze Zahlenwerte, Beispiele: '-10', '30'"/>
+            </properties>
           </component>
           <vspacer id="57a62">
             <constraints>
@@ -74,7 +76,9 @@
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <toolTipText value="&lt;html&gt; IDs: Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  &lt;br&gt; Anteil: Werte zwischen 1 und 0 und variable Werte der Form Startwert - Endwert - Schrittweite, &lt;br&gt;       Beispiele: '0.5', '0.2 - 1.0 - 0.1', '1'. &lt;html&gt;"/>
+            </properties>
           </component>
           <component id="1142f" class="javax.swing.JButton" binding="deleteButton">
             <constraints>
