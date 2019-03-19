@@ -277,7 +277,7 @@ public class GroupTab {
         idLabel.setText("IDs/ Anteil:");
         panel2.add(idLabel, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         distributionTextField = new JFormattedTextField();
-        distributionTextField.setToolTipText("<html> IDs: Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  <br> Anteil: Werte zwischen 1 und 0, Beispiele: '0.5', '1.0', '1'. <html>");
+        distributionTextField.setToolTipText("<html> IDs: Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  <br> Anteil: Werte zwischen 0 und 100, Beispiele: '50', '100', '45'. <html>");
         panel2.add(distributionTextField, new GridConstraints(2, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label1 = new JLabel();
         label1.setText("Bestimme die Agenten, die dieser Gruppe angehören sollen...");

@@ -76,13 +76,13 @@ public class InitialStrategyTab {
         idLabel = new JLabel();
         idLabel.setText("IDs/ Anteil:");
         panel1.add(idLabel, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        inputTextField = new JFormattedTextField();
-        inputTextField.setText("");
-        inputTextField.setToolTipText("<html> IDs: Einzalne oder Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  <br> Anteil: Werte zwischen 1 und 0 und variable Werte der Form Startwert - Endwert - Schrittweite, <br>       Beispiele: '0.5', '0.2 - 1.0 - 0.1', '1'. <html>");
-        panel1.add(inputTextField, new GridConstraints(1, 1, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         deleteStrategyButton = new JButton();
         deleteStrategyButton.setText("Strategie löschen");
         panel1.add(deleteStrategyButton, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        inputTextField = new JFormattedTextField();
+        inputTextField.setText("");
+        inputTextField.setToolTipText("<html> IDs: Einzalne oder Intervalle von gültigen AgentIDs, Beispiele: '1, 1-10', '10 - 20, 25 - 30'  <br> Anteil: Werte zwischen 0 und 100 und variable Werte der Form Startwert - Endwert - Schrittweite, <br>       Beispiele: '50', '20 - 100 - 10', '100'. <html>");
+        panel1.add(inputTextField, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**
