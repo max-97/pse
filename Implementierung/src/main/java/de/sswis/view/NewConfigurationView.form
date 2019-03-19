@@ -222,7 +222,7 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <toolTipText value="Werte zwischen 1 und 0, Beispiele: '0.5', '1.0', '1'."/>
+                  <toolTipText value="Werte zwischen 0 und 1, Beispiele: '0.5', '1.0', '1'."/>
                 </properties>
               </component>
               <component id="d9ff5" class="javax.swing.JButton" binding="setPairingParamsButton">
